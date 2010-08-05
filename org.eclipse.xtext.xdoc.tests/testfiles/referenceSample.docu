@@ -1,0 +1,60 @@
+\chapter:myFirstChapter{This is a first Chapter in the Xtext Reference documentation}
+
+  Introduction
+
+  \section:myFirstSection{First Section}
+
+  	\subsection{}
+
+		\section3{}
+		
+			\section4{}
+			
+				\section5{}
+
+\ol{}
+
+\ul{}
+
+\dl{}
+
+\emph{}
+
+\codeRef{}
+
+\link{}
+
+\code{language}{
+
+}
+
+\\
+
+%% 
+
+\a:anchor
+
+\ref:anchor{optional link text}
+
+\img:imageRef{/path/to/some/image.png}[caption={MyCaption},pdf={70%,rotated},html={lightbox},class={inline}]
+
+\include{otherChapterAnchor}
+
+\item[
+	First 
+	
+	Second
+]
+\item{
+	First paragraph with \ref:myFirstSection{}.
+	
+	Second paragraph
+}
+
+\img:anchor{path}{class=ImageClass}{pdf=65%}{caption=MyCaption bla mit \}}
+
+\code{Java}{
+	System.out.println("Foo");
+}
+
+

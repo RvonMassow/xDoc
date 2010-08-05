@@ -1,0 +1,7 @@
+\chapter:id [Dummy Title]
+
+Some content
+
+\chapter[Dummy Title]
+
+More content with ref to \ref:id
