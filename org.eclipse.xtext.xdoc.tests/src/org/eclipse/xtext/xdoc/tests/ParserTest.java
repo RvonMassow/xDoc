@@ -85,6 +85,17 @@ public class ParserTest extends AbstractXtextTests {
 				+ "\t\tSystem.out.println(\"Hello World\\n\");\n" + "\t}\n"
 				+ "}\n", ((Code) cb.getContents().get(0)).getContents());
 	}
+	
+	public void testCodeWithLanguage() throws Exception {
+		Document doc = getDocFromFile(TEST_FILE_DIR + "codeWithLanguageTest.xdoc");
+		CodeBlock cb = (CodeBlock) ((TextOrMarkup) doc.getChapters().get(0)
+				.getContents().get(0)).getContents().get(0);
+		assertEquals("\nclass Foo {\n"
+				+ "\tpublic static void main(String\\[\\] args){\n"
+				+ "\t\tSystem.out.println(\"Hello World\\n\");\n" + "\t}\n"
+				+ "}\n", ((Code) cb.getContents().get(0)).getContents());
+		assertEquals("Java", cb.getLanguage());
+	}
 
 	public void testComment() throws Exception {
 		getDocFromFile(TEST_FILE_DIR + "commentTest.xdoc");
@@ -138,6 +149,11 @@ public class ParserTest extends AbstractXtextTests {
 		assertEquals(anchor, anchorRef);
 	}
 
+
+	public void testImg() throws Exception {
+		getDocFromFile(TEST_FILE_DIR + "imgTest.xdoc");
+	}
+	
 	public void testUL() throws Exception {
 		getDocFromFile(TEST_FILE_DIR + "ulTest.xdoc");
 	}
