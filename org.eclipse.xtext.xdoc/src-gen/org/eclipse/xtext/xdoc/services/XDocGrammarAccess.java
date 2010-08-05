@@ -778,118 +778,140 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "OrderedList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cOlKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cItemsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cItemsItemParserRuleCall_2_0 = (RuleCall)cItemsAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cItemsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cItemsItemParserRuleCall_4_0 = (RuleCall)cItemsAssignment_4.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//OrderedList:
-		//	"\\ol" //WS
-		//	"[" items+=Item+ "]";
+		//	"\\ol" WS* "[" WS* //WS
+		//	items+=Item+ "]";
 		public ParserRule getRule() { return rule; }
 
-		//"\\ol" //WS
-		//"[" items+=Item+ "]"
+		//"\\ol" WS* "[" WS* //WS
+		//items+=Item+ "]"
 		public Group getGroup() { return cGroup; }
 
 		//"\\ol"
 		public Keyword getOlKeyword_0() { return cOlKeyword_0; }
 
-		////WS
+		//WS*
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
+
+		//WS*
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 
 		//items+=Item+
-		public Assignment getItemsAssignment_2() { return cItemsAssignment_2; }
+		public Assignment getItemsAssignment_4() { return cItemsAssignment_4; }
 
 		//Item
-		public RuleCall getItemsItemParserRuleCall_2_0() { return cItemsItemParserRuleCall_2_0; }
+		public RuleCall getItemsItemParserRuleCall_4_0() { return cItemsItemParserRuleCall_4_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
 	}
 
 	public class UnorderedListElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnorderedList");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cUlKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cItemsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cItemsItemParserRuleCall_2_0 = (RuleCall)cItemsAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cItemsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cItemsItemParserRuleCall_4_0 = (RuleCall)cItemsAssignment_4.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//UnorderedList:
-		//	"\\ul" //WS
-		//	"[" items+=Item+ "]";
+		//	"\\ul" WS* "[" WS* //WS
+		//	items+=Item+ "]";
 		public ParserRule getRule() { return rule; }
 
-		//"\\ul" //WS
-		//"[" items+=Item+ "]"
+		//"\\ul" WS* "[" WS* //WS
+		//items+=Item+ "]"
 		public Group getGroup() { return cGroup; }
 
 		//"\\ul"
 		public Keyword getUlKeyword_0() { return cUlKeyword_0; }
 
-		////WS
+		//WS*
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
+
+		//WS*
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 
 		//items+=Item+
-		public Assignment getItemsAssignment_2() { return cItemsAssignment_2; }
+		public Assignment getItemsAssignment_4() { return cItemsAssignment_4; }
 
 		//Item
-		public RuleCall getItemsItemParserRuleCall_2_0() { return cItemsItemParserRuleCall_2_0; }
+		public RuleCall getItemsItemParserRuleCall_4_0() { return cItemsItemParserRuleCall_4_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
 	}
 
 	public class ItemElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Item");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cItemKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cContentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cContentsTextOrMarkupParserRuleCall_2_0 = (RuleCall)cContentsAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cMULTI_NLTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cContentsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_1_0 = (RuleCall)cContentsAssignment_3_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cContentsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_0 = (RuleCall)cContentsAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cMULTI_NLTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cContentsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cContentsTextOrMarkupParserRuleCall_4_1_0 = (RuleCall)cContentsAssignment_4_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
 		//Item:
-		//	"\\item" "[" contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]";
+		//	"\\item" WS* "[" contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]" WS*;
 		public ParserRule getRule() { return rule; }
 
-		//"\\item" "[" contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]"
+		//"\\item" WS* "[" contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]" WS*
 		public Group getGroup() { return cGroup; }
 
 		//"\\item"
 		public Keyword getItemKeyword_0() { return cItemKeyword_0; }
 
+		//WS*
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+
 		//"["
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
 
 		//contents+=TextOrMarkup
-		public Assignment getContentsAssignment_2() { return cContentsAssignment_2; }
+		public Assignment getContentsAssignment_3() { return cContentsAssignment_3; }
 
 		//TextOrMarkup
-		public RuleCall getContentsTextOrMarkupParserRuleCall_2_0() { return cContentsTextOrMarkupParserRuleCall_2_0; }
+		public RuleCall getContentsTextOrMarkupParserRuleCall_3_0() { return cContentsTextOrMarkupParserRuleCall_3_0; }
 
 		//(MULTI_NL contents+=TextOrMarkup)*
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_4() { return cGroup_4; }
 
 		//MULTI_NL
-		public RuleCall getMULTI_NLTerminalRuleCall_3_0() { return cMULTI_NLTerminalRuleCall_3_0; }
+		public RuleCall getMULTI_NLTerminalRuleCall_4_0() { return cMULTI_NLTerminalRuleCall_4_0; }
 
 		//contents+=TextOrMarkup
-		public Assignment getContentsAssignment_3_1() { return cContentsAssignment_3_1; }
+		public Assignment getContentsAssignment_4_1() { return cContentsAssignment_4_1; }
 
 		//TextOrMarkup
-		public RuleCall getContentsTextOrMarkupParserRuleCall_3_1_0() { return cContentsTextOrMarkupParserRuleCall_3_1_0; }
+		public RuleCall getContentsTextOrMarkupParserRuleCall_4_1_0() { return cContentsTextOrMarkupParserRuleCall_4_1_0; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+
+		//WS*
+		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
 	}
 
 	public class CodeRefElements extends AbstractParserRuleElementFinder {
@@ -1404,8 +1426,8 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OrderedList:
-	//	"\\ol" //WS
-	//	"[" items+=Item+ "]";
+	//	"\\ol" WS* "[" WS* //WS
+	//	items+=Item+ "]";
 	public OrderedListElements getOrderedListAccess() {
 		return (pOrderedList != null) ? pOrderedList : (pOrderedList = new OrderedListElements());
 	}
@@ -1415,8 +1437,8 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnorderedList:
-	//	"\\ul" //WS
-	//	"[" items+=Item+ "]";
+	//	"\\ul" WS* "[" WS* //WS
+	//	items+=Item+ "]";
 	public UnorderedListElements getUnorderedListAccess() {
 		return (pUnorderedList != null) ? pUnorderedList : (pUnorderedList = new UnorderedListElements());
 	}
@@ -1426,7 +1448,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Item:
-	//	"\\item" "[" contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]";
+	//	"\\item" WS* "[" contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]" WS*;
 	public ItemElements getItemAccess() {
 		return (pItem != null) ? pItem : (pItem = new ItemElements());
 	}

@@ -64,17 +64,17 @@ Ref:
 	'\\ref' ':' ref=[Identifiable] '[' contents+=TextOrMarkup ']';
 
 OrderedList:
-	'\\ol' '[' //WS
+	'\\ol' WS* '[' WS* //WS
 		items+=Item+
 	']';
 
 UnorderedList:
-	'\\ul' '[' //WS
+	'\\ul' WS* '[' WS* //WS
 		items+=Item+
 	']';
 
 Item:
-	'\\item' '[' contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']';
+	'\\item' WS* '[' contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']' WS*;
 
 CodeRef:
 	'\\codeRef' '[' element=[types::JvmIdentifyableElement|Text] ']';
