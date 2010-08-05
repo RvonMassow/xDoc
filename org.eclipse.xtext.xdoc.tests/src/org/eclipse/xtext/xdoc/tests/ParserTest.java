@@ -118,7 +118,9 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testEscape() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "testEscape.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR + "testEscape.xdoc");
+		TextPart p = (TextPart) ((TextOrMarkup)doc.getChapters().get(0).getContents().get(0)).getContents().get(0);
+		assertEquals("\\\\ \\[ \\]", p.getText());
 	}
 
 	public void testTwoChaptersXRef() throws Exception {
