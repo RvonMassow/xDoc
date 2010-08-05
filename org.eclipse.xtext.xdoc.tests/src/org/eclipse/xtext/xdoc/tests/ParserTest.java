@@ -71,6 +71,27 @@ public class ParserTest extends AbstractXtextTests {
 		getDocFromFile(TEST_FILE_DIR + "namedRefTest.xdoc");
 	}
 
+	public void testNestedList() throws Exception {
+		getDocFromFile(TEST_FILE_DIR + "nestedListTest.xdoc");
+	}
+	
+	public void testSimpleRef() throws Exception {
+		getDocFromFile(TEST_FILE_DIR + "simpleRefTest.xdoc");
+	}
+
+	public void testEscape() throws Exception {
+		getDocFromFile(TEST_FILE_DIR + "testEscape.xdoc");
+	}
+
+
+	public void testTwoChapters() throws Exception {
+		getDocFromFile(TEST_FILE_DIR + "twoChapters.xdoc");
+	}
+
+
+	public void testUL() throws Exception {
+		getDocFromFile(TEST_FILE_DIR + "ulTest.xdoc");
+	}
 
 	protected Document getDoc(String string) throws Exception {
 		return (Document) getModel(string);
