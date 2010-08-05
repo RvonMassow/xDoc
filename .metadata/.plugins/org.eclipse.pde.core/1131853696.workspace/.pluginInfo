@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map>
+	<bundle bundleID="655" localization="OSGI-INF/l10n/bundle" name="org.eclipse.xtext.xdoc.generator" project="org.eclipse.xtext.xdoc.generator" provider="My Company"/>
+	<bundle bundleID="657" class="org.eclipse.xtext.xdoc.ui.internal.XDocActivator" localization="OSGI-INF/l10n/bundle" name="org.eclipse.xtext.xdoc.ui" project="org.eclipse.xtext.xdoc.ui" provider="My Company"/>
+	<bundle bundleID="654" localization="OSGI-INF/l10n/bundle" name="org.eclipse.xtext.xdoc" project="org.eclipse.xtext.xdoc" provider="My Company"/>
+	<bundle bundleID="656" localization="OSGI-INF/l10n/bundle" name="XDoc Tests" project="org.eclipse.xtext.xdoc.tests" provider="Eclipse Modeling"/>
+</map>

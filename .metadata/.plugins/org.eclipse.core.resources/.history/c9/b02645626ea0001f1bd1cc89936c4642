@@ -1,0 +1,5 @@
+grammar org.xtext.example.mydsl.SubLang with org.xtext.example.mydsl.MyDsl
+
+generate foo "foo"
+
+Main : 'start' foo=MyEnums;
