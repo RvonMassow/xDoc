@@ -3,7 +3,6 @@ package org.eclipse.xtext.xdoc.tests;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -18,7 +17,6 @@ import org.eclipse.xtext.xdoc.xDoc.Document;
 import org.eclipse.xtext.xdoc.xDoc.Emphasize;
 import org.eclipse.xtext.xdoc.xDoc.Identifiable;
 import org.eclipse.xtext.xdoc.xDoc.Link;
-import org.eclipse.xtext.xdoc.xDoc.MarkUp;
 import org.eclipse.xtext.xdoc.xDoc.Ref;
 import org.eclipse.xtext.xdoc.xDoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xDoc.TextPart;
