@@ -30,8 +30,25 @@
 «this.text»
 «ENDDEFINE»
 
+«DEFINE GEN_TEXT FOR OrderedList»
+\begin{enumerate}
+«EXPAND GEN_TEXT FOREACH items»
+\end{enumerate}
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR Item»
+«ENDDEFINE»
+
 «DEFINE GEN_TEXT FOR Emphasize»
-\emph{ «EXPAND CONTENT FOREACH this.contents» } 
+\emph{ «EXPAND CONTENT FOREACH this.contents» }
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR Ref»
+«IF this.contents.isEmpty»
+\hyperref[«this.ref.name»]{«this.ref»}
+«ELSE»
+\hyperref[«this.ref.name»]{«EXPAND CONTENT FOREACH this.contents»}
+«ENDIF»
 «ENDDEFINE»
 
 «DEFINE GEN_TEXT FOR Anchor»
@@ -42,6 +59,10 @@
 «ENDDEFINE»
 
 «DEFINE CONTENT FOR Section»
+\section{«EXPAND CONTENT FOR this.title»}
+«IF this.name != null »
+\ref{«this.name»}
+«ENDIF»
 «ENDDEFINE»
 
 «DEFINE CONTENT FOR EObject»
