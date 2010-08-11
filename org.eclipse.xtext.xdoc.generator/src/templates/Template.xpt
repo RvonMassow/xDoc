@@ -1,14 +1,49 @@
-�IMPORT org::eclipse::xtext::xdoc::xDoc�
+«IMPORT xDoc»
+«IMPORT ecore»
 
-�EXTENSION templates::Extensions�
+«EXTENSION templates::Extensions»
 
-�DEFINE main FOR Greeting-�
-�FILE name+".txt"-�
-This is an example of a generated file.
+«DEFINE main FOR Document -»
+«FILE "out.tex"-»
+\documentclass[a4paper]{scrreprt}
 
-The input element was "Hello �name�!"
+\begin{document}
 
-All greetings in the same file:
-�FOREACH ((Model)eContainer()).sortedGreetings() AS g SEPARATOR ', '��g.name��ENDFOREACH�
-�ENDFILE-�
-�ENDDEFINE�
+«EXPAND CHAPTER FOREACH this.chapters»
+
+\end{document}
+«ENDFILE-»
+«ENDDEFINE»
+
+«DEFINE CHAPTER FOR Chapter»
+\chapter{ «EXPAND CONTENT FOR this.title» }
+
+«EXPAND CONTENT FOREACH this.contents»
+
+«ENDDEFINE»
+
+«DEFINE CONTENT FOR TextOrMarkup»
+«EXPAND GEN_TEXT FOREACH contents»
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR TextPart»
+«this.text»
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR Emphasize»
+\emph{ «EXPAND CONTENT FOREACH this.contents» } 
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR Anchor»
+\phantomsection\label{«this.name»}
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR EObject»
+«ENDDEFINE»
+
+«DEFINE CONTENT FOR Section»
+«ENDDEFINE»
+
+«DEFINE CONTENT FOR EObject»
+«ENDDEFINE»
+

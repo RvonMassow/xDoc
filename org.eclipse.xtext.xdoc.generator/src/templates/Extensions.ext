@@ -1,4 +1,1 @@
-import org::eclipse::xtext::xdoc::xDoc;
-
-sortedGreetings(Model this) :
-	this.greetings.sortBy(g|g.name.toLowerCase());
+import xDoc;
