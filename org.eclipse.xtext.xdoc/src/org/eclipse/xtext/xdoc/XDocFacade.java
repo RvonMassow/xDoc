@@ -6,8 +6,28 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xdoc.xDoc.Chapter;
 import org.eclipse.xtext.xdoc.xDoc.Document;
 import org.eclipse.xtext.xdoc.xDoc.Section;
+import org.eclipse.xtext.xdoc.xDoc.SubSection;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.Collections2;
 
 public class XDocFacade {
+
+	private static final Predicate<EObject> PREDICATE = new Predicate<EObject>() {
+
+		@Override
+		public boolean apply(EObject input) {
+			return input instanceof Section;
+		}
+	};
+
+	private static final Predicate<EObject> SUB_SECTION = new Predicate<EObject>() {
+
+		@Override
+		public boolean apply(EObject input) {
+			return input instanceof SubSection;
+		}
+	};
 
 	private Document doc;
 
@@ -16,7 +36,7 @@ public class XDocFacade {
 	}
 
 	/**
-	 * Get the chapter with the given index
+	 * Get the chapter with the given index.
 	 * 
 	 * @param i
 	 *            the index of the chapter to return
@@ -34,7 +54,7 @@ public class XDocFacade {
 
 	/**
 	 * Get the section with the given index from the chapter with the other
-	 * index
+	 * index.
 	 * 
 	 * @param i
 	 *            the index of the chapter to lookup the section from
@@ -44,24 +64,43 @@ public class XDocFacade {
 	 */
 	public Section getSection(int i, int j) {
 		Chapter chapter = null;
-		Section sec = null;
-		try {
-			chapter = getChapter(i);
-			if(chapter != null){
-				List<EObject> contents = chapter.getContents();
-				int secNum = 0;
-				for (EObject eObject : contents) {
-					if(eObject instanceof Section){
-						if(secNum++ == j){
-							return (Section) eObject;
-						}
-					}
-				}
+		chapter = getChapter(i);
+		if (chapter != null) {
+			List<EObject> secs = (List<EObject>) Collections2.filter(
+					chapter.getContents(), PREDICATE);
+			try {
+				return (Section) secs.get(j);
+			} catch (IndexOutOfBoundsException e) {
+				e.printStackTrace();
 			}
-		} catch (IndexOutOfBoundsException e) {
-			e.printStackTrace();
 		}
-		return sec;
+		return null;
+	}
+
+	/**
+	 * Get the subsection with the given index k from the section with index j
+	 * from the chapter with the index i.
+	 * 
+	 * @param i
+	 *            the index of the chapter to lookup the section from
+	 * @param j
+	 *            the index of the section within the chapter
+	 * @param k
+	 *            the index of the subsection within the section
+	 * @return the subsection or null if no such chapter or section exists
+	 */
+	public SubSection getSubSection(int i, int j, int k) {
+		Section sec = getSection(i, j);
+		if (sec != null) {
+			List<EObject> ssecs = (List<EObject>) Collections2.filter(
+					sec.getContents(), SUB_SECTION);
+			try {
+				return (SubSection) ssecs.get(k);
+			} catch (IndexOutOfBoundsException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
 	}
 
 }
