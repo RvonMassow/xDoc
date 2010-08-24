@@ -26,6 +26,12 @@
 «EXPAND GEN_TEXT FOREACH contents»
 «ENDDEFINE»
 
+«DEFINE CONTENT FOR EObject»
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR EObject»
+«ENDDEFINE»
+
 «DEFINE GEN_TEXT FOR TextPart»
 «this.text»
 «ENDDEFINE»
@@ -37,6 +43,7 @@
 «ENDDEFINE»
 
 «DEFINE GEN_TEXT FOR Item»
+\item 
 «ENDDEFINE»
 
 «DEFINE GEN_TEXT FOR Emphasize»
@@ -55,7 +62,24 @@
 \phantomsection\label{«this.name»}
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR EObject»
+«DEFINE GEN_TEXT FOR CodeBlock»
+\begin{lstlisting}[language=«language»]
+«EXPAND GEN_CODE FOREACH contents»
+\end{lstlsting}
+«ENDDEFINE»
+
+«DEFINE GEN_CODE FOR EObject»
+«ENDDEFINE»
+
+«DEFINE GEN_CODE FOR Code»
+«this.contents»
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR MarkupInCode»
+«ENDDEFINE»
+
+«DEFINE GEN_CODE FOR MarkupInCode»
+«lstEscapeToTex()»«EXPAND GEN_TEXT FOR this»«lstEscapeToTex()»
 «ENDDEFINE»
 
 «DEFINE CONTENT FOR Section»
@@ -64,7 +88,3 @@
 \ref{«this.name»}
 «ENDIF»
 «ENDDEFINE»
-
-«DEFINE CONTENT FOR EObject»
-«ENDDEFINE»
-
