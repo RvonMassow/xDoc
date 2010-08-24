@@ -7,6 +7,8 @@
 «FILE "out.tex"-»
 \documentclass[a4paper]{scrreprt}
 
+\newlength{\itemindentlen}
+
 \begin{document}
 
 «EXPAND CHAPTER FOREACH this.chapters»
@@ -37,13 +39,27 @@
 «ENDDEFINE»
 
 «DEFINE GEN_TEXT FOR OrderedList»
+\setlength{\itemindentlen}{\textwidth}
 \begin{enumerate}
+\addtolength{\itemindentlen}{-2em}
 «EXPAND GEN_TEXT FOREACH items»
 \end{enumerate}
+\addtolength{\itemindentlen}{2em}
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR UnorderedList»
+\setlength{\itemindentlen}{\textwidth}
+\begin{itemize}
+\addtolength{\itemindentlen}{-2em}
+«EXPAND GEN_TEXT FOREACH items»
+\end{itemize}
+\addtolength{\itemindentlen}{2em}
 «ENDDEFINE»
 
 «DEFINE GEN_TEXT FOR Item»
-\item 
+\item \begin{minipage}[t]{\itemindentlen}
+«EXPAND CONTENT FOREACH this.contents»
+\end{minipage}
 «ENDDEFINE»
 
 «DEFINE GEN_TEXT FOR Emphasize»
@@ -85,6 +101,6 @@
 «DEFINE CONTENT FOR Section»
 \section{«EXPAND CONTENT FOR this.title»}
 «IF this.name != null »
-\ref{«this.name»}
+\label{«this.name»}
 «ENDIF»
 «ENDDEFINE»
