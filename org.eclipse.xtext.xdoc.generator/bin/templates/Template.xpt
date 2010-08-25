@@ -1,6 +1,4 @@
-«IMPORT org::eclipse::xtext::xdoc::xDoc»
-«IMPORT ecore»
-
+«IMPORT org::eclipse::xtext::xdoc::xdoc»
 «EXTENSION templates::Extensions»
 
 «DEFINE main FOR Document -»
@@ -11,132 +9,132 @@
 
 \begin{document}
 
-«EXPAND CHAPTER FOREACH this.chapters»
+«EXPAND chapter FOREACH this.chapters»
 
 \end{document}
 «ENDFILE-»
 «ENDDEFINE»
 
-«DEFINE CHAPTER FOR Chapter»
-\chapter{ «EXPAND CONTENT FOR this.title» }
-«EXPAND LABEL FOR this.name»
+«DEFINE chapter FOR Chapter»
+\chapter{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
 
-«EXPAND CONTENT FOREACH this.contents»
-
-«ENDDEFINE»
-
-«DEFINE CONTENT FOR Section»
-\section{«EXPAND CONTENT FOR this.title»}
-«EXPAND LABEL FOR this.name»
+«EXPAND genContent FOREACH this.contents»
 
 «ENDDEFINE»
 
-«DEFINE CONTENT FOR SubSection»
-\subsection{ «EXPAND CONTENT FOR this.title» }
-«EXPAND LABEL FOR this.name»
-
-«EXPAND CONTENT FOREACH this.contents»
+«DEFINE genContent FOR Section»
+\section{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»
 
 «ENDDEFINE»
 
-«DEFINE CONTENT FOR Section3»
-\subsubsection{ «EXPAND CONTENT FOR this.title» }
-«EXPAND LABEL FOR this.name»
+«DEFINE genContent FOR SubSection»
+\subsection{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
 
-«EXPAND CONTENT FOREACH this.contents»
-
-«ENDDEFINE»
-
-«DEFINE CONTENT FOR Section4»
-\subsubsection{ «EXPAND CONTENT FOR this.title» }
-«EXPAND LABEL FOR this.name»
-
-«EXPAND CONTENT FOREACH this.contents»
+«EXPAND genContent FOREACH this.contents»
 
 «ENDDEFINE»
 
-«DEFINE CONTENT FOR TextOrMarkup»
+«DEFINE genContent FOR Section3»
+\subsubsection{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
+
+«EXPAND genContent FOREACH this.contents»
+
+«ENDDEFINE»
+
+«DEFINE genContent FOR Section4»
+\subsubsection{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
+
+«EXPAND genContent FOREACH this.contents»
+
+«ENDDEFINE»
+
+«DEFINE genContent FOR TextOrMarkup»
 «FOREACH this.contents AS par»
-«EXPAND GEN_TEXT FOR par»\\
+«EXPAND genText FOR par»\\
 
 «ENDFOREACH»
 «ENDDEFINE»
 
-«DEFINE CONTENT FOR EObject»
+«DEFINE genContent FOR Object»
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR EObject»
+«DEFINE genText FOR Object»
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR TextPart»
+«DEFINE genText FOR TextPart»
 «this.text»
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR OrderedList»
+«DEFINE genText FOR OrderedList»
 \setlength{\itemindentlen}{\textwidth}
 \begin{enumerate}
 \addtolength{\itemindentlen}{-2em}
-«EXPAND GEN_TEXT FOREACH items»
+«EXPAND genText FOREACH items»
 \end{enumerate}
 \addtolength{\itemindentlen}{2em}
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR UnorderedList»
+«DEFINE genText FOR UnorderedList»
 \setlength{\itemindentlen}{\textwidth}
 \begin{itemize}
 \addtolength{\itemindentlen}{-2em}
-«EXPAND GEN_TEXT FOREACH items»
+«EXPAND genText FOREACH items»
 \end{itemize}
 \addtolength{\itemindentlen}{2em}
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR Item»
+«DEFINE genText FOR Item»
 \item \begin{minipage}[t]{\itemindentlen}
-«EXPAND CONTENT FOREACH this.contents»
+«EXPAND genContent FOREACH this.contents»
 \end{minipage}
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR Emphasize»
-\emph{ «EXPAND CONTENT FOREACH this.contents» }
+«DEFINE genText FOR Emphasize»
+\emph{ «EXPAND genContent FOREACH this.contents» }
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR Ref»
+«DEFINE genText FOR Ref»
 «IF this.contents.isEmpty»
 \hyperref[«this.ref.name»]{«this.ref»}
 «ELSE»
-\hyperref[«this.ref.name»]{«EXPAND CONTENT FOREACH this.contents»}
+\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»}
 «ENDIF»
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR Anchor»
+«DEFINE genText FOR Anchor»
 \phantomsection\label{«this.name»}
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR CodeBlock»
+«DEFINE genText FOR CodeBlock»
 \begin{lstlisting}[language=«language»]
-«EXPAND GEN_CODE FOREACH contents»
+«EXPAND genCode FOREACH contents»
 \end{lstlsting}
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR CodeRef»
-\lstinline{
+«DEFINE genText FOR CodeRef»
+\lstinline{«this.element.canonicalName»}
 «ENDDEFINE»
 
-«DEFINE GEN_CODE FOR EObject»
+«DEFINE genCode FOR Object»
 «ENDDEFINE»
 
-«DEFINE GEN_CODE FOR Code»
+«DEFINE genCode FOR Code»
 «this.contents»
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR MarkupInCode»
+«DEFINE genText FOR MarkupInCode»
 «ENDDEFINE»
 
-«DEFINE GEN_CODE FOR MarkupInCode»
-«lstEscapeToTex()»«EXPAND GEN_TEXT FOR this»«lstEscapeToTex()»
+«DEFINE genCode FOR MarkupInCode»
+«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»
 «ENDDEFINE»
 
-«DEFINE LABEL FOR String»
+«DEFINE genLabel FOR String»
 «IF this != null »
 \label{«this»}
 «ENDIF»

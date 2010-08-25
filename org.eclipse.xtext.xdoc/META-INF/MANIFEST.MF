@@ -22,9 +22,6 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.xtext.xdoc,
  org.eclipse.xtext.xdoc.services,
- org.eclipse.xtext.xdoc.xDoc,
- org.eclipse.xtext.xdoc.xDoc.impl,
- org.eclipse.xtext.xdoc.xDoc.util,
  org.eclipse.xtext.xdoc.parseTreeConstruction,
  org.eclipse.xtext.xdoc.parser.antlr,
  org.eclipse.xtext.xdoc.parser.antlr.internal,
