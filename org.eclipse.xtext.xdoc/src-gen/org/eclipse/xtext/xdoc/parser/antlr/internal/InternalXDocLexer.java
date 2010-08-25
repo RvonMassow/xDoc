@@ -12,32 +12,32 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalXDocLexer extends Lexer {
-    public static final int RULE_ID=5;
-    public static final int RULE_ANY_OTHER=7;
-    public static final int T28=28;
-    public static final int T27=27;
-    public static final int T26=26;
-    public static final int T9=9;
-    public static final int T25=25;
-    public static final int RULE_MULTI_NL=4;
-    public static final int Tokens=29;
-    public static final int T24=24;
-    public static final int EOF=-1;
-    public static final int RULE_SL_COMMENT=8;
-    public static final int T23=23;
-    public static final int T22=22;
     public static final int T21=21;
+    public static final int T14=14;
+    public static final int RULE_ID=5;
+    public static final int T22=22;
+    public static final int T11=11;
+    public static final int T9=9;
+    public static final int T12=12;
+    public static final int T28=28;
+    public static final int T23=23;
+    public static final int T13=13;
     public static final int T20=20;
     public static final int T10=10;
-    public static final int T11=11;
-    public static final int T12=12;
-    public static final int T13=13;
-    public static final int T14=14;
-    public static final int RULE_WS=6;
-    public static final int T15=15;
-    public static final int T16=16;
-    public static final int T17=17;
+    public static final int T25=25;
     public static final int T18=18;
+    public static final int RULE_WS=6;
+    public static final int T26=26;
+    public static final int T15=15;
+    public static final int EOF=-1;
+    public static final int RULE_MULTI_NL=4;
+    public static final int T17=17;
+    public static final int Tokens=29;
+    public static final int RULE_ANY_OTHER=7;
+    public static final int T16=16;
+    public static final int T27=27;
+    public static final int RULE_SL_COMMENT=8;
+    public static final int T24=24;
     public static final int T19=19;
     public InternalXDocLexer() {;} 
     public InternalXDocLexer(CharStream input) {
@@ -576,8 +576,8 @@ public class InternalXDocLexer extends Lexer {
     public final void mRULE_MULTI_NL() throws RecognitionException {
         try {
             int _type = RULE_MULTI_NL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:15: ( ( '\\r' )? '\\n' ( '\\r' )? '\\n' ( RULE_WS )* )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:17: ( '\\r' )? '\\n' ( '\\r' )? '\\n' ( RULE_WS )*
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:15: ( ( '\\r' )? '\\n' ( ' ' | '\\t' )* ( '\\r' )? '\\n' ( RULE_WS )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:17: ( '\\r' )? '\\n' ( ' ' | '\\t' )* ( '\\r' )? '\\n' ( RULE_WS )*
             {
             // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:17: ( '\\r' )?
             int alt5=2;
@@ -598,16 +598,50 @@ public class InternalXDocLexer extends Lexer {
             }
 
             match('\n'); 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:28: ( '\\r' )?
-            int alt6=2;
-            int LA6_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:28: ( ' ' | '\\t' )*
+            loop6:
+            do {
+                int alt6=2;
+                int LA6_0 = input.LA(1);
 
-            if ( (LA6_0=='\r') ) {
-                alt6=1;
+                if ( (LA6_0=='\t'||LA6_0==' ') ) {
+                    alt6=1;
+                }
+
+
+                switch (alt6) {
+            	case 1 :
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:
+            	    {
+            	    if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
+            	        input.consume();
+
+            	    }
+            	    else {
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recover(mse);    throw mse;
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop6;
+                }
+            } while (true);
+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:40: ( '\\r' )?
+            int alt7=2;
+            int LA7_0 = input.LA(1);
+
+            if ( (LA7_0=='\r') ) {
+                alt7=1;
             }
-            switch (alt6) {
+            switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:28: '\\r'
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:40: '\\r'
                     {
                     match('\r'); 
 
@@ -617,20 +651,20 @@ public class InternalXDocLexer extends Lexer {
             }
 
             match('\n'); 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:39: ( RULE_WS )*
-            loop7:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:51: ( RULE_WS )*
+            loop8:
             do {
-                int alt7=2;
-                int LA7_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( ((LA7_0>='\t' && LA7_0<='\n')||LA7_0=='\r'||LA7_0==' ') ) {
-                    alt7=1;
+                if ( ((LA8_0>='\t' && LA8_0<='\n')||LA8_0=='\r'||LA8_0==' ') ) {
+                    alt8=1;
                 }
 
 
-                switch (alt7) {
+                switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:39: RULE_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2406:51: RULE_WS
             	    {
             	    mRULE_WS(); 
 
@@ -638,7 +672,7 @@ public class InternalXDocLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop7;
+            	    break loop8;
                 }
             } while (true);
 
@@ -699,250 +733,250 @@ public class InternalXDocLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1:8: ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER )
-        int alt8=25;
-        int LA8_0 = input.LA(1);
+        int alt9=25;
+        int LA9_0 = input.LA(1);
 
-        if ( (LA8_0=='\\') ) {
+        if ( (LA9_0=='\\') ) {
             switch ( input.LA(2) ) {
-            case 'c':
-                {
-                int LA8_11 = input.LA(3);
-
-                if ( (LA8_11=='o') ) {
-                    int LA8_29 = input.LA(4);
-
-                    if ( (LA8_29=='d') ) {
-                        int LA8_35 = input.LA(5);
-
-                        if ( (LA8_35=='e') ) {
-                            int LA8_37 = input.LA(6);
-
-                            if ( (LA8_37=='R') ) {
-                                alt8=15;
-                            }
-                            else {
-                                alt8=18;}
-                        }
-                        else {
-                            NoViableAltException nvae =
-                                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 35, input);
-
-                            throw nvae;
-                        }
-                    }
-                    else {
-                        NoViableAltException nvae =
-                            new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 29, input);
-
-                        throw nvae;
-                    }
-                }
-                else if ( (LA8_11=='h') ) {
-                    alt8=1;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 11, input);
-
-                    throw nvae;
-                }
-                }
-                break;
             case 's':
                 {
-                int LA8_12 = input.LA(3);
+                int LA9_11 = input.LA(3);
 
-                if ( (LA8_12=='u') ) {
-                    alt8=6;
-                }
-                else if ( (LA8_12=='e') ) {
-                    int LA8_32 = input.LA(4);
+                if ( (LA9_11=='e') ) {
+                    int LA9_29 = input.LA(4);
 
-                    if ( (LA8_32=='c') ) {
-                        int LA8_36 = input.LA(5);
+                    if ( (LA9_29=='c') ) {
+                        int LA9_35 = input.LA(5);
 
-                        if ( (LA8_36=='t') ) {
-                            int LA8_38 = input.LA(6);
+                        if ( (LA9_35=='t') ) {
+                            int LA9_37 = input.LA(6);
 
-                            if ( (LA8_38=='i') ) {
-                                int LA8_41 = input.LA(7);
+                            if ( (LA9_37=='i') ) {
+                                int LA9_39 = input.LA(7);
 
-                                if ( (LA8_41=='o') ) {
-                                    int LA8_42 = input.LA(8);
+                                if ( (LA9_39=='o') ) {
+                                    int LA9_42 = input.LA(8);
 
-                                    if ( (LA8_42=='n') ) {
+                                    if ( (LA9_42=='n') ) {
                                         switch ( input.LA(9) ) {
-                                        case '3':
-                                            {
-                                            alt8=7;
-                                            }
-                                            break;
                                         case '4':
                                             {
-                                            alt8=8;
+                                            alt9=8;
+                                            }
+                                            break;
+                                        case '3':
+                                            {
+                                            alt9=7;
                                             }
                                             break;
                                         default:
-                                            alt8=5;}
+                                            alt9=5;}
 
                                     }
                                     else {
                                         NoViableAltException nvae =
-                                            new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 42, input);
+                                            new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 42, input);
 
                                         throw nvae;
                                     }
                                 }
                                 else {
                                     NoViableAltException nvae =
-                                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 41, input);
+                                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 39, input);
 
                                     throw nvae;
                                 }
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 38, input);
+                                    new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 37, input);
 
                                 throw nvae;
                             }
                         }
                         else {
                             NoViableAltException nvae =
-                                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 36, input);
+                                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 35, input);
 
                             throw nvae;
                         }
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 32, input);
+                            new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 29, input);
 
                         throw nvae;
                     }
                 }
+                else if ( (LA9_11=='u') ) {
+                    alt9=6;
+                }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 12, input);
+                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 11, input);
 
                     throw nvae;
                 }
-                }
-                break;
-            case 'o':
-                {
-                alt8=12;
-                }
-                break;
-            case 'r':
-                {
-                alt8=11;
-                }
-                break;
-            case 'a':
-                {
-                alt8=10;
-                }
-                break;
-            case 'e':
-                {
-                alt8=9;
                 }
                 break;
             case 'i':
                 {
-                int LA8_17 = input.LA(3);
+                int LA9_12 = input.LA(3);
 
-                if ( (LA8_17=='t') ) {
-                    alt8=14;
+                if ( (LA9_12=='t') ) {
+                    alt9=14;
                 }
-                else if ( (LA8_17=='m') ) {
-                    alt8=17;
+                else if ( (LA9_12=='m') ) {
+                    alt9=17;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 17, input);
+                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 12, input);
 
                     throw nvae;
                 }
                 }
                 break;
-            case 'u':
-                {
-                alt8=13;
-                }
-                break;
             case 'l':
                 {
-                alt8=16;
+                alt9=16;
                 }
                 break;
-            case ']':
+            case 'c':
                 {
-                alt8=20;
+                int LA9_14 = input.LA(3);
+
+                if ( (LA9_14=='o') ) {
+                    int LA9_33 = input.LA(4);
+
+                    if ( (LA9_33=='d') ) {
+                        int LA9_36 = input.LA(5);
+
+                        if ( (LA9_36=='e') ) {
+                            int LA9_38 = input.LA(6);
+
+                            if ( (LA9_38=='R') ) {
+                                alt9=15;
+                            }
+                            else {
+                                alt9=18;}
+                        }
+                        else {
+                            NoViableAltException nvae =
+                                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 36, input);
+
+                            throw nvae;
+                        }
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 33, input);
+
+                        throw nvae;
+                    }
+                }
+                else if ( (LA9_14=='h') ) {
+                    alt9=1;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 14, input);
+
+                    throw nvae;
+                }
+                }
+                break;
+            case 'a':
+                {
+                alt9=10;
                 }
                 break;
             case '[':
                 {
-                alt8=19;
+                alt9=19;
+                }
+                break;
+            case ']':
+                {
+                alt9=20;
+                }
+                break;
+            case 'r':
+                {
+                alt9=11;
+                }
+                break;
+            case 'o':
+                {
+                alt9=12;
+                }
+                break;
+            case 'e':
+                {
+                alt9=9;
+                }
+                break;
+            case 'u':
+                {
+                alt9=13;
                 }
                 break;
             default:
-                alt8=25;}
+                alt9=25;}
 
         }
-        else if ( (LA8_0==':') ) {
-            alt8=2;
+        else if ( (LA9_0==':') ) {
+            alt9=2;
         }
-        else if ( (LA8_0=='[') ) {
-            alt8=3;
+        else if ( (LA9_0=='[') ) {
+            alt9=3;
         }
-        else if ( (LA8_0==']') ) {
-            alt8=4;
+        else if ( (LA9_0==']') ) {
+            alt9=4;
         }
-        else if ( ((LA8_0>='A' && LA8_0<='Z')||LA8_0=='_'||(LA8_0>='a' && LA8_0<='z')) ) {
-            alt8=21;
+        else if ( ((LA9_0>='A' && LA9_0<='Z')||LA9_0=='_'||(LA9_0>='a' && LA9_0<='z')) ) {
+            alt9=21;
         }
-        else if ( (LA8_0=='%') ) {
-            int LA8_6 = input.LA(2);
+        else if ( (LA9_0=='%') ) {
+            int LA9_6 = input.LA(2);
 
-            if ( (LA8_6=='%') ) {
-                alt8=22;
+            if ( (LA9_6=='%') ) {
+                alt9=22;
             }
             else {
-                alt8=25;}
+                alt9=25;}
         }
-        else if ( (LA8_0=='\r') ) {
-            int LA8_7 = input.LA(2);
+        else if ( (LA9_0=='\r') ) {
+            int LA9_7 = input.LA(2);
 
-            if ( (LA8_7=='\n') ) {
-                alt8=23;
+            if ( (LA9_7=='\n') ) {
+                alt9=23;
             }
             else {
-                alt8=24;}
+                alt9=24;}
         }
-        else if ( (LA8_0=='\n') ) {
-            int LA8_8 = input.LA(2);
+        else if ( (LA9_0=='\n') ) {
+            int LA9_8 = input.LA(2);
 
-            if ( (LA8_8=='\n'||LA8_8=='\r') ) {
-                alt8=23;
+            if ( ((LA9_8>='\t' && LA9_8<='\n')||LA9_8=='\r'||LA9_8==' ') ) {
+                alt9=23;
             }
             else {
-                alt8=24;}
+                alt9=24;}
         }
-        else if ( (LA8_0=='\t'||LA8_0==' ') ) {
-            alt8=24;
+        else if ( (LA9_0=='\t'||LA9_0==' ') ) {
+            alt9=24;
         }
-        else if ( ((LA8_0>='\u0000' && LA8_0<='\b')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\u001F')||(LA8_0>='!' && LA8_0<='$')||(LA8_0>='&' && LA8_0<='9')||(LA8_0>=';' && LA8_0<='@')||LA8_0=='^'||LA8_0=='`'||(LA8_0>='{' && LA8_0<='\uFFFE')) ) {
-            alt8=25;
+        else if ( ((LA9_0>='\u0000' && LA9_0<='\b')||(LA9_0>='\u000B' && LA9_0<='\f')||(LA9_0>='\u000E' && LA9_0<='\u001F')||(LA9_0>='!' && LA9_0<='$')||(LA9_0>='&' && LA9_0<='9')||(LA9_0>=';' && LA9_0<='@')||LA9_0=='^'||LA9_0=='`'||(LA9_0>='{' && LA9_0<='\uFFFE')) ) {
+            alt9=25;
         }
         else {
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 8, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_WS | RULE_ANY_OTHER );", 9, 0, input);
 
             throw nvae;
         }
-        switch (alt8) {
+        switch (alt9) {
             case 1 :
                 // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1:10: T9
                 {

@@ -117,7 +117,7 @@ terminal SL_COMMENT:
 	'%%' !('\n' | '\r')* ('\r'? '\n')?;
 
 terminal MULTI_NL:
-	('\r'? '\n') ('\r'? '\n') WS*;
+	('\r'? '\n') (' '|'\t')* ('\r'? '\n') WS*;
 
 terminal WS:
 	' ' | '\t' | '\r' | '\n';

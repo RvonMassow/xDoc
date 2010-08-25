@@ -6967,7 +6967,7 @@ RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_SL_COMMENT : '%%' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-RULE_MULTI_NL : '\r'? '\n' '\r'? '\n' RULE_WS*;
+RULE_MULTI_NL : '\r'? '\n' (' '|'\t')* '\r'? '\n' RULE_WS*;
 
 RULE_WS : (' '|'\t'|'\r'|'\n');
 

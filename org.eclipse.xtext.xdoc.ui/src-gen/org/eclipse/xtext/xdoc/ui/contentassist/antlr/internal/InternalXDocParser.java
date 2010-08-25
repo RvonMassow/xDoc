@@ -26,11 +26,11 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_WS", "RULE_ANY_OTHER", "RULE_MULTI_NL", "RULE_SL_COMMENT", "'\\\\['", "'\\\\]'", "':'", "'\\\\chapter'", "'['", "']'", "'\\\\section'", "'\\\\subsection'", "'\\\\section3'", "'\\\\section4'", "'\\\\emph'", "'\\\\a'", "'\\\\ref'", "'\\\\ol'", "'\\\\ul'", "'\\\\item'", "'\\\\codeRef'", "'\\\\link'", "'\\\\img'", "'\\\\code'"
     };
     public static final int RULE_ID=4;
-    public static final int RULE_ANY_OTHER=6;
     public static final int RULE_WS=5;
-    public static final int RULE_MULTI_NL=7;
-    public static final int RULE_SL_COMMENT=8;
     public static final int EOF=-1;
+    public static final int RULE_MULTI_NL=7;
+    public static final int RULE_ANY_OTHER=6;
+    public static final int RULE_SL_COMMENT=8;
 
         public InternalXDocParser(TokenStream input) {
             super(input);
@@ -1883,9 +1883,9 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
             case RULE_MULTI_NL:
                 {
                 switch ( input.LA(2) ) {
-                case 15:
+                case 16:
                     {
-                    alt6=2;
+                    alt6=3;
                     }
                     break;
                 case 12:
@@ -1893,9 +1893,9 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
                     alt6=1;
                     }
                     break;
-                case 16:
+                case 15:
                     {
-                    alt6=3;
+                    alt6=2;
                     }
                     break;
                 default:

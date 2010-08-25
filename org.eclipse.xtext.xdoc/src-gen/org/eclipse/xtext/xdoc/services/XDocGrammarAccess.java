@@ -1644,7 +1644,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal MULTI_NL:
-	//	("\r"? "\n") ("\r"? "\n") WS*;
+	//	("\r"? "\n") (" " | "\t")* ("\r"? "\n") WS*;
 	public TerminalRule getMULTI_NLRule() {
 		return (tMULTI_NL != null) ? tMULTI_NL : (tMULTI_NL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MULTI_NL"));
 	} 
