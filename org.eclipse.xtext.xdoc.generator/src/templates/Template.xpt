@@ -19,13 +19,47 @@
 
 «DEFINE CHAPTER FOR Chapter»
 \chapter{ «EXPAND CONTENT FOR this.title» }
+«EXPAND LABEL FOR this.name»
+
+«EXPAND CONTENT FOREACH this.contents»
+
+«ENDDEFINE»
+
+«DEFINE CONTENT FOR Section»
+\section{«EXPAND CONTENT FOR this.title»}
+«EXPAND LABEL FOR this.name»
+
+«ENDDEFINE»
+
+«DEFINE CONTENT FOR SubSection»
+\subsection{ «EXPAND CONTENT FOR this.title» }
+«EXPAND LABEL FOR this.name»
+
+«EXPAND CONTENT FOREACH this.contents»
+
+«ENDDEFINE»
+
+«DEFINE CONTENT FOR Section3»
+\subsubsection{ «EXPAND CONTENT FOR this.title» }
+«EXPAND LABEL FOR this.name»
+
+«EXPAND CONTENT FOREACH this.contents»
+
+«ENDDEFINE»
+
+«DEFINE CONTENT FOR Section4»
+\subsubsection{ «EXPAND CONTENT FOR this.title» }
+«EXPAND LABEL FOR this.name»
 
 «EXPAND CONTENT FOREACH this.contents»
 
 «ENDDEFINE»
 
 «DEFINE CONTENT FOR TextOrMarkup»
-«EXPAND GEN_TEXT FOREACH contents»
+«FOREACH this.contents AS par»
+«EXPAND GEN_TEXT FOR par»\\
+
+«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE CONTENT FOR EObject»
@@ -98,9 +132,9 @@
 «lstEscapeToTex()»«EXPAND GEN_TEXT FOR this»«lstEscapeToTex()»
 «ENDDEFINE»
 
-«DEFINE CONTENT FOR Section»
-\section{«EXPAND CONTENT FOR this.title»}
-«IF this.name != null »
-\label{«this.name»}
+«DEFINE LABEL FOR String»
+«IF this != null »
+\label{«this»}
 «ENDIF»
 «ENDDEFINE»
+

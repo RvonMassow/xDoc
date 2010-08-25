@@ -7,3 +7,6 @@
 
 # Can also ignore all directories and files in a directory.
 .metadata/**/* 
+
+# Don't commit class files
+*.class
