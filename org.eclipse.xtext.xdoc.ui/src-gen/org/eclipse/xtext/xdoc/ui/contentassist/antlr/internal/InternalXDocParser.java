@@ -1888,14 +1888,14 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
                     alt6=2;
                     }
                     break;
-                case 16:
-                    {
-                    alt6=3;
-                    }
-                    break;
                 case 12:
                     {
                     alt6=1;
+                    }
+                    break;
+                case 16:
+                    {
+                    alt6=3;
                     }
                     break;
                 default:
@@ -13556,30 +13556,30 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Link__Group__2__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5024:1: rule__Link__Group__2__Impl : ( ( rule__Link__LinkAssignment_2 ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5024:1: rule__Link__Group__2__Impl : ( ( rule__Link__UrlAssignment_2 ) ) ;
     public final void rule__Link__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5028:1: ( ( ( rule__Link__LinkAssignment_2 ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5029:1: ( ( rule__Link__LinkAssignment_2 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5028:1: ( ( ( rule__Link__UrlAssignment_2 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5029:1: ( ( rule__Link__UrlAssignment_2 ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5029:1: ( ( rule__Link__LinkAssignment_2 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5030:1: ( rule__Link__LinkAssignment_2 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5029:1: ( ( rule__Link__UrlAssignment_2 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5030:1: ( rule__Link__UrlAssignment_2 )
             {
-             before(grammarAccess.getLinkAccess().getLinkAssignment_2()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5031:1: ( rule__Link__LinkAssignment_2 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5031:2: rule__Link__LinkAssignment_2
+             before(grammarAccess.getLinkAccess().getUrlAssignment_2()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5031:1: ( rule__Link__UrlAssignment_2 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5031:2: rule__Link__UrlAssignment_2
             {
-            pushFollow(FOLLOW_rule__Link__LinkAssignment_2_in_rule__Link__Group__2__Impl10166);
-            rule__Link__LinkAssignment_2();
+            pushFollow(FOLLOW_rule__Link__UrlAssignment_2_in_rule__Link__Group__2__Impl10166);
+            rule__Link__UrlAssignment_2();
             _fsp--;
 
 
             }
 
-             after(grammarAccess.getLinkAccess().getLinkAssignment_2()); 
+             after(grammarAccess.getLinkAccess().getUrlAssignment_2()); 
 
             }
 
@@ -13602,17 +13602,21 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Link__Group__3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5041:1: rule__Link__Group__3 : rule__Link__Group__3__Impl ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5041:1: rule__Link__Group__3 : rule__Link__Group__3__Impl rule__Link__Group__4 ;
     public final void rule__Link__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5045:1: ( rule__Link__Group__3__Impl )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5046:2: rule__Link__Group__3__Impl
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5045:1: ( rule__Link__Group__3__Impl rule__Link__Group__4 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5046:2: rule__Link__Group__3__Impl rule__Link__Group__4
             {
             pushFollow(FOLLOW_rule__Link__Group__3__Impl_in_rule__Link__Group__310196);
             rule__Link__Group__3__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__Link__Group__4_in_rule__Link__Group__310199);
+            rule__Link__Group__4();
             _fsp--;
 
 
@@ -13634,20 +13638,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Link__Group__3__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5052:1: rule__Link__Group__3__Impl : ( ']' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5053:1: rule__Link__Group__3__Impl : ( ']' ) ;
     public final void rule__Link__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5056:1: ( ( ']' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5057:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5057:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5058:1: ( ']' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5057:1: ( ']' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5058:1: ']'
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5058:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5059:1: ']'
             {
              before(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_3()); 
-            match(input,14,FOLLOW_14_in_rule__Link__Group__3__Impl10224); 
+            match(input,14,FOLLOW_14_in_rule__Link__Group__3__Impl10227); 
              after(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_3()); 
 
             }
@@ -13670,21 +13674,245 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Link__Group__3__Impl
 
 
+    // $ANTLR start rule__Link__Group__4
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5072:1: rule__Link__Group__4 : rule__Link__Group__4__Impl rule__Link__Group__5 ;
+    public final void rule__Link__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5076:1: ( rule__Link__Group__4__Impl rule__Link__Group__5 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5077:2: rule__Link__Group__4__Impl rule__Link__Group__5
+            {
+            pushFollow(FOLLOW_rule__Link__Group__4__Impl_in_rule__Link__Group__410258);
+            rule__Link__Group__4__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__Link__Group__5_in_rule__Link__Group__410261);
+            rule__Link__Group__5();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Link__Group__4
+
+
+    // $ANTLR start rule__Link__Group__4__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5084:1: rule__Link__Group__4__Impl : ( '[' ) ;
+    public final void rule__Link__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5088:1: ( ( '[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5089:1: ( '[' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5089:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5090:1: '['
+            {
+             before(grammarAccess.getLinkAccess().getLeftSquareBracketKeyword_4()); 
+            match(input,13,FOLLOW_13_in_rule__Link__Group__4__Impl10289); 
+             after(grammarAccess.getLinkAccess().getLeftSquareBracketKeyword_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Link__Group__4__Impl
+
+
+    // $ANTLR start rule__Link__Group__5
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5103:1: rule__Link__Group__5 : rule__Link__Group__5__Impl rule__Link__Group__6 ;
+    public final void rule__Link__Group__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5107:1: ( rule__Link__Group__5__Impl rule__Link__Group__6 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5108:2: rule__Link__Group__5__Impl rule__Link__Group__6
+            {
+            pushFollow(FOLLOW_rule__Link__Group__5__Impl_in_rule__Link__Group__510320);
+            rule__Link__Group__5__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__Link__Group__6_in_rule__Link__Group__510323);
+            rule__Link__Group__6();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Link__Group__5
+
+
+    // $ANTLR start rule__Link__Group__5__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5115:1: rule__Link__Group__5__Impl : ( ( rule__Link__TextAssignment_5 ) ) ;
+    public final void rule__Link__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5119:1: ( ( ( rule__Link__TextAssignment_5 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5120:1: ( ( rule__Link__TextAssignment_5 ) )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5120:1: ( ( rule__Link__TextAssignment_5 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5121:1: ( rule__Link__TextAssignment_5 )
+            {
+             before(grammarAccess.getLinkAccess().getTextAssignment_5()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5122:1: ( rule__Link__TextAssignment_5 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5122:2: rule__Link__TextAssignment_5
+            {
+            pushFollow(FOLLOW_rule__Link__TextAssignment_5_in_rule__Link__Group__5__Impl10350);
+            rule__Link__TextAssignment_5();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getLinkAccess().getTextAssignment_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Link__Group__5__Impl
+
+
+    // $ANTLR start rule__Link__Group__6
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5132:1: rule__Link__Group__6 : rule__Link__Group__6__Impl ;
+    public final void rule__Link__Group__6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5136:1: ( rule__Link__Group__6__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5137:2: rule__Link__Group__6__Impl
+            {
+            pushFollow(FOLLOW_rule__Link__Group__6__Impl_in_rule__Link__Group__610380);
+            rule__Link__Group__6__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Link__Group__6
+
+
+    // $ANTLR start rule__Link__Group__6__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5143:1: rule__Link__Group__6__Impl : ( ']' ) ;
+    public final void rule__Link__Group__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5147:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5148:1: ( ']' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5148:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5149:1: ']'
+            {
+             before(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_6()); 
+            match(input,14,FOLLOW_14_in_rule__Link__Group__6__Impl10408); 
+             after(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Link__Group__6__Impl
+
+
     // $ANTLR start rule__ImageRef__Group__0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5079:1: rule__ImageRef__Group__0 : rule__ImageRef__Group__0__Impl rule__ImageRef__Group__1 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5176:1: rule__ImageRef__Group__0 : rule__ImageRef__Group__0__Impl rule__ImageRef__Group__1 ;
     public final void rule__ImageRef__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5083:1: ( rule__ImageRef__Group__0__Impl rule__ImageRef__Group__1 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5084:2: rule__ImageRef__Group__0__Impl rule__ImageRef__Group__1
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5180:1: ( rule__ImageRef__Group__0__Impl rule__ImageRef__Group__1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5181:2: rule__ImageRef__Group__0__Impl rule__ImageRef__Group__1
             {
-            pushFollow(FOLLOW_rule__ImageRef__Group__0__Impl_in_rule__ImageRef__Group__010263);
+            pushFollow(FOLLOW_rule__ImageRef__Group__0__Impl_in_rule__ImageRef__Group__010453);
             rule__ImageRef__Group__0__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__ImageRef__Group__1_in_rule__ImageRef__Group__010266);
+            pushFollow(FOLLOW_rule__ImageRef__Group__1_in_rule__ImageRef__Group__010456);
             rule__ImageRef__Group__1();
             _fsp--;
 
@@ -13707,20 +13935,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__ImageRef__Group__0__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5091:1: rule__ImageRef__Group__0__Impl : ( '\\\\img' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5188:1: rule__ImageRef__Group__0__Impl : ( '\\\\img' ) ;
     public final void rule__ImageRef__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5095:1: ( ( '\\\\img' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5096:1: ( '\\\\img' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5192:1: ( ( '\\\\img' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5193:1: ( '\\\\img' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5096:1: ( '\\\\img' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5097:1: '\\\\img'
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5193:1: ( '\\\\img' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5194:1: '\\\\img'
             {
              before(grammarAccess.getImageRefAccess().getImgKeyword_0()); 
-            match(input,27,FOLLOW_27_in_rule__ImageRef__Group__0__Impl10294); 
+            match(input,27,FOLLOW_27_in_rule__ImageRef__Group__0__Impl10484); 
              after(grammarAccess.getImageRefAccess().getImgKeyword_0()); 
 
             }
@@ -13744,20 +13972,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__ImageRef__Group__1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5110:1: rule__ImageRef__Group__1 : rule__ImageRef__Group__1__Impl rule__ImageRef__Group__2 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5207:1: rule__ImageRef__Group__1 : rule__ImageRef__Group__1__Impl rule__ImageRef__Group__2 ;
     public final void rule__ImageRef__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5114:1: ( rule__ImageRef__Group__1__Impl rule__ImageRef__Group__2 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5115:2: rule__ImageRef__Group__1__Impl rule__ImageRef__Group__2
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5211:1: ( rule__ImageRef__Group__1__Impl rule__ImageRef__Group__2 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5212:2: rule__ImageRef__Group__1__Impl rule__ImageRef__Group__2
             {
-            pushFollow(FOLLOW_rule__ImageRef__Group__1__Impl_in_rule__ImageRef__Group__110325);
+            pushFollow(FOLLOW_rule__ImageRef__Group__1__Impl_in_rule__ImageRef__Group__110515);
             rule__ImageRef__Group__1__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__ImageRef__Group__2_in_rule__ImageRef__Group__110328);
+            pushFollow(FOLLOW_rule__ImageRef__Group__2_in_rule__ImageRef__Group__110518);
             rule__ImageRef__Group__2();
             _fsp--;
 
@@ -13780,21 +14008,41 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__ImageRef__Group__1__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5122:1: rule__ImageRef__Group__1__Impl : ( '[' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5219:1: rule__ImageRef__Group__1__Impl : ( ( rule__ImageRef__Group_1__0 )? ) ;
     public final void rule__ImageRef__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5126:1: ( ( '[' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5127:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5223:1: ( ( ( rule__ImageRef__Group_1__0 )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5224:1: ( ( rule__ImageRef__Group_1__0 )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5127:1: ( '[' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5128:1: '['
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5224:1: ( ( rule__ImageRef__Group_1__0 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5225:1: ( rule__ImageRef__Group_1__0 )?
             {
-             before(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_1()); 
-            match(input,13,FOLLOW_13_in_rule__ImageRef__Group__1__Impl10356); 
-             after(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_1()); 
+             before(grammarAccess.getImageRefAccess().getGroup_1()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5226:1: ( rule__ImageRef__Group_1__0 )?
+            int alt55=2;
+            int LA55_0 = input.LA(1);
+
+            if ( (LA55_0==11) ) {
+                alt55=1;
+            }
+            switch (alt55) {
+                case 1 :
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5226:2: rule__ImageRef__Group_1__0
+                    {
+                    pushFollow(FOLLOW_rule__ImageRef__Group_1__0_in_rule__ImageRef__Group__1__Impl10545);
+                    rule__ImageRef__Group_1__0();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getImageRefAccess().getGroup_1()); 
 
             }
 
@@ -13817,20 +14065,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__ImageRef__Group__2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5141:1: rule__ImageRef__Group__2 : rule__ImageRef__Group__2__Impl rule__ImageRef__Group__3 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5236:1: rule__ImageRef__Group__2 : rule__ImageRef__Group__2__Impl rule__ImageRef__Group__3 ;
     public final void rule__ImageRef__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5145:1: ( rule__ImageRef__Group__2__Impl rule__ImageRef__Group__3 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5146:2: rule__ImageRef__Group__2__Impl rule__ImageRef__Group__3
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5240:1: ( rule__ImageRef__Group__2__Impl rule__ImageRef__Group__3 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5241:2: rule__ImageRef__Group__2__Impl rule__ImageRef__Group__3
             {
-            pushFollow(FOLLOW_rule__ImageRef__Group__2__Impl_in_rule__ImageRef__Group__210387);
+            pushFollow(FOLLOW_rule__ImageRef__Group__2__Impl_in_rule__ImageRef__Group__210576);
             rule__ImageRef__Group__2__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__ImageRef__Group__3_in_rule__ImageRef__Group__210390);
+            pushFollow(FOLLOW_rule__ImageRef__Group__3_in_rule__ImageRef__Group__210579);
             rule__ImageRef__Group__3();
             _fsp--;
 
@@ -13853,30 +14101,21 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__ImageRef__Group__2__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5153:1: rule__ImageRef__Group__2__Impl : ( ( rule__ImageRef__ImageAssignment_2 ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5248:1: rule__ImageRef__Group__2__Impl : ( '[' ) ;
     public final void rule__ImageRef__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5157:1: ( ( ( rule__ImageRef__ImageAssignment_2 ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5158:1: ( ( rule__ImageRef__ImageAssignment_2 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5252:1: ( ( '[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5253:1: ( '[' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5158:1: ( ( rule__ImageRef__ImageAssignment_2 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5159:1: ( rule__ImageRef__ImageAssignment_2 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5253:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5254:1: '['
             {
-             before(grammarAccess.getImageRefAccess().getImageAssignment_2()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5160:1: ( rule__ImageRef__ImageAssignment_2 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5160:2: rule__ImageRef__ImageAssignment_2
-            {
-            pushFollow(FOLLOW_rule__ImageRef__ImageAssignment_2_in_rule__ImageRef__Group__2__Impl10417);
-            rule__ImageRef__ImageAssignment_2();
-            _fsp--;
-
-
-            }
-
-             after(grammarAccess.getImageRefAccess().getImageAssignment_2()); 
+             before(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_2()); 
+            match(input,13,FOLLOW_13_in_rule__ImageRef__Group__2__Impl10607); 
+             after(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_2()); 
 
             }
 
@@ -13899,17 +14138,21 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__ImageRef__Group__3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5170:1: rule__ImageRef__Group__3 : rule__ImageRef__Group__3__Impl ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5267:1: rule__ImageRef__Group__3 : rule__ImageRef__Group__3__Impl rule__ImageRef__Group__4 ;
     public final void rule__ImageRef__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5174:1: ( rule__ImageRef__Group__3__Impl )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5175:2: rule__ImageRef__Group__3__Impl
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5271:1: ( rule__ImageRef__Group__3__Impl rule__ImageRef__Group__4 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5272:2: rule__ImageRef__Group__3__Impl rule__ImageRef__Group__4
             {
-            pushFollow(FOLLOW_rule__ImageRef__Group__3__Impl_in_rule__ImageRef__Group__310447);
+            pushFollow(FOLLOW_rule__ImageRef__Group__3__Impl_in_rule__ImageRef__Group__310638);
             rule__ImageRef__Group__3__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__4_in_rule__ImageRef__Group__310641);
+            rule__ImageRef__Group__4();
             _fsp--;
 
 
@@ -13931,21 +14174,30 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__ImageRef__Group__3__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5181:1: rule__ImageRef__Group__3__Impl : ( ']' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5279:1: rule__ImageRef__Group__3__Impl : ( ( rule__ImageRef__PathAssignment_3 ) ) ;
     public final void rule__ImageRef__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5185:1: ( ( ']' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5186:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5283:1: ( ( ( rule__ImageRef__PathAssignment_3 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5284:1: ( ( rule__ImageRef__PathAssignment_3 ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5186:1: ( ']' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5187:1: ']'
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5284:1: ( ( rule__ImageRef__PathAssignment_3 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5285:1: ( rule__ImageRef__PathAssignment_3 )
             {
-             before(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_3()); 
-            match(input,14,FOLLOW_14_in_rule__ImageRef__Group__3__Impl10475); 
-             after(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_3()); 
+             before(grammarAccess.getImageRefAccess().getPathAssignment_3()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5286:1: ( rule__ImageRef__PathAssignment_3 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5286:2: rule__ImageRef__PathAssignment_3
+            {
+            pushFollow(FOLLOW_rule__ImageRef__PathAssignment_3_in_rule__ImageRef__Group__3__Impl10668);
+            rule__ImageRef__PathAssignment_3();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getImageRefAccess().getPathAssignment_3()); 
 
             }
 
@@ -13967,21 +14219,925 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__ImageRef__Group__3__Impl
 
 
+    // $ANTLR start rule__ImageRef__Group__4
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5296:1: rule__ImageRef__Group__4 : rule__ImageRef__Group__4__Impl rule__ImageRef__Group__5 ;
+    public final void rule__ImageRef__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5300:1: ( rule__ImageRef__Group__4__Impl rule__ImageRef__Group__5 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5301:2: rule__ImageRef__Group__4__Impl rule__ImageRef__Group__5
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__4__Impl_in_rule__ImageRef__Group__410698);
+            rule__ImageRef__Group__4__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__5_in_rule__ImageRef__Group__410701);
+            rule__ImageRef__Group__5();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__4
+
+
+    // $ANTLR start rule__ImageRef__Group__4__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5308:1: rule__ImageRef__Group__4__Impl : ( ']' ) ;
+    public final void rule__ImageRef__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5312:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5313:1: ( ']' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5313:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5314:1: ']'
+            {
+             before(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_4()); 
+            match(input,14,FOLLOW_14_in_rule__ImageRef__Group__4__Impl10729); 
+             after(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__4__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__5
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5327:1: rule__ImageRef__Group__5 : rule__ImageRef__Group__5__Impl rule__ImageRef__Group__6 ;
+    public final void rule__ImageRef__Group__5() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5331:1: ( rule__ImageRef__Group__5__Impl rule__ImageRef__Group__6 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5332:2: rule__ImageRef__Group__5__Impl rule__ImageRef__Group__6
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__5__Impl_in_rule__ImageRef__Group__510760);
+            rule__ImageRef__Group__5__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__6_in_rule__ImageRef__Group__510763);
+            rule__ImageRef__Group__6();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__5
+
+
+    // $ANTLR start rule__ImageRef__Group__5__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5339:1: rule__ImageRef__Group__5__Impl : ( '[' ) ;
+    public final void rule__ImageRef__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5343:1: ( ( '[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5344:1: ( '[' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5344:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5345:1: '['
+            {
+             before(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_5()); 
+            match(input,13,FOLLOW_13_in_rule__ImageRef__Group__5__Impl10791); 
+             after(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__5__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__6
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5358:1: rule__ImageRef__Group__6 : rule__ImageRef__Group__6__Impl rule__ImageRef__Group__7 ;
+    public final void rule__ImageRef__Group__6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5362:1: ( rule__ImageRef__Group__6__Impl rule__ImageRef__Group__7 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5363:2: rule__ImageRef__Group__6__Impl rule__ImageRef__Group__7
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__6__Impl_in_rule__ImageRef__Group__610822);
+            rule__ImageRef__Group__6__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__7_in_rule__ImageRef__Group__610825);
+            rule__ImageRef__Group__7();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__6
+
+
+    // $ANTLR start rule__ImageRef__Group__6__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5370:1: rule__ImageRef__Group__6__Impl : ( ( rule__ImageRef__ClazzAssignment_6 ) ) ;
+    public final void rule__ImageRef__Group__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5374:1: ( ( ( rule__ImageRef__ClazzAssignment_6 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5375:1: ( ( rule__ImageRef__ClazzAssignment_6 ) )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5375:1: ( ( rule__ImageRef__ClazzAssignment_6 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5376:1: ( rule__ImageRef__ClazzAssignment_6 )
+            {
+             before(grammarAccess.getImageRefAccess().getClazzAssignment_6()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5377:1: ( rule__ImageRef__ClazzAssignment_6 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5377:2: rule__ImageRef__ClazzAssignment_6
+            {
+            pushFollow(FOLLOW_rule__ImageRef__ClazzAssignment_6_in_rule__ImageRef__Group__6__Impl10852);
+            rule__ImageRef__ClazzAssignment_6();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getImageRefAccess().getClazzAssignment_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__6__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__7
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5387:1: rule__ImageRef__Group__7 : rule__ImageRef__Group__7__Impl rule__ImageRef__Group__8 ;
+    public final void rule__ImageRef__Group__7() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5391:1: ( rule__ImageRef__Group__7__Impl rule__ImageRef__Group__8 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5392:2: rule__ImageRef__Group__7__Impl rule__ImageRef__Group__8
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__7__Impl_in_rule__ImageRef__Group__710882);
+            rule__ImageRef__Group__7__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__8_in_rule__ImageRef__Group__710885);
+            rule__ImageRef__Group__8();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__7
+
+
+    // $ANTLR start rule__ImageRef__Group__7__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5399:1: rule__ImageRef__Group__7__Impl : ( ']' ) ;
+    public final void rule__ImageRef__Group__7__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5403:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5404:1: ( ']' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5404:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5405:1: ']'
+            {
+             before(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_7()); 
+            match(input,14,FOLLOW_14_in_rule__ImageRef__Group__7__Impl10913); 
+             after(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_7()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__7__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__8
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5418:1: rule__ImageRef__Group__8 : rule__ImageRef__Group__8__Impl rule__ImageRef__Group__9 ;
+    public final void rule__ImageRef__Group__8() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5422:1: ( rule__ImageRef__Group__8__Impl rule__ImageRef__Group__9 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5423:2: rule__ImageRef__Group__8__Impl rule__ImageRef__Group__9
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__8__Impl_in_rule__ImageRef__Group__810944);
+            rule__ImageRef__Group__8__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__9_in_rule__ImageRef__Group__810947);
+            rule__ImageRef__Group__9();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__8
+
+
+    // $ANTLR start rule__ImageRef__Group__8__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5430:1: rule__ImageRef__Group__8__Impl : ( '[' ) ;
+    public final void rule__ImageRef__Group__8__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5434:1: ( ( '[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5435:1: ( '[' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5435:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5436:1: '['
+            {
+             before(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_8()); 
+            match(input,13,FOLLOW_13_in_rule__ImageRef__Group__8__Impl10975); 
+             after(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_8()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__8__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__9
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5449:1: rule__ImageRef__Group__9 : rule__ImageRef__Group__9__Impl rule__ImageRef__Group__10 ;
+    public final void rule__ImageRef__Group__9() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5453:1: ( rule__ImageRef__Group__9__Impl rule__ImageRef__Group__10 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5454:2: rule__ImageRef__Group__9__Impl rule__ImageRef__Group__10
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__9__Impl_in_rule__ImageRef__Group__911006);
+            rule__ImageRef__Group__9__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__10_in_rule__ImageRef__Group__911009);
+            rule__ImageRef__Group__10();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__9
+
+
+    // $ANTLR start rule__ImageRef__Group__9__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5461:1: rule__ImageRef__Group__9__Impl : ( ( rule__ImageRef__StyleAssignment_9 ) ) ;
+    public final void rule__ImageRef__Group__9__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5465:1: ( ( ( rule__ImageRef__StyleAssignment_9 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5466:1: ( ( rule__ImageRef__StyleAssignment_9 ) )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5466:1: ( ( rule__ImageRef__StyleAssignment_9 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5467:1: ( rule__ImageRef__StyleAssignment_9 )
+            {
+             before(grammarAccess.getImageRefAccess().getStyleAssignment_9()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5468:1: ( rule__ImageRef__StyleAssignment_9 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5468:2: rule__ImageRef__StyleAssignment_9
+            {
+            pushFollow(FOLLOW_rule__ImageRef__StyleAssignment_9_in_rule__ImageRef__Group__9__Impl11036);
+            rule__ImageRef__StyleAssignment_9();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getImageRefAccess().getStyleAssignment_9()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__9__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__10
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5478:1: rule__ImageRef__Group__10 : rule__ImageRef__Group__10__Impl rule__ImageRef__Group__11 ;
+    public final void rule__ImageRef__Group__10() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5482:1: ( rule__ImageRef__Group__10__Impl rule__ImageRef__Group__11 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5483:2: rule__ImageRef__Group__10__Impl rule__ImageRef__Group__11
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__10__Impl_in_rule__ImageRef__Group__1011066);
+            rule__ImageRef__Group__10__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__11_in_rule__ImageRef__Group__1011069);
+            rule__ImageRef__Group__11();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__10
+
+
+    // $ANTLR start rule__ImageRef__Group__10__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5490:1: rule__ImageRef__Group__10__Impl : ( ']' ) ;
+    public final void rule__ImageRef__Group__10__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5494:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5495:1: ( ']' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5495:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5496:1: ']'
+            {
+             before(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_10()); 
+            match(input,14,FOLLOW_14_in_rule__ImageRef__Group__10__Impl11097); 
+             after(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_10()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__10__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__11
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5509:1: rule__ImageRef__Group__11 : rule__ImageRef__Group__11__Impl rule__ImageRef__Group__12 ;
+    public final void rule__ImageRef__Group__11() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5513:1: ( rule__ImageRef__Group__11__Impl rule__ImageRef__Group__12 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5514:2: rule__ImageRef__Group__11__Impl rule__ImageRef__Group__12
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__11__Impl_in_rule__ImageRef__Group__1111128);
+            rule__ImageRef__Group__11__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__12_in_rule__ImageRef__Group__1111131);
+            rule__ImageRef__Group__12();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__11
+
+
+    // $ANTLR start rule__ImageRef__Group__11__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5521:1: rule__ImageRef__Group__11__Impl : ( '[' ) ;
+    public final void rule__ImageRef__Group__11__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5525:1: ( ( '[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5526:1: ( '[' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5526:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5527:1: '['
+            {
+             before(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_11()); 
+            match(input,13,FOLLOW_13_in_rule__ImageRef__Group__11__Impl11159); 
+             after(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_11()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__11__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__12
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5540:1: rule__ImageRef__Group__12 : rule__ImageRef__Group__12__Impl rule__ImageRef__Group__13 ;
+    public final void rule__ImageRef__Group__12() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5544:1: ( rule__ImageRef__Group__12__Impl rule__ImageRef__Group__13 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5545:2: rule__ImageRef__Group__12__Impl rule__ImageRef__Group__13
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__12__Impl_in_rule__ImageRef__Group__1211190);
+            rule__ImageRef__Group__12__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group__13_in_rule__ImageRef__Group__1211193);
+            rule__ImageRef__Group__13();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__12
+
+
+    // $ANTLR start rule__ImageRef__Group__12__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5552:1: rule__ImageRef__Group__12__Impl : ( ( rule__ImageRef__CaptionAssignment_12 ) ) ;
+    public final void rule__ImageRef__Group__12__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5556:1: ( ( ( rule__ImageRef__CaptionAssignment_12 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5557:1: ( ( rule__ImageRef__CaptionAssignment_12 ) )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5557:1: ( ( rule__ImageRef__CaptionAssignment_12 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5558:1: ( rule__ImageRef__CaptionAssignment_12 )
+            {
+             before(grammarAccess.getImageRefAccess().getCaptionAssignment_12()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5559:1: ( rule__ImageRef__CaptionAssignment_12 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5559:2: rule__ImageRef__CaptionAssignment_12
+            {
+            pushFollow(FOLLOW_rule__ImageRef__CaptionAssignment_12_in_rule__ImageRef__Group__12__Impl11220);
+            rule__ImageRef__CaptionAssignment_12();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getImageRefAccess().getCaptionAssignment_12()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__12__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group__13
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5569:1: rule__ImageRef__Group__13 : rule__ImageRef__Group__13__Impl ;
+    public final void rule__ImageRef__Group__13() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5573:1: ( rule__ImageRef__Group__13__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5574:2: rule__ImageRef__Group__13__Impl
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group__13__Impl_in_rule__ImageRef__Group__1311250);
+            rule__ImageRef__Group__13__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__13
+
+
+    // $ANTLR start rule__ImageRef__Group__13__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5580:1: rule__ImageRef__Group__13__Impl : ( ']' ) ;
+    public final void rule__ImageRef__Group__13__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5584:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5585:1: ( ']' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5585:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5586:1: ']'
+            {
+             before(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_13()); 
+            match(input,14,FOLLOW_14_in_rule__ImageRef__Group__13__Impl11278); 
+             after(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_13()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group__13__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group_1__0
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5627:1: rule__ImageRef__Group_1__0 : rule__ImageRef__Group_1__0__Impl rule__ImageRef__Group_1__1 ;
+    public final void rule__ImageRef__Group_1__0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5631:1: ( rule__ImageRef__Group_1__0__Impl rule__ImageRef__Group_1__1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5632:2: rule__ImageRef__Group_1__0__Impl rule__ImageRef__Group_1__1
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group_1__0__Impl_in_rule__ImageRef__Group_1__011337);
+            rule__ImageRef__Group_1__0__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__ImageRef__Group_1__1_in_rule__ImageRef__Group_1__011340);
+            rule__ImageRef__Group_1__1();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group_1__0
+
+
+    // $ANTLR start rule__ImageRef__Group_1__0__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5639:1: rule__ImageRef__Group_1__0__Impl : ( ':' ) ;
+    public final void rule__ImageRef__Group_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5643:1: ( ( ':' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5644:1: ( ':' )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5644:1: ( ':' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5645:1: ':'
+            {
+             before(grammarAccess.getImageRefAccess().getColonKeyword_1_0()); 
+            match(input,11,FOLLOW_11_in_rule__ImageRef__Group_1__0__Impl11368); 
+             after(grammarAccess.getImageRefAccess().getColonKeyword_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group_1__0__Impl
+
+
+    // $ANTLR start rule__ImageRef__Group_1__1
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5658:1: rule__ImageRef__Group_1__1 : rule__ImageRef__Group_1__1__Impl ;
+    public final void rule__ImageRef__Group_1__1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5662:1: ( rule__ImageRef__Group_1__1__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5663:2: rule__ImageRef__Group_1__1__Impl
+            {
+            pushFollow(FOLLOW_rule__ImageRef__Group_1__1__Impl_in_rule__ImageRef__Group_1__111399);
+            rule__ImageRef__Group_1__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group_1__1
+
+
+    // $ANTLR start rule__ImageRef__Group_1__1__Impl
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5669:1: rule__ImageRef__Group_1__1__Impl : ( ( rule__ImageRef__NameAssignment_1_1 ) ) ;
+    public final void rule__ImageRef__Group_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5673:1: ( ( ( rule__ImageRef__NameAssignment_1_1 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5674:1: ( ( rule__ImageRef__NameAssignment_1_1 ) )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5674:1: ( ( rule__ImageRef__NameAssignment_1_1 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5675:1: ( rule__ImageRef__NameAssignment_1_1 )
+            {
+             before(grammarAccess.getImageRefAccess().getNameAssignment_1_1()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5676:1: ( rule__ImageRef__NameAssignment_1_1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5676:2: rule__ImageRef__NameAssignment_1_1
+            {
+            pushFollow(FOLLOW_rule__ImageRef__NameAssignment_1_1_in_rule__ImageRef__Group_1__1__Impl11426);
+            rule__ImageRef__NameAssignment_1_1();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getImageRefAccess().getNameAssignment_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__Group_1__1__Impl
+
+
     // $ANTLR start rule__CodeBlock__Group__0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5208:1: rule__CodeBlock__Group__0 : rule__CodeBlock__Group__0__Impl rule__CodeBlock__Group__1 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5690:1: rule__CodeBlock__Group__0 : rule__CodeBlock__Group__0__Impl rule__CodeBlock__Group__1 ;
     public final void rule__CodeBlock__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5212:1: ( rule__CodeBlock__Group__0__Impl rule__CodeBlock__Group__1 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5213:2: rule__CodeBlock__Group__0__Impl rule__CodeBlock__Group__1
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5694:1: ( rule__CodeBlock__Group__0__Impl rule__CodeBlock__Group__1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5695:2: rule__CodeBlock__Group__0__Impl rule__CodeBlock__Group__1
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group__0__Impl_in_rule__CodeBlock__Group__010514);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__0__Impl_in_rule__CodeBlock__Group__011460);
             rule__CodeBlock__Group__0__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group__1_in_rule__CodeBlock__Group__010517);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__1_in_rule__CodeBlock__Group__011463);
             rule__CodeBlock__Group__1();
             _fsp--;
 
@@ -14004,20 +15160,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__0__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5220:1: rule__CodeBlock__Group__0__Impl : ( '\\\\code' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5702:1: rule__CodeBlock__Group__0__Impl : ( '\\\\code' ) ;
     public final void rule__CodeBlock__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5224:1: ( ( '\\\\code' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5225:1: ( '\\\\code' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5706:1: ( ( '\\\\code' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5707:1: ( '\\\\code' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5225:1: ( '\\\\code' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5226:1: '\\\\code'
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5707:1: ( '\\\\code' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5708:1: '\\\\code'
             {
              before(grammarAccess.getCodeBlockAccess().getCodeKeyword_0()); 
-            match(input,28,FOLLOW_28_in_rule__CodeBlock__Group__0__Impl10545); 
+            match(input,28,FOLLOW_28_in_rule__CodeBlock__Group__0__Impl11491); 
              after(grammarAccess.getCodeBlockAccess().getCodeKeyword_0()); 
 
             }
@@ -14041,20 +15197,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5239:1: rule__CodeBlock__Group__1 : rule__CodeBlock__Group__1__Impl rule__CodeBlock__Group__2 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5721:1: rule__CodeBlock__Group__1 : rule__CodeBlock__Group__1__Impl rule__CodeBlock__Group__2 ;
     public final void rule__CodeBlock__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5243:1: ( rule__CodeBlock__Group__1__Impl rule__CodeBlock__Group__2 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5244:2: rule__CodeBlock__Group__1__Impl rule__CodeBlock__Group__2
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5725:1: ( rule__CodeBlock__Group__1__Impl rule__CodeBlock__Group__2 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5726:2: rule__CodeBlock__Group__1__Impl rule__CodeBlock__Group__2
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group__1__Impl_in_rule__CodeBlock__Group__110576);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__1__Impl_in_rule__CodeBlock__Group__111522);
             rule__CodeBlock__Group__1__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group__2_in_rule__CodeBlock__Group__110579);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__2_in_rule__CodeBlock__Group__111525);
             rule__CodeBlock__Group__2();
             _fsp--;
 
@@ -14077,27 +15233,27 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__1__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5251:1: rule__CodeBlock__Group__1__Impl : ( ( rule__CodeBlock__Group_1__0 )? ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5733:1: rule__CodeBlock__Group__1__Impl : ( ( rule__CodeBlock__Group_1__0 )? ) ;
     public final void rule__CodeBlock__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5255:1: ( ( ( rule__CodeBlock__Group_1__0 )? ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5256:1: ( ( rule__CodeBlock__Group_1__0 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5737:1: ( ( ( rule__CodeBlock__Group_1__0 )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5738:1: ( ( rule__CodeBlock__Group_1__0 )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5256:1: ( ( rule__CodeBlock__Group_1__0 )? )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5257:1: ( rule__CodeBlock__Group_1__0 )?
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5738:1: ( ( rule__CodeBlock__Group_1__0 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5739:1: ( rule__CodeBlock__Group_1__0 )?
             {
              before(grammarAccess.getCodeBlockAccess().getGroup_1()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5258:1: ( rule__CodeBlock__Group_1__0 )?
-            int alt55=2;
-            alt55 = dfa55.predict(input);
-            switch (alt55) {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5740:1: ( rule__CodeBlock__Group_1__0 )?
+            int alt56=2;
+            alt56 = dfa56.predict(input);
+            switch (alt56) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5258:2: rule__CodeBlock__Group_1__0
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5740:2: rule__CodeBlock__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__CodeBlock__Group_1__0_in_rule__CodeBlock__Group__1__Impl10606);
+                    pushFollow(FOLLOW_rule__CodeBlock__Group_1__0_in_rule__CodeBlock__Group__1__Impl11552);
                     rule__CodeBlock__Group_1__0();
                     _fsp--;
 
@@ -14130,20 +15286,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5268:1: rule__CodeBlock__Group__2 : rule__CodeBlock__Group__2__Impl rule__CodeBlock__Group__3 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5750:1: rule__CodeBlock__Group__2 : rule__CodeBlock__Group__2__Impl rule__CodeBlock__Group__3 ;
     public final void rule__CodeBlock__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5272:1: ( rule__CodeBlock__Group__2__Impl rule__CodeBlock__Group__3 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5273:2: rule__CodeBlock__Group__2__Impl rule__CodeBlock__Group__3
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5754:1: ( rule__CodeBlock__Group__2__Impl rule__CodeBlock__Group__3 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5755:2: rule__CodeBlock__Group__2__Impl rule__CodeBlock__Group__3
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group__2__Impl_in_rule__CodeBlock__Group__210637);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__2__Impl_in_rule__CodeBlock__Group__211583);
             rule__CodeBlock__Group__2__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group__3_in_rule__CodeBlock__Group__210640);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__3_in_rule__CodeBlock__Group__211586);
             rule__CodeBlock__Group__3();
             _fsp--;
 
@@ -14166,41 +15322,41 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__2__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5280:1: rule__CodeBlock__Group__2__Impl : ( ( RULE_WS )* ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5762:1: rule__CodeBlock__Group__2__Impl : ( ( RULE_WS )* ) ;
     public final void rule__CodeBlock__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5284:1: ( ( ( RULE_WS )* ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5285:1: ( ( RULE_WS )* )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5766:1: ( ( ( RULE_WS )* ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5767:1: ( ( RULE_WS )* )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5285:1: ( ( RULE_WS )* )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5286:1: ( RULE_WS )*
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5767:1: ( ( RULE_WS )* )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5768:1: ( RULE_WS )*
             {
              before(grammarAccess.getCodeBlockAccess().getWSTerminalRuleCall_2()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5287:1: ( RULE_WS )*
-            loop56:
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5769:1: ( RULE_WS )*
+            loop57:
             do {
-                int alt56=2;
-                int LA56_0 = input.LA(1);
+                int alt57=2;
+                int LA57_0 = input.LA(1);
 
-                if ( (LA56_0==RULE_WS) ) {
-                    alt56=1;
+                if ( (LA57_0==RULE_WS) ) {
+                    alt57=1;
                 }
 
 
-                switch (alt56) {
+                switch (alt57) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5287:3: RULE_WS
+            	    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5769:3: RULE_WS
             	    {
-            	    match(input,RULE_WS,FOLLOW_RULE_WS_in_rule__CodeBlock__Group__2__Impl10668); 
+            	    match(input,RULE_WS,FOLLOW_RULE_WS_in_rule__CodeBlock__Group__2__Impl11614); 
 
             	    }
             	    break;
 
             	default :
-            	    break loop56;
+            	    break loop57;
                 }
             } while (true);
 
@@ -14227,20 +15383,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5297:1: rule__CodeBlock__Group__3 : rule__CodeBlock__Group__3__Impl rule__CodeBlock__Group__4 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5779:1: rule__CodeBlock__Group__3 : rule__CodeBlock__Group__3__Impl rule__CodeBlock__Group__4 ;
     public final void rule__CodeBlock__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5301:1: ( rule__CodeBlock__Group__3__Impl rule__CodeBlock__Group__4 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5302:2: rule__CodeBlock__Group__3__Impl rule__CodeBlock__Group__4
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5783:1: ( rule__CodeBlock__Group__3__Impl rule__CodeBlock__Group__4 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5784:2: rule__CodeBlock__Group__3__Impl rule__CodeBlock__Group__4
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group__3__Impl_in_rule__CodeBlock__Group__310699);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__3__Impl_in_rule__CodeBlock__Group__311645);
             rule__CodeBlock__Group__3__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group__4_in_rule__CodeBlock__Group__310702);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__4_in_rule__CodeBlock__Group__311648);
             rule__CodeBlock__Group__4();
             _fsp--;
 
@@ -14263,31 +15419,31 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__3__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5309:1: rule__CodeBlock__Group__3__Impl : ( ( RULE_MULTI_NL )? ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5791:1: rule__CodeBlock__Group__3__Impl : ( ( RULE_MULTI_NL )? ) ;
     public final void rule__CodeBlock__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5313:1: ( ( ( RULE_MULTI_NL )? ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5314:1: ( ( RULE_MULTI_NL )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5795:1: ( ( ( RULE_MULTI_NL )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5796:1: ( ( RULE_MULTI_NL )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5314:1: ( ( RULE_MULTI_NL )? )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5315:1: ( RULE_MULTI_NL )?
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5796:1: ( ( RULE_MULTI_NL )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5797:1: ( RULE_MULTI_NL )?
             {
              before(grammarAccess.getCodeBlockAccess().getMULTI_NLTerminalRuleCall_3()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5316:1: ( RULE_MULTI_NL )?
-            int alt57=2;
-            int LA57_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5798:1: ( RULE_MULTI_NL )?
+            int alt58=2;
+            int LA58_0 = input.LA(1);
 
-            if ( (LA57_0==RULE_MULTI_NL) ) {
-                alt57=1;
+            if ( (LA58_0==RULE_MULTI_NL) ) {
+                alt58=1;
             }
-            switch (alt57) {
+            switch (alt58) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5316:3: RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5798:3: RULE_MULTI_NL
                     {
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_rule__CodeBlock__Group__3__Impl10730); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_rule__CodeBlock__Group__3__Impl11676); 
 
                     }
                     break;
@@ -14317,20 +15473,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__4
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5326:1: rule__CodeBlock__Group__4 : rule__CodeBlock__Group__4__Impl rule__CodeBlock__Group__5 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5808:1: rule__CodeBlock__Group__4 : rule__CodeBlock__Group__4__Impl rule__CodeBlock__Group__5 ;
     public final void rule__CodeBlock__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5330:1: ( rule__CodeBlock__Group__4__Impl rule__CodeBlock__Group__5 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5331:2: rule__CodeBlock__Group__4__Impl rule__CodeBlock__Group__5
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5812:1: ( rule__CodeBlock__Group__4__Impl rule__CodeBlock__Group__5 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5813:2: rule__CodeBlock__Group__4__Impl rule__CodeBlock__Group__5
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group__4__Impl_in_rule__CodeBlock__Group__410761);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__4__Impl_in_rule__CodeBlock__Group__411707);
             rule__CodeBlock__Group__4__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group__5_in_rule__CodeBlock__Group__410764);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__5_in_rule__CodeBlock__Group__411710);
             rule__CodeBlock__Group__5();
             _fsp--;
 
@@ -14353,20 +15509,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__4__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5338:1: rule__CodeBlock__Group__4__Impl : ( '[' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5820:1: rule__CodeBlock__Group__4__Impl : ( '[' ) ;
     public final void rule__CodeBlock__Group__4__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5342:1: ( ( '[' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5343:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5824:1: ( ( '[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5825:1: ( '[' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5343:1: ( '[' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5344:1: '['
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5825:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5826:1: '['
             {
              before(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_4()); 
-            match(input,13,FOLLOW_13_in_rule__CodeBlock__Group__4__Impl10792); 
+            match(input,13,FOLLOW_13_in_rule__CodeBlock__Group__4__Impl11738); 
              after(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_4()); 
 
             }
@@ -14390,20 +15546,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__5
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5357:1: rule__CodeBlock__Group__5 : rule__CodeBlock__Group__5__Impl rule__CodeBlock__Group__6 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5839:1: rule__CodeBlock__Group__5 : rule__CodeBlock__Group__5__Impl rule__CodeBlock__Group__6 ;
     public final void rule__CodeBlock__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5361:1: ( rule__CodeBlock__Group__5__Impl rule__CodeBlock__Group__6 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5362:2: rule__CodeBlock__Group__5__Impl rule__CodeBlock__Group__6
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5843:1: ( rule__CodeBlock__Group__5__Impl rule__CodeBlock__Group__6 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5844:2: rule__CodeBlock__Group__5__Impl rule__CodeBlock__Group__6
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group__5__Impl_in_rule__CodeBlock__Group__510823);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__5__Impl_in_rule__CodeBlock__Group__511769);
             rule__CodeBlock__Group__5__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group__6_in_rule__CodeBlock__Group__510826);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__6_in_rule__CodeBlock__Group__511772);
             rule__CodeBlock__Group__6();
             _fsp--;
 
@@ -14426,23 +15582,23 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__5__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5369:1: rule__CodeBlock__Group__5__Impl : ( ( rule__CodeBlock__Alternatives_5 ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5851:1: rule__CodeBlock__Group__5__Impl : ( ( rule__CodeBlock__Alternatives_5 ) ) ;
     public final void rule__CodeBlock__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5373:1: ( ( ( rule__CodeBlock__Alternatives_5 ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5374:1: ( ( rule__CodeBlock__Alternatives_5 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5855:1: ( ( ( rule__CodeBlock__Alternatives_5 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5856:1: ( ( rule__CodeBlock__Alternatives_5 ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5374:1: ( ( rule__CodeBlock__Alternatives_5 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5375:1: ( rule__CodeBlock__Alternatives_5 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5856:1: ( ( rule__CodeBlock__Alternatives_5 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5857:1: ( rule__CodeBlock__Alternatives_5 )
             {
              before(grammarAccess.getCodeBlockAccess().getAlternatives_5()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5376:1: ( rule__CodeBlock__Alternatives_5 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5376:2: rule__CodeBlock__Alternatives_5
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5858:1: ( rule__CodeBlock__Alternatives_5 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5858:2: rule__CodeBlock__Alternatives_5
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Alternatives_5_in_rule__CodeBlock__Group__5__Impl10853);
+            pushFollow(FOLLOW_rule__CodeBlock__Alternatives_5_in_rule__CodeBlock__Group__5__Impl11799);
             rule__CodeBlock__Alternatives_5();
             _fsp--;
 
@@ -14472,16 +15628,16 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__6
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5386:1: rule__CodeBlock__Group__6 : rule__CodeBlock__Group__6__Impl ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5868:1: rule__CodeBlock__Group__6 : rule__CodeBlock__Group__6__Impl ;
     public final void rule__CodeBlock__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5390:1: ( rule__CodeBlock__Group__6__Impl )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5391:2: rule__CodeBlock__Group__6__Impl
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5872:1: ( rule__CodeBlock__Group__6__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5873:2: rule__CodeBlock__Group__6__Impl
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group__6__Impl_in_rule__CodeBlock__Group__610883);
+            pushFollow(FOLLOW_rule__CodeBlock__Group__6__Impl_in_rule__CodeBlock__Group__611829);
             rule__CodeBlock__Group__6__Impl();
             _fsp--;
 
@@ -14504,20 +15660,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group__6__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5397:1: rule__CodeBlock__Group__6__Impl : ( ']' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5879:1: rule__CodeBlock__Group__6__Impl : ( ']' ) ;
     public final void rule__CodeBlock__Group__6__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5401:1: ( ( ']' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5402:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5883:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5884:1: ( ']' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5402:1: ( ']' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5403:1: ']'
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5884:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5885:1: ']'
             {
              before(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_6()); 
-            match(input,14,FOLLOW_14_in_rule__CodeBlock__Group__6__Impl10911); 
+            match(input,14,FOLLOW_14_in_rule__CodeBlock__Group__6__Impl11857); 
              after(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_6()); 
 
             }
@@ -14541,20 +15697,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_1__0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5430:1: rule__CodeBlock__Group_1__0 : rule__CodeBlock__Group_1__0__Impl rule__CodeBlock__Group_1__1 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5912:1: rule__CodeBlock__Group_1__0 : rule__CodeBlock__Group_1__0__Impl rule__CodeBlock__Group_1__1 ;
     public final void rule__CodeBlock__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5434:1: ( rule__CodeBlock__Group_1__0__Impl rule__CodeBlock__Group_1__1 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5435:2: rule__CodeBlock__Group_1__0__Impl rule__CodeBlock__Group_1__1
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5916:1: ( rule__CodeBlock__Group_1__0__Impl rule__CodeBlock__Group_1__1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5917:2: rule__CodeBlock__Group_1__0__Impl rule__CodeBlock__Group_1__1
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_1__0__Impl_in_rule__CodeBlock__Group_1__010956);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_1__0__Impl_in_rule__CodeBlock__Group_1__011902);
             rule__CodeBlock__Group_1__0__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group_1__1_in_rule__CodeBlock__Group_1__010959);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_1__1_in_rule__CodeBlock__Group_1__011905);
             rule__CodeBlock__Group_1__1();
             _fsp--;
 
@@ -14577,20 +15733,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_1__0__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5442:1: rule__CodeBlock__Group_1__0__Impl : ( '[' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5924:1: rule__CodeBlock__Group_1__0__Impl : ( '[' ) ;
     public final void rule__CodeBlock__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5446:1: ( ( '[' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5447:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5928:1: ( ( '[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5929:1: ( '[' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5447:1: ( '[' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5448:1: '['
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5929:1: ( '[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5930:1: '['
             {
              before(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_1_0()); 
-            match(input,13,FOLLOW_13_in_rule__CodeBlock__Group_1__0__Impl10987); 
+            match(input,13,FOLLOW_13_in_rule__CodeBlock__Group_1__0__Impl11933); 
              after(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_1_0()); 
 
             }
@@ -14614,20 +15770,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_1__1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5461:1: rule__CodeBlock__Group_1__1 : rule__CodeBlock__Group_1__1__Impl rule__CodeBlock__Group_1__2 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5943:1: rule__CodeBlock__Group_1__1 : rule__CodeBlock__Group_1__1__Impl rule__CodeBlock__Group_1__2 ;
     public final void rule__CodeBlock__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5465:1: ( rule__CodeBlock__Group_1__1__Impl rule__CodeBlock__Group_1__2 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5466:2: rule__CodeBlock__Group_1__1__Impl rule__CodeBlock__Group_1__2
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5947:1: ( rule__CodeBlock__Group_1__1__Impl rule__CodeBlock__Group_1__2 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5948:2: rule__CodeBlock__Group_1__1__Impl rule__CodeBlock__Group_1__2
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_1__1__Impl_in_rule__CodeBlock__Group_1__111018);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_1__1__Impl_in_rule__CodeBlock__Group_1__111964);
             rule__CodeBlock__Group_1__1__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group_1__2_in_rule__CodeBlock__Group_1__111021);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_1__2_in_rule__CodeBlock__Group_1__111967);
             rule__CodeBlock__Group_1__2();
             _fsp--;
 
@@ -14650,23 +15806,23 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_1__1__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5473:1: rule__CodeBlock__Group_1__1__Impl : ( ( rule__CodeBlock__LanguageAssignment_1_1 ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5955:1: rule__CodeBlock__Group_1__1__Impl : ( ( rule__CodeBlock__LanguageAssignment_1_1 ) ) ;
     public final void rule__CodeBlock__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5477:1: ( ( ( rule__CodeBlock__LanguageAssignment_1_1 ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5478:1: ( ( rule__CodeBlock__LanguageAssignment_1_1 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5959:1: ( ( ( rule__CodeBlock__LanguageAssignment_1_1 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5960:1: ( ( rule__CodeBlock__LanguageAssignment_1_1 ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5478:1: ( ( rule__CodeBlock__LanguageAssignment_1_1 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5479:1: ( rule__CodeBlock__LanguageAssignment_1_1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5960:1: ( ( rule__CodeBlock__LanguageAssignment_1_1 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5961:1: ( rule__CodeBlock__LanguageAssignment_1_1 )
             {
              before(grammarAccess.getCodeBlockAccess().getLanguageAssignment_1_1()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5480:1: ( rule__CodeBlock__LanguageAssignment_1_1 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5480:2: rule__CodeBlock__LanguageAssignment_1_1
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5962:1: ( rule__CodeBlock__LanguageAssignment_1_1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5962:2: rule__CodeBlock__LanguageAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__CodeBlock__LanguageAssignment_1_1_in_rule__CodeBlock__Group_1__1__Impl11048);
+            pushFollow(FOLLOW_rule__CodeBlock__LanguageAssignment_1_1_in_rule__CodeBlock__Group_1__1__Impl11994);
             rule__CodeBlock__LanguageAssignment_1_1();
             _fsp--;
 
@@ -14696,16 +15852,16 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_1__2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5490:1: rule__CodeBlock__Group_1__2 : rule__CodeBlock__Group_1__2__Impl ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5972:1: rule__CodeBlock__Group_1__2 : rule__CodeBlock__Group_1__2__Impl ;
     public final void rule__CodeBlock__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5494:1: ( rule__CodeBlock__Group_1__2__Impl )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5495:2: rule__CodeBlock__Group_1__2__Impl
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5976:1: ( rule__CodeBlock__Group_1__2__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5977:2: rule__CodeBlock__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_1__2__Impl_in_rule__CodeBlock__Group_1__211078);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_1__2__Impl_in_rule__CodeBlock__Group_1__212024);
             rule__CodeBlock__Group_1__2__Impl();
             _fsp--;
 
@@ -14728,20 +15884,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_1__2__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5501:1: rule__CodeBlock__Group_1__2__Impl : ( ']' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5983:1: rule__CodeBlock__Group_1__2__Impl : ( ']' ) ;
     public final void rule__CodeBlock__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5505:1: ( ( ']' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5506:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5987:1: ( ( ']' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5988:1: ( ']' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5506:1: ( ']' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5507:1: ']'
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5988:1: ( ']' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5989:1: ']'
             {
              before(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_1_2()); 
-            match(input,14,FOLLOW_14_in_rule__CodeBlock__Group_1__2__Impl11106); 
+            match(input,14,FOLLOW_14_in_rule__CodeBlock__Group_1__2__Impl12052); 
              after(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_1_2()); 
 
             }
@@ -14765,20 +15921,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0__0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5526:1: rule__CodeBlock__Group_5_0__0 : rule__CodeBlock__Group_5_0__0__Impl rule__CodeBlock__Group_5_0__1 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6008:1: rule__CodeBlock__Group_5_0__0 : rule__CodeBlock__Group_5_0__0__Impl rule__CodeBlock__Group_5_0__1 ;
     public final void rule__CodeBlock__Group_5_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5530:1: ( rule__CodeBlock__Group_5_0__0__Impl rule__CodeBlock__Group_5_0__1 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5531:2: rule__CodeBlock__Group_5_0__0__Impl rule__CodeBlock__Group_5_0__1
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6012:1: ( rule__CodeBlock__Group_5_0__0__Impl rule__CodeBlock__Group_5_0__1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6013:2: rule__CodeBlock__Group_5_0__0__Impl rule__CodeBlock__Group_5_0__1
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0__0__Impl_in_rule__CodeBlock__Group_5_0__011143);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0__0__Impl_in_rule__CodeBlock__Group_5_0__012089);
             rule__CodeBlock__Group_5_0__0__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0__1_in_rule__CodeBlock__Group_5_0__011146);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0__1_in_rule__CodeBlock__Group_5_0__012092);
             rule__CodeBlock__Group_5_0__1();
             _fsp--;
 
@@ -14801,23 +15957,23 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0__0__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5538:1: rule__CodeBlock__Group_5_0__0__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6020:1: rule__CodeBlock__Group_5_0__0__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) ) ;
     public final void rule__CodeBlock__Group_5_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5542:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5543:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6024:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6025:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5543:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5544:1: ( rule__CodeBlock__ContentsAssignment_5_0_0 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6025:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_0 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6026:1: ( rule__CodeBlock__ContentsAssignment_5_0_0 )
             {
              before(grammarAccess.getCodeBlockAccess().getContentsAssignment_5_0_0()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5545:1: ( rule__CodeBlock__ContentsAssignment_5_0_0 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5545:2: rule__CodeBlock__ContentsAssignment_5_0_0
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6027:1: ( rule__CodeBlock__ContentsAssignment_5_0_0 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6027:2: rule__CodeBlock__ContentsAssignment_5_0_0
             {
-            pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_0_in_rule__CodeBlock__Group_5_0__0__Impl11173);
+            pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_0_in_rule__CodeBlock__Group_5_0__0__Impl12119);
             rule__CodeBlock__ContentsAssignment_5_0_0();
             _fsp--;
 
@@ -14847,16 +16003,16 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0__1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5555:1: rule__CodeBlock__Group_5_0__1 : rule__CodeBlock__Group_5_0__1__Impl ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6037:1: rule__CodeBlock__Group_5_0__1 : rule__CodeBlock__Group_5_0__1__Impl ;
     public final void rule__CodeBlock__Group_5_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5559:1: ( rule__CodeBlock__Group_5_0__1__Impl )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5560:2: rule__CodeBlock__Group_5_0__1__Impl
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6041:1: ( rule__CodeBlock__Group_5_0__1__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6042:2: rule__CodeBlock__Group_5_0__1__Impl
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0__1__Impl_in_rule__CodeBlock__Group_5_0__111203);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0__1__Impl_in_rule__CodeBlock__Group_5_0__112149);
             rule__CodeBlock__Group_5_0__1__Impl();
             _fsp--;
 
@@ -14879,35 +16035,35 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0__1__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5566:1: rule__CodeBlock__Group_5_0__1__Impl : ( ( rule__CodeBlock__Group_5_0_1__0 )* ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6048:1: rule__CodeBlock__Group_5_0__1__Impl : ( ( rule__CodeBlock__Group_5_0_1__0 )* ) ;
     public final void rule__CodeBlock__Group_5_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5570:1: ( ( ( rule__CodeBlock__Group_5_0_1__0 )* ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5571:1: ( ( rule__CodeBlock__Group_5_0_1__0 )* )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6052:1: ( ( ( rule__CodeBlock__Group_5_0_1__0 )* ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6053:1: ( ( rule__CodeBlock__Group_5_0_1__0 )* )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5571:1: ( ( rule__CodeBlock__Group_5_0_1__0 )* )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5572:1: ( rule__CodeBlock__Group_5_0_1__0 )*
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6053:1: ( ( rule__CodeBlock__Group_5_0_1__0 )* )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6054:1: ( rule__CodeBlock__Group_5_0_1__0 )*
             {
              before(grammarAccess.getCodeBlockAccess().getGroup_5_0_1()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5573:1: ( rule__CodeBlock__Group_5_0_1__0 )*
-            loop58:
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6055:1: ( rule__CodeBlock__Group_5_0_1__0 )*
+            loop59:
             do {
-                int alt58=2;
-                int LA58_0 = input.LA(1);
+                int alt59=2;
+                int LA59_0 = input.LA(1);
 
-                if ( ((LA58_0>=19 && LA58_0<=21)) ) {
-                    alt58=1;
+                if ( ((LA59_0>=19 && LA59_0<=21)) ) {
+                    alt59=1;
                 }
 
 
-                switch (alt58) {
+                switch (alt59) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5573:2: rule__CodeBlock__Group_5_0_1__0
+            	    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6055:2: rule__CodeBlock__Group_5_0_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__0_in_rule__CodeBlock__Group_5_0__1__Impl11230);
+            	    pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__0_in_rule__CodeBlock__Group_5_0__1__Impl12176);
             	    rule__CodeBlock__Group_5_0_1__0();
             	    _fsp--;
 
@@ -14916,7 +16072,7 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop58;
+            	    break loop59;
                 }
             } while (true);
 
@@ -14943,20 +16099,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0_1__0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5587:1: rule__CodeBlock__Group_5_0_1__0 : rule__CodeBlock__Group_5_0_1__0__Impl rule__CodeBlock__Group_5_0_1__1 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6069:1: rule__CodeBlock__Group_5_0_1__0 : rule__CodeBlock__Group_5_0_1__0__Impl rule__CodeBlock__Group_5_0_1__1 ;
     public final void rule__CodeBlock__Group_5_0_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5591:1: ( rule__CodeBlock__Group_5_0_1__0__Impl rule__CodeBlock__Group_5_0_1__1 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5592:2: rule__CodeBlock__Group_5_0_1__0__Impl rule__CodeBlock__Group_5_0_1__1
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6073:1: ( rule__CodeBlock__Group_5_0_1__0__Impl rule__CodeBlock__Group_5_0_1__1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6074:2: rule__CodeBlock__Group_5_0_1__0__Impl rule__CodeBlock__Group_5_0_1__1
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__0__Impl_in_rule__CodeBlock__Group_5_0_1__011265);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__0__Impl_in_rule__CodeBlock__Group_5_0_1__012211);
             rule__CodeBlock__Group_5_0_1__0__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__1_in_rule__CodeBlock__Group_5_0_1__011268);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__1_in_rule__CodeBlock__Group_5_0_1__012214);
             rule__CodeBlock__Group_5_0_1__1();
             _fsp--;
 
@@ -14979,23 +16135,23 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0_1__0__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5599:1: rule__CodeBlock__Group_5_0_1__0__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6081:1: rule__CodeBlock__Group_5_0_1__0__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) ) ;
     public final void rule__CodeBlock__Group_5_0_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5603:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5604:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6085:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6086:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5604:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5605:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_0 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6086:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_0 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6087:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_0 )
             {
              before(grammarAccess.getCodeBlockAccess().getContentsAssignment_5_0_1_0()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5606:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_0 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5606:2: rule__CodeBlock__ContentsAssignment_5_0_1_0
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6088:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_0 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6088:2: rule__CodeBlock__ContentsAssignment_5_0_1_0
             {
-            pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_0_in_rule__CodeBlock__Group_5_0_1__0__Impl11295);
+            pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_0_in_rule__CodeBlock__Group_5_0_1__0__Impl12241);
             rule__CodeBlock__ContentsAssignment_5_0_1_0();
             _fsp--;
 
@@ -15025,16 +16181,16 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0_1__1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5616:1: rule__CodeBlock__Group_5_0_1__1 : rule__CodeBlock__Group_5_0_1__1__Impl ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6098:1: rule__CodeBlock__Group_5_0_1__1 : rule__CodeBlock__Group_5_0_1__1__Impl ;
     public final void rule__CodeBlock__Group_5_0_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5620:1: ( rule__CodeBlock__Group_5_0_1__1__Impl )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5621:2: rule__CodeBlock__Group_5_0_1__1__Impl
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6102:1: ( rule__CodeBlock__Group_5_0_1__1__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6103:2: rule__CodeBlock__Group_5_0_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__1__Impl_in_rule__CodeBlock__Group_5_0_1__111325);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_0_1__1__Impl_in_rule__CodeBlock__Group_5_0_1__112271);
             rule__CodeBlock__Group_5_0_1__1__Impl();
             _fsp--;
 
@@ -15057,31 +16213,31 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_0_1__1__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5627:1: rule__CodeBlock__Group_5_0_1__1__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6109:1: rule__CodeBlock__Group_5_0_1__1__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? ) ;
     public final void rule__CodeBlock__Group_5_0_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5631:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5632:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6113:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6114:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5632:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5633:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )?
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6114:1: ( ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6115:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )?
             {
              before(grammarAccess.getCodeBlockAccess().getContentsAssignment_5_0_1_1()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5634:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )?
-            int alt59=2;
-            int LA59_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6116:1: ( rule__CodeBlock__ContentsAssignment_5_0_1_1 )?
+            int alt60=2;
+            int LA60_0 = input.LA(1);
 
-            if ( ((LA59_0>=RULE_ID && LA59_0<=RULE_MULTI_NL)||(LA59_0>=9 && LA59_0<=11)) ) {
-                alt59=1;
+            if ( ((LA60_0>=RULE_ID && LA60_0<=RULE_MULTI_NL)||(LA60_0>=9 && LA60_0<=11)) ) {
+                alt60=1;
             }
-            switch (alt59) {
+            switch (alt60) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5634:2: rule__CodeBlock__ContentsAssignment_5_0_1_1
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6116:2: rule__CodeBlock__ContentsAssignment_5_0_1_1
                     {
-                    pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_1_in_rule__CodeBlock__Group_5_0_1__1__Impl11352);
+                    pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_1_in_rule__CodeBlock__Group_5_0_1__1__Impl12298);
                     rule__CodeBlock__ContentsAssignment_5_0_1_1();
                     _fsp--;
 
@@ -15114,20 +16270,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_1__0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5648:1: rule__CodeBlock__Group_5_1__0 : rule__CodeBlock__Group_5_1__0__Impl rule__CodeBlock__Group_5_1__1 ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6130:1: rule__CodeBlock__Group_5_1__0 : rule__CodeBlock__Group_5_1__0__Impl rule__CodeBlock__Group_5_1__1 ;
     public final void rule__CodeBlock__Group_5_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5652:1: ( rule__CodeBlock__Group_5_1__0__Impl rule__CodeBlock__Group_5_1__1 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5653:2: rule__CodeBlock__Group_5_1__0__Impl rule__CodeBlock__Group_5_1__1
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6134:1: ( rule__CodeBlock__Group_5_1__0__Impl rule__CodeBlock__Group_5_1__1 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6135:2: rule__CodeBlock__Group_5_1__0__Impl rule__CodeBlock__Group_5_1__1
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_1__0__Impl_in_rule__CodeBlock__Group_5_1__011387);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_1__0__Impl_in_rule__CodeBlock__Group_5_1__012333);
             rule__CodeBlock__Group_5_1__0__Impl();
             _fsp--;
 
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_1__1_in_rule__CodeBlock__Group_5_1__011390);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_1__1_in_rule__CodeBlock__Group_5_1__012336);
             rule__CodeBlock__Group_5_1__1();
             _fsp--;
 
@@ -15150,23 +16306,23 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_1__0__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5660:1: rule__CodeBlock__Group_5_1__0__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6142:1: rule__CodeBlock__Group_5_1__0__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) ) ;
     public final void rule__CodeBlock__Group_5_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5664:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5665:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6146:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6147:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5665:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5666:1: ( rule__CodeBlock__ContentsAssignment_5_1_0 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6147:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_0 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6148:1: ( rule__CodeBlock__ContentsAssignment_5_1_0 )
             {
              before(grammarAccess.getCodeBlockAccess().getContentsAssignment_5_1_0()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5667:1: ( rule__CodeBlock__ContentsAssignment_5_1_0 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5667:2: rule__CodeBlock__ContentsAssignment_5_1_0
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6149:1: ( rule__CodeBlock__ContentsAssignment_5_1_0 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6149:2: rule__CodeBlock__ContentsAssignment_5_1_0
             {
-            pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_0_in_rule__CodeBlock__Group_5_1__0__Impl11417);
+            pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_0_in_rule__CodeBlock__Group_5_1__0__Impl12363);
             rule__CodeBlock__ContentsAssignment_5_1_0();
             _fsp--;
 
@@ -15196,16 +16352,16 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_1__1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5677:1: rule__CodeBlock__Group_5_1__1 : rule__CodeBlock__Group_5_1__1__Impl ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6159:1: rule__CodeBlock__Group_5_1__1 : rule__CodeBlock__Group_5_1__1__Impl ;
     public final void rule__CodeBlock__Group_5_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5681:1: ( rule__CodeBlock__Group_5_1__1__Impl )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5682:2: rule__CodeBlock__Group_5_1__1__Impl
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6163:1: ( rule__CodeBlock__Group_5_1__1__Impl )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6164:2: rule__CodeBlock__Group_5_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__CodeBlock__Group_5_1__1__Impl_in_rule__CodeBlock__Group_5_1__111447);
+            pushFollow(FOLLOW_rule__CodeBlock__Group_5_1__1__Impl_in_rule__CodeBlock__Group_5_1__112393);
             rule__CodeBlock__Group_5_1__1__Impl();
             _fsp--;
 
@@ -15228,31 +16384,31 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__Group_5_1__1__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5688:1: rule__CodeBlock__Group_5_1__1__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6170:1: rule__CodeBlock__Group_5_1__1__Impl : ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? ) ;
     public final void rule__CodeBlock__Group_5_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5692:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5693:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6174:1: ( ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6175:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5693:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5694:1: ( rule__CodeBlock__ContentsAssignment_5_1_1 )?
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6175:1: ( ( rule__CodeBlock__ContentsAssignment_5_1_1 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6176:1: ( rule__CodeBlock__ContentsAssignment_5_1_1 )?
             {
              before(grammarAccess.getCodeBlockAccess().getContentsAssignment_5_1_1()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5695:1: ( rule__CodeBlock__ContentsAssignment_5_1_1 )?
-            int alt60=2;
-            int LA60_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6177:1: ( rule__CodeBlock__ContentsAssignment_5_1_1 )?
+            int alt61=2;
+            int LA61_0 = input.LA(1);
 
-            if ( ((LA60_0>=RULE_ID && LA60_0<=RULE_MULTI_NL)||(LA60_0>=9 && LA60_0<=11)) ) {
-                alt60=1;
+            if ( ((LA61_0>=RULE_ID && LA61_0<=RULE_MULTI_NL)||(LA61_0>=9 && LA61_0<=11)) ) {
+                alt61=1;
             }
-            switch (alt60) {
+            switch (alt61) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5695:2: rule__CodeBlock__ContentsAssignment_5_1_1
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6177:2: rule__CodeBlock__ContentsAssignment_5_1_1
                     {
-                    pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_1_in_rule__CodeBlock__Group_5_1__1__Impl11474);
+                    pushFollow(FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_1_in_rule__CodeBlock__Group_5_1__1__Impl12420);
                     rule__CodeBlock__ContentsAssignment_5_1_1();
                     _fsp--;
 
@@ -15285,20 +16441,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Document__ChaptersAssignment_1_0_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5710:1: rule__Document__ChaptersAssignment_1_0_1 : ( ruleChapter ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6192:1: rule__Document__ChaptersAssignment_1_0_1 : ( ruleChapter ) ;
     public final void rule__Document__ChaptersAssignment_1_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5714:1: ( ( ruleChapter ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5715:1: ( ruleChapter )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6196:1: ( ( ruleChapter ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6197:1: ( ruleChapter )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5715:1: ( ruleChapter )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5716:1: ruleChapter
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6197:1: ( ruleChapter )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6198:1: ruleChapter
             {
              before(grammarAccess.getDocumentAccess().getChaptersChapterParserRuleCall_1_0_1_0()); 
-            pushFollow(FOLLOW_ruleChapter_in_rule__Document__ChaptersAssignment_1_0_111514);
+            pushFollow(FOLLOW_ruleChapter_in_rule__Document__ChaptersAssignment_1_0_112460);
             ruleChapter();
             _fsp--;
 
@@ -15325,20 +16481,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Document__SectionsAssignment_1_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5725:1: rule__Document__SectionsAssignment_1_1_1 : ( ruleSection ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6207:1: rule__Document__SectionsAssignment_1_1_1 : ( ruleSection ) ;
     public final void rule__Document__SectionsAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5729:1: ( ( ruleSection ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5730:1: ( ruleSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6211:1: ( ( ruleSection ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6212:1: ( ruleSection )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5730:1: ( ruleSection )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5731:1: ruleSection
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6212:1: ( ruleSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6213:1: ruleSection
             {
              before(grammarAccess.getDocumentAccess().getSectionsSectionParserRuleCall_1_1_1_0()); 
-            pushFollow(FOLLOW_ruleSection_in_rule__Document__SectionsAssignment_1_1_111545);
+            pushFollow(FOLLOW_ruleSection_in_rule__Document__SectionsAssignment_1_1_112491);
             ruleSection();
             _fsp--;
 
@@ -15365,20 +16521,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Document__SubsectionsAssignment_1_2_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5740:1: rule__Document__SubsectionsAssignment_1_2_1 : ( ruleSubSection ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6222:1: rule__Document__SubsectionsAssignment_1_2_1 : ( ruleSubSection ) ;
     public final void rule__Document__SubsectionsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5744:1: ( ( ruleSubSection ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5745:1: ( ruleSubSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6226:1: ( ( ruleSubSection ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6227:1: ( ruleSubSection )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5745:1: ( ruleSubSection )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5746:1: ruleSubSection
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6227:1: ( ruleSubSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6228:1: ruleSubSection
             {
              before(grammarAccess.getDocumentAccess().getSubsectionsSubSectionParserRuleCall_1_2_1_0()); 
-            pushFollow(FOLLOW_ruleSubSection_in_rule__Document__SubsectionsAssignment_1_2_111576);
+            pushFollow(FOLLOW_ruleSubSection_in_rule__Document__SubsectionsAssignment_1_2_112522);
             ruleSubSection();
             _fsp--;
 
@@ -15405,20 +16561,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Chapter__NameAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5755:1: rule__Chapter__NameAssignment_1_1 : ( RULE_ID ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6237:1: rule__Chapter__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__Chapter__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5759:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5760:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6241:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6242:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5760:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5761:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6242:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6243:1: RULE_ID
             {
              before(grammarAccess.getChapterAccess().getNameIDTerminalRuleCall_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Chapter__NameAssignment_1_111607); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Chapter__NameAssignment_1_112553); 
              after(grammarAccess.getChapterAccess().getNameIDTerminalRuleCall_1_1_0()); 
 
             }
@@ -15442,20 +16598,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Chapter__TitleAssignment_3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5770:1: rule__Chapter__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6252:1: rule__Chapter__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
     public final void rule__Chapter__TitleAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5774:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5775:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6256:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6257:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5775:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5776:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6257:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6258:1: ruleTextOrMarkup
             {
              before(grammarAccess.getChapterAccess().getTitleTextOrMarkupParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Chapter__TitleAssignment_311638);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Chapter__TitleAssignment_312584);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15482,20 +16638,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Chapter__ContentsAssignment_6_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5785:1: rule__Chapter__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6267:1: rule__Chapter__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
     public final void rule__Chapter__ContentsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5789:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5790:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6271:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6272:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5790:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5791:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6272:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6273:1: ruleTextOrMarkup
             {
              before(grammarAccess.getChapterAccess().getContentsTextOrMarkupParserRuleCall_6_1_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Chapter__ContentsAssignment_6_111669);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Chapter__ContentsAssignment_6_112615);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15522,20 +16678,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Chapter__ContentsAssignment_7_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5800:1: rule__Chapter__ContentsAssignment_7_1 : ( ruleSection ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6282:1: rule__Chapter__ContentsAssignment_7_1 : ( ruleSection ) ;
     public final void rule__Chapter__ContentsAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5804:1: ( ( ruleSection ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5805:1: ( ruleSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6286:1: ( ( ruleSection ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6287:1: ( ruleSection )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5805:1: ( ruleSection )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5806:1: ruleSection
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6287:1: ( ruleSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6288:1: ruleSection
             {
              before(grammarAccess.getChapterAccess().getContentsSectionParserRuleCall_7_1_0()); 
-            pushFollow(FOLLOW_ruleSection_in_rule__Chapter__ContentsAssignment_7_111700);
+            pushFollow(FOLLOW_ruleSection_in_rule__Chapter__ContentsAssignment_7_112646);
             ruleSection();
             _fsp--;
 
@@ -15562,20 +16718,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section__NameAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5815:1: rule__Section__NameAssignment_1_1 : ( RULE_ID ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6297:1: rule__Section__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__Section__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5819:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5820:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6301:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6302:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5820:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5821:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6302:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6303:1: RULE_ID
             {
              before(grammarAccess.getSectionAccess().getNameIDTerminalRuleCall_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Section__NameAssignment_1_111731); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Section__NameAssignment_1_112677); 
              after(grammarAccess.getSectionAccess().getNameIDTerminalRuleCall_1_1_0()); 
 
             }
@@ -15599,20 +16755,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section__TitleAssignment_3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5830:1: rule__Section__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6312:1: rule__Section__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
     public final void rule__Section__TitleAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5834:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5835:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6316:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6317:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5835:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5836:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6317:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6318:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSectionAccess().getTitleTextOrMarkupParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section__TitleAssignment_311762);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section__TitleAssignment_312708);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15639,20 +16795,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section__ContentsAssignment_6_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5845:1: rule__Section__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6327:1: rule__Section__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
     public final void rule__Section__ContentsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5849:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5850:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6331:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6332:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5850:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5851:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6332:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6333:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSectionAccess().getContentsTextOrMarkupParserRuleCall_6_1_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section__ContentsAssignment_6_111793);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section__ContentsAssignment_6_112739);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15679,20 +16835,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section__ContentsAssignment_7_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5860:1: rule__Section__ContentsAssignment_7_1 : ( ruleSubSection ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6342:1: rule__Section__ContentsAssignment_7_1 : ( ruleSubSection ) ;
     public final void rule__Section__ContentsAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5864:1: ( ( ruleSubSection ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5865:1: ( ruleSubSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6346:1: ( ( ruleSubSection ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6347:1: ( ruleSubSection )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5865:1: ( ruleSubSection )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5866:1: ruleSubSection
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6347:1: ( ruleSubSection )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6348:1: ruleSubSection
             {
              before(grammarAccess.getSectionAccess().getContentsSubSectionParserRuleCall_7_1_0()); 
-            pushFollow(FOLLOW_ruleSubSection_in_rule__Section__ContentsAssignment_7_111824);
+            pushFollow(FOLLOW_ruleSubSection_in_rule__Section__ContentsAssignment_7_112770);
             ruleSubSection();
             _fsp--;
 
@@ -15719,20 +16875,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__SubSection__NameAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5875:1: rule__SubSection__NameAssignment_1_1 : ( RULE_ID ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6357:1: rule__SubSection__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__SubSection__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5879:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5880:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6361:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6362:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5880:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5881:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6362:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6363:1: RULE_ID
             {
              before(grammarAccess.getSubSectionAccess().getNameIDTerminalRuleCall_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SubSection__NameAssignment_1_111855); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__SubSection__NameAssignment_1_112801); 
              after(grammarAccess.getSubSectionAccess().getNameIDTerminalRuleCall_1_1_0()); 
 
             }
@@ -15756,20 +16912,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__SubSection__TitleAssignment_3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5890:1: rule__SubSection__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6372:1: rule__SubSection__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
     public final void rule__SubSection__TitleAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5894:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5895:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6376:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6377:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5895:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5896:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6377:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6378:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSubSectionAccess().getTitleTextOrMarkupParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__SubSection__TitleAssignment_311886);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__SubSection__TitleAssignment_312832);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15796,20 +16952,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__SubSection__ContentsAssignment_6_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5905:1: rule__SubSection__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6387:1: rule__SubSection__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
     public final void rule__SubSection__ContentsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5909:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5910:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6391:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6392:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5910:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5911:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6392:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6393:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSubSectionAccess().getContentsTextOrMarkupParserRuleCall_6_1_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__SubSection__ContentsAssignment_6_111917);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__SubSection__ContentsAssignment_6_112863);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15836,20 +16992,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__SubSection__ContentsAssignment_7_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5920:1: rule__SubSection__ContentsAssignment_7_1 : ( ruleSection3 ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6402:1: rule__SubSection__ContentsAssignment_7_1 : ( ruleSection3 ) ;
     public final void rule__SubSection__ContentsAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5924:1: ( ( ruleSection3 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5925:1: ( ruleSection3 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6406:1: ( ( ruleSection3 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6407:1: ( ruleSection3 )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5925:1: ( ruleSection3 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5926:1: ruleSection3
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6407:1: ( ruleSection3 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6408:1: ruleSection3
             {
              before(grammarAccess.getSubSectionAccess().getContentsSection3ParserRuleCall_7_1_0()); 
-            pushFollow(FOLLOW_ruleSection3_in_rule__SubSection__ContentsAssignment_7_111948);
+            pushFollow(FOLLOW_ruleSection3_in_rule__SubSection__ContentsAssignment_7_112894);
             ruleSection3();
             _fsp--;
 
@@ -15876,20 +17032,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section3__NameAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5935:1: rule__Section3__NameAssignment_1_1 : ( RULE_ID ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6417:1: rule__Section3__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__Section3__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5939:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5940:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6421:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6422:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5940:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5941:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6422:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6423:1: RULE_ID
             {
              before(grammarAccess.getSection3Access().getNameIDTerminalRuleCall_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Section3__NameAssignment_1_111979); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Section3__NameAssignment_1_112925); 
              after(grammarAccess.getSection3Access().getNameIDTerminalRuleCall_1_1_0()); 
 
             }
@@ -15913,20 +17069,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section3__TitleAssignment_3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5950:1: rule__Section3__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6432:1: rule__Section3__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
     public final void rule__Section3__TitleAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5954:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5955:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6436:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6437:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5955:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5956:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6437:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6438:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSection3Access().getTitleTextOrMarkupParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section3__TitleAssignment_312010);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section3__TitleAssignment_312956);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15953,20 +17109,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section3__ContentsAssignment_6_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5965:1: rule__Section3__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6447:1: rule__Section3__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
     public final void rule__Section3__ContentsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5969:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5970:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6451:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6452:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5970:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5971:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6452:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6453:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSection3Access().getContentsTextOrMarkupParserRuleCall_6_1_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section3__ContentsAssignment_6_112041);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section3__ContentsAssignment_6_112987);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -15993,20 +17149,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section3__ContentsAssignment_7_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5980:1: rule__Section3__ContentsAssignment_7_1 : ( ruleSection4 ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6462:1: rule__Section3__ContentsAssignment_7_1 : ( ruleSection4 ) ;
     public final void rule__Section3__ContentsAssignment_7_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5984:1: ( ( ruleSection4 ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5985:1: ( ruleSection4 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6466:1: ( ( ruleSection4 ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6467:1: ( ruleSection4 )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5985:1: ( ruleSection4 )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5986:1: ruleSection4
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6467:1: ( ruleSection4 )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6468:1: ruleSection4
             {
              before(grammarAccess.getSection3Access().getContentsSection4ParserRuleCall_7_1_0()); 
-            pushFollow(FOLLOW_ruleSection4_in_rule__Section3__ContentsAssignment_7_112072);
+            pushFollow(FOLLOW_ruleSection4_in_rule__Section3__ContentsAssignment_7_113018);
             ruleSection4();
             _fsp--;
 
@@ -16033,20 +17189,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section4__NameAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5995:1: rule__Section4__NameAssignment_1_1 : ( RULE_ID ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6477:1: rule__Section4__NameAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__Section4__NameAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:5999:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6000:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6481:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6482:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6000:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6001:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6482:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6483:1: RULE_ID
             {
              before(grammarAccess.getSection4Access().getNameIDTerminalRuleCall_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Section4__NameAssignment_1_112103); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Section4__NameAssignment_1_113049); 
              after(grammarAccess.getSection4Access().getNameIDTerminalRuleCall_1_1_0()); 
 
             }
@@ -16070,20 +17226,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section4__TitleAssignment_3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6010:1: rule__Section4__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6492:1: rule__Section4__TitleAssignment_3 : ( ruleTextOrMarkup ) ;
     public final void rule__Section4__TitleAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6014:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6015:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6496:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6497:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6015:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6016:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6497:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6498:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSection4Access().getTitleTextOrMarkupParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section4__TitleAssignment_312134);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section4__TitleAssignment_313080);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -16110,20 +17266,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Section4__ContentsAssignment_6_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6025:1: rule__Section4__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6507:1: rule__Section4__ContentsAssignment_6_1 : ( ruleTextOrMarkup ) ;
     public final void rule__Section4__ContentsAssignment_6_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6029:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6030:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6511:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6512:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6030:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6031:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6512:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6513:1: ruleTextOrMarkup
             {
              before(grammarAccess.getSection4Access().getContentsTextOrMarkupParserRuleCall_6_1_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section4__ContentsAssignment_6_112165);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Section4__ContentsAssignment_6_113111);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -16150,20 +17306,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__TextOrMarkup__ContentsAssignment_0_0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6040:1: rule__TextOrMarkup__ContentsAssignment_0_0 : ( ruleTextPart ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6522:1: rule__TextOrMarkup__ContentsAssignment_0_0 : ( ruleTextPart ) ;
     public final void rule__TextOrMarkup__ContentsAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6044:1: ( ( ruleTextPart ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6045:1: ( ruleTextPart )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6526:1: ( ( ruleTextPart ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6527:1: ( ruleTextPart )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6045:1: ( ruleTextPart )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6046:1: ruleTextPart
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6527:1: ( ruleTextPart )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6528:1: ruleTextPart
             {
              before(grammarAccess.getTextOrMarkupAccess().getContentsTextPartParserRuleCall_0_0_0()); 
-            pushFollow(FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_012196);
+            pushFollow(FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_013142);
             ruleTextPart();
             _fsp--;
 
@@ -16190,20 +17346,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__TextOrMarkup__ContentsAssignment_0_1_0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6055:1: rule__TextOrMarkup__ContentsAssignment_0_1_0 : ( ruleMarkUp ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6537:1: rule__TextOrMarkup__ContentsAssignment_0_1_0 : ( ruleMarkUp ) ;
     public final void rule__TextOrMarkup__ContentsAssignment_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6059:1: ( ( ruleMarkUp ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6060:1: ( ruleMarkUp )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6541:1: ( ( ruleMarkUp ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6542:1: ( ruleMarkUp )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6060:1: ( ruleMarkUp )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6061:1: ruleMarkUp
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6542:1: ( ruleMarkUp )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6543:1: ruleMarkUp
             {
              before(grammarAccess.getTextOrMarkupAccess().getContentsMarkUpParserRuleCall_0_1_0_0()); 
-            pushFollow(FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_0_1_012227);
+            pushFollow(FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_0_1_013173);
             ruleMarkUp();
             _fsp--;
 
@@ -16230,20 +17386,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__TextOrMarkup__ContentsAssignment_0_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6070:1: rule__TextOrMarkup__ContentsAssignment_0_1_1 : ( ruleTextPart ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6552:1: rule__TextOrMarkup__ContentsAssignment_0_1_1 : ( ruleTextPart ) ;
     public final void rule__TextOrMarkup__ContentsAssignment_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6074:1: ( ( ruleTextPart ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6075:1: ( ruleTextPart )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6556:1: ( ( ruleTextPart ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6557:1: ( ruleTextPart )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6075:1: ( ruleTextPart )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6076:1: ruleTextPart
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6557:1: ( ruleTextPart )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6558:1: ruleTextPart
             {
              before(grammarAccess.getTextOrMarkupAccess().getContentsTextPartParserRuleCall_0_1_1_0()); 
-            pushFollow(FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_1_112258);
+            pushFollow(FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_1_113204);
             ruleTextPart();
             _fsp--;
 
@@ -16270,20 +17426,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__TextOrMarkup__ContentsAssignment_1_0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6085:1: rule__TextOrMarkup__ContentsAssignment_1_0 : ( ruleMarkUp ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6567:1: rule__TextOrMarkup__ContentsAssignment_1_0 : ( ruleMarkUp ) ;
     public final void rule__TextOrMarkup__ContentsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6089:1: ( ( ruleMarkUp ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6090:1: ( ruleMarkUp )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6571:1: ( ( ruleMarkUp ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6572:1: ( ruleMarkUp )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6090:1: ( ruleMarkUp )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6091:1: ruleMarkUp
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6572:1: ( ruleMarkUp )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6573:1: ruleMarkUp
             {
              before(grammarAccess.getTextOrMarkupAccess().getContentsMarkUpParserRuleCall_1_0_0()); 
-            pushFollow(FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_1_012289);
+            pushFollow(FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_1_013235);
             ruleMarkUp();
             _fsp--;
 
@@ -16310,20 +17466,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__TextOrMarkup__ContentsAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6100:1: rule__TextOrMarkup__ContentsAssignment_1_1 : ( ruleTextPart ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6582:1: rule__TextOrMarkup__ContentsAssignment_1_1 : ( ruleTextPart ) ;
     public final void rule__TextOrMarkup__ContentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6104:1: ( ( ruleTextPart ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6105:1: ( ruleTextPart )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6586:1: ( ( ruleTextPart ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6587:1: ( ruleTextPart )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6105:1: ( ruleTextPart )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6106:1: ruleTextPart
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6587:1: ( ruleTextPart )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6588:1: ruleTextPart
             {
              before(grammarAccess.getTextOrMarkupAccess().getContentsTextPartParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_1_112320);
+            pushFollow(FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_1_113266);
             ruleTextPart();
             _fsp--;
 
@@ -16350,20 +17506,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Emphasize__ContentsAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6115:1: rule__Emphasize__ContentsAssignment_1_1 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6597:1: rule__Emphasize__ContentsAssignment_1_1 : ( ruleTextOrMarkup ) ;
     public final void rule__Emphasize__ContentsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6119:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6120:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6601:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6602:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6120:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6121:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6602:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6603:1: ruleTextOrMarkup
             {
              before(grammarAccess.getEmphasizeAccess().getContentsTextOrMarkupParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Emphasize__ContentsAssignment_1_112351);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Emphasize__ContentsAssignment_1_113297);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -16390,20 +17546,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Anchor__NameAssignment_2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6130:1: rule__Anchor__NameAssignment_2 : ( RULE_ID ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6612:1: rule__Anchor__NameAssignment_2 : ( RULE_ID ) ;
     public final void rule__Anchor__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6134:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6135:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6616:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6617:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6135:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6136:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6617:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6618:1: RULE_ID
             {
              before(grammarAccess.getAnchorAccess().getNameIDTerminalRuleCall_2_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Anchor__NameAssignment_212382); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Anchor__NameAssignment_213328); 
              after(grammarAccess.getAnchorAccess().getNameIDTerminalRuleCall_2_0()); 
 
             }
@@ -16427,24 +17583,24 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Ref__RefAssignment_2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6145:1: rule__Ref__RefAssignment_2 : ( ( RULE_ID ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6627:1: rule__Ref__RefAssignment_2 : ( ( RULE_ID ) ) ;
     public final void rule__Ref__RefAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6149:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6150:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6631:1: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6632:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6150:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6151:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6632:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6633:1: ( RULE_ID )
             {
              before(grammarAccess.getRefAccess().getRefIdentifiableCrossReference_2_0()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6152:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6153:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6634:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6635:1: RULE_ID
             {
              before(grammarAccess.getRefAccess().getRefIdentifiableIDTerminalRuleCall_2_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Ref__RefAssignment_212417); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Ref__RefAssignment_213363); 
              after(grammarAccess.getRefAccess().getRefIdentifiableIDTerminalRuleCall_2_0_1()); 
 
             }
@@ -16472,20 +17628,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Ref__ContentsAssignment_4
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6164:1: rule__Ref__ContentsAssignment_4 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6646:1: rule__Ref__ContentsAssignment_4 : ( ruleTextOrMarkup ) ;
     public final void rule__Ref__ContentsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6168:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6169:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6650:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6651:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6169:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6170:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6651:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6652:1: ruleTextOrMarkup
             {
              before(grammarAccess.getRefAccess().getContentsTextOrMarkupParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Ref__ContentsAssignment_412452);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Ref__ContentsAssignment_413398);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -16512,20 +17668,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__OrderedList__ItemsAssignment_4
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6179:1: rule__OrderedList__ItemsAssignment_4 : ( ruleItem ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6661:1: rule__OrderedList__ItemsAssignment_4 : ( ruleItem ) ;
     public final void rule__OrderedList__ItemsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6183:1: ( ( ruleItem ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6184:1: ( ruleItem )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6665:1: ( ( ruleItem ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6666:1: ( ruleItem )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6184:1: ( ruleItem )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6185:1: ruleItem
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6666:1: ( ruleItem )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6667:1: ruleItem
             {
              before(grammarAccess.getOrderedListAccess().getItemsItemParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleItem_in_rule__OrderedList__ItemsAssignment_412483);
+            pushFollow(FOLLOW_ruleItem_in_rule__OrderedList__ItemsAssignment_413429);
             ruleItem();
             _fsp--;
 
@@ -16552,20 +17708,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__UnorderedList__ItemsAssignment_4
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6194:1: rule__UnorderedList__ItemsAssignment_4 : ( ruleItem ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6676:1: rule__UnorderedList__ItemsAssignment_4 : ( ruleItem ) ;
     public final void rule__UnorderedList__ItemsAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6198:1: ( ( ruleItem ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6199:1: ( ruleItem )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6680:1: ( ( ruleItem ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6681:1: ( ruleItem )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6199:1: ( ruleItem )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6200:1: ruleItem
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6681:1: ( ruleItem )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6682:1: ruleItem
             {
              before(grammarAccess.getUnorderedListAccess().getItemsItemParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleItem_in_rule__UnorderedList__ItemsAssignment_412514);
+            pushFollow(FOLLOW_ruleItem_in_rule__UnorderedList__ItemsAssignment_413460);
             ruleItem();
             _fsp--;
 
@@ -16592,20 +17748,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Item__ContentsAssignment_3
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6209:1: rule__Item__ContentsAssignment_3 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6691:1: rule__Item__ContentsAssignment_3 : ( ruleTextOrMarkup ) ;
     public final void rule__Item__ContentsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6213:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6214:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6695:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6696:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6214:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6215:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6696:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6697:1: ruleTextOrMarkup
             {
              before(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_312545);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_313491);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -16632,20 +17788,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Item__ContentsAssignment_4_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6224:1: rule__Item__ContentsAssignment_4_1 : ( ruleTextOrMarkup ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6706:1: rule__Item__ContentsAssignment_4_1 : ( ruleTextOrMarkup ) ;
     public final void rule__Item__ContentsAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6228:1: ( ( ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6229:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6710:1: ( ( ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6711:1: ( ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6229:1: ( ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6230:1: ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6711:1: ( ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6712:1: ruleTextOrMarkup
             {
              before(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_4_1_0()); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_4_112576);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_4_113522);
             ruleTextOrMarkup();
             _fsp--;
 
@@ -16672,24 +17828,24 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeRef__ElementAssignment_2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6239:1: rule__CodeRef__ElementAssignment_2 : ( ( ruleText ) ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6721:1: rule__CodeRef__ElementAssignment_2 : ( ( ruleText ) ) ;
     public final void rule__CodeRef__ElementAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6243:1: ( ( ( ruleText ) ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6244:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6725:1: ( ( ( ruleText ) ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6726:1: ( ( ruleText ) )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6244:1: ( ( ruleText ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6245:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6726:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6727:1: ( ruleText )
             {
              before(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6246:1: ( ruleText )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6247:1: ruleText
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6728:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6729:1: ruleText
             {
              before(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementTextParserRuleCall_2_0_1()); 
-            pushFollow(FOLLOW_ruleText_in_rule__CodeRef__ElementAssignment_212611);
+            pushFollow(FOLLOW_ruleText_in_rule__CodeRef__ElementAssignment_213557);
             ruleText();
             _fsp--;
 
@@ -16719,25 +17875,25 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__CodeRef__ElementAssignment_2
 
 
-    // $ANTLR start rule__Link__LinkAssignment_2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6258:1: rule__Link__LinkAssignment_2 : ( ruleText ) ;
-    public final void rule__Link__LinkAssignment_2() throws RecognitionException {
+    // $ANTLR start rule__Link__UrlAssignment_2
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6740:1: rule__Link__UrlAssignment_2 : ( ruleText ) ;
+    public final void rule__Link__UrlAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6262:1: ( ( ruleText ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6263:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6744:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6745:1: ( ruleText )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6263:1: ( ruleText )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6264:1: ruleText
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6745:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6746:1: ruleText
             {
-             before(grammarAccess.getLinkAccess().getLinkTextParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleText_in_rule__Link__LinkAssignment_212646);
+             before(grammarAccess.getLinkAccess().getUrlTextParserRuleCall_2_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__Link__UrlAssignment_213592);
             ruleText();
             _fsp--;
 
-             after(grammarAccess.getLinkAccess().getLinkTextParserRuleCall_2_0()); 
+             after(grammarAccess.getLinkAccess().getUrlTextParserRuleCall_2_0()); 
 
             }
 
@@ -16756,28 +17912,28 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Link__LinkAssignment_2
+    // $ANTLR end rule__Link__UrlAssignment_2
 
 
-    // $ANTLR start rule__ImageRef__ImageAssignment_2
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6273:1: rule__ImageRef__ImageAssignment_2 : ( ruleText ) ;
-    public final void rule__ImageRef__ImageAssignment_2() throws RecognitionException {
+    // $ANTLR start rule__Link__TextAssignment_5
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6755:1: rule__Link__TextAssignment_5 : ( ruleText ) ;
+    public final void rule__Link__TextAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6277:1: ( ( ruleText ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6278:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6759:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6760:1: ( ruleText )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6278:1: ( ruleText )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6279:1: ruleText
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6760:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6761:1: ruleText
             {
-             before(grammarAccess.getImageRefAccess().getImageTextParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__ImageAssignment_212677);
+             before(grammarAccess.getLinkAccess().getTextTextParserRuleCall_5_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__Link__TextAssignment_513623);
             ruleText();
             _fsp--;
 
-             after(grammarAccess.getImageRefAccess().getImageTextParserRuleCall_2_0()); 
+             after(grammarAccess.getLinkAccess().getTextTextParserRuleCall_5_0()); 
 
             }
 
@@ -16796,24 +17952,221 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ImageRef__ImageAssignment_2
+    // $ANTLR end rule__Link__TextAssignment_5
+
+
+    // $ANTLR start rule__ImageRef__NameAssignment_1_1
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6770:1: rule__ImageRef__NameAssignment_1_1 : ( RULE_ID ) ;
+    public final void rule__ImageRef__NameAssignment_1_1() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6774:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6775:1: ( RULE_ID )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6775:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6776:1: RULE_ID
+            {
+             before(grammarAccess.getImageRefAccess().getNameIDTerminalRuleCall_1_1_0()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__ImageRef__NameAssignment_1_113654); 
+             after(grammarAccess.getImageRefAccess().getNameIDTerminalRuleCall_1_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__NameAssignment_1_1
+
+
+    // $ANTLR start rule__ImageRef__PathAssignment_3
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6785:1: rule__ImageRef__PathAssignment_3 : ( ruleText ) ;
+    public final void rule__ImageRef__PathAssignment_3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6789:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6790:1: ( ruleText )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6790:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6791:1: ruleText
+            {
+             before(grammarAccess.getImageRefAccess().getPathTextParserRuleCall_3_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__PathAssignment_313685);
+            ruleText();
+            _fsp--;
+
+             after(grammarAccess.getImageRefAccess().getPathTextParserRuleCall_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__PathAssignment_3
+
+
+    // $ANTLR start rule__ImageRef__ClazzAssignment_6
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6800:1: rule__ImageRef__ClazzAssignment_6 : ( ruleText ) ;
+    public final void rule__ImageRef__ClazzAssignment_6() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6804:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6805:1: ( ruleText )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6805:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6806:1: ruleText
+            {
+             before(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_6_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__ClazzAssignment_613716);
+            ruleText();
+            _fsp--;
+
+             after(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_6_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__ClazzAssignment_6
+
+
+    // $ANTLR start rule__ImageRef__StyleAssignment_9
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6815:1: rule__ImageRef__StyleAssignment_9 : ( ruleText ) ;
+    public final void rule__ImageRef__StyleAssignment_9() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6819:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6820:1: ( ruleText )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6820:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6821:1: ruleText
+            {
+             before(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__StyleAssignment_913747);
+            ruleText();
+            _fsp--;
+
+             after(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__StyleAssignment_9
+
+
+    // $ANTLR start rule__ImageRef__CaptionAssignment_12
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6830:1: rule__ImageRef__CaptionAssignment_12 : ( ruleText ) ;
+    public final void rule__ImageRef__CaptionAssignment_12() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6834:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6835:1: ( ruleText )
+            {
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6835:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6836:1: ruleText
+            {
+             before(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_12_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__CaptionAssignment_1213778);
+            ruleText();
+            _fsp--;
+
+             after(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_12_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImageRef__CaptionAssignment_12
 
 
     // $ANTLR start rule__CodeBlock__LanguageAssignment_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6288:1: rule__CodeBlock__LanguageAssignment_1_1 : ( RULE_ID ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6845:1: rule__CodeBlock__LanguageAssignment_1_1 : ( RULE_ID ) ;
     public final void rule__CodeBlock__LanguageAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6292:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6293:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6849:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6850:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6293:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6294:1: RULE_ID
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6850:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6851:1: RULE_ID
             {
              before(grammarAccess.getCodeBlockAccess().getLanguageIDTerminalRuleCall_1_1_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__CodeBlock__LanguageAssignment_1_112708); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__CodeBlock__LanguageAssignment_1_113809); 
              after(grammarAccess.getCodeBlockAccess().getLanguageIDTerminalRuleCall_1_1_0()); 
 
             }
@@ -16837,20 +18190,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__ContentsAssignment_5_0_0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6303:1: rule__CodeBlock__ContentsAssignment_5_0_0 : ( ruleCode ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6860:1: rule__CodeBlock__ContentsAssignment_5_0_0 : ( ruleCode ) ;
     public final void rule__CodeBlock__ContentsAssignment_5_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6307:1: ( ( ruleCode ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6308:1: ( ruleCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6864:1: ( ( ruleCode ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6865:1: ( ruleCode )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6308:1: ( ruleCode )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6309:1: ruleCode
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6865:1: ( ruleCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6866:1: ruleCode
             {
              before(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_5_0_0_0()); 
-            pushFollow(FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_012739);
+            pushFollow(FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_013840);
             ruleCode();
             _fsp--;
 
@@ -16877,20 +18230,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__ContentsAssignment_5_0_1_0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6318:1: rule__CodeBlock__ContentsAssignment_5_0_1_0 : ( ruleMarkupInCode ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6875:1: rule__CodeBlock__ContentsAssignment_5_0_1_0 : ( ruleMarkupInCode ) ;
     public final void rule__CodeBlock__ContentsAssignment_5_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6322:1: ( ( ruleMarkupInCode ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6323:1: ( ruleMarkupInCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6879:1: ( ( ruleMarkupInCode ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6880:1: ( ruleMarkupInCode )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6323:1: ( ruleMarkupInCode )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6324:1: ruleMarkupInCode
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6880:1: ( ruleMarkupInCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6881:1: ruleMarkupInCode
             {
              before(grammarAccess.getCodeBlockAccess().getContentsMarkupInCodeParserRuleCall_5_0_1_0_0()); 
-            pushFollow(FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_012770);
+            pushFollow(FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_013871);
             ruleMarkupInCode();
             _fsp--;
 
@@ -16917,20 +18270,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__ContentsAssignment_5_0_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6333:1: rule__CodeBlock__ContentsAssignment_5_0_1_1 : ( ruleCode ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6890:1: rule__CodeBlock__ContentsAssignment_5_0_1_1 : ( ruleCode ) ;
     public final void rule__CodeBlock__ContentsAssignment_5_0_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6337:1: ( ( ruleCode ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6338:1: ( ruleCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6894:1: ( ( ruleCode ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6895:1: ( ruleCode )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6338:1: ( ruleCode )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6339:1: ruleCode
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6895:1: ( ruleCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6896:1: ruleCode
             {
              before(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_5_0_1_1_0()); 
-            pushFollow(FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_112801);
+            pushFollow(FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_113902);
             ruleCode();
             _fsp--;
 
@@ -16957,20 +18310,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__ContentsAssignment_5_1_0
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6348:1: rule__CodeBlock__ContentsAssignment_5_1_0 : ( ruleMarkupInCode ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6905:1: rule__CodeBlock__ContentsAssignment_5_1_0 : ( ruleMarkupInCode ) ;
     public final void rule__CodeBlock__ContentsAssignment_5_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6352:1: ( ( ruleMarkupInCode ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6353:1: ( ruleMarkupInCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6909:1: ( ( ruleMarkupInCode ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6910:1: ( ruleMarkupInCode )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6353:1: ( ruleMarkupInCode )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6354:1: ruleMarkupInCode
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6910:1: ( ruleMarkupInCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6911:1: ruleMarkupInCode
             {
              before(grammarAccess.getCodeBlockAccess().getContentsMarkupInCodeParserRuleCall_5_1_0_0()); 
-            pushFollow(FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_1_012832);
+            pushFollow(FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_1_013933);
             ruleMarkupInCode();
             _fsp--;
 
@@ -16997,20 +18350,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__CodeBlock__ContentsAssignment_5_1_1
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6363:1: rule__CodeBlock__ContentsAssignment_5_1_1 : ( ruleCode ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6920:1: rule__CodeBlock__ContentsAssignment_5_1_1 : ( ruleCode ) ;
     public final void rule__CodeBlock__ContentsAssignment_5_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6367:1: ( ( ruleCode ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6368:1: ( ruleCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6924:1: ( ( ruleCode ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6925:1: ( ruleCode )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6368:1: ( ruleCode )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6369:1: ruleCode
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6925:1: ( ruleCode )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6926:1: ruleCode
             {
              before(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_5_1_1_0()); 
-            pushFollow(FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_1_112863);
+            pushFollow(FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_1_113964);
             ruleCode();
             _fsp--;
 
@@ -17037,20 +18390,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__TextPart__TextAssignment
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6378:1: rule__TextPart__TextAssignment : ( ruleText ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6935:1: rule__TextPart__TextAssignment : ( ruleText ) ;
     public final void rule__TextPart__TextAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6382:1: ( ( ruleText ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6383:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6939:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6940:1: ( ruleText )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6383:1: ( ruleText )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6384:1: ruleText
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6940:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6941:1: ruleText
             {
              before(grammarAccess.getTextPartAccess().getTextTextParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleText_in_rule__TextPart__TextAssignment12894);
+            pushFollow(FOLLOW_ruleText_in_rule__TextPart__TextAssignment13995);
             ruleText();
             _fsp--;
 
@@ -17077,20 +18430,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Code__ContentsAssignment
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6393:1: rule__Code__ContentsAssignment : ( ruleCodeText ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6950:1: rule__Code__ContentsAssignment : ( ruleCodeText ) ;
     public final void rule__Code__ContentsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6397:1: ( ( ruleCodeText ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6398:1: ( ruleCodeText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6954:1: ( ( ruleCodeText ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6955:1: ( ruleCodeText )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6398:1: ( ruleCodeText )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6399:1: ruleCodeText
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6955:1: ( ruleCodeText )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:6956:1: ruleCodeText
             {
              before(grammarAccess.getCodeAccess().getContentsCodeTextParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleCodeText_in_rule__Code__ContentsAssignment12925);
+            pushFollow(FOLLOW_ruleCodeText_in_rule__Code__ContentsAssignment14026);
             ruleCodeText();
             _fsp--;
 
@@ -17116,20 +18469,20 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Code__ContentsAssignment
 
 
-    protected DFA55 dfa55 = new DFA55(this);
-    static final String DFA55_eotS =
+    protected DFA56 dfa56 = new DFA56(this);
+    static final String DFA56_eotS =
         "\11\uffff";
-    static final String DFA55_eofS =
+    static final String DFA56_eofS =
         "\4\uffff\3\2\1\uffff\1\2";
-    static final String DFA55_minS =
+    static final String DFA56_minS =
         "\1\5\1\4\1\uffff\4\4\1\uffff\1\4";
-    static final String DFA55_maxS =
+    static final String DFA56_maxS =
         "\1\15\1\25\1\uffff\1\25\3\34\1\uffff\1\34";
-    static final String DFA55_acceptS =
+    static final String DFA56_acceptS =
         "\2\uffff\1\2\4\uffff\1\1\1\uffff";
-    static final String DFA55_specialS =
+    static final String DFA56_specialS =
         "\11\uffff}>";
-    static final String[] DFA55_transitionS = {
+    static final String[] DFA56_transitionS = {
             "\1\2\1\uffff\1\2\5\uffff\1\1",
             "\1\3\3\2\1\uffff\3\2\7\uffff\3\2",
             "",
@@ -17141,37 +18494,37 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
             "\1\2\1\10\1\2\1\6\1\uffff\4\2\1\7\12\2\1\uffff\4\2"
     };
 
-    static final short[] DFA55_eot = DFA.unpackEncodedString(DFA55_eotS);
-    static final short[] DFA55_eof = DFA.unpackEncodedString(DFA55_eofS);
-    static final char[] DFA55_min = DFA.unpackEncodedStringToUnsignedChars(DFA55_minS);
-    static final char[] DFA55_max = DFA.unpackEncodedStringToUnsignedChars(DFA55_maxS);
-    static final short[] DFA55_accept = DFA.unpackEncodedString(DFA55_acceptS);
-    static final short[] DFA55_special = DFA.unpackEncodedString(DFA55_specialS);
-    static final short[][] DFA55_transition;
+    static final short[] DFA56_eot = DFA.unpackEncodedString(DFA56_eotS);
+    static final short[] DFA56_eof = DFA.unpackEncodedString(DFA56_eofS);
+    static final char[] DFA56_min = DFA.unpackEncodedStringToUnsignedChars(DFA56_minS);
+    static final char[] DFA56_max = DFA.unpackEncodedStringToUnsignedChars(DFA56_maxS);
+    static final short[] DFA56_accept = DFA.unpackEncodedString(DFA56_acceptS);
+    static final short[] DFA56_special = DFA.unpackEncodedString(DFA56_specialS);
+    static final short[][] DFA56_transition;
 
     static {
-        int numStates = DFA55_transitionS.length;
-        DFA55_transition = new short[numStates][];
+        int numStates = DFA56_transitionS.length;
+        DFA56_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA55_transition[i] = DFA.unpackEncodedString(DFA55_transitionS[i]);
+            DFA56_transition[i] = DFA.unpackEncodedString(DFA56_transitionS[i]);
         }
     }
 
-    class DFA55 extends DFA {
+    class DFA56 extends DFA {
 
-        public DFA55(BaseRecognizer recognizer) {
+        public DFA56(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 55;
-            this.eot = DFA55_eot;
-            this.eof = DFA55_eof;
-            this.min = DFA55_min;
-            this.max = DFA55_max;
-            this.accept = DFA55_accept;
-            this.special = DFA55_special;
-            this.transition = DFA55_transition;
+            this.decisionNumber = 56;
+            this.eot = DFA56_eot;
+            this.eof = DFA56_eof;
+            this.min = DFA56_min;
+            this.max = DFA56_max;
+            this.accept = DFA56_accept;
+            this.special = DFA56_special;
+            this.transition = DFA56_transition;
         }
         public String getDescription() {
-            return "5258:1: ( rule__CodeBlock__Group_1__0 )?";
+            return "5740:1: ( rule__CodeBlock__Group_1__0 )?";
         }
     }
  
@@ -17630,108 +18983,157 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_13_in_rule__Link__Group__1__Impl10105 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Link__Group__2__Impl_in_rule__Link__Group__210136 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_rule__Link__Group__3_in_rule__Link__Group__210139 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Link__LinkAssignment_2_in_rule__Link__Group__2__Impl10166 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Link__Group__3__Impl_in_rule__Link__Group__310196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__Link__Group__3__Impl10224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__Group__0__Impl_in_rule__ImageRef__Group__010263 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_rule__ImageRef__Group__1_in_rule__ImageRef__Group__010266 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__ImageRef__Group__0__Impl10294 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__Group__1__Impl_in_rule__ImageRef__Group__110325 = new BitSet(new long[]{0x0000000000000E70L});
-    public static final BitSet FOLLOW_rule__ImageRef__Group__2_in_rule__ImageRef__Group__110328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__ImageRef__Group__1__Impl10356 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__Group__2__Impl_in_rule__ImageRef__Group__210387 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rule__ImageRef__Group__3_in_rule__ImageRef__Group__210390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__ImageAssignment_2_in_rule__ImageRef__Group__2__Impl10417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__Group__3__Impl_in_rule__ImageRef__Group__310447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__ImageRef__Group__3__Impl10475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__0__Impl_in_rule__CodeBlock__Group__010514 = new BitSet(new long[]{0x00000000000020A0L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__1_in_rule__CodeBlock__Group__010517 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__CodeBlock__Group__0__Impl10545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__1__Impl_in_rule__CodeBlock__Group__110576 = new BitSet(new long[]{0x00000000000020A0L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__2_in_rule__CodeBlock__Group__110579 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__0_in_rule__CodeBlock__Group__1__Impl10606 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__2__Impl_in_rule__CodeBlock__Group__210637 = new BitSet(new long[]{0x0000000000002080L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__3_in_rule__CodeBlock__Group__210640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_WS_in_rule__CodeBlock__Group__2__Impl10668 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__3__Impl_in_rule__CodeBlock__Group__310699 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__4_in_rule__CodeBlock__Group__310702 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_rule__CodeBlock__Group__3__Impl10730 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__4__Impl_in_rule__CodeBlock__Group__410761 = new BitSet(new long[]{0x0000000000380EF0L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__5_in_rule__CodeBlock__Group__410764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__CodeBlock__Group__4__Impl10792 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__5__Impl_in_rule__CodeBlock__Group__510823 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__6_in_rule__CodeBlock__Group__510826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Alternatives_5_in_rule__CodeBlock__Group__5__Impl10853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group__6__Impl_in_rule__CodeBlock__Group__610883 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__CodeBlock__Group__6__Impl10911 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__0__Impl_in_rule__CodeBlock__Group_1__010956 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__1_in_rule__CodeBlock__Group_1__010959 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__CodeBlock__Group_1__0__Impl10987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__1__Impl_in_rule__CodeBlock__Group_1__111018 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__2_in_rule__CodeBlock__Group_1__111021 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__LanguageAssignment_1_1_in_rule__CodeBlock__Group_1__1__Impl11048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__2__Impl_in_rule__CodeBlock__Group_1__211078 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__CodeBlock__Group_1__2__Impl11106 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0__0__Impl_in_rule__CodeBlock__Group_5_0__011143 = new BitSet(new long[]{0x0000000000380002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0__1_in_rule__CodeBlock__Group_5_0__011146 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_0_in_rule__CodeBlock__Group_5_0__0__Impl11173 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0__1__Impl_in_rule__CodeBlock__Group_5_0__111203 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__0_in_rule__CodeBlock__Group_5_0__1__Impl11230 = new BitSet(new long[]{0x0000000000380002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__0__Impl_in_rule__CodeBlock__Group_5_0_1__011265 = new BitSet(new long[]{0x0000000000000EF2L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__1_in_rule__CodeBlock__Group_5_0_1__011268 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_0_in_rule__CodeBlock__Group_5_0_1__0__Impl11295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__1__Impl_in_rule__CodeBlock__Group_5_0_1__111325 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_1_in_rule__CodeBlock__Group_5_0_1__1__Impl11352 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_1__0__Impl_in_rule__CodeBlock__Group_5_1__011387 = new BitSet(new long[]{0x0000000000000EF2L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_1__1_in_rule__CodeBlock__Group_5_1__011390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_0_in_rule__CodeBlock__Group_5_1__0__Impl11417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_1__1__Impl_in_rule__CodeBlock__Group_5_1__111447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_1_in_rule__CodeBlock__Group_5_1__1__Impl11474 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleChapter_in_rule__Document__ChaptersAssignment_1_0_111514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection_in_rule__Document__SectionsAssignment_1_1_111545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSubSection_in_rule__Document__SubsectionsAssignment_1_2_111576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Chapter__NameAssignment_1_111607 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Chapter__TitleAssignment_311638 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Chapter__ContentsAssignment_6_111669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection_in_rule__Chapter__ContentsAssignment_7_111700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Section__NameAssignment_1_111731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section__TitleAssignment_311762 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section__ContentsAssignment_6_111793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSubSection_in_rule__Section__ContentsAssignment_7_111824 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__SubSection__NameAssignment_1_111855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__SubSection__TitleAssignment_311886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__SubSection__ContentsAssignment_6_111917 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection3_in_rule__SubSection__ContentsAssignment_7_111948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Section3__NameAssignment_1_111979 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section3__TitleAssignment_312010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section3__ContentsAssignment_6_112041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection4_in_rule__Section3__ContentsAssignment_7_112072 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Section4__NameAssignment_1_112103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section4__TitleAssignment_312134 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section4__ContentsAssignment_6_112165 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_012196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_0_1_012227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_1_112258 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_1_012289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_1_112320 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Emphasize__ContentsAssignment_1_112351 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Anchor__NameAssignment_212382 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Ref__RefAssignment_212417 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Ref__ContentsAssignment_412452 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleItem_in_rule__OrderedList__ItemsAssignment_412483 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleItem_in_rule__UnorderedList__ItemsAssignment_412514 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_312545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_4_112576 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_rule__CodeRef__ElementAssignment_212611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_rule__Link__LinkAssignment_212646 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__ImageAssignment_212677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__CodeBlock__LanguageAssignment_1_112708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_012739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_012770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_112801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_1_012832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_1_112863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_rule__TextPart__TextAssignment12894 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodeText_in_rule__Code__ContentsAssignment12925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Link__UrlAssignment_2_in_rule__Link__Group__2__Impl10166 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Link__Group__3__Impl_in_rule__Link__Group__310196 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__Link__Group__4_in_rule__Link__Group__310199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__Link__Group__3__Impl10227 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Link__Group__4__Impl_in_rule__Link__Group__410258 = new BitSet(new long[]{0x0000000000000E70L});
+    public static final BitSet FOLLOW_rule__Link__Group__5_in_rule__Link__Group__410261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__Link__Group__4__Impl10289 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Link__Group__5__Impl_in_rule__Link__Group__510320 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__Link__Group__6_in_rule__Link__Group__510323 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Link__TextAssignment_5_in_rule__Link__Group__5__Impl10350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Link__Group__6__Impl_in_rule__Link__Group__610380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__Link__Group__6__Impl10408 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__0__Impl_in_rule__ImageRef__Group__010453 = new BitSet(new long[]{0x0000000000002800L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__1_in_rule__ImageRef__Group__010456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__ImageRef__Group__0__Impl10484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__1__Impl_in_rule__ImageRef__Group__110515 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__2_in_rule__ImageRef__Group__110518 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group_1__0_in_rule__ImageRef__Group__1__Impl10545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__2__Impl_in_rule__ImageRef__Group__210576 = new BitSet(new long[]{0x0000000000000E70L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__3_in_rule__ImageRef__Group__210579 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ImageRef__Group__2__Impl10607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__3__Impl_in_rule__ImageRef__Group__310638 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__4_in_rule__ImageRef__Group__310641 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__PathAssignment_3_in_rule__ImageRef__Group__3__Impl10668 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__4__Impl_in_rule__ImageRef__Group__410698 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__5_in_rule__ImageRef__Group__410701 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__ImageRef__Group__4__Impl10729 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__5__Impl_in_rule__ImageRef__Group__510760 = new BitSet(new long[]{0x0000000000000E70L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__6_in_rule__ImageRef__Group__510763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ImageRef__Group__5__Impl10791 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__6__Impl_in_rule__ImageRef__Group__610822 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__7_in_rule__ImageRef__Group__610825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__ClazzAssignment_6_in_rule__ImageRef__Group__6__Impl10852 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__7__Impl_in_rule__ImageRef__Group__710882 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__8_in_rule__ImageRef__Group__710885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__ImageRef__Group__7__Impl10913 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__8__Impl_in_rule__ImageRef__Group__810944 = new BitSet(new long[]{0x0000000000000E70L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__9_in_rule__ImageRef__Group__810947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ImageRef__Group__8__Impl10975 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__9__Impl_in_rule__ImageRef__Group__911006 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__10_in_rule__ImageRef__Group__911009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__StyleAssignment_9_in_rule__ImageRef__Group__9__Impl11036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__10__Impl_in_rule__ImageRef__Group__1011066 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__11_in_rule__ImageRef__Group__1011069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__ImageRef__Group__10__Impl11097 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__11__Impl_in_rule__ImageRef__Group__1111128 = new BitSet(new long[]{0x0000000000000E70L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__12_in_rule__ImageRef__Group__1111131 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__ImageRef__Group__11__Impl11159 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__12__Impl_in_rule__ImageRef__Group__1211190 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__13_in_rule__ImageRef__Group__1211193 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__CaptionAssignment_12_in_rule__ImageRef__Group__12__Impl11220 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group__13__Impl_in_rule__ImageRef__Group__1311250 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__ImageRef__Group__13__Impl11278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group_1__0__Impl_in_rule__ImageRef__Group_1__011337 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group_1__1_in_rule__ImageRef__Group_1__011340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_rule__ImageRef__Group_1__0__Impl11368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__Group_1__1__Impl_in_rule__ImageRef__Group_1__111399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__NameAssignment_1_1_in_rule__ImageRef__Group_1__1__Impl11426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__0__Impl_in_rule__CodeBlock__Group__011460 = new BitSet(new long[]{0x00000000000020A0L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__1_in_rule__CodeBlock__Group__011463 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__CodeBlock__Group__0__Impl11491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__1__Impl_in_rule__CodeBlock__Group__111522 = new BitSet(new long[]{0x00000000000020A0L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__2_in_rule__CodeBlock__Group__111525 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__0_in_rule__CodeBlock__Group__1__Impl11552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__2__Impl_in_rule__CodeBlock__Group__211583 = new BitSet(new long[]{0x0000000000002080L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__3_in_rule__CodeBlock__Group__211586 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_WS_in_rule__CodeBlock__Group__2__Impl11614 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__3__Impl_in_rule__CodeBlock__Group__311645 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__4_in_rule__CodeBlock__Group__311648 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_rule__CodeBlock__Group__3__Impl11676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__4__Impl_in_rule__CodeBlock__Group__411707 = new BitSet(new long[]{0x0000000000380EF0L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__5_in_rule__CodeBlock__Group__411710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__CodeBlock__Group__4__Impl11738 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__5__Impl_in_rule__CodeBlock__Group__511769 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__6_in_rule__CodeBlock__Group__511772 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Alternatives_5_in_rule__CodeBlock__Group__5__Impl11799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group__6__Impl_in_rule__CodeBlock__Group__611829 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__CodeBlock__Group__6__Impl11857 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__0__Impl_in_rule__CodeBlock__Group_1__011902 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__1_in_rule__CodeBlock__Group_1__011905 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__CodeBlock__Group_1__0__Impl11933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__1__Impl_in_rule__CodeBlock__Group_1__111964 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__2_in_rule__CodeBlock__Group_1__111967 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__LanguageAssignment_1_1_in_rule__CodeBlock__Group_1__1__Impl11994 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_1__2__Impl_in_rule__CodeBlock__Group_1__212024 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_rule__CodeBlock__Group_1__2__Impl12052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0__0__Impl_in_rule__CodeBlock__Group_5_0__012089 = new BitSet(new long[]{0x0000000000380002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0__1_in_rule__CodeBlock__Group_5_0__012092 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_0_in_rule__CodeBlock__Group_5_0__0__Impl12119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0__1__Impl_in_rule__CodeBlock__Group_5_0__112149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__0_in_rule__CodeBlock__Group_5_0__1__Impl12176 = new BitSet(new long[]{0x0000000000380002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__0__Impl_in_rule__CodeBlock__Group_5_0_1__012211 = new BitSet(new long[]{0x0000000000000EF2L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__1_in_rule__CodeBlock__Group_5_0_1__012214 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_0_in_rule__CodeBlock__Group_5_0_1__0__Impl12241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_0_1__1__Impl_in_rule__CodeBlock__Group_5_0_1__112271 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_0_1_1_in_rule__CodeBlock__Group_5_0_1__1__Impl12298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_1__0__Impl_in_rule__CodeBlock__Group_5_1__012333 = new BitSet(new long[]{0x0000000000000EF2L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_1__1_in_rule__CodeBlock__Group_5_1__012336 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_0_in_rule__CodeBlock__Group_5_1__0__Impl12363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__Group_5_1__1__Impl_in_rule__CodeBlock__Group_5_1__112393 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__CodeBlock__ContentsAssignment_5_1_1_in_rule__CodeBlock__Group_5_1__1__Impl12420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleChapter_in_rule__Document__ChaptersAssignment_1_0_112460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSection_in_rule__Document__SectionsAssignment_1_1_112491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSubSection_in_rule__Document__SubsectionsAssignment_1_2_112522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Chapter__NameAssignment_1_112553 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Chapter__TitleAssignment_312584 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Chapter__ContentsAssignment_6_112615 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSection_in_rule__Chapter__ContentsAssignment_7_112646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Section__NameAssignment_1_112677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section__TitleAssignment_312708 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section__ContentsAssignment_6_112739 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSubSection_in_rule__Section__ContentsAssignment_7_112770 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__SubSection__NameAssignment_1_112801 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__SubSection__TitleAssignment_312832 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__SubSection__ContentsAssignment_6_112863 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSection3_in_rule__SubSection__ContentsAssignment_7_112894 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Section3__NameAssignment_1_112925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section3__TitleAssignment_312956 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section3__ContentsAssignment_6_112987 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSection4_in_rule__Section3__ContentsAssignment_7_113018 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Section4__NameAssignment_1_113049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section4__TitleAssignment_313080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Section4__ContentsAssignment_6_113111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_013142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_0_1_013173 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_0_1_113204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMarkUp_in_rule__TextOrMarkup__ContentsAssignment_1_013235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextPart_in_rule__TextOrMarkup__ContentsAssignment_1_113266 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Emphasize__ContentsAssignment_1_113297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Anchor__NameAssignment_213328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__Ref__RefAssignment_213363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Ref__ContentsAssignment_413398 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleItem_in_rule__OrderedList__ItemsAssignment_413429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleItem_in_rule__UnorderedList__ItemsAssignment_413460 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_313491 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_rule__Item__ContentsAssignment_4_113522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__CodeRef__ElementAssignment_213557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__Link__UrlAssignment_213592 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__Link__TextAssignment_513623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__ImageRef__NameAssignment_1_113654 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__PathAssignment_313685 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__ClazzAssignment_613716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__StyleAssignment_913747 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__CaptionAssignment_1213778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__CodeBlock__LanguageAssignment_1_113809 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_013840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_013871 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_0_1_113902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_5_1_013933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_5_1_113964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__TextPart__TextAssignment13995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodeText_in_rule__Code__ContentsAssignment14026 = new BitSet(new long[]{0x0000000000000002L});
 
 }

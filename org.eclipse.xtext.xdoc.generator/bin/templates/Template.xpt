@@ -1,4 +1,4 @@
-«IMPORT xDoc»
+«IMPORT org::eclipse::xtext::xdoc::xDoc»
 «IMPORT ecore»
 
 «EXTENSION templates::Extensions»
@@ -116,6 +116,10 @@
 \begin{lstlisting}[language=«language»]
 «EXPAND GEN_CODE FOREACH contents»
 \end{lstlsting}
+«ENDDEFINE»
+
+«DEFINE GEN_TEXT FOR CodeRef»
+\lstinline{
 «ENDDEFINE»
 
 «DEFINE GEN_CODE FOR EObject»

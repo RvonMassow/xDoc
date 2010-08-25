@@ -35,8 +35,8 @@ public class XDocStandaloneSetupGenerated implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/xtext/xdoc/XDoc")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/xtext/xdoc/XDoc", org.eclipse.xtext.xdoc.xDoc.XDocPackage.eINSTANCE);
+	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/xtext/xdoc/Xdoc")) {
+		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/xtext/xdoc/Xdoc", org.eclipse.xtext.xdoc.xdoc.XdocPackage.eINSTANCE);
 	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);

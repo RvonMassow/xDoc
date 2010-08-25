@@ -1,5 +1,4 @@
-«IMPORT xDoc»
-«IMPORT ecore»
+«IMPORT org::eclipse::xtext::xdoc::xdoc»
 
 «EXTENSION templates::Extensions»
 
@@ -62,10 +61,10 @@
 «ENDFOREACH»
 «ENDDEFINE»
 
-«DEFINE CONTENT FOR EObject»
+«DEFINE CONTENT FOR Object»
 «ENDDEFINE»
 
-«DEFINE GEN_TEXT FOR EObject»
+«DEFINE GEN_TEXT FOR Object»
 «ENDDEFINE»
 
 «DEFINE GEN_TEXT FOR TextPart»
@@ -118,7 +117,11 @@
 \end{lstlsting}
 «ENDDEFINE»
 
-«DEFINE GEN_CODE FOR EObject»
+«DEFINE GEN_TEXT FOR CodeRef»
+\lstinline{
+«ENDDEFINE»
+
+«DEFINE GEN_CODE FOR Object»
 «ENDDEFINE»
 
 «DEFINE GEN_CODE FOR Code»

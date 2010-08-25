@@ -1668,9 +1668,9 @@ ruleLink returns [EObject current=null]
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getLinkAccess().getLinkTextParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getLinkAccess().getUrlTextParserRuleCall_2_0(), currentNode); 
 	    }
-		lv_link_2_0=ruleText		{
+		lv_url_2_0=ruleText		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getLinkRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -1678,8 +1678,8 @@ ruleLink returns [EObject current=null]
 	        try {
 	       		set(
 	       			$current, 
-	       			"link",
-	        		lv_link_2_0, 
+	       			"url",
+	        		lv_url_2_0, 
 	        		"Text", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -1692,6 +1692,38 @@ ruleLink returns [EObject current=null]
 )	']' 
     {
         createLeafNode(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_3(), null); 
+    }
+	'[' 
+    {
+        createLeafNode(grammarAccess.getLinkAccess().getLeftSquareBracketKeyword_4(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getLinkAccess().getTextTextParserRuleCall_5_0(), currentNode); 
+	    }
+		lv_text_5_0=ruleText		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getLinkRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"text",
+	        		lv_text_5_0, 
+	        		"Text", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)	']' 
+    {
+        createLeafNode(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_6(), null); 
     }
 )
 ;
@@ -1720,16 +1752,44 @@ ruleImageRef returns [EObject current=null]
     {
         createLeafNode(grammarAccess.getImageRefAccess().getImgKeyword_0(), null); 
     }
-	'[' 
+(	':' 
     {
-        createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_1(), null); 
+        createLeafNode(grammarAccess.getImageRefAccess().getColonKeyword_1_0(), null); 
+    }
+(
+(
+		lv_name_2_0=RULE_ID
+		{
+			createLeafNode(grammarAccess.getImageRefAccess().getNameIDTerminalRuleCall_1_1_0(), "name"); 
+		}
+		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"name",
+	        		lv_name_2_0, 
+	        		"ID", 
+	        		lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+
+)
+))?	'[' 
+    {
+        createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_2(), null); 
     }
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getImageTextParserRuleCall_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getPathTextParserRuleCall_3_0(), currentNode); 
 	    }
-		lv_image_2_0=ruleText		{
+		lv_path_4_0=ruleText		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -1737,8 +1797,8 @@ ruleImageRef returns [EObject current=null]
 	        try {
 	       		set(
 	       			$current, 
-	       			"image",
-	        		lv_image_2_0, 
+	       			"path",
+	        		lv_path_4_0, 
 	        		"Text", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -1750,7 +1810,103 @@ ruleImageRef returns [EObject current=null]
 )
 )	']' 
     {
-        createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_3(), null); 
+        createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_4(), null); 
+    }
+	'[' 
+    {
+        createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_5(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_6_0(), currentNode); 
+	    }
+		lv_clazz_7_0=ruleText		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"clazz",
+	        		lv_clazz_7_0, 
+	        		"Text", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)	']' 
+    {
+        createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_7(), null); 
+    }
+	'[' 
+    {
+        createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_8(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0(), currentNode); 
+	    }
+		lv_style_10_0=ruleText		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"style",
+	        		lv_style_10_0, 
+	        		"Text", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)	']' 
+    {
+        createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_10(), null); 
+    }
+	'[' 
+    {
+        createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_11(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_12_0(), currentNode); 
+	    }
+		lv_caption_13_0=ruleText		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"caption",
+	        		lv_caption_13_0, 
+	        		"Text", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+)	']' 
+    {
+        createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_13(), null); 
     }
 )
 ;

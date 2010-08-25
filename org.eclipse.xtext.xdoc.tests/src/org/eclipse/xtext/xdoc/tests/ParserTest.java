@@ -104,7 +104,7 @@ public class ParserTest extends AbstractXtextTests {
 		Link link = (Link) ((TextOrMarkup) doc.getChapters().get(0)
 				.getContents().get(0)).getContents().get(0);
 		URL url;
-		url = new URL(link.getLink());
+		url = new URL(link.getUrl());
 		URLConnection c = url.openConnection();
 		assertNotNull(c);
 	}

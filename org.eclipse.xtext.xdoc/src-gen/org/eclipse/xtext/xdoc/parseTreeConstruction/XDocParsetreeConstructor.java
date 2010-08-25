@@ -4464,11 +4464,11 @@ protected class CodeRef_RightSquareBracketKeyword_3 extends KeywordToken  {
 /************ begin Rule Link ****************
  *
  * Link:
- * 	"\\link" "[" link=Text "]";
+ * 	"\\link" "[" url=Text "]" "[" text=Text "]";
  *
  **/
 
-// "\\link" "[" link=Text "]"
+// "\\link" "[" url=Text "]" "[" text=Text "]"
 protected class Link_Group extends GroupToken {
 	
 	public Link_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4483,7 +4483,7 @@ protected class Link_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Link_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Link_RightSquareBracketKeyword_6(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -4540,16 +4540,16 @@ protected class Link_LeftSquareBracketKeyword_1 extends KeywordToken  {
 
 }
 
-// link=Text
-protected class Link_LinkAssignment_2 extends AssignmentToken  {
+// url=Text
+protected class Link_UrlAssignment_2 extends AssignmentToken  {
 	
-	public Link_LinkAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Link_UrlAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getLinkAccess().getLinkAssignment_2();
+		return grammarAccess.getLinkAccess().getUrlAssignment_2();
 	}
 
     @Override
@@ -4562,11 +4562,11 @@ protected class Link_LinkAssignment_2 extends AssignmentToken  {
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("link",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("link");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLinkAccess().getLinkTextParserRuleCall_2_0(), value, null)) {
+		if((value = eObjectConsumer.getConsumable("url",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("url");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLinkAccess().getUrlTextParserRuleCall_2_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getLinkAccess().getLinkTextParserRuleCall_2_0();
+			element = grammarAccess.getLinkAccess().getUrlTextParserRuleCall_2_0();
 			return obj;
 		}
 		return null;
@@ -4589,7 +4589,85 @@ protected class Link_RightSquareBracketKeyword_3 extends KeywordToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Link_LinkAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Link_UrlAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "["
+protected class Link_LeftSquareBracketKeyword_4 extends KeywordToken  {
+	
+	public Link_LeftSquareBracketKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getLinkAccess().getLeftSquareBracketKeyword_4();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Link_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// text=Text
+protected class Link_TextAssignment_5 extends AssignmentToken  {
+	
+	public Link_TextAssignment_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getLinkAccess().getTextAssignment_5();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Link_LeftSquareBracketKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("text",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("text");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLinkAccess().getTextTextParserRuleCall_5_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getLinkAccess().getTextTextParserRuleCall_5_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// "]"
+protected class Link_RightSquareBracketKeyword_6 extends KeywordToken  {
+	
+	public Link_RightSquareBracketKeyword_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getLinkAccess().getRightSquareBracketKeyword_6();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Link_TextAssignment_5(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -4603,11 +4681,13 @@ protected class Link_RightSquareBracketKeyword_3 extends KeywordToken  {
 /************ begin Rule ImageRef ****************
  *
  * ImageRef:
- * 	"\\img" "[" image=Text / *TODO make it a crossreference to images * / "]";
+ * 	"\\img" (":" name=ID)? "[" path=Text / *TODO make it a crossreference to images * / "]" "[" clazz=Text "]" "["
+ * 	style=Text "]" "[" caption=Text "]";
  *
  **/
 
-// "\\img" "[" image=Text / *TODO make it a crossreference to images * / "]"
+// "\\img" (":" name=ID)? "[" path=Text / *TODO make it a crossreference to images * / "]" "[" clazz=Text "]" "[" style=Text
+// "]" "[" caption=Text "]"
 protected class ImageRef_Group extends GroupToken {
 	
 	public ImageRef_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -4622,7 +4702,7 @@ protected class ImageRef_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ImageRef_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ImageRef_RightSquareBracketKeyword_13(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -4657,16 +4737,38 @@ protected class ImageRef_ImgKeyword_0 extends KeywordToken  {
 
 }
 
-// "["
-protected class ImageRef_LeftSquareBracketKeyword_1 extends KeywordToken  {
+// (":" name=ID)?
+protected class ImageRef_Group_1 extends GroupToken {
 	
-	public ImageRef_LeftSquareBracketKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ImageRef_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getGroup_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_NameAssignment_1_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ":"
+protected class ImageRef_ColonKeyword_1_0 extends KeywordToken  {
+	
+	public ImageRef_ColonKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_1();
+		return grammarAccess.getImageRefAccess().getColonKeyword_1_0();
 	}
 
     @Override
@@ -4679,33 +4781,91 @@ protected class ImageRef_LeftSquareBracketKeyword_1 extends KeywordToken  {
 
 }
 
-// image=Text
-protected class ImageRef_ImageAssignment_2 extends AssignmentToken  {
+// name=ID
+protected class ImageRef_NameAssignment_1_1 extends AssignmentToken  {
 	
-	public ImageRef_ImageAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ImageRef_NameAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getImageRefAccess().getImageAssignment_2();
+		return grammarAccess.getImageRefAccess().getNameAssignment_1_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ImageRef_LeftSquareBracketKeyword_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ImageRef_ColonKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("image",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("image");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getImageRefAccess().getImageTextParserRuleCall_2_0(), value, null)) {
+		if((value = eObjectConsumer.getConsumable("name",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getImageRefAccess().getNameIDTerminalRuleCall_1_1_0(), value, null)) {
+			type = AssignmentType.TERMINAL_RULE_CALL;
+			element = grammarAccess.getImageRefAccess().getNameIDTerminalRuleCall_1_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+
+// "["
+protected class ImageRef_LeftSquareBracketKeyword_2 extends KeywordToken  {
+	
+	public ImageRef_LeftSquareBracketKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_Group_1(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new ImageRef_ImgKeyword_0(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// path=Text
+protected class ImageRef_PathAssignment_3 extends AssignmentToken  {
+	
+	public ImageRef_PathAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getPathAssignment_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_LeftSquareBracketKeyword_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("path",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("path");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getImageRefAccess().getPathTextParserRuleCall_3_0(), value, null)) {
 			type = AssignmentType.DATATYPE_RULE_CALL;
-			element = grammarAccess.getImageRefAccess().getImageTextParserRuleCall_2_0();
+			element = grammarAccess.getImageRefAccess().getPathTextParserRuleCall_3_0();
 			return obj;
 		}
 		return null;
@@ -4714,21 +4874,255 @@ protected class ImageRef_ImageAssignment_2 extends AssignmentToken  {
 }
 
 // / *TODO make it a crossreference to images * / "]"
-protected class ImageRef_RightSquareBracketKeyword_3 extends KeywordToken  {
+protected class ImageRef_RightSquareBracketKeyword_4 extends KeywordToken  {
 	
-	public ImageRef_RightSquareBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public ImageRef_RightSquareBracketKeyword_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_3();
+		return grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_4();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new ImageRef_ImageAssignment_2(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new ImageRef_PathAssignment_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "["
+protected class ImageRef_LeftSquareBracketKeyword_5 extends KeywordToken  {
+	
+	public ImageRef_LeftSquareBracketKeyword_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_5();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_RightSquareBracketKeyword_4(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// clazz=Text
+protected class ImageRef_ClazzAssignment_6 extends AssignmentToken  {
+	
+	public ImageRef_ClazzAssignment_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getClazzAssignment_6();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_LeftSquareBracketKeyword_5(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("clazz",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("clazz");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_6_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_6_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// "]"
+protected class ImageRef_RightSquareBracketKeyword_7 extends KeywordToken  {
+	
+	public ImageRef_RightSquareBracketKeyword_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_7();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_ClazzAssignment_6(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "["
+protected class ImageRef_LeftSquareBracketKeyword_8 extends KeywordToken  {
+	
+	public ImageRef_LeftSquareBracketKeyword_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_8();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_RightSquareBracketKeyword_7(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// style=Text
+protected class ImageRef_StyleAssignment_9 extends AssignmentToken  {
+	
+	public ImageRef_StyleAssignment_9(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getStyleAssignment_9();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_LeftSquareBracketKeyword_8(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("style",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("style");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// "]"
+protected class ImageRef_RightSquareBracketKeyword_10 extends KeywordToken  {
+	
+	public ImageRef_RightSquareBracketKeyword_10(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_10();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_StyleAssignment_9(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "["
+protected class ImageRef_LeftSquareBracketKeyword_11 extends KeywordToken  {
+	
+	public ImageRef_LeftSquareBracketKeyword_11(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_11();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_RightSquareBracketKeyword_10(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// caption=Text
+protected class ImageRef_CaptionAssignment_12 extends AssignmentToken  {
+	
+	public ImageRef_CaptionAssignment_12(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getCaptionAssignment_12();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_LeftSquareBracketKeyword_11(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("caption",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("caption");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_12_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_12_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// "]"
+protected class ImageRef_RightSquareBracketKeyword_13 extends KeywordToken  {
+	
+	public ImageRef_RightSquareBracketKeyword_13(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_13();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new ImageRef_CaptionAssignment_12(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}

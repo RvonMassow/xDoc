@@ -62,10 +62,15 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference XDoc.ecore#//CodeRef/element"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//Link">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//Link/link"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//Link/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//Link/text"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//ImageRef">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ImageRef/image"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ImageRef/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ImageRef/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ImageRef/clazz"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ImageRef/style"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ImageRef/caption"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//CodeBlock">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//CodeBlock/language"/>

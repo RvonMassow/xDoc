@@ -28,4 +28,7 @@ Export-Package: org.eclipse.xtext.xdoc,
  org.eclipse.xtext.xdoc.parseTreeConstruction,
  org.eclipse.xtext.xdoc.parser.antlr,
  org.eclipse.xtext.xdoc.parser.antlr.internal,
- org.eclipse.xtext.xdoc.validation
+ org.eclipse.xtext.xdoc.validation,
+ org.eclipse.xtext.xdoc.xdoc,
+ org.eclipse.xtext.xdoc.xdoc.impl,
+ org.eclipse.xtext.xdoc.xdoc.util

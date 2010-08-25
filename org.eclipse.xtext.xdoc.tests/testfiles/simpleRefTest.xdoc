@@ -1,5 +1,5 @@
 \chapter:refName[Dummy Title]
 
-This is \ref:refName
+This is \ref:refName[the Reference]
 
 

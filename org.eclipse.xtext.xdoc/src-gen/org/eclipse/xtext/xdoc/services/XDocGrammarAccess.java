@@ -955,15 +955,19 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLinkKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cLinkAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cLinkTextParserRuleCall_2_0 = (RuleCall)cLinkAssignment_2.eContents().get(0);
+		private final Assignment cUrlAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cUrlTextParserRuleCall_2_0 = (RuleCall)cUrlAssignment_2.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cTextAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cTextTextParserRuleCall_5_0 = (RuleCall)cTextAssignment_5.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Link:
-		//	"\\link" "[" link=Text "]";
+		//	"\\link" "[" url=Text "]" "[" text=Text "]";
 		public ParserRule getRule() { return rule; }
 
-		//"\\link" "[" link=Text "]"
+		//"\\link" "[" url=Text "]" "[" text=Text "]"
 		public Group getGroup() { return cGroup; }
 
 		//"\\link"
@@ -972,46 +976,124 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
 
-		//link=Text
-		public Assignment getLinkAssignment_2() { return cLinkAssignment_2; }
+		//url=Text
+		public Assignment getUrlAssignment_2() { return cUrlAssignment_2; }
 
 		//Text
-		public RuleCall getLinkTextParserRuleCall_2_0() { return cLinkTextParserRuleCall_2_0; }
+		public RuleCall getUrlTextParserRuleCall_2_0() { return cUrlTextParserRuleCall_2_0; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+
+		//text=Text
+		public Assignment getTextAssignment_5() { return cTextAssignment_5; }
+
+		//Text
+		public RuleCall getTextTextParserRuleCall_5_0() { return cTextTextParserRuleCall_5_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
 	}
 
 	public class ImageRefElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ImageRef");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cImgKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cImageAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cImageTextParserRuleCall_2_0 = (RuleCall)cImageAssignment_2.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cColonKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_1_0 = (RuleCall)cNameAssignment_1_1.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cPathAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cPathTextParserRuleCall_3_0 = (RuleCall)cPathAssignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cClazzAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cClazzTextParserRuleCall_6_0 = (RuleCall)cClazzAssignment_6.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cLeftSquareBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cStyleAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cStyleTextParserRuleCall_9_0 = (RuleCall)cStyleAssignment_9.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Keyword cLeftSquareBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Assignment cCaptionAssignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final RuleCall cCaptionTextParserRuleCall_12_0 = (RuleCall)cCaptionAssignment_12.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
 		
 		//ImageRef:
-		//	"\\img" "[" image=Text / *TODO make it a crossreference to images * / "]";
+		//	"\\img" (":" name=ID)? "[" path=Text / *TODO make it a crossreference to images * / "]" "[" clazz=Text "]" "["
+		//	style=Text "]" "[" caption=Text "]";
 		public ParserRule getRule() { return rule; }
 
-		//"\\img" "[" image=Text / *TODO make it a crossreference to images * / "]"
+		//"\\img" (":" name=ID)? "[" path=Text / *TODO make it a crossreference to images * / "]" "[" clazz=Text "]" "[" style=Text
+		//"]" "[" caption=Text "]"
 		public Group getGroup() { return cGroup; }
 
 		//"\\img"
 		public Keyword getImgKeyword_0() { return cImgKeyword_0; }
 
-		//"["
-		public Keyword getLeftSquareBracketKeyword_1() { return cLeftSquareBracketKeyword_1; }
+		//(":" name=ID)?
+		public Group getGroup_1() { return cGroup_1; }
 
-		//image=Text
-		public Assignment getImageAssignment_2() { return cImageAssignment_2; }
+		//":"
+		public Keyword getColonKeyword_1_0() { return cColonKeyword_1_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_1_1() { return cNameAssignment_1_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_1_0() { return cNameIDTerminalRuleCall_1_1_0; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
+
+		//path=Text
+		public Assignment getPathAssignment_3() { return cPathAssignment_3; }
 
 		//Text
-		public RuleCall getImageTextParserRuleCall_2_0() { return cImageTextParserRuleCall_2_0; }
+		public RuleCall getPathTextParserRuleCall_3_0() { return cPathTextParserRuleCall_3_0; }
 
 		/// *TODO make it a crossreference to images * / "]"
-		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
+
+		//clazz=Text
+		public Assignment getClazzAssignment_6() { return cClazzAssignment_6; }
+
+		//Text
+		public RuleCall getClazzTextParserRuleCall_6_0() { return cClazzTextParserRuleCall_6_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_7() { return cRightSquareBracketKeyword_7; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_8() { return cLeftSquareBracketKeyword_8; }
+
+		//style=Text
+		public Assignment getStyleAssignment_9() { return cStyleAssignment_9; }
+
+		//Text
+		public RuleCall getStyleTextParserRuleCall_9_0() { return cStyleTextParserRuleCall_9_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_10() { return cRightSquareBracketKeyword_10; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_11() { return cLeftSquareBracketKeyword_11; }
+
+		//caption=Text
+		public Assignment getCaptionAssignment_12() { return cCaptionAssignment_12; }
+
+		//Text
+		public RuleCall getCaptionTextParserRuleCall_12_0() { return cCaptionTextParserRuleCall_12_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_13() { return cRightSquareBracketKeyword_13; }
 	}
 
 	public class CodeBlockElements extends AbstractParserRuleElementFinder {
@@ -1468,7 +1550,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Link:
-	//	"\\link" "[" link=Text "]";
+	//	"\\link" "[" url=Text "]" "[" text=Text "]";
 	public LinkElements getLinkAccess() {
 		return (pLink != null) ? pLink : (pLink = new LinkElements());
 	}
@@ -1478,7 +1560,8 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImageRef:
-	//	"\\img" "[" image=Text / *TODO make it a crossreference to images * / "]";
+	//	"\\img" (":" name=ID)? "[" path=Text / *TODO make it a crossreference to images * / "]" "[" clazz=Text "]" "["
+	//	style=Text "]" "[" caption=Text "]";
 	public ImageRefElements getImageRefAccess() {
 		return (pImageRef != null) ? pImageRef : (pImageRef = new ImageRefElements());
 	}

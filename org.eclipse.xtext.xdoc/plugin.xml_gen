@@ -5,8 +5,8 @@
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
-       uri = "http://www.eclipse.org/xtext/xdoc/XDoc" 
-       class = "org.eclipse.xtext.xdoc.xDoc.XDocPackage"
+       uri = "http://www.eclipse.org/xtext/xdoc/Xdoc" 
+       class = "org.eclipse.xtext.xdoc.xdoc.XdocPackage"
        genModel = "org/eclipse/xtext/xdoc/XDoc.genmodel" /> 
 	
   </extension>
