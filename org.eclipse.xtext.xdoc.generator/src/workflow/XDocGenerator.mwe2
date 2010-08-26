@@ -30,4 +30,9 @@ Workflow {
 		}
 		fileEncoding = fileEncoding
 	}
+	
+	component = LatexRunner{
+		outputDir = targetDir
+		inputFile = "${targetDir}/out.tex"
+	}
 }

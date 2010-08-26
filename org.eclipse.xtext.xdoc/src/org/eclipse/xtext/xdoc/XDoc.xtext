@@ -82,8 +82,8 @@ UnorderedList:
 		items+=Item+
 	']';
 
-Item:
-	'\\item' WS* '[' contents+=TextOrMarkup (contents+=ParBreak contents+=TextOrMarkup)* ']' WS*;
+Item: 
+	'\\item' WS* '[' ((contents+=ParBreak)? contents+=TextOrMarkupLine)(contents+=TextOrMarkup)* ']' WS*;
 
 CodeRef:
 	'\\codeRef' '[' element=[types::JvmIdentifyableElement|Text] ']';

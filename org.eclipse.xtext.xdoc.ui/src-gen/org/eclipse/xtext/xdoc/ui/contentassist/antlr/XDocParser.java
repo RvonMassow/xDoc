@@ -89,7 +89,7 @@ public class XDocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOrderedListAccess().getGroup(), "rule__OrderedList__Group__0");
 					put(grammarAccess.getUnorderedListAccess().getGroup(), "rule__UnorderedList__Group__0");
 					put(grammarAccess.getItemAccess().getGroup(), "rule__Item__Group__0");
-					put(grammarAccess.getItemAccess().getGroup_4(), "rule__Item__Group_4__0");
+					put(grammarAccess.getItemAccess().getGroup_3(), "rule__Item__Group_3__0");
 					put(grammarAccess.getCodeRefAccess().getGroup(), "rule__CodeRef__Group__0");
 					put(grammarAccess.getLinkAccess().getGroup(), "rule__Link__Group__0");
 					put(grammarAccess.getImageRefAccess().getGroup(), "rule__ImageRef__Group__0");
@@ -156,9 +156,9 @@ public class XDocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getRefAccess().getContentsAssignment_4(), "rule__Ref__ContentsAssignment_4");
 					put(grammarAccess.getOrderedListAccess().getItemsAssignment_4(), "rule__OrderedList__ItemsAssignment_4");
 					put(grammarAccess.getUnorderedListAccess().getItemsAssignment_4(), "rule__UnorderedList__ItemsAssignment_4");
-					put(grammarAccess.getItemAccess().getContentsAssignment_3(), "rule__Item__ContentsAssignment_3");
-					put(grammarAccess.getItemAccess().getContentsAssignment_4_0(), "rule__Item__ContentsAssignment_4_0");
-					put(grammarAccess.getItemAccess().getContentsAssignment_4_1(), "rule__Item__ContentsAssignment_4_1");
+					put(grammarAccess.getItemAccess().getContentsAssignment_3_0(), "rule__Item__ContentsAssignment_3_0");
+					put(grammarAccess.getItemAccess().getContentsAssignment_3_1(), "rule__Item__ContentsAssignment_3_1");
+					put(grammarAccess.getItemAccess().getContentsAssignment_4(), "rule__Item__ContentsAssignment_4");
 					put(grammarAccess.getCodeRefAccess().getElementAssignment_2(), "rule__CodeRef__ElementAssignment_2");
 					put(grammarAccess.getLinkAccess().getUrlAssignment_2(), "rule__Link__UrlAssignment_2");
 					put(grammarAccess.getLinkAccess().getTextAssignment_5(), "rule__Link__TextAssignment_5");

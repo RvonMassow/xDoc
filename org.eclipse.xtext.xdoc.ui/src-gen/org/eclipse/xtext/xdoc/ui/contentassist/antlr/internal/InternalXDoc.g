@@ -5271,9 +5271,9 @@ rule__Item__Group__3__Impl
     }
 :
 (
-{ before(grammarAccess.getItemAccess().getContentsAssignment_3()); }
-(rule__Item__ContentsAssignment_3)
-{ after(grammarAccess.getItemAccess().getContentsAssignment_3()); }
+{ before(grammarAccess.getItemAccess().getGroup_3()); }
+(rule__Item__Group_3__0)
+{ after(grammarAccess.getItemAccess().getGroup_3()); }
 )
 
 ;
@@ -5300,9 +5300,9 @@ rule__Item__Group__4__Impl
     }
 :
 (
-{ before(grammarAccess.getItemAccess().getGroup_4()); }
-(rule__Item__Group_4__0)*
-{ after(grammarAccess.getItemAccess().getGroup_4()); }
+{ before(grammarAccess.getItemAccess().getContentsAssignment_4()); }
+(rule__Item__ContentsAssignment_4)*
+{ after(grammarAccess.getItemAccess().getContentsAssignment_4()); }
 )
 
 ;
@@ -5384,27 +5384,27 @@ finally {
 
 
 
-rule__Item__Group_4__0
+rule__Item__Group_3__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__Item__Group_4__0__Impl
-	rule__Item__Group_4__1
+	rule__Item__Group_3__0__Impl
+	rule__Item__Group_3__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Item__Group_4__0__Impl
+rule__Item__Group_3__0__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getItemAccess().getContentsAssignment_4_0()); }
-(rule__Item__ContentsAssignment_4_0)
-{ after(grammarAccess.getItemAccess().getContentsAssignment_4_0()); }
+{ before(grammarAccess.getItemAccess().getContentsAssignment_3_0()); }
+(rule__Item__ContentsAssignment_3_0)?
+{ after(grammarAccess.getItemAccess().getContentsAssignment_3_0()); }
 )
 
 ;
@@ -5413,26 +5413,26 @@ finally {
 }
 
 
-rule__Item__Group_4__1
+rule__Item__Group_3__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
-	rule__Item__Group_4__1__Impl
+	rule__Item__Group_3__1__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Item__Group_4__1__Impl
+rule__Item__Group_3__1__Impl
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getItemAccess().getContentsAssignment_4_1()); }
-(rule__Item__ContentsAssignment_4_1)
-{ after(grammarAccess.getItemAccess().getContentsAssignment_4_1()); }
+{ before(grammarAccess.getItemAccess().getContentsAssignment_3_1()); }
+(rule__Item__ContentsAssignment_3_1)
+{ after(grammarAccess.getItemAccess().getContentsAssignment_3_1()); }
 )
 
 ;
@@ -7675,14 +7675,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Item__ContentsAssignment_3
+rule__Item__ContentsAssignment_3_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_3_0()); }
-	ruleTextOrMarkup{ after(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_3_0()); }
+{ before(grammarAccess.getItemAccess().getContentsParBreakParserRuleCall_3_0_0()); }
+	ruleParBreak{ after(grammarAccess.getItemAccess().getContentsParBreakParserRuleCall_3_0_0()); }
 )
 
 ;
@@ -7690,14 +7690,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Item__ContentsAssignment_4_0
+rule__Item__ContentsAssignment_3_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getItemAccess().getContentsParBreakParserRuleCall_4_0_0()); }
-	ruleParBreak{ after(grammarAccess.getItemAccess().getContentsParBreakParserRuleCall_4_0_0()); }
+{ before(grammarAccess.getItemAccess().getContentsTextOrMarkupLineParserRuleCall_3_1_0()); }
+	ruleTextOrMarkupLine{ after(grammarAccess.getItemAccess().getContentsTextOrMarkupLineParserRuleCall_3_1_0()); }
 )
 
 ;
@@ -7705,14 +7705,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Item__ContentsAssignment_4_1
+rule__Item__ContentsAssignment_4
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_4_1_0()); }
-	ruleTextOrMarkup{ after(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_4_1_0()); }
+{ before(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_4_0()); }
+	ruleTextOrMarkup{ after(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_4_0()); }
 )
 
 ;

@@ -278,10 +278,12 @@ in detail in the following sections.
 As JDT is an Eclipse feature, this JDT-based container management is only available in the UI scenario. 
 It assumes so called \emph[IPackageFragmentRoots] as containers. An \emph[IPackageFragmentRoot] in JDT is the 
 root of a tree of Java model elements. It usually refers to 
-* a source folder of a Java project,
-* a referenced jar, 
-* a classpath entry of a referenced Java project, or
-* the exported packages of a required PDE plug-in.
+\ul[
+\item[a source folder of a Java project]
+\item[a referenced jar] 
+\item[a classpath entry of a referenced Java project, or]
+\item[the exported packages of a required PDE plug-in.]
+]
 
 So for an element to be referable, its resource must be on the classpath of the caller's Java project 
 and it must be exported (as described above). 
