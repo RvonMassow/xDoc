@@ -29,7 +29,7 @@ public interface Item extends EObject
 {
   /**
    * Returns the value of the '<em><b>Contents</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkup}.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contents</em>' containment reference list isn't clear,
@@ -41,6 +41,6 @@ public interface Item extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<TextOrMarkup> getContents();
+  EList<EObject> getContents();
 
 } // Item

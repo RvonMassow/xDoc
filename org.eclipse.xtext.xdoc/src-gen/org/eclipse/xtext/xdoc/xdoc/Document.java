@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getContents <em>Contents</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getChapters <em>Chapters</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getSections <em>Sections</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getSubsections <em>Subsections</em>}</li>
@@ -29,6 +30,22 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Document extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Contents</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.ParBreak}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Contents</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Contents</em>' containment reference list.
+   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getDocument_Contents()
+   * @model containment="true"
+   * @generated
+   */
+  EList<ParBreak> getContents();
+
   /**
    * Returns the value of the '<em><b>Chapters</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.Chapter}.

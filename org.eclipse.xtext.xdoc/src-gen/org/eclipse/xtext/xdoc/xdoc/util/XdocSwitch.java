@@ -156,6 +156,13 @@ public class XdocSwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case XdocPackage.TEXT_OR_MARKUP_LINE:
+      {
+        TextOrMarkupLine textOrMarkupLine = (TextOrMarkupLine)theEObject;
+        T result = caseTextOrMarkupLine(textOrMarkupLine);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case XdocPackage.MARK_UP:
       {
         MarkUp markUp = (MarkUp)theEObject;
@@ -243,6 +250,15 @@ public class XdocSwitch<T>
         CodeBlock codeBlock = (CodeBlock)theEObject;
         T result = caseCodeBlock(codeBlock);
         if (result == null) result = caseMarkUp(codeBlock);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case XdocPackage.PAR_BREAK:
+      {
+        ParBreak parBreak = (ParBreak)theEObject;
+        T result = caseParBreak(parBreak);
+        if (result == null) result = caseCodeBlock(parBreak);
+        if (result == null) result = caseMarkUp(parBreak);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -395,6 +411,22 @@ public class XdocSwitch<T>
    * @generated
    */
   public T caseTextOrMarkup(TextOrMarkup object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Text Or Markup Line</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Text Or Markup Line</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTextOrMarkupLine(TextOrMarkupLine object)
   {
     return null;
   }
@@ -571,6 +603,22 @@ public class XdocSwitch<T>
    * @generated
    */
   public T caseCodeBlock(CodeBlock object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Par Break</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Par Break</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseParBreak(ParBreak object)
   {
     return null;
   }

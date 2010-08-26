@@ -4,60 +4,50 @@
 «DEFINE main FOR Document -»
 «FILE "out.tex"-»
 \documentclass[a4paper]{scrreprt}
+\usepackage{listings}
+\usepackage{hyperref}
 
 \newlength{\itemindentlen}
 
 \begin{document}
-
 «EXPAND chapter FOREACH this.chapters»
-
 \end{document}
 «ENDFILE-»
 «ENDDEFINE»
 
 «DEFINE chapter FOR Chapter»
-\chapter{ «EXPAND genContent FOR this.title» }
-«EXPAND genLabel FOR this.name»
-
-«EXPAND genContent FOREACH this.contents»
-
+\chapter{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section»
 \section{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»
-
+«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
 «ENDDEFINE»
 
 «DEFINE genContent FOR SubSection»
 \subsection{ «EXPAND genContent FOR this.title» }
-«EXPAND genLabel FOR this.name»
-
-«EXPAND genContent FOREACH this.contents»
-
+«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section3»
 \subsubsection{ «EXPAND genContent FOR this.title» }
-«EXPAND genLabel FOR this.name»
-
-«EXPAND genContent FOREACH this.contents»
-
+«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section4»
 \subsubsection{ «EXPAND genContent FOR this.title» }
-«EXPAND genLabel FOR this.name»
-
-«EXPAND genContent FOREACH this.contents»
-
+«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
 «ENDDEFINE»
 
-«DEFINE genContent FOR TextOrMarkup»
-«FOREACH this.contents AS par»
-«EXPAND genText FOR par»\\
+«DEFINE genNonParContent FOR TextOrMarkup»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
 
-«ENDFOREACH»
+«DEFINE genContent FOR TextOrMarkup»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
+
+«DEFINE genContent FOR TextOrMarkupLine»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
+
+«DEFINE genText FOR ParBreak»
+
 «ENDDEFINE»
 
 «DEFINE genContent FOR Object»
@@ -66,9 +56,7 @@
 «DEFINE genText FOR Object»
 «ENDDEFINE»
 
-«DEFINE genText FOR TextPart»
-«this.text»
-«ENDDEFINE»
+«DEFINE genText FOR TextPart»«this.text»«ENDDEFINE»
 
 «DEFINE genText FOR OrderedList»
 \setlength{\itemindentlen}{\textwidth}
@@ -94,26 +82,21 @@
 \end{minipage}
 «ENDDEFINE»
 
-«DEFINE genText FOR Emphasize»
-\emph{ «EXPAND genContent FOREACH this.contents» }
-«ENDDEFINE»
+«DEFINE genText FOR Emphasize»\emph{«EXPAND genContent FOREACH this.contents»}«ENDDEFINE»
 
 «DEFINE genText FOR Ref»
-«IF this.contents.isEmpty»
-\hyperref[«this.ref.name»]{«this.ref»}
-«ELSE»
-\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»}
-«ENDIF»
-«ENDDEFINE»
+«IF this.contents.isEmpty»\hyperref[«this.ref.name»]{«this.ref»}«ELSE»\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»}«ENDIF»«ENDDEFINE»
 
 «DEFINE genText FOR Anchor»
 \phantomsection\label{«this.name»}
 «ENDDEFINE»
 
+«DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«ENDDEFINE»
+
 «DEFINE genText FOR CodeBlock»
 \begin{lstlisting}[language=«language»]
 «EXPAND genCode FOREACH contents»
-\end{lstlsting}
+\end{lstlisting}
 «ENDDEFINE»
 
 «DEFINE genText FOR CodeRef»
@@ -123,20 +106,12 @@
 «DEFINE genCode FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode FOR Code»
-«this.contents»
-«ENDDEFINE»
+«DEFINE genCode FOR Code»«this.contents»«ENDDEFINE»
 
-«DEFINE genText FOR MarkupInCode»
-«ENDDEFINE»
+«DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
-«DEFINE genCode FOR MarkupInCode»
-«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»
-«ENDDEFINE»
+«DEFINE genCode FOR MarkupInCode»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDDEFINE»
 
-«DEFINE genLabel FOR String»
-«IF this != null »
-\label{«this»}
-«ENDIF»
+«DEFINE genLabel FOR String»«IF this != null »\label{«this»}«ENDIF»
 «ENDDEFINE»
 

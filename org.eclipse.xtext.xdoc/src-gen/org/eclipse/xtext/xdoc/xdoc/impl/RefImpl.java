@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -59,7 +59,7 @@ public class RefImpl extends MarkUpImpl implements Ref
    * @generated
    * @ordered
    */
-  protected EList<TextOrMarkup> contents;
+  protected EList<TextOrMarkupLine> contents;
 
   /**
    * <!-- begin-user-doc -->
@@ -130,11 +130,11 @@ public class RefImpl extends MarkUpImpl implements Ref
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TextOrMarkup> getContents()
+  public EList<TextOrMarkupLine> getContents()
   {
     if (contents == null)
     {
-      contents = new EObjectContainmentEList<TextOrMarkup>(TextOrMarkup.class, this, XdocPackage.REF__CONTENTS);
+      contents = new EObjectContainmentEList<TextOrMarkupLine>(TextOrMarkupLine.class, this, XdocPackage.REF__CONTENTS);
     }
     return contents;
   }
@@ -190,7 +190,7 @@ public class RefImpl extends MarkUpImpl implements Ref
         return;
       case XdocPackage.REF__CONTENTS:
         getContents().clear();
-        getContents().addAll((Collection<? extends TextOrMarkup>)newValue);
+        getContents().addAll((Collection<? extends TextOrMarkupLine>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

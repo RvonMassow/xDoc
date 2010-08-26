@@ -98,6 +98,15 @@ public interface XdocFactory extends EFactory
   TextOrMarkup createTextOrMarkup();
 
   /**
+   * Returns a new object of class '<em>Text Or Markup Line</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Text Or Markup Line</em>'.
+   * @generated
+   */
+  TextOrMarkupLine createTextOrMarkupLine();
+
+  /**
    * Returns a new object of class '<em>Mark Up</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -195,6 +204,15 @@ public interface XdocFactory extends EFactory
    * @generated
    */
   CodeBlock createCodeBlock();
+
+  /**
+   * Returns a new object of class '<em>Par Break</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Par Break</em>'.
+   * @generated
+   */
+  ParBreak createParBreak();
 
   /**
    * Returns a new object of class '<em>Text Part</em>'.

@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.ParBreak;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.SubSection;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
@@ -32,6 +33,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getContents <em>Contents</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getChapters <em>Chapters</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getSections <em>Sections</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getSubsections <em>Subsections</em>}</li>
@@ -42,6 +44,16 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  */
 public class DocumentImpl extends MinimalEObjectImpl.Container implements Document
 {
+  /**
+   * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getContents()
+   * @generated
+   * @ordered
+   */
+  protected EList<ParBreak> contents;
+
   /**
    * The cached value of the '{@link #getChapters() <em>Chapters</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -98,6 +110,20 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<ParBreak> getContents()
+  {
+    if (contents == null)
+    {
+      contents = new EObjectContainmentEList<ParBreak>(ParBreak.class, this, XdocPackage.DOCUMENT__CONTENTS);
+    }
+    return contents;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Chapter> getChapters()
   {
     if (chapters == null)
@@ -145,6 +171,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
+      case XdocPackage.DOCUMENT__CONTENTS:
+        return ((InternalEList<?>)getContents()).basicRemove(otherEnd, msgs);
       case XdocPackage.DOCUMENT__CHAPTERS:
         return ((InternalEList<?>)getChapters()).basicRemove(otherEnd, msgs);
       case XdocPackage.DOCUMENT__SECTIONS:
@@ -165,6 +193,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
+      case XdocPackage.DOCUMENT__CONTENTS:
+        return getContents();
       case XdocPackage.DOCUMENT__CHAPTERS:
         return getChapters();
       case XdocPackage.DOCUMENT__SECTIONS:
@@ -186,6 +216,10 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
+      case XdocPackage.DOCUMENT__CONTENTS:
+        getContents().clear();
+        getContents().addAll((Collection<? extends ParBreak>)newValue);
+        return;
       case XdocPackage.DOCUMENT__CHAPTERS:
         getChapters().clear();
         getChapters().addAll((Collection<? extends Chapter>)newValue);
@@ -212,6 +246,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
+      case XdocPackage.DOCUMENT__CONTENTS:
+        getContents().clear();
+        return;
       case XdocPackage.DOCUMENT__CHAPTERS:
         getChapters().clear();
         return;
@@ -235,6 +272,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
+      case XdocPackage.DOCUMENT__CONTENTS:
+        return contents != null && !contents.isEmpty();
       case XdocPackage.DOCUMENT__CHAPTERS:
         return chapters != null && !chapters.isEmpty();
       case XdocPackage.DOCUMENT__SECTIONS:

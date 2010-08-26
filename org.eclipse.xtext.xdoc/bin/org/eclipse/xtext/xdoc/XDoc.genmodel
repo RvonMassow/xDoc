@@ -10,6 +10,7 @@
   <genPackages prefix="Xdoc" basePackage="org.eclipse.xtext.xdoc" disposableProviderFactory="true"
       ecorePackage="XDoc.ecore#/">
     <genClasses ecoreClass="XDoc.ecore#//Document">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/contents"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/chapters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/sections"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/subsections"/>
@@ -39,6 +40,9 @@
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//TextOrMarkup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//TextOrMarkup/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="XDoc.ecore#//TextOrMarkupLine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//TextOrMarkupLine/contents"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//MarkUp"/>
     <genClasses ecoreClass="XDoc.ecore#//Emphasize">
@@ -75,6 +79,9 @@
     <genClasses ecoreClass="XDoc.ecore#//CodeBlock">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//CodeBlock/language"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//CodeBlock/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="XDoc.ecore#//ParBreak">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ParBreak/c"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//TextPart">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//TextPart/text"/>

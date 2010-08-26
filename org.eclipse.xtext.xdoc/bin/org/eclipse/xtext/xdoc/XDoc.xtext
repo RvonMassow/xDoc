@@ -4,44 +4,53 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "classpath:/model/JavaVMTypes.ecore" as types
 generate xdoc "http://www.eclipse.org/xtext/xdoc/Xdoc"
 
+/*Foo:
+	doc=Document;*/
+
 Document:
 	{Document}
-	((MULTI_NL? chapters+=Chapter)+ |
-	(MULTI_NL? sections+=Section)+ |
-	(MULTI_NL? subsections+=SubSection)+)
-	MULTI_NL?;
+	((contents+=ParBreak? chapters+=Chapter)+ |
+	(contents+=ParBreak? sections+=Section)+ |
+	(contents+=ParBreak? subsections+=SubSection)+)
+	contents+=ParBreak?;
 
 Chapter:
-	'\\chapter' (':' name=ID)? '[' title=TextOrMarkup ']' WS*
-	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL? contents+=Section)*;
+	'\\chapter' (':' name=ID)? '[' title=TextOrMarkupLine ']' WS*
+	((contents+=ParBreak contents+=TextOrMarkupLine)(contents+=TextOrMarkup)*)?
+	(contents+=ParBreak? contents+=Section)*;
 
 Section:
-	'\\section' (':' name=ID)? '[' title=TextOrMarkup ']' WS*
-	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL? contents+=SubSection)*;
+	'\\section' (':' name=ID)? '[' title=TextOrMarkupLine ']' WS*
+	((contents+=ParBreak contents+=TextOrMarkupLine)(contents+=TextOrMarkup)*)?
+	(contents+=ParBreak? contents+=SubSection)*;
 
 SubSection:
-	'\\subsection' (':' name=ID)? '[' title=TextOrMarkup ']' WS*
-	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL? contents+=Section3)*;
+	'\\subsection' (':' name=ID)? '[' title=TextOrMarkupLine ']' WS*
+	((contents+=ParBreak contents+=TextOrMarkupLine)(contents+=TextOrMarkup)*)?
+	(contents+=ParBreak? contents+=Section3)*;
 
 Section3:
-	'\\section3' (':' name=ID)? '[' title=TextOrMarkup ']' WS*
-	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL? contents+=Section4)*;
+	'\\section3' (':' name=ID)? '[' title=TextOrMarkupLine ']' WS*
+	((contents+=ParBreak contents+=TextOrMarkupLine)(contents+=TextOrMarkup)*)?
+	(contents+=ParBreak? contents+=Section4)*;
 
 Section4:
-	'\\section4' (':' name=ID)? '[' title=TextOrMarkup ']' WS*
-	(MULTI_NL contents+=TextOrMarkup)+;
+	'\\section4' (':' name=ID)? '[' title=TextOrMarkupLine ']' WS*
+	((contents+=ParBreak contents+=TextOrMarkupLine)(contents+=TextOrMarkup)*)?;
 
 Identifiable:
 	Chapter | Section | SubSection | Section3 | Section4 | Anchor;
 
 TextOrMarkup:
-	contents+=TextPart
+	contents+=ParBreak
+	(contents+=TextPart
 	(contents+=MarkUp contents+=TextPart?)* |
-	(contents+=MarkUp contents+=TextPart?)+;
+	(contents+=MarkUp contents+=TextPart?)+)  ;
+
+TextOrMarkupLine:
+	(contents+=TextPart
+	(contents+=MarkUp contents+=TextPart?)* |
+	(contents+=MarkUp contents+=TextPart?)+);
 
 MarkUp:
 	Emphasize |
@@ -55,13 +64,13 @@ MarkUp:
 	ImageRef;
 
 Emphasize:
-	'\\emph' ('[' contents+=TextOrMarkup ']');
+	'\\emph' ('[' contents+=TextOrMarkupLine ']');
 
 Anchor:
 	'\\a' ':' name=ID ('[' ']')?;
 
 Ref:
-	'\\ref' ':' ref=[Identifiable] '[' contents+=TextOrMarkup ']';
+	'\\ref' ':' ref=[Identifiable] '[' contents+=TextOrMarkupLine ']';
 
 OrderedList:
 	'\\ol' WS* '[' WS* //WS
@@ -74,7 +83,7 @@ UnorderedList:
 	']';
 
 Item:
-	'\\item' WS* '[' contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']' WS*;
+	'\\item' WS* '[' contents+=TextOrMarkup (contents+=ParBreak contents+=TextOrMarkup)* ']' WS*;
 
 CodeRef:
 	'\\codeRef' '[' element=[types::JvmIdentifyableElement|Text] ']';
@@ -86,11 +95,14 @@ ImageRef:
 	'\\img'(':' name=ID)? '['path=Text /*TODO make it a crossreference to images */ ']''['clazz=Text']' '['style=Text']' '[' caption=Text']';
 
 CodeBlock:
-	'\\code' ('[' language=ID ']')? WS* MULTI_NL?'['
+	'\\code' ('[' language=ID ']')? WS* ParBreak?'['
 		(contents+=Code
 		(contents+=MarkupInCode contents+=Code?)* |
 		(contents+=MarkupInCode contents+=Code?)+)
 	']';
+
+ParBreak:
+	c=MULTI_NL;
 
 TextPart:
 	text=Text;

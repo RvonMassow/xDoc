@@ -70,13 +70,22 @@ public interface XdocPackage extends EPackage
   int DOCUMENT = 0;
 
   /**
+   * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DOCUMENT__CONTENTS = 0;
+
+  /**
    * The feature id for the '<em><b>Chapters</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOCUMENT__CHAPTERS = 0;
+  int DOCUMENT__CHAPTERS = 1;
 
   /**
    * The feature id for the '<em><b>Sections</b></em>' containment reference list.
@@ -85,7 +94,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOCUMENT__SECTIONS = 1;
+  int DOCUMENT__SECTIONS = 2;
 
   /**
    * The feature id for the '<em><b>Subsections</b></em>' containment reference list.
@@ -94,7 +103,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOCUMENT__SUBSECTIONS = 2;
+  int DOCUMENT__SUBSECTIONS = 3;
 
   /**
    * The number of structural features of the '<em>Document</em>' class.
@@ -103,7 +112,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOCUMENT_FEATURE_COUNT = 3;
+  int DOCUMENT_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.IdentifiableImpl <em>Identifiable</em>}' class.
@@ -392,6 +401,34 @@ public interface XdocPackage extends EPackage
   int TEXT_OR_MARKUP_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TextOrMarkupLineImpl <em>Text Or Markup Line</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.TextOrMarkupLineImpl
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTextOrMarkupLine()
+   * @generated
+   */
+  int TEXT_OR_MARKUP_LINE = 8;
+
+  /**
+   * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT_OR_MARKUP_LINE__CONTENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Text Or Markup Line</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TEXT_OR_MARKUP_LINE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.MarkUpImpl <em>Mark Up</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -399,7 +436,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getMarkUp()
    * @generated
    */
-  int MARK_UP = 8;
+  int MARK_UP = 9;
 
   /**
    * The number of structural features of the '<em>Mark Up</em>' class.
@@ -418,7 +455,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getEmphasize()
    * @generated
    */
-  int EMPHASIZE = 9;
+  int EMPHASIZE = 10;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -446,7 +483,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getAnchor()
    * @generated
    */
-  int ANCHOR = 10;
+  int ANCHOR = 11;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -474,7 +511,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getRef()
    * @generated
    */
-  int REF = 11;
+  int REF = 12;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -511,7 +548,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getOrderedList()
    * @generated
    */
-  int ORDERED_LIST = 12;
+  int ORDERED_LIST = 13;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -539,7 +576,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getUnorderedList()
    * @generated
    */
-  int UNORDERED_LIST = 13;
+  int UNORDERED_LIST = 14;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -567,7 +604,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getItem()
    * @generated
    */
-  int ITEM = 14;
+  int ITEM = 15;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -595,7 +632,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCodeRef()
    * @generated
    */
-  int CODE_REF = 15;
+  int CODE_REF = 16;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' reference.
@@ -623,7 +660,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getLink()
    * @generated
    */
-  int LINK = 16;
+  int LINK = 17;
 
   /**
    * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -660,7 +697,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getImageRef()
    * @generated
    */
-  int IMAGE_REF = 17;
+  int IMAGE_REF = 18;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -724,7 +761,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCodeBlock()
    * @generated
    */
-  int CODE_BLOCK = 18;
+  int CODE_BLOCK = 19;
 
   /**
    * The feature id for the '<em><b>Language</b></em>' attribute.
@@ -754,6 +791,52 @@ public interface XdocPackage extends EPackage
   int CODE_BLOCK_FEATURE_COUNT = MARK_UP_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ParBreakImpl <em>Par Break</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.ParBreakImpl
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getParBreak()
+   * @generated
+   */
+  int PAR_BREAK = 20;
+
+  /**
+   * The feature id for the '<em><b>Language</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAR_BREAK__LANGUAGE = CODE_BLOCK__LANGUAGE;
+
+  /**
+   * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAR_BREAK__CONTENTS = CODE_BLOCK__CONTENTS;
+
+  /**
+   * The feature id for the '<em><b>C</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAR_BREAK__C = CODE_BLOCK_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Par Break</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAR_BREAK_FEATURE_COUNT = CODE_BLOCK_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TextPartImpl <em>Text Part</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -761,7 +844,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTextPart()
    * @generated
    */
-  int TEXT_PART = 19;
+  int TEXT_PART = 21;
 
   /**
    * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -789,7 +872,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getMarkupInCode()
    * @generated
    */
-  int MARKUP_IN_CODE = 20;
+  int MARKUP_IN_CODE = 22;
 
   /**
    * The number of structural features of the '<em>Markup In Code</em>' class.
@@ -808,7 +891,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCode()
    * @generated
    */
-  int CODE = 21;
+  int CODE = 23;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' attribute.
@@ -838,6 +921,17 @@ public interface XdocPackage extends EPackage
    * @generated
    */
   EClass getDocument();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Document#getContents <em>Contents</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contents</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Document#getContents()
+   * @see #getDocument()
+   * @generated
+   */
+  EReference getDocument_Contents();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Document#getChapters <em>Chapters</em>}'.
@@ -1073,6 +1167,27 @@ public interface XdocPackage extends EPackage
    * @generated
    */
   EReference getTextOrMarkup_Contents();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine <em>Text Or Markup Line</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Text Or Markup Line</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine
+   * @generated
+   */
+  EClass getTextOrMarkupLine();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine#getContents <em>Contents</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contents</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine#getContents()
+   * @see #getTextOrMarkupLine()
+   * @generated
+   */
+  EReference getTextOrMarkupLine_Contents();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.MarkUp <em>Mark Up</em>}'.
@@ -1361,6 +1476,27 @@ public interface XdocPackage extends EPackage
   EReference getCodeBlock_Contents();
 
   /**
+   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.ParBreak <em>Par Break</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Par Break</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.ParBreak
+   * @generated
+   */
+  EClass getParBreak();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.ParBreak#getC <em>C</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>C</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.ParBreak#getC()
+   * @see #getParBreak()
+   * @generated
+   */
+  EAttribute getParBreak_C();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.TextPart <em>Text Part</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1444,6 +1580,14 @@ public interface XdocPackage extends EPackage
      * @generated
      */
     EClass DOCUMENT = eINSTANCE.getDocument();
+
+    /**
+     * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DOCUMENT__CONTENTS = eINSTANCE.getDocument_Contents();
 
     /**
      * The meta object literal for the '<em><b>Chapters</b></em>' containment reference list feature.
@@ -1634,6 +1778,24 @@ public interface XdocPackage extends EPackage
      * @generated
      */
     EReference TEXT_OR_MARKUP__CONTENTS = eINSTANCE.getTextOrMarkup_Contents();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TextOrMarkupLineImpl <em>Text Or Markup Line</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.TextOrMarkupLineImpl
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTextOrMarkupLine()
+     * @generated
+     */
+    EClass TEXT_OR_MARKUP_LINE = eINSTANCE.getTextOrMarkupLine();
+
+    /**
+     * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TEXT_OR_MARKUP_LINE__CONTENTS = eINSTANCE.getTextOrMarkupLine_Contents();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.MarkUpImpl <em>Mark Up</em>}' class.
@@ -1872,6 +2034,24 @@ public interface XdocPackage extends EPackage
      * @generated
      */
     EReference CODE_BLOCK__CONTENTS = eINSTANCE.getCodeBlock_Contents();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ParBreakImpl <em>Par Break</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.ParBreakImpl
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getParBreak()
+     * @generated
+     */
+    EClass PAR_BREAK = eINSTANCE.getParBreak();
+
+    /**
+     * The meta object literal for the '<em><b>C</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PAR_BREAK__C = eINSTANCE.getParBreak_C();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TextPartImpl <em>Text Part</em>}' class.

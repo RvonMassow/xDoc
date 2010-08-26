@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Section;
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -49,7 +49,7 @@ public class SectionImpl extends IdentifiableImpl implements Section
    * @generated
    * @ordered
    */
-  protected TextOrMarkup title;
+  protected TextOrMarkupLine title;
 
   /**
    * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
@@ -87,7 +87,7 @@ public class SectionImpl extends IdentifiableImpl implements Section
    * <!-- end-user-doc -->
    * @generated
    */
-  public TextOrMarkup getTitle()
+  public TextOrMarkupLine getTitle()
   {
     return title;
   }
@@ -97,9 +97,9 @@ public class SectionImpl extends IdentifiableImpl implements Section
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTitle(TextOrMarkup newTitle, NotificationChain msgs)
+  public NotificationChain basicSetTitle(TextOrMarkupLine newTitle, NotificationChain msgs)
   {
-    TextOrMarkup oldTitle = title;
+    TextOrMarkupLine oldTitle = title;
     title = newTitle;
     if (eNotificationRequired())
     {
@@ -114,7 +114,7 @@ public class SectionImpl extends IdentifiableImpl implements Section
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTitle(TextOrMarkup newTitle)
+  public void setTitle(TextOrMarkupLine newTitle)
   {
     if (newTitle != title)
     {
@@ -192,7 +192,7 @@ public class SectionImpl extends IdentifiableImpl implements Section
     switch (featureID)
     {
       case XdocPackage.SECTION__TITLE:
-        setTitle((TextOrMarkup)newValue);
+        setTitle((TextOrMarkupLine)newValue);
         return;
       case XdocPackage.SECTION__CONTENTS:
         getContents().clear();
@@ -213,7 +213,7 @@ public class SectionImpl extends IdentifiableImpl implements Section
     switch (featureID)
     {
       case XdocPackage.SECTION__TITLE:
-        setTitle((TextOrMarkup)null);
+        setTitle((TextOrMarkupLine)null);
         return;
       case XdocPackage.SECTION__CONTENTS:
         getContents().clear();

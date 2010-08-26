@@ -118,6 +118,11 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
         return createTextOrMarkupAdapter();
       }
       @Override
+      public Adapter caseTextOrMarkupLine(TextOrMarkupLine object)
+      {
+        return createTextOrMarkupLineAdapter();
+      }
+      @Override
       public Adapter caseMarkUp(MarkUp object)
       {
         return createMarkUpAdapter();
@@ -171,6 +176,11 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
       public Adapter caseCodeBlock(CodeBlock object)
       {
         return createCodeBlockAdapter();
+      }
+      @Override
+      public Adapter caseParBreak(ParBreak object)
+      {
+        return createParBreakAdapter();
       }
       @Override
       public Adapter caseTextPart(TextPart object)
@@ -325,6 +335,21 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTextOrMarkupAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine <em>Text Or Markup Line</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine
+   * @generated
+   */
+  public Adapter createTextOrMarkupLineAdapter()
   {
     return null;
   }
@@ -490,6 +515,21 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCodeBlockAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.ParBreak <em>Par Break</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.xtext.xdoc.xdoc.ParBreak
+   * @generated
+   */
+  public Adapter createParBreakAdapter()
   {
     return null;
   }

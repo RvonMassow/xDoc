@@ -75,6 +75,7 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
       case XdocPackage.SECTION4: return createSection4();
       case XdocPackage.IDENTIFIABLE: return createIdentifiable();
       case XdocPackage.TEXT_OR_MARKUP: return createTextOrMarkup();
+      case XdocPackage.TEXT_OR_MARKUP_LINE: return createTextOrMarkupLine();
       case XdocPackage.MARK_UP: return createMarkUp();
       case XdocPackage.EMPHASIZE: return createEmphasize();
       case XdocPackage.ANCHOR: return createAnchor();
@@ -86,6 +87,7 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
       case XdocPackage.LINK: return createLink();
       case XdocPackage.IMAGE_REF: return createImageRef();
       case XdocPackage.CODE_BLOCK: return createCodeBlock();
+      case XdocPackage.PAR_BREAK: return createParBreak();
       case XdocPackage.TEXT_PART: return createTextPart();
       case XdocPackage.MARKUP_IN_CODE: return createMarkupInCode();
       case XdocPackage.CODE: return createCode();
@@ -180,6 +182,17 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
   {
     TextOrMarkupImpl textOrMarkup = new TextOrMarkupImpl();
     return textOrMarkup;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TextOrMarkupLine createTextOrMarkupLine()
+  {
+    TextOrMarkupLineImpl textOrMarkupLine = new TextOrMarkupLineImpl();
+    return textOrMarkupLine;
   }
 
   /**
@@ -301,6 +314,17 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
   {
     CodeBlockImpl codeBlock = new CodeBlockImpl();
     return codeBlock;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ParBreak createParBreak()
+  {
+    ParBreakImpl parBreak = new ParBreakImpl();
+    return parBreak;
   }
 
   /**

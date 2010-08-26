@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -44,7 +44,7 @@ public class EmphasizeImpl extends MarkUpImpl implements Emphasize
    * @generated
    * @ordered
    */
-  protected EList<TextOrMarkup> contents;
+  protected EList<TextOrMarkupLine> contents;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,11 +72,11 @@ public class EmphasizeImpl extends MarkUpImpl implements Emphasize
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<TextOrMarkup> getContents()
+  public EList<TextOrMarkupLine> getContents()
   {
     if (contents == null)
     {
-      contents = new EObjectContainmentEList<TextOrMarkup>(TextOrMarkup.class, this, XdocPackage.EMPHASIZE__CONTENTS);
+      contents = new EObjectContainmentEList<TextOrMarkupLine>(TextOrMarkupLine.class, this, XdocPackage.EMPHASIZE__CONTENTS);
     }
     return contents;
   }
@@ -126,7 +126,7 @@ public class EmphasizeImpl extends MarkUpImpl implements Emphasize
     {
       case XdocPackage.EMPHASIZE__CONTENTS:
         getContents().clear();
-        getContents().addAll((Collection<? extends TextOrMarkup>)newValue);
+        getContents().addAll((Collection<? extends TextOrMarkupLine>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

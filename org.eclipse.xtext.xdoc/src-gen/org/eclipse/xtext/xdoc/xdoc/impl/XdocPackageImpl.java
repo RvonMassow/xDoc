@@ -28,12 +28,14 @@ import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.MarkUp;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
 import org.eclipse.xtext.xdoc.xdoc.OrderedList;
+import org.eclipse.xtext.xdoc.xdoc.ParBreak;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.Section4;
 import org.eclipse.xtext.xdoc.xdoc.SubSection;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
@@ -102,6 +104,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * @generated
    */
   private EClass textOrMarkupEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass textOrMarkupLineEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -179,6 +188,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * @generated
    */
   private EClass codeBlockEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass parBreakEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -282,7 +298,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDocument_Chapters()
+  public EReference getDocument_Contents()
   {
     return (EReference)documentEClass.getEStructuralFeatures().get(0);
   }
@@ -292,7 +308,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDocument_Sections()
+  public EReference getDocument_Chapters()
   {
     return (EReference)documentEClass.getEStructuralFeatures().get(1);
   }
@@ -302,9 +318,19 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDocument_Subsections()
+  public EReference getDocument_Sections()
   {
     return (EReference)documentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDocument_Subsections()
+  {
+    return (EReference)documentEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -495,6 +521,26 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
   public EReference getTextOrMarkup_Contents()
   {
     return (EReference)textOrMarkupEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTextOrMarkupLine()
+  {
+    return textOrMarkupLineEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTextOrMarkupLine_Contents()
+  {
+    return (EReference)textOrMarkupLineEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -772,6 +818,26 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getParBreak()
+  {
+    return parBreakEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getParBreak_C()
+  {
+    return (EAttribute)parBreakEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getTextPart()
   {
     return textPartEClass;
@@ -848,6 +914,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
     // Create classes and their features
     documentEClass = createEClass(DOCUMENT);
+    createEReference(documentEClass, DOCUMENT__CONTENTS);
     createEReference(documentEClass, DOCUMENT__CHAPTERS);
     createEReference(documentEClass, DOCUMENT__SECTIONS);
     createEReference(documentEClass, DOCUMENT__SUBSECTIONS);
@@ -877,6 +944,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
     textOrMarkupEClass = createEClass(TEXT_OR_MARKUP);
     createEReference(textOrMarkupEClass, TEXT_OR_MARKUP__CONTENTS);
+
+    textOrMarkupLineEClass = createEClass(TEXT_OR_MARKUP_LINE);
+    createEReference(textOrMarkupLineEClass, TEXT_OR_MARKUP_LINE__CONTENTS);
 
     markUpEClass = createEClass(MARK_UP);
 
@@ -915,6 +985,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     codeBlockEClass = createEClass(CODE_BLOCK);
     createEAttribute(codeBlockEClass, CODE_BLOCK__LANGUAGE);
     createEReference(codeBlockEClass, CODE_BLOCK__CONTENTS);
+
+    parBreakEClass = createEClass(PAR_BREAK);
+    createEAttribute(parBreakEClass, PAR_BREAK__C);
 
     textPartEClass = createEClass(TEXT_PART);
     createEAttribute(textPartEClass, TEXT_PART__TEXT);
@@ -975,32 +1048,34 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     linkEClass.getESuperTypes().add(this.getMarkUp());
     imageRefEClass.getESuperTypes().add(this.getMarkUp());
     codeBlockEClass.getESuperTypes().add(this.getMarkUp());
+    parBreakEClass.getESuperTypes().add(this.getCodeBlock());
 
     // Initialize classes and features; add operations and parameters
     initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDocument_Contents(), this.getParBreak(), null, "contents", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDocument_Chapters(), this.getChapter(), null, "chapters", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDocument_Sections(), this.getSection(), null, "sections", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDocument_Subsections(), this.getSubSection(), null, "subsections", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(chapterEClass, Chapter.class, "Chapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getChapter_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChapter_Title(), this.getTextOrMarkupLine(), null, "title", null, 0, 1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getChapter_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sectionEClass, Section.class, "Section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSection_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSection_Title(), this.getTextOrMarkupLine(), null, "title", null, 0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSection_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(subSectionEClass, SubSection.class, "SubSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSubSection_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, SubSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSubSection_Title(), this.getTextOrMarkupLine(), null, "title", null, 0, 1, SubSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSubSection_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, SubSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(section3EClass, Section3.class, "Section3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSection3_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Section3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSection3_Title(), this.getTextOrMarkupLine(), null, "title", null, 0, 1, Section3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSection3_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Section3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(section4EClass, Section4.class, "Section4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSection4_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Section4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSection4_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, Section4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSection4_Title(), this.getTextOrMarkupLine(), null, "title", null, 0, 1, Section4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSection4_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Section4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(identifiableEClass, Identifiable.class, "Identifiable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIdentifiable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Identifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1008,16 +1083,19 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     initEClass(textOrMarkupEClass, TextOrMarkup.class, "TextOrMarkup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getTextOrMarkup_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, TextOrMarkup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(textOrMarkupLineEClass, TextOrMarkupLine.class, "TextOrMarkupLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTextOrMarkupLine_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, TextOrMarkupLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(markUpEClass, MarkUp.class, "MarkUp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(emphasizeEClass, Emphasize.class, "Emphasize", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEmphasize_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, Emphasize.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEmphasize_Contents(), this.getTextOrMarkupLine(), null, "contents", null, 0, -1, Emphasize.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(anchorEClass, Anchor.class, "Anchor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(refEClass, Ref.class, "Ref", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRef_Ref(), this.getIdentifiable(), null, "ref", null, 0, 1, Ref.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRef_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, Ref.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRef_Contents(), this.getTextOrMarkupLine(), null, "contents", null, 0, -1, Ref.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orderedListEClass, OrderedList.class, "OrderedList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getOrderedList_Items(), this.getItem(), null, "items", null, 0, -1, OrderedList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1026,7 +1104,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     initEReference(getUnorderedList_Items(), this.getItem(), null, "items", null, 0, -1, UnorderedList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(itemEClass, Item.class, "Item", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getItem_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getItem_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Item.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(codeRefEClass, CodeRef.class, "CodeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getCodeRef_Element(), theTypesPackage.getJvmIdentifyableElement(), null, "element", null, 0, 1, CodeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1045,6 +1123,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     initEClass(codeBlockEClass, CodeBlock.class, "CodeBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCodeBlock_Language(), ecorePackage.getEString(), "language", null, 0, 1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getCodeBlock_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(parBreakEClass, ParBreak.class, "ParBreak", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getParBreak_C(), ecorePackage.getEString(), "c", null, 0, 1, ParBreak.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(textPartEClass, TextPart.class, "TextPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTextPart_Text(), ecorePackage.getEString(), "text", null, 0, 1, TextPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
