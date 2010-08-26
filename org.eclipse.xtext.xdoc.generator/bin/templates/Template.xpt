@@ -1,142 +1,142 @@
-Â«IMPORT org::eclipse::xtext::xdoc::xdocÂ»
-Â«EXTENSION templates::ExtensionsÂ»
+«IMPORT org::eclipse::xtext::xdoc::xdoc»
+«EXTENSION templates::Extensions»
 
-Â«DEFINE main FOR Document -Â»
-Â«FILE "out.tex"-Â»
+«DEFINE main FOR Document -»
+«FILE "out.tex"-»
 \documentclass[a4paper]{scrreprt}
 
 \newlength{\itemindentlen}
 
 \begin{document}
 
-Â«EXPAND chapter FOREACH this.chaptersÂ»
+«EXPAND chapter FOREACH this.chapters»
 
 \end{document}
-Â«ENDFILE-Â»
-Â«ENDDEFINEÂ»
+«ENDFILE-»
+«ENDDEFINE»
 
-Â«DEFINE chapter FOR ChapterÂ»
-\chapter{ Â«EXPAND genContent FOR this.titleÂ» }
-Â«EXPAND genLabel FOR this.nameÂ»
+«DEFINE chapter FOR Chapter»
+\chapter{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
 
-Â«EXPAND genContent FOREACH this.contentsÂ»
+«EXPAND genContent FOREACH this.contents»
 
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genContent FOR SectionÂ»
-\section{Â«EXPAND genContent FOR this.titleÂ»}
-Â«EXPAND genLabel FOR this.nameÂ»
+«DEFINE genContent FOR Section»
+\section{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»
 
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genContent FOR SubSectionÂ»
-\subsection{ Â«EXPAND genContent FOR this.titleÂ» }
-Â«EXPAND genLabel FOR this.nameÂ»
+«DEFINE genContent FOR SubSection»
+\subsection{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
 
-Â«EXPAND genContent FOREACH this.contentsÂ»
+«EXPAND genContent FOREACH this.contents»
 
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genContent FOR Section3Â»
-\subsubsection{ Â«EXPAND genContent FOR this.titleÂ» }
-Â«EXPAND genLabel FOR this.nameÂ»
+«DEFINE genContent FOR Section3»
+\subsubsection{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
 
-Â«EXPAND genContent FOREACH this.contentsÂ»
+«EXPAND genContent FOREACH this.contents»
 
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genContent FOR Section4Â»
-\subsubsection{ Â«EXPAND genContent FOR this.titleÂ» }
-Â«EXPAND genLabel FOR this.nameÂ»
+«DEFINE genContent FOR Section4»
+\subsubsection{ «EXPAND genContent FOR this.title» }
+«EXPAND genLabel FOR this.name»
 
-Â«EXPAND genContent FOREACH this.contentsÂ»
+«EXPAND genContent FOREACH this.contents»
 
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genContent FOR TextOrMarkupÂ»
-Â«FOREACH this.contents AS parÂ»
-Â«EXPAND genText FOR parÂ»\\
+«DEFINE genContent FOR TextOrMarkup»
+«FOREACH this.contents AS par»
+«EXPAND genText FOR par»\\
 
-Â«ENDFOREACHÂ»
-Â«ENDDEFINEÂ»
+«ENDFOREACH»
+«ENDDEFINE»
 
-Â«DEFINE genContent FOR ObjectÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genContent FOR Object»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR ObjectÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genText FOR Object»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR TextPartÂ»
-Â«this.textÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genText FOR TextPart»
+«this.text»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR OrderedListÂ»
+«DEFINE genText FOR OrderedList»
 \setlength{\itemindentlen}{\textwidth}
 \begin{enumerate}
 \addtolength{\itemindentlen}{-2em}
-Â«EXPAND genText FOREACH itemsÂ»
+«EXPAND genText FOREACH items»
 \end{enumerate}
 \addtolength{\itemindentlen}{2em}
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR UnorderedListÂ»
+«DEFINE genText FOR UnorderedList»
 \setlength{\itemindentlen}{\textwidth}
 \begin{itemize}
 \addtolength{\itemindentlen}{-2em}
-Â«EXPAND genText FOREACH itemsÂ»
+«EXPAND genText FOREACH items»
 \end{itemize}
 \addtolength{\itemindentlen}{2em}
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR ItemÂ»
+«DEFINE genText FOR Item»
 \item \begin{minipage}[t]{\itemindentlen}
-Â«EXPAND genContent FOREACH this.contentsÂ»
+«EXPAND genContent FOREACH this.contents»
 \end{minipage}
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR EmphasizeÂ»
-\emph{ Â«EXPAND genContent FOREACH this.contentsÂ» }
-Â«ENDDEFINEÂ»
+«DEFINE genText FOR Emphasize»
+\emph{ «EXPAND genContent FOREACH this.contents» }
+«ENDDEFINE»
 
-Â«DEFINE genText FOR RefÂ»
-Â«IF this.contents.isEmptyÂ»
-\hyperref[Â«this.ref.nameÂ»]{Â«this.refÂ»}
-Â«ELSEÂ»
-\hyperref[Â«this.ref.nameÂ»]{Â«EXPAND genContent FOREACH this.contentsÂ»}
-Â«ENDIFÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genText FOR Ref»
+«IF this.contents.isEmpty»
+\hyperref[«this.ref.name»]{«this.ref»}
+«ELSE»
+\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»}
+«ENDIF»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR AnchorÂ»
-\phantomsection\label{Â«this.nameÂ»}
-Â«ENDDEFINEÂ»
+«DEFINE genText FOR Anchor»
+\phantomsection\label{«this.name»}
+«ENDDEFINE»
 
-Â«DEFINE genText FOR CodeBlockÂ»
-\begin{lstlisting}[language=Â«languageÂ»]
-Â«EXPAND genCode FOREACH contentsÂ»
+«DEFINE genText FOR CodeBlock»
+\begin{lstlisting}[language=«language»]
+«EXPAND genCode FOREACH contents»
 \end{lstlsting}
-Â«ENDDEFINEÂ»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR CodeRefÂ»
-\lstinline{Â«this.element.canonicalNameÂ»}
-Â«ENDDEFINEÂ»
+«DEFINE genText FOR CodeRef»
+\lstinline{«this.element.canonicalName»}
+«ENDDEFINE»
 
-Â«DEFINE genCode FOR ObjectÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genCode FOR Object»
+«ENDDEFINE»
 
-Â«DEFINE genCode FOR CodeÂ»
-Â«this.contentsÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genCode FOR Code»
+«this.contents»
+«ENDDEFINE»
 
-Â«DEFINE genText FOR MarkupInCodeÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genText FOR MarkupInCode»
+«ENDDEFINE»
 
-Â«DEFINE genCode FOR MarkupInCodeÂ»
-Â«lstEscapeToTex()Â»Â«EXPAND genText FOR thisÂ»Â«lstEscapeToTex()Â»
-Â«ENDDEFINEÂ»
+«DEFINE genCode FOR MarkupInCode»
+«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»
+«ENDDEFINE»
 
-Â«DEFINE genLabel FOR StringÂ»
-Â«IF this != null Â»
-\label{Â«thisÂ»}
-Â«ENDIFÂ»
-Â«ENDDEFINEÂ»
+«DEFINE genLabel FOR String»
+«IF this != null »
+\label{«this»}
+«ENDIF»
+«ENDDEFINE»
 
