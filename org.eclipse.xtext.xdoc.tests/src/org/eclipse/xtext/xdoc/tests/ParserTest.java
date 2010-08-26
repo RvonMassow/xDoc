@@ -62,7 +62,7 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testAnchoredReference() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "aRefTest.xdoc");
+		Document doc = getTestDoc("\\a:refName Jump \\ref:refName[to]");
 		Anchor a = (Anchor) ((TextOrMarkup) doc.getChapters().get(0)
 				.getContents().get(0)).getContents().get(0);
 		Ref r = (Ref) ((TextOrMarkup) doc.getChapters().get(0).getContents()
@@ -71,11 +71,14 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testCodeRef() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "codeRef.xdoc");
+		getTestDoc("See \\codeRef[java.lang.String.charAt(int)]");
 	}
 
 	public void testCode() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "codeTest.xdoc");
+		Document doc = getTestDoc("\\code[" + "\nclass Foo {"
+				+ "\n\tpublic static void main(String\\[\\] args){"
+				+ "\n\t\tSystem.out.println(\"Hello World\n\");" + "\n\t}" + "\n}"
+				+ "\n]");
 		CodeBlock cb = (CodeBlock) ((TextOrMarkup) doc.getChapters().get(0)
 				.getContents().get(0)).getContents().get(0);
 		assertEquals("\nclass Foo {\n"
@@ -83,9 +86,10 @@ public class ParserTest extends AbstractXtextTests {
 				+ "\t\tSystem.out.println(\"Hello World\\n\");\n" + "\t}\n"
 				+ "}\n", ((Code) cb.getContents().get(0)).getContents());
 	}
-	
+
 	public void testCodeWithLanguage() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "codeWithLanguageTest.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR
+				+ "codeWithLanguageTest.xdoc");
 		CodeBlock cb = (CodeBlock) ((TextOrMarkup) doc.getChapters().get(0)
 				.getContents().get(0)).getContents().get(0);
 		assertEquals("\nclass Foo {\n"
@@ -96,11 +100,11 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testComment() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "commentTest.xdoc");
+		getTestDoc("%% comment\nsome text");
 	}
 
 	public void testLink() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "linkTest.xdoc");
+		Document doc = getTestDoc("\\link[http://example.org][Example Link]");
 		Link link = (Link) ((TextOrMarkup) doc.getChapters().get(0)
 				.getContents().get(0)).getContents().get(0);
 		URL url;
@@ -110,7 +114,7 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testNamedReference() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "namedRefTest.xdoc");
+		Document doc = getTestDoc("\\ref:refName[a Chapter]");
 		Ref r = (Ref) ((TextOrMarkup) doc.getChapters().get(0).getContents()
 				.get(0)).getContents().get(0);
 		assertEquals(doc.getChapters().get(0), r.getRef());
@@ -127,8 +131,9 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testEscape() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "testEscape.xdoc");
-		TextPart p = (TextPart) ((TextOrMarkup)doc.getChapters().get(0).getContents().get(0)).getContents().get(0);
+		Document doc = getTestDoc("\\\\ \\[ \\]");
+		TextPart p = (TextPart) ((TextOrMarkup) doc.getChapters().get(0)
+				.getContents().get(0)).getContents().get(0);
 		assertEquals("\\\\ \\[ \\]", p.getText());
 	}
 
@@ -147,13 +152,19 @@ public class ParserTest extends AbstractXtextTests {
 		assertEquals(anchor, anchorRef);
 	}
 
-
 	public void testImg() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "imgTest.xdoc");
+		getTestDoc("\\img:anchor[path][class=ImageClass][pdf=65%][caption=MyCaption bla mit \\]]");
 	}
-	
+
 	public void testUL() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "ulTest.xdoc");
+		getDocFromFile("\\ul[\n\t\\item [An item]"
+				+ "\n\t\\item [A paragraph" +
+
+				"\n\n\titem]\n]");
+	}
+
+	private Document getTestDoc(String string) throws Exception {
+		return getDoc("\\chapter[Dummy Title]\n\n" + string);
 	}
 
 	protected Document getDoc(String string) throws Exception {
