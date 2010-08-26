@@ -9,17 +9,17 @@ import java.net.URLConnection;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.xdoc.XDocStandaloneSetup;
-import org.eclipse.xtext.xdoc.xDoc.Anchor;
-import org.eclipse.xtext.xdoc.xDoc.Chapter;
-import org.eclipse.xtext.xdoc.xDoc.Code;
-import org.eclipse.xtext.xdoc.xDoc.CodeBlock;
-import org.eclipse.xtext.xdoc.xDoc.Document;
-import org.eclipse.xtext.xdoc.xDoc.Emphasize;
-import org.eclipse.xtext.xdoc.xDoc.Identifiable;
-import org.eclipse.xtext.xdoc.xDoc.Link;
-import org.eclipse.xtext.xdoc.xDoc.Ref;
-import org.eclipse.xtext.xdoc.xDoc.TextOrMarkup;
-import org.eclipse.xtext.xdoc.xDoc.TextPart;
+import org.eclipse.xtext.xdoc.xdoc.Anchor;
+import org.eclipse.xtext.xdoc.xdoc.Chapter;
+import org.eclipse.xtext.xdoc.xdoc.Code;
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.Emphasize;
+import org.eclipse.xtext.xdoc.xdoc.Identifiable;
+import org.eclipse.xtext.xdoc.xdoc.Link;
+import org.eclipse.xtext.xdoc.xdoc.Ref;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.TextPart;
 
 public class ParserTest extends AbstractXtextTests {
 
