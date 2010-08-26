@@ -1,4 +1,10 @@
-import xDoc;
+import org::eclipse::xtext::xdoc::xdoc;
 
 lstEscapeToTex():
 	"°";
+
+escapeLatexChars(String s):
+	s.replaceAll("\\\\", "\\\\").replaceAll("\\#", "\\\\#").replaceAll("_", "\\\\_");
+
+unescapeXdocChars(String s):
+	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");

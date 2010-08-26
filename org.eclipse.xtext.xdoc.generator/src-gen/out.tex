@@ -33,7 +33,7 @@ The grammar rule for transitions looks like this:
 
 \begin{lstlisting}[language=]
  Transition :
-event=\[Event\] '=>' state=\[State\];
+event=[Event] '=>' state=[State];
 
 \end{lstlisting}
 
@@ -198,7 +198,7 @@ Statemachine :
 (events+=Event)+
 'end'
 ('resetEvents'
-(resetEvents+=\[Event\])+
+(resetEvents+=[Event])+
 'end')?
 'commands'
 (commands+=Command)+
@@ -561,7 +561,7 @@ state machine.
 \section{Imported Namespace-Aware Scoping}
 
 The imported namespace aware scoping is based on qualified names and namespaces. It adds namespace 
-support to your language, which is comparable and similar to the one in Scala and C#. Scala and C# both 
+support to your language, which is comparable and similar to the one in Scala and C\#. Scala and C\# both 
 allow to have multiple nested packages within one file and you can put imports per namespace, so that 
 imported names are only visible within that namespace. See the domain model example: its scope provider 
 extends \emph{org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider}.

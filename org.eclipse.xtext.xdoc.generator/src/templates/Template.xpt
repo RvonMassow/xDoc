@@ -56,7 +56,7 @@
 «DEFINE genText FOR Object»
 «ENDDEFINE»
 
-«DEFINE genText FOR TextPart»«this.text»«ENDDEFINE»
+«DEFINE genText FOR TextPart»«escapeLatexChars(this.text)»«ENDDEFINE»
 
 «DEFINE genText FOR OrderedList»
 \setlength{\itemindentlen}{\textwidth}
@@ -100,13 +100,13 @@
 «ENDDEFINE»
 
 «DEFINE genText FOR CodeRef»
-\lstinline{«this.element.canonicalName»}
+\lstinline{«escapeLatexChars(this.element.canonicalName)»}
 «ENDDEFINE»
 
 «DEFINE genCode FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode FOR Code»«this.contents»«ENDDEFINE»
+«DEFINE genCode FOR Code»«unescapeXdocChars(this.contents)»«ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
