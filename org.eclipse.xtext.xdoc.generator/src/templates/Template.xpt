@@ -59,11 +59,6 @@
 
 «DEFINE genContent FOR TextOrMarkup»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
 
-«DEFINE genContent FOR TextOrMarkupLine»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
-
-«DEFINE genText FOR ParBreak»
-
-«ENDDEFINE»
 
 «DEFINE genContent FOR Object»
 «ENDDEFINE»
