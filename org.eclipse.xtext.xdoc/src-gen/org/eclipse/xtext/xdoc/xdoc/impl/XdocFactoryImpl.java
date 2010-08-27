@@ -75,7 +75,7 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
       case XdocPackage.SECTION4: return createSection4();
       case XdocPackage.IDENTIFIABLE: return createIdentifiable();
       case XdocPackage.TEXT_OR_MARKUP: return createTextOrMarkup();
-      case XdocPackage.TEXT_OR_MARKUP_LINE: return createTextOrMarkupLine();
+      case XdocPackage.TEXT_PART: return createTextPart();
       case XdocPackage.MARK_UP: return createMarkUp();
       case XdocPackage.EMPHASIZE: return createEmphasize();
       case XdocPackage.ANCHOR: return createAnchor();
@@ -87,10 +87,8 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
       case XdocPackage.LINK: return createLink();
       case XdocPackage.IMAGE_REF: return createImageRef();
       case XdocPackage.CODE_BLOCK: return createCodeBlock();
-      case XdocPackage.PAR_BREAK: return createParBreak();
-      case XdocPackage.TEXT_PART: return createTextPart();
-      case XdocPackage.MARKUP_IN_CODE: return createMarkupInCode();
       case XdocPackage.CODE: return createCode();
+      case XdocPackage.MARKUP_IN_CODE: return createMarkupInCode();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -189,10 +187,10 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public TextOrMarkupLine createTextOrMarkupLine()
+  public TextPart createTextPart()
   {
-    TextOrMarkupLineImpl textOrMarkupLine = new TextOrMarkupLineImpl();
-    return textOrMarkupLine;
+    TextPartImpl textPart = new TextPartImpl();
+    return textPart;
   }
 
   /**
@@ -321,21 +319,10 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ParBreak createParBreak()
+  public Code createCode()
   {
-    ParBreakImpl parBreak = new ParBreakImpl();
-    return parBreak;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TextPart createTextPart()
-  {
-    TextPartImpl textPart = new TextPartImpl();
-    return textPart;
+    CodeImpl code = new CodeImpl();
+    return code;
   }
 
   /**
@@ -347,17 +334,6 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
   {
     MarkupInCodeImpl markupInCode = new MarkupInCodeImpl();
     return markupInCode;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Code createCode()
-  {
-    CodeImpl code = new CodeImpl();
-    return code;
   }
 
   /**

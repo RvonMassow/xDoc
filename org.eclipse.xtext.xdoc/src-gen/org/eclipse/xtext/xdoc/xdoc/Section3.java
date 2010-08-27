@@ -37,12 +37,12 @@ public interface Section3 extends Identifiable
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Title</em>' containment reference.
-   * @see #setTitle(TextOrMarkupLine)
+   * @see #setTitle(TextOrMarkup)
    * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getSection3_Title()
    * @model containment="true"
    * @generated
    */
-  TextOrMarkupLine getTitle();
+  TextOrMarkup getTitle();
 
   /**
    * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.Section3#getTitle <em>Title</em>}' containment reference.
@@ -52,7 +52,7 @@ public interface Section3 extends Identifiable
    * @see #getTitle()
    * @generated
    */
-  void setTitle(TextOrMarkupLine value);
+  void setTitle(TextOrMarkup value);
 
   /**
    * Returns the value of the '<em><b>Contents</b></em>' containment reference list.

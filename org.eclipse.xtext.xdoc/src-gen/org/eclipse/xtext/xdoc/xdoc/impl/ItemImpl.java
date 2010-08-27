@@ -12,7 +12,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -21,6 +20,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Item;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -46,7 +46,7 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item
    * @generated
    * @ordered
    */
-  protected EList<EObject> contents;
+  protected EList<TextOrMarkup> contents;
 
   /**
    * <!-- begin-user-doc -->
@@ -74,11 +74,11 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getContents()
+  public EList<TextOrMarkup> getContents()
   {
     if (contents == null)
     {
-      contents = new EObjectContainmentEList<EObject>(EObject.class, this, XdocPackage.ITEM__CONTENTS);
+      contents = new EObjectContainmentEList<TextOrMarkup>(TextOrMarkup.class, this, XdocPackage.ITEM__CONTENTS);
     }
     return contents;
   }
@@ -128,7 +128,7 @@ public class ItemImpl extends MinimalEObjectImpl.Container implements Item
     {
       case XdocPackage.ITEM__CONTENTS:
         getContents().clear();
-        getContents().addAll((Collection<? extends EObject>)newValue);
+        getContents().addAll((Collection<? extends TextOrMarkup>)newValue);
         return;
     }
     super.eSet(featureID, newValue);

@@ -6,11 +6,10 @@
     modelPluginID="org.eclipse.xtext.xdoc" forceOverwrite="true" modelName="XDoc"
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.xtext.xdoc.edit"
-    editorPluginID="org.eclipse.xtext.xdoc.editor" usedGenPackages="classpath:/model/JavaVMTypes.genmodel#//types">
+    editorPluginID="org.eclipse.xtext.xdoc.editor" usedGenPackages="../../../../../../../org.eclipse.xtext/plugins/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
   <genPackages prefix="Xdoc" basePackage="org.eclipse.xtext.xdoc" disposableProviderFactory="true"
       ecorePackage="XDoc.ecore#/">
     <genClasses ecoreClass="XDoc.ecore#//Document">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/contents"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/chapters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/sections"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/subsections"/>
@@ -41,8 +40,8 @@
     <genClasses ecoreClass="XDoc.ecore#//TextOrMarkup">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//TextOrMarkup/contents"/>
     </genClasses>
-    <genClasses ecoreClass="XDoc.ecore#//TextOrMarkupLine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//TextOrMarkupLine/contents"/>
+    <genClasses ecoreClass="XDoc.ecore#//TextPart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//TextPart/text"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//MarkUp"/>
     <genClasses ecoreClass="XDoc.ecore#//Emphasize">
@@ -80,15 +79,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//CodeBlock/language"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//CodeBlock/contents"/>
     </genClasses>
-    <genClasses ecoreClass="XDoc.ecore#//ParBreak">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//ParBreak/c"/>
-    </genClasses>
-    <genClasses ecoreClass="XDoc.ecore#//TextPart">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//TextPart/text"/>
-    </genClasses>
-    <genClasses ecoreClass="XDoc.ecore#//MarkupInCode"/>
     <genClasses ecoreClass="XDoc.ecore#//Code">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//Code/contents"/>
     </genClasses>
+    <genClasses ecoreClass="XDoc.ecore#//MarkupInCode"/>
   </genPackages>
 </genmodel:GenModel>

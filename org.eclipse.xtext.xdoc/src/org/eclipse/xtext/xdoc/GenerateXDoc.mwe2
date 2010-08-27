@@ -4,14 +4,14 @@ import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "classpath:/org/eclipse/xtext/xdoc/XDoc.xtext"
+var grammarURI = "platform:/resource/org.eclipse.xtext.xdoc/src/org/eclipse/xtext/xdoc/XDoc.xtext"
 var file.extensions = "xdoc"
 var projectName = "org.eclipse.xtext.xdoc"
 var runtimeProject = "../${projectName}"
 
 Workflow {
     bean = StandaloneSetup {
-		platformUri = "${runtimeProject}/.."
+		platformUri = "${runtimeProject}/../.."
 	}
 
 	component = DirectoryCleaner {
@@ -36,7 +36,7 @@ Workflow {
 
 			// generates Java API for the generated EPackages 
 			fragment = ecore.EcoreGeneratorFragment {
-			 	referencedGenModels = "classpath:/model/JavaVMTypes.genmodel"
+			 	referencedGenModels = "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel"
 			}
 
 			// the serialization component

@@ -27,7 +27,7 @@ public interface Emphasize extends MarkUp, MarkupInCode
 {
   /**
    * Returns the value of the '<em><b>Contents</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine}.
+   * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkup}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contents</em>' containment reference list isn't clear,
@@ -39,6 +39,6 @@ public interface Emphasize extends MarkUp, MarkupInCode
    * @model containment="true"
    * @generated
    */
-  EList<TextOrMarkupLine> getContents();
+  EList<TextOrMarkup> getContents();
 
 } // Emphasize

@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Section3;
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -49,7 +49,7 @@ public class Section3Impl extends IdentifiableImpl implements Section3
    * @generated
    * @ordered
    */
-  protected TextOrMarkupLine title;
+  protected TextOrMarkup title;
 
   /**
    * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
@@ -87,7 +87,7 @@ public class Section3Impl extends IdentifiableImpl implements Section3
    * <!-- end-user-doc -->
    * @generated
    */
-  public TextOrMarkupLine getTitle()
+  public TextOrMarkup getTitle()
   {
     return title;
   }
@@ -97,9 +97,9 @@ public class Section3Impl extends IdentifiableImpl implements Section3
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTitle(TextOrMarkupLine newTitle, NotificationChain msgs)
+  public NotificationChain basicSetTitle(TextOrMarkup newTitle, NotificationChain msgs)
   {
-    TextOrMarkupLine oldTitle = title;
+    TextOrMarkup oldTitle = title;
     title = newTitle;
     if (eNotificationRequired())
     {
@@ -114,7 +114,7 @@ public class Section3Impl extends IdentifiableImpl implements Section3
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTitle(TextOrMarkupLine newTitle)
+  public void setTitle(TextOrMarkup newTitle)
   {
     if (newTitle != title)
     {
@@ -192,7 +192,7 @@ public class Section3Impl extends IdentifiableImpl implements Section3
     switch (featureID)
     {
       case XdocPackage.SECTION3__TITLE:
-        setTitle((TextOrMarkupLine)newValue);
+        setTitle((TextOrMarkup)newValue);
         return;
       case XdocPackage.SECTION3__CONTENTS:
         getContents().clear();
@@ -213,7 +213,7 @@ public class Section3Impl extends IdentifiableImpl implements Section3
     switch (featureID)
     {
       case XdocPackage.SECTION3__TITLE:
-        setTitle((TextOrMarkupLine)null);
+        setTitle((TextOrMarkup)null);
         return;
       case XdocPackage.SECTION3__CONTENTS:
         getContents().clear();

@@ -4,8 +4,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xdoc"
     nsURI="http://www.eclipse.org/xtext/xdoc/Xdoc" nsPrefix="xdoc">
   <eClassifiers xsi:type="ecore:EClass" name="Document">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="#//ParBreak" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chapters" upperBound="-1"
         eType="#//Chapter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
@@ -14,34 +12,34 @@
         eType="#//SubSection" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Chapter" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkupLine"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkupLine"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="SubSection" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkupLine"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Section3" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkupLine"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Section4" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkupLine"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+        eType="#//TextOrMarkup" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Identifiable">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -50,20 +48,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TextOrMarkupLine">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TextPart">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MarkUp"/>
   <eClassifiers xsi:type="ecore:EClass" name="Emphasize" eSuperTypes="#//MarkUp #//MarkupInCode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="#//TextOrMarkupLine" containment="true"/>
+        eType="#//TextOrMarkup" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Anchor" eSuperTypes="#//Identifiable #//MarkUp #//MarkupInCode"/>
   <eClassifiers xsi:type="ecore:EClass" name="Ref" eSuperTypes="#//MarkUp #//MarkupInCode">
     <eStructuralFeatures xsi:type="ecore:EReference" name="ref" eType="#//Identifiable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="#//TextOrMarkupLine" containment="true"/>
+        eType="#//TextOrMarkup" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedList" eSuperTypes="#//MarkUp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="items" upperBound="-1"
@@ -75,10 +72,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Item">
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+        eType="#//TextOrMarkup" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CodeRef" eSuperTypes="#//MarkUp">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass classpath:/model/JavaVMTypes.ecore#//JvmIdentifyableElement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../../../../../../org.eclipse.xtext/plugins/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmIdentifyableElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//MarkUp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -96,14 +93,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ParBreak" eSuperTypes="#//CodeBlock">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="c" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TextPart">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="MarkupInCode"/>
   <eClassifiers xsi:type="ecore:EClass" name="Code">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contents" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MarkupInCode"/>
 </ecore:EPackage>
