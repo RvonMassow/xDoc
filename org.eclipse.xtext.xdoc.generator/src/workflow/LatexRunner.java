@@ -38,11 +38,6 @@ public class LatexRunner extends AbstractWorkflowComponent {
 		}
 	}
 
-	@Override
-	public void checkConfiguration(Issues arg0) {
-
-	}
-
 	public void setOutputDir(String outputDir) {
 		this.outputDir = outputDir;
 	}
@@ -57,6 +52,10 @@ public class LatexRunner extends AbstractWorkflowComponent {
 
 	public String getInputFile() {
 		return inputFile;
+	}
+
+	public void checkConfiguration(Issues issues) {
+		
 	}
 
 }

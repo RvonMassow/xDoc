@@ -25,6 +25,7 @@ public class ParserTest extends AbstractXtextTests {
 
 	private static final String TEST_FILE_DIR = "testfiles"
 			+ File.separatorChar;
+	String head = "\\chapter[foo]\n\n";
 
 	@Override
 	protected void setUp() throws Exception {
@@ -62,12 +63,17 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testAnchoredReference() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "aRefTest.xdoc");
+		String anchor = "\\a:refName";
+		String fill = "Jump ";
+		String refText = "to";
+		String ref = "\\ref:refName["+refText+"]";
+		Document doc = getDoc(head + anchor + fill + ref);
 		Anchor a = (Anchor) ((TextOrMarkup) doc.getChapters().get(0)
 				.getContents().get(0)).getContents().get(0);
 		Ref r = (Ref) ((TextOrMarkup) doc.getChapters().get(0).getContents()
 				.get(0)).getContents().get(2);
 		assertEquals(a, r.getRef());
+		assertEquals(refText, ((TextPart)r.getContents().get(0)).getText());
 	}
 
 	public void testCodeRef() throws Exception {
@@ -80,18 +86,19 @@ public class ParserTest extends AbstractXtextTests {
 				.getContents().get(0)).getContents().get(0);
 		assertEquals("\nclass Foo {\n"
 				+ "public static void main(String\\[\\] args){\n"
-				+ "System.out.println(\"Hello World\\n\");\n" + "}\n"
-				+ "}\n", ((Code) cb.getContents().get(0)).getContents());
+				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
+				((Code) cb.getContents().get(0)).getContents());
 	}
-	
+
 	public void testCodeWithLanguage() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "codeWithLanguageTest.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR
+				+ "codeWithLanguageTest.xdoc");
 		CodeBlock cb = (CodeBlock) ((TextOrMarkup) doc.getChapters().get(0)
 				.getContents().get(0)).getContents().get(0);
 		assertEquals("\nclass Foo {\n"
 				+ "public static void main(String\\[\\] args){\n"
-				+ "System.out.println(\"Hello World\\n\");\n" + "}\n"
-				+ "}\n", ((Code) cb.getContents().get(0)).getContents());
+				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
+				((Code) cb.getContents().get(0)).getContents());
 		assertEquals("Java", cb.getLanguage());
 	}
 
@@ -110,7 +117,8 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testNamedReference() throws Exception {
-		Document doc = getDocFromFile(TEST_FILE_DIR + "namedRefAndTextTest.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR
+				+ "namedRefAndTextTest.xdoc");
 		Ref r = (Ref) ((TextOrMarkup) doc.getChapters().get(0).getContents()
 				.get(0)).getContents().get(0);
 		assertEquals(doc.getChapters().get(0), r.getRef());
@@ -128,7 +136,8 @@ public class ParserTest extends AbstractXtextTests {
 
 	public void testEscape() throws Exception {
 		Document doc = getDocFromFile(TEST_FILE_DIR + "testEscape.xdoc");
-		TextPart p = (TextPart) ((TextOrMarkup)doc.getChapters().get(0).getContents().get(0)).getContents().get(0);
+		TextPart p = (TextPart) ((TextOrMarkup) doc.getChapters().get(0)
+				.getContents().get(0)).getContents().get(0);
 		assertEquals("\\\\ \\[ \\]", p.getText());
 	}
 
@@ -147,11 +156,10 @@ public class ParserTest extends AbstractXtextTests {
 		assertEquals(anchor, anchorRef);
 	}
 
-
 	public void testImg() throws Exception {
 		getDocFromFile(TEST_FILE_DIR + "imgTest.xdoc");
 	}
-	
+
 	public void testUL() throws Exception {
 		getDocFromFile(TEST_FILE_DIR + "ulTest.xdoc");
 	}
