@@ -17,27 +17,42 @@
 
 «DEFINE chapter FOR Chapter»
 \chapter{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+
+«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section»
 \section{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+
+«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent FOR SubSection»
 \subsection{ «EXPAND genContent FOR this.title» }
-«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+
+«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section3»
 \subsubsection{ «EXPAND genContent FOR this.title» }
-«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+
+«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section4»
 \subsubsection{ «EXPAND genContent FOR this.title» }
-«EXPAND genLabel FOR this.name»«EXPAND genContent FOREACH this.contents»
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+
+«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genNonParContent FOR TextOrMarkup»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
