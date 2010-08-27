@@ -13,7 +13,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -22,7 +21,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Section4;
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -49,7 +48,7 @@ public class Section4Impl extends IdentifiableImpl implements Section4
    * @generated
    * @ordered
    */
-  protected TextOrMarkupLine title;
+  protected TextOrMarkup title;
 
   /**
    * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
@@ -59,7 +58,7 @@ public class Section4Impl extends IdentifiableImpl implements Section4
    * @generated
    * @ordered
    */
-  protected EList<EObject> contents;
+  protected EList<TextOrMarkup> contents;
 
   /**
    * <!-- begin-user-doc -->
@@ -87,7 +86,7 @@ public class Section4Impl extends IdentifiableImpl implements Section4
    * <!-- end-user-doc -->
    * @generated
    */
-  public TextOrMarkupLine getTitle()
+  public TextOrMarkup getTitle()
   {
     return title;
   }
@@ -97,9 +96,9 @@ public class Section4Impl extends IdentifiableImpl implements Section4
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTitle(TextOrMarkupLine newTitle, NotificationChain msgs)
+  public NotificationChain basicSetTitle(TextOrMarkup newTitle, NotificationChain msgs)
   {
-    TextOrMarkupLine oldTitle = title;
+    TextOrMarkup oldTitle = title;
     title = newTitle;
     if (eNotificationRequired())
     {
@@ -114,7 +113,7 @@ public class Section4Impl extends IdentifiableImpl implements Section4
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTitle(TextOrMarkupLine newTitle)
+  public void setTitle(TextOrMarkup newTitle)
   {
     if (newTitle != title)
     {
@@ -135,11 +134,11 @@ public class Section4Impl extends IdentifiableImpl implements Section4
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getContents()
+  public EList<TextOrMarkup> getContents()
   {
     if (contents == null)
     {
-      contents = new EObjectContainmentEList<EObject>(EObject.class, this, XdocPackage.SECTION4__CONTENTS);
+      contents = new EObjectContainmentEList<TextOrMarkup>(TextOrMarkup.class, this, XdocPackage.SECTION4__CONTENTS);
     }
     return contents;
   }
@@ -192,11 +191,11 @@ public class Section4Impl extends IdentifiableImpl implements Section4
     switch (featureID)
     {
       case XdocPackage.SECTION4__TITLE:
-        setTitle((TextOrMarkupLine)newValue);
+        setTitle((TextOrMarkup)newValue);
         return;
       case XdocPackage.SECTION4__CONTENTS:
         getContents().clear();
-        getContents().addAll((Collection<? extends EObject>)newValue);
+        getContents().addAll((Collection<? extends TextOrMarkup>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -213,7 +212,7 @@ public class Section4Impl extends IdentifiableImpl implements Section4
     switch (featureID)
     {
       case XdocPackage.SECTION4__TITLE:
-        setTitle((TextOrMarkupLine)null);
+        setTitle((TextOrMarkup)null);
         return;
       case XdocPackage.SECTION4__CONTENTS:
         getContents().clear();

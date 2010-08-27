@@ -7,8 +7,6 @@ package org.eclipse.xtext.xdoc.xdoc;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Section4</b></em>'.
@@ -37,12 +35,12 @@ public interface Section4 extends Identifiable
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Title</em>' containment reference.
-   * @see #setTitle(TextOrMarkupLine)
+   * @see #setTitle(TextOrMarkup)
    * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getSection4_Title()
    * @model containment="true"
    * @generated
    */
-  TextOrMarkupLine getTitle();
+  TextOrMarkup getTitle();
 
   /**
    * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.Section4#getTitle <em>Title</em>}' containment reference.
@@ -52,11 +50,11 @@ public interface Section4 extends Identifiable
    * @see #getTitle()
    * @generated
    */
-  void setTitle(TextOrMarkupLine value);
+  void setTitle(TextOrMarkup value);
 
   /**
    * Returns the value of the '<em><b>Contents</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkup}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contents</em>' containment reference list isn't clear,
@@ -68,6 +66,6 @@ public interface Section4 extends Identifiable
    * @model containment="true"
    * @generated
    */
-  EList<EObject> getContents();
+  EList<TextOrMarkup> getContents();
 
 } // Section4

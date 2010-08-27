@@ -118,9 +118,9 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
         return createTextOrMarkupAdapter();
       }
       @Override
-      public Adapter caseTextOrMarkupLine(TextOrMarkupLine object)
+      public Adapter caseTextPart(TextPart object)
       {
-        return createTextOrMarkupLineAdapter();
+        return createTextPartAdapter();
       }
       @Override
       public Adapter caseMarkUp(MarkUp object)
@@ -178,24 +178,14 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
         return createCodeBlockAdapter();
       }
       @Override
-      public Adapter caseParBreak(ParBreak object)
+      public Adapter caseCode(Code object)
       {
-        return createParBreakAdapter();
-      }
-      @Override
-      public Adapter caseTextPart(TextPart object)
-      {
-        return createTextPartAdapter();
+        return createCodeAdapter();
       }
       @Override
       public Adapter caseMarkupInCode(MarkupInCode object)
       {
         return createMarkupInCodeAdapter();
-      }
-      @Override
-      public Adapter caseCode(Code object)
-      {
-        return createCodeAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -340,16 +330,16 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine <em>Text Or Markup Line</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.TextPart <em>Text Part</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.xtext.xdoc.xdoc.TextOrMarkupLine
+   * @see org.eclipse.xtext.xdoc.xdoc.TextPart
    * @generated
    */
-  public Adapter createTextOrMarkupLineAdapter()
+  public Adapter createTextPartAdapter()
   {
     return null;
   }
@@ -520,31 +510,16 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.ParBreak <em>Par Break</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.Code <em>Code</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.xtext.xdoc.xdoc.ParBreak
+   * @see org.eclipse.xtext.xdoc.xdoc.Code
    * @generated
    */
-  public Adapter createParBreakAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.TextPart <em>Text Part</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.xtext.xdoc.xdoc.TextPart
-   * @generated
-   */
-  public Adapter createTextPartAdapter()
+  public Adapter createCodeAdapter()
   {
     return null;
   }
@@ -560,21 +535,6 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMarkupInCodeAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.Code <em>Code</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.xtext.xdoc.xdoc.Code
-   * @generated
-   */
-  public Adapter createCodeAdapter()
   {
     return null;
   }
