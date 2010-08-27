@@ -1,11 +1,11 @@
 \chapter[Dummy title]
 
 \ul [
-  \item[
-    \ul[
-	  \item[some item]
-	   ]
-  ]
+\item[
+\ul[
+\item[some item]
+]
+]
 ]
 	
 
