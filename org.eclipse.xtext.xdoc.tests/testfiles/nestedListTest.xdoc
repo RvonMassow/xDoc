@@ -1,9 +1,9 @@
-\chapter[Dummy title]
+chapter[Dummy title]
 
-\ul [
-\item[
-\ul[
-\item[some item]
+ul [
+item[
+ul[
+item[some item]
 ]
 ]
 ]

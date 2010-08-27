@@ -7,43 +7,49 @@ package org.eclipse.xtext.xdoc.parser.antlr.internal;
 import org.eclipse.xtext.parser.antlr.Lexer;
 }
 
-T10 : '\\chapter' ;
-T11 : ':' ;
-T12 : '[' ;
+T10 : 'chapter:' ;
+T11 : '[' ;
+T12 : 'chapter[' ;
 T13 : ']' ;
-T14 : '\\section' ;
-T15 : '\\subsection' ;
-T16 : '\\section3' ;
-T17 : '\\section4' ;
-T18 : '\\[' ;
-T19 : '\\]' ;
-T20 : '\\emph' ;
-T21 : '\\a' ;
-T22 : '\\ref' ;
-T23 : '\\ol' ;
-T24 : '\\ul' ;
-T25 : '\\item' ;
-T26 : '\\codeRef' ;
-T27 : '\\link' ;
-T28 : '\\img' ;
-T29 : '\\code' ;
+T14 : 'section:' ;
+T15 : 'section[' ;
+T16 : 'subsection:' ;
+T17 : 'subsection[' ;
+T18 : 'section3:' ;
+T19 : 'section3[' ;
+T20 : 'section4:' ;
+T21 : 'section4[' ;
+T22 : '\\[' ;
+T23 : '\\]' ;
+T24 : 'emph[' ;
+T25 : 'a[' ;
+T26 : 'ref:' ;
+T27 : 'ol[' ;
+T28 : 'ul[' ;
+T29 : 'item[' ;
+T30 : 'codeRef[' ;
+T31 : 'link[' ;
+T32 : 'img:' ;
+T33 : 'img[' ;
+T34 : 'code[' ;
+T35 : ':' ;
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2672
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2575
 RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2674
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2577
 RULE_SL_COMMENT : '%%' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2676
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2579
 RULE_MULTI_NL : '\r'? '\n' ('\r'? '\n')+;
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2678
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2581
 RULE_SINGLE_NL : '\r'? '\n';
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2680
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2583
 RULE_WS : (' '|'\t');
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2682
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2585
 RULE_ANY_OTHER : .;
 
 

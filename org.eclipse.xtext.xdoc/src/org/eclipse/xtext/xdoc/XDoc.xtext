@@ -14,27 +14,27 @@ Document:
 	MULTI_NL?)?;
 
 Chapter:
-	'\\chapter' (':' name=ID)? '[' title=TextOrMarkup ']' 
+	('chapter:' name=ID '['| 'chapter[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
 	(MULTI_NL contents+=Section)*;
 
 Section:
-	'\\section' (':' name=ID)? '[' title=TextOrMarkup ']' 
+	('section:' name=ID '['| 'section[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
 	(MULTI_NL contents+=SubSection)*;
 
 SubSection:
-	'\\subsection' (':' name=ID)? '[' title=TextOrMarkup ']' 
+	('subsection:' name=ID '['| 'subsection[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
 	(MULTI_NL contents+=Section3)*;
 
 Section3:
-	'\\section3' (':' name=ID)? '[' title=TextOrMarkup ']' 
+	('section3:' name=ID '['|'section3[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
 	(MULTI_NL contents+=Section4)*;
 
 Section4:
-	'\\section4' (':' name=ID)? '[' title=TextOrMarkup ']' 
+	('section4:' name=ID '['|'section4[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*;
 
 Identifiable:
@@ -49,7 +49,7 @@ TextPart:
 	text=Text;
 
 Text:
-	(ID | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ':')+;
+	(ID | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]')+;
 
 MarkUp:
 	Emphasize |
@@ -63,49 +63,47 @@ MarkUp:
 	ImageRef;
 
 Emphasize:
-	'\\emph' '[' MULTI_NL? contents+=TextOrMarkup MULTI_NL? ']';
+	'emph[' MULTI_NL? contents+=TextOrMarkup MULTI_NL? ']';
 
 Anchor:
-	'\\a' ':' name=ID ('[' ']')?;
+	'a[' name=ID ']';
 
 Ref:
-	'\\ref' ':' ref=[Identifiable] '[' MULTI_NL? contents+=TextOrMarkup MULTI_NL? ']';
+	'ref:' ref=[Identifiable] '[' MULTI_NL? contents+=TextOrMarkup MULTI_NL? ']';
 
 OrderedList:
-	'\\ol' ANY_WS* '['
+	'ol['
 		(ANY_WS* items+=Item)+
 		ANY_WS*
 	']';
 
 UnorderedList:
-	'\\ul' ANY_WS* '['
+	'ul['
 		(ANY_WS* items+=Item)+
 		ANY_WS*
 	']';
 
 Item:
-	'\\item' ANY_WS* '[' MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']';
+	'item[' MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']';
 
 CodeRef:
-	'\\codeRef' ANY_WS* '[' element=[types::JvmIdentifyableElement|Text] ']';
+	'codeRef[' element=[types::JvmIdentifyableElement|Text] ']';
 
 Link:
-	'\\link' ANY_WS* '[' url=Text ']' ANY_WS* '[' text=Text ']';
+	'link[' url=Text ']' ANY_WS* '[' text=Text ']';
 
 	// Don't think this was the discussed syntax
 ImageRef:
-	'\\img' ANY_WS* (':' ANY_WS* name=ID ANY_WS*)? '[' path=Text /*TODO make it a crossreference to images */ ']' ANY_WS*
+	('img:' ANY_WS* name=ID ANY_WS* '['|'img[') path=Text /*TODO make it a crossreference to images */ ']' ANY_WS*
 	'[' clazz=Text ']' ANY_WS* '[' style=Text ']' ANY_WS* '[' caption=Text ']';
 
 CodeBlock:
-	'\\code' ANY_WS* ('[' ANY_WS* language=ID ANY_WS* ']' ANY_WS*)? '['
+	'code[' (ANY_WS* language=ID ANY_WS* ']' ANY_WS* '[')? 
 		(contents+=Code
 		(contents+=MarkupInCode contents+=Code?)* |
 		(contents+=MarkupInCode contents+=Code?)+)
 	']';
-	//
-//ParBreak:
-//	c=MULTI_NL;
+
 Code:
 	contents=CodeText;
 

@@ -1,8 +1,8 @@
-\chapter[Dummy Title]
+chapter[Dummy Title]
 
-\ul[
-\item [An item]
-\item [A paragraph
+ul[
+item [An item]
+item [A paragraph
 
 item]
 ]

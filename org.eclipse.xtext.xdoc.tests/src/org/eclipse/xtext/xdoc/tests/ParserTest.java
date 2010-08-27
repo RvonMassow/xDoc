@@ -37,8 +37,8 @@ public class ParserTest extends AbstractXtextTests {
 		String firstPart = "Hier kommt dann mal text ";
 		String emphasized = "manchmal fett";
 		String secondPart = " und manchmal nicht.\nNewlines und so gibt es auch.";
-		String text = "\\chapter[" + title + "]\r\n\r\n" + firstPart
-				+ "\\emph[" + emphasized + "]" + secondPart + "\n\n";
+		String text = "chapter[" + title + "]\r\n\r\n" + firstPart
+				+ "emph[" + emphasized + "]" + secondPart + "\n\n";
 		System.out.println(text);
 		Document model = (Document) getModel(text);
 		Chapter chapter = model.getChapters().get(0);
@@ -56,9 +56,9 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testsmallestDoc() throws Exception {
-		getDoc("\\chapter[foo]\n\n bar");
-		getDoc("\\section[foo]\n\n bar");
-		getDoc("\\subsection[foo]\n\n bar");
+		getDoc("chapter[foo]\n\n bar");
+		getDoc("section[foo]\n\n bar");
+		getDoc("subsection[foo]\n\n bar");
 	}
 
 	public void testAnchoredReference() throws Exception {
