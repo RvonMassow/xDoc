@@ -1359,13 +1359,12 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cANY_OTHERTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cColonKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		
 		//CodeText returns ecore::EString:
-		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ":")+;
+		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ":")+
+		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -1388,9 +1387,6 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"\\]"
 		public Keyword getReverseSolidusRightSquareBracketKeyword_6() { return cReverseSolidusRightSquareBracketKeyword_6; }
-
-		//":"
-		public Keyword getColonKeyword_7() { return cColonKeyword_7; }
 	}
 
 	public class ANY_WSElements extends AbstractParserRuleElementFinder {
@@ -1702,7 +1698,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeText returns ecore::EString:
-	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ":")+;
+	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
 	public CodeTextElements getCodeTextAccess() {
 		return (pCodeText != null) ? pCodeText : (pCodeText = new CodeTextElements());
 	}

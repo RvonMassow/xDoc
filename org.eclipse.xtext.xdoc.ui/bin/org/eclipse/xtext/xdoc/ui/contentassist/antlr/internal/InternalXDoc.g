@@ -1170,14 +1170,6 @@ rule__CodeText__Alternatives
 { after(grammarAccess.getCodeTextAccess().getReverseSolidusRightSquareBracketKeyword_6()); }
 )
 
-    |(
-{ before(grammarAccess.getCodeTextAccess().getColonKeyword_7()); }
-
-	':' 
-
-{ after(grammarAccess.getCodeTextAccess().getColonKeyword_7()); }
-)
-
 ;
 finally {
 	restoreStackSize(stackSize);

@@ -113,7 +113,7 @@ MarkupInCode:
 	Ref;
 
 CodeText:
-	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ':')+;
+	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' )+;
 
 ANY_WS:
 	MULTI_NL | SINGLE_NL | WS;

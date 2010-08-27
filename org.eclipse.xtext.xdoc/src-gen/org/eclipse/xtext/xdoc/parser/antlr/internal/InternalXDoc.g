@@ -2512,13 +2512,6 @@ ruleCodeText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
         $current.merge(kw);
         createLeafNode(grammarAccess.getCodeTextAccess().getReverseSolidusRightSquareBracketKeyword_6(), null); 
     }
-
-    |
-	kw=':' 
-    {
-        $current.merge(kw);
-        createLeafNode(grammarAccess.getCodeTextAccess().getColonKeyword_7(), null); 
-    }
 )+
     ;
 

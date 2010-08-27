@@ -24,7 +24,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalXDocParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_MULTI_NL", "RULE_ID", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_SL_COMMENT", "'chapter:'", "'['", "'chapter['", "']'", "'section:'", "'section['", "'subsection:'", "'subsection['", "'section3:'", "'section3['", "'section4:'", "'section4['", "'\\\\['", "'\\\\]'", "'emph['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'img['", "'code['", "':'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_MULTI_NL", "RULE_ID", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_SL_COMMENT", "'chapter:'", "'['", "'chapter['", "']'", "'section:'", "'section['", "'subsection:'", "'subsection['", "'section3:'", "'section3['", "'section4:'", "'section4['", "'\\\\['", "'\\\\]'", "'emph['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'img['", "'code['"
     };
     public static final int RULE_ID=6;
     public static final int RULE_WS=4;
@@ -5365,7 +5365,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             int alt57=2;
             int LA57_0 = input.LA(1);
 
-            if ( ((LA57_0>=RULE_WS && LA57_0<=RULE_ANY_OTHER)||(LA57_0>=22 && LA57_0<=23)||LA57_0==35) ) {
+            if ( ((LA57_0>=RULE_WS && LA57_0<=RULE_ANY_OTHER)||(LA57_0>=22 && LA57_0<=23)) ) {
                 alt57=1;
             }
             else if ( ((LA57_0>=24 && LA57_0<=26)) ) {
@@ -5475,7 +5475,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    int alt53=2;
                     	    int LA53_0 = input.LA(1);
 
-                    	    if ( ((LA53_0>=RULE_WS && LA53_0<=RULE_ANY_OTHER)||(LA53_0>=22 && LA53_0<=23)||LA53_0==35) ) {
+                    	    if ( ((LA53_0>=RULE_WS && LA53_0<=RULE_ANY_OTHER)||(LA53_0>=22 && LA53_0<=23)) ) {
                     	        alt53=1;
                     	    }
                     	    switch (alt53) {
@@ -5592,7 +5592,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    int alt55=2;
                     	    int LA55_0 = input.LA(1);
 
-                    	    if ( ((LA55_0>=RULE_WS && LA55_0<=RULE_ANY_OTHER)||(LA55_0>=22 && LA55_0<=23)||LA55_0==35) ) {
+                    	    if ( ((LA55_0>=RULE_WS && LA55_0<=RULE_ANY_OTHER)||(LA55_0>=22 && LA55_0<=23)) ) {
                     	        alt55=1;
                     	    }
                     	    switch (alt55) {
@@ -5972,7 +5972,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleCodeText
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2456:1: ruleCodeText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' | kw= ':' )+ ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2456:1: ruleCodeText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ ;
     public final AntlrDatatypeRuleToken ruleCodeText() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -5986,14 +5986,14 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2461:6: ( (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' | kw= ':' )+ )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2462:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' | kw= ':' )+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2461:6: ( (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2462:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2462:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' | kw= ':' )+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2462:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
             int cnt59=0;
             loop59:
             do {
-                int alt59=9;
+                int alt59=8;
                 switch ( input.LA(1) ) {
                 case RULE_ID:
                     {
@@ -6028,11 +6028,6 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                 case 23:
                     {
                     alt59=7;
-                    }
-                    break;
-                case 35:
-                    {
-                    alt59=8;
                     }
                     break;
 
@@ -6133,18 +6128,6 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             	    }
             	    break;
-            	case 8 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2517:2: kw= ':'
-            	    {
-            	    kw=(Token)input.LT(1);
-            	    match(input,35,FOLLOW_35_in_ruleCodeText4579); 
-
-            	            current.merge(kw);
-            	            createLeafNode(grammarAccess.getCodeTextAccess().getColonKeyword_7(), null); 
-            	        
-
-            	    }
-            	    break;
 
             	default :
             	    if ( cnt59 >= 1 ) break loop59;
@@ -6175,7 +6158,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleANY_WS
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2530:1: entryRuleANY_WS returns [String current=null] : iv_ruleANY_WS= ruleANY_WS EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2523:1: entryRuleANY_WS returns [String current=null] : iv_ruleANY_WS= ruleANY_WS EOF ;
     public final String entryRuleANY_WS() throws RecognitionException {
         String current = null;
 
@@ -6183,16 +6166,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2531:2: (iv_ruleANY_WS= ruleANY_WS EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2532:2: iv_ruleANY_WS= ruleANY_WS EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2524:2: (iv_ruleANY_WS= ruleANY_WS EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2525:2: iv_ruleANY_WS= ruleANY_WS EOF
             {
              currentNode = createCompositeNode(grammarAccess.getANY_WSRule(), currentNode); 
-            pushFollow(FOLLOW_ruleANY_WS_in_entryRuleANY_WS4621);
+            pushFollow(FOLLOW_ruleANY_WS_in_entryRuleANY_WS4602);
             iv_ruleANY_WS=ruleANY_WS();
             _fsp--;
 
              current =iv_ruleANY_WS.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleANY_WS4632); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleANY_WS4613); 
 
             }
 
@@ -6210,7 +6193,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleANY_WS
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2539:1: ruleANY_WS returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2532:1: ruleANY_WS returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) ;
     public final AntlrDatatypeRuleToken ruleANY_WS() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -6221,10 +6204,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2544:6: ( (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2545:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2537:6: ( (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2538:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2545:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2538:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
             int alt60=3;
             switch ( input.LA(1) ) {
             case RULE_MULTI_NL:
@@ -6244,17 +6227,17 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2545:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )", 60, 0, input);
+                    new NoViableAltException("2538:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )", 60, 0, input);
 
                 throw nvae;
             }
 
             switch (alt60) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2545:6: this_MULTI_NL_0= RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2538:6: this_MULTI_NL_0= RULE_MULTI_NL
                     {
                     this_MULTI_NL_0=(Token)input.LT(1);
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleANY_WS4672); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleANY_WS4653); 
 
                     		current.merge(this_MULTI_NL_0);
                         
@@ -6265,10 +6248,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2553:10: this_SINGLE_NL_1= RULE_SINGLE_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2546:10: this_SINGLE_NL_1= RULE_SINGLE_NL
                     {
                     this_SINGLE_NL_1=(Token)input.LT(1);
-                    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS4698); 
+                    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS4679); 
 
                     		current.merge(this_SINGLE_NL_1);
                         
@@ -6279,10 +6262,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2561:10: this_WS_2= RULE_WS
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2554:10: this_WS_2= RULE_WS
                     {
                     this_WS_2=(Token)input.LT(1);
-                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleANY_WS4724); 
+                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleANY_WS4705); 
 
                     		current.merge(this_WS_2);
                         
@@ -6432,34 +6415,34 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     static final String DFA52_minS =
         "\5\4\1\uffff\7\4\1\uffff\3\4";
     static final String DFA52_maxS =
-        "\5\43\1\uffff\3\43\4\42\1\uffff\3\42";
+        "\5\32\1\uffff\3\32\4\42\1\uffff\3\42";
     static final String DFA52_acceptS =
         "\5\uffff\1\2\7\uffff\1\1\3\uffff";
     static final String DFA52_specialS =
         "\21\uffff}>";
     static final String[] DFA52_transitionS = {
-            "\1\3\1\1\1\4\1\2\1\5\15\uffff\5\5\10\uffff\1\5",
-            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\5\5\10\uffff\1\5",
-            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\5\5\10\uffff\1\5",
-            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\5\5\10\uffff\1\5",
-            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5\10\uffff\1\5",
+            "\1\3\1\1\1\4\1\2\1\5\15\uffff\5\5",
+            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\5\5",
+            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\5\5",
+            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\5\5",
+            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5",
             "",
-            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5\10\uffff\1\5",
-            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5\10\uffff\1\5",
-            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5\10\uffff\1\5",
+            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5",
+            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5",
+            "\1\10\1\6\1\5\1\7\1\5\4\uffff\1\11\10\uffff\5\5",
             "\1\14\1\12\1\5\1\13\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\7"+
             "\5\1\uffff\5\5",
-            "\1\17\1\15\1\5\1\16\1\5\1\uffff\1\5\1\15\21\5\1\uffff\5\5",
+            "\1\16\1\15\1\5\1\17\1\5\1\uffff\1\5\1\15\21\5\1\uffff\5\5",
             "\1\14\1\12\1\5\1\13\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\7"+
             "\5\1\uffff\5\5",
             "\1\14\1\12\1\5\1\13\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\7"+
             "\5\1\uffff\5\5",
             "",
-            "\1\17\1\20\1\5\1\16\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\7"+
+            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\7"+
             "\5\1\uffff\5\5",
-            "\1\17\1\20\1\5\1\16\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\7"+
+            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\7"+
             "\5\1\uffff\5\5",
-            "\1\17\1\15\1\5\1\16\1\5\1\uffff\1\5\1\15\1\5\1\uffff\17\5\1"+
+            "\1\16\1\15\1\5\1\17\1\5\1\uffff\1\5\1\15\1\5\1\uffff\17\5\1"+
             "\uffff\5\5"
     };
 
@@ -6680,17 +6663,17 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_13_in_ruleImageRef3776 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCodeBlock_in_entryRuleCodeBlock3812 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCodeBlock3822 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleCodeBlock3857 = new BitSet(new long[]{0x0000000807C001F0L});
+    public static final BitSet FOLLOW_34_in_ruleCodeBlock3857 = new BitSet(new long[]{0x0000000007C001F0L});
     public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock3875 = new BitSet(new long[]{0x00000000000000F0L});
     public static final BitSet FOLLOW_RULE_ID_in_ruleCodeBlock3893 = new BitSet(new long[]{0x00000000000020B0L});
     public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock3915 = new BitSet(new long[]{0x00000000000020B0L});
     public static final BitSet FOLLOW_13_in_ruleCodeBlock3926 = new BitSet(new long[]{0x00000000000008B0L});
     public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock3943 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_11_in_ruleCodeBlock3954 = new BitSet(new long[]{0x0000000807C001F0L});
+    public static final BitSet FOLLOW_11_in_ruleCodeBlock3954 = new BitSet(new long[]{0x0000000007C001F0L});
     public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock3979 = new BitSet(new long[]{0x0000000007002000L});
-    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4001 = new BitSet(new long[]{0x0000000807C021F0L});
+    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4001 = new BitSet(new long[]{0x0000000007C021F0L});
     public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock4022 = new BitSet(new long[]{0x0000000007002000L});
-    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4054 = new BitSet(new long[]{0x0000000807C021F0L});
+    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4054 = new BitSet(new long[]{0x0000000007C021F0L});
     public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock4075 = new BitSet(new long[]{0x0000000007002000L});
     public static final BitSet FOLLOW_13_in_ruleCodeBlock4089 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCode_in_entryRuleCode4125 = new BitSet(new long[]{0x0000000000000000L});
@@ -6703,18 +6686,17 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleRef_in_ruleMarkupInCode4326 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCodeText_in_entryRuleCodeText4362 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCodeText4373 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCodeText4413 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleCodeText4439 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_RULE_WS_in_ruleCodeText4465 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleCodeText4491 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleCodeText4517 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_22_in_ruleCodeText4541 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_23_in_ruleCodeText4560 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_35_in_ruleCodeText4579 = new BitSet(new long[]{0x0000000800C001F2L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_entryRuleANY_WS4621 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleANY_WS4632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleANY_WS4672 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS4698 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_WS_in_ruleANY_WS4724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCodeText4413 = new BitSet(new long[]{0x0000000000C001F2L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleCodeText4439 = new BitSet(new long[]{0x0000000000C001F2L});
+    public static final BitSet FOLLOW_RULE_WS_in_ruleCodeText4465 = new BitSet(new long[]{0x0000000000C001F2L});
+    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleCodeText4491 = new BitSet(new long[]{0x0000000000C001F2L});
+    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleCodeText4517 = new BitSet(new long[]{0x0000000000C001F2L});
+    public static final BitSet FOLLOW_22_in_ruleCodeText4541 = new BitSet(new long[]{0x0000000000C001F2L});
+    public static final BitSet FOLLOW_23_in_ruleCodeText4560 = new BitSet(new long[]{0x0000000000C001F2L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_entryRuleANY_WS4602 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleANY_WS4613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleANY_WS4653 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS4679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_WS_in_ruleANY_WS4705 = new BitSet(new long[]{0x0000000000000002L});
 
 }

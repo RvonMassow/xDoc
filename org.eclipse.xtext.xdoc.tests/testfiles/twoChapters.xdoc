@@ -1,6 +1,6 @@
 chapter:id[Dummy Title]
 
-Some content a:anchor
+Some content a[anchor]
 
 chapter[Dummy Title]
 

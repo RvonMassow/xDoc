@@ -27,6 +27,5 @@ RULE_SL_COMMENT=9
 '\\['=22
 'chapter['=12
 'section3:'=18
-':'=35
 'subsection['=17
 'link['=31

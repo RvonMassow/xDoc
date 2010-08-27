@@ -1,10 +1,10 @@
 chapter[Dummy Title]
 
 ul[
-item [An item]
-item [A paragraph
-
-item]
+	item[An item]
+	item[A paragraph
+	
+	item]
 ]
 
 

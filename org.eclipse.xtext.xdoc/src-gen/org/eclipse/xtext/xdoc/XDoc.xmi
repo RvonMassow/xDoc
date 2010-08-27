@@ -546,7 +546,6 @@
       <elements xsi:type="xtext:RuleCall" rule="//@rules.30"/>
       <elements xsi:type="xtext:Keyword" value="\["/>
       <elements xsi:type="xtext:Keyword" value="\]"/>
-      <elements xsi:type="xtext:Keyword" value=":"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ANY_WS">
