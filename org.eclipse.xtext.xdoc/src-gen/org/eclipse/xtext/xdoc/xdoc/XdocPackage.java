@@ -70,31 +70,13 @@ public interface XdocPackage extends EPackage
   int DOCUMENT = 0;
 
   /**
-   * The feature id for the '<em><b>Chapters</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOCUMENT__CHAPTERS = 0;
-
-  /**
    * The feature id for the '<em><b>Sections</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOCUMENT__SECTIONS = 1;
-
-  /**
-   * The feature id for the '<em><b>Subsections</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOCUMENT__SUBSECTIONS = 2;
+  int DOCUMENT__SECTIONS = 0;
 
   /**
    * The number of structural features of the '<em>Document</em>' class.
@@ -103,7 +85,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DOCUMENT_FEATURE_COUNT = 3;
+  int DOCUMENT_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.IdentifiableImpl <em>Identifiable</em>}' class.
@@ -113,7 +95,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getIdentifiable()
    * @generated
    */
-  int IDENTIFIABLE = 6;
+  int IDENTIFIABLE = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -134,6 +116,52 @@ public interface XdocPackage extends EPackage
   int IDENTIFIABLE_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl <em>Abstract Section</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getAbstractSection()
+   * @generated
+   */
+  int ABSTRACT_SECTION = 6;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_SECTION__NAME = IDENTIFIABLE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Title</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_SECTION__TITLE = IDENTIFIABLE_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_SECTION__CONTENTS = IDENTIFIABLE_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Abstract Section</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_SECTION_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -150,7 +178,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHAPTER__NAME = IDENTIFIABLE__NAME;
+  int CHAPTER__NAME = ABSTRACT_SECTION__NAME;
 
   /**
    * The feature id for the '<em><b>Title</b></em>' containment reference.
@@ -159,7 +187,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHAPTER__TITLE = IDENTIFIABLE_FEATURE_COUNT + 0;
+  int CHAPTER__TITLE = ABSTRACT_SECTION__TITLE;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -168,7 +196,16 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHAPTER__CONTENTS = IDENTIFIABLE_FEATURE_COUNT + 1;
+  int CHAPTER__CONTENTS = ABSTRACT_SECTION__CONTENTS;
+
+  /**
+   * The feature id for the '<em><b>Sub Sections</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CHAPTER__SUB_SECTIONS = ABSTRACT_SECTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Chapter</em>' class.
@@ -177,7 +214,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CHAPTER_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
+  int CHAPTER_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.SectionImpl <em>Section</em>}' class.
@@ -196,7 +233,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION__NAME = IDENTIFIABLE__NAME;
+  int SECTION__NAME = ABSTRACT_SECTION__NAME;
 
   /**
    * The feature id for the '<em><b>Title</b></em>' containment reference.
@@ -205,7 +242,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION__TITLE = IDENTIFIABLE_FEATURE_COUNT + 0;
+  int SECTION__TITLE = ABSTRACT_SECTION__TITLE;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -214,7 +251,16 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION__CONTENTS = IDENTIFIABLE_FEATURE_COUNT + 1;
+  int SECTION__CONTENTS = ABSTRACT_SECTION__CONTENTS;
+
+  /**
+   * The feature id for the '<em><b>Sub Sections</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SECTION__SUB_SECTIONS = ABSTRACT_SECTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Section</em>' class.
@@ -223,17 +269,17 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
+  int SECTION_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.SubSectionImpl <em>Sub Section</em>}' class.
+   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.Section2Impl <em>Section2</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.xtext.xdoc.xdoc.impl.SubSectionImpl
-   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getSubSection()
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.Section2Impl
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getSection2()
    * @generated
    */
-  int SUB_SECTION = 3;
+  int SECTION2 = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -242,7 +288,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUB_SECTION__NAME = IDENTIFIABLE__NAME;
+  int SECTION2__NAME = ABSTRACT_SECTION__NAME;
 
   /**
    * The feature id for the '<em><b>Title</b></em>' containment reference.
@@ -251,7 +297,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUB_SECTION__TITLE = IDENTIFIABLE_FEATURE_COUNT + 0;
+  int SECTION2__TITLE = ABSTRACT_SECTION__TITLE;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -260,16 +306,25 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUB_SECTION__CONTENTS = IDENTIFIABLE_FEATURE_COUNT + 1;
+  int SECTION2__CONTENTS = ABSTRACT_SECTION__CONTENTS;
 
   /**
-   * The number of structural features of the '<em>Sub Section</em>' class.
+   * The feature id for the '<em><b>Sub Sections</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SUB_SECTION_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
+  int SECTION2__SUB_SECTIONS = ABSTRACT_SECTION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Section2</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SECTION2_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.Section3Impl <em>Section3</em>}' class.
@@ -288,7 +343,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION3__NAME = IDENTIFIABLE__NAME;
+  int SECTION3__NAME = ABSTRACT_SECTION__NAME;
 
   /**
    * The feature id for the '<em><b>Title</b></em>' containment reference.
@@ -297,7 +352,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION3__TITLE = IDENTIFIABLE_FEATURE_COUNT + 0;
+  int SECTION3__TITLE = ABSTRACT_SECTION__TITLE;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -306,7 +361,16 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION3__CONTENTS = IDENTIFIABLE_FEATURE_COUNT + 1;
+  int SECTION3__CONTENTS = ABSTRACT_SECTION__CONTENTS;
+
+  /**
+   * The feature id for the '<em><b>Sub Sections</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SECTION3__SUB_SECTIONS = ABSTRACT_SECTION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Section3</em>' class.
@@ -315,7 +379,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION3_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
+  int SECTION3_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.Section4Impl <em>Section4</em>}' class.
@@ -334,7 +398,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION4__NAME = IDENTIFIABLE__NAME;
+  int SECTION4__NAME = ABSTRACT_SECTION__NAME;
 
   /**
    * The feature id for the '<em><b>Title</b></em>' containment reference.
@@ -343,7 +407,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION4__TITLE = IDENTIFIABLE_FEATURE_COUNT + 0;
+  int SECTION4__TITLE = ABSTRACT_SECTION__TITLE;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -352,7 +416,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION4__CONTENTS = IDENTIFIABLE_FEATURE_COUNT + 1;
+  int SECTION4__CONTENTS = ABSTRACT_SECTION__CONTENTS;
 
   /**
    * The number of structural features of the '<em>Section4</em>' class.
@@ -361,7 +425,7 @@ public interface XdocPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SECTION4_FEATURE_COUNT = IDENTIFIABLE_FEATURE_COUNT + 2;
+  int SECTION4_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TextOrMarkupImpl <em>Text Or Markup</em>}' class.
@@ -371,7 +435,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTextOrMarkup()
    * @generated
    */
-  int TEXT_OR_MARKUP = 7;
+  int TEXT_OR_MARKUP = 8;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -399,7 +463,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTextPart()
    * @generated
    */
-  int TEXT_PART = 8;
+  int TEXT_PART = 9;
 
   /**
    * The feature id for the '<em><b>Text</b></em>' attribute.
@@ -427,7 +491,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getMarkUp()
    * @generated
    */
-  int MARK_UP = 9;
+  int MARK_UP = 10;
 
   /**
    * The number of structural features of the '<em>Mark Up</em>' class.
@@ -446,7 +510,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getEmphasize()
    * @generated
    */
-  int EMPHASIZE = 10;
+  int EMPHASIZE = 11;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -474,7 +538,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getAnchor()
    * @generated
    */
-  int ANCHOR = 11;
+  int ANCHOR = 12;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -502,7 +566,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getRef()
    * @generated
    */
-  int REF = 12;
+  int REF = 13;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -539,7 +603,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getOrderedList()
    * @generated
    */
-  int ORDERED_LIST = 13;
+  int ORDERED_LIST = 14;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -567,7 +631,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getUnorderedList()
    * @generated
    */
-  int UNORDERED_LIST = 14;
+  int UNORDERED_LIST = 15;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -595,7 +659,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getItem()
    * @generated
    */
-  int ITEM = 15;
+  int ITEM = 16;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -623,7 +687,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCodeRef()
    * @generated
    */
-  int CODE_REF = 16;
+  int CODE_REF = 17;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' reference.
@@ -651,7 +715,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getLink()
    * @generated
    */
-  int LINK = 17;
+  int LINK = 18;
 
   /**
    * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -688,7 +752,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getImageRef()
    * @generated
    */
-  int IMAGE_REF = 18;
+  int IMAGE_REF = 19;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -752,7 +816,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCodeBlock()
    * @generated
    */
-  int CODE_BLOCK = 19;
+  int CODE_BLOCK = 20;
 
   /**
    * The feature id for the '<em><b>Language</b></em>' attribute.
@@ -789,7 +853,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCode()
    * @generated
    */
-  int CODE = 20;
+  int CODE = 21;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' attribute.
@@ -817,7 +881,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getMarkupInCode()
    * @generated
    */
-  int MARKUP_IN_CODE = 21;
+  int MARKUP_IN_CODE = 22;
 
   /**
    * The number of structural features of the '<em>Markup In Code</em>' class.
@@ -840,17 +904,6 @@ public interface XdocPackage extends EPackage
   EClass getDocument();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Document#getChapters <em>Chapters</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Chapters</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Document#getChapters()
-   * @see #getDocument()
-   * @generated
-   */
-  EReference getDocument_Chapters();
-
-  /**
    * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Document#getSections <em>Sections</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -860,17 +913,6 @@ public interface XdocPackage extends EPackage
    * @generated
    */
   EReference getDocument_Sections();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Document#getSubsections <em>Subsections</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Subsections</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Document#getSubsections()
-   * @see #getDocument()
-   * @generated
-   */
-  EReference getDocument_Subsections();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Chapter <em>Chapter</em>}'.
@@ -883,26 +925,15 @@ public interface XdocPackage extends EPackage
   EClass getChapter();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.Chapter#getTitle <em>Title</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Chapter#getSubSections <em>Sub Sections</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Title</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Chapter#getTitle()
+   * @return the meta object for the containment reference list '<em>Sub Sections</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Chapter#getSubSections()
    * @see #getChapter()
    * @generated
    */
-  EReference getChapter_Title();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Chapter#getContents <em>Contents</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Contents</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Chapter#getContents()
-   * @see #getChapter()
-   * @generated
-   */
-  EReference getChapter_Contents();
+  EReference getChapter_SubSections();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Section <em>Section</em>}'.
@@ -915,58 +946,36 @@ public interface XdocPackage extends EPackage
   EClass getSection();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.Section#getTitle <em>Title</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Section#getSubSections <em>Sub Sections</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Title</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Section#getTitle()
+   * @return the meta object for the containment reference list '<em>Sub Sections</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Section#getSubSections()
    * @see #getSection()
    * @generated
    */
-  EReference getSection_Title();
+  EReference getSection_SubSections();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Section#getContents <em>Contents</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Section2 <em>Section2</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Contents</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Section#getContents()
-   * @see #getSection()
+   * @return the meta object for class '<em>Section2</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Section2
    * @generated
    */
-  EReference getSection_Contents();
+  EClass getSection2();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.SubSection <em>Sub Section</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Section2#getSubSections <em>Sub Sections</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Sub Section</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.SubSection
+   * @return the meta object for the containment reference list '<em>Sub Sections</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Section2#getSubSections()
+   * @see #getSection2()
    * @generated
    */
-  EClass getSubSection();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.SubSection#getTitle <em>Title</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Title</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.SubSection#getTitle()
-   * @see #getSubSection()
-   * @generated
-   */
-  EReference getSubSection_Title();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.SubSection#getContents <em>Contents</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Contents</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.SubSection#getContents()
-   * @see #getSubSection()
-   * @generated
-   */
-  EReference getSubSection_Contents();
+  EReference getSection2_SubSections();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Section3 <em>Section3</em>}'.
@@ -979,26 +988,15 @@ public interface XdocPackage extends EPackage
   EClass getSection3();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.Section3#getTitle <em>Title</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Section3#getSubSections <em>Sub Sections</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Title</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Section3#getTitle()
+   * @return the meta object for the containment reference list '<em>Sub Sections</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Section3#getSubSections()
    * @see #getSection3()
    * @generated
    */
-  EReference getSection3_Title();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Section3#getContents <em>Contents</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Contents</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Section3#getContents()
-   * @see #getSection3()
-   * @generated
-   */
-  EReference getSection3_Contents();
+  EReference getSection3_SubSections();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Section4 <em>Section4</em>}'.
@@ -1011,26 +1009,36 @@ public interface XdocPackage extends EPackage
   EClass getSection4();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.Section4#getTitle <em>Title</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection <em>Abstract Section</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Section</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.AbstractSection
+   * @generated
+   */
+  EClass getAbstractSection();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection#getTitle <em>Title</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Title</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Section4#getTitle()
-   * @see #getSection4()
+   * @see org.eclipse.xtext.xdoc.xdoc.AbstractSection#getTitle()
+   * @see #getAbstractSection()
    * @generated
    */
-  EReference getSection4_Title();
+  EReference getAbstractSection_Title();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Section4#getContents <em>Contents</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection#getContents <em>Contents</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Contents</em>'.
-   * @see org.eclipse.xtext.xdoc.xdoc.Section4#getContents()
-   * @see #getSection4()
+   * @see org.eclipse.xtext.xdoc.xdoc.AbstractSection#getContents()
+   * @see #getAbstractSection()
    * @generated
    */
-  EReference getSection4_Contents();
+  EReference getAbstractSection_Contents();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Identifiable <em>Identifiable</em>}'.
@@ -1446,28 +1454,12 @@ public interface XdocPackage extends EPackage
     EClass DOCUMENT = eINSTANCE.getDocument();
 
     /**
-     * The meta object literal for the '<em><b>Chapters</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DOCUMENT__CHAPTERS = eINSTANCE.getDocument_Chapters();
-
-    /**
      * The meta object literal for the '<em><b>Sections</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DOCUMENT__SECTIONS = eINSTANCE.getDocument_Sections();
-
-    /**
-     * The meta object literal for the '<em><b>Subsections</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DOCUMENT__SUBSECTIONS = eINSTANCE.getDocument_Subsections();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -1480,20 +1472,12 @@ public interface XdocPackage extends EPackage
     EClass CHAPTER = eINSTANCE.getChapter();
 
     /**
-     * The meta object literal for the '<em><b>Title</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Sub Sections</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CHAPTER__TITLE = eINSTANCE.getChapter_Title();
-
-    /**
-     * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CHAPTER__CONTENTS = eINSTANCE.getChapter_Contents();
+    EReference CHAPTER__SUB_SECTIONS = eINSTANCE.getChapter_SubSections();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.SectionImpl <em>Section</em>}' class.
@@ -1506,46 +1490,30 @@ public interface XdocPackage extends EPackage
     EClass SECTION = eINSTANCE.getSection();
 
     /**
-     * The meta object literal for the '<em><b>Title</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Sub Sections</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SECTION__TITLE = eINSTANCE.getSection_Title();
+    EReference SECTION__SUB_SECTIONS = eINSTANCE.getSection_SubSections();
 
     /**
-     * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.Section2Impl <em>Section2</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.Section2Impl
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getSection2()
      * @generated
      */
-    EReference SECTION__CONTENTS = eINSTANCE.getSection_Contents();
+    EClass SECTION2 = eINSTANCE.getSection2();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.SubSectionImpl <em>Sub Section</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.xtext.xdoc.xdoc.impl.SubSectionImpl
-     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getSubSection()
-     * @generated
-     */
-    EClass SUB_SECTION = eINSTANCE.getSubSection();
-
-    /**
-     * The meta object literal for the '<em><b>Title</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Sub Sections</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SUB_SECTION__TITLE = eINSTANCE.getSubSection_Title();
-
-    /**
-     * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SUB_SECTION__CONTENTS = eINSTANCE.getSubSection_Contents();
+    EReference SECTION2__SUB_SECTIONS = eINSTANCE.getSection2_SubSections();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.Section3Impl <em>Section3</em>}' class.
@@ -1558,20 +1526,12 @@ public interface XdocPackage extends EPackage
     EClass SECTION3 = eINSTANCE.getSection3();
 
     /**
-     * The meta object literal for the '<em><b>Title</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Sub Sections</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SECTION3__TITLE = eINSTANCE.getSection3_Title();
-
-    /**
-     * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SECTION3__CONTENTS = eINSTANCE.getSection3_Contents();
+    EReference SECTION3__SUB_SECTIONS = eINSTANCE.getSection3_SubSections();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.Section4Impl <em>Section4</em>}' class.
@@ -1584,12 +1544,22 @@ public interface XdocPackage extends EPackage
     EClass SECTION4 = eINSTANCE.getSection4();
 
     /**
+     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl <em>Abstract Section</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getAbstractSection()
+     * @generated
+     */
+    EClass ABSTRACT_SECTION = eINSTANCE.getAbstractSection();
+
+    /**
      * The meta object literal for the '<em><b>Title</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SECTION4__TITLE = eINSTANCE.getSection4_Title();
+    EReference ABSTRACT_SECTION__TITLE = eINSTANCE.getAbstractSection_Title();
 
     /**
      * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
@@ -1597,7 +1567,7 @@ public interface XdocPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SECTION4__CONTENTS = eINSTANCE.getSection4_Contents();
+    EReference ABSTRACT_SECTION__CONTENTS = eINSTANCE.getAbstractSection_Contents();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.IdentifiableImpl <em>Identifiable</em>}' class.

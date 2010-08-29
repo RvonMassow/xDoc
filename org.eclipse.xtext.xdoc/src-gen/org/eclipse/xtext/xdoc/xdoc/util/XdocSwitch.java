@@ -106,6 +106,7 @@ public class XdocSwitch<T>
       {
         Chapter chapter = (Chapter)theEObject;
         T result = caseChapter(chapter);
+        if (result == null) result = caseAbstractSection(chapter);
         if (result == null) result = caseIdentifiable(chapter);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -114,15 +115,17 @@ public class XdocSwitch<T>
       {
         Section section = (Section)theEObject;
         T result = caseSection(section);
+        if (result == null) result = caseAbstractSection(section);
         if (result == null) result = caseIdentifiable(section);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case XdocPackage.SUB_SECTION:
+      case XdocPackage.SECTION2:
       {
-        SubSection subSection = (SubSection)theEObject;
-        T result = caseSubSection(subSection);
-        if (result == null) result = caseIdentifiable(subSection);
+        Section2 section2 = (Section2)theEObject;
+        T result = caseSection2(section2);
+        if (result == null) result = caseAbstractSection(section2);
+        if (result == null) result = caseIdentifiable(section2);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -130,6 +133,7 @@ public class XdocSwitch<T>
       {
         Section3 section3 = (Section3)theEObject;
         T result = caseSection3(section3);
+        if (result == null) result = caseAbstractSection(section3);
         if (result == null) result = caseIdentifiable(section3);
         if (result == null) result = defaultCase(theEObject);
         return result;
@@ -138,7 +142,16 @@ public class XdocSwitch<T>
       {
         Section4 section4 = (Section4)theEObject;
         T result = caseSection4(section4);
+        if (result == null) result = caseAbstractSection(section4);
         if (result == null) result = caseIdentifiable(section4);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case XdocPackage.ABSTRACT_SECTION:
+      {
+        AbstractSection abstractSection = (AbstractSection)theEObject;
+        T result = caseAbstractSection(abstractSection);
+        if (result == null) result = caseIdentifiable(abstractSection);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -320,17 +333,17 @@ public class XdocSwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Sub Section</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Section2</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Sub Section</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Section2</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSubSection(SubSection object)
+  public T caseSection2(Section2 object)
   {
     return null;
   }
@@ -363,6 +376,22 @@ public class XdocSwitch<T>
    * @generated
    */
   public T caseSection4(Section4 object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Section</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Section</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractSection(AbstractSection object)
   {
     return null;
   }

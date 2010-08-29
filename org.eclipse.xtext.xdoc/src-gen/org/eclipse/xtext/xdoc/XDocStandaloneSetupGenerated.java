@@ -47,6 +47,5 @@ public class XDocStandaloneSetupGenerated implements ISetup {
 
 
 
-
 	}
 }

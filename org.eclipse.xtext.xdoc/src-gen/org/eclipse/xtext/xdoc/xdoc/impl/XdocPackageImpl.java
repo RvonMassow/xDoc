@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.xtext.common.types.TypesPackage;
 
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Code;
@@ -30,9 +31,9 @@ import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
 import org.eclipse.xtext.xdoc.xdoc.OrderedList;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
+import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.Section4;
-import org.eclipse.xtext.xdoc.xdoc.SubSection;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
@@ -73,7 +74,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass subSectionEClass = null;
+  private EClass section2EClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -88,6 +89,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * @generated
    */
   private EClass section4EClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass abstractSectionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -282,29 +290,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDocument_Chapters()
-  {
-    return (EReference)documentEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getDocument_Sections()
   {
-    return (EReference)documentEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getDocument_Subsections()
-  {
-    return (EReference)documentEClass.getEStructuralFeatures().get(2);
+    return (EReference)documentEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -322,19 +310,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getChapter_Title()
+  public EReference getChapter_SubSections()
   {
     return (EReference)chapterEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getChapter_Contents()
-  {
-    return (EReference)chapterEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -352,7 +330,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSection_Title()
+  public EReference getSection_SubSections()
   {
     return (EReference)sectionEClass.getEStructuralFeatures().get(0);
   }
@@ -362,9 +340,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSection_Contents()
+  public EClass getSection2()
   {
-    return (EReference)sectionEClass.getEStructuralFeatures().get(1);
+    return section2EClass;
   }
 
   /**
@@ -372,29 +350,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getSubSection()
+  public EReference getSection2_SubSections()
   {
-    return subSectionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSubSection_Title()
-  {
-    return (EReference)subSectionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSubSection_Contents()
-  {
-    return (EReference)subSectionEClass.getEStructuralFeatures().get(1);
+    return (EReference)section2EClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -412,19 +370,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSection3_Title()
+  public EReference getSection3_SubSections()
   {
     return (EReference)section3EClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSection3_Contents()
-  {
-    return (EReference)section3EClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -442,9 +390,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSection4_Title()
+  public EClass getAbstractSection()
   {
-    return (EReference)section4EClass.getEStructuralFeatures().get(0);
+    return abstractSectionEClass;
   }
 
   /**
@@ -452,9 +400,19 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getSection4_Contents()
+  public EReference getAbstractSection_Title()
   {
-    return (EReference)section4EClass.getEStructuralFeatures().get(1);
+    return (EReference)abstractSectionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getAbstractSection_Contents()
+  {
+    return (EReference)abstractSectionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -848,29 +806,25 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
     // Create classes and their features
     documentEClass = createEClass(DOCUMENT);
-    createEReference(documentEClass, DOCUMENT__CHAPTERS);
     createEReference(documentEClass, DOCUMENT__SECTIONS);
-    createEReference(documentEClass, DOCUMENT__SUBSECTIONS);
 
     chapterEClass = createEClass(CHAPTER);
-    createEReference(chapterEClass, CHAPTER__TITLE);
-    createEReference(chapterEClass, CHAPTER__CONTENTS);
+    createEReference(chapterEClass, CHAPTER__SUB_SECTIONS);
 
     sectionEClass = createEClass(SECTION);
-    createEReference(sectionEClass, SECTION__TITLE);
-    createEReference(sectionEClass, SECTION__CONTENTS);
+    createEReference(sectionEClass, SECTION__SUB_SECTIONS);
 
-    subSectionEClass = createEClass(SUB_SECTION);
-    createEReference(subSectionEClass, SUB_SECTION__TITLE);
-    createEReference(subSectionEClass, SUB_SECTION__CONTENTS);
+    section2EClass = createEClass(SECTION2);
+    createEReference(section2EClass, SECTION2__SUB_SECTIONS);
 
     section3EClass = createEClass(SECTION3);
-    createEReference(section3EClass, SECTION3__TITLE);
-    createEReference(section3EClass, SECTION3__CONTENTS);
+    createEReference(section3EClass, SECTION3__SUB_SECTIONS);
 
     section4EClass = createEClass(SECTION4);
-    createEReference(section4EClass, SECTION4__TITLE);
-    createEReference(section4EClass, SECTION4__CONTENTS);
+
+    abstractSectionEClass = createEClass(ABSTRACT_SECTION);
+    createEReference(abstractSectionEClass, ABSTRACT_SECTION__TITLE);
+    createEReference(abstractSectionEClass, ABSTRACT_SECTION__CONTENTS);
 
     identifiableEClass = createEClass(IDENTIFIABLE);
     createEAttribute(identifiableEClass, IDENTIFIABLE__NAME);
@@ -957,11 +911,12 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    chapterEClass.getESuperTypes().add(this.getIdentifiable());
-    sectionEClass.getESuperTypes().add(this.getIdentifiable());
-    subSectionEClass.getESuperTypes().add(this.getIdentifiable());
-    section3EClass.getESuperTypes().add(this.getIdentifiable());
-    section4EClass.getESuperTypes().add(this.getIdentifiable());
+    chapterEClass.getESuperTypes().add(this.getAbstractSection());
+    sectionEClass.getESuperTypes().add(this.getAbstractSection());
+    section2EClass.getESuperTypes().add(this.getAbstractSection());
+    section3EClass.getESuperTypes().add(this.getAbstractSection());
+    section4EClass.getESuperTypes().add(this.getAbstractSection());
+    abstractSectionEClass.getESuperTypes().add(this.getIdentifiable());
     emphasizeEClass.getESuperTypes().add(this.getMarkUp());
     emphasizeEClass.getESuperTypes().add(this.getMarkupInCode());
     anchorEClass.getESuperTypes().add(this.getIdentifiable());
@@ -978,29 +933,25 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
     // Initialize classes and features; add operations and parameters
     initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDocument_Chapters(), this.getChapter(), null, "chapters", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDocument_Sections(), this.getSection(), null, "sections", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getDocument_Subsections(), this.getSubSection(), null, "subsections", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDocument_Sections(), this.getAbstractSection(), null, "sections", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(chapterEClass, Chapter.class, "Chapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getChapter_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getChapter_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getChapter_SubSections(), this.getSection(), null, "subSections", null, 0, -1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sectionEClass, Section.class, "Section", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSection_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSection_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSection_SubSections(), this.getSection2(), null, "subSections", null, 0, -1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(subSectionEClass, SubSection.class, "SubSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSubSection_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, SubSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSubSection_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, SubSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(section2EClass, Section2.class, "Section2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSection2_SubSections(), this.getSection3(), null, "subSections", null, 0, -1, Section2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(section3EClass, Section3.class, "Section3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSection3_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Section3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSection3_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, Section3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSection3_SubSections(), this.getSection4(), null, "subSections", null, 0, -1, Section3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(section4EClass, Section4.class, "Section4", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSection4_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, Section4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSection4_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, Section4.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(abstractSectionEClass, AbstractSection.class, "AbstractSection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAbstractSection_Title(), this.getTextOrMarkup(), null, "title", null, 0, 1, AbstractSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAbstractSection_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, AbstractSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(identifiableEClass, Identifiable.class, "Identifiable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIdentifiable_Name(), ecorePackage.getEString(), "name", null, 0, 1, Identifiable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

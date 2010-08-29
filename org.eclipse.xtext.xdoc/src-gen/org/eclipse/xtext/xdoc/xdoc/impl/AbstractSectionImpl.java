@@ -13,7 +13,6 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -21,25 +20,25 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.xdoc.xdoc.SubSection;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Sub Section</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Section</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.SubSectionImpl#getTitle <em>Title</em>}</li>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.SubSectionImpl#getContents <em>Contents</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl#getContents <em>Contents</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SubSectionImpl extends IdentifiableImpl implements SubSection
+public class AbstractSectionImpl extends IdentifiableImpl implements AbstractSection
 {
   /**
    * The cached value of the '{@link #getTitle() <em>Title</em>}' containment reference.
@@ -59,14 +58,14 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
    * @generated
    * @ordered
    */
-  protected EList<EObject> contents;
+  protected EList<TextOrMarkup> contents;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected SubSectionImpl()
+  protected AbstractSectionImpl()
   {
     super();
   }
@@ -79,7 +78,7 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
   @Override
   protected EClass eStaticClass()
   {
-    return XdocPackage.Literals.SUB_SECTION;
+    return XdocPackage.Literals.ABSTRACT_SECTION;
   }
 
   /**
@@ -103,7 +102,7 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
     title = newTitle;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XdocPackage.SUB_SECTION__TITLE, oldTitle, newTitle);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XdocPackage.ABSTRACT_SECTION__TITLE, oldTitle, newTitle);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -120,14 +119,14 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
     {
       NotificationChain msgs = null;
       if (title != null)
-        msgs = ((InternalEObject)title).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XdocPackage.SUB_SECTION__TITLE, null, msgs);
+        msgs = ((InternalEObject)title).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XdocPackage.ABSTRACT_SECTION__TITLE, null, msgs);
       if (newTitle != null)
-        msgs = ((InternalEObject)newTitle).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XdocPackage.SUB_SECTION__TITLE, null, msgs);
+        msgs = ((InternalEObject)newTitle).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XdocPackage.ABSTRACT_SECTION__TITLE, null, msgs);
       msgs = basicSetTitle(newTitle, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.SUB_SECTION__TITLE, newTitle, newTitle));
+      eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.ABSTRACT_SECTION__TITLE, newTitle, newTitle));
   }
 
   /**
@@ -135,11 +134,11 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<EObject> getContents()
+  public EList<TextOrMarkup> getContents()
   {
     if (contents == null)
     {
-      contents = new EObjectContainmentEList<EObject>(EObject.class, this, XdocPackage.SUB_SECTION__CONTENTS);
+      contents = new EObjectContainmentEList<TextOrMarkup>(TextOrMarkup.class, this, XdocPackage.ABSTRACT_SECTION__CONTENTS);
     }
     return contents;
   }
@@ -154,9 +153,9 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
   {
     switch (featureID)
     {
-      case XdocPackage.SUB_SECTION__TITLE:
+      case XdocPackage.ABSTRACT_SECTION__TITLE:
         return basicSetTitle(null, msgs);
-      case XdocPackage.SUB_SECTION__CONTENTS:
+      case XdocPackage.ABSTRACT_SECTION__CONTENTS:
         return ((InternalEList<?>)getContents()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -172,9 +171,9 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
   {
     switch (featureID)
     {
-      case XdocPackage.SUB_SECTION__TITLE:
+      case XdocPackage.ABSTRACT_SECTION__TITLE:
         return getTitle();
-      case XdocPackage.SUB_SECTION__CONTENTS:
+      case XdocPackage.ABSTRACT_SECTION__CONTENTS:
         return getContents();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -191,12 +190,12 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
   {
     switch (featureID)
     {
-      case XdocPackage.SUB_SECTION__TITLE:
+      case XdocPackage.ABSTRACT_SECTION__TITLE:
         setTitle((TextOrMarkup)newValue);
         return;
-      case XdocPackage.SUB_SECTION__CONTENTS:
+      case XdocPackage.ABSTRACT_SECTION__CONTENTS:
         getContents().clear();
-        getContents().addAll((Collection<? extends EObject>)newValue);
+        getContents().addAll((Collection<? extends TextOrMarkup>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -212,10 +211,10 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
   {
     switch (featureID)
     {
-      case XdocPackage.SUB_SECTION__TITLE:
+      case XdocPackage.ABSTRACT_SECTION__TITLE:
         setTitle((TextOrMarkup)null);
         return;
-      case XdocPackage.SUB_SECTION__CONTENTS:
+      case XdocPackage.ABSTRACT_SECTION__CONTENTS:
         getContents().clear();
         return;
     }
@@ -232,12 +231,12 @@ public class SubSectionImpl extends IdentifiableImpl implements SubSection
   {
     switch (featureID)
     {
-      case XdocPackage.SUB_SECTION__TITLE:
+      case XdocPackage.ABSTRACT_SECTION__TITLE:
         return title != null;
-      case XdocPackage.SUB_SECTION__CONTENTS:
+      case XdocPackage.ABSTRACT_SECTION__CONTENTS:
         return contents != null && !contents.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //SubSectionImpl
+} //AbstractSectionImpl

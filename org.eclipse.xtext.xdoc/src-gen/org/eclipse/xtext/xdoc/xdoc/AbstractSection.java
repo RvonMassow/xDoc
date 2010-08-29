@@ -7,26 +7,24 @@ package org.eclipse.xtext.xdoc.xdoc;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Sub Section</b></em>'.
+ * A representation of the model object '<em><b>Abstract Section</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.SubSection#getTitle <em>Title</em>}</li>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.SubSection#getContents <em>Contents</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection#getTitle <em>Title</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection#getContents <em>Contents</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getSubSection()
+ * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getAbstractSection()
  * @model
  * @generated
  */
-public interface SubSection extends Identifiable
+public interface AbstractSection extends Identifiable
 {
   /**
    * Returns the value of the '<em><b>Title</b></em>' containment reference.
@@ -38,14 +36,14 @@ public interface SubSection extends Identifiable
    * <!-- end-user-doc -->
    * @return the value of the '<em>Title</em>' containment reference.
    * @see #setTitle(TextOrMarkup)
-   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getSubSection_Title()
+   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getAbstractSection_Title()
    * @model containment="true"
    * @generated
    */
   TextOrMarkup getTitle();
 
   /**
-   * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.SubSection#getTitle <em>Title</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection#getTitle <em>Title</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Title</em>' containment reference.
@@ -56,7 +54,7 @@ public interface SubSection extends Identifiable
 
   /**
    * Returns the value of the '<em><b>Contents</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.TextOrMarkup}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contents</em>' containment reference list isn't clear,
@@ -64,10 +62,10 @@ public interface SubSection extends Identifiable
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Contents</em>' containment reference list.
-   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getSubSection_Contents()
+   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getAbstractSection_Contents()
    * @model containment="true"
    * @generated
    */
-  EList<EObject> getContents();
+  EList<TextOrMarkup> getContents();
 
-} // SubSection
+} // AbstractSection

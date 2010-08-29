@@ -3,8 +3,18 @@
 */
 package org.eclipse.xtext.xdoc.ui.labeling;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
+import org.eclipse.xtext.util.PolymorphicDispatcher;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
+import org.eclipse.xtext.xdoc.xdoc.Chapter;
+import org.eclipse.xtext.xdoc.xdoc.Section;
+import org.eclipse.xtext.xdoc.xdoc.Section2;
+import org.eclipse.xtext.xdoc.xdoc.Section3;
+import org.eclipse.xtext.xdoc.xdoc.Section4;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.TextPart;
 
 import com.google.inject.Inject;
 
@@ -14,21 +24,42 @@ import com.google.inject.Inject;
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#labelProvider
  */
 public class XDocLabelProvider extends DefaultEObjectLabelProvider {
+	
+	private PolymorphicDispatcher<String> version = PolymorphicDispatcher.createForSingleTarget("version", this);
 
 	@Inject
 	public XDocLabelProvider(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
 	}
 
-/*
-	//Labels and icons can be computed like this:
+	String text(AbstractSection ele) {
+	  return toString(version.invoke(ele),ele.getTitle());
+	}
+
+	protected String version(Chapter c) {
+		return (c.eContainer().eContents().indexOf(c)+1)+"";
+	}
 	
-	String text(MyModel ele) {
-	  return "my "+ele.getName();
+	protected String version(Section s) {
+		return version.invoke(s.eContainer())+"."+ (((Chapter)s.eContainer()).getSubSections().indexOf(s)+1);
+	}
+	protected String version(Section2 s) {
+		return version.invoke(s.eContainer())+"."+ (((Section)s.eContainer()).getSubSections().indexOf(s)+1);
+	}
+	protected String version(Section3 s) {
+		return version.invoke(s.eContainer())+"."+ (((Section2)s.eContainer()).getSubSections().indexOf(s)+1);
+	}
+	protected String version(Section4 s) {
+		return version.invoke(s.eContainer())+"."+ (((Section3)s.eContainer()).getSubSections().indexOf(s)+1);
+	}
+
+	protected String toString(String number, TextOrMarkup title) {
+		StringBuilder sb = new StringBuilder(number).append(" - ");
+		for (EObject text : title.getContents()) {
+			if (text instanceof TextPart)
+				sb.append(((TextPart)text).getText());
+		}
+		return sb.toString();
 	}
 	 
-    String image(MyModel ele) {
-      return "MyModel.gif";
-    }
-*/
 }

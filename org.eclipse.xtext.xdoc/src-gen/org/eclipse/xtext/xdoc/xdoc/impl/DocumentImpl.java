@@ -19,10 +19,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.xdoc.xdoc.Chapter;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Document;
-import org.eclipse.xtext.xdoc.xdoc.Section;
-import org.eclipse.xtext.xdoc.xdoc.SubSection;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -32,9 +30,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getChapters <em>Chapters</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getSections <em>Sections</em>}</li>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getSubsections <em>Subsections</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,16 +39,6 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 public class DocumentImpl extends MinimalEObjectImpl.Container implements Document
 {
   /**
-   * The cached value of the '{@link #getChapters() <em>Chapters</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getChapters()
-   * @generated
-   * @ordered
-   */
-  protected EList<Chapter> chapters;
-
-  /**
    * The cached value of the '{@link #getSections() <em>Sections</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -60,17 +46,7 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
    * @generated
    * @ordered
    */
-  protected EList<Section> sections;
-
-  /**
-   * The cached value of the '{@link #getSubsections() <em>Subsections</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSubsections()
-   * @generated
-   * @ordered
-   */
-  protected EList<SubSection> subsections;
+  protected EList<AbstractSection> sections;
 
   /**
    * <!-- begin-user-doc -->
@@ -98,41 +74,13 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Chapter> getChapters()
-  {
-    if (chapters == null)
-    {
-      chapters = new EObjectContainmentEList<Chapter>(Chapter.class, this, XdocPackage.DOCUMENT__CHAPTERS);
-    }
-    return chapters;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<Section> getSections()
+  public EList<AbstractSection> getSections()
   {
     if (sections == null)
     {
-      sections = new EObjectContainmentEList<Section>(Section.class, this, XdocPackage.DOCUMENT__SECTIONS);
+      sections = new EObjectContainmentEList<AbstractSection>(AbstractSection.class, this, XdocPackage.DOCUMENT__SECTIONS);
     }
     return sections;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<SubSection> getSubsections()
-  {
-    if (subsections == null)
-    {
-      subsections = new EObjectContainmentEList<SubSection>(SubSection.class, this, XdocPackage.DOCUMENT__SUBSECTIONS);
-    }
-    return subsections;
   }
 
   /**
@@ -145,12 +93,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
-      case XdocPackage.DOCUMENT__CHAPTERS:
-        return ((InternalEList<?>)getChapters()).basicRemove(otherEnd, msgs);
       case XdocPackage.DOCUMENT__SECTIONS:
         return ((InternalEList<?>)getSections()).basicRemove(otherEnd, msgs);
-      case XdocPackage.DOCUMENT__SUBSECTIONS:
-        return ((InternalEList<?>)getSubsections()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -165,12 +109,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
-      case XdocPackage.DOCUMENT__CHAPTERS:
-        return getChapters();
       case XdocPackage.DOCUMENT__SECTIONS:
         return getSections();
-      case XdocPackage.DOCUMENT__SUBSECTIONS:
-        return getSubsections();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -186,17 +126,9 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
-      case XdocPackage.DOCUMENT__CHAPTERS:
-        getChapters().clear();
-        getChapters().addAll((Collection<? extends Chapter>)newValue);
-        return;
       case XdocPackage.DOCUMENT__SECTIONS:
         getSections().clear();
-        getSections().addAll((Collection<? extends Section>)newValue);
-        return;
-      case XdocPackage.DOCUMENT__SUBSECTIONS:
-        getSubsections().clear();
-        getSubsections().addAll((Collection<? extends SubSection>)newValue);
+        getSections().addAll((Collection<? extends AbstractSection>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -212,14 +144,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
-      case XdocPackage.DOCUMENT__CHAPTERS:
-        getChapters().clear();
-        return;
       case XdocPackage.DOCUMENT__SECTIONS:
         getSections().clear();
-        return;
-      case XdocPackage.DOCUMENT__SUBSECTIONS:
-        getSubsections().clear();
         return;
     }
     super.eUnset(featureID);
@@ -235,12 +161,8 @@ public class DocumentImpl extends MinimalEObjectImpl.Container implements Docume
   {
     switch (featureID)
     {
-      case XdocPackage.DOCUMENT__CHAPTERS:
-        return chapters != null && !chapters.isEmpty();
       case XdocPackage.DOCUMENT__SECTIONS:
         return sections != null && !sections.isEmpty();
-      case XdocPackage.DOCUMENT__SUBSECTIONS:
-        return subsections != null && !subsections.isEmpty();
     }
     return super.eIsSet(featureID);
   }

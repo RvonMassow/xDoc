@@ -93,9 +93,9 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
         return createSectionAdapter();
       }
       @Override
-      public Adapter caseSubSection(SubSection object)
+      public Adapter caseSection2(Section2 object)
       {
-        return createSubSectionAdapter();
+        return createSection2Adapter();
       }
       @Override
       public Adapter caseSection3(Section3 object)
@@ -106,6 +106,11 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
       public Adapter caseSection4(Section4 object)
       {
         return createSection4Adapter();
+      }
+      @Override
+      public Adapter caseAbstractSection(AbstractSection object)
+      {
+        return createAbstractSectionAdapter();
       }
       @Override
       public Adapter caseIdentifiable(Identifiable object)
@@ -255,16 +260,16 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.SubSection <em>Sub Section</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.Section2 <em>Section2</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.xtext.xdoc.xdoc.SubSection
+   * @see org.eclipse.xtext.xdoc.xdoc.Section2
    * @generated
    */
-  public Adapter createSubSectionAdapter()
+  public Adapter createSection2Adapter()
   {
     return null;
   }
@@ -295,6 +300,21 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSection4Adapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection <em>Abstract Section</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.xtext.xdoc.xdoc.AbstractSection
+   * @generated
+   */
+  public Adapter createAbstractSectionAdapter()
   {
     return null;
   }

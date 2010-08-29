@@ -4,38 +4,27 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xdoc"
     nsURI="http://www.eclipse.org/xtext/xdoc/Xdoc" nsPrefix="xdoc">
   <eClassifiers xsi:type="ecore:EClass" name="Document">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="chapters" upperBound="-1"
-        eType="#//Chapter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
+        eType="#//AbstractSection" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Chapter" eSuperTypes="#//AbstractSection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
         eType="#//Section" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subsections" upperBound="-1"
-        eType="#//SubSection" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Chapter" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="#//AbstractSection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
+        eType="#//Section2" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Section" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Section2" eSuperTypes="#//AbstractSection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
+        eType="#//Section3" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubSection" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Section3" eSuperTypes="#//AbstractSection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
+        eType="#//Section4" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Section3" eSuperTypes="#//Identifiable">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
-        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Section4" eSuperTypes="#//Identifiable">
+  <eClassifiers xsi:type="ecore:EClass" name="Section4" eSuperTypes="#//AbstractSection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractSection" eSuperTypes="#//Identifiable">
     <eStructuralFeatures xsi:type="ecore:EReference" name="title" eType="#//TextOrMarkup"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"

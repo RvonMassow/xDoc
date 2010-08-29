@@ -128,11 +128,6 @@ public abstract class AbstractXDocUiModule extends DefaultUiModule {
 		return org.eclipse.xtext.xdoc.ui.outline.XDocTransformer.class;
 	}
 
-	// contributed by org.eclipse.xtext.ui.generator.outline.OutlineNodeAdapterFactoryFragment
-	public Class<? extends org.eclipse.xtext.ui.editor.outline.actions.IContentOutlineNodeAdapterFactory> bindIContentOutlineNodeAdapterFactory() {
-		return org.eclipse.xtext.xdoc.ui.outline.XDocOutlineNodeAdapterFactory.class;
-	}
-
 	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider> bindIssueResolutionProvider() {
 		return org.eclipse.xtext.xdoc.ui.quickfix.XDocQuickfixProvider.class;

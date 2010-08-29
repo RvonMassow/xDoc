@@ -4,6 +4,12 @@
 package org.eclipse.xtext.xdoc.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttributeIdMapper;
+import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
+import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
+import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -12,4 +18,17 @@ public class XDocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXDocUiModule
 	public XDocUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
+	
+	public Class<? extends DefaultAntlrTokenToAttributeIdMapper> bindTokenToAttributeMapper() {
+		return TokenToAttributeMapper.class;
+	}
+	
+	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+		return SemanticHighlightingCalculator.class;
+	}
+	
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return SemanticHighlightingConfiguration.class;
+	}
+	
 }

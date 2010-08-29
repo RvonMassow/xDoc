@@ -10,29 +10,24 @@
   <genPackages prefix="Xdoc" basePackage="org.eclipse.xtext.xdoc" disposableProviderFactory="true"
       ecorePackage="XDoc.ecore#/">
     <genClasses ecoreClass="XDoc.ecore#//Document">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/chapters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/sections"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Document/subsections"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//Chapter">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Chapter/title"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Chapter/contents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Chapter/subSections"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//Section">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section/title"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section/contents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section/subSections"/>
     </genClasses>
-    <genClasses ecoreClass="XDoc.ecore#//SubSection">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//SubSection/title"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//SubSection/contents"/>
+    <genClasses ecoreClass="XDoc.ecore#//Section2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section2/subSections"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//Section3">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section3/title"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section3/contents"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section3/subSections"/>
     </genClasses>
-    <genClasses ecoreClass="XDoc.ecore#//Section4">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section4/title"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Section4/contents"/>
+    <genClasses ecoreClass="XDoc.ecore#//Section4"/>
+    <genClasses ecoreClass="XDoc.ecore#//AbstractSection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//AbstractSection/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//AbstractSection/contents"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//Identifiable">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//Identifiable/name"/>

@@ -8,37 +8,40 @@ generate xdoc "http://www.eclipse.org/xtext/xdoc/Xdoc"
 Document:
 	{Document}
 	WS? MULTI_NL?
-	(((chapters+=Chapter (MULTI_NL chapters+=Chapter)*) |
+	(((sections+=Chapter (MULTI_NL sections+=Chapter)*) |
 	(sections+=Section (MULTI_NL sections+=Section)*) |
-	(subsections+=SubSection (MULTI_NL subsections+=SubSection)*))
+	(sections+=Section2 (MULTI_NL sections+=Section2)*))
 	MULTI_NL?)?;
 
 Chapter:
 	('chapter:' name=ID '['| 'chapter[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL contents+=Section)*;
+	(MULTI_NL subSections+=Section)*;
 
 Section:
 	('section:' name=ID '['| 'section[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL contents+=SubSection)*;
+	(MULTI_NL subSections+=Section2)*;
 
-SubSection:
-	('subsection:' name=ID '['| 'subsection[') title=TextOrMarkup ']' 
+Section2:
+	('section2:' name=ID '['| 'section2[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL contents+=Section3)*;
+	(MULTI_NL subSections+=Section3)*;
 
 Section3:
 	('section3:' name=ID '['|'section3[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
-	(MULTI_NL contents+=Section4)*;
+	(MULTI_NL subSections+=Section4)*;
 
 Section4:
 	('section4:' name=ID '['|'section4[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*;
 
+AbstractSection :
+	Chapter | Section | Section2 | Section3 | Section4 ;
+
 Identifiable:
-	Chapter | Section | SubSection | Section3 | Section4 | Anchor;
+	AbstractSection | Anchor;
 
 TextOrMarkup:
 	(contents+=TextPart
@@ -122,7 +125,7 @@ terminal ID:
 	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 
 terminal SL_COMMENT:
-	'%%' !('\n' | '\r')* ('\r'? '\n')?;
+	'%%' !('\n' | '\r')* ('\r'? '\n');
 
 terminal MULTI_NL:
 	'\r'? '\n' (/*(' ' | '\t')**/ '\r'? '\n')+;

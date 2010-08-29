@@ -3,7 +3,17 @@
 */
 package org.eclipse.xtext.xdoc.ui.outline;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemanticModelTransformer;
+import org.eclipse.xtext.xdoc.xdoc.Chapter;
+import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.Section;
+import org.eclipse.xtext.xdoc.xdoc.Section2;
+import org.eclipse.xtext.xdoc.xdoc.Section3;
+import org.eclipse.xtext.xdoc.xdoc.Section4;
 
 /**
  * customization of the default outline structure
@@ -11,4 +21,22 @@ import org.eclipse.xtext.ui.editor.outline.transformer.AbstractDeclarativeSemant
  */
 public class XDocTransformer extends AbstractDeclarativeSemanticModelTransformer {
 	
+	protected List<? extends EObject> getChildren(Document semanticNode) {
+		return semanticNode.getSections();
+	}
+	protected List<? extends EObject> getChildren(Chapter semanticNode) {
+		return semanticNode.getSubSections();
+	}
+	protected List<? extends EObject> getChildren(Section semanticNode) {
+		return semanticNode.getSubSections();
+	}
+	protected List<? extends EObject> getChildren(Section2 semanticNode) {
+		return semanticNode.getSubSections();
+	}
+	protected List<? extends EObject> getChildren(Section3 semanticNode) {
+		return semanticNode.getSubSections();
+	}
+	protected List<? extends EObject> getChildren(Section4 semanticNode) {
+		return Collections.emptyList();
+	}
 }

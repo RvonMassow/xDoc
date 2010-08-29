@@ -53,13 +53,13 @@ public interface XdocFactory extends EFactory
   Section createSection();
 
   /**
-   * Returns a new object of class '<em>Sub Section</em>'.
+   * Returns a new object of class '<em>Section2</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Sub Section</em>'.
+   * @return a new object of class '<em>Section2</em>'.
    * @generated
    */
-  SubSection createSubSection();
+  Section2 createSection2();
 
   /**
    * Returns a new object of class '<em>Section3</em>'.
@@ -78,6 +78,15 @@ public interface XdocFactory extends EFactory
    * @generated
    */
   Section4 createSection4();
+
+  /**
+   * Returns a new object of class '<em>Abstract Section</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abstract Section</em>'.
+   * @generated
+   */
+  AbstractSection createAbstractSection();
 
   /**
    * Returns a new object of class '<em>Identifiable</em>'.

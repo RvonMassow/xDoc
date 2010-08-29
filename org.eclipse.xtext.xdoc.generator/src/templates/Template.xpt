@@ -10,49 +10,47 @@
 \newlength{\itemindentlen}
 
 \begin{document}
-«EXPAND chapter FOREACH this.chapters»
+«EXPAND genContent FOREACH this.sections»
 \end{document}
 «ENDFILE-»
 «ENDDEFINE»
 
-«DEFINE chapter FOR Chapter»
+«DEFINE genContent FOR Chapter»
 \chapter{«EXPAND genContent FOR this.title»}
 «EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
-«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section»
 \section{«EXPAND genContent FOR this.title»}
 «EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
-«ENDFOREACH»
 «ENDDEFINE»
 
-«DEFINE genContent FOR SubSection»
+«DEFINE genContent FOR Section2»
 \subsection{ «EXPAND genContent FOR this.title» }
 «EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
-«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section3»
 \subsubsection{ «EXPAND genContent FOR this.title» }
 «EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»«EXPAND genContent FOR par»
+«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
-«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section4»
 \subsubsection{ «EXPAND genContent FOR this.title» }
 «EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»«EXPAND genContent FOR par»
-
-«ENDFOREACH»
+«EXPAND genContent FOREACH contents SEPARATOR "\n"»
 «ENDDEFINE»
 
 «DEFINE genNonParContent FOR TextOrMarkup»«EXPAND genText FOREACH this.contents»«ENDDEFINE»

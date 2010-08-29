@@ -25,12 +25,12 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Alternatives cAlternatives_3_0 = (Alternatives)cGroup_3.eContents().get(0);
 		private final Group cGroup_3_0_0 = (Group)cAlternatives_3_0.eContents().get(0);
-		private final Assignment cChaptersAssignment_3_0_0_0 = (Assignment)cGroup_3_0_0.eContents().get(0);
-		private final RuleCall cChaptersChapterParserRuleCall_3_0_0_0_0 = (RuleCall)cChaptersAssignment_3_0_0_0.eContents().get(0);
+		private final Assignment cSectionsAssignment_3_0_0_0 = (Assignment)cGroup_3_0_0.eContents().get(0);
+		private final RuleCall cSectionsChapterParserRuleCall_3_0_0_0_0 = (RuleCall)cSectionsAssignment_3_0_0_0.eContents().get(0);
 		private final Group cGroup_3_0_0_1 = (Group)cGroup_3_0_0.eContents().get(1);
 		private final RuleCall cMULTI_NLTerminalRuleCall_3_0_0_1_0 = (RuleCall)cGroup_3_0_0_1.eContents().get(0);
-		private final Assignment cChaptersAssignment_3_0_0_1_1 = (Assignment)cGroup_3_0_0_1.eContents().get(1);
-		private final RuleCall cChaptersChapterParserRuleCall_3_0_0_1_1_0 = (RuleCall)cChaptersAssignment_3_0_0_1_1.eContents().get(0);
+		private final Assignment cSectionsAssignment_3_0_0_1_1 = (Assignment)cGroup_3_0_0_1.eContents().get(1);
+		private final RuleCall cSectionsChapterParserRuleCall_3_0_0_1_1_0 = (RuleCall)cSectionsAssignment_3_0_0_1_1.eContents().get(0);
 		private final Group cGroup_3_0_1 = (Group)cAlternatives_3_0.eContents().get(1);
 		private final Assignment cSectionsAssignment_3_0_1_0 = (Assignment)cGroup_3_0_1.eContents().get(0);
 		private final RuleCall cSectionsSectionParserRuleCall_3_0_1_0_0 = (RuleCall)cSectionsAssignment_3_0_1_0.eContents().get(0);
@@ -39,21 +39,21 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cSectionsAssignment_3_0_1_1_1 = (Assignment)cGroup_3_0_1_1.eContents().get(1);
 		private final RuleCall cSectionsSectionParserRuleCall_3_0_1_1_1_0 = (RuleCall)cSectionsAssignment_3_0_1_1_1.eContents().get(0);
 		private final Group cGroup_3_0_2 = (Group)cAlternatives_3_0.eContents().get(2);
-		private final Assignment cSubsectionsAssignment_3_0_2_0 = (Assignment)cGroup_3_0_2.eContents().get(0);
-		private final RuleCall cSubsectionsSubSectionParserRuleCall_3_0_2_0_0 = (RuleCall)cSubsectionsAssignment_3_0_2_0.eContents().get(0);
+		private final Assignment cSectionsAssignment_3_0_2_0 = (Assignment)cGroup_3_0_2.eContents().get(0);
+		private final RuleCall cSectionsSection2ParserRuleCall_3_0_2_0_0 = (RuleCall)cSectionsAssignment_3_0_2_0.eContents().get(0);
 		private final Group cGroup_3_0_2_1 = (Group)cGroup_3_0_2.eContents().get(1);
 		private final RuleCall cMULTI_NLTerminalRuleCall_3_0_2_1_0 = (RuleCall)cGroup_3_0_2_1.eContents().get(0);
-		private final Assignment cSubsectionsAssignment_3_0_2_1_1 = (Assignment)cGroup_3_0_2_1.eContents().get(1);
-		private final RuleCall cSubsectionsSubSectionParserRuleCall_3_0_2_1_1_0 = (RuleCall)cSubsectionsAssignment_3_0_2_1_1.eContents().get(0);
+		private final Assignment cSectionsAssignment_3_0_2_1_1 = (Assignment)cGroup_3_0_2_1.eContents().get(1);
+		private final RuleCall cSectionsSection2ParserRuleCall_3_0_2_1_1_0 = (RuleCall)cSectionsAssignment_3_0_2_1_1.eContents().get(0);
 		private final RuleCall cMULTI_NLTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
 		
 		//Document:
-		//	{Document} WS? MULTI_NL? ((chapters+=Chapter (MULTI_NL chapters+=Chapter)* | sections+=Section (MULTI_NL
-		//	sections+=Section)* | subsections+=SubSection (MULTI_NL subsections+=SubSection)*) MULTI_NL?)?;
+		//	{Document} WS? MULTI_NL? ((sections+=Chapter (MULTI_NL sections+=Chapter)* | sections+=Section (MULTI_NL
+		//	sections+=Section)* | sections+=Section2 (MULTI_NL sections+=Section2)*) MULTI_NL?)?;
 		public ParserRule getRule() { return rule; }
 
-		//{Document} WS? MULTI_NL? ((chapters+=Chapter (MULTI_NL chapters+=Chapter)* | sections+=Section (MULTI_NL
-		//sections+=Section)* | subsections+=SubSection (MULTI_NL subsections+=SubSection)*) MULTI_NL?)?
+		//{Document} WS? MULTI_NL? ((sections+=Chapter (MULTI_NL sections+=Chapter)* | sections+=Section (MULTI_NL
+		//sections+=Section)* | sections+=Section2 (MULTI_NL sections+=Section2)*) MULTI_NL?)?
 		public Group getGroup() { return cGroup; }
 
 		//{Document}
@@ -65,34 +65,34 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//MULTI_NL?
 		public RuleCall getMULTI_NLTerminalRuleCall_2() { return cMULTI_NLTerminalRuleCall_2; }
 
-		//((chapters+=Chapter (MULTI_NL chapters+=Chapter)* | sections+=Section (MULTI_NL sections+=Section)* |
-		//subsections+=SubSection (MULTI_NL subsections+=SubSection)*) MULTI_NL?)?
+		//((sections+=Chapter (MULTI_NL sections+=Chapter)* | sections+=Section (MULTI_NL sections+=Section)* | sections+=Section2
+		//(MULTI_NL sections+=Section2)*) MULTI_NL?)?
 		public Group getGroup_3() { return cGroup_3; }
 
-		//chapters+=Chapter (MULTI_NL chapters+=Chapter)* | sections+=Section (MULTI_NL sections+=Section)* |
-		//subsections+=SubSection (MULTI_NL subsections+=SubSection)*
+		//sections+=Chapter (MULTI_NL sections+=Chapter)* | sections+=Section (MULTI_NL sections+=Section)* | sections+=Section2
+		//(MULTI_NL sections+=Section2)*
 		public Alternatives getAlternatives_3_0() { return cAlternatives_3_0; }
 
-		//chapters+=Chapter (MULTI_NL chapters+=Chapter)*
+		//sections+=Chapter (MULTI_NL sections+=Chapter)*
 		public Group getGroup_3_0_0() { return cGroup_3_0_0; }
 
-		//chapters+=Chapter
-		public Assignment getChaptersAssignment_3_0_0_0() { return cChaptersAssignment_3_0_0_0; }
+		//sections+=Chapter
+		public Assignment getSectionsAssignment_3_0_0_0() { return cSectionsAssignment_3_0_0_0; }
 
 		//Chapter
-		public RuleCall getChaptersChapterParserRuleCall_3_0_0_0_0() { return cChaptersChapterParserRuleCall_3_0_0_0_0; }
+		public RuleCall getSectionsChapterParserRuleCall_3_0_0_0_0() { return cSectionsChapterParserRuleCall_3_0_0_0_0; }
 
-		//(MULTI_NL chapters+=Chapter)*
+		//(MULTI_NL sections+=Chapter)*
 		public Group getGroup_3_0_0_1() { return cGroup_3_0_0_1; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_3_0_0_1_0() { return cMULTI_NLTerminalRuleCall_3_0_0_1_0; }
 
-		//chapters+=Chapter
-		public Assignment getChaptersAssignment_3_0_0_1_1() { return cChaptersAssignment_3_0_0_1_1; }
+		//sections+=Chapter
+		public Assignment getSectionsAssignment_3_0_0_1_1() { return cSectionsAssignment_3_0_0_1_1; }
 
 		//Chapter
-		public RuleCall getChaptersChapterParserRuleCall_3_0_0_1_1_0() { return cChaptersChapterParserRuleCall_3_0_0_1_1_0; }
+		public RuleCall getSectionsChapterParserRuleCall_3_0_0_1_1_0() { return cSectionsChapterParserRuleCall_3_0_0_1_1_0; }
 
 		//sections+=Section (MULTI_NL sections+=Section)*
 		public Group getGroup_3_0_1() { return cGroup_3_0_1; }
@@ -115,26 +115,26 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//Section
 		public RuleCall getSectionsSectionParserRuleCall_3_0_1_1_1_0() { return cSectionsSectionParserRuleCall_3_0_1_1_1_0; }
 
-		//subsections+=SubSection (MULTI_NL subsections+=SubSection)*
+		//sections+=Section2 (MULTI_NL sections+=Section2)*
 		public Group getGroup_3_0_2() { return cGroup_3_0_2; }
 
-		//subsections+=SubSection
-		public Assignment getSubsectionsAssignment_3_0_2_0() { return cSubsectionsAssignment_3_0_2_0; }
+		//sections+=Section2
+		public Assignment getSectionsAssignment_3_0_2_0() { return cSectionsAssignment_3_0_2_0; }
 
-		//SubSection
-		public RuleCall getSubsectionsSubSectionParserRuleCall_3_0_2_0_0() { return cSubsectionsSubSectionParserRuleCall_3_0_2_0_0; }
+		//Section2
+		public RuleCall getSectionsSection2ParserRuleCall_3_0_2_0_0() { return cSectionsSection2ParserRuleCall_3_0_2_0_0; }
 
-		//(MULTI_NL subsections+=SubSection)*
+		//(MULTI_NL sections+=Section2)*
 		public Group getGroup_3_0_2_1() { return cGroup_3_0_2_1; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_3_0_2_1_0() { return cMULTI_NLTerminalRuleCall_3_0_2_1_0; }
 
-		//subsections+=SubSection
-		public Assignment getSubsectionsAssignment_3_0_2_1_1() { return cSubsectionsAssignment_3_0_2_1_1; }
+		//sections+=Section2
+		public Assignment getSectionsAssignment_3_0_2_1_1() { return cSectionsAssignment_3_0_2_1_1; }
 
-		//SubSection
-		public RuleCall getSubsectionsSubSectionParserRuleCall_3_0_2_1_1_0() { return cSubsectionsSubSectionParserRuleCall_3_0_2_1_1_0; }
+		//Section2
+		public RuleCall getSectionsSection2ParserRuleCall_3_0_2_1_1_0() { return cSectionsSection2ParserRuleCall_3_0_2_1_1_0; }
 
 		//MULTI_NL?
 		public RuleCall getMULTI_NLTerminalRuleCall_3_1() { return cMULTI_NLTerminalRuleCall_3_1; }
@@ -159,16 +159,16 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_1_0 = (RuleCall)cContentsAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final RuleCall cMULTI_NLTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cContentsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cContentsSectionParserRuleCall_4_1_0 = (RuleCall)cContentsAssignment_4_1.eContents().get(0);
+		private final Assignment cSubSectionsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSubSectionsSectionParserRuleCall_4_1_0 = (RuleCall)cSubSectionsAssignment_4_1.eContents().get(0);
 		
 		//Chapter:
 		//	("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//	contents+=Section)*;
+		//	subSections+=Section)*;
 		public ParserRule getRule() { return rule; }
 
 		//("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//contents+=Section)*
+		//subSections+=Section)*
 		public Group getGroup() { return cGroup; }
 
 		//"chapter:" name=ID "[" | "chapter["
@@ -213,17 +213,17 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//TextOrMarkup
 		public RuleCall getContentsTextOrMarkupParserRuleCall_3_1_0() { return cContentsTextOrMarkupParserRuleCall_3_1_0; }
 
-		//(MULTI_NL contents+=Section)*
+		//(MULTI_NL subSections+=Section)*
 		public Group getGroup_4() { return cGroup_4; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_4_0() { return cMULTI_NLTerminalRuleCall_4_0; }
 
-		//contents+=Section
-		public Assignment getContentsAssignment_4_1() { return cContentsAssignment_4_1; }
+		//subSections+=Section
+		public Assignment getSubSectionsAssignment_4_1() { return cSubSectionsAssignment_4_1; }
 
 		//Section
-		public RuleCall getContentsSectionParserRuleCall_4_1_0() { return cContentsSectionParserRuleCall_4_1_0; }
+		public RuleCall getSubSectionsSectionParserRuleCall_4_1_0() { return cSubSectionsSectionParserRuleCall_4_1_0; }
 	}
 
 	public class SectionElements extends AbstractParserRuleElementFinder {
@@ -245,16 +245,16 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_1_0 = (RuleCall)cContentsAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final RuleCall cMULTI_NLTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cContentsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cContentsSubSectionParserRuleCall_4_1_0 = (RuleCall)cContentsAssignment_4_1.eContents().get(0);
+		private final Assignment cSubSectionsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSubSectionsSection2ParserRuleCall_4_1_0 = (RuleCall)cSubSectionsAssignment_4_1.eContents().get(0);
 		
 		//Section:
 		//	("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//	contents+=SubSection)*;
+		//	subSections+=Section2)*;
 		public ParserRule getRule() { return rule; }
 
 		//("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//contents+=SubSection)*
+		//subSections+=Section2)*
 		public Group getGroup() { return cGroup; }
 
 		//"section:" name=ID "[" | "section["
@@ -299,29 +299,29 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//TextOrMarkup
 		public RuleCall getContentsTextOrMarkupParserRuleCall_3_1_0() { return cContentsTextOrMarkupParserRuleCall_3_1_0; }
 
-		//(MULTI_NL contents+=SubSection)*
+		//(MULTI_NL subSections+=Section2)*
 		public Group getGroup_4() { return cGroup_4; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_4_0() { return cMULTI_NLTerminalRuleCall_4_0; }
 
-		//contents+=SubSection
-		public Assignment getContentsAssignment_4_1() { return cContentsAssignment_4_1; }
+		//subSections+=Section2
+		public Assignment getSubSectionsAssignment_4_1() { return cSubSectionsAssignment_4_1; }
 
-		//SubSection
-		public RuleCall getContentsSubSectionParserRuleCall_4_1_0() { return cContentsSubSectionParserRuleCall_4_1_0; }
+		//Section2
+		public RuleCall getSubSectionsSection2ParserRuleCall_4_1_0() { return cSubSectionsSection2ParserRuleCall_4_1_0; }
 	}
 
-	public class SubSectionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SubSection");
+	public class Section2Elements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Section2");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
 		private final Group cGroup_0_0 = (Group)cAlternatives_0.eContents().get(0);
-		private final Keyword cSubsectionKeyword_0_0_0 = (Keyword)cGroup_0_0.eContents().get(0);
+		private final Keyword cSection2Keyword_0_0_0 = (Keyword)cGroup_0_0.eContents().get(0);
 		private final Assignment cNameAssignment_0_0_1 = (Assignment)cGroup_0_0.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_0_0_1_0 = (RuleCall)cNameAssignment_0_0_1.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_0_0_2 = (Keyword)cGroup_0_0.eContents().get(2);
-		private final Keyword cSubsectionKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
+		private final Keyword cSection2Keyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
 		private final Assignment cTitleAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cTitleTextOrMarkupParserRuleCall_1_0 = (RuleCall)cTitleAssignment_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
@@ -331,26 +331,26 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_1_0 = (RuleCall)cContentsAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final RuleCall cMULTI_NLTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cContentsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cContentsSection3ParserRuleCall_4_1_0 = (RuleCall)cContentsAssignment_4_1.eContents().get(0);
+		private final Assignment cSubSectionsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSubSectionsSection3ParserRuleCall_4_1_0 = (RuleCall)cSubSectionsAssignment_4_1.eContents().get(0);
 		
-		//SubSection:
-		//	("subsection:" name=ID "[" | "subsection[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//	contents+=Section3)*;
+		//Section2:
+		//	("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//	subSections+=Section3)*;
 		public ParserRule getRule() { return rule; }
 
-		//("subsection:" name=ID "[" | "subsection[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//contents+=Section3)*
+		//("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//subSections+=Section3)*
 		public Group getGroup() { return cGroup; }
 
-		//"subsection:" name=ID "[" | "subsection["
+		//"section2:" name=ID "[" | "section2["
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
-		//"subsection:" name=ID "["
+		//"section2:" name=ID "["
 		public Group getGroup_0_0() { return cGroup_0_0; }
 
-		//"subsection:"
-		public Keyword getSubsectionKeyword_0_0_0() { return cSubsectionKeyword_0_0_0; }
+		//"section2:"
+		public Keyword getSection2Keyword_0_0_0() { return cSection2Keyword_0_0_0; }
 
 		//name=ID
 		public Assignment getNameAssignment_0_0_1() { return cNameAssignment_0_0_1; }
@@ -361,8 +361,8 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_0_0_2() { return cLeftSquareBracketKeyword_0_0_2; }
 
-		//"subsection["
-		public Keyword getSubsectionKeyword_0_1() { return cSubsectionKeyword_0_1; }
+		//"section2["
+		public Keyword getSection2Keyword_0_1() { return cSection2Keyword_0_1; }
 
 		//title=TextOrMarkup
 		public Assignment getTitleAssignment_1() { return cTitleAssignment_1; }
@@ -385,17 +385,17 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//TextOrMarkup
 		public RuleCall getContentsTextOrMarkupParserRuleCall_3_1_0() { return cContentsTextOrMarkupParserRuleCall_3_1_0; }
 
-		//(MULTI_NL contents+=Section3)*
+		//(MULTI_NL subSections+=Section3)*
 		public Group getGroup_4() { return cGroup_4; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_4_0() { return cMULTI_NLTerminalRuleCall_4_0; }
 
-		//contents+=Section3
-		public Assignment getContentsAssignment_4_1() { return cContentsAssignment_4_1; }
+		//subSections+=Section3
+		public Assignment getSubSectionsAssignment_4_1() { return cSubSectionsAssignment_4_1; }
 
 		//Section3
-		public RuleCall getContentsSection3ParserRuleCall_4_1_0() { return cContentsSection3ParserRuleCall_4_1_0; }
+		public RuleCall getSubSectionsSection3ParserRuleCall_4_1_0() { return cSubSectionsSection3ParserRuleCall_4_1_0; }
 	}
 
 	public class Section3Elements extends AbstractParserRuleElementFinder {
@@ -417,16 +417,16 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_1_0 = (RuleCall)cContentsAssignment_3_1.eContents().get(0);
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final RuleCall cMULTI_NLTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cContentsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cContentsSection4ParserRuleCall_4_1_0 = (RuleCall)cContentsAssignment_4_1.eContents().get(0);
+		private final Assignment cSubSectionsAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cSubSectionsSection4ParserRuleCall_4_1_0 = (RuleCall)cSubSectionsAssignment_4_1.eContents().get(0);
 		
 		//Section3:
 		//	("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//	contents+=Section4)*;
+		//	subSections+=Section4)*;
 		public ParserRule getRule() { return rule; }
 
 		//("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//contents+=Section4)*
+		//subSections+=Section4)*
 		public Group getGroup() { return cGroup; }
 
 		//"section3:" name=ID "[" | "section3["
@@ -471,17 +471,17 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//TextOrMarkup
 		public RuleCall getContentsTextOrMarkupParserRuleCall_3_1_0() { return cContentsTextOrMarkupParserRuleCall_3_1_0; }
 
-		//(MULTI_NL contents+=Section4)*
+		//(MULTI_NL subSections+=Section4)*
 		public Group getGroup_4() { return cGroup_4; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_4_0() { return cMULTI_NLTerminalRuleCall_4_0; }
 
-		//contents+=Section4
-		public Assignment getContentsAssignment_4_1() { return cContentsAssignment_4_1; }
+		//subSections+=Section4
+		public Assignment getSubSectionsAssignment_4_1() { return cSubSectionsAssignment_4_1; }
 
 		//Section4
-		public RuleCall getContentsSection4ParserRuleCall_4_1_0() { return cContentsSection4ParserRuleCall_4_1_0; }
+		public RuleCall getSubSectionsSection4ParserRuleCall_4_1_0() { return cSubSectionsSection4ParserRuleCall_4_1_0; }
 	}
 
 	public class Section4Elements extends AbstractParserRuleElementFinder {
@@ -552,21 +552,20 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getContentsTextOrMarkupParserRuleCall_3_1_0() { return cContentsTextOrMarkupParserRuleCall_3_1_0; }
 	}
 
-	public class IdentifiableElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifiable");
+	public class AbstractSectionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AbstractSection");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cChapterParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cSectionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cSubSectionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cSection2ParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cSection3ParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cSection4ParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cAnchorParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		
-		//Identifiable:
-		//	Chapter | Section | SubSection | Section3 | Section4 | Anchor;
+		//AbstractSection:
+		//	Chapter | Section | Section2 | Section3 | Section4;
 		public ParserRule getRule() { return rule; }
 
-		//Chapter | Section | SubSection | Section3 | Section4 | Anchor
+		//Chapter | Section | Section2 | Section3 | Section4
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Chapter
@@ -575,17 +574,34 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//Section
 		public RuleCall getSectionParserRuleCall_1() { return cSectionParserRuleCall_1; }
 
-		//SubSection
-		public RuleCall getSubSectionParserRuleCall_2() { return cSubSectionParserRuleCall_2; }
+		//Section2
+		public RuleCall getSection2ParserRuleCall_2() { return cSection2ParserRuleCall_2; }
 
 		//Section3
 		public RuleCall getSection3ParserRuleCall_3() { return cSection3ParserRuleCall_3; }
 
 		//Section4
 		public RuleCall getSection4ParserRuleCall_4() { return cSection4ParserRuleCall_4; }
+	}
+
+	public class IdentifiableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Identifiable");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cAbstractSectionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cAnchorParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//Identifiable:
+		//	AbstractSection | Anchor;
+		public ParserRule getRule() { return rule; }
+
+		//AbstractSection | Anchor
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//AbstractSection
+		public RuleCall getAbstractSectionParserRuleCall_0() { return cAbstractSectionParserRuleCall_0; }
 
 		//Anchor
-		public RuleCall getAnchorParserRuleCall_5() { return cAnchorParserRuleCall_5; }
+		public RuleCall getAnchorParserRuleCall_1() { return cAnchorParserRuleCall_1; }
 	}
 
 	public class TextOrMarkupElements extends AbstractParserRuleElementFinder {
@@ -1417,9 +1433,10 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	private DocumentElements pDocument;
 	private ChapterElements pChapter;
 	private SectionElements pSection;
-	private SubSectionElements pSubSection;
+	private Section2Elements pSection2;
 	private Section3Elements pSection3;
 	private Section4Elements pSection4;
+	private AbstractSectionElements pAbstractSection;
 	private IdentifiableElements pIdentifiable;
 	private TextOrMarkupElements pTextOrMarkup;
 	private TextPartElements pTextPart;
@@ -1460,8 +1477,8 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Document:
-	//	{Document} WS? MULTI_NL? ((chapters+=Chapter (MULTI_NL chapters+=Chapter)* | sections+=Section (MULTI_NL
-	//	sections+=Section)* | subsections+=SubSection (MULTI_NL subsections+=SubSection)*) MULTI_NL?)?;
+	//	{Document} WS? MULTI_NL? ((sections+=Chapter (MULTI_NL sections+=Chapter)* | sections+=Section (MULTI_NL
+	//	sections+=Section)* | sections+=Section2 (MULTI_NL sections+=Section2)*) MULTI_NL?)?;
 	public DocumentElements getDocumentAccess() {
 		return (pDocument != null) ? pDocument : (pDocument = new DocumentElements());
 	}
@@ -1472,7 +1489,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Chapter:
 	//	("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-	//	contents+=Section)*;
+	//	subSections+=Section)*;
 	public ChapterElements getChapterAccess() {
 		return (pChapter != null) ? pChapter : (pChapter = new ChapterElements());
 	}
@@ -1483,7 +1500,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Section:
 	//	("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-	//	contents+=SubSection)*;
+	//	subSections+=Section2)*;
 	public SectionElements getSectionAccess() {
 		return (pSection != null) ? pSection : (pSection = new SectionElements());
 	}
@@ -1492,20 +1509,20 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		return getSectionAccess().getRule();
 	}
 
-	//SubSection:
-	//	("subsection:" name=ID "[" | "subsection[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-	//	contents+=Section3)*;
-	public SubSectionElements getSubSectionAccess() {
-		return (pSubSection != null) ? pSubSection : (pSubSection = new SubSectionElements());
+	//Section2:
+	//	("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+	//	subSections+=Section3)*;
+	public Section2Elements getSection2Access() {
+		return (pSection2 != null) ? pSection2 : (pSection2 = new Section2Elements());
 	}
 	
-	public ParserRule getSubSectionRule() {
-		return getSubSectionAccess().getRule();
+	public ParserRule getSection2Rule() {
+		return getSection2Access().getRule();
 	}
 
 	//Section3:
 	//	("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-	//	contents+=Section4)*;
+	//	subSections+=Section4)*;
 	public Section3Elements getSection3Access() {
 		return (pSection3 != null) ? pSection3 : (pSection3 = new Section3Elements());
 	}
@@ -1524,8 +1541,18 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		return getSection4Access().getRule();
 	}
 
+	//AbstractSection:
+	//	Chapter | Section | Section2 | Section3 | Section4;
+	public AbstractSectionElements getAbstractSectionAccess() {
+		return (pAbstractSection != null) ? pAbstractSection : (pAbstractSection = new AbstractSectionElements());
+	}
+	
+	public ParserRule getAbstractSectionRule() {
+		return getAbstractSectionAccess().getRule();
+	}
+
 	//Identifiable:
-	//	Chapter | Section | SubSection | Section3 | Section4 | Anchor;
+	//	AbstractSection | Anchor;
 	public IdentifiableElements getIdentifiableAccess() {
 		return (pIdentifiable != null) ? pIdentifiable : (pIdentifiable = new IdentifiableElements());
 	}
@@ -1724,7 +1751,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal SL_COMMENT:
-	//	"%%" !("\n" | "\r")* ("\r"? "\n")?;
+	//	"%%" !("\n" | "\r")* ("\r"? "\n");
 	public TerminalRule getSL_COMMENTRule() {
 		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
 	} 

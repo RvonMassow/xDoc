@@ -7,22 +7,18 @@ package org.eclipse.xtext.xdoc.xdoc.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Section3;
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.Section4;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -32,34 +28,23 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.Section3Impl#getTitle <em>Title</em>}</li>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.Section3Impl#getContents <em>Contents</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.Section3Impl#getSubSections <em>Sub Sections</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class Section3Impl extends IdentifiableImpl implements Section3
+public class Section3Impl extends AbstractSectionImpl implements Section3
 {
   /**
-   * The cached value of the '{@link #getTitle() <em>Title</em>}' containment reference.
+   * The cached value of the '{@link #getSubSections() <em>Sub Sections</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTitle()
+   * @see #getSubSections()
    * @generated
    * @ordered
    */
-  protected TextOrMarkup title;
-
-  /**
-   * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getContents()
-   * @generated
-   * @ordered
-   */
-  protected EList<EObject> contents;
+  protected EList<Section4> subSections;
 
   /**
    * <!-- begin-user-doc -->
@@ -87,61 +72,13 @@ public class Section3Impl extends IdentifiableImpl implements Section3
    * <!-- end-user-doc -->
    * @generated
    */
-  public TextOrMarkup getTitle()
+  public EList<Section4> getSubSections()
   {
-    return title;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetTitle(TextOrMarkup newTitle, NotificationChain msgs)
-  {
-    TextOrMarkup oldTitle = title;
-    title = newTitle;
-    if (eNotificationRequired())
+    if (subSections == null)
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XdocPackage.SECTION3__TITLE, oldTitle, newTitle);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
+      subSections = new EObjectContainmentEList<Section4>(Section4.class, this, XdocPackage.SECTION3__SUB_SECTIONS);
     }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTitle(TextOrMarkup newTitle)
-  {
-    if (newTitle != title)
-    {
-      NotificationChain msgs = null;
-      if (title != null)
-        msgs = ((InternalEObject)title).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XdocPackage.SECTION3__TITLE, null, msgs);
-      if (newTitle != null)
-        msgs = ((InternalEObject)newTitle).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XdocPackage.SECTION3__TITLE, null, msgs);
-      msgs = basicSetTitle(newTitle, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.SECTION3__TITLE, newTitle, newTitle));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<EObject> getContents()
-  {
-    if (contents == null)
-    {
-      contents = new EObjectContainmentEList<EObject>(EObject.class, this, XdocPackage.SECTION3__CONTENTS);
-    }
-    return contents;
+    return subSections;
   }
 
   /**
@@ -154,10 +91,8 @@ public class Section3Impl extends IdentifiableImpl implements Section3
   {
     switch (featureID)
     {
-      case XdocPackage.SECTION3__TITLE:
-        return basicSetTitle(null, msgs);
-      case XdocPackage.SECTION3__CONTENTS:
-        return ((InternalEList<?>)getContents()).basicRemove(otherEnd, msgs);
+      case XdocPackage.SECTION3__SUB_SECTIONS:
+        return ((InternalEList<?>)getSubSections()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -172,10 +107,8 @@ public class Section3Impl extends IdentifiableImpl implements Section3
   {
     switch (featureID)
     {
-      case XdocPackage.SECTION3__TITLE:
-        return getTitle();
-      case XdocPackage.SECTION3__CONTENTS:
-        return getContents();
+      case XdocPackage.SECTION3__SUB_SECTIONS:
+        return getSubSections();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -191,12 +124,9 @@ public class Section3Impl extends IdentifiableImpl implements Section3
   {
     switch (featureID)
     {
-      case XdocPackage.SECTION3__TITLE:
-        setTitle((TextOrMarkup)newValue);
-        return;
-      case XdocPackage.SECTION3__CONTENTS:
-        getContents().clear();
-        getContents().addAll((Collection<? extends EObject>)newValue);
+      case XdocPackage.SECTION3__SUB_SECTIONS:
+        getSubSections().clear();
+        getSubSections().addAll((Collection<? extends Section4>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -212,11 +142,8 @@ public class Section3Impl extends IdentifiableImpl implements Section3
   {
     switch (featureID)
     {
-      case XdocPackage.SECTION3__TITLE:
-        setTitle((TextOrMarkup)null);
-        return;
-      case XdocPackage.SECTION3__CONTENTS:
-        getContents().clear();
+      case XdocPackage.SECTION3__SUB_SECTIONS:
+        getSubSections().clear();
         return;
     }
     super.eUnset(featureID);
@@ -232,10 +159,8 @@ public class Section3Impl extends IdentifiableImpl implements Section3
   {
     switch (featureID)
     {
-      case XdocPackage.SECTION3__TITLE:
-        return title != null;
-      case XdocPackage.SECTION3__CONTENTS:
-        return contents != null && !contents.isEmpty();
+      case XdocPackage.SECTION3__SUB_SECTIONS:
+        return subSections != null && !subSections.isEmpty();
     }
     return super.eIsSet(featureID);
   }

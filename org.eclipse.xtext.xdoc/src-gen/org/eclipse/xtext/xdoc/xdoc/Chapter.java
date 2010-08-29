@@ -7,8 +7,6 @@ package org.eclipse.xtext.xdoc.xdoc;
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.emf.ecore.EObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Chapter</b></em>'.
@@ -17,8 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Chapter#getTitle <em>Title</em>}</li>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Chapter#getContents <em>Contents</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Chapter#getSubSections <em>Sub Sections</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,48 +23,22 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Chapter extends Identifiable
+public interface Chapter extends AbstractSection
 {
   /**
-   * Returns the value of the '<em><b>Title</b></em>' containment reference.
+   * Returns the value of the '<em><b>Sub Sections</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.Section}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Title</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Sub Sections</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Title</em>' containment reference.
-   * @see #setTitle(TextOrMarkup)
-   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getChapter_Title()
+   * @return the value of the '<em>Sub Sections</em>' containment reference list.
+   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getChapter_SubSections()
    * @model containment="true"
    * @generated
    */
-  TextOrMarkup getTitle();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.Chapter#getTitle <em>Title</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Title</em>' containment reference.
-   * @see #getTitle()
-   * @generated
-   */
-  void setTitle(TextOrMarkup value);
-
-  /**
-   * Returns the value of the '<em><b>Contents</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Contents</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Contents</em>' containment reference list.
-   * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getChapter_Contents()
-   * @model containment="true"
-   * @generated
-   */
-  EList<EObject> getContents();
+  EList<Section> getSubSections();
 
 } // Chapter

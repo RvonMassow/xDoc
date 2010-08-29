@@ -1,0 +1,47 @@
+-- validierung
+
+- links existieren (ausschaltbar)
+
+- SpellChecker aktivieren
+
+- Semantic Coloring
+
+Je markup ein coloring type
+keyword_im_schreibmodus
+keyword_im_markup modeus
+(keywords heller und dunkler je nach context)
+
+- formatting
+
+indentation und umbrüche für sections und listen
+automatischer umbruch am wort ende nach n zeichen.
+
+- Hover
+
+Über images das Image hovern
+über links die webseite in klein?
+über cross referenzen auf chapter die Überschrift
+
+- Navigation
+crosslink auf images -> "image editor" öffnen
+
+- codecompletion
+templates für markup. z.b.
+
+"""
+section:[$1][$2]
+
+$3
+"""
+
+-- outline
+
+nur sections
+
+-- rename refactoring 
+auf den einfachen identifiern sollte das super simple sein.
+beim JDT partizipieren.
+
+-- bracket matching reparieren
+
+-- incremental generation von generatoren im projekt (kurze turnarounds beim anpassen der templates)

@@ -17,24 +17,24 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.xtext.xdoc.xdoc.Chapter;
-import org.eclipse.xtext.xdoc.xdoc.Section;
+import org.eclipse.xtext.xdoc.xdoc.Section2;
+import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Chapter</b></em>'.
+ * An implementation of the model object '<em><b>Section2</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl#getSubSections <em>Sub Sections</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.Section2Impl#getSubSections <em>Sub Sections</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ChapterImpl extends AbstractSectionImpl implements Chapter
+public class Section2Impl extends AbstractSectionImpl implements Section2
 {
   /**
    * The cached value of the '{@link #getSubSections() <em>Sub Sections</em>}' containment reference list.
@@ -44,14 +44,14 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
    * @generated
    * @ordered
    */
-  protected EList<Section> subSections;
+  protected EList<Section3> subSections;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ChapterImpl()
+  protected Section2Impl()
   {
     super();
   }
@@ -64,7 +64,7 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
   @Override
   protected EClass eStaticClass()
   {
-    return XdocPackage.Literals.CHAPTER;
+    return XdocPackage.Literals.SECTION2;
   }
 
   /**
@@ -72,11 +72,11 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Section> getSubSections()
+  public EList<Section3> getSubSections()
   {
     if (subSections == null)
     {
-      subSections = new EObjectContainmentEList<Section>(Section.class, this, XdocPackage.CHAPTER__SUB_SECTIONS);
+      subSections = new EObjectContainmentEList<Section3>(Section3.class, this, XdocPackage.SECTION2__SUB_SECTIONS);
     }
     return subSections;
   }
@@ -91,7 +91,7 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
   {
     switch (featureID)
     {
-      case XdocPackage.CHAPTER__SUB_SECTIONS:
+      case XdocPackage.SECTION2__SUB_SECTIONS:
         return ((InternalEList<?>)getSubSections()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -107,7 +107,7 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
   {
     switch (featureID)
     {
-      case XdocPackage.CHAPTER__SUB_SECTIONS:
+      case XdocPackage.SECTION2__SUB_SECTIONS:
         return getSubSections();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -124,9 +124,9 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
   {
     switch (featureID)
     {
-      case XdocPackage.CHAPTER__SUB_SECTIONS:
+      case XdocPackage.SECTION2__SUB_SECTIONS:
         getSubSections().clear();
-        getSubSections().addAll((Collection<? extends Section>)newValue);
+        getSubSections().addAll((Collection<? extends Section3>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,7 +142,7 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
   {
     switch (featureID)
     {
-      case XdocPackage.CHAPTER__SUB_SECTIONS:
+      case XdocPackage.SECTION2__SUB_SECTIONS:
         getSubSections().clear();
         return;
     }
@@ -159,10 +159,10 @@ public class ChapterImpl extends AbstractSectionImpl implements Chapter
   {
     switch (featureID)
     {
-      case XdocPackage.CHAPTER__SUB_SECTIONS:
+      case XdocPackage.SECTION2__SUB_SECTIONS:
         return subSections != null && !subSections.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ChapterImpl
+} //Section2Impl

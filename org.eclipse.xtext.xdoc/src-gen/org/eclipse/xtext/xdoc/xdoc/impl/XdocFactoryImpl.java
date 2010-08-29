@@ -70,9 +70,10 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
       case XdocPackage.DOCUMENT: return createDocument();
       case XdocPackage.CHAPTER: return createChapter();
       case XdocPackage.SECTION: return createSection();
-      case XdocPackage.SUB_SECTION: return createSubSection();
+      case XdocPackage.SECTION2: return createSection2();
       case XdocPackage.SECTION3: return createSection3();
       case XdocPackage.SECTION4: return createSection4();
+      case XdocPackage.ABSTRACT_SECTION: return createAbstractSection();
       case XdocPackage.IDENTIFIABLE: return createIdentifiable();
       case XdocPackage.TEXT_OR_MARKUP: return createTextOrMarkup();
       case XdocPackage.TEXT_PART: return createTextPart();
@@ -132,10 +133,10 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public SubSection createSubSection()
+  public Section2 createSection2()
   {
-    SubSectionImpl subSection = new SubSectionImpl();
-    return subSection;
+    Section2Impl section2 = new Section2Impl();
+    return section2;
   }
 
   /**
@@ -158,6 +159,17 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
   {
     Section4Impl section4 = new Section4Impl();
     return section4;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AbstractSection createAbstractSection()
+  {
+    AbstractSectionImpl abstractSection = new AbstractSectionImpl();
+    return abstractSection;
   }
 
   /**
