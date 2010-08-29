@@ -30,6 +30,13 @@ public class LexerTest extends AbstractXtextTests {
 		checkTokens(Tuples.create("RULE_MULTI_NL","\n\n"),
 				Tuples.create("RULE_WS"," "));
 	}
+	
+//TODO solve know issue	
+//	@SuppressWarnings("unchecked")
+//	public void testMULTI_NL_withWhitespace() throws Exception {
+//		checkTokens(Tuples.create("RULE_MULTI_NL","\n \n"),
+//				Tuples.create("RULE_WS"," "));
+//	}
 
 	protected void checkTokens(Pair<String, String>... tokens) {
 		StringBuilder builder = new StringBuilder();
