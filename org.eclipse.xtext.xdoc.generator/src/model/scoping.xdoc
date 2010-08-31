@@ -368,7 +368,7 @@ To illustrate that, let's have a look at Java: Java defines multiple kinds of sc
 (object scope, type scope, etc.). For Java one would create the scope hierarchy as commented in the 
 following example:
 
-code[// file contents scope
+code[Java][// file contents scope
 import static my.Constants.STATIC;
 
 public class ScopeExample { // class body scope

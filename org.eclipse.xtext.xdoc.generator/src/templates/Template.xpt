@@ -3,8 +3,13 @@
 
 «DEFINE main FOR Document -»
 «FILE "out.tex"-»
-\documentclass[a4paper]{scrreprt}
+\documentclass[a4paper,10pt]{scrreprt}
 \usepackage{listings}
+\lstset{breaklines=true, tabsize=4}
+
+\usepackage[english]{babel}
+
+% import this as last package
 \usepackage{hyperref}
 
 \newlength{\itemindentlen}
@@ -102,7 +107,7 @@
 «DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«ENDDEFINE»
 
 «DEFINE genText FOR CodeBlock»
-\begin{lstlisting}[language=«language»]
+\begin{lstlisting}«IF language!=null» [language=«language»]«ENDIF»
 «EXPAND genCode FOREACH contents»
 \end{lstlisting}
 «ENDDEFINE»

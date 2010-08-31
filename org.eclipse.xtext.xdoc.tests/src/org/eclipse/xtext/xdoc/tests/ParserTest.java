@@ -74,6 +74,7 @@ public class ParserTest extends AbstractXtextTests {
 		Document doc = getDoc(head + anchor + fill + ref);
 		TextOrMarkup textOrMarkup = (TextOrMarkup) doc.getSections().get(0)
 				.getContents().get(0);
+		assertEquals(4, textOrMarkup.getContents().size());
 		Anchor a = (Anchor) textOrMarkup.getContents().get(1);
 		Ref r = (Ref) textOrMarkup.getContents().get(3);
 		assertEquals(a, r.getRef());
