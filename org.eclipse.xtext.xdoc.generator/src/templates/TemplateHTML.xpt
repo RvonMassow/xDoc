@@ -1,0 +1,120 @@
+«IMPORT org::eclipse::xtext::xdoc::xdoc»
+«EXTENSION templates::Extensions»
+
+«DEFINE main FOR Document -»
+«FILE "out.html"-»
+<head>
+</head>
+<body>
+«EXPAND genContent FOREACH this.sections»
+</body>
+«ENDFILE-»
+«ENDDEFINE»
+
+«DEFINE genContent FOR Chapter»
+<h1>«EXPAND genContent FOR this.title»</h1>
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+</p>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genContent FOR Section»
+<h2>«EXPAND genContent FOR this.title»</h2>
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+</p>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genContent FOR Section2»
+<h3> «EXPAND genContent FOR this.title» </h3>
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+</p>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genContent FOR Section3»
+<h4>«EXPAND genContent FOR this.title» </h4>
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+</p>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genContent FOR Section4»
+<h5>«EXPAND genContent FOR this.title»</h5>
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+</p>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genNonParContent FOR TextOrMarkup»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genContent FOR TextOrMarkup»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
+
+
+«DEFINE genContent FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText FOR TextPart»«escapeLatexChars(this.text)»«ENDDEFINE»
+
+«DEFINE genText FOR OrderedList»
+<ol>
+«EXPAND genText FOREACH items»
+</ol>
+«ENDDEFINE»
+
+«DEFINE genText FOR UnorderedList»
+<ul>
+«EXPAND genText FOREACH items»
+</ul>
+«ENDDEFINE»
+
+«DEFINE genText FOR Item»
+<li>
+«EXPAND genContent FOREACH this.contents»
+</li>
+«ENDDEFINE»
+
+«DEFINE genText FOR Emphasize»<em>«EXPAND genContent FOREACH this.contents»</em>«ENDDEFINE»
+
+«DEFINE genText FOR Ref»
+«IF this.contents.isEmpty»<a href="#«this.ref.name»">«this.ref»</a>«ELSE»<a href="#«this.ref.name»">«EXPAND genContent FOREACH this.contents»</a>«ENDIF»«ENDDEFINE»
+
+«DEFINE genText FOR Anchor»
+<a name="«this.name»"></a>
+«ENDDEFINE»
+
+«DEFINE genText FOR Link»<a href="«this.url»">«this.text»</a>«ENDDEFINE»
+
+«REM»TODO: better code implementation«ENDREM»
+«DEFINE genText FOR CodeBlock»
+<pre>
+«EXPAND genCode FOREACH contents»
+</pre>
+«ENDDEFINE»
+
+«REM»TODO: generate urls for code refs«ENDREM»
+«DEFINE genText FOR CodeRef»
+<em>«escapeLatexChars(this.element.canonicalName)»</em>
+«ENDDEFINE»
+
+«DEFINE genCode FOR Object»
+«ENDDEFINE»
+
+«DEFINE genCode FOR Code»«unescapeXdocChars(this.contents)»«ENDDEFINE»
+
+«DEFINE genText FOR MarkupInCode»«ENDDEFINE»
+
+«REM»TODO: find solution for escaping to html, refers to better code concept«ENDREM»
+«DEFINE genCode FOR MarkupInCode»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDDEFINE»
+
+«DEFINE genLabel FOR String»«IF this != null »<a name="«this»"></a>«ENDIF»
+«ENDDEFINE»
+
