@@ -5,7 +5,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.xdoc.XDocStandaloneSetup;
@@ -16,10 +18,12 @@ import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
+import org.eclipse.xtext.xdoc.xdoc.Item;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
+import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 
 public class ParserTest extends AbstractXtextTests {
 
@@ -38,9 +42,9 @@ public class ParserTest extends AbstractXtextTests {
 		String firstPart = "Hier kommt dann mal text ";
 		String emphasized = "manchmal fett";
 		String secondPart = " und manchmal nicht.\nNewlines und so gibt es auch.";
-		String text = "chapter[" + title + "]\r\n\r\n" + firstPart
-				+ "emph[" + emphasized + "]" + secondPart + "\n\n";
-		System.out.println(text);
+		String text = "chapter[" + title + "]\r\n\r\n" + firstPart + "emph["
+				+ emphasized + "]" + secondPart + "\n\n";
+		//System.out.println(text);
 		Document model = (Document) getModel(text);
 		Chapter chapter = (Chapter) model.getSections().get(0);
 		assertEquals(title,
@@ -66,19 +70,21 @@ public class ParserTest extends AbstractXtextTests {
 		String anchor = " a[refName]";
 		String fill = " Jump ";
 		String refText = " to ";
-		String ref = " ref:refName["+refText+"]";
+		String ref = " ref:refName[" + refText + "]";
 		Document doc = getDoc(head + anchor + fill + ref);
 		TextOrMarkup textOrMarkup = (TextOrMarkup) doc.getSections().get(0)
 				.getContents().get(0);
 		Anchor a = (Anchor) textOrMarkup.getContents().get(1);
 		Ref r = (Ref) textOrMarkup.getContents().get(3);
 		assertEquals(a, r.getRef());
-		assertEquals(refText, ((TextPart)((TextOrMarkup)r.getContents().get(0)).getContents().get(0)).getText());
+		assertEquals(refText, ((TextPart) ((TextOrMarkup) r.getContents()
+				.get(0)).getContents().get(0)).getText());
 	}
-//FIXME
-//	public void testCodeRef() throws Exception {
-//		getDocFromFile(TEST_FILE_DIR + "codeRef.xdoc");
-//	}
+
+	// FIXME
+	// public void testCodeRef() throws Exception {
+	// getDocFromFile(TEST_FILE_DIR + "codeRef.xdoc");
+	// }
 
 	public void testCode() throws Exception {
 		Document doc = getDocFromFile(TEST_FILE_DIR + "codeTest.xdoc");
@@ -127,7 +133,25 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testNestedList() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "nestedListTest.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR + "nestedListTest.xdoc");
+		UnorderedList outer = (UnorderedList) ((TextOrMarkup) doc.getSections()
+				.get(0).getContents().get(0)).getContents().get(0);
+		List<Item> items = outer.getItems();
+		assertEquals(1, items.size());
+		List<TextOrMarkup> itemContents = items.get(0).getContents();
+		assertEquals(1, itemContents.size());
+		List<EObject> contents = itemContents.get(0).getContents();
+		// we have text parts for indentations
+		assertEquals(3, contents.size());
+		assertTrue(((TextPart)contents.get(0)).getText().matches("\\s+"));
+		assertTrue(((TextPart)contents.get(2)).getText().matches("\\s+"));
+		UnorderedList inner = (UnorderedList) contents.get(1);
+		items = inner.getItems();
+		assertEquals(1, items.size());
+		itemContents = items.get(0).getContents();
+		assertEquals(1, itemContents.size());
+		assertEquals(1, itemContents.get(0).getContents().size());
+		assertEquals("some item", ((TextPart)itemContents.get(0).getContents().get(0)).getText());
 	}
 
 	public void testSimpleRef() throws Exception {

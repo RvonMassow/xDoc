@@ -1,32 +1,691 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live/MacPorts 2009_6) (format=pdflatex 2010.8.26)  29 AUG 2010 22:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.8.19)  31 AUG 2010 11:52
 entering extended mode
+ restricted \write18 enabled.
  %&-line parsing enabled.
 **src-gen/out.tex
 (./src-gen/out.tex
 LaTeX2e <2009/09/24>
 Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
 yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/koma-script/scrreprt.cls
+Document Class: scrreprt 2009/07/24 v3.04a KOMA-Script document class (report)
+(/usr/share/texmf-texlive/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2009/07/24 v3.04a KOMA-Script package (KOMA-Script-dependent 
+basics and keyval usage)
 
-! LaTeX Error: File `scrreprt.cls' not found.
+(/usr/share/texmf-texlive/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2009/07/24 v3.04a KOMA-Script package (KOMA-Script-independent
+ basics and keyval usage)
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: cls)
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2009/03/25 v3.03 KOMA-Script package (loading files)
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.2 \usepackage
-               {listings}^^M
-End of file on the terminal!
+Package scrlfile, 2009/03/25 v3.03 KOMA-Script package (loading files)
+                  Copyright (C) Markus Kohm
 
- 
+))) (/usr/share/texmf-texlive/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2009/06/08 v3.03b KOMA-Script package (handling toc-files)
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 117.
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 118.
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 119.
+Class scrreprt Info: File `scrsize11pt.clo' used instead of
+(scrreprt)           file `scrsize11.clo' to setup font sizes on input line 127
+1.
+
+(/usr/share/texmf-texlive/tex/latex/koma-script/scrsize11pt.clo
+File: scrsize11pt.clo 2009/07/24 v3.04a KOMA-Script font size class option (11p
+t)
+)
+(/usr/share/texmf-texlive/tex/latex/koma-script/typearea.sty
+Package: typearea 2009/07/24 v3.04a KOMA-Script package (type area)
+
+Package typearea, 2009/07/24 v3.04a KOMA-Script package (type area)
+                  Copyright (C) Frank Neukam, 1992-1994
+                  Copyright (C) Markus Kohm, 1994-
+
+\ta@bcor=\skip41
+\ta@div=\count79
+Package typearea Info: You've used standard option `a4paper'.
+(typearea)             This is correct!
+(typearea)             Internaly I'm using `paper=a4'.
+(typearea)             If you'd like to set the option with \KOMAoptions,
+(typearea)             you'd have to use `paper=a4' there
+(typearea)             instead of `a4paper', too.
+\ta@hblk=\skip42
+\ta@vblk=\skip43
+\ta@temp=\skip44
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 10
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 418.25555pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 17.3562pt
+(typearea)              \oddsidemargin  = 17.3562pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 595.80026pt
+(typearea)              \topmargin      = -25.16531pt
+(typearea)              \headheight     = 17.0pt
+(typearea)              \headsep        = 20.40001pt
+(typearea)              \topskip        = 11.0pt
+(typearea)              \footskip       = 47.60002pt
+(typearea)              \baselineskip   = 13.6pt
+(typearea)              on input line 1115.
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\abovecaptionskip=\skip45
+\belowcaptionskip=\skip46
+\c@pti@nb@sid@b@x=\box26
+\c@figure=\count87
+\c@table=\count88
+\bibindent=\dimen102
+) (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+\lst@mode=\count89
+\lst@gtempboxa=\box27
+\lst@token=\toks15
+\lst@length=\count90
+\lst@currlwidth=\dimen103
+\lst@column=\count91
+\lst@pos=\count92
+\lst@lostspace=\dimen104
+\lst@width=\dimen105
+\lst@newlines=\count93
+\lst@lineno=\count94
+\lst@maxwidth=\dimen106
+
+(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count95
+\lst@skipnumbers=\count96
+\lst@framebox=\box28
+)
+(/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2009/10/09 v6.79a Hypertext links for LaTeX
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2009/04/10 v2.0 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in pdf mode detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2008/11/04 v1.4 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2009/01/23 v0.5 Provides ifxetex conditional
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/hycolor.sty
+Package: hycolor 2009/10/02 v1.5 Code for color options of hyperref/bookmark (H
+O)
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/xcolor-patch.sty
+Package: xcolor-patch 2009/10/02 xcolor patch
+))
+\@linkdim=\dimen107
+\Hy@linkcounter=\count97
+\Hy@pagecounter=\count98
+
+(/usr/share/texmf-texlive/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2009/10/09 v6.79a Hyperref: PDFDocEncoding definition (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/etexcmds.sty
+Package: etexcmds 2007/12/12 v1.2 Prefix for e-TeX command names (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2007/09/09 v1.2 Providing info/warning/message (HO)
+)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+)
+(/usr/share/texmf-texlive/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+(/usr/share/texmf-texlive/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2009/08/13 v3.4 Keyval support for LaTeX options (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/kvsetkeys.sty
+Package: kvsetkeys 2009/07/30 v1.5 Key value parser with default handler suppor
+t (HO)
+))
+Package hyperref Info: Hyper figures OFF on input line 2975.
+Package hyperref Info: Link nesting OFF on input line 2980.
+Package hyperref Info: Hyper index ON on input line 2983.
+Package hyperref Info: Plain pages OFF on input line 2990.
+Package hyperref Info: Backreferencing OFF on input line 2995.
+
+Implicit mode ON; LaTeX internals redefined
+Package hyperref Info: Bookmarks ON on input line 3191.
+(/usr/share/texmf-texlive/tex/latex/ltxmisc/url.sty
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 3428.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bitset.sty
+Package: bitset 2007/09/28 v1.0 Data type bit set (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/intcalc.sty
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/bigintcalc.sty
+Package: bigintcalc 2007/11/11 v1.1 Expandable big integer calculations (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2009/09/23 v0.6 LuaTeX support for pdfTeX utility functions
+ (HO)
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ifluatex.sty
+Package: ifluatex 2009/04/17 v1.2 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+)
+(/usr/share/texmf-texlive/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2009/08/05 v1.0 Some LaTeX kernel commands for general use (HO
+)
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+)))
+\Fld@menulength=\count99
+\Field@Width=\dimen108
+\Fld@charsize=\dimen109
+\Field@toks=\toks16
+Package hyperref Info: Hyper figures OFF on input line 4377.
+Package hyperref Info: Link nesting OFF on input line 4382.
+Package hyperref Info: Hyper index ON on input line 4385.
+Package hyperref Info: backreferencing OFF on input line 4392.
+Package hyperref Info: Link coloring OFF on input line 4397.
+Package hyperref Info: Link coloring with OCG OFF on input line 4402.
+Package hyperref Info: PDF/A mode OFF on input line 4407.
+
+(/usr/share/texmf-texlive/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2008/07/31 v1.9 At begin shipout hook (HO)
+)
+\Hy@abspage=\count100
+\c@Item=\count101
+\c@Hfootnote=\count102
+)
+*hyperref using default driver hpdftex*
+(/usr/share/texmf-texlive/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
+\Fld@listcount=\count103
+)
+\itemindentlen=\skip47
+
+No file out.aux.
+\openout1 = `out.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+\c@lstlisting=\count104
+Package hyperref Info: Link coloring OFF on input line 7.
+(/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
+Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
+
+(/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
+Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
+)
+\c@section@level=\count105
+)
+LaTeX Info: Redefining \ref on input line 7.
+LaTeX Info: Redefining \pageref on input line 7.
+ (src-gen/out.out)
+(src-gen/out.out)
+\@outlinefile=\write3
+\openout3 = `out.out'.
+
+\AtBeginShipoutBox=\box29
+
+Chapter 1.
+
+Class scrreprt Warning: \float@addtolists detected!
+(scrreprt)              You should use the features of package `tocbasic'
+(scrreprt)              instead of \float@addtolists.
+(scrreprt)              Support for \float@addtolists may be removed from
+(scrreprt)              `scrreprt' soon .
+
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 24.
+(/usr/share/texmf-texlive/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 24.
+
+Overfull \hbox (49.21417pt too wide) in paragraph at lines 38--43
+\OT1/cmr/m/n/10.95 events. That is the duty of scopes. An \OT1/cmr/m/it/10.95 o
+rg.eclipse.xtext/src/org.eclipse.xtext.scoping.IScopeProvider
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 45.
+(/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 45.
+
+Overfull \hbox (94.20978pt too wide) in paragraph at lines 52--53
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (74.49957pt too wide) in paragraph at lines 53--54
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (100.77985pt too wide) in paragraph at lines 54--55
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (94.20978pt too wide) in paragraph at lines 55--56
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[1
+
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (151.38567pt too wide) in paragraph at lines 65--69
+\OT1/cmr/m/n/10.95 where the keys are strings and the val-ues are so called \OT
+1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.resource.IEObjectDescr
+iption\OT1/cmr/m/n/10.95 ,
+ []
+
+
+LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 70.
+
+
+Overfull \hbox (51.1261pt too wide) in paragraph at lines 90--103
+\OT1/cmr/m/n/10.95 port them as part of a so called \OT1/cmr/m/it/10.95 org.ecl
+ipse.xtext/src/org.eclipse.xtext.resource.IResourceDescription\OT1/cmr/m/n/10.9
+5 .
+ []
+
+
+Overfull \hbox (130.059pt too wide) in paragraph at lines 90--103
+\OT1/cmr/m/it/10.95 URI\OT1/cmr/m/n/10.95 ), a list of ex-ported \OT1/cmr/m/it/
+10.95 EOb-jects \OT1/cmr/m/n/10.95 (in the form of \OT1/cmr/m/it/10.95 org.ecli
+pse.xtext/src/org.eclipse.xtext.resource.IEObjectDescription\OT1/cmr/m/n/10.95 
+)
+ []
+
+
+Overfull \hbox (11.27455pt too wide) in paragraph at lines 104--119
+[]\OT1/cmr/m/n/10.95 A lan-guage is con-fig-ured with a de-fault im-ple-men-ta-
+tion of \OT1/cmr/m/it/10.95 IRe-sourceDescrip-tion.Manager
+ []
+
+
+Overfull \hbox (199.59186pt too wide) in paragraph at lines 104--119
+\OT1/cmr/m/n/10.95 model and ap-ply-ing the \OT1/cmr/m/it/10.95 getQual-i-fied-
+Name(EObject obj) \OT1/cmr/m/n/10.95 from \OT1/cmr/m/it/10.95 org.eclipse.xtext
+/src/org.eclipse.xtext.naming.IQualifiedNameProvider
+ []
+
+
+Overfull \hbox (115.15863pt too wide) in paragraph at lines 104--119
+\OT1/cmr/m/n/10.95 the plain value, while the \OT1/cmr/m/it/10.95 org.eclipse.x
+text/src/org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvider
+ []
+
+[2] (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
+)
+Overfull \hbox (48.2193pt too wide) in paragraph at lines 121--122
+[][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (81.06964pt too wide) in paragraph at lines 122--123
+[][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (87.63971pt too wide) in paragraph at lines 123--124
+[][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (67.9295pt too wide) in paragraph at lines 141--143
+[][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (61.35944pt too wide) in paragraph at lines 145--146
+[][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (74.49957pt too wide) in paragraph at lines 154--155
+[][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (126.19205pt too wide) in paragraph at lines 159--165
+\OT1/cmr/m/n/10.95 That is the re-spon-si-bil-ity of global scop-ing (i.e. \OT1
+/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.scoping.IGlobalScopePro
+vider\OT1/cmr/m/n/10.95 )
+ []
+
+[3]
+
+LaTeX Warning: Hyper reference `dependencyInjection' on page 4 undefined on inp
+ut line 200.
+
+
+LaTeX Warning: Hyper reference `resourcedescriptions' on page 4 undefined on in
+put line 206.
+
+
+Overfull \hbox (238.58072pt too wide) in paragraph at lines 196--214
+\OT1/cmr/m/n/10.95 ad-di-tion you'll have to make sure that you have bound the 
+\OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.Import
+UriGlobalScopeProvider
+ []
+
+
+Overfull \hbox (27.08371pt too wide) in paragraph at lines 196--214
+\OT1/cmr/m/it/10.95 org.eclipse.xtext.generator/src/org.eclipse.xtext.generator
+.scoping.ImportURIScopingFragment
+ []
+
+
+Overfull \hbox (192.51967pt too wide) in paragraph at lines 196--214
+\OT1/cmr/m/n/10.95 in the work-flow of your lan-guage. It will bind an \OT1/cmr
+/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportUriGloba
+lScopeProvider
+ []
+
+
+Overfull \hbox (55.0516pt too wide) in paragraph at lines 196--214
+\OT1/cmr/m/n/10.95 (\OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext
+.resource.ignorecase.IgnoreCaseImportUriGlobalScopeProvider
+ []
+
+
+Overfull \hbox (43.43532pt too wide) in paragraph at lines 221--239
+\OT1/cmr/m/n/10.95 ing. To en-able it, a \OT1/cmr/m/it/10.95 org.eclipse.xtext/
+src/org.eclipse.xtext.scoping.impl.DefaultGlobalScopeProvider
+ []
+
+
+Overfull \hbox (40.2266pt too wide) in paragraph at lines 221--239
+\OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.resource.ignorecase
+.IgnoreCaseDefaultGlobalScopeProvider\OT1/cmr/m/n/10.95 .
+ []
+
+[4]
+
+LaTeX Warning: Hyper reference `resourcedescriptions' on page 5 undefined on in
+put line 240.
+
+
+Overfull \hbox (57.31706pt too wide) in paragraph at lines 260--268
+\OT1/cmr/m/it/10.95 ICon-tainer.Manager \OT1/cmr/m/n/10.95 pro-vides you with t
+he \OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.resource.IContai
+ner
+ []
+
+[5]
+Overfull \hbox (133.63019pt too wide) in paragraph at lines 274--275
+[][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (153.3404pt too wide) in paragraph at lines 275--276
+[][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (100.77985pt too wide) in paragraph at lines 276--277
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (28.5091pt too wide) in paragraph at lines 278--279
+[][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (61.35944pt too wide) in paragraph at lines 279--280
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (255.12044pt too wide) in paragraph at lines 286--299
+\OT1/cmr/m/n/10.95 with Guice: The de-fault bind-ing is to \OT1/cmr/m/it/10.95 
+org.eclipse.xtext/src/org.eclipse.xtext.resource.impl.SimpleResourceDescription
+sBasedContainerManager\OT1/cmr/m/n/10.95 ,
+ []
+
+
+Overfull \hbox (16.65562pt too wide) in paragraph at lines 286--299
+\OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.resource.containers
+.StateBasedContainerManager \OT1/cmr/m/n/10.95 and
+ []
+
+
+Overfull \hbox (12.88586pt too wide) in paragraph at lines 286--299
+\OT1/cmr/m/n/10.95 an ad-di-tional \OT1/cmr/m/it/10.95 org.eclipse.xtext/src/or
+g.eclipse.xtext.resource.containers.IAllContainersState
+ []
+
+
+Overfull \hbox (5.475pt too wide) in paragraph at lines 314--317
+[][] 
+ []
+
+
+Overfull \hbox (5.475pt too wide) in paragraph at lines 318--321
+[][] 
+ []
+
+
+Overfull \hbox (5.475pt too wide) in paragraph at lines 322--325
+[][] 
+ []
+
+
+Overfull \hbox (5.475pt too wide) in paragraph at lines 326--329
+[][] 
+ []
+
+[6]
+Overfull \hbox (35.07916pt too wide) in paragraph at lines 341--342
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.93903pt too wide) in paragraph at lines 351--352
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (61.35944pt too wide) in paragraph at lines 352--353
+[][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (74.49957pt too wide) in paragraph at lines 353--354
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (35.07916pt too wide) in paragraph at lines 377--378
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (21.93903pt too wide) in paragraph at lines 386--387
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (41.64923pt too wide) in paragraph at lines 387--388
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (49.53728pt too wide) in paragraph at lines 399--407
+\OT1/cmr/m/n/10.95 the \OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xt
+ext.resource.containers.ResourceSetBasedAllContainersState\OT1/cmr/m/n/10.95 .
+ []
+
+
+Overfull \hbox (4.11479pt too wide) in paragraph at lines 399--407
+\OT1/cmr/m/n/10.95 end of the MWE2 work-flow com-po-nent \OT1/cmr/m/it/10.95 or
+g.eclipse.xtext/src/org.eclipse.xtext.mwe.Reader\OT1/cmr/m/n/10.95 .
+ []
+
+[7]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 415.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 415.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 415.
+
+Overfull \hbox (2.22882pt too wide) in paragraph at lines 447--448
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (120.49005pt too wide) in paragraph at lines 452--453
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[8]
+Overfull \hbox (35.07916pt too wide) in paragraph at lines 455--456
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (140.20026pt too wide) in paragraph at lines 458--459
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (270.51495pt too wide) in paragraph at lines 486--489
+\OT1/cmr/m/n/10.95 If you have to de-fine scopes for cer-tain con-texts, the ba
+se class \OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.scoping.im
+pl.AbstractDeclarativeScopeProvider
+ []
+
+
+Overfull \hbox (107.34991pt too wide) in paragraph at lines 492--494
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[9]
+Overfull \hbox (39.91943pt too wide) in paragraph at lines 546--551
+\OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.Import
+edNamespaceAwareLocalScopeProvider\OT1/cmr/m/n/10.95 . 
+ []
+
+
+Overfull \hbox (58.16945pt too wide) in paragraph at lines 554--562
+\OT1/cmr/m/n/10.95 The \OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.eclipse.xt
+ext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider
+ []
+
+
+Overfull \hbox (32.50496pt too wide) in paragraph at lines 554--562
+\OT1/cmr/m/n/10.95 makes use of the so called \OT1/cmr/m/it/10.95 org.eclipse.x
+text/src/org.eclipse.xtext.scoping.IQualifiedNameProvider
+ []
+
+
+Overfull \hbox (403.26186pt too wide) in paragraph at lines 554--562
+\OT1/cmr/m/n/10.95 ser-vice. It com-putes qual-i-fied names for EOb-jects. The 
+de-fault im-ple-men-ta-tion (\OT1/cmr/m/it/10.95 org.eclipse.xtext/src/org.ecli
+pse.xtext.scoping.impl.DefaultDeclarativeQualifiedNameProvider\OT1/cmr/m/n/10.9
+5 )
+ []
+
+
+Overfull \hbox (192.7608pt too wide) in paragraph at lines 565--566
+[][][][][][][][][][][][][][] 
+ []
+
+Missing character: There is no   in font cmr10!
+
+Overfull \hbox (94.20978pt too wide) in paragraph at lines 567--568
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[10]
+Overfull \hbox (199.33087pt too wide) in paragraph at lines 570--571
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[11] (src-gen/out.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 11 strings out of 495061
- 214 string characters out of 3181964
- 45108 words of memory out of 3000000
- 3285 multiletter control sequences out of 15000+200000
- 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 6216 strings out of 495061
+ 93920 string characters out of 1182621
+ 219389 words of memory out of 3000000
+ 9135 multiletter control sequences out of 15000+50000
+ 8514 words of font info for 30 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 10i,0n,7p,57b,8s stack positions out of 5000i,500n,10000p,200000b,50000s
-!  ==> Fatal error occurred, no output PDF file produced!
+ 43i,7n,43p,265b,1633s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{??} has been referenced but does not exist, repla
+ced by a fixed one
+
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/
+cm/cmti10.pfb>
+Output written on src-gen/out.pdf (11 pages, 157517 bytes).
+PDF statistics:
+ 365 PDF objects out of 1000 (max. 8388607)
+ 215 named destinations out of 1000 (max. 500000)
+ 97 words of extra memory for PDF output out of 10000 (max. 10000000)
+
