@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.xdoc.XDocStandaloneSetup;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Code;
@@ -89,8 +90,10 @@ public class ParserTest extends AbstractXtextTests {
 
 	public void testCode() throws Exception {
 		Document doc = getDocFromFile(TEST_FILE_DIR + "codeTest.xdoc");
-		CodeBlock cb = (CodeBlock) ((TextOrMarkup) doc.getSections().get(0)
-				.getContents().get(0)).getContents().get(0);
+		TextOrMarkup textOrMarkup = (TextOrMarkup) doc.getSections().get(0)
+				.getContents().get(0);
+		assertEquals(1, textOrMarkup.getContents().size());
+		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		assertEquals("\nclass Foo {\n"
 				+ "public static void main(String\\[\\] args){\n"
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
@@ -100,8 +103,10 @@ public class ParserTest extends AbstractXtextTests {
 	public void testCodeWithLanguage() throws Exception {
 		Document doc = getDocFromFile(TEST_FILE_DIR
 				+ "codeWithLanguageTest.xdoc");
-		CodeBlock cb = (CodeBlock) ((TextOrMarkup) doc.getSections().get(0)
-				.getContents().get(0)).getContents().get(0);
+		TextOrMarkup textOrMarkup = (TextOrMarkup) doc.getSections().get(0)
+				.getContents().get(0);
+		assertEquals(1, textOrMarkup.getContents().size());
+		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		assertEquals("\nclass Foo {\n"
 				+ "public static void main(String\\[\\] args){\n"
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
@@ -110,7 +115,8 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testComment() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "commentTest.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR + "commentTest.xdoc");
+		assertEquals(1, doc.getSections().get(0).getContents().size());
 	}
 
 	public void testLink() throws Exception {
@@ -156,13 +162,23 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testSimpleRef() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "simpleRefTest.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR + "simpleRefTest.xdoc");
+		List<AbstractSection> sections = doc.getSections();
+		assertEquals(1, sections.size());
+		List<TextOrMarkup> contents = sections.get(0).getContents();
+		assertEquals(1, contents.size());
+		TextOrMarkup textOrMarkup = contents.get(0);
+		assertEquals(2, textOrMarkup.getContents().size());
+		assertEquals("This is ", ((TextPart)textOrMarkup.getContents().get(0)).getText());
+		assertEquals(sections.get(0), ((Ref)textOrMarkup.getContents().get(1)).getRef());
 	}
 
 	public void testEscape() throws Exception {
 		Document doc = getDocFromFile(TEST_FILE_DIR + "testEscape.xdoc");
-		TextPart p = (TextPart) ((TextOrMarkup) doc.getSections().get(0)
-				.getContents().get(0)).getContents().get(0);
+		TextOrMarkup textOrMarkup = (TextOrMarkup) doc.getSections().get(0)
+				.getContents().get(0);
+		assertEquals(1, textOrMarkup.getContents().size());
+		TextPart p = (TextPart) textOrMarkup.getContents().get(0);
 		assertEquals("\\\\ \\[ \\]", p.getText());
 	}
 
@@ -170,14 +186,17 @@ public class ParserTest extends AbstractXtextTests {
 		Document doc = getDocFromFile(TEST_FILE_DIR + "twoChapters.xdoc");
 		assertEquals(2, doc.getSections().size());
 		Chapter chapter1 = (Chapter) doc.getSections().get(1);
-		Identifiable chapterRef = ((Ref) ((TextOrMarkup) chapter1.getContents()
-				.get(0)).getContents().get(1)).getRef();
+		TextOrMarkup textOrMarkup = (TextOrMarkup) chapter1.getContents()
+				.get(0);
+		assertEquals(4, textOrMarkup.getContents().size());
+		Ref ref = (Ref) textOrMarkup.getContents().get(1);
+		Identifiable chapterRef = ref.getRef();
 		Chapter chapter0 = (Chapter) doc.getSections().get(0);
 		assertEquals(chapter0, chapterRef);
-		EObject anchor = ((TextOrMarkup) chapter0.getContents().get(0))
-				.getContents().get(1);
-		Identifiable anchorRef = ((Ref) ((TextOrMarkup) chapter1.getContents()
-				.get(0)).getContents().get(3)).getRef();
+		TextOrMarkup textOrMarkup2 = (TextOrMarkup) chapter0.getContents().get(0);
+		assertEquals(2, textOrMarkup2.getContents().size());
+		EObject anchor = textOrMarkup2.getContents().get(1);
+		Identifiable anchorRef = ((Ref) textOrMarkup.getContents().get(3)).getRef();
 		assertEquals(anchor, anchorRef);
 	}
 
@@ -186,7 +205,30 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	public void testUL() throws Exception {
-		getDocFromFile(TEST_FILE_DIR + "ulTest.xdoc");
+		Document doc = getDocFromFile(TEST_FILE_DIR + "ulTest.xdoc");
+		assertEquals(1, doc.getSections().size());
+		Chapter chapter = (Chapter) doc.getSections().get(0);
+		List<TextOrMarkup> contents = chapter.getContents();
+		assertEquals(1, contents.size());
+		TextOrMarkup textOrMarkup = contents.get(0);
+		assertEquals(1, textOrMarkup.getContents().size());
+		UnorderedList list = (UnorderedList) textOrMarkup.getContents().get(0);
+		assertEquals(2, list.getItems().size());
+		//test first item
+		contents = list.getItems().get(0).getContents();
+		assertEquals(1, contents.size());
+		textOrMarkup = contents.get(0);
+		assertEquals(1, textOrMarkup.getContents().size());
+		assertEquals("An item", ((TextPart)textOrMarkup.getContents().get(0)).getText());
+		// test second item
+		contents = list.getItems().get(1).getContents();
+		assertEquals(2, contents.size());
+		textOrMarkup = contents.get(0);
+		assertEquals(1, textOrMarkup.getContents().size());
+		assertEquals("A paragraph", ((TextPart)textOrMarkup.getContents().get(0)).getText());
+		textOrMarkup = contents.get(1);
+		assertEquals(1, textOrMarkup.getContents().size());
+		assertEquals("\titem", ((TextPart)textOrMarkup.getContents().get(0)).getText());
 	}
 
 	protected Document getDoc(String string) throws Exception {

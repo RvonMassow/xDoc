@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.8.19)  31 AUG 2010 12:49
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.8.19)  31 AUG 2010 14:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -489,9 +489,10 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
 LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 502.
  [9]
-Overfull \hbox (7.17108pt too wide) in paragraph at lines 538--541
-\OT1/cmr/m/it/10 eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider \O
-T1/cmr/m/n/10 al-lows to do that in a declar-
+Overfull \hbox (255.57187pt too wide) in paragraph at lines 538--541
+\OT1/cmr/m/n/10 If you have to de-fine scopes for cer-tain con-texts, the base 
+class \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.Abs
+tractDeclarativeScopeProvider
  []
 
 [10]
@@ -538,7 +539,7 @@ xlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/
 type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/type1/pub
 lic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
 s/cm/cmti10.pfb>
-Output written on src-gen/out.pdf (12 pages, 159833 bytes).
+Output written on src-gen/out.pdf (12 pages, 159809 bytes).
 PDF statistics:
  367 PDF objects out of 1000 (max. 8388607)
  215 named destinations out of 1000 (max. 500000)
