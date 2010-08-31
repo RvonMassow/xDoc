@@ -18,7 +18,7 @@
 «DEFINE genContent FOR Chapter»
 \chapter{«EXPAND genContent FOR this.title»}
 «EXPAND genLabel FOR this.name»
-«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
@@ -26,7 +26,7 @@
 «DEFINE genContent FOR Section»
 \section{«EXPAND genContent FOR this.title»}
 «EXPAND genLabel FOR this.name»
-«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
@@ -34,7 +34,7 @@
 «DEFINE genContent FOR Section2»
 \subsection{ «EXPAND genContent FOR this.title» }
 «EXPAND genLabel FOR this.name»
-«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
@@ -42,7 +42,7 @@
 «DEFINE genContent FOR Section3»
 \subsubsection{ «EXPAND genContent FOR this.title» }
 «EXPAND genLabel FOR this.name»
-«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
@@ -50,7 +50,7 @@
 «DEFINE genContent FOR Section4»
 \subsubsection{ «EXPAND genContent FOR this.title» }
 «EXPAND genLabel FOR this.name»
-«EXPAND genContent FOREACH contents SEPARATOR "\n"»
+«EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «ENDDEFINE»
 
 «DEFINE genNonParContent FOR TextOrMarkup»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
