@@ -24,7 +24,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalXDocParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_MULTI_NL", "RULE_ID", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_SL_COMMENT", "'chapter:'", "'['", "'chapter['", "']'", "'section:'", "'section['", "'section2:'", "'section2['", "'section3:'", "'section3['", "'section4:'", "'section4['", "'\\\\['", "'\\\\]'", "'emph['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'img['", "'code['"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_MULTI_NL", "RULE_ID", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_SL_COMMENT", "'chapter:'", "'['", "'chapter['", "']'", "'section:'", "'section['", "'section2:'", "'section2['", "'section3:'", "'section3['", "'section4:'", "'section4['", "'\\\\['", "'\\\\]'", "'e['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'img['", "'code['"
     };
     public static final int RULE_ID=6;
     public static final int RULE_WS=4;
@@ -3487,7 +3487,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleEmphasize
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1427:1: ruleEmphasize returns [EObject current=null] : ( 'emph[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1427:1: ruleEmphasize returns [EObject current=null] : ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) ;
     public final EObject ruleEmphasize() throws RecognitionException {
         EObject current = null;
 
@@ -3497,15 +3497,15 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1432:6: ( ( 'emph[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1433:1: ( 'emph[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1432:6: ( ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1433:1: ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1433:1: ( 'emph[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1433:3: 'emph[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1433:1: ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1433:3: 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']'
             {
             match(input,24,FOLLOW_24_in_ruleEmphasize2529); 
 
-                    createLeafNode(grammarAccess.getEmphasizeAccess().getEmphKeyword_0(), null); 
+                    createLeafNode(grammarAccess.getEmphasizeAccess().getEKeyword_0(), null); 
                 
             // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1437:1: ( RULE_MULTI_NL )?
             int alt31=2;

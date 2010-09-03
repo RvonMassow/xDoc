@@ -3804,11 +3804,11 @@ rule__Emphasize__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getEmphasizeAccess().getEmphKeyword_0()); }
+{ before(grammarAccess.getEmphasizeAccess().getEKeyword_0()); }
 
-	'emph[' 
+	'e[' 
 
-{ after(grammarAccess.getEmphasizeAccess().getEmphKeyword_0()); }
+{ after(grammarAccess.getEmphasizeAccess().getEKeyword_0()); }
 )
 
 ;

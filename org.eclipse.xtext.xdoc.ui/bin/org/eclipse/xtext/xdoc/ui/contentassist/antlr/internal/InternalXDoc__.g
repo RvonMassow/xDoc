@@ -22,7 +22,7 @@ T21 : 'section:' ;
 T22 : 'section2:' ;
 T23 : 'section3:' ;
 T24 : 'section4:' ;
-T25 : 'emph[' ;
+T25 : 'e[' ;
 T26 : 'a[' ;
 T27 : 'ref:' ;
 T28 : 'ol[' ;

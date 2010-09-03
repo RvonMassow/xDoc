@@ -771,7 +771,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	public class EmphasizeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Emphasize");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cEmphKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final RuleCall cMULTI_NLTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cContentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cContentsTextOrMarkupParserRuleCall_2_0 = (RuleCall)cContentsAssignment_2.eContents().get(0);
@@ -779,14 +779,14 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Emphasize:
-		//	"emph[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
+		//	"e[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
 		public ParserRule getRule() { return rule; }
 
-		//"emph[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]"
+		//"e[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]"
 		public Group getGroup() { return cGroup; }
 
-		//"emph["
-		public Keyword getEmphKeyword_0() { return cEmphKeyword_0; }
+		//"e["
+		public Keyword getEKeyword_0() { return cEKeyword_0; }
 
 		//MULTI_NL?
 		public RuleCall getMULTI_NLTerminalRuleCall_1() { return cMULTI_NLTerminalRuleCall_1; }
@@ -1602,7 +1602,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Emphasize:
-	//	"emph[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
+	//	"e[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
 	public EmphasizeElements getEmphasizeAccess() {
 		return (pEmphasize != null) ? pEmphasize : (pEmphasize = new EmphasizeElements());
 	}

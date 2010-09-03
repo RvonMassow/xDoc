@@ -42,7 +42,7 @@ public class ParserTest extends AbstractXtextTests {
 		String firstPart = "Hier kommt dann mal text ";
 		String emphasized = "manchmal fett";
 		String secondPart = " und manchmal nicht.\nNewlines und so gibt es auch.";
-		String text = "chapter[" + title + "]\r\n\r\n" + firstPart + "emph["
+		String text = "chapter[" + title + "]\r\n\r\n" + firstPart + "e["
 				+ emphasized + "]" + secondPart + "\n\n";
 		//System.out.println(text);
 		Document model = (Document) getModel(text);

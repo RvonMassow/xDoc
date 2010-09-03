@@ -4,9 +4,9 @@
 package org.eclipse.xtext.xdoc.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
 import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;

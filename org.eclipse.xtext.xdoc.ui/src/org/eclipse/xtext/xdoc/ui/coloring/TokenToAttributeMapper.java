@@ -2,8 +2,8 @@ package org.eclipse.xtext.xdoc.ui.coloring;
 
 import java.util.Set;
 
+import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttributeIdMapper;
 
 import com.google.common.collect.Sets;
 

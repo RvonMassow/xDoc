@@ -319,10 +319,10 @@ public class InternalXDocLexer extends Lexer {
     public final void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:24:5: ( 'emph[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:24:7: 'emph['
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:24:5: ( 'e[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:24:7: 'e['
             {
-            match("emph["); 
+            match("e["); 
 
 
             }
@@ -837,24 +837,24 @@ public class InternalXDocLexer extends Lexer {
                     int LA8_40 = input.LA(4);
 
                     if ( (LA8_40=='p') ) {
-                        int LA8_50 = input.LA(5);
+                        int LA8_49 = input.LA(5);
 
-                        if ( (LA8_50=='t') ) {
-                            int LA8_59 = input.LA(6);
+                        if ( (LA8_49=='t') ) {
+                            int LA8_57 = input.LA(6);
 
-                            if ( (LA8_59=='e') ) {
-                                int LA8_66 = input.LA(7);
+                            if ( (LA8_57=='e') ) {
+                                int LA8_63 = input.LA(7);
 
-                                if ( (LA8_66=='r') ) {
+                                if ( (LA8_63=='r') ) {
                                     switch ( input.LA(8) ) {
-                                    case ':':
-                                        {
-                                        alt8=1;
-                                        }
-                                        break;
                                     case '[':
                                         {
                                         alt8=3;
+                                        }
+                                        break;
+                                    case ':':
+                                        {
+                                        alt8=1;
                                         }
                                         break;
                                     default:
@@ -886,22 +886,17 @@ public class InternalXDocLexer extends Lexer {
 
                     if ( (LA8_41=='e') ) {
                         switch ( input.LA(5) ) {
-                        case '[':
-                            {
-                            alt8=25;
-                            }
-                            break;
                         case 'R':
                             {
-                            int LA8_61 = input.LA(6);
+                            int LA8_58 = input.LA(6);
 
-                            if ( (LA8_61=='e') ) {
-                                int LA8_67 = input.LA(7);
+                            if ( (LA8_58=='e') ) {
+                                int LA8_64 = input.LA(7);
 
-                                if ( (LA8_67=='f') ) {
-                                    int LA8_70 = input.LA(8);
+                                if ( (LA8_64=='f') ) {
+                                    int LA8_67 = input.LA(8);
 
-                                    if ( (LA8_70=='[') ) {
+                                    if ( (LA8_67=='[') ) {
                                         alt8=21;
                                     }
                                     else {
@@ -912,6 +907,11 @@ public class InternalXDocLexer extends Lexer {
                             }
                             else {
                                 alt8=26;}
+                            }
+                            break;
+                        case '[':
+                            {
+                            alt8=25;
                             }
                             break;
                         default:
@@ -945,16 +945,39 @@ public class InternalXDocLexer extends Lexer {
                     int LA8_42 = input.LA(4);
 
                     if ( (LA8_42=='t') ) {
-                        int LA8_52 = input.LA(5);
+                        int LA8_51 = input.LA(5);
 
-                        if ( (LA8_52=='i') ) {
-                            int LA8_62 = input.LA(6);
+                        if ( (LA8_51=='i') ) {
+                            int LA8_60 = input.LA(6);
 
-                            if ( (LA8_62=='o') ) {
-                                int LA8_68 = input.LA(7);
+                            if ( (LA8_60=='o') ) {
+                                int LA8_65 = input.LA(7);
 
-                                if ( (LA8_68=='n') ) {
+                                if ( (LA8_65=='n') ) {
                                     switch ( input.LA(8) ) {
+                                    case ':':
+                                        {
+                                        alt8=5;
+                                        }
+                                        break;
+                                    case '3':
+                                        {
+                                        switch ( input.LA(9) ) {
+                                        case '[':
+                                            {
+                                            alt8=10;
+                                            }
+                                            break;
+                                        case ':':
+                                            {
+                                            alt8=9;
+                                            }
+                                            break;
+                                        default:
+                                            alt8=26;}
+
+                                        }
+                                        break;
                                     case '2':
                                         {
                                         switch ( input.LA(9) ) {
@@ -996,29 +1019,6 @@ public class InternalXDocLexer extends Lexer {
 
                                         }
                                         break;
-                                    case ':':
-                                        {
-                                        alt8=5;
-                                        }
-                                        break;
-                                    case '3':
-                                        {
-                                        switch ( input.LA(9) ) {
-                                        case '[':
-                                            {
-                                            alt8=10;
-                                            }
-                                            break;
-                                        case ':':
-                                            {
-                                            alt8=9;
-                                            }
-                                            break;
-                                        default:
-                                            alt8=26;}
-
-                                        }
-                                        break;
                                     default:
                                         alt8=26;}
 
@@ -1043,14 +1043,14 @@ public class InternalXDocLexer extends Lexer {
         }
         else if ( (LA8_0=='\\') ) {
             switch ( input.LA(2) ) {
-            case ']':
-                {
-                alt8=14;
-                }
-                break;
             case '[':
                 {
                 alt8=13;
+                }
+                break;
+            case ']':
+                {
+                alt8=14;
                 }
                 break;
             default:
@@ -1060,26 +1060,8 @@ public class InternalXDocLexer extends Lexer {
         else if ( (LA8_0=='e') ) {
             int LA8_6 = input.LA(2);
 
-            if ( (LA8_6=='m') ) {
-                int LA8_27 = input.LA(3);
-
-                if ( (LA8_27=='p') ) {
-                    int LA8_43 = input.LA(4);
-
-                    if ( (LA8_43=='h') ) {
-                        int LA8_53 = input.LA(5);
-
-                        if ( (LA8_53=='[') ) {
-                            alt8=15;
-                        }
-                        else {
-                            alt8=26;}
-                    }
-                    else {
-                        alt8=26;}
-                }
-                else {
-                    alt8=26;}
+            if ( (LA8_6=='[') ) {
+                alt8=15;
             }
             else {
                 alt8=26;}
@@ -1100,9 +1082,9 @@ public class InternalXDocLexer extends Lexer {
                 int LA8_29 = input.LA(3);
 
                 if ( (LA8_29=='f') ) {
-                    int LA8_44 = input.LA(4);
+                    int LA8_43 = input.LA(4);
 
-                    if ( (LA8_44==':') ) {
+                    if ( (LA8_43==':') ) {
                         alt8=17;
                     }
                     else {
@@ -1146,41 +1128,17 @@ public class InternalXDocLexer extends Lexer {
         }
         else if ( (LA8_0=='i') ) {
             switch ( input.LA(2) ) {
-            case 'm':
+            case 't':
                 {
                 int LA8_32 = input.LA(3);
 
-                if ( (LA8_32=='g') ) {
-                    switch ( input.LA(4) ) {
-                    case ':':
-                        {
-                        alt8=23;
-                        }
-                        break;
-                    case '[':
-                        {
-                        alt8=24;
-                        }
-                        break;
-                    default:
-                        alt8=26;}
+                if ( (LA8_32=='e') ) {
+                    int LA8_46 = input.LA(4);
 
-                }
-                else {
-                    alt8=26;}
-                }
-                break;
-            case 't':
-                {
-                int LA8_33 = input.LA(3);
+                    if ( (LA8_46=='m') ) {
+                        int LA8_53 = input.LA(5);
 
-                if ( (LA8_33=='e') ) {
-                    int LA8_48 = input.LA(4);
-
-                    if ( (LA8_48=='m') ) {
-                        int LA8_57 = input.LA(5);
-
-                        if ( (LA8_57=='[') ) {
+                        if ( (LA8_53=='[') ) {
                             alt8=20;
                         }
                         else {
@@ -1188,6 +1146,30 @@ public class InternalXDocLexer extends Lexer {
                     }
                     else {
                         alt8=26;}
+                }
+                else {
+                    alt8=26;}
+                }
+                break;
+            case 'm':
+                {
+                int LA8_33 = input.LA(3);
+
+                if ( (LA8_33=='g') ) {
+                    switch ( input.LA(4) ) {
+                    case '[':
+                        {
+                        alt8=24;
+                        }
+                        break;
+                    case ':':
+                        {
+                        alt8=23;
+                        }
+                        break;
+                    default:
+                        alt8=26;}
+
                 }
                 else {
                     alt8=26;}
@@ -1204,12 +1186,12 @@ public class InternalXDocLexer extends Lexer {
                 int LA8_34 = input.LA(3);
 
                 if ( (LA8_34=='n') ) {
-                    int LA8_49 = input.LA(4);
+                    int LA8_48 = input.LA(4);
 
-                    if ( (LA8_49=='k') ) {
-                        int LA8_58 = input.LA(5);
+                    if ( (LA8_48=='k') ) {
+                        int LA8_56 = input.LA(5);
 
-                        if ( (LA8_58=='[') ) {
+                        if ( (LA8_56=='[') ) {
                             alt8=22;
                         }
                         else {

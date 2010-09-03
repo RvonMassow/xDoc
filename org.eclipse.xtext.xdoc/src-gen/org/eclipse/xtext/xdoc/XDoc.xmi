@@ -311,7 +311,7 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/xdoc/Xdoc#//Emphasize"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Keyword" value="emph["/>
+      <elements xsi:type="xtext:Keyword" value="e["/>
       <elements xsi:type="xtext:RuleCall" cardinality="?" rule="//@rules.28"/>
       <elements xsi:type="xtext:Assignment" feature="contents" operator="+=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.8"/>

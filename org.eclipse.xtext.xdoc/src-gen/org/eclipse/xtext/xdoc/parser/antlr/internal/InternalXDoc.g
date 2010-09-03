@@ -1430,9 +1430,9 @@ ruleEmphasize returns [EObject current=null]
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
     }:
-(	'emph[' 
+(	'e[' 
     {
-        createLeafNode(grammarAccess.getEmphasizeAccess().getEmphKeyword_0(), null); 
+        createLeafNode(grammarAccess.getEmphasizeAccess().getEKeyword_0(), null); 
     }
 (RULE_MULTI_NL
     { 

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalXDocParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_WS", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_MULTI_NL", "RULE_SL_COMMENT", "'chapter['", "'section['", "'section2['", "'section3['", "'section4['", "'\\\\['", "'\\\\]'", "'img['", "']'", "'chapter:'", "'['", "'section:'", "'section2:'", "'section3:'", "'section4:'", "'emph['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'code['"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_WS", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_MULTI_NL", "RULE_SL_COMMENT", "'chapter['", "'section['", "'section2['", "'section3['", "'section4['", "'\\\\['", "'\\\\]'", "'img['", "']'", "'chapter:'", "'['", "'section:'", "'section2:'", "'section3:'", "'section4:'", "'e['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'code['"
     };
     public static final int RULE_ID=4;
     public static final int RULE_WS=5;
@@ -10485,21 +10485,21 @@ public class InternalXDocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Emphasize__Group__0__Impl
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3801:1: rule__Emphasize__Group__0__Impl : ( 'emph[' ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3801:1: rule__Emphasize__Group__0__Impl : ( 'e[' ) ;
     public final void rule__Emphasize__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3805:1: ( ( 'emph[' ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3806:1: ( 'emph[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3805:1: ( ( 'e[' ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3806:1: ( 'e[' )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3806:1: ( 'emph[' )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3807:1: 'emph['
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3806:1: ( 'e[' )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXDoc.g:3807:1: 'e['
             {
-             before(grammarAccess.getEmphasizeAccess().getEmphKeyword_0()); 
+             before(grammarAccess.getEmphasizeAccess().getEKeyword_0()); 
             match(input,25,FOLLOW_25_in_rule__Emphasize__Group__0__Impl7795); 
-             after(grammarAccess.getEmphasizeAccess().getEmphKeyword_0()); 
+             after(grammarAccess.getEmphasizeAccess().getEKeyword_0()); 
 
             }
 

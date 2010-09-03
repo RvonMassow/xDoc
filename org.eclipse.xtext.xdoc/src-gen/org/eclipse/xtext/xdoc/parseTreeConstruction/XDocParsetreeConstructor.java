@@ -3901,11 +3901,11 @@ protected class MarkUp_ImageRefParserRuleCall_8 extends RuleCallToken {
 /************ begin Rule Emphasize ****************
  *
  * Emphasize:
- * 	"emph[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
+ * 	"e[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
  *
  **/
 
-// "emph[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]"
+// "e[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]"
 protected class Emphasize_Group extends GroupToken {
 	
 	public Emphasize_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -3934,16 +3934,16 @@ protected class Emphasize_Group extends GroupToken {
 
 }
 
-// "emph["
-protected class Emphasize_EmphKeyword_0 extends KeywordToken  {
+// "e["
+protected class Emphasize_EKeyword_0 extends KeywordToken  {
 	
-	public Emphasize_EmphKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Emphasize_EKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getEmphasizeAccess().getEmphKeyword_0();
+		return grammarAccess.getEmphasizeAccess().getEKeyword_0();
 	}
 
     @Override
@@ -3995,7 +3995,7 @@ protected class Emphasize_ContentsAssignment_2 extends AssignmentToken  {
 	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Emphasize_EmphKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
+			case 0: return new Emphasize_EKeyword_0(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
