@@ -5,12 +5,12 @@ Bundle-Vendor: My Company
 Bundle-Version: 1.0.0
 Bundle-SymbolicName: org.eclipse.xtext.xdoc; singleton:=true
 Bundle-ActivationPolicy: lazy
-Require-Bundle: org.eclipse.xtext,
+Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.generator;resolution:=optional,
  org.apache.commons.logging;resolution:=optional,
  org.eclipse.emf.codegen.ecore;resolution:=optional,
- org.eclipse.emf.mwe.utils;resolution:=optional,
- org.eclipse.emf.mwe2.launch;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional;visibility:=reexport,
+ org.eclipse.emf.mwe2.launch;resolution:=optional;visibility:=reexport,
  com.ibm.icu;resolution:=optional,
  org.eclipse.xtext.xtend;resolution:=optional,
  org.eclipse.xtext.util,

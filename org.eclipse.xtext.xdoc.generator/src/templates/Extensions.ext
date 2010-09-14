@@ -4,7 +4,9 @@ lstEscapeToTex():
 	"°";
 
 escapeLatexChars(String s):
-	s.replaceAll("\\\\", "\\\\").replaceAll("\\#", "\\\\#").replaceAll("_", "\\\\_");
+	s.replaceAll("\\\\", "\\\\").replaceAll("\\#", "\\\\#")
+		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
+		.replaceAll("&", "\\\\&");
 
 unescapeXdocChars(String s):
 	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");

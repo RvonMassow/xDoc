@@ -4,6 +4,9 @@
 «DEFINE main FOR Document -»
 «FILE "out.tex"-»
 \documentclass[a4paper,10pt]{scrreprt}
+
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{listings}
 \lstset{breaklines=true, tabsize=4}
 
@@ -70,7 +73,7 @@
 «ENDDEFINE»
 
 «DEFINE genText FOR Table»
-\begin{tabular}{«EXPAND genColumns FOR this.rows.data»}
+\begin{tabular}{«EXPAND genColumns FOR this.rows.first().data»}
 «EXPAND genText FOREACH this.rows SEPARATOR "\\\\"»
 \end{tabular}
 «ENDDEFINE»
@@ -79,8 +82,10 @@
 
 «DEFINE genText FOR TableData»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
 
+«REM»
 «DEFINE genColumns FOR List»«ENDDEFINE»
-«DEFINE genColumns FOR List[TableData]»«FOREACH this.contents AS content»p{«1.0/this.size»\textwidth}«ENDFOREACH»«ENDDEFINE»
+«ENDREM»
+«DEFINE genColumns FOR List»«FOREACH ((List[TableData])this).contents AS content»p{«1.0/this.size»\textwidth}«ENDFOREACH»«ENDDEFINE»
 
 «DEFINE genText FOR TextPart»«escapeLatexChars(this.text)»«ENDDEFINE»
 
