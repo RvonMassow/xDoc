@@ -7,6 +7,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.xdoc.XDocStandaloneSetup;
@@ -21,6 +22,8 @@ import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.Item;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
+import org.eclipse.xtext.xdoc.xdoc.Table;
+import org.eclipse.xtext.xdoc.xdoc.TableData;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
@@ -29,6 +32,7 @@ public class ParserTest extends AbstractXtextTests {
 
 	private static final String TEST_FILE_DIR = "testfiles"
 			+ File.separatorChar;
+	private static final String DNL = "\n\n";
 	String head = "chapter[foo]\n\n";
 
 	@Override
@@ -228,6 +232,30 @@ public class ParserTest extends AbstractXtextTests {
 		textOrMarkup = contents.get(1);
 		assertEquals(1, textOrMarkup.getContents().size());
 		assertEquals("\titem", ((TextPart)textOrMarkup.getContents().get(0)).getText());
+	}
+	
+	public void testTable() throws Exception{
+		String tableStart = "table[";
+		String closeBracket = "]";
+		String row = "tr[";
+		String dataString = "this is";
+			String dataString2 = "a two paragraph table entry";
+		String d = head + tableStart + row +"td["+ dataString + DNL+dataString2+
+			closeBracket + closeBracket + closeBracket;
+		Document doc = getDoc(d);
+		EList<TextOrMarkup> textOrMarkup = doc.getSections().get(0).getContents();
+		assertEquals(1, textOrMarkup.size());
+		Table t = (Table)textOrMarkup.get(0).getContents().get(0);
+		assertEquals(1, t.getRows().size());
+		EList<TableData> data = t.getRows().get(0).getData();
+		assertEquals(1, data.size());
+		TableData td = data.get(0);
+		EList<TextOrMarkup> contents = td.getContents();
+		assertEquals(2, contents.size());
+		TextPart text = (TextPart)contents.get(0).getContents().get(0);
+		assertEquals(dataString, text.getText());
+		text = (TextPart)contents.get(1).getContents().get(0);
+		assertEquals(dataString2, text.getText());
 	}
 
 	protected Document getDoc(String string) throws Exception {
