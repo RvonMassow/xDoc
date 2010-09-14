@@ -17,6 +17,9 @@
 
 \newlength{\itemindentlen}
 
+\def\[{[}
+\def\]{]}
+
 \begin{document}
 «EXPAND genContent FOREACH this.sections»
 \end{document}
@@ -74,13 +77,14 @@
 
 «DEFINE genText FOR Table»
 \begin{tabular}{«EXPAND genColumns FOR this.rows.first().data»}
-«EXPAND genText FOREACH this.rows SEPARATOR "\\\\"»
+«EXPAND genText FOREACH this.rows SEPARATOR "\\\\\n"»
 \end{tabular}
+
 «ENDDEFINE»
 
 «DEFINE genText FOR TableRow»«EXPAND genText FOREACH this.data SEPARATOR "&"»«ENDDEFINE»
 
-«DEFINE genText FOR TableData»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
+«DEFINE genText FOR TableData»«EXPAND genContent FOREACH this.contents»«ENDDEFINE»
 
 «REM»
 «DEFINE genColumns FOR List»«ENDDEFINE»
@@ -131,7 +135,7 @@
 «ENDDEFINE»
 
 «DEFINE genText FOR CodeRef»
-\lstinline{«escapeLatexChars(this.element.canonicalName)»}
+\lstinline{«escapeLatexChars(unescapeXdocChars(this.element.canonicalName))»}
 «ENDDEFINE»
 
 «DEFINE genCode FOR Object»
