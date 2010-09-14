@@ -69,6 +69,19 @@
 «DEFINE genText FOR Object»
 «ENDDEFINE»
 
+«DEFINE genText FOR Table»
+\begin{tabular}{«EXPAND genColumns FOR this.rows.data»}
+«EXPAND genText FOREACH this.rows SEPARATOR "\\\\"»
+\end{tabular}
+«ENDDEFINE»
+
+«DEFINE genText FOR TableRow»«EXPAND genText FOREACH this.data SEPARATOR "&"»«ENDDEFINE»
+
+«DEFINE genText FOR TableData»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genColumns FOR List»«ENDDEFINE»
+«DEFINE genColumns FOR List[TableData]»«FOREACH this.contents AS content»p{«1.0/this.size»\textwidth}«ENDFOREACH»«ENDDEFINE»
+
 «DEFINE genText FOR TextPart»«escapeLatexChars(this.text)»«ENDDEFINE»
 
 «DEFINE genText FOR OrderedList»
