@@ -78,6 +78,9 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
       case XdocPackage.TEXT_OR_MARKUP: return createTextOrMarkup();
       case XdocPackage.TEXT_PART: return createTextPart();
       case XdocPackage.MARK_UP: return createMarkUp();
+      case XdocPackage.TABLE: return createTable();
+      case XdocPackage.TABLE_ROW: return createTableRow();
+      case XdocPackage.TABLE_DATA: return createTableData();
       case XdocPackage.EMPHASIZE: return createEmphasize();
       case XdocPackage.ANCHOR: return createAnchor();
       case XdocPackage.REF: return createRef();
@@ -214,6 +217,39 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
   {
     MarkUpImpl markUp = new MarkUpImpl();
     return markUp;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Table createTable()
+  {
+    TableImpl table = new TableImpl();
+    return table;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TableRow createTableRow()
+  {
+    TableRowImpl tableRow = new TableRowImpl();
+    return tableRow;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TableData createTableData()
+  {
+    TableDataImpl tableData = new TableDataImpl();
+    return tableData;
   }
 
   /**

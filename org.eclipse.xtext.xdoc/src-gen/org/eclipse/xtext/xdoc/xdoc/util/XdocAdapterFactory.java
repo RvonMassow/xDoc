@@ -133,6 +133,21 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
         return createMarkUpAdapter();
       }
       @Override
+      public Adapter caseTable(Table object)
+      {
+        return createTableAdapter();
+      }
+      @Override
+      public Adapter caseTableRow(TableRow object)
+      {
+        return createTableRowAdapter();
+      }
+      @Override
+      public Adapter caseTableData(TableData object)
+      {
+        return createTableDataAdapter();
+      }
+      @Override
       public Adapter caseEmphasize(Emphasize object)
       {
         return createEmphasizeAdapter();
@@ -375,6 +390,51 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createMarkUpAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.Table <em>Table</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.xtext.xdoc.xdoc.Table
+   * @generated
+   */
+  public Adapter createTableAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.TableRow <em>Table Row</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.xtext.xdoc.xdoc.TableRow
+   * @generated
+   */
+  public Adapter createTableRowAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.TableData <em>Table Data</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.xtext.xdoc.xdoc.TableData
+   * @generated
+   */
+  public Adapter createTableDataAdapter()
   {
     return null;
   }

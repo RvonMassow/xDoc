@@ -7,8 +7,9 @@ package org.eclipse.xtext.xdoc;
  */
 public class XDocStandaloneSetup extends XDocStandaloneSetupGenerated{
 
-	public static void doSetup() {
+	public void doSetup() {
 		new XDocStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
+
 }
 

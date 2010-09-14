@@ -21,34 +21,37 @@ T20 : 'section4:' ;
 T21 : 'section4[' ;
 T22 : '\\[' ;
 T23 : '\\]' ;
-T24 : 'e[' ;
-T25 : 'a[' ;
-T26 : 'ref:' ;
-T27 : 'ol[' ;
-T28 : 'ul[' ;
-T29 : 'item[' ;
-T30 : 'codeRef[' ;
-T31 : 'link[' ;
-T32 : 'img:' ;
-T33 : 'img[' ;
-T34 : 'code[' ;
+T24 : 'table[' ;
+T25 : 'tr[' ;
+T26 : 'td[' ;
+T27 : 'e[' ;
+T28 : 'a[' ;
+T29 : 'ref:' ;
+T30 : 'ol[' ;
+T31 : 'ul[' ;
+T32 : 'item[' ;
+T33 : 'codeRef[' ;
+T34 : 'link[' ;
+T35 : 'img:' ;
+T36 : 'img[' ;
+T37 : 'code[' ;
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2640
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2879
 RULE_ID : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2642
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2881
 RULE_SL_COMMENT : '%%' ~(('\n'|'\r'))* '\r'? '\n';
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2644
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2883
 RULE_MULTI_NL : '\r'? '\n' ('\r'? '\n')+;
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2646
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2885
 RULE_SINGLE_NL : '\r'? '\n';
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2648
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2887
 RULE_WS : (' '|'\t');
 
-// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2650
+// $ANTLR src "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g" 2889
 RULE_ANY_OTHER : .;
 
 

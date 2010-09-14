@@ -39,6 +39,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute XDoc.ecore#//TextPart/text"/>
     </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//MarkUp"/>
+    <genClasses ecoreClass="XDoc.ecore#//Table">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Table/rows"/>
+    </genClasses>
+    <genClasses ecoreClass="XDoc.ecore#//TableRow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//TableRow/data"/>
+    </genClasses>
+    <genClasses ecoreClass="XDoc.ecore#//TableData">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//TableData/contents"/>
+    </genClasses>
     <genClasses ecoreClass="XDoc.ecore#//Emphasize">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference XDoc.ecore#//Emphasize/contents"/>
     </genClasses>

@@ -125,6 +125,33 @@ public interface XdocFactory extends EFactory
   MarkUp createMarkUp();
 
   /**
+   * Returns a new object of class '<em>Table</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Table</em>'.
+   * @generated
+   */
+  Table createTable();
+
+  /**
+   * Returns a new object of class '<em>Table Row</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Table Row</em>'.
+   * @generated
+   */
+  TableRow createTableRow();
+
+  /**
+   * Returns a new object of class '<em>Table Data</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Table Data</em>'.
+   * @generated
+   */
+  TableData createTableData();
+
+  /**
    * Returns a new object of class '<em>Emphasize</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

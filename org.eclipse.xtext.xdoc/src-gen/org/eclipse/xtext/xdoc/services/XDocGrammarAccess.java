@@ -694,7 +694,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		
-		//Text returns ecore::EString:
+		//Text:
 		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
 		public ParserRule getRule() { return rule; }
 
@@ -732,12 +732,13 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cCodeRefParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		private final RuleCall cLinkParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
 		private final RuleCall cImageRefParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cTableParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
 		
 		//MarkUp:
-		//	Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef;
+		//	Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef | Table;
 		public ParserRule getRule() { return rule; }
 
-		//Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef
+		//Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef | Table
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Emphasize
@@ -766,6 +767,137 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//ImageRef
 		public RuleCall getImageRefParserRuleCall_8() { return cImageRefParserRuleCall_8; }
+
+		//Table
+		public RuleCall getTableParserRuleCall_9() { return cTableParserRuleCall_9; }
+	}
+
+	public class TableElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Table");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTableKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cANY_WSParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cRowsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cRowsTableRowParserRuleCall_1_1_0 = (RuleCall)cRowsAssignment_1_1.eContents().get(0);
+		private final RuleCall cANY_WSParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//Table:
+		//	"table[" (ANY_WS* rows+=TableRow)+ ANY_WS* "]";
+		public ParserRule getRule() { return rule; }
+
+		//"table[" (ANY_WS* rows+=TableRow)+ ANY_WS* "]"
+		public Group getGroup() { return cGroup; }
+
+		//"table["
+		public Keyword getTableKeyword_0() { return cTableKeyword_0; }
+
+		//(ANY_WS* rows+=TableRow)+
+		public Group getGroup_1() { return cGroup_1; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_1_0() { return cANY_WSParserRuleCall_1_0; }
+
+		//rows+=TableRow
+		public Assignment getRowsAssignment_1_1() { return cRowsAssignment_1_1; }
+
+		//TableRow
+		public RuleCall getRowsTableRowParserRuleCall_1_1_0() { return cRowsTableRowParserRuleCall_1_1_0; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_2() { return cANY_WSParserRuleCall_2; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
+
+	public class TableRowElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TableRow");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTrKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cANY_WSParserRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cDataAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cDataTableDataParserRuleCall_1_1_0 = (RuleCall)cDataAssignment_1_1.eContents().get(0);
+		private final RuleCall cANY_WSParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		
+		//TableRow:
+		//	"tr[" (ANY_WS* data+=TableData)+ ANY_WS* "]";
+		public ParserRule getRule() { return rule; }
+
+		//"tr[" (ANY_WS* data+=TableData)+ ANY_WS* "]"
+		public Group getGroup() { return cGroup; }
+
+		//"tr["
+		public Keyword getTrKeyword_0() { return cTrKeyword_0; }
+
+		//(ANY_WS* data+=TableData)+
+		public Group getGroup_1() { return cGroup_1; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_1_0() { return cANY_WSParserRuleCall_1_0; }
+
+		//data+=TableData
+		public Assignment getDataAssignment_1_1() { return cDataAssignment_1_1; }
+
+		//TableData
+		public RuleCall getDataTableDataParserRuleCall_1_1_0() { return cDataTableDataParserRuleCall_1_1_0; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_2() { return cANY_WSParserRuleCall_2; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+	}
+
+	public class TableDataElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "TableData");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cTdKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cMULTI_NLTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cContentsAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cContentsTextOrMarkupParserRuleCall_2_0 = (RuleCall)cContentsAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cMULTI_NLTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cContentsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_1_0 = (RuleCall)cContentsAssignment_3_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//TableData:
+		//	"td[" MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]";
+		public ParserRule getRule() { return rule; }
+
+		//"td[" MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]"
+		public Group getGroup() { return cGroup; }
+
+		//"td["
+		public Keyword getTdKeyword_0() { return cTdKeyword_0; }
+
+		//MULTI_NL?
+		public RuleCall getMULTI_NLTerminalRuleCall_1() { return cMULTI_NLTerminalRuleCall_1; }
+
+		//contents+=TextOrMarkup
+		public Assignment getContentsAssignment_2() { return cContentsAssignment_2; }
+
+		//TextOrMarkup
+		public RuleCall getContentsTextOrMarkupParserRuleCall_2_0() { return cContentsTextOrMarkupParserRuleCall_2_0; }
+
+		//(MULTI_NL contents+=TextOrMarkup)*
+		public Group getGroup_3() { return cGroup_3; }
+
+		//MULTI_NL
+		public RuleCall getMULTI_NLTerminalRuleCall_3_0() { return cMULTI_NLTerminalRuleCall_3_0; }
+
+		//contents+=TextOrMarkup
+		public Assignment getContentsAssignment_3_1() { return cContentsAssignment_3_1; }
+
+		//TextOrMarkup
+		public RuleCall getContentsTextOrMarkupParserRuleCall_3_1_0() { return cContentsTextOrMarkupParserRuleCall_3_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
 	}
 
 	public class EmphasizeElements extends AbstractParserRuleElementFinder {
@@ -839,18 +971,20 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRefAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cRefIdentifiableCrossReference_1_0 = (CrossReference)cRefAssignment_1.eContents().get(0);
 		private final RuleCall cRefIdentifiableIDTerminalRuleCall_1_0_1 = (RuleCall)cRefIdentifiableCrossReference_1_0.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final RuleCall cMULTI_NLTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cContentsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cContentsTextOrMarkupParserRuleCall_4_0 = (RuleCall)cContentsAssignment_4.eContents().get(0);
-		private final RuleCall cMULTI_NLTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cLeftSquareBracketKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final RuleCall cMULTI_NLTerminalRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final Group cGroup_2_2 = (Group)cGroup_2.eContents().get(2);
+		private final Assignment cContentsAssignment_2_2_0 = (Assignment)cGroup_2_2.eContents().get(0);
+		private final RuleCall cContentsTextOrMarkupParserRuleCall_2_2_0_0 = (RuleCall)cContentsAssignment_2_2_0.eContents().get(0);
+		private final RuleCall cMULTI_NLTerminalRuleCall_2_2_1 = (RuleCall)cGroup_2_2.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		
 		//Ref:
-		//	"ref:" ref=[Identifiable] "[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
+		//	"ref:" ref=[Identifiable] ("[" MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? "]")?;
 		public ParserRule getRule() { return rule; }
 
-		//"ref:" ref=[Identifiable] "[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]"
+		//"ref:" ref=[Identifiable] ("[" MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? "]")?
 		public Group getGroup() { return cGroup; }
 
 		//"ref:"
@@ -865,23 +999,29 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		//ID
 		public RuleCall getRefIdentifiableIDTerminalRuleCall_1_0_1() { return cRefIdentifiableIDTerminalRuleCall_1_0_1; }
 
+		//("[" MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? "]")?
+		public Group getGroup_2() { return cGroup_2; }
+
 		//"["
-		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
+		public Keyword getLeftSquareBracketKeyword_2_0() { return cLeftSquareBracketKeyword_2_0; }
 
 		//MULTI_NL?
-		public RuleCall getMULTI_NLTerminalRuleCall_3() { return cMULTI_NLTerminalRuleCall_3; }
+		public RuleCall getMULTI_NLTerminalRuleCall_2_1() { return cMULTI_NLTerminalRuleCall_2_1; }
+
+		//(contents+=TextOrMarkup MULTI_NL?)?
+		public Group getGroup_2_2() { return cGroup_2_2; }
 
 		//contents+=TextOrMarkup
-		public Assignment getContentsAssignment_4() { return cContentsAssignment_4; }
+		public Assignment getContentsAssignment_2_2_0() { return cContentsAssignment_2_2_0; }
 
 		//TextOrMarkup
-		public RuleCall getContentsTextOrMarkupParserRuleCall_4_0() { return cContentsTextOrMarkupParserRuleCall_4_0; }
+		public RuleCall getContentsTextOrMarkupParserRuleCall_2_2_0_0() { return cContentsTextOrMarkupParserRuleCall_2_2_0_0; }
 
 		//MULTI_NL?
-		public RuleCall getMULTI_NLTerminalRuleCall_5() { return cMULTI_NLTerminalRuleCall_5; }
+		public RuleCall getMULTI_NLTerminalRuleCall_2_2_1() { return cMULTI_NLTerminalRuleCall_2_2_1; }
 
 		//"]"
-		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+		public Keyword getRightSquareBracketKeyword_2_3() { return cRightSquareBracketKeyword_2_3; }
 	}
 
 	public class OrderedListElements extends AbstractParserRuleElementFinder {
@@ -1376,7 +1516,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		
-		//CodeText returns ecore::EString:
+		//CodeText:
 		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
 		public ParserRule getRule() { return rule; }
 
@@ -1412,7 +1552,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSINGLE_NLTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
-		//ANY_WS returns ecore::EString:
+		//ANY_WS:
 		//	MULTI_NL | SINGLE_NL | WS;
 		public ParserRule getRule() { return rule; }
 
@@ -1442,6 +1582,9 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	private TextPartElements pTextPart;
 	private TextElements pText;
 	private MarkUpElements pMarkUp;
+	private TableElements pTable;
+	private TableRowElements pTableRow;
+	private TableDataElements pTableData;
 	private EmphasizeElements pEmphasize;
 	private AnchorElements pAnchor;
 	private RefElements pRef;
@@ -1581,7 +1724,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		return getTextPartAccess().getRule();
 	}
 
-	//Text returns ecore::EString:
+	//Text:
 	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
 	public TextElements getTextAccess() {
 		return (pText != null) ? pText : (pText = new TextElements());
@@ -1592,13 +1735,43 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MarkUp:
-	//	Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef;
+	//	Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef | Table;
 	public MarkUpElements getMarkUpAccess() {
 		return (pMarkUp != null) ? pMarkUp : (pMarkUp = new MarkUpElements());
 	}
 	
 	public ParserRule getMarkUpRule() {
 		return getMarkUpAccess().getRule();
+	}
+
+	//Table:
+	//	"table[" (ANY_WS* rows+=TableRow)+ ANY_WS* "]";
+	public TableElements getTableAccess() {
+		return (pTable != null) ? pTable : (pTable = new TableElements());
+	}
+	
+	public ParserRule getTableRule() {
+		return getTableAccess().getRule();
+	}
+
+	//TableRow:
+	//	"tr[" (ANY_WS* data+=TableData)+ ANY_WS* "]";
+	public TableRowElements getTableRowAccess() {
+		return (pTableRow != null) ? pTableRow : (pTableRow = new TableRowElements());
+	}
+	
+	public ParserRule getTableRowRule() {
+		return getTableRowAccess().getRule();
+	}
+
+	//TableData:
+	//	"td[" MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* "]";
+	public TableDataElements getTableDataAccess() {
+		return (pTableData != null) ? pTableData : (pTableData = new TableDataElements());
+	}
+	
+	public ParserRule getTableDataRule() {
+		return getTableDataAccess().getRule();
 	}
 
 	//Emphasize:
@@ -1622,7 +1795,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Ref:
-	//	"ref:" ref=[Identifiable] "[" MULTI_NL? contents+=TextOrMarkup MULTI_NL? "]";
+	//	"ref:" ref=[Identifiable] ("[" MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? "]")?;
 	public RefElements getRefAccess() {
 		return (pRef != null) ? pRef : (pRef = new RefElements());
 	}
@@ -1724,7 +1897,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		return getMarkupInCodeAccess().getRule();
 	}
 
-	//CodeText returns ecore::EString:
+	//CodeText:
 	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
 	public CodeTextElements getCodeTextAccess() {
 		return (pCodeText != null) ? pCodeText : (pCodeText = new CodeTextElements());
@@ -1734,7 +1907,7 @@ public class XDocGrammarAccess extends AbstractGrammarElementFinder {
 		return getCodeTextAccess().getRule();
 	}
 
-	//ANY_WS returns ecore::EString:
+	//ANY_WS:
 	//	MULTI_NL | SINGLE_NL | WS;
 	public ANY_WSElements getANY_WSAccess() {
 		return (pANY_WS != null) ? pANY_WS : (pANY_WS = new ANY_WSElements());

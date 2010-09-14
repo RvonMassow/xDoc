@@ -63,7 +63,23 @@ MarkUp:
 	CodeBlock |
 	CodeRef |
 	Link |
-	ImageRef;
+	ImageRef |
+	Table;
+	
+Table :
+	'table['
+		(ANY_WS*  rows+=TableRow)+
+		ANY_WS*
+	']';
+
+TableRow :
+	'tr['
+		(ANY_WS* data+=TableData)+
+		ANY_WS*
+	']';
+
+TableData :
+	'td[' MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']';
 
 Emphasize:
 	'e[' MULTI_NL? contents+=TextOrMarkup MULTI_NL? ']';
@@ -72,7 +88,7 @@ Anchor:
 	'a[' name=ID ']';
 
 Ref:
-	'ref:' ref=[Identifiable] '[' MULTI_NL? contents+=TextOrMarkup MULTI_NL? ']';
+	'ref:' ref=[Identifiable] ('[' MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? ']')?;
 
 OrderedList:
 	'ol['

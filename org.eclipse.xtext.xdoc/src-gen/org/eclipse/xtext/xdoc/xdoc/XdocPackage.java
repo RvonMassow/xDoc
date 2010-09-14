@@ -503,6 +503,90 @@ public interface XdocPackage extends EPackage
   int MARK_UP_FEATURE_COUNT = 0;
 
   /**
+   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TableImpl <em>Table</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.TableImpl
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTable()
+   * @generated
+   */
+  int TABLE = 11;
+
+  /**
+   * The feature id for the '<em><b>Rows</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TABLE__ROWS = MARK_UP_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Table</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TABLE_FEATURE_COUNT = MARK_UP_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TableRowImpl <em>Table Row</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.TableRowImpl
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTableRow()
+   * @generated
+   */
+  int TABLE_ROW = 12;
+
+  /**
+   * The feature id for the '<em><b>Data</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TABLE_ROW__DATA = 0;
+
+  /**
+   * The number of structural features of the '<em>Table Row</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TABLE_ROW_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TableDataImpl <em>Table Data</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.TableDataImpl
+   * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTableData()
+   * @generated
+   */
+  int TABLE_DATA = 13;
+
+  /**
+   * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TABLE_DATA__CONTENTS = 0;
+
+  /**
+   * The number of structural features of the '<em>Table Data</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TABLE_DATA_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.EmphasizeImpl <em>Emphasize</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -510,7 +594,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getEmphasize()
    * @generated
    */
-  int EMPHASIZE = 11;
+  int EMPHASIZE = 14;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -538,7 +622,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getAnchor()
    * @generated
    */
-  int ANCHOR = 12;
+  int ANCHOR = 15;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -566,7 +650,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getRef()
    * @generated
    */
-  int REF = 13;
+  int REF = 16;
 
   /**
    * The feature id for the '<em><b>Ref</b></em>' reference.
@@ -603,7 +687,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getOrderedList()
    * @generated
    */
-  int ORDERED_LIST = 14;
+  int ORDERED_LIST = 17;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -631,7 +715,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getUnorderedList()
    * @generated
    */
-  int UNORDERED_LIST = 15;
+  int UNORDERED_LIST = 18;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' containment reference list.
@@ -659,7 +743,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getItem()
    * @generated
    */
-  int ITEM = 16;
+  int ITEM = 19;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' containment reference list.
@@ -687,7 +771,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCodeRef()
    * @generated
    */
-  int CODE_REF = 17;
+  int CODE_REF = 20;
 
   /**
    * The feature id for the '<em><b>Element</b></em>' reference.
@@ -715,7 +799,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getLink()
    * @generated
    */
-  int LINK = 18;
+  int LINK = 21;
 
   /**
    * The feature id for the '<em><b>Url</b></em>' attribute.
@@ -752,7 +836,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getImageRef()
    * @generated
    */
-  int IMAGE_REF = 19;
+  int IMAGE_REF = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -816,7 +900,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCodeBlock()
    * @generated
    */
-  int CODE_BLOCK = 20;
+  int CODE_BLOCK = 23;
 
   /**
    * The feature id for the '<em><b>Language</b></em>' attribute.
@@ -853,7 +937,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getCode()
    * @generated
    */
-  int CODE = 21;
+  int CODE = 24;
 
   /**
    * The feature id for the '<em><b>Contents</b></em>' attribute.
@@ -881,7 +965,7 @@ public interface XdocPackage extends EPackage
    * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getMarkupInCode()
    * @generated
    */
-  int MARKUP_IN_CODE = 22;
+  int MARKUP_IN_CODE = 25;
 
   /**
    * The number of structural features of the '<em>Markup In Code</em>' class.
@@ -1112,6 +1196,69 @@ public interface XdocPackage extends EPackage
    * @generated
    */
   EClass getMarkUp();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Table <em>Table</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Table</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Table
+   * @generated
+   */
+  EClass getTable();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Table#getRows <em>Rows</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Rows</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.Table#getRows()
+   * @see #getTable()
+   * @generated
+   */
+  EReference getTable_Rows();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.TableRow <em>Table Row</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Table Row</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.TableRow
+   * @generated
+   */
+  EClass getTableRow();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.TableRow#getData <em>Data</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Data</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.TableRow#getData()
+   * @see #getTableRow()
+   * @generated
+   */
+  EReference getTableRow_Data();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.TableData <em>Table Data</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Table Data</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.TableData
+   * @generated
+   */
+  EClass getTableData();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.TableData#getContents <em>Contents</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contents</em>'.
+   * @see org.eclipse.xtext.xdoc.xdoc.TableData#getContents()
+   * @see #getTableData()
+   * @generated
+   */
+  EReference getTableData_Contents();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Emphasize <em>Emphasize</em>}'.
@@ -1632,6 +1779,60 @@ public interface XdocPackage extends EPackage
      * @generated
      */
     EClass MARK_UP = eINSTANCE.getMarkUp();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TableImpl <em>Table</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.TableImpl
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTable()
+     * @generated
+     */
+    EClass TABLE = eINSTANCE.getTable();
+
+    /**
+     * The meta object literal for the '<em><b>Rows</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TABLE__ROWS = eINSTANCE.getTable_Rows();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TableRowImpl <em>Table Row</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.TableRowImpl
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTableRow()
+     * @generated
+     */
+    EClass TABLE_ROW = eINSTANCE.getTableRow();
+
+    /**
+     * The meta object literal for the '<em><b>Data</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TABLE_ROW__DATA = eINSTANCE.getTableRow_Data();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TableDataImpl <em>Table Data</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.TableDataImpl
+     * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTableData()
+     * @generated
+     */
+    EClass TABLE_DATA = eINSTANCE.getTableData();
+
+    /**
+     * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference TABLE_DATA__CONTENTS = eINSTANCE.getTableData_Contents();
 
     /**
      * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.EmphasizeImpl <em>Emphasize</em>}' class.

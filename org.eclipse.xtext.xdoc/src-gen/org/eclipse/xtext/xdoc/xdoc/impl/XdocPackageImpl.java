@@ -34,6 +34,9 @@ import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.Section4;
+import org.eclipse.xtext.xdoc.xdoc.Table;
+import org.eclipse.xtext.xdoc.xdoc.TableData;
+import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
@@ -124,6 +127,27 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * @generated
    */
   private EClass markUpEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tableEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tableRowEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tableDataEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -490,6 +514,66 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTable()
+  {
+    return tableEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTable_Rows()
+  {
+    return (EReference)tableEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTableRow()
+  {
+    return tableRowEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTableRow_Data()
+  {
+    return (EReference)tableRowEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTableData()
+  {
+    return tableDataEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTableData_Contents()
+  {
+    return (EReference)tableDataEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getEmphasize()
   {
     return emphasizeEClass;
@@ -837,6 +921,15 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
     markUpEClass = createEClass(MARK_UP);
 
+    tableEClass = createEClass(TABLE);
+    createEReference(tableEClass, TABLE__ROWS);
+
+    tableRowEClass = createEClass(TABLE_ROW);
+    createEReference(tableRowEClass, TABLE_ROW__DATA);
+
+    tableDataEClass = createEClass(TABLE_DATA);
+    createEReference(tableDataEClass, TABLE_DATA__CONTENTS);
+
     emphasizeEClass = createEClass(EMPHASIZE);
     createEReference(emphasizeEClass, EMPHASIZE__CONTENTS);
 
@@ -917,6 +1010,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     section3EClass.getESuperTypes().add(this.getAbstractSection());
     section4EClass.getESuperTypes().add(this.getAbstractSection());
     abstractSectionEClass.getESuperTypes().add(this.getIdentifiable());
+    tableEClass.getESuperTypes().add(this.getMarkUp());
     emphasizeEClass.getESuperTypes().add(this.getMarkUp());
     emphasizeEClass.getESuperTypes().add(this.getMarkupInCode());
     anchorEClass.getESuperTypes().add(this.getIdentifiable());
@@ -963,6 +1057,15 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
     initEAttribute(getTextPart_Text(), ecorePackage.getEString(), "text", null, 0, 1, TextPart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(markUpEClass, MarkUp.class, "MarkUp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    initEClass(tableEClass, Table.class, "Table", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTable_Rows(), this.getTableRow(), null, "rows", null, 0, -1, Table.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(tableRowEClass, TableRow.class, "TableRow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTableRow_Data(), this.getTableData(), null, "data", null, 0, -1, TableRow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(tableDataEClass, TableData.class, "TableData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getTableData_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, TableData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(emphasizeEClass, Emphasize.class, "Emphasize", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getEmphasize_Contents(), this.getTextOrMarkup(), null, "contents", null, 0, -1, Emphasize.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -4,9 +4,11 @@
 package org.eclipse.xtext.xdoc.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.xdoc.ui.autoedit.AutoEditProvider;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
 import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
@@ -29,6 +31,11 @@ public class XDocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXDocUiModule
 	
 	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return SemanticHighlightingConfiguration.class;
+	}
+	
+	@Override
+	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
+		return AutoEditProvider.class;
 	}
 	
 }
