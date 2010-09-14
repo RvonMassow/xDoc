@@ -17,9 +17,6 @@
 
 \newlength{\itemindentlen}
 
-\def\[{[}
-\def\]{]}
-
 \begin{document}
 «EXPAND genContent FOREACH this.sections»
 \end{document}
@@ -91,7 +88,7 @@
 «ENDREM»
 «DEFINE genColumns FOR List»«FOREACH ((List[TableData])this).contents AS content»p{«1.0/this.size»\textwidth}«ENDFOREACH»«ENDDEFINE»
 
-«DEFINE genText FOR TextPart»«escapeLatexChars(this.text)»«ENDDEFINE»
+«DEFINE genText FOR TextPart»«escapeLatexChars(unescapeXdocChars(this.text))»«ENDDEFINE»
 
 «DEFINE genText FOR OrderedList»
 \setlength{\itemindentlen}{\textwidth}

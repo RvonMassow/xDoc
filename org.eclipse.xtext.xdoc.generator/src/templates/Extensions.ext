@@ -1,12 +1,13 @@
 import org::eclipse::xtext::xdoc::xdoc;
 
+
 lstEscapeToTex():
 	"°";
 
 escapeLatexChars(String s):
-	s.replaceAll("\\\\", "\\\\").replaceAll("\\#", "\\\\#")
+	s.replaceAll("\\\\", "\\textbackslash").replaceAll("\\#", "\\\\#")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
-		.replaceAll("&", "\\\\&");
+		.replaceAll("&", "\\\\&").replaceAll("\\{", "\\{").replaceAll("\\}", "\\}");
 
 unescapeXdocChars(String s):
 	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");
