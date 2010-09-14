@@ -31,7 +31,7 @@ Workflow {
 		fileEncoding = fileEncoding
 	}
 	
-	component = org.eclipse.xtext.xdoc.LatexRunner{
+	component = workflow.LatexRunner{
 		outputDir = targetDir
 		inputFile = "${targetDir}/out.tex"
 	}
