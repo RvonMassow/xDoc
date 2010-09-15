@@ -17,6 +17,7 @@
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
 </p>
 «ENDFOREACH»
+«EXPAND genContent FOREACH this.subSections»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section»
@@ -25,6 +26,7 @@
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
 </p>
 «ENDFOREACH»
+«EXPAND genContent FOREACH this.subSections»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section2»
@@ -33,6 +35,7 @@
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
 </p>
 «ENDFOREACH»
+«EXPAND genContent FOREACH this.subSections»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section3»
@@ -41,6 +44,7 @@
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
 </p>
 «ENDFOREACH»
+«EXPAND genContent FOREACH this.subSections»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section4»

@@ -1,4 +1,4 @@
-module workflow.XDocGenerator
+module workflow.XDocHTMLGenerator
 
 import org.eclipse.emf.mwe.utils.*
 
@@ -24,15 +24,11 @@ Workflow {
 	}
 
 	component = org.eclipse.xpand2.Generator {
-		expand = "templates::Template::main FOREACH doc"
+		expand = "templates::TemplateHTML::main FOREACH doc"
 		outlet = {
 			path = targetDir
 		}
 		fileEncoding = fileEncoding
 	}
 	
-	component = workflow.LatexRunner{
-		outputDir = targetDir
-		inputFile = "${targetDir}/out.tex"
-	}
 }

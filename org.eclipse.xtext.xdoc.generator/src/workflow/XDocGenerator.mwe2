@@ -4,7 +4,7 @@ import org.eclipse.emf.mwe.utils.*
 
 var targetDir = "src-gen"
 var fileEncoding = "ISO-8859-1"
-var modelPath = "src/"
+var modelPath = "src/model"
 
 Workflow {
 

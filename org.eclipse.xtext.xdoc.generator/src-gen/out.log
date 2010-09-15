@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.8.19)  14 SEP 2010 14:53
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2010.8.19)  15 SEP 2010 14:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -100,10 +100,25 @@ Package typearea Info: These are the values describing the layout:
 \c@figure=\count87
 \c@table=\count88
 \bibindent=\dimen102
-) (/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+) (/usr/share/texmf-texlive/tex/latex/base/inputenc.sty
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks15
+\inpenc@posthook=\toks16
+
+(/usr/share/texmf-texlive/tex/latex/base/latin1.def
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+))
+(/usr/share/texmf-texlive/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/share/texmf-texlive/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
 \lst@mode=\count89
 \lst@gtempboxa=\box27
-\lst@token=\toks15
+\lst@token=\toks17
 \lst@length=\count90
 \lst@currlwidth=\dimen103
 \lst@column=\count91
@@ -233,7 +248,7 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 \Fld@menulength=\count100
 \Field@Width=\dimen109
 \Fld@charsize=\dimen110
-\Field@toks=\toks16
+\Field@toks=\toks18
 Package hyperref Info: Hyper figures OFF on input line 4377.
 Package hyperref Info: Link nesting OFF on input line 4382.
 Package hyperref Info: Hyper index ON on input line 4385.
@@ -258,22 +273,22 @@ File: hpdftex.def 2009/10/09 v6.79a Hyperref driver for pdfTeX
  (src-gen/out.aux)
 \openout1 = `out.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 12.
-LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 15.
+LaTeX Font Info:    ... okay on input line 15.
 \c@lstlisting=\count105
-Package hyperref Info: Link coloring OFF on input line 12.
+Package hyperref Info: Link coloring OFF on input line 15.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -283,8 +298,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count106
 )
-LaTeX Info: Redefining \ref on input line 12.
-LaTeX Info: Redefining \pageref on input line 12.
+LaTeX Info: Redefining \ref on input line 15.
+LaTeX Info: Redefining \pageref on input line 15.
  (src-gen/out.out)
 (src-gen/out.out)
 \@outlinefile=\write3
@@ -300,248 +315,235 @@ Class scrreprt Warning: \float@addtolists detected!
 (scrreprt)              Support for \float@addtolists may be removed from
 (scrreprt)              `scrreprt' soon .
 
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 31.
-(/usr/share/texmf-texlive/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+LaTeX Font Info:    Try loading font information for T1+cmss on input line 17.
+(/usr/share/texmf-texlive/tex/latex/base/t1cmss.fd
+File: t1cmss.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 31.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 57.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 62.
 
 (/usr/share/texmf-texlive/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 57.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 62.
  [1
 
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Overfull \hbox (167.88907pt too wide) in paragraph at lines 78--82
-\OT1/cmr/m/n/10 map where the keys are strings and the val-ues are so called \O
-T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.IEObjectDescrip
-tion\OT1/cmr/m/n/10 ,
+Overfull \hbox (167.75809pt too wide) in paragraph at lines 81--85
+\T1/cmr/m/n/10 map where the keys are strings and the val-ues are so called \T1
+/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.IEObjectDescripti
+on\T1/cmr/m/n/10 ,
  []
 
 
-LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
-(Font)              using `OT1/cmss/bx/n' instead on input line 83.
-
-
-Overfull \hbox (55.21667pt too wide) in paragraph at lines 104--106
-\OT1/cmr/m/n/10 port them as part of a so called \OT1/cmr/m/it/10 org.eclipse.x
-text/src/org.eclipse.xtext.resource.IResourceDescription\OT1/cmr/m/n/10 . 
+Overfull \hbox (55.11333pt too wide) in paragraph at lines 107--109
+\T1/cmr/m/n/10 port them as part of a so called \T1/cmr/m/it/10 org.eclipse.xte
+xt/src/org.eclipse.xtext.resource.IResourceDescription\T1/cmr/m/n/10 . 
  []
 
 
-Overfull \hbox (127.30156pt too wide) in paragraph at lines 107--113
-\OT1/cmr/m/it/10 URI\OT1/cmr/m/n/10 ), a list of ex-ported \OT1/cmr/m/it/10 EOb
--jects \OT1/cmr/m/n/10 (in the form of \OT1/cmr/m/it/10 org.eclipse.xtext/src/o
-rg.eclipse.xtext.resource.IEObjectDescription\OT1/cmr/m/n/10 )
+Overfull \hbox (127.1808pt too wide) in paragraph at lines 110--116
+\T1/cmr/m/it/10 URI\T1/cmr/m/n/10 ), a list of ex-ported \T1/cmr/m/it/10 EOb-je
+cts \T1/cmr/m/n/10 (in the form of \T1/cmr/m/it/10 org.eclipse.xtext/src/org.ec
+lipse.xtext.resource.IEObjectDescription\T1/cmr/m/n/10 )
  []
 
 
-Overfull \hbox (58.20715pt too wide) in paragraph at lines 114--119
-\OT1/cmr/m/n/10 the list of ex-ported \OT1/cmr/m/it/10 EOb-jects\OT1/cmr/m/n/10
- . An \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.IEObjec
-tDescription
+Overfull \hbox (58.10329pt too wide) in paragraph at lines 117--122
+\T1/cmr/m/n/10 the list of ex-ported \T1/cmr/m/it/10 EOb-jects\T1/cmr/m/n/10 . 
+An \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.IEObjectDes
+cription
  []
 
 [2]
-Overfull \hbox (18.82266pt too wide) in paragraph at lines 121--128
-[]\OT1/cmr/m/n/10 A lan-guage is con-fig-ured with a de-fault im-ple-men-ta-tio
-n of \OT1/cmr/m/it/10 IRe-sourceDescrip-tion.Manager
+Overfull \hbox (18.72711pt too wide) in paragraph at lines 124--131
+[]\T1/cmr/m/n/10 A lan-guage is con-fig-ured with a de-fault im-ple-men-ta-tion
+ of \T1/cmr/m/it/10 IRe-sourceDescrip-tion.Manager
  []
 
 
-Overfull \hbox (190.80205pt too wide) in paragraph at lines 121--128
-\OT1/cmr/m/n/10 model and ap-ply-ing the \OT1/cmr/m/it/10 getQual-i-fied-Name(E
-Object obj) \OT1/cmr/m/n/10 from \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.ecl
-ipse.xtext.naming.IQualifiedNameProvider
+Overfull \hbox (190.66624pt too wide) in paragraph at lines 124--131
+\T1/cmr/m/n/10 model and ap-ply-ing the \T1/cmr/m/it/10 getQual-i-fied-Name(EOb
+ject obj) \T1/cmr/m/n/10 from \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse
+.xtext.naming.IQualifiedNameProvider
  []
 
 
-Overfull \hbox (139.34769pt too wide) in paragraph at lines 129--135
-\OT1/cmr/m/n/10 Both work by look-ing up an \OT1/cmr/m/it/10 EAt-tribute \OT1/c
-mr/m/n/10 'name'. The \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.
-naming.SimpleNameProvider
+Overfull \hbox (139.22389pt too wide) in paragraph at lines 132--138
+\T1/cmr/m/n/10 Both work by look-ing up an \T1/cmr/m/it/10 EAt-tribute \T1/cmr/
+m/n/10 'name'. The \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.nami
+ng.SimpleNameProvider
  []
 
 
-Overfull \hbox (178.0274pt too wide) in paragraph at lines 129--135
-\OT1/cmr/m/n/10 sim-ply re-turns the plain value, while the \OT1/cmr/m/it/10 or
-g.eclipse.xtext/src/org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNamePro
-vider
+Overfull \hbox (177.89447pt too wide) in paragraph at lines 132--138
+\T1/cmr/m/n/10 sim-ply re-turns the plain value, while the \T1/cmr/m/it/10 org.
+eclipse.xtext/src/org.eclipse.xtext.naming.DefaultDeclarativeQualifiedNameProvi
+der
  []
 
 (/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
 ) [3]
-Overfull \hbox (161.87209pt too wide) in paragraph at lines 184--190
-\OT1/cmr/m/n/10 sources. That is the re-spon-si-bil-ity of global scop-ing (i.e
-. \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.IGlobalScope
-Provider\OT1/cmr/m/n/10 )
+Overfull \hbox (161.74251pt too wide) in paragraph at lines 187--193
+\T1/cmr/m/n/10 sources. That is the re-spon-si-bil-ity of global scop-ing (i.e.
+ \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.IGlobalScopePr
+ovider\T1/cmr/m/n/10 )
  []
 
 
-Overfull \hbox (226.40833pt too wide) in paragraph at lines 223--235
-\OT1/cmr/m/n/10 ad-di-tion you'll have to make sure that you have bound the \OT
-1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportUriGlo
-balScopeProvider
+Overfull \hbox (226.26326pt too wide) in paragraph at lines 226--238
+\T1/cmr/m/n/10 ad-di-tion you'll have to make sure that you have bound the \T1/
+cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportUriGloba
+lScopeProvider
  []
 
 [4]
-Overfull \hbox (314.08003pt too wide) in paragraph at lines 236--242
-[]\OT1/cmr/m/n/10 Global scopes based on im-port URIs are avail-able if you use
- the \OT1/cmr/m/it/10 org.eclipse.xtext.generator/src/org.eclipse.xtext.generat
-or.scoping.ImportURIScopingFragment
+Overfull \hbox (313.91396pt too wide) in paragraph at lines 239--245
+[]\T1/cmr/m/n/10 Global scopes based on im-port URIs are avail-able if you use 
+the \T1/cmr/m/it/10 org.eclipse.xtext.generator/src/org.eclipse.xtext.generator
+.scoping.ImportURIScopingFragment
  []
 
 
-Overfull \hbox (184.34341pt too wide) in paragraph at lines 236--242
-\OT1/cmr/m/n/10 in the work-flow of your lan-guage. It will bind an \OT1/cmr/m/
-it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportUriGlobalScope
-Provider
+Overfull \hbox (184.20872pt too wide) in paragraph at lines 239--245
+\T1/cmr/m/n/10 in the work-flow of your lan-guage. It will bind an \T1/cmr/m/it
+/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportUriGlobalScopePr
+ovider
  []
 
 
-Overfull \hbox (58.80159pt too wide) in paragraph at lines 236--242
-\OT1/cmr/m/n/10 (\OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resou
-rce.ignorecase.IgnoreCaseImportUriGlobalScopeProvider
+Overfull \hbox (58.69835pt too wide) in paragraph at lines 239--245
+\T1/cmr/m/n/10 (\T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resourc
+e.ignorecase.IgnoreCaseImportUriGlobalScopeProvider
  []
 
 
-Overfull \hbox (2.19547pt too wide) in paragraph at lines 254--258
-\OT1/cmr/m/n/10 it, a \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.
-scoping.impl.DefaultGlobalScopeProvider \OT1/cmr/m/n/10 has
+Overfull \hbox (2.1055pt too wide) in paragraph at lines 257--261
+\T1/cmr/m/n/10 it, a \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.sc
+oping.impl.DefaultGlobalScopeProvider \T1/cmr/m/n/10 has
  []
 
 
-Overfull \hbox (45.26279pt too wide) in paragraph at lines 254--258
-\OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.ignorecase.Ig
-noreCaseDefaultGlobalScopeProvider\OT1/cmr/m/n/10 . 
+Overfull \hbox (45.16277pt too wide) in paragraph at lines 257--261
+\T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.ignorecase.Ign
+oreCaseDefaultGlobalScopeProvider\T1/cmr/m/n/10 . 
  []
 
 [5]
-Overfull \hbox (60.87053pt too wide) in paragraph at lines 292--300
-\OT1/cmr/m/it/10 ICon-tainer.Manager \OT1/cmr/m/n/10 pro-vides you with the \OT
-1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.IContainer
+Overfull \hbox (60.76619pt too wide) in paragraph at lines 295--303
+\T1/cmr/m/it/10 ICon-tainer.Manager \T1/cmr/m/n/10 pro-vides you with the \T1/c
+mr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.resource.IContainer
  []
 
 
-Overfull \hbox (271.23526pt too wide) in paragraph at lines 320--328
-\OT1/cmr/m/n/10 bound with Guice: The de-fault bind-ing is to \OT1/cmr/m/it/10 
-org.eclipse.xtext/src/org.eclipse.xtext.resource.impl.SimpleResourceDescription
-sBasedContainerManager\OT1/cmr/m/n/10 ,
+Overfull \hbox (271.07988pt too wide) in paragraph at lines 323--331
+\T1/cmr/m/n/10 bound with Guice: The de-fault bind-ing is to \T1/cmr/m/it/10 or
+g.eclipse.xtext/src/org.eclipse.xtext.resource.impl.SimpleResourceDescriptionsB
+asedContainerManager\T1/cmr/m/n/10 ,
  []
 
 
-Overfull \hbox (25.99376pt too wide) in paragraph at lines 320--328
-\OT1/cmr/m/n/10 bind \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.r
-esource.containers.StateBasedContainerManager
+Overfull \hbox (25.8982pt too wide) in paragraph at lines 323--331
+\T1/cmr/m/n/10 bind \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.res
+ource.containers.StateBasedContainerManager
  []
 
 
-Overfull \hbox (38.62752pt too wide) in paragraph at lines 320--328
-\OT1/cmr/m/n/10 and an ad-di-tional \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.
-eclipse.xtext.resource.containers.IAllContainersState
+Overfull \hbox (38.52849pt too wide) in paragraph at lines 323--331
+\T1/cmr/m/n/10 and an ad-di-tional \T1/cmr/m/it/10 org.eclipse.xtext/src/org.ec
+lipse.xtext.resource.containers.IAllContainersState
  []
 
 [6]
-Overfull \hbox (5.0pt too wide) in paragraph at lines 349--352
+Overfull \hbox (5.00491pt too wide) in paragraph at lines 352--355
 [][] 
  []
 
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 353--356
+Overfull \hbox (5.00491pt too wide) in paragraph at lines 356--359
 [][] 
  []
 
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 357--360
+Overfull \hbox (5.00491pt too wide) in paragraph at lines 360--363
 [][] 
  []
 
 
-Overfull \hbox (5.0pt too wide) in paragraph at lines 361--364
+Overfull \hbox (5.00491pt too wide) in paragraph at lines 364--367
 [][] 
  []
 
 [7]
-Overfull \hbox (53.76569pt too wide) in paragraph at lines 444--447
-\OT1/cmr/m/n/10 the \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.re
-source.containers.ResourceSetBasedAllContainersState\OT1/cmr/m/n/10 .
+Overfull \hbox (53.66347pt too wide) in paragraph at lines 447--450
+\T1/cmr/m/n/10 the \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.reso
+urce.containers.ResourceSetBasedAllContainersState\T1/cmr/m/n/10 .
  []
 
 
-Overfull \hbox (51.72858pt too wide) in paragraph at lines 448--453
-\OT1/cmr/m/n/10 the back-end of the MWE2 work-flow com-po-nent \OT1/cmr/m/it/10
- org.eclipse.xtext/src/org.eclipse.xtext.mwe.Reader\OT1/cmr/m/n/10 .
+Overfull \hbox (51.6255pt too wide) in paragraph at lines 451--456
+\T1/cmr/m/n/10 the back-end of the MWE2 work-flow com-po-nent \T1/cmr/m/it/10 o
+rg.eclipse.xtext/src/org.eclipse.xtext.mwe.Reader\T1/cmr/m/n/10 .
  []
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 462.
+(Font)              <7> on input line 465.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 462.
-[8]
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 502.
-LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <10> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 502.
- [9]
-Overfull \hbox (255.57187pt too wide) in paragraph at lines 538--541
-\OT1/cmr/m/n/10 If you have to de-fine scopes for cer-tain con-texts, the base 
-class \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.Abs
-tractDeclarativeScopeProvider
+(Font)              <5> on input line 465.
+[8] [9]
+Overfull \hbox (255.41989pt too wide) in paragraph at lines 541--544
+\T1/cmr/m/n/10 If you have to de-fine scopes for cer-tain con-texts, the base c
+lass \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.Abstr
+actDeclarativeScopeProvider
  []
 
 [10]
-Overfull \hbox (44.9823pt too wide) in paragraph at lines 609--614
-\OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportedN
-amespaceAwareLocalScopeProvider\OT1/cmr/m/n/10 . 
+Overfull \hbox (44.88234pt too wide) in paragraph at lines 612--617
+\T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping.impl.ImportedNa
+mespaceAwareLocalScopeProvider\T1/cmr/m/n/10 . 
  []
 
 
-Overfull \hbox (61.64897pt too wide) in paragraph at lines 617--622
-\OT1/cmr/m/n/10 The \OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.sc
-oping.impl.ImportedNamespaceAwareLocalScopeProvider
+Overfull \hbox (61.54494pt too wide) in paragraph at lines 620--625
+\T1/cmr/m/n/10 The \T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scop
+ing.impl.ImportedNamespaceAwareLocalScopeProvider
  []
 
 
-Overfull \hbox (38.21112pt too wide) in paragraph at lines 617--622
-\OT1/cmr/m/n/10 makes use of the so called \OT1/cmr/m/it/10 org.eclipse.xtext/s
-rc/org.eclipse.xtext.scoping.IQualifiedNameProvider
+Overfull \hbox (38.11205pt too wide) in paragraph at lines 620--625
+\T1/cmr/m/n/10 makes use of the so called \T1/cmr/m/it/10 org.eclipse.xtext/src
+/org.eclipse.xtext.scoping.IQualifiedNameProvider
  []
 
 
-Overfull \hbox (35.18112pt too wide) in paragraph at lines 617--622
-\OT1/cmr/m/n/10 (\OT1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scopi
-ng.impl.DefaultDeclarativeQualifiedNameProvider\OT1/cmr/m/n/10 )
+Overfull \hbox (35.08347pt too wide) in paragraph at lines 620--625
+\T1/cmr/m/n/10 (\T1/cmr/m/it/10 org.eclipse.xtext/src/org.eclipse.xtext.scoping
+.impl.DefaultDeclarativeQualifiedNameProvider\T1/cmr/m/n/10 )
  []
 
-Missing character: There is no   in font cmr10!
-[11] [12] (src-gen/out.aux)
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
-
- ) 
+[11] [12] (src-gen/out.aux) ) 
 Here is how much of TeX's memory you used:
- 6470 strings out of 495061
- 97059 string characters out of 1182621
- 324524 words of memory out of 3000000
- 9384 multiletter control sequences out of 15000+50000
- 5775 words of font info for 21 fonts, out of 3000000 for 9000
+ 7120 strings out of 495061
+ 103103 string characters out of 1182621
+ 326021 words of memory out of 3000000
+ 10017 multiletter control sequences out of 15000+50000
+ 11355 words of font info for 24 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 43i,7n,43p,262b,1659s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/sha
-re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-texlive/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
-s/cm/cmti10.pfb>
-Output written on src-gen/out.pdf (12 pages, 159809 bytes).
+ 43i,7n,43p,261b,1786s stack positions out of 5000i,500n,10000p,200000b,50000s
+ </home/skomp/.texmf-var/fonts/pk/ljfour/jknappen/
+ec/ecso1200.600pk> </home/skomp/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1000
+.600pk> </home/skomp/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx1200.600pk> </h
+ome/skomp/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1000.600pk> </home/skomp/.
+texmf-var/fonts/pk/ljfour/jknappen/ec/ecso1440.600pk> </home/skomp/.texmf-var/f
+onts/pk/ljfour/jknappen/ec/ecsx1440.600pk> </home/skomp/.texmf-var/fonts/pk/ljf
+our/jknappen/ec/ecti1000.600pk> </home/skomp/.texmf-var/fonts/pk/ljfour/jknappe
+n/ec/ecrm1000.600pk> </home/skomp/.texmf-var/fonts/pk/ljfour/jknappen/ec/ecsx20
+74.600pk></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
+Output written on src-gen/out.pdf (12 pages, 177370 bytes).
 PDF statistics:
- 367 PDF objects out of 1000 (max. 8388607)
+ 677 PDF objects out of 1000 (max. 8388607)
  215 named destinations out of 1000 (max. 500000)
  97 words of extra memory for PDF output out of 10000 (max. 10000000)
 
