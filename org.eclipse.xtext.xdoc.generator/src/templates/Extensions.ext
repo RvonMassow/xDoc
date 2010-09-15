@@ -5,9 +5,10 @@ lstEscapeToTex():
 	"°";
 
 escapeLatexChars(String s):
-	s.replaceAll("\\\\", "\\textbackslash").replaceAll("\\#", "\\\\#")
+	s.replaceAll("\\#", "\\\\#").replaceAll("\\{", "\\\\{")
+		.replaceAll("\\}", "\\\\}").replaceAll("\\\\", "\\\\textbackslash{}")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
-		.replaceAll("&", "\\\\&").replaceAll("\\{", "\\{").replaceAll("\\}", "\\}");
+		.replaceAll("&", "\\\\&");
 
 unescapeXdocChars(String s):
 	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");
