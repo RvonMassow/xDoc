@@ -5,8 +5,9 @@ lstEscapeToTex():
 	"°";
 
 escapeLatexChars(String s):
-	s.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
-		.replaceAll("\\\\", "\\\\textbackslash{}").replaceAll("#", "\\\\#")
+	s.replaceAll("\\\\", "\\\\textbackslash{}")
+		.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
+		.replaceAll("#", "\\\\#")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
 		.replaceAll("&", "\\\\&").replaceAll("\\$", "\\$");
 

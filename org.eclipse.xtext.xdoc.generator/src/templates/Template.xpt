@@ -9,9 +9,11 @@
 \usepackage[T1]{fontenc}
 \usepackage{listings}
 
+\usepackage{helvet}
+
 %\lstdefinelanguage{xtext}{keywords={terminal, grammar, import, generate, hidden, as}, sensitive=true,string={"},morestring={'},comment={//},morecomment=[s]{/*}{*/}}
 
-\lstset{breaklines=true, tabsize=4, basicstyle=\sffamily, keywordstyle=\bfseries, language=Java}
+\lstset{breaklines=true, tabsize=4, basicstyle=\sffamily\footnotesize, keywordstyle=\bfseries, language=Java}
 
 \usepackage[english]{babel}
 
