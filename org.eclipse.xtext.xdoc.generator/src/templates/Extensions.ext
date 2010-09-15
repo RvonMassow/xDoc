@@ -8,11 +8,18 @@ escapeLatexChars(String s):
 	s.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
 		.replaceAll("\\\\", "\\\\textbackslash{}").replaceAll("#", "\\\\#")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
-		.replaceAll("&", "\\\\&");
+		.replaceAll("&", "\\\\&").replaceAll("\\$", "\\$");
 
 unescapeXdocChars(String s):
 	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");
 
+prepareListingsString(String s):
+	s.replaceAll("^\n", "");
+
 escapeHTMLChars(String s):
 	s.replaceAll("&", "&amp;").replaceAll("\"", "&quot;").replaceAll("'", "&apos;")
 		.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
+boolean inline(CodeBlock c):
+	c.contents.size == 1 && !c.contents.first().toString().contains("\n");
+
