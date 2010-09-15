@@ -109,7 +109,7 @@
 «ENDDEFINE»
 
 «DEFINE genText FOR Item»
-\item \begin{minipage}[t]{\itemindentlen}
+\item \begin{minipage}[t]{\itemindentlen}«IF block(this.contents.first())»\vspace*{-\baselineskip}«ENDIF»
 «EXPAND genContent FOREACH this.contents»
 \end{minipage}
 «ENDDEFINE»
@@ -126,7 +126,9 @@
 
 «DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«ENDDEFINE»
 
-«DEFINE genText FOR CodeBlock»«IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»{«EXPAND genCode FOREACH this.contents»}
+«DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
+
+«DEFINE specialGenCode FOR CodeBlock»«IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»{«EXPAND genCode FOREACH this.contents»}
 «ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
 \end{lstlisting}

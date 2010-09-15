@@ -1,4 +1,5 @@
 import org::eclipse::xtext::xdoc::xdoc;
+import templates::util;
 
 
 lstEscapeToTex():
@@ -9,7 +10,7 @@ escapeLatexChars(String s):
 		.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
 		.replaceAll("#", "\\\\#")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
-		.replaceAll("&", "\\\\&").replaceAll("\\$", "\\$");
+		.replaceAll("&", "\\\\&").replaceAll("\\$", "\\\\$");
 
 unescapeXdocChars(String s):
 	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");
@@ -24,3 +25,11 @@ escapeHTMLChars(String s):
 boolean inline(CodeBlock c):
 	c.contents.size == 1 && !c.contents.first().toString().contains("\n");
 
+boolean block(TextOrMarkup c):
+	(TextPart.isInstance(c.contents.first())
+		&& ((TextPart)c.contents.first()).text.matches("^\\s*$") 
+		&& CodeBlock.isInstance(c.contents.get(1)))
+	|| CodeBlock.isInstance(c.contents.first());
+
+CodeBlock removeIndent(CodeBlock cb):
+	JAVA templates.util.StringFormatter.removeIndent(org.eclipse.xtext.xdoc.xdoc.CodeBlock);
