@@ -66,7 +66,7 @@
 «DEFINE genText FOR Object»
 «ENDDEFINE»
 
-«DEFINE genText FOR TextPart»«escapeLatexChars(this.text)»«ENDDEFINE»
+«DEFINE genText FOR TextPart»«escapeHTMLChars(unescapeXdocChars(this.text))»«ENDDEFINE»
 
 «DEFINE genText FOR OrderedList»
 <ol>
@@ -95,7 +95,7 @@
 <a name="«this.name»"></a>
 «ENDDEFINE»
 
-«DEFINE genText FOR Link»<a href="«this.url»">«this.text»</a>«ENDDEFINE»
+«DEFINE genText FOR Link»<a href="«this.url»">«escapeHTMLChars(unescapeXdocChars(this.text))»</a>«ENDDEFINE»
 
 «REM»TODO: better code implementation«ENDREM»
 «DEFINE genText FOR CodeBlock»
@@ -106,18 +106,18 @@
 
 «REM»TODO: generate urls for code refs«ENDREM»
 «DEFINE genText FOR CodeRef»
-<em>«escapeLatexChars(this.element.canonicalName)»</em>
+<em>«escapeHTMLChars(unescapeXdocChars(this.element.canonicalName))»</em>
 «ENDDEFINE»
 
 «DEFINE genCode FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode FOR Code»«unescapeXdocChars(this.contents)»«ENDDEFINE»
+«DEFINE genCode FOR Code»«escapeHTMLChars(unescapeXdocChars(this.contents))»«ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
 «REM»TODO: find solution for escaping to html, refers to better code concept«ENDREM»
-«DEFINE genCode FOR MarkupInCode»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDDEFINE»
+«DEFINE genCode FOR MarkupInCode»«REM»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDREM»«ENDDEFINE»
 
 «DEFINE genLabel FOR String»«IF this != null »<a name="«this»"></a>«ENDIF»
 «ENDDEFINE»
