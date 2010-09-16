@@ -9,7 +9,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{listings}
 
-\usepackage{helvet}
+%%\usepackage{helvet}
 
 \lstdefinelanguage{Xtext}
   {morekeywords={grammar, generate, import, as, terminal, hidden},
