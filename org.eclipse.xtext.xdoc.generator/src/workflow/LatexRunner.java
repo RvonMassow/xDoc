@@ -16,7 +16,7 @@ public class LatexRunner extends AbstractWorkflowComponent {
 	private String outputDir;
 	private String inputFile;
 	private Logger log = LogManager.getLogger(this.getClass());
-	
+
 	@Override
 	public String getId() {
 		return this.getClass().getName();
@@ -34,6 +34,15 @@ public class LatexRunner extends AbstractWorkflowComponent {
 			BufferedReader is = new BufferedReader(new InputStreamReader(
 					p.getInputStream()));
 			String s = is.readLine();
+			while (s != null) {
+				log.info(s);
+				s = is.readLine();
+			}
+			p = Runtime.getRuntime().exec(
+					"pdflatex --output-directory " + outputDir + " "
+							+ inputFile);
+			is = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			s = is.readLine();
 			while (s != null) {
 				log.info(s);
 				s = is.readLine();
@@ -63,13 +72,15 @@ public class LatexRunner extends AbstractWorkflowComponent {
 		try {
 			Process p = Runtime.getRuntime().exec("pdflatex -version");
 			synchronized (p) {
-				p.wait();	
+				p.wait();
 			}
 			if (p.exitValue() != 0) {
 				log.error("failed to execute pdflatex, is it in your PATH?");
 			}
 		} catch (IOException e) {
-			issues.addError(this, "pdflatex could not be run, is it in your PATH?", "pdflatex");
+			issues.addError(this,
+					"pdflatex could not be run, is it in your PATH?",
+					"pdflatex");
 		} catch (InterruptedException e) {
 		}
 	}
