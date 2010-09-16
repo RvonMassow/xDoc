@@ -29,35 +29,40 @@
 «ENDDEFINE»
 
 «DEFINE genContent FOR Chapter»
-\chapter{«EXPAND genContent FOR this.title»«EXPAND genLabel FOR this.name»}
+\chapter{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section»
-\section{«EXPAND genContent FOR this.title»«EXPAND genLabel FOR this.name»}
+\section{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section2»
-\subsection{«EXPAND genContent FOR this.title»«EXPAND genLabel FOR this.name»}
+\subsection{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section3»
-\subsubsection{«EXPAND genContent FOR this.title»«EXPAND genLabel FOR this.name»}
+\subsubsection{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section4»
-\paragraph{«EXPAND genContent FOR this.title»«EXPAND genLabel FOR this.name»}
+\paragraph{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this.name»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «ENDDEFINE»
 
