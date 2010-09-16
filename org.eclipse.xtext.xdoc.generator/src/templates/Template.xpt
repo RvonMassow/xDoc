@@ -11,9 +11,27 @@
 
 \usepackage{helvet}
 
+\lstdefinelanguage{Xtext}
+  {morekeywords={grammar, generate, import, as, terminal, hidden},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+  }
+
+\lstdefinelanguage{Xbase}
+  {morekeywords={extends, instanceof, new, null, true, false, if, else, switch, case, default, do, while, for, def, class, as},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+  }
+
 %\lstdefinelanguage{xtext}{keywords={terminal, grammar, import, generate, hidden, as}, sensitive=true,string={"},morestring={'},comment={//},morecomment=[s]{/*}{*/}}
 
-\lstset{breaklines=true, tabsize=4, basicstyle=\sffamily\footnotesize, keywordstyle=\bfseries, language=Java}
+\lstset{breaklines=true, tabsize=4, basicstyle=\sffamily\footnotesize, keywordstyle=\bfseries, language=Xbase}
 
 \usepackage[english]{babel}
 
