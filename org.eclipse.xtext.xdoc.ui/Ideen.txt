@@ -45,3 +45,6 @@ beim JDT partizipieren.
 -- bracket matching reparieren
 
 -- incremental generation von generatoren im projekt (kurze turnarounds beim anpassen der templates)
+
+-- AutoEdit
+ Space am Zeilenende bei mehr als X Zeichen sollte stattdessen ein Linebreak werden
