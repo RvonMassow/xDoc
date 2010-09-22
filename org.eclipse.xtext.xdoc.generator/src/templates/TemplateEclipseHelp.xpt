@@ -1,0 +1,213 @@
+«IMPORT org::eclipse::xtext::xdoc::xdoc»
+«EXTENSION templates::Extensions»
+
+«DEFINE main FOR Document -»
+
+«FILE "../toc.xml"-»
+<toc topic="src-gen/index.html" label="Xtext User Guide">
+«EXPAND genTocEntry(this.sections, "") FOR this.sections»
+</toc>
+
+«ENDFILE»
+
+«REM»toc done, now for the html part«ENDREM»
+
+«FILE "index.html"-»
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Dummy Title</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Xtext User Guide">
+<link rel="next" href="Overview.html" title="Overview">
+</head>
+<body>
+</body>
+«ENDFILE-»
+
+«EXPAND genContent(this.sections, "") FOR this.sections»
+
+«ENDDEFINE»
+
+
+«DEFINE genTocEntry(List[Chapter] chapters, String pre) FOR List[Chapter]»
+«FOREACH chapters AS chapter»
+	<topic href="«GLOBALVAR dir»chapter«chapters.indexOf(chapter)».html" label="«EXPAND genPlainText FOR chapter.title»">«EXPAND genTocEntry1(chapter.subSections, chapters.indexOf(chapter).toString()+"-")»
+	</topic>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genTocEntry1(List[Section] sections, String pre) FOR List[Section]»
+«FOREACH sections AS section»
+	<topic href="«GLOBALVAR dir»section«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry2(this.subSections, pre+sections.indexOf(section).toString())»
+	</topic>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genTocEntry2(List[Section2] sections, String pre) FOR List[Section2]»
+«FOREACH sections AS section»
+	<topic href="«GLOBALVAR dir»subsection«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry3(section.subSections, pre+sections.indexOf(section))»
+	</topic>
+«ENDFOREACH»
+«ENDDEFINE»
+
+
+«DEFINE genTocEntry3(List[Section3] sections, String pre) FOR List[Section3]»
+«FOREACH sections AS section»
+	<topic href="«GLOBALVAR dir»section«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry4(section.subSections, pre+sections.indexOf(section))»
+	</topic>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genTocEntry4(List[Section4] sections, String pre) FOR List[Section4]»
+«FOREACH sections AS section»
+	<topic href="«GLOBALVAR dir»section«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»"/>
+«ENDFOREACH»
+«ENDDEFINE»
+
+«REM»
+«DEFINE genTocEntry(List[AbstractSection] l, String s) FOR List»
+«ENDDEFINE»
+«ENDREM»
+
+
+«DEFINE genContent(List[Chapter] chapters, String pre) FOR List[Chapter]»
+«FOREACH this AS chapter»
+«FILE "chapter"+this.indexOf(chapter)+".html"»
+<h1>«EXPAND genContent FOR chapter.title»</h1>
+«EXPAND genContent FOREACH this.contents»
+«ENDFILE»
+«EXPAND genContent1(chapter.subSections, this.indexOf(chapter).toString()+"-")»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genContent1 (List[Section] sections, String prefix) FOR List[Section]»
+«FOREACH sections AS section»
+«FILE "section" + prefix + sections.indexOf(section)+".html"»
+<h1>«EXPAND genContent FOR section.title»</h1>
+«ENDFILE»
+«EXPAND genContent2(prefix + sections.indexOf(section).toString(), section.subSections)»
+«ENDFOREACH»
+«ENDDEFINE»
+
+«DEFINE genContent2(String prefix, List[Section2] sections) FOR List[Section2]»
+«FOREACH sections AS section»
+«FILE "subsection" + prefix + sections.indexOf(section)+".html"»
+<h1>«EXPAND genContent FOR section.title»</h1>
+«EXPAND genContent3 FOREACH section.subSections»
+«ENDFILE»
+«ENDFOREACH»
+«ENDDEFINE»
+
+
+«DEFINE genContent3 FOR Section3»
+<h2>«EXPAND genContent FOR this.title» </h2>
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+</p>
+«ENDFOREACH»
+«EXPAND genContent4 FOREACH this.subSections»
+«ENDDEFINE»
+
+«DEFINE genContent4 FOR Section4»
+<h3>«EXPAND genContent FOR this.title»</h3>
+«EXPAND genLabel FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+</p>
+«ENDFOREACH»
+«ENDDEFINE»
+
+
+«REM» start html template«ENDREM»
+
+«DEFINE genContent FOR TextOrMarkup»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
+
+
+«DEFINE genContent FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText FOR TextPart»«escapeHTMLChars(unescapeXdocChars(this.text))»«ENDDEFINE»
+
+«DEFINE genText FOR OrderedList»
+<ol>
+«EXPAND genText FOREACH items»
+</ol>
+«ENDDEFINE»
+
+«DEFINE genText FOR UnorderedList»
+<ul>
+«EXPAND genText FOREACH items»
+</ul>
+«ENDDEFINE»
+
+«DEFINE genText FOR Item»
+<li>
+«EXPAND genContent FOREACH this.contents»
+</li>
+«ENDDEFINE»
+
+«DEFINE genText FOR Emphasize»<em>«EXPAND genContent FOREACH this.contents»</em>«ENDDEFINE»
+
+«DEFINE genText FOR Ref»
+«IF this.contents.isEmpty»<a href="#«this.ref.name»">«this.ref»</a>«ELSE»<a href="#«this.ref.name»">«EXPAND genContent FOREACH this.contents»</a>«ENDIF»«ENDDEFINE»
+
+«DEFINE genText FOR Anchor»
+<a name="«this.name»"></a>
+«ENDDEFINE»
+
+«DEFINE genText FOR Link»<a href="«this.url»">«escapeHTMLChars(unescapeXdocChars(this.text))»</a>«ENDDEFINE»
+
+«REM»TODO: better code implementation«ENDREM»
+«DEFINE genText FOR CodeBlock»
+<pre>
+«EXPAND genCode FOREACH contents»
+</pre>
+«ENDDEFINE»
+
+«REM»TODO: generate urls for code refs«ENDREM»
+«DEFINE genText FOR CodeRef»
+<em>«escapeHTMLChars(unescapeXdocChars(this.element.canonicalName))»</em>
+«ENDDEFINE»
+
+«DEFINE genCode FOR Object»
+«ENDDEFINE»
+
+«DEFINE genCode FOR Code»«escapeHTMLChars(unescapeXdocChars(this.contents))»«ENDDEFINE»
+
+«DEFINE genText FOR MarkupInCode»«ENDDEFINE»
+
+«REM»TODO: find solution for escaping to html, refers to better code concept«ENDREM»
+«DEFINE genCode FOR MarkupInCode»«REM»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDREM»«ENDDEFINE»
+
+«DEFINE genLabel FOR String»«IF this != null »<a name="«this»"></a>«ENDIF»
+«ENDDEFINE»
+
+«REM» end html template«ENDREM»
+
+
+
+
+
+«DEFINE genPlainText FOR TextOrMarkup»«EXPAND genPlainText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genPlainText FOR TextPart»«this.text»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Emphasize»«EXPAND genPlainText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Link»«this.text»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Object»«ENDDEFINE»
+
+«DEFINE genURLText FOR TextOrMarkup»«EXPAND genURLText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genURLText FOR TextPart»«encode(text)»«ENDDEFINE»
+
+«DEFINE genURLText FOR Emphasize»«EXPAND genPlainText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genURLText FOR Link»«encode(this.text)»«ENDDEFINE»
+
+«DEFINE genURLText FOR Object»«ENDDEFINE»
+

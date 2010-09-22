@@ -29,7 +29,7 @@ public class LatexRunner extends AbstractWorkflowComponent {
 			// arg1.beginTask("Invoking LaTeX builder on generated TeX file.",
 			// 0);
 			Process p = Runtime.getRuntime().exec(
-					"pdflatex --output-directory " + outputDir + " "
+					"pdflatex --interaction scrollmode --output-directory " + outputDir + " "
 							+ inputFile);
 			BufferedReader is = new BufferedReader(new InputStreamReader(
 					p.getInputStream()));
@@ -39,7 +39,7 @@ public class LatexRunner extends AbstractWorkflowComponent {
 				s = is.readLine();
 			}
 			p = Runtime.getRuntime().exec(
-					"pdflatex --output-directory " + outputDir + " "
+					"pdflatex --interaction scrollmode --output-directory " + outputDir + " "
 							+ inputFile);
 			is = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			s = is.readLine();

@@ -99,7 +99,6 @@
 \begin{tabular}{«EXPAND genColumns FOR this.rows.first().data»}
 «EXPAND genText FOREACH this.rows SEPARATOR "\\\\\n"»
 \end{tabular}
-
 «ENDDEFINE»
 
 «DEFINE genText FOR TableRow»«EXPAND genText FOREACH this.data SEPARATOR "&"»«ENDDEFINE»
@@ -119,8 +118,7 @@
 \addtolength{\itemindentlen}{-2em}
 «EXPAND genText FOREACH items»
 \end{enumerate}
-\addtolength{\itemindentlen}{2em}
-«ENDDEFINE»
+\addtolength{\itemindentlen}{2em}«ENDDEFINE»
 
 «DEFINE genText FOR UnorderedList»
 \setlength{\itemindentlen}{\textwidth}
@@ -128,14 +126,12 @@
 \addtolength{\itemindentlen}{-2em}
 «EXPAND genText FOREACH items»
 \end{itemize}
-\addtolength{\itemindentlen}{2em}
-«ENDDEFINE»
+\addtolength{\itemindentlen}{2em}«ENDDEFINE»
 
 «DEFINE genText FOR Item»
 \item \begin{minipage}[t]{\itemindentlen}«IF block(this.contents.first())»\vspace*{-\baselineskip}«ENDIF»
 «EXPAND genContent FOREACH this.contents»
-\end{minipage}
-«ENDDEFINE»
+\end{minipage}«ENDDEFINE»
 
 «DEFINE genText FOR Emphasize»\emph{«EXPAND genContent FOREACH this.contents»}«ENDDEFINE»
 

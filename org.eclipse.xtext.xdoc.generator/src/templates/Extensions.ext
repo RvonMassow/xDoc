@@ -1,14 +1,13 @@
 import org::eclipse::xtext::xdoc::xdoc;
-import templates::util;
-
+import java::net;
 
 lstEscapeToTex():
 	"°";
 
 escapeLatexChars(String s):
-	s.replaceAll("\\\\", "\\\\textbackslash{}")
-		.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
-		.replaceAll("#", "\\\\#")
+	s.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
+		.replaceAll("\\\\([^{}])", "\\\\textbackslash{}$1")
+		.replaceAll("#", "\\\\#").replaceAll("%", "\\\\%")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
 		.replaceAll("&", "\\\\&").replaceAll("\\$", "\\\\$");
 
@@ -30,6 +29,26 @@ boolean block(TextOrMarkup c):
 		&& ((TextPart)c.contents.first()).text.matches("^\\s*$") 
 		&& CodeBlock.isInstance(c.contents.get(1)))
 	|| CodeBlock.isInstance(c.contents.first());
+
+makeFileName(TextOrMarkup tom):
+	remWS(((TextPart)tom.contents.first()).text);
+
+fileName(Section3 s):
+	((Section2)s.eContainer()).name;
+	
+
+filename(Section4 s):
+	fileName((Section3)s.eContainer());
+
+
+fileName(AbstractSection s):
+	s;
+
+remWS(String s):
+	s.replaceAll("\\s", "");
+
+String encode(String s):
+	JAVA templates.util.StringFormatter.encode(java.lang.String);
 
 CodeBlock removeIndent(CodeBlock cb):
 	JAVA templates.util.StringFormatter.removeIndent(org.eclipse.xtext.xdoc.xdoc.CodeBlock);

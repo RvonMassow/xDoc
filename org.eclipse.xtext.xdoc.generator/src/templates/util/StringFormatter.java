@@ -1,5 +1,8 @@
 package templates.util;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 
@@ -27,5 +30,14 @@ public class StringFormatter {
 			}
 		}
 		return cb;
+	}
+
+	static public String encode(String s){
+		try {
+			return URLEncoder.encode(s, "ISO-8859-1");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 }
