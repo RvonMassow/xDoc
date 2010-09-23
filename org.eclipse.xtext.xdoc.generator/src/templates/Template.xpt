@@ -108,7 +108,7 @@
 «REM»
 «DEFINE genColumns FOR List»«ENDDEFINE»
 «ENDREM»
-«DEFINE genColumns FOR List»«FOREACH ((List[TableData])this).contents AS content»p{«1.0/this.size»\textwidth}«ENDFOREACH»«ENDDEFINE»
+«DEFINE genColumns FOR List»«FOREACH ((List[TableData])this).contents AS content»|p{«1.0/this.size»\textwidth}«ENDFOREACH»|«ENDDEFINE»
 
 «DEFINE genText FOR TextPart»«escapeLatexChars(unescapeXdocChars(this.text))»«ENDDEFINE»
 

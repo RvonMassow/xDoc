@@ -3,9 +3,9 @@
 
 «DEFINE main FOR Document -»
 
-«FILE "../toc.xml"-»
+«FILE "toc.xml"-»
 <toc topic="src-gen/index.html" label="Xtext User Guide">
-«EXPAND genTocEntry(this.sections, "") FOR this.sections»
+«EXPAND genTocEntry FOREACH sections»
 </toc>
 
 «ENDFILE»
@@ -29,61 +29,43 @@
 
 «ENDDEFINE»
 
-
-«DEFINE genTocEntry(List[Chapter] chapters, String pre) FOR List[Chapter]»
-«FOREACH chapters AS chapter»
-	<topic href="«GLOBALVAR dir»chapter«chapters.indexOf(chapter)».html" label="«EXPAND genPlainText FOR chapter.title»">«EXPAND genTocEntry1(chapter.subSections, chapters.indexOf(chapter).toString()+"-")»
-	</topic>
-«ENDFOREACH»
+«DEFINE genTocEntry FOR AbstractSection»
 «ENDDEFINE»
 
-«DEFINE genTocEntry1(List[Section] sections, String pre) FOR List[Section]»
-«FOREACH sections AS section»
-	<topic href="«GLOBALVAR dir»section«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry2(this.subSections, pre+sections.indexOf(section).toString())»
-	</topic>
-«ENDFOREACH»
+«DEFINE genTocEntry FOR Chapter»
+<topic href="«((String)GLOBALVAR dir) +fileName(this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-«DEFINE genTocEntry2(List[Section2] sections, String pre) FOR List[Section2]»
-«FOREACH sections AS section»
-	<topic href="«GLOBALVAR dir»subsection«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry3(section.subSections, pre+sections.indexOf(section))»
-	</topic>
-«ENDFOREACH»
+«DEFINE genTocEntry FOR Section»
+<topic href="«((String)GLOBALVAR dir) +fileName(this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-
-«DEFINE genTocEntry3(List[Section3] sections, String pre) FOR List[Section3]»
-«FOREACH sections AS section»
-	<topic href="«GLOBALVAR dir»subsection«pre».html#" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry4(section.subSections, pre+sections.indexOf(section))»
-	</topic>
-«ENDFOREACH»
+«DEFINE genTocEntry FOR Section2»
+<topic href="«((String)GLOBALVAR dir) + fileName(this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-«DEFINE genTocEntry4(List[Section4] sections, String pre) FOR List[Section4]»
-«FOREACH sections AS section»
-	<topic href="«GLOBALVAR dir»subsection«pre».html#«labelName(section)»" label="«EXPAND genPlainText FOR section.title»"/>
-«ENDFOREACH»
+«DEFINE genTocEntry FOR Section3»
+<topic href="«((String)GLOBALVAR dir) +fileName((Section2)this.eContainer())».html#«labelName(this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-«REM»
-«DEFINE genTocEntry(List[AbstractSection] l, String s) FOR List»
+«DEFINE genTocEntry FOR Section4»
+<topic href="«((String)GLOBALVAR dir) +fileName((Section2)this.eContainer().eContainer())».html#«labelName(this)»" label="«EXPAND genPlainText FOR this.title»" />
 «ENDDEFINE»
-«ENDREM»
 
 
 «DEFINE genContent(List[Chapter] chapters, String pre) FOR List[Chapter]»
 «FOREACH this AS chapter»
-«FILE "chapter"+this.indexOf(chapter)+".html"»
+«FILE fileName(chapter)+".html"»
 <h1>«EXPAND genContent FOR chapter.title»</h1>
 «EXPAND genContent FOREACH chapter.contents»
 «ENDFILE»
-«EXPAND genContent1(chapter.subSections, this.indexOf(chapter).toString()+"-")»
+«EXPAND genContent1(chapter.subSections, chapters.indexOf(chapter).toString()+"-")»
 «ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genContent1 (List[Section] sections, String prefix) FOR List[Section]»
 «FOREACH sections AS section»
-«FILE "section" + prefix + sections.indexOf(section)+".html"»
+«FILE fileName(section)+".html"»
 <h1>«EXPAND genContent FOR section.title»</h1>
 «EXPAND genContent FOREACH section.contents»
 «ENDFILE»
@@ -93,7 +75,7 @@
 
 «DEFINE genContent2(String prefix, List[Section2] sections) FOR List[Section2]»
 «FOREACH sections AS section»
-«FILE "subsection" + prefix + sections.indexOf(section)+".html"»
+«FILE fileName(section)+".html"»
 <h1>«EXPAND genContent FOR section.title»</h1>
 «EXPAND genContent FOREACH section.contents»
 «EXPAND genContent3 FOREACH section.subSections»
@@ -111,6 +93,7 @@
 «EXPAND genContent4 FOREACH this.subSections»
 «ENDDEFINE»
 
+
 «DEFINE genContent4 FOR Section4»«EXPAND genLabel FOR labelName(this)»
 <h3>«EXPAND genContent FOR this.title»</h3>
 «EXPAND genLabel FOR this.name»
@@ -118,6 +101,11 @@
 </p>
 «ENDFOREACH»
 «ENDDEFINE»
+
+«REM»
+«DEFINE genTocEntry(List[AbstractSection] l, String s) FOR List»
+«ENDDEFINE»
+«ENDREM»
 
 
 «REM» start html template«ENDREM»

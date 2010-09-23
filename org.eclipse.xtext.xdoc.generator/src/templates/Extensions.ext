@@ -29,6 +29,20 @@ boolean block(TextOrMarkup c):
 		&& CodeBlock.isInstance(c.contents.get(1)))
 	|| CodeBlock.isInstance(c.contents.first());
 
+
+// eclipse help helpers
+fileName(AbstractSection as):
+	as.name;
+
+fileName(Chapter c):
+	((Document)c.eContainer()).sections.indexOf(c).toString();
+
+fileName(Section c):
+	fileName((Chapter)c.eContainer()) + "-" + ((Chapter)c.eContainer()).subSections.indexOf(c).toString();
+
+fileName(Section2 c):
+	fileName((Section)c.eContainer()) + "-" + ((Section)c.eContainer()).subSections.indexOf(c).toString();
+	
 labelName(Section3 s):
 	"sub"+((Section)s.eContainer()).subSections.indexOf(s).toString();
 
