@@ -12,8 +12,8 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 	}
 
 	protected void configureSquareBrackets(IEditStrategyAcceptor acceptor) {
-		acceptor.accept(singleLineTerminals.get().configure("[", "]"),IDocument.DEFAULT_CONTENT_TYPE);
-		acceptor.accept(multiLineTerminals.get().configure("[", null, "]"),IDocument.DEFAULT_CONTENT_TYPE);
+		acceptor.accept(singleLineTerminals.newInstance("[", "]"),IDocument.DEFAULT_CONTENT_TYPE);
+		acceptor.accept(multiLineTerminals.newInstance("[", null, "]"),IDocument.DEFAULT_CONTENT_TYPE);
 	}
 
 	protected void configureParenthesis(IEditStrategyAcceptor acceptor) {
