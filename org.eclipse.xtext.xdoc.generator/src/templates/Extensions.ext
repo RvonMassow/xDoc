@@ -1,5 +1,4 @@
 import org::eclipse::xtext::xdoc::xdoc;
-import java::net;
 
 lstEscapeToTex():
 	"°";
@@ -30,19 +29,11 @@ boolean block(TextOrMarkup c):
 		&& CodeBlock.isInstance(c.contents.get(1)))
 	|| CodeBlock.isInstance(c.contents.first());
 
-makeFileName(TextOrMarkup tom):
-	remWS(((TextPart)tom.contents.first()).text);
+labelName(Section3 s):
+	"sub"+((Section)s.eContainer()).subSections.indexOf(s).toString();
 
-fileName(Section3 s):
-	((Section2)s.eContainer()).name;
-	
-
-filename(Section4 s):
-	fileName((Section3)s.eContainer());
-
-
-fileName(AbstractSection s):
-	s;
+labelName(Section4 s):
+	labelName((Section3)s.eContainer()) +"-"+ ((Section3)s.eContainer()).subSections.indexOf(s).toString();
 
 remWS(String s):
 	s.replaceAll("\\s", "");

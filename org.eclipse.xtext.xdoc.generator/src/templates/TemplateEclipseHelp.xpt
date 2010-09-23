@@ -54,14 +54,14 @@
 
 «DEFINE genTocEntry3(List[Section3] sections, String pre) FOR List[Section3]»
 «FOREACH sections AS section»
-	<topic href="«GLOBALVAR dir»section«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry4(section.subSections, pre+sections.indexOf(section))»
+	<topic href="«GLOBALVAR dir»subsection«pre».html#" label="«EXPAND genPlainText FOR section.title»">«EXPAND genTocEntry4(section.subSections, pre+sections.indexOf(section))»
 	</topic>
 «ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE genTocEntry4(List[Section4] sections, String pre) FOR List[Section4]»
 «FOREACH sections AS section»
-	<topic href="«GLOBALVAR dir»section«pre+sections.indexOf(section)».html" label="«EXPAND genPlainText FOR section.title»"/>
+	<topic href="«GLOBALVAR dir»subsection«pre».html#«labelName(section)»" label="«EXPAND genPlainText FOR section.title»"/>
 «ENDFOREACH»
 «ENDDEFINE»
 
@@ -75,7 +75,7 @@
 «FOREACH this AS chapter»
 «FILE "chapter"+this.indexOf(chapter)+".html"»
 <h1>«EXPAND genContent FOR chapter.title»</h1>
-«EXPAND genContent FOREACH this.contents»
+«EXPAND genContent FOREACH chapter.contents»
 «ENDFILE»
 «EXPAND genContent1(chapter.subSections, this.indexOf(chapter).toString()+"-")»
 «ENDFOREACH»
@@ -85,6 +85,7 @@
 «FOREACH sections AS section»
 «FILE "section" + prefix + sections.indexOf(section)+".html"»
 <h1>«EXPAND genContent FOR section.title»</h1>
+«EXPAND genContent FOREACH section.contents»
 «ENDFILE»
 «EXPAND genContent2(prefix + sections.indexOf(section).toString(), section.subSections)»
 «ENDFOREACH»
@@ -94,13 +95,14 @@
 «FOREACH sections AS section»
 «FILE "subsection" + prefix + sections.indexOf(section)+".html"»
 <h1>«EXPAND genContent FOR section.title»</h1>
+«EXPAND genContent FOREACH section.contents»
 «EXPAND genContent3 FOREACH section.subSections»
 «ENDFILE»
 «ENDFOREACH»
 «ENDDEFINE»
 
 
-«DEFINE genContent3 FOR Section3»
+«DEFINE genContent3 FOR Section3»«EXPAND genLabel FOR labelName(this)»
 <h2>«EXPAND genContent FOR this.title» </h2>
 «EXPAND genLabel FOR this.name»
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
@@ -109,7 +111,7 @@
 «EXPAND genContent4 FOREACH this.subSections»
 «ENDDEFINE»
 
-«DEFINE genContent4 FOR Section4»
+«DEFINE genContent4 FOR Section4»«EXPAND genLabel FOR labelName(this)»
 <h3>«EXPAND genContent FOR this.title»</h3>
 «EXPAND genLabel FOR this.name»
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
