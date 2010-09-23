@@ -7,7 +7,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 public class XDocJavaValidator extends AbstractXDocJavaValidator {
 
 	@Check
-	public void checkCodeLineLength(Code c) {
+	public void checkCode(Code c) {
 		String[] lines = c.getContents().split("\n");
 		for (String string : lines) {
 			if (string.replaceAll("\t", "    ").length() >= 74) {
