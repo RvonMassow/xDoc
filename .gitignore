@@ -9,6 +9,7 @@
 .metadata/**/* 
 org.eclipse.xtext.xdoc.ui/bin/**/*
 org.eclipse.xtext.xdoc/bin/**/*
+org.eclipse.xtext.xdoc.generator/bin/**/*
 
 # Don't commit class files
 *.class
