@@ -130,7 +130,7 @@
 «EXPAND genContent FOREACH this.contents»
 \end{minipage}«ENDDEFINE»
 
-«DEFINE genText FOR Emphasize»\emph{«EXPAND genContent FOREACH this.contents»}«ENDDEFINE»
+«DEFINE genText FOR Emphasize»\textit{«EXPAND genContent FOREACH this.contents»}«ENDDEFINE»
 
 «DEFINE genText FOR Ref»
 «IF this.contents.isEmpty»\autoref{«this.ref.name»}«ELSE»\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»~(\ref*{«this.ref.name»})}«ENDIF»«ENDDEFINE»
@@ -145,7 +145,7 @@
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»{«EXPAND genCode FOREACH this.contents»}
+ IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»|«EXPAND genCode FOREACH this.contents»|
 «ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
 \end{lstlisting}

@@ -55,9 +55,11 @@
 
 «DEFINE genContent(List[Chapter] chapters, String pre) FOR List[Chapter]»
 «FOREACH this AS chapter»
-«FILE fileName(chapter)+".html"»
+«FILE fileName(chapter)+".html"»«EXPAND preamble FOR chapter»
 <h1>«EXPAND genContent FOR chapter.title»</h1>
 «EXPAND genContent FOREACH chapter.contents»
+</body>
+</html>
 «ENDFILE»
 «EXPAND genContent1(chapter.subSections, chapters.indexOf(chapter).toString()+"-")»
 «ENDFOREACH»
@@ -65,9 +67,11 @@
 
 «DEFINE genContent1 (List[Section] sections, String prefix) FOR List[Section]»
 «FOREACH sections AS section»
-«FILE fileName(section)+".html"»
+«FILE fileName(section)+".html"»«EXPAND preamble FOR section»
 <h1>«EXPAND genContent FOR section.title»</h1>
 «EXPAND genContent FOREACH section.contents»
+</body>
+</html>
 «ENDFILE»
 «EXPAND genContent2(prefix + sections.indexOf(section).toString(), section.subSections)»
 «ENDFOREACH»
@@ -75,17 +79,19 @@
 
 «DEFINE genContent2(String prefix, List[Section2] sections) FOR List[Section2]»
 «FOREACH sections AS section»
-«FILE fileName(section)+".html"»
+«FILE fileName(section)+".html"»«EXPAND preamble FOR section»
 <h1>«EXPAND genContent FOR section.title»</h1>
 «EXPAND genContent FOREACH section.contents»
 «EXPAND genContent3 FOREACH section.subSections»
+</body>
+</html>
 «ENDFILE»
 «ENDFOREACH»
 «ENDDEFINE»
 
 
 «DEFINE genContent3 FOR Section3»«EXPAND genLabel FOR labelName(this)»
-<h2>«EXPAND genContent FOR this.title» </h2>
+<h2 class="title" style="clear: both">«EXPAND genContent FOR this.title» </h2>
 «EXPAND genLabel FOR this.name»
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
 </p>
@@ -95,7 +101,10 @@
 
 
 «DEFINE genContent4 FOR Section4»«EXPAND genLabel FOR labelName(this)»
-<h3>«EXPAND genContent FOR this.title»</h3>
+<div class="section" title="«EXPAND genPlainText FOR this.title»">
+<div class="titlepage">
+<h3 class="title">«EXPAND genContent FOR this.title»</h3>
+</div>
 «EXPAND genLabel FOR this.name»
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
 </p>
@@ -201,3 +210,18 @@
 
 «DEFINE genURLText FOR Object»«ENDDEFINE»
 
+«DEFINE preamble FOR AbstractSection»<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>«EXPAND genPlainText FOR this.title»</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+«REM» TODO stuff
+<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
+<link rel="home" href="index.html" title="Xtext User Guide">
+<link rel="up" href="RuntimeConcepts.html" title="Runtime Concepts">
+<link rel="prev" href="linking.html" title="Linking">
+<link rel="next" href="valueconverter.html" title="Value Converter">
+«ENDREM»
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+«ENDDEFINE»
