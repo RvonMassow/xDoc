@@ -88,12 +88,9 @@
 
 «DEFINE genContent FOR TextOrMarkup»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
 
+«DEFINE genContent FOR Object»«throwUnsupportedOperation("genContent",this)»«ENDDEFINE»
 
-«DEFINE genContent FOR Object»
-«ENDDEFINE»
-
-«DEFINE genText FOR Object»
-«ENDDEFINE»
+«DEFINE genText FOR Object»«throwUnsupportedOperation("genText",this)»«ENDDEFINE»
 
 «DEFINE genText FOR Table»
 \begin{tabular}{«EXPAND genColumns FOR this.rows.first().data»}
@@ -101,7 +98,7 @@
 \end{tabular}
 «ENDDEFINE»
 
-«DEFINE genText FOR TableRow»«EXPAND genText FOREACH this.data SEPARATOR "&"»«ENDDEFINE»
+«DEFINE genText FOR TableRow»«EXPAND genText FOREACH this.data SEPARATOR " & "»«ENDDEFINE»
 
 «DEFINE genText FOR TableData»«EXPAND genContent FOREACH this.contents»«ENDDEFINE»
 
@@ -147,15 +144,14 @@
 
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
-«DEFINE specialGenCode FOR CodeBlock»«IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»{«EXPAND genCode FOREACH this.contents»}
+«DEFINE specialGenCode FOR CodeBlock»«
+ IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»{«EXPAND genCode FOREACH this.contents»}
 «ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
 \end{lstlisting}
 «ENDIF»«ENDDEFINE»
 
-«DEFINE genText FOR CodeRef»
-\lstinline{«escapeLatexChars(unescapeXdocChars(this.element.canonicalName))»}
-«ENDDEFINE»
+«DEFINE genText FOR CodeRef»\lstinline{«escapeLatexChars(unescapeXdocChars(this.element.canonicalName))»}«ENDDEFINE»
 
 «DEFINE genCode FOR Object»«ENDDEFINE»
 

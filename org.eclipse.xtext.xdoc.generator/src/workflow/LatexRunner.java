@@ -6,50 +6,24 @@ import java.io.InputStreamReader;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.eclipse.emf.mwe.core.WorkflowContext;
-import org.eclipse.emf.mwe.core.issues.Issues;
-import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
-import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
+import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 
-public class LatexRunner extends AbstractWorkflowComponent {
+public class LatexRunner implements IWorkflowComponent {
 
 	private String outputDir;
 	private String inputFile;
+	private int numberOfPasses = 3;
 	private Logger log = LogManager.getLogger(this.getClass());
-
-	@Override
-	public String getId() {
-		return this.getClass().getName();
+	private String pdfLatexCommand = "pdflatex --interaction scrollmode --output-directory ";
+	
+	public void setPdfLatexCommand(String pdfLatexCommand) {
+		this.pdfLatexCommand = pdfLatexCommand;
 	}
 
-	@Override
-	protected void invokeInternal(WorkflowContext arg0, ProgressMonitor arg1,
-			Issues arg2) {
-		try {
-			// arg1.beginTask("Invoking LaTeX builder on generated TeX file.",
-			// 0);
-			Process p = Runtime.getRuntime().exec(
-					"pdflatex --interaction scrollmode --output-directory " + outputDir + " "
-							+ inputFile);
-			BufferedReader is = new BufferedReader(new InputStreamReader(
-					p.getInputStream()));
-			String s = is.readLine();
-			while (s != null) {
-				log.info(s);
-				s = is.readLine();
-			}
-			p = Runtime.getRuntime().exec(
-					"pdflatex --interaction scrollmode --output-directory " + outputDir + " "
-							+ inputFile);
-			is = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			s = is.readLine();
-			while (s != null) {
-				log.info(s);
-				s = is.readLine();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public void setNumberOfPasses(int numberOfPasses) {
+		this.numberOfPasses = numberOfPasses;
 	}
 
 	public void setOutputDir(String outputDir) {
@@ -68,7 +42,7 @@ public class LatexRunner extends AbstractWorkflowComponent {
 		return inputFile;
 	}
 
-	public void checkConfiguration(Issues issues) {
+	public void preInvoke() {
 		try {
 			Process p = Runtime.getRuntime().exec("pdflatex -version");
 			synchronized (p) {
@@ -77,12 +51,38 @@ public class LatexRunner extends AbstractWorkflowComponent {
 			if (p.exitValue() != 0) {
 				log.error("failed to execute pdflatex, is it in your PATH?");
 			}
-		} catch (IOException e) {
-			issues.addError(this,
-					"pdflatex could not be run, is it in your PATH?",
-					"pdflatex");
-		} catch (InterruptedException e) {
+		} catch (Exception e) {
+			throw new WrappedException("pdflatex could not be run, is it in your PATH?", e);
 		}
+	}
+
+	public void invoke(IWorkflowContext ctx) {
+		try {
+			for (int i = 0; i < numberOfPasses; i++) {
+				log.info("pdflatex pass "+(i+1));
+				Process p = Runtime.getRuntime().exec(
+						pdfLatexCommand 
+								+ outputDir + " " + inputFile);
+				BufferedReader is = new BufferedReader(new InputStreamReader(
+						p.getInputStream()));
+				String s = is.readLine();
+				while (s != null) {
+					if (s.toLowerCase().indexOf("error") != -1) {
+						log.error(s);
+					} else {
+						// only log during the last run
+						if (i + 1 == numberOfPasses)
+							log.info(s);
+					}
+					s = is.readLine();
+				}
+			}
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+		}
+	}
+
+	public void postInvoke() {
 	}
 
 }

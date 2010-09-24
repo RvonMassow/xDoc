@@ -57,3 +57,6 @@ String encode(String s):
 
 CodeBlock removeIndent(CodeBlock cb):
 	JAVA templates.util.StringFormatter.removeIndent(org.eclipse.xtext.xdoc.xdoc.CodeBlock);
+	
+Void throwUnsupportedOperation(String msg, Object param) :
+	JAVA templates.util.Errors.throwUnsupportedOperation(java.lang.String, java.lang.Object);
