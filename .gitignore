@@ -7,6 +7,8 @@
 
 # Can also ignore all directories and files in a directory.
 .metadata/**/* 
+org.eclipse.xtext.xdoc.ui/bin/**/*
+org.eclipse.xtext.xdoc/bin/**/*
 
 # Don't commit class files
 *.class
