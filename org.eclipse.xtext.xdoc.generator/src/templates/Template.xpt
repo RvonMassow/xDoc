@@ -32,7 +32,7 @@
 
 %\lstdefinelanguage{xtext}{keywords={terminal, grammar, import, generate, hidden, as}, sensitive=true,string={"},morestring={'},comment={//},morecomment=[s]{/*}{*/}}
 
-\lstset{breaklines=true, tabsize=4, basicstyle=\sffamily\footnotesize, keywordstyle=\bfseries, language=Xbase}
+\lstset{breaklines=true, tabsize=4, basicstyle=\sffamily\footnotesize, keywordstyle=\bfseries, language=Xbase, columns=[r]fullflexible}
 
 \usepackage[english]{babel}
 
@@ -146,7 +146,7 @@
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»|«EXPAND genCode FOREACH this.contents»|
+ IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»°«EXPAND genCode FOREACH this.contents»°
 «ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
 \end{lstlisting}
