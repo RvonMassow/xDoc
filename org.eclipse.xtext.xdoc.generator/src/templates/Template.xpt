@@ -146,8 +146,9 @@
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»°«EXPAND genCode FOREACH this.contents»°
-«ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«ENDIF»
+ IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»°«EXPAND genCode FOREACH this.contents»°«
+ ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«
+ ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
 \end{lstlisting}
 «ENDIF»«ENDDEFINE»
