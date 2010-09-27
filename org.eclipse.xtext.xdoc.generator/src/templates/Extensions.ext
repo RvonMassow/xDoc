@@ -35,7 +35,7 @@ fileName(AbstractSection as):
 	as.name;
 
 fileName(Chapter c):
-	((Document)c.eContainer()).sections.indexOf(c).toString();
+	((Document)c.eContainer()).chapters.indexOf(c).toString();
 
 fileName(Section c):
 	fileName((Chapter)c.eContainer()) + "-" + ((Chapter)c.eContainer()).subSections.indexOf(c).toString();

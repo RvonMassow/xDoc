@@ -5,7 +5,7 @@
 
 «FILE "toc.xml"-»
 <toc topic="src-gen/index.html" label="Xtext User Guide">
-«EXPAND genTocEntry FOREACH sections»
+«EXPAND genTocEntry FOREACH chapters»
 </toc>
 
 «ENDFILE»
@@ -25,7 +25,7 @@
 </body>
 «ENDFILE-»
 
-«EXPAND genContent(this.sections, "") FOR this.sections»
+«EXPAND genContent(this.chapters, "") FOR this.chapters»
 
 «ENDDEFINE»
 

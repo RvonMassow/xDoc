@@ -3,7 +3,7 @@
  */
 package org.eclipse.xtext.xdoc;
 
-import org.eclipse.xtext.xdoc.naming.XDocDocumentNameProvider;
+import org.eclipse.xtext.xdoc.naming.XdocDocumentNameProvider;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -11,6 +11,6 @@ import org.eclipse.xtext.xdoc.naming.XDocDocumentNameProvider;
 public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntimeModule {
 	
 	public Class<? extends org.eclipse.xtext.naming.IQualifiedNameProvider> bindIQualifiedNameProvider() {
-		return XDocDocumentNameProvider.class;
+		return XdocDocumentNameProvider.class;
 	}
 }

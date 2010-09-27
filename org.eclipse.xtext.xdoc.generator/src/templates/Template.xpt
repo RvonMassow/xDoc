@@ -41,7 +41,7 @@
 \newlength{\itemindentlen}
 
 \begin{document}
-«EXPAND genContent FOREACH this.sections»
+«EXPAND genContent FOREACH this.chapters»
 \end{document}
 «ENDFILE-»
 «ENDDEFINE»

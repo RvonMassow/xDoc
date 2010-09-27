@@ -6,7 +6,7 @@
 <head>
 </head>
 <body>
-«EXPAND genContent FOREACH this.sections»
+«EXPAND genContent FOREACH this.chapters»
 </body>
 «ENDFILE-»
 «ENDDEFINE»
