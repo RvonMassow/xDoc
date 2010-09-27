@@ -5,6 +5,7 @@ import org.eclipse.emf.mwe.utils.*
 var targetDir = "src-gen"
 var fileEncoding = "ISO-8859-1"
 var modelPath = "src/model"
+var pdfLatex = "pdflatex"
 
 Workflow {
 
@@ -31,7 +32,7 @@ Workflow {
 		fileEncoding = fileEncoding
 	}
 	
-	component = workflow.LatexRunner{
+	component = workflow.LatexRunner auto-inject {
 		outputDir = targetDir
 		inputFile = "${targetDir}/out.tex"
 	}

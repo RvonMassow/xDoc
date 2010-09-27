@@ -16,10 +16,15 @@ public class LatexRunner implements IWorkflowComponent {
 	private String inputFile;
 	private int numberOfPasses = 3;
 	private Logger log = LogManager.getLogger(this.getClass());
-	private String pdfLatexCommand = "pdflatex --interaction scrollmode --output-directory ";
+	private String pdfLatexCommandParams = "--interaction scrollmode --output-directory";
+	private String pdfLatex = "pdflatex";
 	
-	public void setPdfLatexCommand(String pdfLatexCommand) {
-		this.pdfLatexCommand = pdfLatexCommand;
+	public void setPdfLatex(String pdfLatex) {
+		this.pdfLatex = pdfLatex;
+	}
+	
+	public void setPdfLatexCommandParams(String pdfLatexCommandParams) {
+		this.pdfLatexCommandParams = pdfLatexCommandParams;
 	}
 
 	public void setNumberOfPasses(int numberOfPasses) {
@@ -44,12 +49,12 @@ public class LatexRunner implements IWorkflowComponent {
 
 	public void preInvoke() {
 		try {
-			Process p = Runtime.getRuntime().exec("pdflatex -version");
+			Process p = Runtime.getRuntime().exec(pdfLatex + " -version");
 			synchronized (p) {
 				p.wait();
 			}
 			if (p.exitValue() != 0) {
-				log.error("failed to execute pdflatex, is it in your PATH?");
+				log.error("failed to execute '" + pdfLatex + "'. Is it in your PATH?");
 			}
 		} catch (Exception e) {
 			throw new WrappedException("pdflatex could not be run, is it in your PATH?", e);
@@ -61,7 +66,7 @@ public class LatexRunner implements IWorkflowComponent {
 			for (int i = 0; i < numberOfPasses; i++) {
 				log.info("pdflatex pass "+(i+1));
 				Process p = Runtime.getRuntime().exec(
-						pdfLatexCommand 
+						pdfLatex + " " + pdfLatexCommandParams + " "
 								+ outputDir + " " + inputFile);
 				BufferedReader is = new BufferedReader(new InputStreamReader(
 						p.getInputStream()));
