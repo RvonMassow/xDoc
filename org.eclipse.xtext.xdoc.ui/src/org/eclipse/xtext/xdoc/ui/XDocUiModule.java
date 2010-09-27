@@ -5,6 +5,7 @@ package org.eclipse.xtext.xdoc.ui;
 
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
+import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -12,6 +13,7 @@ import org.eclipse.xtext.xdoc.ui.autoedit.AutoEditProvider;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
 import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
+import org.eclipse.xtext.xdoc.ui.folding.FoldingRegionProvider;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -36,6 +38,10 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 	@Override
 	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
 		return AutoEditProvider.class;
+	}
+	
+	public Class<? extends IFoldingRegionProvider> bindIFoldingRegionProvider() {
+		return FoldingRegionProvider.class;
 	}
 	
 }
