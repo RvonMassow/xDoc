@@ -3,10 +3,9 @@
 */
 package org.eclipse.xtext.xdoc.ui.contentassist;
 
-import org.eclipse.xtext.xdoc.ui.contentassist.AbstractXDocProposalProvider;
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#contentAssist on how to customize content assistant
  */
-public class XDocProposalProvider extends AbstractXDocProposalProvider {
+public class XdocProposalProvider extends AbstractXdocProposalProvider {
 
 }

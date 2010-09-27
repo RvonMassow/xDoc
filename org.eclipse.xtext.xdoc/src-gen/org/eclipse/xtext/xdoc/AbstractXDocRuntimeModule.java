@@ -12,21 +12,21 @@ import com.google.inject.Binder;
 import com.google.inject.name.Names;
 
 /**
- * Manual modifications go to {org.eclipse.xtext.xdoc.XDocRuntimeModule}
+ * Manual modifications go to {org.eclipse.xtext.xdoc.XdocRuntimeModule}
  */
  @SuppressWarnings("all")
-public abstract class AbstractXDocRuntimeModule extends DefaultRuntimeModule {
+public abstract class AbstractXdocRuntimeModule extends DefaultRuntimeModule {
 
 	protected Properties properties = null;
 
 	@Override
 	public void configure(Binder binder) {
-		properties = tryBindProperties(binder, "org/eclipse/xtext/xdoc/XDoc.properties");
+		properties = tryBindProperties(binder, "org/eclipse/xtext/xdoc/Xdoc.properties");
 		super.configure(binder);
 	}
 	
 	public void configureLanguageName(Binder binder) {
-		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.xtext.xdoc.XDoc");
+		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.xtext.xdoc.Xdoc");
 	}
 	
 	public void configureFileExtensions(Binder binder) {
@@ -36,17 +36,17 @@ public abstract class AbstractXDocRuntimeModule extends DefaultRuntimeModule {
 	
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
 	public Class<? extends org.eclipse.xtext.IGrammarAccess> bindIGrammarAccess() {
-		return org.eclipse.xtext.xdoc.services.XDocGrammarAccess.class;
+		return org.eclipse.xtext.xdoc.services.XdocGrammarAccess.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parseTreeConstructor.ParseTreeConstructorFragment
 	public Class<? extends org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructor> bindIParseTreeConstructor() {
-		return org.eclipse.xtext.xdoc.parseTreeConstruction.XDocParsetreeConstructor.class;
+		return org.eclipse.xtext.xdoc.parseTreeConstruction.XdocParsetreeConstructor.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.IParser> bindIParser() {
-		return org.eclipse.xtext.xdoc.parser.antlr.XDocParser.class;
+		return org.eclipse.xtext.xdoc.parser.antlr.XdocParser.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
@@ -56,22 +56,22 @@ public abstract class AbstractXDocRuntimeModule extends DefaultRuntimeModule {
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider> bindIAntlrTokenFileProvider() {
-		return org.eclipse.xtext.xdoc.parser.antlr.XDocAntlrTokenFileProvider.class;
+		return org.eclipse.xtext.xdoc.parser.antlr.XdocAntlrTokenFileProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.Lexer> bindLexer() {
-		return org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXDocLexer.class;
+		return org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXdocLexer.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
-	public com.google.inject.Provider<org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXDocLexer> provideInternalXDocLexer() {
-		return org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXDocLexer.class);
+	public com.google.inject.Provider<org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXdocLexer> provideInternalXdocLexer() {
+		return org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXdocLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
 	public void configureRuntimeLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.parser.antlr.LexerBindings.RUNTIME)).to(org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXDocLexer.class);
+		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.parser.antlr.LexerBindings.RUNTIME)).to(org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXdocLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment
@@ -80,13 +80,13 @@ public abstract class AbstractXDocRuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.xtext.xdoc.validation.XDocJavaValidator> bindXDocJavaValidator() {
-		return org.eclipse.xtext.xdoc.validation.XDocJavaValidator.class;
+	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.xtext.xdoc.validation.XdocJavaValidator> bindXdocJavaValidator() {
+		return org.eclipse.xtext.xdoc.validation.XdocJavaValidator.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public Class<? extends org.eclipse.xtext.scoping.IScopeProvider> bindIScopeProvider() {
-		return org.eclipse.xtext.xdoc.scoping.XDocScopeProvider.class;
+		return org.eclipse.xtext.xdoc.scoping.XdocScopeProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
@@ -141,7 +141,7 @@ public abstract class AbstractXDocRuntimeModule extends DefaultRuntimeModule {
 
 	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
 	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
-		return org.eclipse.xtext.xdoc.formatting.XDocFormatter.class;
+		return org.eclipse.xtext.xdoc.formatting.XdocFormatter.class;
 	}
 
 }

@@ -15,18 +15,18 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternal
 
 import com.google.inject.Inject;
 
-import org.eclipse.xtext.xdoc.services.XDocGrammarAccess;
+import org.eclipse.xtext.xdoc.services.XdocGrammarAccess;
 
-public class XDocParser extends AbstractContentAssistParser {
+public class XdocParser extends AbstractContentAssistParser {
 	
 	@Inject
-	private XDocGrammarAccess grammarAccess;
+	private XdocGrammarAccess grammarAccess;
 	
 	private Map<AbstractElement, String> nameMappings;
 	
 	@Override
-	protected org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXDocParser createParser() {
-		org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXDocParser result = new org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXDocParser(null);
+	protected org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXdocParser createParser() {
+		org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXdocParser result = new org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXdocParser(null);
 		result.setGrammarAccess(grammarAccess);
 		return result;
 	}
@@ -37,14 +37,14 @@ public class XDocParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getDocumentAccess().getAlternatives_3_0(), "rule__Document__Alternatives_3_0");
-					put(grammarAccess.getChapterAccess().getAlternatives_0(), "rule__Chapter__Alternatives_0");
-					put(grammarAccess.getSectionAccess().getAlternatives_0(), "rule__Section__Alternatives_0");
+					put(grammarAccess.getXdocFileAccess().getAlternatives_3_0(), "rule__XdocFile__Alternatives_3_0");
+					put(grammarAccess.getChapterAccess().getAlternatives(), "rule__Chapter__Alternatives");
+					put(grammarAccess.getChapterAccess().getAlternatives_1_0(), "rule__Chapter__Alternatives_1_0");
+					put(grammarAccess.getSectionAccess().getAlternatives(), "rule__Section__Alternatives");
+					put(grammarAccess.getSectionAccess().getAlternatives_1_0(), "rule__Section__Alternatives_1_0");
 					put(grammarAccess.getSection2Access().getAlternatives_0(), "rule__Section2__Alternatives_0");
 					put(grammarAccess.getSection3Access().getAlternatives_0(), "rule__Section3__Alternatives_0");
 					put(grammarAccess.getSection4Access().getAlternatives_0(), "rule__Section4__Alternatives_0");
-					put(grammarAccess.getAbstractSectionAccess().getAlternatives(), "rule__AbstractSection__Alternatives");
-					put(grammarAccess.getIdentifiableAccess().getAlternatives(), "rule__Identifiable__Alternatives");
 					put(grammarAccess.getTextOrMarkupAccess().getAlternatives(), "rule__TextOrMarkup__Alternatives");
 					put(grammarAccess.getTextAccess().getAlternatives(), "rule__Text__Alternatives");
 					put(grammarAccess.getMarkUpAccess().getAlternatives(), "rule__MarkUp__Alternatives");
@@ -53,22 +53,30 @@ public class XDocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getMarkupInCodeAccess().getAlternatives(), "rule__MarkupInCode__Alternatives");
 					put(grammarAccess.getCodeTextAccess().getAlternatives(), "rule__CodeText__Alternatives");
 					put(grammarAccess.getANY_WSAccess().getAlternatives(), "rule__ANY_WS__Alternatives");
+					put(grammarAccess.getXdocFileAccess().getGroup(), "rule__XdocFile__Group__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3(), "rule__XdocFile__Group_3__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_0(), "rule__XdocFile__Group_3_0_0__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_0_1(), "rule__XdocFile__Group_3_0_0_1__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_1(), "rule__XdocFile__Group_3_0_1__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_1_1(), "rule__XdocFile__Group_3_0_1_1__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_2(), "rule__XdocFile__Group_3_0_2__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_2_1(), "rule__XdocFile__Group_3_0_2_1__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_3(), "rule__XdocFile__Group_3_0_3__0");
+					put(grammarAccess.getXdocFileAccess().getGroup_3_0_3_1(), "rule__XdocFile__Group_3_0_3_1__0");
 					put(grammarAccess.getDocumentAccess().getGroup(), "rule__Document__Group__0");
 					put(grammarAccess.getDocumentAccess().getGroup_3(), "rule__Document__Group_3__0");
-					put(grammarAccess.getDocumentAccess().getGroup_3_0_0(), "rule__Document__Group_3_0_0__0");
-					put(grammarAccess.getDocumentAccess().getGroup_3_0_0_1(), "rule__Document__Group_3_0_0_1__0");
-					put(grammarAccess.getDocumentAccess().getGroup_3_0_1(), "rule__Document__Group_3_0_1__0");
-					put(grammarAccess.getDocumentAccess().getGroup_3_0_1_1(), "rule__Document__Group_3_0_1_1__0");
-					put(grammarAccess.getDocumentAccess().getGroup_3_0_2(), "rule__Document__Group_3_0_2__0");
-					put(grammarAccess.getDocumentAccess().getGroup_3_0_2_1(), "rule__Document__Group_3_0_2_1__0");
-					put(grammarAccess.getChapterAccess().getGroup(), "rule__Chapter__Group__0");
-					put(grammarAccess.getChapterAccess().getGroup_0_0(), "rule__Chapter__Group_0_0__0");
-					put(grammarAccess.getChapterAccess().getGroup_3(), "rule__Chapter__Group_3__0");
-					put(grammarAccess.getChapterAccess().getGroup_4(), "rule__Chapter__Group_4__0");
-					put(grammarAccess.getSectionAccess().getGroup(), "rule__Section__Group__0");
-					put(grammarAccess.getSectionAccess().getGroup_0_0(), "rule__Section__Group_0_0__0");
-					put(grammarAccess.getSectionAccess().getGroup_3(), "rule__Section__Group_3__0");
-					put(grammarAccess.getSectionAccess().getGroup_4(), "rule__Section__Group_4__0");
+					put(grammarAccess.getDocumentAccess().getGroup_4(), "rule__Document__Group_4__0");
+					put(grammarAccess.getDocumentAccess().getGroup_5(), "rule__Document__Group_5__0");
+					put(grammarAccess.getChapterAccess().getGroup_1(), "rule__Chapter__Group_1__0");
+					put(grammarAccess.getChapterAccess().getGroup_1_0_0(), "rule__Chapter__Group_1_0_0__0");
+					put(grammarAccess.getChapterAccess().getGroup_1_3(), "rule__Chapter__Group_1_3__0");
+					put(grammarAccess.getChapterAccess().getGroup_1_4(), "rule__Chapter__Group_1_4__0");
+					put(grammarAccess.getChapterRefAccess().getGroup(), "rule__ChapterRef__Group__0");
+					put(grammarAccess.getSectionAccess().getGroup_1(), "rule__Section__Group_1__0");
+					put(grammarAccess.getSectionAccess().getGroup_1_0_0(), "rule__Section__Group_1_0_0__0");
+					put(grammarAccess.getSectionAccess().getGroup_1_3(), "rule__Section__Group_1_3__0");
+					put(grammarAccess.getSectionAccess().getGroup_1_4(), "rule__Section__Group_1_4__0");
+					put(grammarAccess.getSectionRefAccess().getGroup(), "rule__SectionRef__Group__0");
 					put(grammarAccess.getSection2Access().getGroup(), "rule__Section2__Group__0");
 					put(grammarAccess.getSection2Access().getGroup_0_0(), "rule__Section2__Group_0_0__0");
 					put(grammarAccess.getSection2Access().getGroup_3(), "rule__Section2__Group_3__0");
@@ -109,20 +117,28 @@ public class XDocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCodeBlockAccess().getGroup_2_0(), "rule__CodeBlock__Group_2_0__0");
 					put(grammarAccess.getCodeBlockAccess().getGroup_2_0_1(), "rule__CodeBlock__Group_2_0_1__0");
 					put(grammarAccess.getCodeBlockAccess().getGroup_2_1(), "rule__CodeBlock__Group_2_1__0");
-					put(grammarAccess.getDocumentAccess().getSectionsAssignment_3_0_0_0(), "rule__Document__SectionsAssignment_3_0_0_0");
-					put(grammarAccess.getDocumentAccess().getSectionsAssignment_3_0_0_1_1(), "rule__Document__SectionsAssignment_3_0_0_1_1");
-					put(grammarAccess.getDocumentAccess().getSectionsAssignment_3_0_1_0(), "rule__Document__SectionsAssignment_3_0_1_0");
-					put(grammarAccess.getDocumentAccess().getSectionsAssignment_3_0_1_1_1(), "rule__Document__SectionsAssignment_3_0_1_1_1");
-					put(grammarAccess.getDocumentAccess().getSectionsAssignment_3_0_2_0(), "rule__Document__SectionsAssignment_3_0_2_0");
-					put(grammarAccess.getDocumentAccess().getSectionsAssignment_3_0_2_1_1(), "rule__Document__SectionsAssignment_3_0_2_1_1");
-					put(grammarAccess.getChapterAccess().getNameAssignment_0_0_1(), "rule__Chapter__NameAssignment_0_0_1");
-					put(grammarAccess.getChapterAccess().getTitleAssignment_1(), "rule__Chapter__TitleAssignment_1");
-					put(grammarAccess.getChapterAccess().getContentsAssignment_3_1(), "rule__Chapter__ContentsAssignment_3_1");
-					put(grammarAccess.getChapterAccess().getSubSectionsAssignment_4_1(), "rule__Chapter__SubSectionsAssignment_4_1");
-					put(grammarAccess.getSectionAccess().getNameAssignment_0_0_1(), "rule__Section__NameAssignment_0_0_1");
-					put(grammarAccess.getSectionAccess().getTitleAssignment_1(), "rule__Section__TitleAssignment_1");
-					put(grammarAccess.getSectionAccess().getContentsAssignment_3_1(), "rule__Section__ContentsAssignment_3_1");
-					put(grammarAccess.getSectionAccess().getSubSectionsAssignment_4_1(), "rule__Section__SubSectionsAssignment_4_1");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_0_0(), "rule__XdocFile__SectionsAssignment_3_0_0_0");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_0_1_1(), "rule__XdocFile__SectionsAssignment_3_0_0_1_1");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_1_0(), "rule__XdocFile__SectionsAssignment_3_0_1_0");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_1_1_1(), "rule__XdocFile__SectionsAssignment_3_0_1_1_1");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_2_0(), "rule__XdocFile__SectionsAssignment_3_0_2_0");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_2_1_1(), "rule__XdocFile__SectionsAssignment_3_0_2_1_1");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_3_0(), "rule__XdocFile__SectionsAssignment_3_0_3_0");
+					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_3_1_1(), "rule__XdocFile__SectionsAssignment_3_0_3_1_1");
+					put(grammarAccess.getDocumentAccess().getTitleAssignment_1(), "rule__Document__TitleAssignment_1");
+					put(grammarAccess.getDocumentAccess().getSubtitleAssignment_3_2(), "rule__Document__SubtitleAssignment_3_2");
+					put(grammarAccess.getDocumentAccess().getAuthorsAssignment_4_2(), "rule__Document__AuthorsAssignment_4_2");
+					put(grammarAccess.getDocumentAccess().getChaptersAssignment_5_1(), "rule__Document__ChaptersAssignment_5_1");
+					put(grammarAccess.getChapterAccess().getNameAssignment_1_0_0_1(), "rule__Chapter__NameAssignment_1_0_0_1");
+					put(grammarAccess.getChapterAccess().getTitleAssignment_1_1(), "rule__Chapter__TitleAssignment_1_1");
+					put(grammarAccess.getChapterAccess().getContentsAssignment_1_3_1(), "rule__Chapter__ContentsAssignment_1_3_1");
+					put(grammarAccess.getChapterAccess().getSubSectionsAssignment_1_4_1(), "rule__Chapter__SubSectionsAssignment_1_4_1");
+					put(grammarAccess.getChapterRefAccess().getChapterAssignment_1(), "rule__ChapterRef__ChapterAssignment_1");
+					put(grammarAccess.getSectionAccess().getNameAssignment_1_0_0_1(), "rule__Section__NameAssignment_1_0_0_1");
+					put(grammarAccess.getSectionAccess().getTitleAssignment_1_1(), "rule__Section__TitleAssignment_1_1");
+					put(grammarAccess.getSectionAccess().getContentsAssignment_1_3_1(), "rule__Section__ContentsAssignment_1_3_1");
+					put(grammarAccess.getSectionAccess().getSubSectionsAssignment_1_4_1(), "rule__Section__SubSectionsAssignment_1_4_1");
+					put(grammarAccess.getSectionRefAccess().getSectionAssignment_1(), "rule__SectionRef__SectionAssignment_1");
 					put(grammarAccess.getSection2Access().getNameAssignment_0_0_1(), "rule__Section2__NameAssignment_0_0_1");
 					put(grammarAccess.getSection2Access().getTitleAssignment_1(), "rule__Section2__TitleAssignment_1");
 					put(grammarAccess.getSection2Access().getContentsAssignment_3_1(), "rule__Section2__ContentsAssignment_3_1");
@@ -176,8 +192,8 @@ public class XDocParser extends AbstractContentAssistParser {
 	@Override
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
-			org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXDocParser typedParser = (org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXDocParser) parser;
-			typedParser.entryRuleDocument();
+			org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXdocParser typedParser = (org.eclipse.xtext.xdoc.ui.contentassist.antlr.internal.InternalXdocParser) parser;
+			typedParser.entryRuleXdocFile();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);
@@ -189,11 +205,11 @@ public class XDocParser extends AbstractContentAssistParser {
 		return new String[] { "RULE_SL_COMMENT" };
 	}
 	
-	public XDocGrammarAccess getGrammarAccess() {
+	public XdocGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
 	
-	public void setGrammarAccess(XDocGrammarAccess grammarAccess) {
+	public void setGrammarAccess(XdocGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}
 }

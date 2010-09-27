@@ -16,8 +16,8 @@ import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
 /**
  * Use this class to register components to be used within the IDE.
  */
-public class XDocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXDocUiModule {
-	public XDocUiModule(AbstractUIPlugin plugin) {
+public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule {
+	public XdocUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
 	

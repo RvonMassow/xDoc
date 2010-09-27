@@ -9,15 +9,15 @@ import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
-import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 /**
  * customization of the default outline structure
  * 
  */
-public class XDocOutlineTreeProvider extends DefaultOutlineTreeProvider {
+public class XdocOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
-	protected void doCreateChildren(DocumentRootNode parentNode, Document document) {
+	protected void doCreateChildren(DocumentRootNode parentNode, XdocFile document) {
 		createChildrenForSections(parentNode, document);
 	}
 	

@@ -7,7 +7,7 @@
     <package 
        uri = "http://www.eclipse.org/xtext/xdoc/Xdoc" 
        class = "org.eclipse.xtext.xdoc.xdoc.XdocPackage"
-       genModel = "org/eclipse/xtext/xdoc/XDoc.genmodel" /> 
+       genModel = "org/eclipse/xtext/xdoc/Xdoc.genmodel" /> 
 	
   </extension>
 

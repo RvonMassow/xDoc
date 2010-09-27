@@ -14,14 +14,14 @@ import org.eclipse.xtext.formatting.impl.FormattingConfig;
  * 
  * Also see {@link org.eclipse.xtext.xtext.XtextFormattingTokenSerializer} as an example
  */
-public class XDocFormatter extends AbstractDeclarativeFormatter {
+public class XdocFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		org.eclipse.xtext.xdoc.services.XDocGrammarAccess f = (org.eclipse.xtext.xdoc.services.XDocGrammarAccess) getGrammarAccess();
-
-		c.setLinewrap(0, 1, 2).before(f.getSL_COMMENTRule());
-
-		// ...
+// It's usually a good idea to activate the following three statements.
+// They will add and preserve newlines around comments
+//		c.setLinewrap(0, 1, 2).before(getGrammarAccess().getSL_COMMENTRule());
+//		c.setLinewrap(0, 1, 2).before(getGrammarAccess().getML_COMMENTRule());
+//		c.setLinewrap(0, 1, 1).after(getGrammarAccess().getML_COMMENTRule());
 	}
 }

@@ -8,12 +8,11 @@ import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.ComposedChecks;
 
 @ComposedChecks(validators= {org.eclipse.xtext.validation.NamesAreUniqueValidator.class})
-public class AbstractXDocJavaValidator extends AbstractDeclarativeValidator {
+public class AbstractXdocJavaValidator extends AbstractDeclarativeValidator {
 
 @Override
 	protected List<EPackage> getEPackages() {
 	    List<EPackage> result = new ArrayList<EPackage>();
-	    result.add(org.eclipse.xtext.xdoc.xdoc.XdocPackage.eINSTANCE);
 		return result;
 	}
 

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.xtext.xdoc/emf-gen"
+    editDirectory="/org.eclipse.xtext.xdoc.edit/src" editorDirectory="/org.eclipse.xtext.xdoc.editor/src"
+    modelPluginID="org.eclipse.xtext.xdoc" forceOverwrite="true" modelName="Xdoc"
+    modelPluginClass="" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.eclipse.xtext.xdoc.edit"
+    editorPluginID="org.eclipse.xtext.xdoc.editor" usedGenPackages="../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types">
+  <genPackages prefix="Xdoc" basePackage="org.eclipse.xtext.xdoc" disposableProviderFactory="true"
+      ecorePackage="Xdoc.ecore#/">
+    <genClasses ecoreClass="Xdoc.ecore#//Document">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Document/sections"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Book">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Book/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Book/subtitle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Book/authors"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Chapter">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Chapter/subSections"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//ChapterRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//ChapterRef/chapter"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Section">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Section/subSections"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//SectionRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//SectionRef/section"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Section2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Section2/subSections"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Section3">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Section3/subSections"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Section4"/>
+    <genClasses ecoreClass="Xdoc.ecore#//AbstractSection">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//AbstractSection/title"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//AbstractSection/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Identifiable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Identifiable/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//TextOrMarkup">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TextOrMarkup/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//TextPart">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//TextPart/text"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//MarkUp"/>
+    <genClasses ecoreClass="Xdoc.ecore#//Table">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Table/rows"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//TableRow">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableRow/data"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//TableData">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//TableData/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Emphasize">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Emphasize/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Anchor"/>
+    <genClasses ecoreClass="Xdoc.ecore#//Ref">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Ref/ref"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Ref/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//OrderedList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//OrderedList/items"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//UnorderedList">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//UnorderedList/items"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Item">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//Item/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//CodeRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Xdoc.ecore#//CodeRef/element"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Link">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Link/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Link/text"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//ImageRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/path"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/clazz"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/style"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//ImageRef/caption"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//CodeBlock">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//CodeBlock/language"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//CodeBlock/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//Code">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Code/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="Xdoc.ecore#//MarkupInCode"/>
+  </genPackages>
+</genmodel:GenModel>

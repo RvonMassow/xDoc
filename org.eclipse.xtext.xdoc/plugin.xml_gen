@@ -3,15 +3,6 @@
 
 <plugin>
 
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/xtext/xdoc/Xdoc" 
-       class = "org.eclipse.xtext.xdoc.xdoc.XdocPackage"
-       genModel = "org/eclipse/xtext/xdoc/XDoc.genmodel" /> 
-	
-  </extension>
-
-
 
 
 </plugin>

@@ -7,7 +7,7 @@ import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
-public class XDocJavaValidator extends AbstractXDocJavaValidator {
+public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
 	@Check
 	public void checkLineLengthOfCodeSection(Code c) {

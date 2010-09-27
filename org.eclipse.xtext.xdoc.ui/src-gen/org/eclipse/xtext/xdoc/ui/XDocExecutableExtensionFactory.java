@@ -12,16 +12,16 @@ import com.google.inject.Injector;
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
  */
-public class XDocExecutableExtensionFactory extends AbstractGuiceAwareExecutableExtensionFactory {
+public class XdocExecutableExtensionFactory extends AbstractGuiceAwareExecutableExtensionFactory {
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.xtext.xdoc.ui.internal.XDocActivator.getInstance().getBundle();
+		return org.eclipse.xtext.xdoc.ui.internal.XdocActivator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.xtext.xdoc.ui.internal.XDocActivator.getInstance().getInjector("org.eclipse.xtext.xdoc.XDoc");
+		return org.eclipse.xtext.xdoc.ui.internal.XdocActivator.getInstance().getInjector("org.eclipse.xtext.xdoc.Xdoc");
 	}
 	
 }

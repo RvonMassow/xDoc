@@ -12,7 +12,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
 import org.eclipse.xtext.conversion.ValueConverterException;
-import org.eclipse.xtext.xdoc.services.XDocGrammarAccess;
+import org.eclipse.xtext.xdoc.services.XdocGrammarAccess;
 
 
 
@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 @SuppressWarnings("all")
-public class InternalXDocParser extends AbstractInternalAntlrParser {
+public class InternalXdocParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_MULTI_NL", "RULE_ID", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_SL_COMMENT", "'chapter:'", "'['", "'chapter['", "']'", "'section:'", "'section['", "'section2:'", "'section2['", "'section3:'", "'section3['", "'section4:'", "'section4['", "'\\\\['", "'\\\\]'", "'table['", "'tr['", "'td['", "'e['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'img['", "'code['"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_MULTI_NL", "RULE_ID", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_SL_COMMENT", "'document['", "']'", "'subtitle['", "'authors['", "'chapter:'", "'['", "'chapter['", "'chapter-ref['", "'section:'", "'section['", "'section-ref['", "'section2:'", "'section2['", "'section3:'", "'section3['", "'section4:'", "'section4['", "'\\\\['", "'\\\\]'", "'table['", "'tr['", "'td['", "'e['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'img['", "'code['"
     };
     public static final int RULE_ID=6;
     public static final int RULE_WS=4;
@@ -34,19 +34,19 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     public static final int RULE_ANY_OTHER=8;
     public static final int RULE_SL_COMMENT=9;
 
-        public InternalXDocParser(TokenStream input) {
+        public InternalXdocParser(TokenStream input) {
             super(input);
         }
         
 
     public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g"; }
 
 
 
-     	private XDocGrammarAccess grammarAccess;
+     	private XdocGrammarAccess grammarAccess;
      	
-        public InternalXDocParser(TokenStream input, IAstFactory factory, XDocGrammarAccess grammarAccess) {
+        public InternalXdocParser(TokenStream input, IAstFactory factory, XdocGrammarAccess grammarAccess) {
             this(input);
             this.factory = factory;
             registerRules(grammarAccess.getGrammar());
@@ -56,40 +56,40 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
         @Override
         protected InputStream getTokenFile() {
         	ClassLoader classLoader = getClass().getClassLoader();
-        	return classLoader.getResourceAsStream("org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.tokens");
+        	return classLoader.getResourceAsStream("org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.tokens");
         }
         
         @Override
         protected String getFirstRuleName() {
-        	return "Document";	
+        	return "XdocFile";	
        	}
        	
        	@Override
-       	protected XDocGrammarAccess getGrammarAccess() {
+       	protected XdocGrammarAccess getGrammarAccess() {
        		return grammarAccess;
        	}
 
 
 
-    // $ANTLR start entryRuleDocument
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:77:1: entryRuleDocument returns [EObject current=null] : iv_ruleDocument= ruleDocument EOF ;
-    public final EObject entryRuleDocument() throws RecognitionException {
+    // $ANTLR start entryRuleXdocFile
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:77:1: entryRuleXdocFile returns [EObject current=null] : iv_ruleXdocFile= ruleXdocFile EOF ;
+    public final EObject entryRuleXdocFile() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleDocument = null;
+        EObject iv_ruleXdocFile = null;
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:78:2: (iv_ruleDocument= ruleDocument EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:79:2: iv_ruleDocument= ruleDocument EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:78:2: (iv_ruleXdocFile= ruleXdocFile EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:79:2: iv_ruleXdocFile= ruleXdocFile EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getDocumentRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDocument_in_entryRuleDocument75);
-            iv_ruleDocument=ruleDocument();
+             currentNode = createCompositeNode(grammarAccess.getXdocFileRule(), currentNode); 
+            pushFollow(FOLLOW_ruleXdocFile_in_entryRuleXdocFile75);
+            iv_ruleXdocFile=ruleXdocFile();
             _fsp--;
 
-             current =iv_ruleDocument; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDocument85); 
+             current =iv_ruleXdocFile; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleXdocFile85); 
 
             }
 
@@ -103,12 +103,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleDocument
+    // $ANTLR end entryRuleXdocFile
 
 
-    // $ANTLR start ruleDocument
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:86:1: ruleDocument returns [EObject current=null] : ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? ) ;
-    public final EObject ruleDocument() throws RecognitionException {
+    // $ANTLR start ruleXdocFile
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:86:1: ruleXdocFile returns [EObject current=null] : ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? ) ;
+    public final EObject ruleXdocFile() throws RecognitionException {
         EObject current = null;
 
         EObject lv_sections_3_0 = null;
@@ -123,24 +123,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
         EObject lv_sections_11_0 = null;
 
+        EObject lv_sections_12_0 = null;
+
+        EObject lv_sections_14_0 = null;
+
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:91:6: ( ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:92:1: ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:91:6: ( ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:92:1: ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:92:1: ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:92:2: () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:92:1: ( () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )? )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:92:2: () ( RULE_WS )? ( RULE_MULTI_NL )? ( ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )?
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:92:2: ()
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:93:5: 
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:92:2: ()
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:93:5: 
             {
              
-                    temp=factory.create(grammarAccess.getDocumentAccess().getDocumentAction_0().getType().getClassifier());
+                    temp=factory.create(grammarAccess.getXdocFileAccess().getXdocFileAction_0().getType().getClassifier());
                     current = temp; 
                     temp = null;
-                    CompositeNode newNode = createCompositeNode(grammarAccess.getDocumentAccess().getDocumentAction_0(), currentNode.getParent());
+                    CompositeNode newNode = createCompositeNode(grammarAccess.getXdocFileAccess().getXdocFileAction_0(), currentNode.getParent());
                 newNode.getChildren().add(currentNode);
                 moveLookaheadInfo(currentNode, newNode);
                 currentNode = newNode; 
@@ -149,7 +153,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:103:2: ( RULE_WS )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:103:2: ( RULE_WS )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -158,11 +162,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:103:3: RULE_WS
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:103:3: RULE_WS
                     {
-                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleDocument129); 
+                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleXdocFile129); 
                      
-                        createLeafNode(grammarAccess.getDocumentAccess().getWSTerminalRuleCall_1(), null); 
+                        createLeafNode(grammarAccess.getXdocFileAccess().getWSTerminalRuleCall_1(), null); 
                         
 
                     }
@@ -170,7 +174,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:107:3: ( RULE_MULTI_NL )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:107:3: ( RULE_MULTI_NL )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -179,11 +183,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:107:4: RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:107:4: RULE_MULTI_NL
                     {
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument140); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleXdocFile140); 
                      
-                        createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_2(), null); 
+                        createLeafNode(grammarAccess.getXdocFileAccess().getMULTI_NLTerminalRuleCall_2(), null); 
                         
 
                     }
@@ -191,68 +195,75 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:111:3: ( ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:111:3: ( ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )? )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA8_0==10||LA8_0==12||(LA8_0>=14 && LA8_0<=17)) ) {
-                alt8=1;
+            if ( (LA9_0==10||LA9_0==14||(LA9_0>=16 && LA9_0<=22)) ) {
+                alt9=1;
             }
-            switch (alt8) {
+            switch (alt9) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:111:4: ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )?
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:111:4: ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) ) ( RULE_MULTI_NL )?
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:111:4: ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) )
-                    int alt6=3;
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:111:4: ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) )
+                    int alt7=4;
                     switch ( input.LA(1) ) {
                     case 10:
-                    case 12:
                         {
-                        alt6=1;
+                        alt7=1;
                         }
                         break;
                     case 14:
-                    case 15:
-                        {
-                        alt6=2;
-                        }
-                        break;
                     case 16:
                     case 17:
                         {
-                        alt6=3;
+                        alt7=2;
+                        }
+                        break;
+                    case 18:
+                    case 19:
+                    case 20:
+                        {
+                        alt7=3;
+                        }
+                        break;
+                    case 21:
+                    case 22:
+                        {
+                        alt7=4;
                         }
                         break;
                     default:
                         NoViableAltException nvae =
-                            new NoViableAltException("111:4: ( ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* ) | ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* ) | ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* ) )", 6, 0, input);
+                            new NoViableAltException("111:4: ( ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* ) | ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* ) | ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* ) | ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* ) )", 7, 0, input);
 
                         throw nvae;
                     }
 
-                    switch (alt6) {
+                    switch (alt7) {
                         case 1 :
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:111:5: ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:111:5: ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* )
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:111:5: ( ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )* )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:111:6: ( (lv_sections_3_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )*
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:111:5: ( ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )* )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:111:6: ( (lv_sections_3_0= ruleDocument ) ) ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )*
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:111:6: ( (lv_sections_3_0= ruleChapter ) )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:112:1: (lv_sections_3_0= ruleChapter )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:111:6: ( (lv_sections_3_0= ruleDocument ) )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:112:1: (lv_sections_3_0= ruleDocument )
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:112:1: (lv_sections_3_0= ruleChapter )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:113:3: lv_sections_3_0= ruleChapter
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:112:1: (lv_sections_3_0= ruleDocument )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:113:3: lv_sections_3_0= ruleDocument
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getSectionsChapterParserRuleCall_3_0_0_0_0(), currentNode); 
+                            	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsDocumentParserRuleCall_3_0_0_0_0(), currentNode); 
                             	    
-                            pushFollow(FOLLOW_ruleChapter_in_ruleDocument165);
-                            lv_sections_3_0=ruleChapter();
+                            pushFollow(FOLLOW_ruleDocument_in_ruleXdocFile165);
+                            lv_sections_3_0=ruleDocument();
                             _fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                            	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
                             	            associateNodeWithAstElement(currentNode.getParent(), current);
                             	        }
                             	        try {
@@ -260,7 +271,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             	       			current, 
                             	       			"sections",
                             	        		lv_sections_3_0, 
-                            	        		"Chapter", 
+                            	        		"Document", 
                             	        		currentNode);
                             	        } catch (ValueConverterException vce) {
                             				handleValueConverterException(vce);
@@ -273,7 +284,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:135:2: ( RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) ) )*
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:135:2: ( RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) ) )*
                             loop3:
                             do {
                                 int alt3=2;
@@ -282,7 +293,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                                 if ( (LA3_0==RULE_MULTI_NL) ) {
                                     int LA3_1 = input.LA(2);
 
-                                    if ( (LA3_1==10||LA3_1==12) ) {
+                                    if ( (LA3_1==10) ) {
                                         alt3=1;
                                     }
 
@@ -292,28 +303,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                                 switch (alt3) {
                             	case 1 :
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:135:3: RULE_MULTI_NL ( (lv_sections_5_0= ruleChapter ) )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:135:3: RULE_MULTI_NL ( (lv_sections_5_0= ruleDocument ) )
                             	    {
-                            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument175); 
+                            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleXdocFile175); 
                             	     
-                            	        createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_3_0_0_1_0(), null); 
+                            	        createLeafNode(grammarAccess.getXdocFileAccess().getMULTI_NLTerminalRuleCall_3_0_0_1_0(), null); 
                             	        
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:139:1: ( (lv_sections_5_0= ruleChapter ) )
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:140:1: (lv_sections_5_0= ruleChapter )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:139:1: ( (lv_sections_5_0= ruleDocument ) )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:140:1: (lv_sections_5_0= ruleDocument )
                             	    {
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:140:1: (lv_sections_5_0= ruleChapter )
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:141:3: lv_sections_5_0= ruleChapter
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:140:1: (lv_sections_5_0= ruleDocument )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:141:3: lv_sections_5_0= ruleDocument
                             	    {
                             	     
-                            	    	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getSectionsChapterParserRuleCall_3_0_0_1_1_0(), currentNode); 
+                            	    	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsDocumentParserRuleCall_3_0_0_1_1_0(), currentNode); 
                             	    	    
-                            	    pushFollow(FOLLOW_ruleChapter_in_ruleDocument195);
-                            	    lv_sections_5_0=ruleChapter();
+                            	    pushFollow(FOLLOW_ruleDocument_in_ruleXdocFile195);
+                            	    lv_sections_5_0=ruleDocument();
                             	    _fsp--;
 
 
                             	    	        if (current==null) {
-                            	    	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                            	    	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
                             	    	            associateNodeWithAstElement(currentNode.getParent(), current);
                             	    	        }
                             	    	        try {
@@ -321,7 +332,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             	    	       			current, 
                             	    	       			"sections",
                             	    	        		lv_sections_5_0, 
-                            	    	        		"Chapter", 
+                            	    	        		"Document", 
                             	    	        		currentNode);
                             	    	        } catch (ValueConverterException vce) {
                             	    				handleValueConverterException(vce);
@@ -350,27 +361,27 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:164:6: ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:164:6: ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* )
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:164:6: ( ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )* )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:164:7: ( (lv_sections_6_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )*
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:164:6: ( ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )* )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:164:7: ( (lv_sections_6_0= ruleChapter ) ) ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )*
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:164:7: ( (lv_sections_6_0= ruleSection ) )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:165:1: (lv_sections_6_0= ruleSection )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:164:7: ( (lv_sections_6_0= ruleChapter ) )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:165:1: (lv_sections_6_0= ruleChapter )
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:165:1: (lv_sections_6_0= ruleSection )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:166:3: lv_sections_6_0= ruleSection
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:165:1: (lv_sections_6_0= ruleChapter )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:166:3: lv_sections_6_0= ruleChapter
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getSectionsSectionParserRuleCall_3_0_1_0_0(), currentNode); 
+                            	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsChapterParserRuleCall_3_0_1_0_0(), currentNode); 
                             	    
-                            pushFollow(FOLLOW_ruleSection_in_ruleDocument226);
-                            lv_sections_6_0=ruleSection();
+                            pushFollow(FOLLOW_ruleChapter_in_ruleXdocFile226);
+                            lv_sections_6_0=ruleChapter();
                             _fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                            	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
                             	            associateNodeWithAstElement(currentNode.getParent(), current);
                             	        }
                             	        try {
@@ -378,7 +389,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             	       			current, 
                             	       			"sections",
                             	        		lv_sections_6_0, 
-                            	        		"Section", 
+                            	        		"Chapter", 
                             	        		currentNode);
                             	        } catch (ValueConverterException vce) {
                             				handleValueConverterException(vce);
@@ -391,7 +402,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:188:2: ( RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) ) )*
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:188:2: ( RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) ) )*
                             loop4:
                             do {
                                 int alt4=2;
@@ -400,7 +411,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                                 if ( (LA4_0==RULE_MULTI_NL) ) {
                                     int LA4_1 = input.LA(2);
 
-                                    if ( ((LA4_1>=14 && LA4_1<=15)) ) {
+                                    if ( (LA4_1==14||(LA4_1>=16 && LA4_1<=17)) ) {
                                         alt4=1;
                                     }
 
@@ -410,28 +421,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                                 switch (alt4) {
                             	case 1 :
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:188:3: RULE_MULTI_NL ( (lv_sections_8_0= ruleSection ) )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:188:3: RULE_MULTI_NL ( (lv_sections_8_0= ruleChapter ) )
                             	    {
-                            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument236); 
+                            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleXdocFile236); 
                             	     
-                            	        createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_3_0_1_1_0(), null); 
+                            	        createLeafNode(grammarAccess.getXdocFileAccess().getMULTI_NLTerminalRuleCall_3_0_1_1_0(), null); 
                             	        
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:192:1: ( (lv_sections_8_0= ruleSection ) )
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:193:1: (lv_sections_8_0= ruleSection )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:192:1: ( (lv_sections_8_0= ruleChapter ) )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:193:1: (lv_sections_8_0= ruleChapter )
                             	    {
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:193:1: (lv_sections_8_0= ruleSection )
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:194:3: lv_sections_8_0= ruleSection
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:193:1: (lv_sections_8_0= ruleChapter )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:194:3: lv_sections_8_0= ruleChapter
                             	    {
                             	     
-                            	    	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getSectionsSectionParserRuleCall_3_0_1_1_1_0(), currentNode); 
+                            	    	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsChapterParserRuleCall_3_0_1_1_1_0(), currentNode); 
                             	    	    
-                            	    pushFollow(FOLLOW_ruleSection_in_ruleDocument256);
-                            	    lv_sections_8_0=ruleSection();
+                            	    pushFollow(FOLLOW_ruleChapter_in_ruleXdocFile256);
+                            	    lv_sections_8_0=ruleChapter();
                             	    _fsp--;
 
 
                             	    	        if (current==null) {
-                            	    	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                            	    	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
                             	    	            associateNodeWithAstElement(currentNode.getParent(), current);
                             	    	        }
                             	    	        try {
@@ -439,7 +450,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             	    	       			current, 
                             	    	       			"sections",
                             	    	        		lv_sections_8_0, 
-                            	    	        		"Section", 
+                            	    	        		"Chapter", 
                             	    	        		currentNode);
                             	    	        } catch (ValueConverterException vce) {
                             	    				handleValueConverterException(vce);
@@ -468,27 +479,27 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 3 :
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:217:6: ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:217:6: ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* )
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:217:6: ( ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )* )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:217:7: ( (lv_sections_9_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )*
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:217:6: ( ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )* )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:217:7: ( (lv_sections_9_0= ruleSection ) ) ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )*
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:217:7: ( (lv_sections_9_0= ruleSection2 ) )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:218:1: (lv_sections_9_0= ruleSection2 )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:217:7: ( (lv_sections_9_0= ruleSection ) )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:218:1: (lv_sections_9_0= ruleSection )
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:218:1: (lv_sections_9_0= ruleSection2 )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:219:3: lv_sections_9_0= ruleSection2
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:218:1: (lv_sections_9_0= ruleSection )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:219:3: lv_sections_9_0= ruleSection
                             {
                              
-                            	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getSectionsSection2ParserRuleCall_3_0_2_0_0(), currentNode); 
+                            	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsSectionParserRuleCall_3_0_2_0_0(), currentNode); 
                             	    
-                            pushFollow(FOLLOW_ruleSection2_in_ruleDocument287);
-                            lv_sections_9_0=ruleSection2();
+                            pushFollow(FOLLOW_ruleSection_in_ruleXdocFile287);
+                            lv_sections_9_0=ruleSection();
                             _fsp--;
 
 
                             	        if (current==null) {
-                            	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                            	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
                             	            associateNodeWithAstElement(currentNode.getParent(), current);
                             	        }
                             	        try {
@@ -496,7 +507,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             	       			current, 
                             	       			"sections",
                             	        		lv_sections_9_0, 
-                            	        		"Section2", 
+                            	        		"Section", 
                             	        		currentNode);
                             	        } catch (ValueConverterException vce) {
                             				handleValueConverterException(vce);
@@ -509,7 +520,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:241:2: ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) ) )*
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:241:2: ( RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) ) )*
                             loop5:
                             do {
                                 int alt5=2;
@@ -518,7 +529,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                                 if ( (LA5_0==RULE_MULTI_NL) ) {
                                     int LA5_1 = input.LA(2);
 
-                                    if ( ((LA5_1>=16 && LA5_1<=17)) ) {
+                                    if ( ((LA5_1>=18 && LA5_1<=20)) ) {
                                         alt5=1;
                                     }
 
@@ -528,28 +539,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                                 switch (alt5) {
                             	case 1 :
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:241:3: RULE_MULTI_NL ( (lv_sections_11_0= ruleSection2 ) )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:241:3: RULE_MULTI_NL ( (lv_sections_11_0= ruleSection ) )
                             	    {
-                            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument297); 
+                            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleXdocFile297); 
                             	     
-                            	        createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_3_0_2_1_0(), null); 
+                            	        createLeafNode(grammarAccess.getXdocFileAccess().getMULTI_NLTerminalRuleCall_3_0_2_1_0(), null); 
                             	        
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:245:1: ( (lv_sections_11_0= ruleSection2 ) )
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:246:1: (lv_sections_11_0= ruleSection2 )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:245:1: ( (lv_sections_11_0= ruleSection ) )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:246:1: (lv_sections_11_0= ruleSection )
                             	    {
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:246:1: (lv_sections_11_0= ruleSection2 )
-                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:247:3: lv_sections_11_0= ruleSection2
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:246:1: (lv_sections_11_0= ruleSection )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:247:3: lv_sections_11_0= ruleSection
                             	    {
                             	     
-                            	    	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getSectionsSection2ParserRuleCall_3_0_2_1_1_0(), currentNode); 
+                            	    	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsSectionParserRuleCall_3_0_2_1_1_0(), currentNode); 
                             	    	    
-                            	    pushFollow(FOLLOW_ruleSection2_in_ruleDocument317);
-                            	    lv_sections_11_0=ruleSection2();
+                            	    pushFollow(FOLLOW_ruleSection_in_ruleXdocFile317);
+                            	    lv_sections_11_0=ruleSection();
                             	    _fsp--;
 
 
                             	    	        if (current==null) {
-                            	    	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                            	    	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
                             	    	            associateNodeWithAstElement(currentNode.getParent(), current);
                             	    	        }
                             	    	        try {
@@ -557,7 +568,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                             	    	       			current, 
                             	    	       			"sections",
                             	    	        		lv_sections_11_0, 
-                            	    	        		"Section2", 
+                            	    	        		"Section", 
                             	    	        		currentNode);
                             	    	        } catch (ValueConverterException vce) {
                             	    				handleValueConverterException(vce);
@@ -585,23 +596,141 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                             }
                             break;
-
-                    }
-
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:269:6: ( RULE_MULTI_NL )?
-                    int alt7=2;
-                    int LA7_0 = input.LA(1);
-
-                    if ( (LA7_0==RULE_MULTI_NL) ) {
-                        alt7=1;
-                    }
-                    switch (alt7) {
-                        case 1 :
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:269:7: RULE_MULTI_NL
+                        case 4 :
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:270:6: ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* )
                             {
-                            match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument331); 
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:270:6: ( ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )* )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:270:7: ( (lv_sections_12_0= ruleSection2 ) ) ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )*
+                            {
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:270:7: ( (lv_sections_12_0= ruleSection2 ) )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:271:1: (lv_sections_12_0= ruleSection2 )
+                            {
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:271:1: (lv_sections_12_0= ruleSection2 )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:272:3: lv_sections_12_0= ruleSection2
+                            {
                              
-                                createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_3_1(), null); 
+                            	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsSection2ParserRuleCall_3_0_3_0_0(), currentNode); 
+                            	    
+                            pushFollow(FOLLOW_ruleSection2_in_ruleXdocFile348);
+                            lv_sections_12_0=ruleSection2();
+                            _fsp--;
+
+
+                            	        if (current==null) {
+                            	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
+                            	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	        }
+                            	        try {
+                            	       		add(
+                            	       			current, 
+                            	       			"sections",
+                            	        		lv_sections_12_0, 
+                            	        		"Section2", 
+                            	        		currentNode);
+                            	        } catch (ValueConverterException vce) {
+                            				handleValueConverterException(vce);
+                            	        }
+                            	        currentNode = currentNode.getParent();
+                            	    
+
+                            }
+
+
+                            }
+
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:294:2: ( RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) ) )*
+                            loop6:
+                            do {
+                                int alt6=2;
+                                int LA6_0 = input.LA(1);
+
+                                if ( (LA6_0==RULE_MULTI_NL) ) {
+                                    int LA6_1 = input.LA(2);
+
+                                    if ( ((LA6_1>=21 && LA6_1<=22)) ) {
+                                        alt6=1;
+                                    }
+
+
+                                }
+
+
+                                switch (alt6) {
+                            	case 1 :
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:294:3: RULE_MULTI_NL ( (lv_sections_14_0= ruleSection2 ) )
+                            	    {
+                            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleXdocFile358); 
+                            	     
+                            	        createLeafNode(grammarAccess.getXdocFileAccess().getMULTI_NLTerminalRuleCall_3_0_3_1_0(), null); 
+                            	        
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:298:1: ( (lv_sections_14_0= ruleSection2 ) )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:299:1: (lv_sections_14_0= ruleSection2 )
+                            	    {
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:299:1: (lv_sections_14_0= ruleSection2 )
+                            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:300:3: lv_sections_14_0= ruleSection2
+                            	    {
+                            	     
+                            	    	        currentNode=createCompositeNode(grammarAccess.getXdocFileAccess().getSectionsSection2ParserRuleCall_3_0_3_1_1_0(), currentNode); 
+                            	    	    
+                            	    pushFollow(FOLLOW_ruleSection2_in_ruleXdocFile378);
+                            	    lv_sections_14_0=ruleSection2();
+                            	    _fsp--;
+
+
+                            	    	        if (current==null) {
+                            	    	            current = factory.create(grammarAccess.getXdocFileRule().getType().getClassifier());
+                            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                            	    	        }
+                            	    	        try {
+                            	    	       		add(
+                            	    	       			current, 
+                            	    	       			"sections",
+                            	    	        		lv_sections_14_0, 
+                            	    	        		"Section2", 
+                            	    	        		currentNode);
+                            	    	        } catch (ValueConverterException vce) {
+                            	    				handleValueConverterException(vce);
+                            	    	        }
+                            	    	        currentNode = currentNode.getParent();
+                            	    	    
+
+                            	    }
+
+
+                            	    }
+
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop6;
+                                }
+                            } while (true);
+
+
+                            }
+
+
+                            }
+                            break;
+
+                    }
+
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:322:6: ( RULE_MULTI_NL )?
+                    int alt8=2;
+                    int LA8_0 = input.LA(1);
+
+                    if ( (LA8_0==RULE_MULTI_NL) ) {
+                        alt8=1;
+                    }
+                    switch (alt8) {
+                        case 1 :
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:322:7: RULE_MULTI_NL
+                            {
+                            match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleXdocFile392); 
+                             
+                                createLeafNode(grammarAccess.getXdocFileAccess().getMULTI_NLTerminalRuleCall_3_1(), null); 
                                 
 
                             }
@@ -634,11 +763,343 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
+    // $ANTLR end ruleXdocFile
+
+
+    // $ANTLR start entryRuleDocument
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:334:1: entryRuleDocument returns [EObject current=null] : iv_ruleDocument= ruleDocument EOF ;
+    public final EObject entryRuleDocument() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleDocument = null;
+
+
+        try {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:335:2: (iv_ruleDocument= ruleDocument EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:336:2: iv_ruleDocument= ruleDocument EOF
+            {
+             currentNode = createCompositeNode(grammarAccess.getDocumentRule(), currentNode); 
+            pushFollow(FOLLOW_ruleDocument_in_entryRuleDocument431);
+            iv_ruleDocument=ruleDocument();
+            _fsp--;
+
+             current =iv_ruleDocument; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDocument441); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end entryRuleDocument
+
+
+    // $ANTLR start ruleDocument
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:343:1: ruleDocument returns [EObject current=null] : ( 'document[' ( (lv_title_1_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL 'subtitle[' ( (lv_subtitle_5_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL 'authors[' ( (lv_authors_9_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL ( (lv_chapters_12_0= ruleChapter ) ) )* ) ;
+    public final EObject ruleDocument() throws RecognitionException {
+        EObject current = null;
+
+        EObject lv_title_1_0 = null;
+
+        EObject lv_subtitle_5_0 = null;
+
+        EObject lv_authors_9_0 = null;
+
+        EObject lv_chapters_12_0 = null;
+
+
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+            
+        try {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:348:6: ( ( 'document[' ( (lv_title_1_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL 'subtitle[' ( (lv_subtitle_5_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL 'authors[' ( (lv_authors_9_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL ( (lv_chapters_12_0= ruleChapter ) ) )* ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:349:1: ( 'document[' ( (lv_title_1_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL 'subtitle[' ( (lv_subtitle_5_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL 'authors[' ( (lv_authors_9_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL ( (lv_chapters_12_0= ruleChapter ) ) )* )
+            {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:349:1: ( 'document[' ( (lv_title_1_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL 'subtitle[' ( (lv_subtitle_5_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL 'authors[' ( (lv_authors_9_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL ( (lv_chapters_12_0= ruleChapter ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:349:3: 'document[' ( (lv_title_1_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL 'subtitle[' ( (lv_subtitle_5_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL 'authors[' ( (lv_authors_9_0= ruleTextOrMarkup ) ) ']' )? ( RULE_MULTI_NL ( (lv_chapters_12_0= ruleChapter ) ) )*
+            {
+            match(input,10,FOLLOW_10_in_ruleDocument476); 
+
+                    createLeafNode(grammarAccess.getDocumentAccess().getDocumentKeyword_0(), null); 
+                
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:353:1: ( (lv_title_1_0= ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:354:1: (lv_title_1_0= ruleTextOrMarkup )
+            {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:354:1: (lv_title_1_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:355:3: lv_title_1_0= ruleTextOrMarkup
+            {
+             
+            	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getTitleTextOrMarkupParserRuleCall_1_0(), currentNode); 
+            	    
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleDocument497);
+            lv_title_1_0=ruleTextOrMarkup();
+            _fsp--;
+
+
+            	        if (current==null) {
+            	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+            	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	        }
+            	        try {
+            	       		set(
+            	       			current, 
+            	       			"title",
+            	        		lv_title_1_0, 
+            	        		"TextOrMarkup", 
+            	        		currentNode);
+            	        } catch (ValueConverterException vce) {
+            				handleValueConverterException(vce);
+            	        }
+            	        currentNode = currentNode.getParent();
+            	    
+
+            }
+
+
+            }
+
+            match(input,11,FOLLOW_11_in_ruleDocument507); 
+
+                    createLeafNode(grammarAccess.getDocumentAccess().getRightSquareBracketKeyword_2(), null); 
+                
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:381:1: ( RULE_MULTI_NL 'subtitle[' ( (lv_subtitle_5_0= ruleTextOrMarkup ) ) ']' )?
+            int alt10=2;
+            int LA10_0 = input.LA(1);
+
+            if ( (LA10_0==RULE_MULTI_NL) ) {
+                int LA10_1 = input.LA(2);
+
+                if ( (LA10_1==12) ) {
+                    alt10=1;
+                }
+            }
+            switch (alt10) {
+                case 1 :
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:381:2: RULE_MULTI_NL 'subtitle[' ( (lv_subtitle_5_0= ruleTextOrMarkup ) ) ']'
+                    {
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument517); 
+                     
+                        createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_3_0(), null); 
+                        
+                    match(input,12,FOLLOW_12_in_ruleDocument526); 
+
+                            createLeafNode(grammarAccess.getDocumentAccess().getSubtitleKeyword_3_1(), null); 
+                        
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:389:1: ( (lv_subtitle_5_0= ruleTextOrMarkup ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:390:1: (lv_subtitle_5_0= ruleTextOrMarkup )
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:390:1: (lv_subtitle_5_0= ruleTextOrMarkup )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:391:3: lv_subtitle_5_0= ruleTextOrMarkup
+                    {
+                     
+                    	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getSubtitleTextOrMarkupParserRuleCall_3_2_0(), currentNode); 
+                    	    
+                    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleDocument547);
+                    lv_subtitle_5_0=ruleTextOrMarkup();
+                    _fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	        }
+                    	        try {
+                    	       		set(
+                    	       			current, 
+                    	       			"subtitle",
+                    	        		lv_subtitle_5_0, 
+                    	        		"TextOrMarkup", 
+                    	        		currentNode);
+                    	        } catch (ValueConverterException vce) {
+                    				handleValueConverterException(vce);
+                    	        }
+                    	        currentNode = currentNode.getParent();
+                    	    
+
+                    }
+
+
+                    }
+
+                    match(input,11,FOLLOW_11_in_ruleDocument557); 
+
+                            createLeafNode(grammarAccess.getDocumentAccess().getRightSquareBracketKeyword_3_3(), null); 
+                        
+
+                    }
+                    break;
+
+            }
+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:417:3: ( RULE_MULTI_NL 'authors[' ( (lv_authors_9_0= ruleTextOrMarkup ) ) ']' )?
+            int alt11=2;
+            int LA11_0 = input.LA(1);
+
+            if ( (LA11_0==RULE_MULTI_NL) ) {
+                int LA11_1 = input.LA(2);
+
+                if ( (LA11_1==13) ) {
+                    alt11=1;
+                }
+            }
+            switch (alt11) {
+                case 1 :
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:417:4: RULE_MULTI_NL 'authors[' ( (lv_authors_9_0= ruleTextOrMarkup ) ) ']'
+                    {
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument569); 
+                     
+                        createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_4_0(), null); 
+                        
+                    match(input,13,FOLLOW_13_in_ruleDocument578); 
+
+                            createLeafNode(grammarAccess.getDocumentAccess().getAuthorsKeyword_4_1(), null); 
+                        
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:425:1: ( (lv_authors_9_0= ruleTextOrMarkup ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:426:1: (lv_authors_9_0= ruleTextOrMarkup )
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:426:1: (lv_authors_9_0= ruleTextOrMarkup )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:427:3: lv_authors_9_0= ruleTextOrMarkup
+                    {
+                     
+                    	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getAuthorsTextOrMarkupParserRuleCall_4_2_0(), currentNode); 
+                    	    
+                    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleDocument599);
+                    lv_authors_9_0=ruleTextOrMarkup();
+                    _fsp--;
+
+
+                    	        if (current==null) {
+                    	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+                    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	        }
+                    	        try {
+                    	       		set(
+                    	       			current, 
+                    	       			"authors",
+                    	        		lv_authors_9_0, 
+                    	        		"TextOrMarkup", 
+                    	        		currentNode);
+                    	        } catch (ValueConverterException vce) {
+                    				handleValueConverterException(vce);
+                    	        }
+                    	        currentNode = currentNode.getParent();
+                    	    
+
+                    }
+
+
+                    }
+
+                    match(input,11,FOLLOW_11_in_ruleDocument609); 
+
+                            createLeafNode(grammarAccess.getDocumentAccess().getRightSquareBracketKeyword_4_3(), null); 
+                        
+
+                    }
+                    break;
+
+            }
+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:453:3: ( RULE_MULTI_NL ( (lv_chapters_12_0= ruleChapter ) ) )*
+            loop12:
+            do {
+                int alt12=2;
+                int LA12_0 = input.LA(1);
+
+                if ( (LA12_0==RULE_MULTI_NL) ) {
+                    int LA12_1 = input.LA(2);
+
+                    if ( (LA12_1==14||(LA12_1>=16 && LA12_1<=17)) ) {
+                        alt12=1;
+                    }
+
+
+                }
+
+
+                switch (alt12) {
+            	case 1 :
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:453:4: RULE_MULTI_NL ( (lv_chapters_12_0= ruleChapter ) )
+            	    {
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleDocument621); 
+            	     
+            	        createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_5_0(), null); 
+            	        
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:457:1: ( (lv_chapters_12_0= ruleChapter ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:458:1: (lv_chapters_12_0= ruleChapter )
+            	    {
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:458:1: (lv_chapters_12_0= ruleChapter )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:459:3: lv_chapters_12_0= ruleChapter
+            	    {
+            	     
+            	    	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getChaptersChapterParserRuleCall_5_1_0(), currentNode); 
+            	    	    
+            	    pushFollow(FOLLOW_ruleChapter_in_ruleDocument641);
+            	    lv_chapters_12_0=ruleChapter();
+            	    _fsp--;
+
+
+            	    	        if (current==null) {
+            	    	            current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+            	    	        }
+            	    	        try {
+            	    	       		add(
+            	    	       			current, 
+            	    	       			"chapters",
+            	    	        		lv_chapters_12_0, 
+            	    	        		"Chapter", 
+            	    	        		currentNode);
+            	    	        } catch (ValueConverterException vce) {
+            	    				handleValueConverterException(vce);
+            	    	        }
+            	    	        currentNode = currentNode.getParent();
+            	    	    
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop12;
+                }
+            } while (true);
+
+
+            }
+
+
+            }
+
+             resetLookahead(); 
+                	lastConsumedNode = currentNode;
+                
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
     // $ANTLR end ruleDocument
 
 
     // $ANTLR start entryRuleChapter
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:281:1: entryRuleChapter returns [EObject current=null] : iv_ruleChapter= ruleChapter EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:489:1: entryRuleChapter returns [EObject current=null] : iv_ruleChapter= ruleChapter EOF ;
     public final EObject entryRuleChapter() throws RecognitionException {
         EObject current = null;
 
@@ -646,16 +1107,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:282:2: (iv_ruleChapter= ruleChapter EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:283:2: iv_ruleChapter= ruleChapter EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:490:2: (iv_ruleChapter= ruleChapter EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:491:2: iv_ruleChapter= ruleChapter EOF
             {
              currentNode = createCompositeNode(grammarAccess.getChapterRule(), currentNode); 
-            pushFollow(FOLLOW_ruleChapter_in_entryRuleChapter370);
+            pushFollow(FOLLOW_ruleChapter_in_entryRuleChapter679);
             iv_ruleChapter=ruleChapter();
             _fsp--;
 
              current =iv_ruleChapter; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleChapter380); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleChapter689); 
 
             }
 
@@ -673,80 +1134,178 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleChapter
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:290:1: ruleChapter returns [EObject current=null] : ( ( ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection ) ) )* ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:498:1: ruleChapter returns [EObject current=null] : (this_ChapterRef_0= ruleChapterRef | ( ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )* ) ) ;
     public final EObject ruleChapter() throws RecognitionException {
         EObject current = null;
 
-        Token lv_name_1_0=null;
-        EObject lv_title_4_0 = null;
+        Token lv_name_2_0=null;
+        EObject this_ChapterRef_0 = null;
 
-        EObject lv_contents_7_0 = null;
+        EObject lv_title_5_0 = null;
 
-        EObject lv_subSections_9_0 = null;
+        EObject lv_contents_8_0 = null;
+
+        EObject lv_subSections_10_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:295:6: ( ( ( ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection ) ) )* ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:296:1: ( ( ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:503:6: ( (this_ChapterRef_0= ruleChapterRef | ( ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )* ) ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:504:1: (this_ChapterRef_0= ruleChapterRef | ( ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )* ) )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:296:1: ( ( ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection ) ) )* )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:296:2: ( ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection ) ) )*
-            {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:296:2: ( ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'chapter[' )
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:504:1: (this_ChapterRef_0= ruleChapterRef | ( ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )* ) )
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA9_0==10) ) {
-                alt9=1;
+            if ( (LA16_0==17) ) {
+                alt16=1;
             }
-            else if ( (LA9_0==12) ) {
-                alt9=2;
+            else if ( (LA16_0==14||LA16_0==16) ) {
+                alt16=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("296:2: ( ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'chapter[' )", 9, 0, input);
+                    new NoViableAltException("504:1: (this_ChapterRef_0= ruleChapterRef | ( ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )* ) )", 16, 0, input);
 
                 throw nvae;
             }
-            switch (alt9) {
+            switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:296:3: ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:505:5: this_ChapterRef_0= ruleChapterRef
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:296:3: ( 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '[' )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:296:5: 'chapter:' ( (lv_name_1_0= RULE_ID ) ) '['
-                    {
-                    match(input,10,FOLLOW_10_in_ruleChapter417); 
-
-                            createLeafNode(grammarAccess.getChapterAccess().getChapterKeyword_0_0_0(), null); 
+                     
+                            currentNode=createCompositeNode(grammarAccess.getChapterAccess().getChapterRefParserRuleCall_0(), currentNode); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:300:1: ( (lv_name_1_0= RULE_ID ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:301:1: (lv_name_1_0= RULE_ID )
-                    {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:301:1: (lv_name_1_0= RULE_ID )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:302:3: lv_name_1_0= RULE_ID
-                    {
-                    lv_name_1_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleChapter434); 
+                    pushFollow(FOLLOW_ruleChapterRef_in_ruleChapter736);
+                    this_ChapterRef_0=ruleChapterRef();
+                    _fsp--;
 
-                    			createLeafNode(grammarAccess.getChapterAccess().getNameIDTerminalRuleCall_0_0_1_0(), "name"); 
-                    		
+                     
+                            current = this_ChapterRef_0; 
+                            currentNode = currentNode.getParent();
+                        
+
+                    }
+                    break;
+                case 2 :
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:514:6: ( ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )* )
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:514:6: ( ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )* )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:514:7: ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )*
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:514:7: ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' )
+                    int alt13=2;
+                    int LA13_0 = input.LA(1);
+
+                    if ( (LA13_0==14) ) {
+                        alt13=1;
+                    }
+                    else if ( (LA13_0==16) ) {
+                        alt13=2;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("514:7: ( ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'chapter[' )", 13, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt13) {
+                        case 1 :
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:514:8: ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' )
+                            {
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:514:8: ( 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '[' )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:514:10: 'chapter:' ( (lv_name_2_0= RULE_ID ) ) '['
+                            {
+                            match(input,14,FOLLOW_14_in_ruleChapter754); 
+
+                                    createLeafNode(grammarAccess.getChapterAccess().getChapterKeyword_1_0_0_0(), null); 
+                                
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:518:1: ( (lv_name_2_0= RULE_ID ) )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:519:1: (lv_name_2_0= RULE_ID )
+                            {
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:519:1: (lv_name_2_0= RULE_ID )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:520:3: lv_name_2_0= RULE_ID
+                            {
+                            lv_name_2_0=(Token)input.LT(1);
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleChapter771); 
+
+                            			createLeafNode(grammarAccess.getChapterAccess().getNameIDTerminalRuleCall_1_0_0_1_0(), "name"); 
+                            		
+
+                            	        if (current==null) {
+                            	            current = factory.create(grammarAccess.getChapterRule().getType().getClassifier());
+                            	            associateNodeWithAstElement(currentNode, current);
+                            	        }
+                            	        try {
+                            	       		set(
+                            	       			current, 
+                            	       			"name",
+                            	        		lv_name_2_0, 
+                            	        		"ID", 
+                            	        		lastConsumedNode);
+                            	        } catch (ValueConverterException vce) {
+                            				handleValueConverterException(vce);
+                            	        }
+                            	    
+
+                            }
+
+
+                            }
+
+                            match(input,15,FOLLOW_15_in_ruleChapter786); 
+
+                                    createLeafNode(grammarAccess.getChapterAccess().getLeftSquareBracketKeyword_1_0_0_2(), null); 
+                                
+
+                            }
+
+
+                            }
+                            break;
+                        case 2 :
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:547:7: 'chapter['
+                            {
+                            match(input,16,FOLLOW_16_in_ruleChapter803); 
+
+                                    createLeafNode(grammarAccess.getChapterAccess().getChapterKeyword_1_0_1(), null); 
+                                
+
+                            }
+                            break;
+
+                    }
+
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:551:2: ( (lv_title_5_0= ruleTextOrMarkup ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:552:1: (lv_title_5_0= ruleTextOrMarkup )
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:552:1: (lv_title_5_0= ruleTextOrMarkup )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:553:3: lv_title_5_0= ruleTextOrMarkup
+                    {
+                     
+                    	        currentNode=createCompositeNode(grammarAccess.getChapterAccess().getTitleTextOrMarkupParserRuleCall_1_1_0(), currentNode); 
+                    	    
+                    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleChapter825);
+                    lv_title_5_0=ruleTextOrMarkup();
+                    _fsp--;
+
 
                     	        if (current==null) {
                     	            current = factory.create(grammarAccess.getChapterRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	        }
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"name",
-                    	        		lv_name_1_0, 
-                    	        		"ID", 
-                    	        		lastConsumedNode);
+                    	       			"title",
+                    	        		lv_title_5_0, 
+                    	        		"TextOrMarkup", 
+                    	        		currentNode);
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
                     	        }
+                    	        currentNode = currentNode.getParent();
                     	    
 
                     }
@@ -754,209 +1313,156 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,11,FOLLOW_11_in_ruleChapter449); 
+                    match(input,11,FOLLOW_11_in_ruleChapter835); 
 
-                            createLeafNode(grammarAccess.getChapterAccess().getLeftSquareBracketKeyword_0_0_2(), null); 
+                            createLeafNode(grammarAccess.getChapterAccess().getRightSquareBracketKeyword_1_2(), null); 
                         
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:579:1: ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )*
+                    loop14:
+                    do {
+                        int alt14=2;
+                        int LA14_0 = input.LA(1);
+
+                        if ( (LA14_0==RULE_MULTI_NL) ) {
+                            int LA14_1 = input.LA(2);
+
+                            if ( (LA14_1==RULE_WS||(LA14_1>=RULE_ID && LA14_1<=RULE_ANY_OTHER)||(LA14_1>=27 && LA14_1<=29)||(LA14_1>=32 && LA14_1<=36)||(LA14_1>=38 && LA14_1<=42)) ) {
+                                alt14=1;
+                            }
+
+
+                        }
+
+
+                        switch (alt14) {
+                    	case 1 :
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:579:2: RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) )
+                    	    {
+                    	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleChapter845); 
+                    	     
+                    	        createLeafNode(grammarAccess.getChapterAccess().getMULTI_NLTerminalRuleCall_1_3_0(), null); 
+                    	        
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:583:1: ( (lv_contents_8_0= ruleTextOrMarkup ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:584:1: (lv_contents_8_0= ruleTextOrMarkup )
+                    	    {
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:584:1: (lv_contents_8_0= ruleTextOrMarkup )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:585:3: lv_contents_8_0= ruleTextOrMarkup
+                    	    {
+                    	     
+                    	    	        currentNode=createCompositeNode(grammarAccess.getChapterAccess().getContentsTextOrMarkupParserRuleCall_1_3_1_0(), currentNode); 
+                    	    	    
+                    	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleChapter865);
+                    	    lv_contents_8_0=ruleTextOrMarkup();
+                    	    _fsp--;
+
+
+                    	    	        if (current==null) {
+                    	    	            current = factory.create(grammarAccess.getChapterRule().getType().getClassifier());
+                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	        }
+                    	    	        try {
+                    	    	       		add(
+                    	    	       			current, 
+                    	    	       			"contents",
+                    	    	        		lv_contents_8_0, 
+                    	    	        		"TextOrMarkup", 
+                    	    	        		currentNode);
+                    	    	        } catch (ValueConverterException vce) {
+                    	    				handleValueConverterException(vce);
+                    	    	        }
+                    	    	        currentNode = currentNode.getParent();
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop14;
+                        }
+                    } while (true);
+
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:607:4: ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) ) )*
+                    loop15:
+                    do {
+                        int alt15=2;
+                        int LA15_0 = input.LA(1);
+
+                        if ( (LA15_0==RULE_MULTI_NL) ) {
+                            int LA15_1 = input.LA(2);
+
+                            if ( ((LA15_1>=18 && LA15_1<=20)) ) {
+                                alt15=1;
+                            }
+
+
+                        }
+
+
+                        switch (alt15) {
+                    	case 1 :
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:607:5: RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection ) )
+                    	    {
+                    	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleChapter877); 
+                    	     
+                    	        createLeafNode(grammarAccess.getChapterAccess().getMULTI_NLTerminalRuleCall_1_4_0(), null); 
+                    	        
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:611:1: ( (lv_subSections_10_0= ruleSection ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:612:1: (lv_subSections_10_0= ruleSection )
+                    	    {
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:612:1: (lv_subSections_10_0= ruleSection )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:613:3: lv_subSections_10_0= ruleSection
+                    	    {
+                    	     
+                    	    	        currentNode=createCompositeNode(grammarAccess.getChapterAccess().getSubSectionsSectionParserRuleCall_1_4_1_0(), currentNode); 
+                    	    	    
+                    	    pushFollow(FOLLOW_ruleSection_in_ruleChapter897);
+                    	    lv_subSections_10_0=ruleSection();
+                    	    _fsp--;
+
+
+                    	    	        if (current==null) {
+                    	    	            current = factory.create(grammarAccess.getChapterRule().getType().getClassifier());
+                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	        }
+                    	    	        try {
+                    	    	       		add(
+                    	    	       			current, 
+                    	    	       			"subSections",
+                    	    	        		lv_subSections_10_0, 
+                    	    	        		"Section", 
+                    	    	        		currentNode);
+                    	    	        } catch (ValueConverterException vce) {
+                    	    				handleValueConverterException(vce);
+                    	    	        }
+                    	    	        currentNode = currentNode.getParent();
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop15;
+                        }
+                    } while (true);
+
 
                     }
 
 
                     }
                     break;
-                case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:329:7: 'chapter['
-                    {
-                    match(input,12,FOLLOW_12_in_ruleChapter466); 
-
-                            createLeafNode(grammarAccess.getChapterAccess().getChapterKeyword_0_1(), null); 
-                        
-
-                    }
-                    break;
-
-            }
-
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:333:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:334:1: (lv_title_4_0= ruleTextOrMarkup )
-            {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:334:1: (lv_title_4_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:335:3: lv_title_4_0= ruleTextOrMarkup
-            {
-             
-            	        currentNode=createCompositeNode(grammarAccess.getChapterAccess().getTitleTextOrMarkupParserRuleCall_1_0(), currentNode); 
-            	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleChapter488);
-            lv_title_4_0=ruleTextOrMarkup();
-            _fsp--;
-
-
-            	        if (current==null) {
-            	            current = factory.create(grammarAccess.getChapterRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
-            	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"title",
-            	        		lv_title_4_0, 
-            	        		"TextOrMarkup", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
-            	    
-
-            }
-
-
-            }
-
-            match(input,13,FOLLOW_13_in_ruleChapter498); 
-
-                    createLeafNode(grammarAccess.getChapterAccess().getRightSquareBracketKeyword_2(), null); 
-                
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:361:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
-            loop10:
-            do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
-
-                if ( (LA10_0==RULE_MULTI_NL) ) {
-                    int LA10_1 = input.LA(2);
-
-                    if ( (LA10_1==RULE_WS||(LA10_1>=RULE_ID && LA10_1<=RULE_ANY_OTHER)||(LA10_1>=22 && LA10_1<=24)||(LA10_1>=27 && LA10_1<=31)||(LA10_1>=33 && LA10_1<=37)) ) {
-                        alt10=1;
-                    }
-
-
-                }
-
-
-                switch (alt10) {
-            	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:361:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
-            	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleChapter508); 
-            	     
-            	        createLeafNode(grammarAccess.getChapterAccess().getMULTI_NLTerminalRuleCall_3_0(), null); 
-            	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:365:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:366:1: (lv_contents_7_0= ruleTextOrMarkup )
-            	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:366:1: (lv_contents_7_0= ruleTextOrMarkup )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:367:3: lv_contents_7_0= ruleTextOrMarkup
-            	    {
-            	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getChapterAccess().getContentsTextOrMarkupParserRuleCall_3_1_0(), currentNode); 
-            	    	    
-            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleChapter528);
-            	    lv_contents_7_0=ruleTextOrMarkup();
-            	    _fsp--;
-
-
-            	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getChapterRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
-            	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"contents",
-            	    	        		lv_contents_7_0, 
-            	    	        		"TextOrMarkup", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
-            	    	    
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop10;
-                }
-            } while (true);
-
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:389:4: ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection ) ) )*
-            loop11:
-            do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
-
-                if ( (LA11_0==RULE_MULTI_NL) ) {
-                    int LA11_1 = input.LA(2);
-
-                    if ( ((LA11_1>=14 && LA11_1<=15)) ) {
-                        alt11=1;
-                    }
-
-
-                }
-
-
-                switch (alt11) {
-            	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:389:5: RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection ) )
-            	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleChapter540); 
-            	     
-            	        createLeafNode(grammarAccess.getChapterAccess().getMULTI_NLTerminalRuleCall_4_0(), null); 
-            	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:393:1: ( (lv_subSections_9_0= ruleSection ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:394:1: (lv_subSections_9_0= ruleSection )
-            	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:394:1: (lv_subSections_9_0= ruleSection )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:395:3: lv_subSections_9_0= ruleSection
-            	    {
-            	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getChapterAccess().getSubSectionsSectionParserRuleCall_4_1_0(), currentNode); 
-            	    	    
-            	    pushFollow(FOLLOW_ruleSection_in_ruleChapter560);
-            	    lv_subSections_9_0=ruleSection();
-            	    _fsp--;
-
-
-            	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getChapterRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
-            	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"subSections",
-            	    	        		lv_subSections_9_0, 
-            	    	        		"Section", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
-            	    	    
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop11;
-                }
-            } while (true);
-
 
             }
 
@@ -979,8 +1485,109 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleChapter
 
 
+    // $ANTLR start entryRuleChapterRef
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:643:1: entryRuleChapterRef returns [EObject current=null] : iv_ruleChapterRef= ruleChapterRef EOF ;
+    public final EObject entryRuleChapterRef() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleChapterRef = null;
+
+
+        try {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:644:2: (iv_ruleChapterRef= ruleChapterRef EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:645:2: iv_ruleChapterRef= ruleChapterRef EOF
+            {
+             currentNode = createCompositeNode(grammarAccess.getChapterRefRule(), currentNode); 
+            pushFollow(FOLLOW_ruleChapterRef_in_entryRuleChapterRef936);
+            iv_ruleChapterRef=ruleChapterRef();
+            _fsp--;
+
+             current =iv_ruleChapterRef; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleChapterRef946); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end entryRuleChapterRef
+
+
+    // $ANTLR start ruleChapterRef
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:652:1: ruleChapterRef returns [EObject current=null] : ( 'chapter-ref[' ( ( RULE_ID ) ) ']' ) ;
+    public final EObject ruleChapterRef() throws RecognitionException {
+        EObject current = null;
+
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+            
+        try {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:657:6: ( ( 'chapter-ref[' ( ( RULE_ID ) ) ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:658:1: ( 'chapter-ref[' ( ( RULE_ID ) ) ']' )
+            {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:658:1: ( 'chapter-ref[' ( ( RULE_ID ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:658:3: 'chapter-ref[' ( ( RULE_ID ) ) ']'
+            {
+            match(input,17,FOLLOW_17_in_ruleChapterRef981); 
+
+                    createLeafNode(grammarAccess.getChapterRefAccess().getChapterRefKeyword_0(), null); 
+                
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:662:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:663:1: ( RULE_ID )
+            {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:663:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:664:3: RULE_ID
+            {
+
+            			if (current==null) {
+            	            current = factory.create(grammarAccess.getChapterRefRule().getType().getClassifier());
+            	            associateNodeWithAstElement(currentNode, current);
+            	        }
+                    
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleChapterRef999); 
+
+            		createLeafNode(grammarAccess.getChapterRefAccess().getChapterChapterCrossReference_1_0(), "chapter"); 
+            	
+
+            }
+
+
+            }
+
+            match(input,11,FOLLOW_11_in_ruleChapterRef1009); 
+
+                    createLeafNode(grammarAccess.getChapterRefAccess().getRightSquareBracketKeyword_2(), null); 
+                
+
+            }
+
+
+            }
+
+             resetLookahead(); 
+                	lastConsumedNode = currentNode;
+                
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleChapterRef
+
+
     // $ANTLR start entryRuleSection
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:425:1: entryRuleSection returns [EObject current=null] : iv_ruleSection= ruleSection EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:688:1: entryRuleSection returns [EObject current=null] : iv_ruleSection= ruleSection EOF ;
     public final EObject entryRuleSection() throws RecognitionException {
         EObject current = null;
 
@@ -988,16 +1595,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:426:2: (iv_ruleSection= ruleSection EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:427:2: iv_ruleSection= ruleSection EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:689:2: (iv_ruleSection= ruleSection EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:690:2: iv_ruleSection= ruleSection EOF
             {
              currentNode = createCompositeNode(grammarAccess.getSectionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleSection_in_entryRuleSection598);
+            pushFollow(FOLLOW_ruleSection_in_entryRuleSection1045);
             iv_ruleSection=ruleSection();
             _fsp--;
 
              current =iv_ruleSection; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSection608); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSection1055); 
 
             }
 
@@ -1015,80 +1622,178 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleSection
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:434:1: ruleSection returns [EObject current=null] : ( ( ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection2 ) ) )* ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:697:1: ruleSection returns [EObject current=null] : (this_SectionRef_0= ruleSectionRef | ( ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )* ) ) ;
     public final EObject ruleSection() throws RecognitionException {
         EObject current = null;
 
-        Token lv_name_1_0=null;
-        EObject lv_title_4_0 = null;
+        Token lv_name_2_0=null;
+        EObject this_SectionRef_0 = null;
 
-        EObject lv_contents_7_0 = null;
+        EObject lv_title_5_0 = null;
 
-        EObject lv_subSections_9_0 = null;
+        EObject lv_contents_8_0 = null;
+
+        EObject lv_subSections_10_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:439:6: ( ( ( ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection2 ) ) )* ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:440:1: ( ( ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection2 ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:702:6: ( (this_SectionRef_0= ruleSectionRef | ( ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )* ) ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:703:1: (this_SectionRef_0= ruleSectionRef | ( ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )* ) )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:440:1: ( ( ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection2 ) ) )* )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:440:2: ( ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection2 ) ) )*
-            {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:440:2: ( ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section[' )
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:703:1: (this_SectionRef_0= ruleSectionRef | ( ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )* ) )
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA12_0==14) ) {
-                alt12=1;
+            if ( (LA20_0==20) ) {
+                alt20=1;
             }
-            else if ( (LA12_0==15) ) {
-                alt12=2;
+            else if ( ((LA20_0>=18 && LA20_0<=19)) ) {
+                alt20=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("440:2: ( ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section[' )", 12, 0, input);
+                    new NoViableAltException("703:1: (this_SectionRef_0= ruleSectionRef | ( ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )* ) )", 20, 0, input);
 
                 throw nvae;
             }
-            switch (alt12) {
+            switch (alt20) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:440:3: ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:704:5: this_SectionRef_0= ruleSectionRef
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:440:3: ( 'section:' ( (lv_name_1_0= RULE_ID ) ) '[' )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:440:5: 'section:' ( (lv_name_1_0= RULE_ID ) ) '['
-                    {
-                    match(input,14,FOLLOW_14_in_ruleSection645); 
-
-                            createLeafNode(grammarAccess.getSectionAccess().getSectionKeyword_0_0_0(), null); 
+                     
+                            currentNode=createCompositeNode(grammarAccess.getSectionAccess().getSectionRefParserRuleCall_0(), currentNode); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:444:1: ( (lv_name_1_0= RULE_ID ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:445:1: (lv_name_1_0= RULE_ID )
-                    {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:445:1: (lv_name_1_0= RULE_ID )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:446:3: lv_name_1_0= RULE_ID
-                    {
-                    lv_name_1_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection662); 
+                    pushFollow(FOLLOW_ruleSectionRef_in_ruleSection1102);
+                    this_SectionRef_0=ruleSectionRef();
+                    _fsp--;
 
-                    			createLeafNode(grammarAccess.getSectionAccess().getNameIDTerminalRuleCall_0_0_1_0(), "name"); 
-                    		
+                     
+                            current = this_SectionRef_0; 
+                            currentNode = currentNode.getParent();
+                        
+
+                    }
+                    break;
+                case 2 :
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:713:6: ( ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )* )
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:713:6: ( ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )* )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:713:7: ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' ) ( (lv_title_5_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )*
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:713:7: ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' )
+                    int alt17=2;
+                    int LA17_0 = input.LA(1);
+
+                    if ( (LA17_0==18) ) {
+                        alt17=1;
+                    }
+                    else if ( (LA17_0==19) ) {
+                        alt17=2;
+                    }
+                    else {
+                        NoViableAltException nvae =
+                            new NoViableAltException("713:7: ( ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' ) | 'section[' )", 17, 0, input);
+
+                        throw nvae;
+                    }
+                    switch (alt17) {
+                        case 1 :
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:713:8: ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' )
+                            {
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:713:8: ( 'section:' ( (lv_name_2_0= RULE_ID ) ) '[' )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:713:10: 'section:' ( (lv_name_2_0= RULE_ID ) ) '['
+                            {
+                            match(input,18,FOLLOW_18_in_ruleSection1120); 
+
+                                    createLeafNode(grammarAccess.getSectionAccess().getSectionKeyword_1_0_0_0(), null); 
+                                
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:717:1: ( (lv_name_2_0= RULE_ID ) )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:718:1: (lv_name_2_0= RULE_ID )
+                            {
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:718:1: (lv_name_2_0= RULE_ID )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:719:3: lv_name_2_0= RULE_ID
+                            {
+                            lv_name_2_0=(Token)input.LT(1);
+                            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection1137); 
+
+                            			createLeafNode(grammarAccess.getSectionAccess().getNameIDTerminalRuleCall_1_0_0_1_0(), "name"); 
+                            		
+
+                            	        if (current==null) {
+                            	            current = factory.create(grammarAccess.getSectionRule().getType().getClassifier());
+                            	            associateNodeWithAstElement(currentNode, current);
+                            	        }
+                            	        try {
+                            	       		set(
+                            	       			current, 
+                            	       			"name",
+                            	        		lv_name_2_0, 
+                            	        		"ID", 
+                            	        		lastConsumedNode);
+                            	        } catch (ValueConverterException vce) {
+                            				handleValueConverterException(vce);
+                            	        }
+                            	    
+
+                            }
+
+
+                            }
+
+                            match(input,15,FOLLOW_15_in_ruleSection1152); 
+
+                                    createLeafNode(grammarAccess.getSectionAccess().getLeftSquareBracketKeyword_1_0_0_2(), null); 
+                                
+
+                            }
+
+
+                            }
+                            break;
+                        case 2 :
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:746:7: 'section['
+                            {
+                            match(input,19,FOLLOW_19_in_ruleSection1169); 
+
+                                    createLeafNode(grammarAccess.getSectionAccess().getSectionKeyword_1_0_1(), null); 
+                                
+
+                            }
+                            break;
+
+                    }
+
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:750:2: ( (lv_title_5_0= ruleTextOrMarkup ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:751:1: (lv_title_5_0= ruleTextOrMarkup )
+                    {
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:751:1: (lv_title_5_0= ruleTextOrMarkup )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:752:3: lv_title_5_0= ruleTextOrMarkup
+                    {
+                     
+                    	        currentNode=createCompositeNode(grammarAccess.getSectionAccess().getTitleTextOrMarkupParserRuleCall_1_1_0(), currentNode); 
+                    	    
+                    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection1191);
+                    lv_title_5_0=ruleTextOrMarkup();
+                    _fsp--;
+
 
                     	        if (current==null) {
                     	            current = factory.create(grammarAccess.getSectionRule().getType().getClassifier());
-                    	            associateNodeWithAstElement(currentNode, current);
+                    	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	        }
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"name",
-                    	        		lv_name_1_0, 
-                    	        		"ID", 
-                    	        		lastConsumedNode);
+                    	       			"title",
+                    	        		lv_title_5_0, 
+                    	        		"TextOrMarkup", 
+                    	        		currentNode);
                     	        } catch (ValueConverterException vce) {
                     				handleValueConverterException(vce);
                     	        }
+                    	        currentNode = currentNode.getParent();
                     	    
 
                     }
@@ -1096,209 +1801,156 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,11,FOLLOW_11_in_ruleSection677); 
+                    match(input,11,FOLLOW_11_in_ruleSection1201); 
 
-                            createLeafNode(grammarAccess.getSectionAccess().getLeftSquareBracketKeyword_0_0_2(), null); 
+                            createLeafNode(grammarAccess.getSectionAccess().getRightSquareBracketKeyword_1_2(), null); 
                         
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:778:1: ( RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) ) )*
+                    loop18:
+                    do {
+                        int alt18=2;
+                        int LA18_0 = input.LA(1);
+
+                        if ( (LA18_0==RULE_MULTI_NL) ) {
+                            int LA18_1 = input.LA(2);
+
+                            if ( (LA18_1==RULE_WS||(LA18_1>=RULE_ID && LA18_1<=RULE_ANY_OTHER)||(LA18_1>=27 && LA18_1<=29)||(LA18_1>=32 && LA18_1<=36)||(LA18_1>=38 && LA18_1<=42)) ) {
+                                alt18=1;
+                            }
+
+
+                        }
+
+
+                        switch (alt18) {
+                    	case 1 :
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:778:2: RULE_MULTI_NL ( (lv_contents_8_0= ruleTextOrMarkup ) )
+                    	    {
+                    	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection1211); 
+                    	     
+                    	        createLeafNode(grammarAccess.getSectionAccess().getMULTI_NLTerminalRuleCall_1_3_0(), null); 
+                    	        
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:782:1: ( (lv_contents_8_0= ruleTextOrMarkup ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:783:1: (lv_contents_8_0= ruleTextOrMarkup )
+                    	    {
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:783:1: (lv_contents_8_0= ruleTextOrMarkup )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:784:3: lv_contents_8_0= ruleTextOrMarkup
+                    	    {
+                    	     
+                    	    	        currentNode=createCompositeNode(grammarAccess.getSectionAccess().getContentsTextOrMarkupParserRuleCall_1_3_1_0(), currentNode); 
+                    	    	    
+                    	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection1231);
+                    	    lv_contents_8_0=ruleTextOrMarkup();
+                    	    _fsp--;
+
+
+                    	    	        if (current==null) {
+                    	    	            current = factory.create(grammarAccess.getSectionRule().getType().getClassifier());
+                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	        }
+                    	    	        try {
+                    	    	       		add(
+                    	    	       			current, 
+                    	    	       			"contents",
+                    	    	        		lv_contents_8_0, 
+                    	    	        		"TextOrMarkup", 
+                    	    	        		currentNode);
+                    	    	        } catch (ValueConverterException vce) {
+                    	    				handleValueConverterException(vce);
+                    	    	        }
+                    	    	        currentNode = currentNode.getParent();
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop18;
+                        }
+                    } while (true);
+
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:806:4: ( RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) ) )*
+                    loop19:
+                    do {
+                        int alt19=2;
+                        int LA19_0 = input.LA(1);
+
+                        if ( (LA19_0==RULE_MULTI_NL) ) {
+                            int LA19_1 = input.LA(2);
+
+                            if ( ((LA19_1>=21 && LA19_1<=22)) ) {
+                                alt19=1;
+                            }
+
+
+                        }
+
+
+                        switch (alt19) {
+                    	case 1 :
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:806:5: RULE_MULTI_NL ( (lv_subSections_10_0= ruleSection2 ) )
+                    	    {
+                    	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection1243); 
+                    	     
+                    	        createLeafNode(grammarAccess.getSectionAccess().getMULTI_NLTerminalRuleCall_1_4_0(), null); 
+                    	        
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:810:1: ( (lv_subSections_10_0= ruleSection2 ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:811:1: (lv_subSections_10_0= ruleSection2 )
+                    	    {
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:811:1: (lv_subSections_10_0= ruleSection2 )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:812:3: lv_subSections_10_0= ruleSection2
+                    	    {
+                    	     
+                    	    	        currentNode=createCompositeNode(grammarAccess.getSectionAccess().getSubSectionsSection2ParserRuleCall_1_4_1_0(), currentNode); 
+                    	    	    
+                    	    pushFollow(FOLLOW_ruleSection2_in_ruleSection1263);
+                    	    lv_subSections_10_0=ruleSection2();
+                    	    _fsp--;
+
+
+                    	    	        if (current==null) {
+                    	    	            current = factory.create(grammarAccess.getSectionRule().getType().getClassifier());
+                    	    	            associateNodeWithAstElement(currentNode.getParent(), current);
+                    	    	        }
+                    	    	        try {
+                    	    	       		add(
+                    	    	       			current, 
+                    	    	       			"subSections",
+                    	    	        		lv_subSections_10_0, 
+                    	    	        		"Section2", 
+                    	    	        		currentNode);
+                    	    	        } catch (ValueConverterException vce) {
+                    	    				handleValueConverterException(vce);
+                    	    	        }
+                    	    	        currentNode = currentNode.getParent();
+                    	    	    
+
+                    	    }
+
+
+                    	    }
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop19;
+                        }
+                    } while (true);
+
 
                     }
 
 
                     }
                     break;
-                case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:473:7: 'section['
-                    {
-                    match(input,15,FOLLOW_15_in_ruleSection694); 
-
-                            createLeafNode(grammarAccess.getSectionAccess().getSectionKeyword_0_1(), null); 
-                        
-
-                    }
-                    break;
-
-            }
-
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:477:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:478:1: (lv_title_4_0= ruleTextOrMarkup )
-            {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:478:1: (lv_title_4_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:479:3: lv_title_4_0= ruleTextOrMarkup
-            {
-             
-            	        currentNode=createCompositeNode(grammarAccess.getSectionAccess().getTitleTextOrMarkupParserRuleCall_1_0(), currentNode); 
-            	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection716);
-            lv_title_4_0=ruleTextOrMarkup();
-            _fsp--;
-
-
-            	        if (current==null) {
-            	            current = factory.create(grammarAccess.getSectionRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
-            	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"title",
-            	        		lv_title_4_0, 
-            	        		"TextOrMarkup", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
-            	    
-
-            }
-
-
-            }
-
-            match(input,13,FOLLOW_13_in_ruleSection726); 
-
-                    createLeafNode(grammarAccess.getSectionAccess().getRightSquareBracketKeyword_2(), null); 
-                
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:505:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
-            loop13:
-            do {
-                int alt13=2;
-                int LA13_0 = input.LA(1);
-
-                if ( (LA13_0==RULE_MULTI_NL) ) {
-                    int LA13_1 = input.LA(2);
-
-                    if ( (LA13_1==RULE_WS||(LA13_1>=RULE_ID && LA13_1<=RULE_ANY_OTHER)||(LA13_1>=22 && LA13_1<=24)||(LA13_1>=27 && LA13_1<=31)||(LA13_1>=33 && LA13_1<=37)) ) {
-                        alt13=1;
-                    }
-
-
-                }
-
-
-                switch (alt13) {
-            	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:505:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
-            	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection736); 
-            	     
-            	        createLeafNode(grammarAccess.getSectionAccess().getMULTI_NLTerminalRuleCall_3_0(), null); 
-            	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:509:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:510:1: (lv_contents_7_0= ruleTextOrMarkup )
-            	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:510:1: (lv_contents_7_0= ruleTextOrMarkup )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:511:3: lv_contents_7_0= ruleTextOrMarkup
-            	    {
-            	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getSectionAccess().getContentsTextOrMarkupParserRuleCall_3_1_0(), currentNode); 
-            	    	    
-            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection756);
-            	    lv_contents_7_0=ruleTextOrMarkup();
-            	    _fsp--;
-
-
-            	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getSectionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
-            	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"contents",
-            	    	        		lv_contents_7_0, 
-            	    	        		"TextOrMarkup", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
-            	    	    
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop13;
-                }
-            } while (true);
-
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:533:4: ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection2 ) ) )*
-            loop14:
-            do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
-
-                if ( (LA14_0==RULE_MULTI_NL) ) {
-                    int LA14_1 = input.LA(2);
-
-                    if ( ((LA14_1>=16 && LA14_1<=17)) ) {
-                        alt14=1;
-                    }
-
-
-                }
-
-
-                switch (alt14) {
-            	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:533:5: RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection2 ) )
-            	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection768); 
-            	     
-            	        createLeafNode(grammarAccess.getSectionAccess().getMULTI_NLTerminalRuleCall_4_0(), null); 
-            	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:537:1: ( (lv_subSections_9_0= ruleSection2 ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:538:1: (lv_subSections_9_0= ruleSection2 )
-            	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:538:1: (lv_subSections_9_0= ruleSection2 )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:539:3: lv_subSections_9_0= ruleSection2
-            	    {
-            	     
-            	    	        currentNode=createCompositeNode(grammarAccess.getSectionAccess().getSubSectionsSection2ParserRuleCall_4_1_0(), currentNode); 
-            	    	    
-            	    pushFollow(FOLLOW_ruleSection2_in_ruleSection788);
-            	    lv_subSections_9_0=ruleSection2();
-            	    _fsp--;
-
-
-            	    	        if (current==null) {
-            	    	            current = factory.create(grammarAccess.getSectionRule().getType().getClassifier());
-            	    	            associateNodeWithAstElement(currentNode.getParent(), current);
-            	    	        }
-            	    	        try {
-            	    	       		add(
-            	    	       			current, 
-            	    	       			"subSections",
-            	    	        		lv_subSections_9_0, 
-            	    	        		"Section2", 
-            	    	        		currentNode);
-            	    	        } catch (ValueConverterException vce) {
-            	    				handleValueConverterException(vce);
-            	    	        }
-            	    	        currentNode = currentNode.getParent();
-            	    	    
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop14;
-                }
-            } while (true);
-
 
             }
 
@@ -1321,8 +1973,109 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleSection
 
 
+    // $ANTLR start entryRuleSectionRef
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:842:1: entryRuleSectionRef returns [EObject current=null] : iv_ruleSectionRef= ruleSectionRef EOF ;
+    public final EObject entryRuleSectionRef() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleSectionRef = null;
+
+
+        try {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:843:2: (iv_ruleSectionRef= ruleSectionRef EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:844:2: iv_ruleSectionRef= ruleSectionRef EOF
+            {
+             currentNode = createCompositeNode(grammarAccess.getSectionRefRule(), currentNode); 
+            pushFollow(FOLLOW_ruleSectionRef_in_entryRuleSectionRef1302);
+            iv_ruleSectionRef=ruleSectionRef();
+            _fsp--;
+
+             current =iv_ruleSectionRef; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSectionRef1312); 
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end entryRuleSectionRef
+
+
+    // $ANTLR start ruleSectionRef
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:851:1: ruleSectionRef returns [EObject current=null] : ( 'section-ref[' ( ( RULE_ID ) ) ']' ) ;
+    public final EObject ruleSectionRef() throws RecognitionException {
+        EObject current = null;
+
+         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+            
+        try {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:856:6: ( ( 'section-ref[' ( ( RULE_ID ) ) ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:857:1: ( 'section-ref[' ( ( RULE_ID ) ) ']' )
+            {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:857:1: ( 'section-ref[' ( ( RULE_ID ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:857:3: 'section-ref[' ( ( RULE_ID ) ) ']'
+            {
+            match(input,20,FOLLOW_20_in_ruleSectionRef1347); 
+
+                    createLeafNode(grammarAccess.getSectionRefAccess().getSectionRefKeyword_0(), null); 
+                
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:861:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:862:1: ( RULE_ID )
+            {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:862:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:863:3: RULE_ID
+            {
+
+            			if (current==null) {
+            	            current = factory.create(grammarAccess.getSectionRefRule().getType().getClassifier());
+            	            associateNodeWithAstElement(currentNode, current);
+            	        }
+                    
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSectionRef1365); 
+
+            		createLeafNode(grammarAccess.getSectionRefAccess().getSectionSectionCrossReference_1_0(), "section"); 
+            	
+
+            }
+
+
+            }
+
+            match(input,11,FOLLOW_11_in_ruleSectionRef1375); 
+
+                    createLeafNode(grammarAccess.getSectionRefAccess().getRightSquareBracketKeyword_2(), null); 
+                
+
+            }
+
+
+            }
+
+             resetLookahead(); 
+                	lastConsumedNode = currentNode;
+                
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleSectionRef
+
+
     // $ANTLR start entryRuleSection2
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:569:1: entryRuleSection2 returns [EObject current=null] : iv_ruleSection2= ruleSection2 EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:887:1: entryRuleSection2 returns [EObject current=null] : iv_ruleSection2= ruleSection2 EOF ;
     public final EObject entryRuleSection2() throws RecognitionException {
         EObject current = null;
 
@@ -1330,16 +2083,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:570:2: (iv_ruleSection2= ruleSection2 EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:571:2: iv_ruleSection2= ruleSection2 EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:888:2: (iv_ruleSection2= ruleSection2 EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:889:2: iv_ruleSection2= ruleSection2 EOF
             {
              currentNode = createCompositeNode(grammarAccess.getSection2Rule(), currentNode); 
-            pushFollow(FOLLOW_ruleSection2_in_entryRuleSection2826);
+            pushFollow(FOLLOW_ruleSection2_in_entryRuleSection21411);
             iv_ruleSection2=ruleSection2();
             _fsp--;
 
              current =iv_ruleSection2; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSection2836); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSection21421); 
 
             }
 
@@ -1357,7 +2110,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleSection2
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:578:1: ruleSection2 returns [EObject current=null] : ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:896:1: ruleSection2 returns [EObject current=null] : ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* ) ;
     public final EObject ruleSection2() throws RecognitionException {
         EObject current = null;
 
@@ -1372,47 +2125,47 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:583:6: ( ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:584:1: ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:901:6: ( ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:902:1: ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:584:1: ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:584:2: ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )*
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:902:1: ( ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:902:2: ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )*
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:584:2: ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' )
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:902:2: ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' )
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA15_0==16) ) {
-                alt15=1;
+            if ( (LA21_0==21) ) {
+                alt21=1;
             }
-            else if ( (LA15_0==17) ) {
-                alt15=2;
+            else if ( (LA21_0==22) ) {
+                alt21=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("584:2: ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' )", 15, 0, input);
+                    new NoViableAltException("902:2: ( ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section2[' )", 21, 0, input);
 
                 throw nvae;
             }
-            switch (alt15) {
+            switch (alt21) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:584:3: ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:902:3: ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:584:3: ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:584:5: 'section2:' ( (lv_name_1_0= RULE_ID ) ) '['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:902:3: ( 'section2:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:902:5: 'section2:' ( (lv_name_1_0= RULE_ID ) ) '['
                     {
-                    match(input,16,FOLLOW_16_in_ruleSection2873); 
+                    match(input,21,FOLLOW_21_in_ruleSection21458); 
 
                             createLeafNode(grammarAccess.getSection2Access().getSection2Keyword_0_0_0(), null); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:588:1: ( (lv_name_1_0= RULE_ID ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:589:1: (lv_name_1_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:906:1: ( (lv_name_1_0= RULE_ID ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:907:1: (lv_name_1_0= RULE_ID )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:589:1: (lv_name_1_0= RULE_ID )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:590:3: lv_name_1_0= RULE_ID
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:907:1: (lv_name_1_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:908:3: lv_name_1_0= RULE_ID
                     {
                     lv_name_1_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection2890); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection21475); 
 
                     			createLeafNode(grammarAccess.getSection2Access().getNameIDTerminalRuleCall_0_0_1_0(), "name"); 
                     		
@@ -1438,7 +2191,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,11,FOLLOW_11_in_ruleSection2905); 
+                    match(input,15,FOLLOW_15_in_ruleSection21490); 
 
                             createLeafNode(grammarAccess.getSection2Access().getLeftSquareBracketKeyword_0_0_2(), null); 
                         
@@ -1449,9 +2202,9 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:617:7: 'section2['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:935:7: 'section2['
                     {
-                    match(input,17,FOLLOW_17_in_ruleSection2922); 
+                    match(input,22,FOLLOW_22_in_ruleSection21507); 
 
                             createLeafNode(grammarAccess.getSection2Access().getSection2Keyword_0_1(), null); 
                         
@@ -1461,16 +2214,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:621:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:622:1: (lv_title_4_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:939:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:940:1: (lv_title_4_0= ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:622:1: (lv_title_4_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:623:3: lv_title_4_0= ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:940:1: (lv_title_4_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:941:3: lv_title_4_0= ruleTextOrMarkup
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getSection2Access().getTitleTextOrMarkupParserRuleCall_1_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection2944);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection21529);
             lv_title_4_0=ruleTextOrMarkup();
             _fsp--;
 
@@ -1497,45 +2250,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleSection2954); 
+            match(input,11,FOLLOW_11_in_ruleSection21539); 
 
                     createLeafNode(grammarAccess.getSection2Access().getRightSquareBracketKeyword_2(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:649:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
-            loop16:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:967:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
+            loop22:
             do {
-                int alt16=2;
-                int LA16_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( (LA16_0==RULE_MULTI_NL) ) {
-                    int LA16_1 = input.LA(2);
+                if ( (LA22_0==RULE_MULTI_NL) ) {
+                    int LA22_1 = input.LA(2);
 
-                    if ( (LA16_1==RULE_WS||(LA16_1>=RULE_ID && LA16_1<=RULE_ANY_OTHER)||(LA16_1>=22 && LA16_1<=24)||(LA16_1>=27 && LA16_1<=31)||(LA16_1>=33 && LA16_1<=37)) ) {
-                        alt16=1;
+                    if ( (LA22_1==RULE_WS||(LA22_1>=RULE_ID && LA22_1<=RULE_ANY_OTHER)||(LA22_1>=27 && LA22_1<=29)||(LA22_1>=32 && LA22_1<=36)||(LA22_1>=38 && LA22_1<=42)) ) {
+                        alt22=1;
                     }
 
 
                 }
 
 
-                switch (alt16) {
+                switch (alt22) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:649:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:967:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
             	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection2964); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection21549); 
             	     
             	        createLeafNode(grammarAccess.getSection2Access().getMULTI_NLTerminalRuleCall_3_0(), null); 
             	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:653:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:654:1: (lv_contents_7_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:971:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:972:1: (lv_contents_7_0= ruleTextOrMarkup )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:654:1: (lv_contents_7_0= ruleTextOrMarkup )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:655:3: lv_contents_7_0= ruleTextOrMarkup
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:972:1: (lv_contents_7_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:973:3: lv_contents_7_0= ruleTextOrMarkup
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getSection2Access().getContentsTextOrMarkupParserRuleCall_3_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection2984);
+            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection21569);
             	    lv_contents_7_0=ruleTextOrMarkup();
             	    _fsp--;
 
@@ -1567,45 +2320,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop16;
+            	    break loop22;
                 }
             } while (true);
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:677:4: ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )*
-            loop17:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:995:4: ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) ) )*
+            loop23:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt23=2;
+                int LA23_0 = input.LA(1);
 
-                if ( (LA17_0==RULE_MULTI_NL) ) {
-                    int LA17_1 = input.LA(2);
+                if ( (LA23_0==RULE_MULTI_NL) ) {
+                    int LA23_1 = input.LA(2);
 
-                    if ( ((LA17_1>=18 && LA17_1<=19)) ) {
-                        alt17=1;
+                    if ( ((LA23_1>=23 && LA23_1<=24)) ) {
+                        alt23=1;
                     }
 
 
                 }
 
 
-                switch (alt17) {
+                switch (alt23) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:677:5: RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:995:5: RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection3 ) )
             	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection2996); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection21581); 
             	     
             	        createLeafNode(grammarAccess.getSection2Access().getMULTI_NLTerminalRuleCall_4_0(), null); 
             	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:681:1: ( (lv_subSections_9_0= ruleSection3 ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:682:1: (lv_subSections_9_0= ruleSection3 )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:999:1: ( (lv_subSections_9_0= ruleSection3 ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1000:1: (lv_subSections_9_0= ruleSection3 )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:682:1: (lv_subSections_9_0= ruleSection3 )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:683:3: lv_subSections_9_0= ruleSection3
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1000:1: (lv_subSections_9_0= ruleSection3 )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1001:3: lv_subSections_9_0= ruleSection3
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getSection2Access().getSubSectionsSection3ParserRuleCall_4_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleSection3_in_ruleSection21016);
+            	    pushFollow(FOLLOW_ruleSection3_in_ruleSection21601);
             	    lv_subSections_9_0=ruleSection3();
             	    _fsp--;
 
@@ -1637,7 +2390,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop23;
                 }
             } while (true);
 
@@ -1664,7 +2417,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleSection3
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:713:1: entryRuleSection3 returns [EObject current=null] : iv_ruleSection3= ruleSection3 EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1031:1: entryRuleSection3 returns [EObject current=null] : iv_ruleSection3= ruleSection3 EOF ;
     public final EObject entryRuleSection3() throws RecognitionException {
         EObject current = null;
 
@@ -1672,16 +2425,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:714:2: (iv_ruleSection3= ruleSection3 EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:715:2: iv_ruleSection3= ruleSection3 EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1032:2: (iv_ruleSection3= ruleSection3 EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1033:2: iv_ruleSection3= ruleSection3 EOF
             {
              currentNode = createCompositeNode(grammarAccess.getSection3Rule(), currentNode); 
-            pushFollow(FOLLOW_ruleSection3_in_entryRuleSection31054);
+            pushFollow(FOLLOW_ruleSection3_in_entryRuleSection31639);
             iv_ruleSection3=ruleSection3();
             _fsp--;
 
              current =iv_ruleSection3; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSection31064); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSection31649); 
 
             }
 
@@ -1699,7 +2452,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleSection3
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:722:1: ruleSection3 returns [EObject current=null] : ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1040:1: ruleSection3 returns [EObject current=null] : ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* ) ;
     public final EObject ruleSection3() throws RecognitionException {
         EObject current = null;
 
@@ -1714,47 +2467,47 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:727:6: ( ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:728:1: ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1045:6: ( ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1046:1: ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:728:1: ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:728:2: ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )*
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1046:1: ( ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1046:2: ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )*
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:728:2: ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' )
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1046:2: ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' )
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA18_0==18) ) {
-                alt18=1;
+            if ( (LA24_0==23) ) {
+                alt24=1;
             }
-            else if ( (LA18_0==19) ) {
-                alt18=2;
+            else if ( (LA24_0==24) ) {
+                alt24=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("728:2: ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' )", 18, 0, input);
+                    new NoViableAltException("1046:2: ( ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section3[' )", 24, 0, input);
 
                 throw nvae;
             }
-            switch (alt18) {
+            switch (alt24) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:728:3: ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1046:3: ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:728:3: ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:728:5: 'section3:' ( (lv_name_1_0= RULE_ID ) ) '['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1046:3: ( 'section3:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1046:5: 'section3:' ( (lv_name_1_0= RULE_ID ) ) '['
                     {
-                    match(input,18,FOLLOW_18_in_ruleSection31101); 
+                    match(input,23,FOLLOW_23_in_ruleSection31686); 
 
                             createLeafNode(grammarAccess.getSection3Access().getSection3Keyword_0_0_0(), null); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:732:1: ( (lv_name_1_0= RULE_ID ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:733:1: (lv_name_1_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1050:1: ( (lv_name_1_0= RULE_ID ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1051:1: (lv_name_1_0= RULE_ID )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:733:1: (lv_name_1_0= RULE_ID )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:734:3: lv_name_1_0= RULE_ID
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1051:1: (lv_name_1_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1052:3: lv_name_1_0= RULE_ID
                     {
                     lv_name_1_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection31118); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection31703); 
 
                     			createLeafNode(grammarAccess.getSection3Access().getNameIDTerminalRuleCall_0_0_1_0(), "name"); 
                     		
@@ -1780,7 +2533,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,11,FOLLOW_11_in_ruleSection31133); 
+                    match(input,15,FOLLOW_15_in_ruleSection31718); 
 
                             createLeafNode(grammarAccess.getSection3Access().getLeftSquareBracketKeyword_0_0_2(), null); 
                         
@@ -1791,9 +2544,9 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:761:7: 'section3['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1079:7: 'section3['
                     {
-                    match(input,19,FOLLOW_19_in_ruleSection31150); 
+                    match(input,24,FOLLOW_24_in_ruleSection31735); 
 
                             createLeafNode(grammarAccess.getSection3Access().getSection3Keyword_0_1(), null); 
                         
@@ -1803,16 +2556,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:765:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:766:1: (lv_title_4_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1083:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1084:1: (lv_title_4_0= ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:766:1: (lv_title_4_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:767:3: lv_title_4_0= ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1084:1: (lv_title_4_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1085:3: lv_title_4_0= ruleTextOrMarkup
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getSection3Access().getTitleTextOrMarkupParserRuleCall_1_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection31172);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection31757);
             lv_title_4_0=ruleTextOrMarkup();
             _fsp--;
 
@@ -1839,45 +2592,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleSection31182); 
+            match(input,11,FOLLOW_11_in_ruleSection31767); 
 
                     createLeafNode(grammarAccess.getSection3Access().getRightSquareBracketKeyword_2(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:793:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
-            loop19:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1111:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
+            loop25:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt25=2;
+                int LA25_0 = input.LA(1);
 
-                if ( (LA19_0==RULE_MULTI_NL) ) {
-                    int LA19_1 = input.LA(2);
+                if ( (LA25_0==RULE_MULTI_NL) ) {
+                    int LA25_1 = input.LA(2);
 
-                    if ( (LA19_1==RULE_WS||(LA19_1>=RULE_ID && LA19_1<=RULE_ANY_OTHER)||(LA19_1>=22 && LA19_1<=24)||(LA19_1>=27 && LA19_1<=31)||(LA19_1>=33 && LA19_1<=37)) ) {
-                        alt19=1;
+                    if ( (LA25_1==RULE_WS||(LA25_1>=RULE_ID && LA25_1<=RULE_ANY_OTHER)||(LA25_1>=27 && LA25_1<=29)||(LA25_1>=32 && LA25_1<=36)||(LA25_1>=38 && LA25_1<=42)) ) {
+                        alt25=1;
                     }
 
 
                 }
 
 
-                switch (alt19) {
+                switch (alt25) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:793:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1111:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
             	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection31192); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection31777); 
             	     
             	        createLeafNode(grammarAccess.getSection3Access().getMULTI_NLTerminalRuleCall_3_0(), null); 
             	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:797:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:798:1: (lv_contents_7_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1115:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1116:1: (lv_contents_7_0= ruleTextOrMarkup )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:798:1: (lv_contents_7_0= ruleTextOrMarkup )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:799:3: lv_contents_7_0= ruleTextOrMarkup
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1116:1: (lv_contents_7_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1117:3: lv_contents_7_0= ruleTextOrMarkup
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getSection3Access().getContentsTextOrMarkupParserRuleCall_3_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection31212);
+            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection31797);
             	    lv_contents_7_0=ruleTextOrMarkup();
             	    _fsp--;
 
@@ -1909,45 +2662,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop25;
                 }
             } while (true);
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:821:4: ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )*
-            loop20:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1139:4: ( RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) ) )*
+            loop26:
             do {
-                int alt20=2;
-                int LA20_0 = input.LA(1);
+                int alt26=2;
+                int LA26_0 = input.LA(1);
 
-                if ( (LA20_0==RULE_MULTI_NL) ) {
-                    int LA20_1 = input.LA(2);
+                if ( (LA26_0==RULE_MULTI_NL) ) {
+                    int LA26_1 = input.LA(2);
 
-                    if ( ((LA20_1>=20 && LA20_1<=21)) ) {
-                        alt20=1;
+                    if ( ((LA26_1>=25 && LA26_1<=26)) ) {
+                        alt26=1;
                     }
 
 
                 }
 
 
-                switch (alt20) {
+                switch (alt26) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:821:5: RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1139:5: RULE_MULTI_NL ( (lv_subSections_9_0= ruleSection4 ) )
             	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection31224); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection31809); 
             	     
             	        createLeafNode(grammarAccess.getSection3Access().getMULTI_NLTerminalRuleCall_4_0(), null); 
             	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:825:1: ( (lv_subSections_9_0= ruleSection4 ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:826:1: (lv_subSections_9_0= ruleSection4 )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1143:1: ( (lv_subSections_9_0= ruleSection4 ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1144:1: (lv_subSections_9_0= ruleSection4 )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:826:1: (lv_subSections_9_0= ruleSection4 )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:827:3: lv_subSections_9_0= ruleSection4
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1144:1: (lv_subSections_9_0= ruleSection4 )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1145:3: lv_subSections_9_0= ruleSection4
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getSection3Access().getSubSectionsSection4ParserRuleCall_4_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleSection4_in_ruleSection31244);
+            	    pushFollow(FOLLOW_ruleSection4_in_ruleSection31829);
             	    lv_subSections_9_0=ruleSection4();
             	    _fsp--;
 
@@ -1979,7 +2732,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop20;
+            	    break loop26;
                 }
             } while (true);
 
@@ -2006,7 +2759,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleSection4
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:857:1: entryRuleSection4 returns [EObject current=null] : iv_ruleSection4= ruleSection4 EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1175:1: entryRuleSection4 returns [EObject current=null] : iv_ruleSection4= ruleSection4 EOF ;
     public final EObject entryRuleSection4() throws RecognitionException {
         EObject current = null;
 
@@ -2014,16 +2767,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:858:2: (iv_ruleSection4= ruleSection4 EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:859:2: iv_ruleSection4= ruleSection4 EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1176:2: (iv_ruleSection4= ruleSection4 EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1177:2: iv_ruleSection4= ruleSection4 EOF
             {
              currentNode = createCompositeNode(grammarAccess.getSection4Rule(), currentNode); 
-            pushFollow(FOLLOW_ruleSection4_in_entryRuleSection41282);
+            pushFollow(FOLLOW_ruleSection4_in_entryRuleSection41867);
             iv_ruleSection4=ruleSection4();
             _fsp--;
 
              current =iv_ruleSection4; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSection41292); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSection41877); 
 
             }
 
@@ -2041,7 +2794,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleSection4
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:866:1: ruleSection4 returns [EObject current=null] : ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1184:1: ruleSection4 returns [EObject current=null] : ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ) ;
     public final EObject ruleSection4() throws RecognitionException {
         EObject current = null;
 
@@ -2054,47 +2807,47 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:871:6: ( ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:872:1: ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1189:6: ( ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1190:1: ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:872:1: ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:872:2: ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1190:1: ( ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1190:2: ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' ) ( (lv_title_4_0= ruleTextOrMarkup ) ) ']' ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:872:2: ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' )
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1190:2: ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' )
+            int alt27=2;
+            int LA27_0 = input.LA(1);
 
-            if ( (LA21_0==20) ) {
-                alt21=1;
+            if ( (LA27_0==25) ) {
+                alt27=1;
             }
-            else if ( (LA21_0==21) ) {
-                alt21=2;
+            else if ( (LA27_0==26) ) {
+                alt27=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("872:2: ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' )", 21, 0, input);
+                    new NoViableAltException("1190:2: ( ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' ) | 'section4[' )", 27, 0, input);
 
                 throw nvae;
             }
-            switch (alt21) {
+            switch (alt27) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:872:3: ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1190:3: ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:872:3: ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:872:5: 'section4:' ( (lv_name_1_0= RULE_ID ) ) '['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1190:3: ( 'section4:' ( (lv_name_1_0= RULE_ID ) ) '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1190:5: 'section4:' ( (lv_name_1_0= RULE_ID ) ) '['
                     {
-                    match(input,20,FOLLOW_20_in_ruleSection41329); 
+                    match(input,25,FOLLOW_25_in_ruleSection41914); 
 
                             createLeafNode(grammarAccess.getSection4Access().getSection4Keyword_0_0_0(), null); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:876:1: ( (lv_name_1_0= RULE_ID ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:877:1: (lv_name_1_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1194:1: ( (lv_name_1_0= RULE_ID ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1195:1: (lv_name_1_0= RULE_ID )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:877:1: (lv_name_1_0= RULE_ID )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:878:3: lv_name_1_0= RULE_ID
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1195:1: (lv_name_1_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1196:3: lv_name_1_0= RULE_ID
                     {
                     lv_name_1_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection41346); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleSection41931); 
 
                     			createLeafNode(grammarAccess.getSection4Access().getNameIDTerminalRuleCall_0_0_1_0(), "name"); 
                     		
@@ -2120,7 +2873,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,11,FOLLOW_11_in_ruleSection41361); 
+                    match(input,15,FOLLOW_15_in_ruleSection41946); 
 
                             createLeafNode(grammarAccess.getSection4Access().getLeftSquareBracketKeyword_0_0_2(), null); 
                         
@@ -2131,9 +2884,9 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:905:7: 'section4['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1223:7: 'section4['
                     {
-                    match(input,21,FOLLOW_21_in_ruleSection41378); 
+                    match(input,26,FOLLOW_26_in_ruleSection41963); 
 
                             createLeafNode(grammarAccess.getSection4Access().getSection4Keyword_0_1(), null); 
                         
@@ -2143,16 +2896,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:909:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:910:1: (lv_title_4_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1227:2: ( (lv_title_4_0= ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1228:1: (lv_title_4_0= ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:910:1: (lv_title_4_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:911:3: lv_title_4_0= ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1228:1: (lv_title_4_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1229:3: lv_title_4_0= ruleTextOrMarkup
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getSection4Access().getTitleTextOrMarkupParserRuleCall_1_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection41400);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection41985);
             lv_title_4_0=ruleTextOrMarkup();
             _fsp--;
 
@@ -2179,45 +2932,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleSection41410); 
+            match(input,11,FOLLOW_11_in_ruleSection41995); 
 
                     createLeafNode(grammarAccess.getSection4Access().getRightSquareBracketKeyword_2(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:937:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
-            loop22:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1255:1: ( RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) ) )*
+            loop28:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt28=2;
+                int LA28_0 = input.LA(1);
 
-                if ( (LA22_0==RULE_MULTI_NL) ) {
-                    int LA22_1 = input.LA(2);
+                if ( (LA28_0==RULE_MULTI_NL) ) {
+                    int LA28_1 = input.LA(2);
 
-                    if ( (LA22_1==RULE_WS||(LA22_1>=RULE_ID && LA22_1<=RULE_ANY_OTHER)||(LA22_1>=22 && LA22_1<=24)||(LA22_1>=27 && LA22_1<=31)||(LA22_1>=33 && LA22_1<=37)) ) {
-                        alt22=1;
+                    if ( (LA28_1==RULE_WS||(LA28_1>=RULE_ID && LA28_1<=RULE_ANY_OTHER)||(LA28_1>=27 && LA28_1<=29)||(LA28_1>=32 && LA28_1<=36)||(LA28_1>=38 && LA28_1<=42)) ) {
+                        alt28=1;
                     }
 
 
                 }
 
 
-                switch (alt22) {
+                switch (alt28) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:937:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1255:2: RULE_MULTI_NL ( (lv_contents_7_0= ruleTextOrMarkup ) )
             	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection41420); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleSection42005); 
             	     
             	        createLeafNode(grammarAccess.getSection4Access().getMULTI_NLTerminalRuleCall_3_0(), null); 
             	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:941:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:942:1: (lv_contents_7_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1259:1: ( (lv_contents_7_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1260:1: (lv_contents_7_0= ruleTextOrMarkup )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:942:1: (lv_contents_7_0= ruleTextOrMarkup )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:943:3: lv_contents_7_0= ruleTextOrMarkup
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1260:1: (lv_contents_7_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1261:3: lv_contents_7_0= ruleTextOrMarkup
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getSection4Access().getContentsTextOrMarkupParserRuleCall_3_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection41440);
+            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleSection42025);
             	    lv_contents_7_0=ruleTextOrMarkup();
             	    _fsp--;
 
@@ -2249,7 +3002,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop22;
+            	    break loop28;
                 }
             } while (true);
 
@@ -2275,213 +3028,8 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleSection4
 
 
-    // $ANTLR start entryRuleAbstractSection
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:973:1: entryRuleAbstractSection returns [EObject current=null] : iv_ruleAbstractSection= ruleAbstractSection EOF ;
-    public final EObject entryRuleAbstractSection() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleAbstractSection = null;
-
-
-        try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:974:2: (iv_ruleAbstractSection= ruleAbstractSection EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:975:2: iv_ruleAbstractSection= ruleAbstractSection EOF
-            {
-             currentNode = createCompositeNode(grammarAccess.getAbstractSectionRule(), currentNode); 
-            pushFollow(FOLLOW_ruleAbstractSection_in_entryRuleAbstractSection1478);
-            iv_ruleAbstractSection=ruleAbstractSection();
-            _fsp--;
-
-             current =iv_ruleAbstractSection; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAbstractSection1488); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end entryRuleAbstractSection
-
-
-    // $ANTLR start ruleAbstractSection
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:982:1: ruleAbstractSection returns [EObject current=null] : (this_Chapter_0= ruleChapter | this_Section_1= ruleSection | this_Section2_2= ruleSection2 | this_Section3_3= ruleSection3 | this_Section4_4= ruleSection4 ) ;
-    public final EObject ruleAbstractSection() throws RecognitionException {
-        EObject current = null;
-
-        EObject this_Chapter_0 = null;
-
-        EObject this_Section_1 = null;
-
-        EObject this_Section2_2 = null;
-
-        EObject this_Section3_3 = null;
-
-        EObject this_Section4_4 = null;
-
-
-         EObject temp=null; setCurrentLookahead(); resetLookahead(); 
-            
-        try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:987:6: ( (this_Chapter_0= ruleChapter | this_Section_1= ruleSection | this_Section2_2= ruleSection2 | this_Section3_3= ruleSection3 | this_Section4_4= ruleSection4 ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:988:1: (this_Chapter_0= ruleChapter | this_Section_1= ruleSection | this_Section2_2= ruleSection2 | this_Section3_3= ruleSection3 | this_Section4_4= ruleSection4 )
-            {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:988:1: (this_Chapter_0= ruleChapter | this_Section_1= ruleSection | this_Section2_2= ruleSection2 | this_Section3_3= ruleSection3 | this_Section4_4= ruleSection4 )
-            int alt23=5;
-            switch ( input.LA(1) ) {
-            case 10:
-            case 12:
-                {
-                alt23=1;
-                }
-                break;
-            case 14:
-            case 15:
-                {
-                alt23=2;
-                }
-                break;
-            case 16:
-            case 17:
-                {
-                alt23=3;
-                }
-                break;
-            case 18:
-            case 19:
-                {
-                alt23=4;
-                }
-                break;
-            case 20:
-            case 21:
-                {
-                alt23=5;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("988:1: (this_Chapter_0= ruleChapter | this_Section_1= ruleSection | this_Section2_2= ruleSection2 | this_Section3_3= ruleSection3 | this_Section4_4= ruleSection4 )", 23, 0, input);
-
-                throw nvae;
-            }
-
-            switch (alt23) {
-                case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:989:5: this_Chapter_0= ruleChapter
-                    {
-                     
-                            currentNode=createCompositeNode(grammarAccess.getAbstractSectionAccess().getChapterParserRuleCall_0(), currentNode); 
-                        
-                    pushFollow(FOLLOW_ruleChapter_in_ruleAbstractSection1535);
-                    this_Chapter_0=ruleChapter();
-                    _fsp--;
-
-                     
-                            current = this_Chapter_0; 
-                            currentNode = currentNode.getParent();
-                        
-
-                    }
-                    break;
-                case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:999:5: this_Section_1= ruleSection
-                    {
-                     
-                            currentNode=createCompositeNode(grammarAccess.getAbstractSectionAccess().getSectionParserRuleCall_1(), currentNode); 
-                        
-                    pushFollow(FOLLOW_ruleSection_in_ruleAbstractSection1562);
-                    this_Section_1=ruleSection();
-                    _fsp--;
-
-                     
-                            current = this_Section_1; 
-                            currentNode = currentNode.getParent();
-                        
-
-                    }
-                    break;
-                case 3 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1009:5: this_Section2_2= ruleSection2
-                    {
-                     
-                            currentNode=createCompositeNode(grammarAccess.getAbstractSectionAccess().getSection2ParserRuleCall_2(), currentNode); 
-                        
-                    pushFollow(FOLLOW_ruleSection2_in_ruleAbstractSection1589);
-                    this_Section2_2=ruleSection2();
-                    _fsp--;
-
-                     
-                            current = this_Section2_2; 
-                            currentNode = currentNode.getParent();
-                        
-
-                    }
-                    break;
-                case 4 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1019:5: this_Section3_3= ruleSection3
-                    {
-                     
-                            currentNode=createCompositeNode(grammarAccess.getAbstractSectionAccess().getSection3ParserRuleCall_3(), currentNode); 
-                        
-                    pushFollow(FOLLOW_ruleSection3_in_ruleAbstractSection1616);
-                    this_Section3_3=ruleSection3();
-                    _fsp--;
-
-                     
-                            current = this_Section3_3; 
-                            currentNode = currentNode.getParent();
-                        
-
-                    }
-                    break;
-                case 5 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1029:5: this_Section4_4= ruleSection4
-                    {
-                     
-                            currentNode=createCompositeNode(grammarAccess.getAbstractSectionAccess().getSection4ParserRuleCall_4(), currentNode); 
-                        
-                    pushFollow(FOLLOW_ruleSection4_in_ruleAbstractSection1643);
-                    this_Section4_4=ruleSection4();
-                    _fsp--;
-
-                     
-                            current = this_Section4_4; 
-                            currentNode = currentNode.getParent();
-                        
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end ruleAbstractSection
-
-
     // $ANTLR start entryRuleTextOrMarkup
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1047:1: entryRuleTextOrMarkup returns [EObject current=null] : iv_ruleTextOrMarkup= ruleTextOrMarkup EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1291:1: entryRuleTextOrMarkup returns [EObject current=null] : iv_ruleTextOrMarkup= ruleTextOrMarkup EOF ;
     public final EObject entryRuleTextOrMarkup() throws RecognitionException {
         EObject current = null;
 
@@ -2489,16 +3037,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1048:2: (iv_ruleTextOrMarkup= ruleTextOrMarkup EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1049:2: iv_ruleTextOrMarkup= ruleTextOrMarkup EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1292:2: (iv_ruleTextOrMarkup= ruleTextOrMarkup EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1293:2: iv_ruleTextOrMarkup= ruleTextOrMarkup EOF
             {
              currentNode = createCompositeNode(grammarAccess.getTextOrMarkupRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_entryRuleTextOrMarkup1680);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_entryRuleTextOrMarkup2063);
             iv_ruleTextOrMarkup=ruleTextOrMarkup();
             _fsp--;
 
              current =iv_ruleTextOrMarkup; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTextOrMarkup1690); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTextOrMarkup2073); 
 
             }
 
@@ -2516,7 +3064,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleTextOrMarkup
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1056:1: ruleTextOrMarkup returns [EObject current=null] : ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1300:1: ruleTextOrMarkup returns [EObject current=null] : ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ ) ;
     public final EObject ruleTextOrMarkup() throws RecognitionException {
         EObject current = null;
 
@@ -2534,42 +3082,42 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1061:6: ( ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1062:1: ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1305:6: ( ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1306:1: ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1062:1: ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ )
-            int alt28=2;
-            int LA28_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1306:1: ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ )
+            int alt33=2;
+            int LA33_0 = input.LA(1);
 
-            if ( (LA28_0==RULE_WS||(LA28_0>=RULE_ID && LA28_0<=RULE_ANY_OTHER)||(LA28_0>=22 && LA28_0<=23)) ) {
-                alt28=1;
+            if ( (LA33_0==RULE_WS||(LA33_0>=RULE_ID && LA33_0<=RULE_ANY_OTHER)||(LA33_0>=27 && LA33_0<=28)) ) {
+                alt33=1;
             }
-            else if ( (LA28_0==24||(LA28_0>=27 && LA28_0<=31)||(LA28_0>=33 && LA28_0<=37)) ) {
-                alt28=2;
+            else if ( (LA33_0==29||(LA33_0>=32 && LA33_0<=36)||(LA33_0>=38 && LA33_0<=42)) ) {
+                alt33=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1062:1: ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ )", 28, 0, input);
+                    new NoViableAltException("1306:1: ( ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* ) | ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+ )", 33, 0, input);
 
                 throw nvae;
             }
-            switch (alt28) {
+            switch (alt33) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1062:2: ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1306:2: ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1062:2: ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1062:3: ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )*
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1306:2: ( ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )* )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1306:3: ( (lv_contents_0_0= ruleTextPart ) ) ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )*
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1062:3: ( (lv_contents_0_0= ruleTextPart ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1063:1: (lv_contents_0_0= ruleTextPart )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1306:3: ( (lv_contents_0_0= ruleTextPart ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1307:1: (lv_contents_0_0= ruleTextPart )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1063:1: (lv_contents_0_0= ruleTextPart )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1064:3: lv_contents_0_0= ruleTextPart
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1307:1: (lv_contents_0_0= ruleTextPart )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1308:3: lv_contents_0_0= ruleTextPart
                     {
                      
                     	        currentNode=createCompositeNode(grammarAccess.getTextOrMarkupAccess().getContentsTextPartParserRuleCall_0_0_0(), currentNode); 
                     	    
-                    pushFollow(FOLLOW_ruleTextPart_in_ruleTextOrMarkup1737);
+                    pushFollow(FOLLOW_ruleTextPart_in_ruleTextOrMarkup2120);
                     lv_contents_0_0=ruleTextPart();
                     _fsp--;
 
@@ -2596,31 +3144,31 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1086:2: ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )*
-                    loop25:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1330:2: ( ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )? )*
+                    loop30:
                     do {
-                        int alt25=2;
-                        int LA25_0 = input.LA(1);
+                        int alt30=2;
+                        int LA30_0 = input.LA(1);
 
-                        if ( (LA25_0==24||(LA25_0>=27 && LA25_0<=31)||(LA25_0>=33 && LA25_0<=37)) ) {
-                            alt25=1;
+                        if ( (LA30_0==29||(LA30_0>=32 && LA30_0<=36)||(LA30_0>=38 && LA30_0<=42)) ) {
+                            alt30=1;
                         }
 
 
-                        switch (alt25) {
+                        switch (alt30) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1086:3: ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )?
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1330:3: ( (lv_contents_1_0= ruleMarkUp ) ) ( (lv_contents_2_0= ruleTextPart ) )?
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1086:3: ( (lv_contents_1_0= ruleMarkUp ) )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1087:1: (lv_contents_1_0= ruleMarkUp )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1330:3: ( (lv_contents_1_0= ruleMarkUp ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1331:1: (lv_contents_1_0= ruleMarkUp )
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1087:1: (lv_contents_1_0= ruleMarkUp )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1088:3: lv_contents_1_0= ruleMarkUp
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1331:1: (lv_contents_1_0= ruleMarkUp )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1332:3: lv_contents_1_0= ruleMarkUp
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getTextOrMarkupAccess().getContentsMarkUpParserRuleCall_0_1_0_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleMarkUp_in_ruleTextOrMarkup1759);
+                    	    pushFollow(FOLLOW_ruleMarkUp_in_ruleTextOrMarkup2142);
                     	    lv_contents_1_0=ruleMarkUp();
                     	    _fsp--;
 
@@ -2647,24 +3195,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1110:2: ( (lv_contents_2_0= ruleTextPart ) )?
-                    	    int alt24=2;
-                    	    int LA24_0 = input.LA(1);
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1354:2: ( (lv_contents_2_0= ruleTextPart ) )?
+                    	    int alt29=2;
+                    	    int LA29_0 = input.LA(1);
 
-                    	    if ( (LA24_0==RULE_WS||(LA24_0>=RULE_ID && LA24_0<=RULE_ANY_OTHER)||(LA24_0>=22 && LA24_0<=23)) ) {
-                    	        alt24=1;
+                    	    if ( (LA29_0==RULE_WS||(LA29_0>=RULE_ID && LA29_0<=RULE_ANY_OTHER)||(LA29_0>=27 && LA29_0<=28)) ) {
+                    	        alt29=1;
                     	    }
-                    	    switch (alt24) {
+                    	    switch (alt29) {
                     	        case 1 :
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1111:1: (lv_contents_2_0= ruleTextPart )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1355:1: (lv_contents_2_0= ruleTextPart )
                     	            {
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1111:1: (lv_contents_2_0= ruleTextPart )
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1112:3: lv_contents_2_0= ruleTextPart
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1355:1: (lv_contents_2_0= ruleTextPart )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1356:3: lv_contents_2_0= ruleTextPart
                     	            {
                     	             
                     	            	        currentNode=createCompositeNode(grammarAccess.getTextOrMarkupAccess().getContentsTextPartParserRuleCall_0_1_1_0(), currentNode); 
                     	            	    
-                    	            pushFollow(FOLLOW_ruleTextPart_in_ruleTextOrMarkup1780);
+                    	            pushFollow(FOLLOW_ruleTextPart_in_ruleTextOrMarkup2163);
                     	            lv_contents_2_0=ruleTextPart();
                     	            _fsp--;
 
@@ -2699,7 +3247,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop25;
+                    	    break loop30;
                         }
                     } while (true);
 
@@ -2710,34 +3258,34 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1135:6: ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1379:6: ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1135:6: ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+
-                    int cnt27=0;
-                    loop27:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1379:6: ( ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )? )+
+                    int cnt32=0;
+                    loop32:
                     do {
-                        int alt27=2;
-                        int LA27_0 = input.LA(1);
+                        int alt32=2;
+                        int LA32_0 = input.LA(1);
 
-                        if ( (LA27_0==24||(LA27_0>=27 && LA27_0<=31)||(LA27_0>=33 && LA27_0<=37)) ) {
-                            alt27=1;
+                        if ( (LA32_0==29||(LA32_0>=32 && LA32_0<=36)||(LA32_0>=38 && LA32_0<=42)) ) {
+                            alt32=1;
                         }
 
 
-                        switch (alt27) {
+                        switch (alt32) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1135:7: ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )?
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1379:7: ( (lv_contents_3_0= ruleMarkUp ) ) ( (lv_contents_4_0= ruleTextPart ) )?
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1135:7: ( (lv_contents_3_0= ruleMarkUp ) )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1136:1: (lv_contents_3_0= ruleMarkUp )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1379:7: ( (lv_contents_3_0= ruleMarkUp ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1380:1: (lv_contents_3_0= ruleMarkUp )
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1136:1: (lv_contents_3_0= ruleMarkUp )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1137:3: lv_contents_3_0= ruleMarkUp
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1380:1: (lv_contents_3_0= ruleMarkUp )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1381:3: lv_contents_3_0= ruleMarkUp
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getTextOrMarkupAccess().getContentsMarkUpParserRuleCall_1_0_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleMarkUp_in_ruleTextOrMarkup1812);
+                    	    pushFollow(FOLLOW_ruleMarkUp_in_ruleTextOrMarkup2195);
                     	    lv_contents_3_0=ruleMarkUp();
                     	    _fsp--;
 
@@ -2764,24 +3312,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1159:2: ( (lv_contents_4_0= ruleTextPart ) )?
-                    	    int alt26=2;
-                    	    int LA26_0 = input.LA(1);
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1403:2: ( (lv_contents_4_0= ruleTextPart ) )?
+                    	    int alt31=2;
+                    	    int LA31_0 = input.LA(1);
 
-                    	    if ( (LA26_0==RULE_WS||(LA26_0>=RULE_ID && LA26_0<=RULE_ANY_OTHER)||(LA26_0>=22 && LA26_0<=23)) ) {
-                    	        alt26=1;
+                    	    if ( (LA31_0==RULE_WS||(LA31_0>=RULE_ID && LA31_0<=RULE_ANY_OTHER)||(LA31_0>=27 && LA31_0<=28)) ) {
+                    	        alt31=1;
                     	    }
-                    	    switch (alt26) {
+                    	    switch (alt31) {
                     	        case 1 :
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1160:1: (lv_contents_4_0= ruleTextPart )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1404:1: (lv_contents_4_0= ruleTextPart )
                     	            {
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1160:1: (lv_contents_4_0= ruleTextPart )
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1161:3: lv_contents_4_0= ruleTextPart
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1404:1: (lv_contents_4_0= ruleTextPart )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1405:3: lv_contents_4_0= ruleTextPart
                     	            {
                     	             
                     	            	        currentNode=createCompositeNode(grammarAccess.getTextOrMarkupAccess().getContentsTextPartParserRuleCall_1_1_0(), currentNode); 
                     	            	    
-                    	            pushFollow(FOLLOW_ruleTextPart_in_ruleTextOrMarkup1833);
+                    	            pushFollow(FOLLOW_ruleTextPart_in_ruleTextOrMarkup2216);
                     	            lv_contents_4_0=ruleTextPart();
                     	            _fsp--;
 
@@ -2816,12 +3364,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    if ( cnt27 >= 1 ) break loop27;
+                    	    if ( cnt32 >= 1 ) break loop32;
                                 EarlyExitException eee =
-                                    new EarlyExitException(27, input);
+                                    new EarlyExitException(32, input);
                                 throw eee;
                         }
-                        cnt27++;
+                        cnt32++;
                     } while (true);
 
 
@@ -2850,7 +3398,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleTextPart
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1191:1: entryRuleTextPart returns [EObject current=null] : iv_ruleTextPart= ruleTextPart EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1435:1: entryRuleTextPart returns [EObject current=null] : iv_ruleTextPart= ruleTextPart EOF ;
     public final EObject entryRuleTextPart() throws RecognitionException {
         EObject current = null;
 
@@ -2858,16 +3406,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1192:2: (iv_ruleTextPart= ruleTextPart EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1193:2: iv_ruleTextPart= ruleTextPart EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1436:2: (iv_ruleTextPart= ruleTextPart EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1437:2: iv_ruleTextPart= ruleTextPart EOF
             {
              currentNode = createCompositeNode(grammarAccess.getTextPartRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTextPart_in_entryRuleTextPart1872);
+            pushFollow(FOLLOW_ruleTextPart_in_entryRuleTextPart2255);
             iv_ruleTextPart=ruleTextPart();
             _fsp--;
 
              current =iv_ruleTextPart; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTextPart1882); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTextPart2265); 
 
             }
 
@@ -2885,7 +3433,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleTextPart
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1200:1: ruleTextPart returns [EObject current=null] : ( (lv_text_0_0= ruleText ) ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1444:1: ruleTextPart returns [EObject current=null] : ( (lv_text_0_0= ruleText ) ) ;
     public final EObject ruleTextPart() throws RecognitionException {
         EObject current = null;
 
@@ -2895,19 +3443,19 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1205:6: ( ( (lv_text_0_0= ruleText ) ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1206:1: ( (lv_text_0_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1449:6: ( ( (lv_text_0_0= ruleText ) ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1450:1: ( (lv_text_0_0= ruleText ) )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1206:1: ( (lv_text_0_0= ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1207:1: (lv_text_0_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1450:1: ( (lv_text_0_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1451:1: (lv_text_0_0= ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1207:1: (lv_text_0_0= ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1208:3: lv_text_0_0= ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1451:1: (lv_text_0_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1452:3: lv_text_0_0= ruleText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getTextPartAccess().getTextTextParserRuleCall_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleTextPart1927);
+            pushFollow(FOLLOW_ruleText_in_ruleTextPart2310);
             lv_text_0_0=ruleText();
             _fsp--;
 
@@ -2954,7 +3502,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleText
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1238:1: entryRuleText returns [String current=null] : iv_ruleText= ruleText EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1482:1: entryRuleText returns [String current=null] : iv_ruleText= ruleText EOF ;
     public final String entryRuleText() throws RecognitionException {
         String current = null;
 
@@ -2962,16 +3510,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1239:2: (iv_ruleText= ruleText EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1240:2: iv_ruleText= ruleText EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1483:2: (iv_ruleText= ruleText EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1484:2: iv_ruleText= ruleText EOF
             {
              currentNode = createCompositeNode(grammarAccess.getTextRule(), currentNode); 
-            pushFollow(FOLLOW_ruleText_in_entryRuleText1963);
+            pushFollow(FOLLOW_ruleText_in_entryRuleText2346);
             iv_ruleText=ruleText();
             _fsp--;
 
              current =iv_ruleText.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleText1974); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleText2357); 
 
             }
 
@@ -2989,7 +3537,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleText
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1247:1: ruleText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1491:1: ruleText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ ;
     public final AntlrDatatypeRuleToken ruleText() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3002,54 +3550,54 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1252:6: ( (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1253:1: (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1496:6: ( (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1497:1: (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1253:1: (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
-            int cnt29=0;
-            loop29:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1497:1: (this_ID_0= RULE_ID | this_WS_1= RULE_WS | this_SINGLE_NL_2= RULE_SINGLE_NL | this_ANY_OTHER_3= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
+            int cnt34=0;
+            loop34:
             do {
-                int alt29=7;
+                int alt34=7;
                 switch ( input.LA(1) ) {
                 case RULE_ID:
                     {
-                    alt29=1;
+                    alt34=1;
                     }
                     break;
                 case RULE_WS:
                     {
-                    alt29=2;
+                    alt34=2;
                     }
                     break;
                 case RULE_SINGLE_NL:
                     {
-                    alt29=3;
+                    alt34=3;
                     }
                     break;
                 case RULE_ANY_OTHER:
                     {
-                    alt29=4;
+                    alt34=4;
                     }
                     break;
-                case 22:
+                case 27:
                     {
-                    alt29=5;
+                    alt34=5;
                     }
                     break;
-                case 23:
+                case 28:
                     {
-                    alt29=6;
+                    alt34=6;
                     }
                     break;
 
                 }
 
-                switch (alt29) {
+                switch (alt34) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1253:6: this_ID_0= RULE_ID
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1497:6: this_ID_0= RULE_ID
             	    {
             	    this_ID_0=(Token)input.LT(1);
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleText2014); 
+            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleText2397); 
 
             	    		current.merge(this_ID_0);
             	        
@@ -3060,10 +3608,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1261:10: this_WS_1= RULE_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1505:10: this_WS_1= RULE_WS
             	    {
             	    this_WS_1=(Token)input.LT(1);
-            	    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleText2040); 
+            	    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleText2423); 
 
             	    		current.merge(this_WS_1);
             	        
@@ -3074,10 +3622,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 3 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1269:10: this_SINGLE_NL_2= RULE_SINGLE_NL
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1513:10: this_SINGLE_NL_2= RULE_SINGLE_NL
             	    {
             	    this_SINGLE_NL_2=(Token)input.LT(1);
-            	    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleText2066); 
+            	    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleText2449); 
 
             	    		current.merge(this_SINGLE_NL_2);
             	        
@@ -3088,10 +3636,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 4 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1277:10: this_ANY_OTHER_3= RULE_ANY_OTHER
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1521:10: this_ANY_OTHER_3= RULE_ANY_OTHER
             	    {
             	    this_ANY_OTHER_3=(Token)input.LT(1);
-            	    match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_ruleText2092); 
+            	    match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_ruleText2475); 
 
             	    		current.merge(this_ANY_OTHER_3);
             	        
@@ -3102,10 +3650,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 5 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1286:2: kw= '\\\\['
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1530:2: kw= '\\\\['
             	    {
             	    kw=(Token)input.LT(1);
-            	    match(input,22,FOLLOW_22_in_ruleText2116); 
+            	    match(input,27,FOLLOW_27_in_ruleText2499); 
 
             	            current.merge(kw);
             	            createLeafNode(grammarAccess.getTextAccess().getReverseSolidusLeftSquareBracketKeyword_4(), null); 
@@ -3114,10 +3662,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 6 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1293:2: kw= '\\\\]'
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1537:2: kw= '\\\\]'
             	    {
             	    kw=(Token)input.LT(1);
-            	    match(input,23,FOLLOW_23_in_ruleText2135); 
+            	    match(input,28,FOLLOW_28_in_ruleText2518); 
 
             	            current.merge(kw);
             	            createLeafNode(grammarAccess.getTextAccess().getReverseSolidusRightSquareBracketKeyword_5(), null); 
@@ -3127,12 +3675,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt29 >= 1 ) break loop29;
+            	    if ( cnt34 >= 1 ) break loop34;
                         EarlyExitException eee =
-                            new EarlyExitException(29, input);
+                            new EarlyExitException(34, input);
                         throw eee;
                 }
-                cnt29++;
+                cnt34++;
             } while (true);
 
 
@@ -3155,7 +3703,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleMarkUp
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1306:1: entryRuleMarkUp returns [EObject current=null] : iv_ruleMarkUp= ruleMarkUp EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1550:1: entryRuleMarkUp returns [EObject current=null] : iv_ruleMarkUp= ruleMarkUp EOF ;
     public final EObject entryRuleMarkUp() throws RecognitionException {
         EObject current = null;
 
@@ -3163,16 +3711,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1307:2: (iv_ruleMarkUp= ruleMarkUp EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1308:2: iv_ruleMarkUp= ruleMarkUp EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1551:2: (iv_ruleMarkUp= ruleMarkUp EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1552:2: iv_ruleMarkUp= ruleMarkUp EOF
             {
              currentNode = createCompositeNode(grammarAccess.getMarkUpRule(), currentNode); 
-            pushFollow(FOLLOW_ruleMarkUp_in_entryRuleMarkUp2176);
+            pushFollow(FOLLOW_ruleMarkUp_in_entryRuleMarkUp2559);
             iv_ruleMarkUp=ruleMarkUp();
             _fsp--;
 
              current =iv_ruleMarkUp; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMarkUp2186); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMarkUp2569); 
 
             }
 
@@ -3190,7 +3738,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleMarkUp
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1315:1: ruleMarkUp returns [EObject current=null] : (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1559:1: ruleMarkUp returns [EObject current=null] : (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable ) ;
     public final EObject ruleMarkUp() throws RecognitionException {
         EObject current = null;
 
@@ -3218,78 +3766,78 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1320:6: ( (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1321:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1564:6: ( (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1565:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1321:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable )
-            int alt30=10;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1565:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable )
+            int alt35=10;
             switch ( input.LA(1) ) {
-            case 27:
+            case 32:
                 {
-                alt30=1;
-                }
-                break;
-            case 28:
-                {
-                alt30=2;
-                }
-                break;
-            case 29:
-                {
-                alt30=3;
-                }
-                break;
-            case 30:
-                {
-                alt30=4;
-                }
-                break;
-            case 31:
-                {
-                alt30=5;
-                }
-                break;
-            case 37:
-                {
-                alt30=6;
+                alt35=1;
                 }
                 break;
             case 33:
                 {
-                alt30=7;
+                alt35=2;
                 }
                 break;
             case 34:
                 {
-                alt30=8;
+                alt35=3;
                 }
                 break;
             case 35:
-            case 36:
                 {
-                alt30=9;
+                alt35=4;
                 }
                 break;
-            case 24:
+            case 36:
                 {
-                alt30=10;
+                alt35=5;
+                }
+                break;
+            case 42:
+                {
+                alt35=6;
+                }
+                break;
+            case 38:
+                {
+                alt35=7;
+                }
+                break;
+            case 39:
+                {
+                alt35=8;
+                }
+                break;
+            case 40:
+            case 41:
+                {
+                alt35=9;
+                }
+                break;
+            case 29:
+                {
+                alt35=10;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1321:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable )", 30, 0, input);
+                    new NoViableAltException("1565:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef | this_OrderedList_3= ruleOrderedList | this_UnorderedList_4= ruleUnorderedList | this_CodeBlock_5= ruleCodeBlock | this_CodeRef_6= ruleCodeRef | this_Link_7= ruleLink | this_ImageRef_8= ruleImageRef | this_Table_9= ruleTable )", 35, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt30) {
+            switch (alt35) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1322:5: this_Emphasize_0= ruleEmphasize
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1566:5: this_Emphasize_0= ruleEmphasize
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getEmphasizeParserRuleCall_0(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleEmphasize_in_ruleMarkUp2233);
+                    pushFollow(FOLLOW_ruleEmphasize_in_ruleMarkUp2616);
                     this_Emphasize_0=ruleEmphasize();
                     _fsp--;
 
@@ -3301,12 +3849,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1332:5: this_Anchor_1= ruleAnchor
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1576:5: this_Anchor_1= ruleAnchor
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getAnchorParserRuleCall_1(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleAnchor_in_ruleMarkUp2260);
+                    pushFollow(FOLLOW_ruleAnchor_in_ruleMarkUp2643);
                     this_Anchor_1=ruleAnchor();
                     _fsp--;
 
@@ -3318,12 +3866,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1342:5: this_Ref_2= ruleRef
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1586:5: this_Ref_2= ruleRef
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getRefParserRuleCall_2(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleRef_in_ruleMarkUp2287);
+                    pushFollow(FOLLOW_ruleRef_in_ruleMarkUp2670);
                     this_Ref_2=ruleRef();
                     _fsp--;
 
@@ -3335,12 +3883,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1352:5: this_OrderedList_3= ruleOrderedList
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1596:5: this_OrderedList_3= ruleOrderedList
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getOrderedListParserRuleCall_3(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleOrderedList_in_ruleMarkUp2314);
+                    pushFollow(FOLLOW_ruleOrderedList_in_ruleMarkUp2697);
                     this_OrderedList_3=ruleOrderedList();
                     _fsp--;
 
@@ -3352,12 +3900,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1362:5: this_UnorderedList_4= ruleUnorderedList
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1606:5: this_UnorderedList_4= ruleUnorderedList
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getUnorderedListParserRuleCall_4(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleUnorderedList_in_ruleMarkUp2341);
+                    pushFollow(FOLLOW_ruleUnorderedList_in_ruleMarkUp2724);
                     this_UnorderedList_4=ruleUnorderedList();
                     _fsp--;
 
@@ -3369,12 +3917,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1372:5: this_CodeBlock_5= ruleCodeBlock
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1616:5: this_CodeBlock_5= ruleCodeBlock
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getCodeBlockParserRuleCall_5(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleCodeBlock_in_ruleMarkUp2368);
+                    pushFollow(FOLLOW_ruleCodeBlock_in_ruleMarkUp2751);
                     this_CodeBlock_5=ruleCodeBlock();
                     _fsp--;
 
@@ -3386,12 +3934,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1382:5: this_CodeRef_6= ruleCodeRef
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1626:5: this_CodeRef_6= ruleCodeRef
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getCodeRefParserRuleCall_6(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleCodeRef_in_ruleMarkUp2395);
+                    pushFollow(FOLLOW_ruleCodeRef_in_ruleMarkUp2778);
                     this_CodeRef_6=ruleCodeRef();
                     _fsp--;
 
@@ -3403,12 +3951,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1392:5: this_Link_7= ruleLink
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1636:5: this_Link_7= ruleLink
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getLinkParserRuleCall_7(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleLink_in_ruleMarkUp2422);
+                    pushFollow(FOLLOW_ruleLink_in_ruleMarkUp2805);
                     this_Link_7=ruleLink();
                     _fsp--;
 
@@ -3420,12 +3968,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1402:5: this_ImageRef_8= ruleImageRef
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1646:5: this_ImageRef_8= ruleImageRef
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getImageRefParserRuleCall_8(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleImageRef_in_ruleMarkUp2449);
+                    pushFollow(FOLLOW_ruleImageRef_in_ruleMarkUp2832);
                     this_ImageRef_8=ruleImageRef();
                     _fsp--;
 
@@ -3437,12 +3985,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1412:5: this_Table_9= ruleTable
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1656:5: this_Table_9= ruleTable
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkUpAccess().getTableParserRuleCall_9(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleTable_in_ruleMarkUp2476);
+                    pushFollow(FOLLOW_ruleTable_in_ruleMarkUp2859);
                     this_Table_9=ruleTable();
                     _fsp--;
 
@@ -3476,7 +4024,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleTable
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1428:1: entryRuleTable returns [EObject current=null] : iv_ruleTable= ruleTable EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1672:1: entryRuleTable returns [EObject current=null] : iv_ruleTable= ruleTable EOF ;
     public final EObject entryRuleTable() throws RecognitionException {
         EObject current = null;
 
@@ -3484,16 +4032,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1429:2: (iv_ruleTable= ruleTable EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1430:2: iv_ruleTable= ruleTable EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1673:2: (iv_ruleTable= ruleTable EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1674:2: iv_ruleTable= ruleTable EOF
             {
              currentNode = createCompositeNode(grammarAccess.getTableRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTable_in_entryRuleTable2511);
+            pushFollow(FOLLOW_ruleTable_in_entryRuleTable2894);
             iv_ruleTable=ruleTable();
             _fsp--;
 
              current =iv_ruleTable; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTable2521); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTable2904); 
 
             }
 
@@ -3511,7 +4059,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleTable
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1437:1: ruleTable returns [EObject current=null] : ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1681:1: ruleTable returns [EObject current=null] : ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' ) ;
     public final EObject ruleTable() throws RecognitionException {
         EObject current = null;
 
@@ -3521,45 +4069,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1442:6: ( ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1443:1: ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1686:6: ( ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1687:1: ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1443:1: ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1443:3: 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1687:1: ( 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1687:3: 'table[' ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+ ( ruleANY_WS )* ']'
             {
-            match(input,24,FOLLOW_24_in_ruleTable2556); 
+            match(input,29,FOLLOW_29_in_ruleTable2939); 
 
                     createLeafNode(grammarAccess.getTableAccess().getTableKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1447:1: ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+
-            int cnt32=0;
-            loop32:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1691:1: ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+
+            int cnt37=0;
+            loop37:
             do {
-                int alt32=2;
-                alt32 = dfa32.predict(input);
-                switch (alt32) {
+                int alt37=2;
+                alt37 = dfa37.predict(input);
+                switch (alt37) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1447:2: ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1691:2: ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1447:2: ( ruleANY_WS )*
-            	    loop31:
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1691:2: ( ruleANY_WS )*
+            	    loop36:
             	    do {
-            	        int alt31=2;
-            	        int LA31_0 = input.LA(1);
+            	        int alt36=2;
+            	        int LA36_0 = input.LA(1);
 
-            	        if ( ((LA31_0>=RULE_WS && LA31_0<=RULE_MULTI_NL)||LA31_0==RULE_SINGLE_NL) ) {
-            	            alt31=1;
+            	        if ( ((LA36_0>=RULE_WS && LA36_0<=RULE_MULTI_NL)||LA36_0==RULE_SINGLE_NL) ) {
+            	            alt36=1;
             	        }
 
 
-            	        switch (alt31) {
+            	        switch (alt36) {
             	    	case 1 :
-            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1448:5: ruleANY_WS
+            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1692:5: ruleANY_WS
             	    	    {
             	    	     
             	    	            currentNode=createCompositeNode(grammarAccess.getTableAccess().getANY_WSParserRuleCall_1_0(), currentNode); 
             	    	        
-            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTable2574);
+            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTable2957);
             	    	    ruleANY_WS();
             	    	    _fsp--;
 
@@ -3571,20 +4119,20 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    	    break;
 
             	    	default :
-            	    	    break loop31;
+            	    	    break loop36;
             	        }
             	    } while (true);
 
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1455:3: ( (lv_rows_2_0= ruleTableRow ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1456:1: (lv_rows_2_0= ruleTableRow )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1699:3: ( (lv_rows_2_0= ruleTableRow ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1700:1: (lv_rows_2_0= ruleTableRow )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1456:1: (lv_rows_2_0= ruleTableRow )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1457:3: lv_rows_2_0= ruleTableRow
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1700:1: (lv_rows_2_0= ruleTableRow )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1701:3: lv_rows_2_0= ruleTableRow
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getTableAccess().getRowsTableRowParserRuleCall_1_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTableRow_in_ruleTable2596);
+            	    pushFollow(FOLLOW_ruleTableRow_in_ruleTable2979);
             	    lv_rows_2_0=ruleTableRow();
             	    _fsp--;
 
@@ -3616,33 +4164,33 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt32 >= 1 ) break loop32;
+            	    if ( cnt37 >= 1 ) break loop37;
                         EarlyExitException eee =
-                            new EarlyExitException(32, input);
+                            new EarlyExitException(37, input);
                         throw eee;
                 }
-                cnt32++;
+                cnt37++;
             } while (true);
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1479:4: ( ruleANY_WS )*
-            loop33:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1723:4: ( ruleANY_WS )*
+            loop38:
             do {
-                int alt33=2;
-                int LA33_0 = input.LA(1);
+                int alt38=2;
+                int LA38_0 = input.LA(1);
 
-                if ( ((LA33_0>=RULE_WS && LA33_0<=RULE_MULTI_NL)||LA33_0==RULE_SINGLE_NL) ) {
-                    alt33=1;
+                if ( ((LA38_0>=RULE_WS && LA38_0<=RULE_MULTI_NL)||LA38_0==RULE_SINGLE_NL) ) {
+                    alt38=1;
                 }
 
 
-                switch (alt33) {
+                switch (alt38) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1480:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1724:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getTableAccess().getANY_WSParserRuleCall_2(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTable2615);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTable2998);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -3654,11 +4202,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop33;
+            	    break loop38;
                 }
             } while (true);
 
-            match(input,13,FOLLOW_13_in_ruleTable2626); 
+            match(input,11,FOLLOW_11_in_ruleTable3009); 
 
                     createLeafNode(grammarAccess.getTableAccess().getRightSquareBracketKeyword_3(), null); 
                 
@@ -3685,7 +4233,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleTableRow
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1499:1: entryRuleTableRow returns [EObject current=null] : iv_ruleTableRow= ruleTableRow EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1743:1: entryRuleTableRow returns [EObject current=null] : iv_ruleTableRow= ruleTableRow EOF ;
     public final EObject entryRuleTableRow() throws RecognitionException {
         EObject current = null;
 
@@ -3693,16 +4241,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1500:2: (iv_ruleTableRow= ruleTableRow EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1501:2: iv_ruleTableRow= ruleTableRow EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1744:2: (iv_ruleTableRow= ruleTableRow EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1745:2: iv_ruleTableRow= ruleTableRow EOF
             {
              currentNode = createCompositeNode(grammarAccess.getTableRowRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTableRow_in_entryRuleTableRow2662);
+            pushFollow(FOLLOW_ruleTableRow_in_entryRuleTableRow3045);
             iv_ruleTableRow=ruleTableRow();
             _fsp--;
 
              current =iv_ruleTableRow; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTableRow2672); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTableRow3055); 
 
             }
 
@@ -3720,7 +4268,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleTableRow
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1508:1: ruleTableRow returns [EObject current=null] : ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1752:1: ruleTableRow returns [EObject current=null] : ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' ) ;
     public final EObject ruleTableRow() throws RecognitionException {
         EObject current = null;
 
@@ -3730,45 +4278,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1513:6: ( ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1514:1: ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1757:6: ( ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1758:1: ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1514:1: ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1514:3: 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1758:1: ( 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1758:3: 'tr[' ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+ ( ruleANY_WS )* ']'
             {
-            match(input,25,FOLLOW_25_in_ruleTableRow2707); 
+            match(input,30,FOLLOW_30_in_ruleTableRow3090); 
 
                     createLeafNode(grammarAccess.getTableRowAccess().getTrKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1518:1: ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+
-            int cnt35=0;
-            loop35:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1762:1: ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+
+            int cnt40=0;
+            loop40:
             do {
-                int alt35=2;
-                alt35 = dfa35.predict(input);
-                switch (alt35) {
+                int alt40=2;
+                alt40 = dfa40.predict(input);
+                switch (alt40) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1518:2: ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1762:2: ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1518:2: ( ruleANY_WS )*
-            	    loop34:
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1762:2: ( ruleANY_WS )*
+            	    loop39:
             	    do {
-            	        int alt34=2;
-            	        int LA34_0 = input.LA(1);
+            	        int alt39=2;
+            	        int LA39_0 = input.LA(1);
 
-            	        if ( ((LA34_0>=RULE_WS && LA34_0<=RULE_MULTI_NL)||LA34_0==RULE_SINGLE_NL) ) {
-            	            alt34=1;
+            	        if ( ((LA39_0>=RULE_WS && LA39_0<=RULE_MULTI_NL)||LA39_0==RULE_SINGLE_NL) ) {
+            	            alt39=1;
             	        }
 
 
-            	        switch (alt34) {
+            	        switch (alt39) {
             	    	case 1 :
-            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1519:5: ruleANY_WS
+            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1763:5: ruleANY_WS
             	    	    {
             	    	     
             	    	            currentNode=createCompositeNode(grammarAccess.getTableRowAccess().getANY_WSParserRuleCall_1_0(), currentNode); 
             	    	        
-            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTableRow2725);
+            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTableRow3108);
             	    	    ruleANY_WS();
             	    	    _fsp--;
 
@@ -3780,20 +4328,20 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    	    break;
 
             	    	default :
-            	    	    break loop34;
+            	    	    break loop39;
             	        }
             	    } while (true);
 
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1526:3: ( (lv_data_2_0= ruleTableData ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1527:1: (lv_data_2_0= ruleTableData )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1770:3: ( (lv_data_2_0= ruleTableData ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1771:1: (lv_data_2_0= ruleTableData )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1527:1: (lv_data_2_0= ruleTableData )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1528:3: lv_data_2_0= ruleTableData
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1771:1: (lv_data_2_0= ruleTableData )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1772:3: lv_data_2_0= ruleTableData
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getTableRowAccess().getDataTableDataParserRuleCall_1_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTableData_in_ruleTableRow2747);
+            	    pushFollow(FOLLOW_ruleTableData_in_ruleTableRow3130);
             	    lv_data_2_0=ruleTableData();
             	    _fsp--;
 
@@ -3825,33 +4373,33 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt35 >= 1 ) break loop35;
+            	    if ( cnt40 >= 1 ) break loop40;
                         EarlyExitException eee =
-                            new EarlyExitException(35, input);
+                            new EarlyExitException(40, input);
                         throw eee;
                 }
-                cnt35++;
+                cnt40++;
             } while (true);
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1550:4: ( ruleANY_WS )*
-            loop36:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1794:4: ( ruleANY_WS )*
+            loop41:
             do {
-                int alt36=2;
-                int LA36_0 = input.LA(1);
+                int alt41=2;
+                int LA41_0 = input.LA(1);
 
-                if ( ((LA36_0>=RULE_WS && LA36_0<=RULE_MULTI_NL)||LA36_0==RULE_SINGLE_NL) ) {
-                    alt36=1;
+                if ( ((LA41_0>=RULE_WS && LA41_0<=RULE_MULTI_NL)||LA41_0==RULE_SINGLE_NL) ) {
+                    alt41=1;
                 }
 
 
-                switch (alt36) {
+                switch (alt41) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1551:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1795:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getTableRowAccess().getANY_WSParserRuleCall_2(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTableRow2766);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleTableRow3149);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -3863,11 +4411,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop36;
+            	    break loop41;
                 }
             } while (true);
 
-            match(input,13,FOLLOW_13_in_ruleTableRow2777); 
+            match(input,11,FOLLOW_11_in_ruleTableRow3160); 
 
                     createLeafNode(grammarAccess.getTableRowAccess().getRightSquareBracketKeyword_3(), null); 
                 
@@ -3894,7 +4442,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleTableData
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1570:1: entryRuleTableData returns [EObject current=null] : iv_ruleTableData= ruleTableData EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1814:1: entryRuleTableData returns [EObject current=null] : iv_ruleTableData= ruleTableData EOF ;
     public final EObject entryRuleTableData() throws RecognitionException {
         EObject current = null;
 
@@ -3902,16 +4450,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1571:2: (iv_ruleTableData= ruleTableData EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1572:2: iv_ruleTableData= ruleTableData EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1815:2: (iv_ruleTableData= ruleTableData EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1816:2: iv_ruleTableData= ruleTableData EOF
             {
              currentNode = createCompositeNode(grammarAccess.getTableDataRule(), currentNode); 
-            pushFollow(FOLLOW_ruleTableData_in_entryRuleTableData2813);
+            pushFollow(FOLLOW_ruleTableData_in_entryRuleTableData3196);
             iv_ruleTableData=ruleTableData();
             _fsp--;
 
              current =iv_ruleTableData; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleTableData2823); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleTableData3206); 
 
             }
 
@@ -3929,7 +4477,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleTableData
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1579:1: ruleTableData returns [EObject current=null] : ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1823:1: ruleTableData returns [EObject current=null] : ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) ;
     public final EObject ruleTableData() throws RecognitionException {
         EObject current = null;
 
@@ -3941,28 +4489,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1584:6: ( ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1585:1: ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1828:6: ( ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1829:1: ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1585:1: ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1585:3: 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1829:1: ( 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1829:3: 'td[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']'
             {
-            match(input,26,FOLLOW_26_in_ruleTableData2858); 
+            match(input,31,FOLLOW_31_in_ruleTableData3241); 
 
                     createLeafNode(grammarAccess.getTableDataAccess().getTdKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1589:1: ( RULE_MULTI_NL )?
-            int alt37=2;
-            int LA37_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1833:1: ( RULE_MULTI_NL )?
+            int alt42=2;
+            int LA42_0 = input.LA(1);
 
-            if ( (LA37_0==RULE_MULTI_NL) ) {
-                alt37=1;
+            if ( (LA42_0==RULE_MULTI_NL) ) {
+                alt42=1;
             }
-            switch (alt37) {
+            switch (alt42) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1589:2: RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1833:2: RULE_MULTI_NL
                     {
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleTableData2868); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleTableData3251); 
                      
                         createLeafNode(grammarAccess.getTableDataAccess().getMULTI_NLTerminalRuleCall_1(), null); 
                         
@@ -3972,16 +4520,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1593:3: ( (lv_contents_2_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1594:1: (lv_contents_2_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1837:3: ( (lv_contents_2_0= ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1838:1: (lv_contents_2_0= ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1594:1: (lv_contents_2_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1595:3: lv_contents_2_0= ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1838:1: (lv_contents_2_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1839:3: lv_contents_2_0= ruleTextOrMarkup
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getTableDataAccess().getContentsTextOrMarkupParserRuleCall_2_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleTableData2890);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleTableData3273);
             lv_contents_2_0=ruleTextOrMarkup();
             _fsp--;
 
@@ -4008,35 +4556,35 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1617:2: ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )*
-            loop38:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1861:2: ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )*
+            loop43:
             do {
-                int alt38=2;
-                int LA38_0 = input.LA(1);
+                int alt43=2;
+                int LA43_0 = input.LA(1);
 
-                if ( (LA38_0==RULE_MULTI_NL) ) {
-                    alt38=1;
+                if ( (LA43_0==RULE_MULTI_NL) ) {
+                    alt43=1;
                 }
 
 
-                switch (alt38) {
+                switch (alt43) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1617:3: RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1861:3: RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) )
             	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleTableData2900); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleTableData3283); 
             	     
             	        createLeafNode(grammarAccess.getTableDataAccess().getMULTI_NLTerminalRuleCall_3_0(), null); 
             	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1621:1: ( (lv_contents_4_0= ruleTextOrMarkup ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1622:1: (lv_contents_4_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1865:1: ( (lv_contents_4_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1866:1: (lv_contents_4_0= ruleTextOrMarkup )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1622:1: (lv_contents_4_0= ruleTextOrMarkup )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1623:3: lv_contents_4_0= ruleTextOrMarkup
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1866:1: (lv_contents_4_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1867:3: lv_contents_4_0= ruleTextOrMarkup
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getTableDataAccess().getContentsTextOrMarkupParserRuleCall_3_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleTableData2920);
+            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleTableData3303);
             	    lv_contents_4_0=ruleTextOrMarkup();
             	    _fsp--;
 
@@ -4068,11 +4616,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop38;
+            	    break loop43;
                 }
             } while (true);
 
-            match(input,13,FOLLOW_13_in_ruleTableData2932); 
+            match(input,11,FOLLOW_11_in_ruleTableData3315); 
 
                     createLeafNode(grammarAccess.getTableDataAccess().getRightSquareBracketKeyword_4(), null); 
                 
@@ -4099,7 +4647,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleEmphasize
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1657:1: entryRuleEmphasize returns [EObject current=null] : iv_ruleEmphasize= ruleEmphasize EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1901:1: entryRuleEmphasize returns [EObject current=null] : iv_ruleEmphasize= ruleEmphasize EOF ;
     public final EObject entryRuleEmphasize() throws RecognitionException {
         EObject current = null;
 
@@ -4107,16 +4655,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1658:2: (iv_ruleEmphasize= ruleEmphasize EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1659:2: iv_ruleEmphasize= ruleEmphasize EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1902:2: (iv_ruleEmphasize= ruleEmphasize EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1903:2: iv_ruleEmphasize= ruleEmphasize EOF
             {
              currentNode = createCompositeNode(grammarAccess.getEmphasizeRule(), currentNode); 
-            pushFollow(FOLLOW_ruleEmphasize_in_entryRuleEmphasize2968);
+            pushFollow(FOLLOW_ruleEmphasize_in_entryRuleEmphasize3351);
             iv_ruleEmphasize=ruleEmphasize();
             _fsp--;
 
              current =iv_ruleEmphasize; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEmphasize2978); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEmphasize3361); 
 
             }
 
@@ -4134,7 +4682,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleEmphasize
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1666:1: ruleEmphasize returns [EObject current=null] : ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1910:1: ruleEmphasize returns [EObject current=null] : ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) ;
     public final EObject ruleEmphasize() throws RecognitionException {
         EObject current = null;
 
@@ -4144,28 +4692,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1671:6: ( ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1672:1: ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1915:6: ( ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1916:1: ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1672:1: ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1672:3: 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1916:1: ( 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1916:3: 'e[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? ']'
             {
-            match(input,27,FOLLOW_27_in_ruleEmphasize3013); 
+            match(input,32,FOLLOW_32_in_ruleEmphasize3396); 
 
                     createLeafNode(grammarAccess.getEmphasizeAccess().getEKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1676:1: ( RULE_MULTI_NL )?
-            int alt39=2;
-            int LA39_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1920:1: ( RULE_MULTI_NL )?
+            int alt44=2;
+            int LA44_0 = input.LA(1);
 
-            if ( (LA39_0==RULE_MULTI_NL) ) {
-                alt39=1;
+            if ( (LA44_0==RULE_MULTI_NL) ) {
+                alt44=1;
             }
-            switch (alt39) {
+            switch (alt44) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1676:2: RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1920:2: RULE_MULTI_NL
                     {
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3023); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3406); 
                      
                         createLeafNode(grammarAccess.getEmphasizeAccess().getMULTI_NLTerminalRuleCall_1(), null); 
                         
@@ -4175,16 +4723,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1680:3: ( (lv_contents_2_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1681:1: (lv_contents_2_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1924:3: ( (lv_contents_2_0= ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1925:1: (lv_contents_2_0= ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1681:1: (lv_contents_2_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1682:3: lv_contents_2_0= ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1925:1: (lv_contents_2_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1926:3: lv_contents_2_0= ruleTextOrMarkup
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getEmphasizeAccess().getContentsTextOrMarkupParserRuleCall_2_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleEmphasize3045);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleEmphasize3428);
             lv_contents_2_0=ruleTextOrMarkup();
             _fsp--;
 
@@ -4211,18 +4759,18 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1704:2: ( RULE_MULTI_NL )?
-            int alt40=2;
-            int LA40_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1948:2: ( RULE_MULTI_NL )?
+            int alt45=2;
+            int LA45_0 = input.LA(1);
 
-            if ( (LA40_0==RULE_MULTI_NL) ) {
-                alt40=1;
+            if ( (LA45_0==RULE_MULTI_NL) ) {
+                alt45=1;
             }
-            switch (alt40) {
+            switch (alt45) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1704:3: RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1948:3: RULE_MULTI_NL
                     {
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3055); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3438); 
                      
                         createLeafNode(grammarAccess.getEmphasizeAccess().getMULTI_NLTerminalRuleCall_3(), null); 
                         
@@ -4232,7 +4780,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleEmphasize3066); 
+            match(input,11,FOLLOW_11_in_ruleEmphasize3449); 
 
                     createLeafNode(grammarAccess.getEmphasizeAccess().getRightSquareBracketKeyword_4(), null); 
                 
@@ -4259,7 +4807,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleAnchor
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1720:1: entryRuleAnchor returns [EObject current=null] : iv_ruleAnchor= ruleAnchor EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1964:1: entryRuleAnchor returns [EObject current=null] : iv_ruleAnchor= ruleAnchor EOF ;
     public final EObject entryRuleAnchor() throws RecognitionException {
         EObject current = null;
 
@@ -4267,16 +4815,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1721:2: (iv_ruleAnchor= ruleAnchor EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1722:2: iv_ruleAnchor= ruleAnchor EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1965:2: (iv_ruleAnchor= ruleAnchor EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1966:2: iv_ruleAnchor= ruleAnchor EOF
             {
              currentNode = createCompositeNode(grammarAccess.getAnchorRule(), currentNode); 
-            pushFollow(FOLLOW_ruleAnchor_in_entryRuleAnchor3102);
+            pushFollow(FOLLOW_ruleAnchor_in_entryRuleAnchor3485);
             iv_ruleAnchor=ruleAnchor();
             _fsp--;
 
              current =iv_ruleAnchor; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleAnchor3112); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleAnchor3495); 
 
             }
 
@@ -4294,7 +4842,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleAnchor
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1729:1: ruleAnchor returns [EObject current=null] : ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1973:1: ruleAnchor returns [EObject current=null] : ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' ) ;
     public final EObject ruleAnchor() throws RecognitionException {
         EObject current = null;
 
@@ -4303,24 +4851,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1734:6: ( ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1735:1: ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1978:6: ( ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1979:1: ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1735:1: ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1735:3: 'a[' ( (lv_name_1_0= RULE_ID ) ) ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1979:1: ( 'a[' ( (lv_name_1_0= RULE_ID ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1979:3: 'a[' ( (lv_name_1_0= RULE_ID ) ) ']'
             {
-            match(input,28,FOLLOW_28_in_ruleAnchor3147); 
+            match(input,33,FOLLOW_33_in_ruleAnchor3530); 
 
                     createLeafNode(grammarAccess.getAnchorAccess().getAKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1739:1: ( (lv_name_1_0= RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1740:1: (lv_name_1_0= RULE_ID )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1983:1: ( (lv_name_1_0= RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1984:1: (lv_name_1_0= RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1740:1: (lv_name_1_0= RULE_ID )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1741:3: lv_name_1_0= RULE_ID
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1984:1: (lv_name_1_0= RULE_ID )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1985:3: lv_name_1_0= RULE_ID
             {
             lv_name_1_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAnchor3164); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAnchor3547); 
 
             			createLeafNode(grammarAccess.getAnchorAccess().getNameIDTerminalRuleCall_1_0(), "name"); 
             		
@@ -4346,7 +4894,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleAnchor3179); 
+            match(input,11,FOLLOW_11_in_ruleAnchor3562); 
 
                     createLeafNode(grammarAccess.getAnchorAccess().getRightSquareBracketKeyword_2(), null); 
                 
@@ -4373,7 +4921,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleRef
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1775:1: entryRuleRef returns [EObject current=null] : iv_ruleRef= ruleRef EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2019:1: entryRuleRef returns [EObject current=null] : iv_ruleRef= ruleRef EOF ;
     public final EObject entryRuleRef() throws RecognitionException {
         EObject current = null;
 
@@ -4381,16 +4929,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1776:2: (iv_ruleRef= ruleRef EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1777:2: iv_ruleRef= ruleRef EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2020:2: (iv_ruleRef= ruleRef EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2021:2: iv_ruleRef= ruleRef EOF
             {
              currentNode = createCompositeNode(grammarAccess.getRefRule(), currentNode); 
-            pushFollow(FOLLOW_ruleRef_in_entryRuleRef3215);
+            pushFollow(FOLLOW_ruleRef_in_entryRuleRef3598);
             iv_ruleRef=ruleRef();
             _fsp--;
 
              current =iv_ruleRef; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleRef3225); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleRef3608); 
 
             }
 
@@ -4408,7 +4956,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleRef
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1784:1: ruleRef returns [EObject current=null] : ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2028:1: ruleRef returns [EObject current=null] : ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? ) ;
     public final EObject ruleRef() throws RecognitionException {
         EObject current = null;
 
@@ -4418,21 +4966,21 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1789:6: ( ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1790:1: ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2033:6: ( ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2034:1: ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1790:1: ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1790:3: 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2034:1: ( 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )? )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2034:3: 'ref:' ( ( RULE_ID ) ) ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )?
             {
-            match(input,29,FOLLOW_29_in_ruleRef3260); 
+            match(input,34,FOLLOW_34_in_ruleRef3643); 
 
                     createLeafNode(grammarAccess.getRefAccess().getRefKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1794:1: ( ( RULE_ID ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1795:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2038:1: ( ( RULE_ID ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2039:1: ( RULE_ID )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1795:1: ( RULE_ID )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1796:3: RULE_ID
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2039:1: ( RULE_ID )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2040:3: RULE_ID
             {
 
             			if (current==null) {
@@ -4440,7 +4988,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	            associateNodeWithAstElement(currentNode, current);
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleRef3278); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleRef3661); 
 
             		createLeafNode(grammarAccess.getRefAccess().getRefIdentifiableCrossReference_1_0(), "ref"); 
             	
@@ -4450,33 +4998,33 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1808:2: ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )?
-            int alt44=2;
-            int LA44_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2052:2: ( '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']' )?
+            int alt49=2;
+            int LA49_0 = input.LA(1);
 
-            if ( (LA44_0==11) ) {
-                alt44=1;
+            if ( (LA49_0==15) ) {
+                alt49=1;
             }
-            switch (alt44) {
+            switch (alt49) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1808:4: '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']'
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2052:4: '[' ( RULE_MULTI_NL )? ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )? ']'
                     {
-                    match(input,11,FOLLOW_11_in_ruleRef3289); 
+                    match(input,15,FOLLOW_15_in_ruleRef3672); 
 
                             createLeafNode(grammarAccess.getRefAccess().getLeftSquareBracketKeyword_2_0(), null); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1812:1: ( RULE_MULTI_NL )?
-                    int alt41=2;
-                    int LA41_0 = input.LA(1);
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2056:1: ( RULE_MULTI_NL )?
+                    int alt46=2;
+                    int LA46_0 = input.LA(1);
 
-                    if ( (LA41_0==RULE_MULTI_NL) ) {
-                        alt41=1;
+                    if ( (LA46_0==RULE_MULTI_NL) ) {
+                        alt46=1;
                     }
-                    switch (alt41) {
+                    switch (alt46) {
                         case 1 :
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1812:2: RULE_MULTI_NL
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2056:2: RULE_MULTI_NL
                             {
-                            match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleRef3299); 
+                            match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleRef3682); 
                              
                                 createLeafNode(grammarAccess.getRefAccess().getMULTI_NLTerminalRuleCall_2_1(), null); 
                                 
@@ -4486,27 +5034,27 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1816:3: ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )?
-                    int alt43=2;
-                    int LA43_0 = input.LA(1);
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2060:3: ( ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )? )?
+                    int alt48=2;
+                    int LA48_0 = input.LA(1);
 
-                    if ( (LA43_0==RULE_WS||(LA43_0>=RULE_ID && LA43_0<=RULE_ANY_OTHER)||(LA43_0>=22 && LA43_0<=24)||(LA43_0>=27 && LA43_0<=31)||(LA43_0>=33 && LA43_0<=37)) ) {
-                        alt43=1;
+                    if ( (LA48_0==RULE_WS||(LA48_0>=RULE_ID && LA48_0<=RULE_ANY_OTHER)||(LA48_0>=27 && LA48_0<=29)||(LA48_0>=32 && LA48_0<=36)||(LA48_0>=38 && LA48_0<=42)) ) {
+                        alt48=1;
                     }
-                    switch (alt43) {
+                    switch (alt48) {
                         case 1 :
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1816:4: ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )?
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2060:4: ( (lv_contents_4_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL )?
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1816:4: ( (lv_contents_4_0= ruleTextOrMarkup ) )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1817:1: (lv_contents_4_0= ruleTextOrMarkup )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2060:4: ( (lv_contents_4_0= ruleTextOrMarkup ) )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2061:1: (lv_contents_4_0= ruleTextOrMarkup )
                             {
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1817:1: (lv_contents_4_0= ruleTextOrMarkup )
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1818:3: lv_contents_4_0= ruleTextOrMarkup
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2061:1: (lv_contents_4_0= ruleTextOrMarkup )
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2062:3: lv_contents_4_0= ruleTextOrMarkup
                             {
                              
                             	        currentNode=createCompositeNode(grammarAccess.getRefAccess().getContentsTextOrMarkupParserRuleCall_2_2_0_0(), currentNode); 
                             	    
-                            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleRef3322);
+                            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleRef3705);
                             lv_contents_4_0=ruleTextOrMarkup();
                             _fsp--;
 
@@ -4533,18 +5081,18 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1840:2: ( RULE_MULTI_NL )?
-                            int alt42=2;
-                            int LA42_0 = input.LA(1);
+                            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2084:2: ( RULE_MULTI_NL )?
+                            int alt47=2;
+                            int LA47_0 = input.LA(1);
 
-                            if ( (LA42_0==RULE_MULTI_NL) ) {
-                                alt42=1;
+                            if ( (LA47_0==RULE_MULTI_NL) ) {
+                                alt47=1;
                             }
-                            switch (alt42) {
+                            switch (alt47) {
                                 case 1 :
-                                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1840:3: RULE_MULTI_NL
+                                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2084:3: RULE_MULTI_NL
                                     {
-                                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleRef3332); 
+                                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleRef3715); 
                                      
                                         createLeafNode(grammarAccess.getRefAccess().getMULTI_NLTerminalRuleCall_2_2_1(), null); 
                                         
@@ -4560,7 +5108,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    match(input,13,FOLLOW_13_in_ruleRef3345); 
+                    match(input,11,FOLLOW_11_in_ruleRef3728); 
 
                             createLeafNode(grammarAccess.getRefAccess().getRightSquareBracketKeyword_2_3(), null); 
                         
@@ -4593,7 +5141,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleOrderedList
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1856:1: entryRuleOrderedList returns [EObject current=null] : iv_ruleOrderedList= ruleOrderedList EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2100:1: entryRuleOrderedList returns [EObject current=null] : iv_ruleOrderedList= ruleOrderedList EOF ;
     public final EObject entryRuleOrderedList() throws RecognitionException {
         EObject current = null;
 
@@ -4601,16 +5149,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1857:2: (iv_ruleOrderedList= ruleOrderedList EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1858:2: iv_ruleOrderedList= ruleOrderedList EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2101:2: (iv_ruleOrderedList= ruleOrderedList EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2102:2: iv_ruleOrderedList= ruleOrderedList EOF
             {
              currentNode = createCompositeNode(grammarAccess.getOrderedListRule(), currentNode); 
-            pushFollow(FOLLOW_ruleOrderedList_in_entryRuleOrderedList3383);
+            pushFollow(FOLLOW_ruleOrderedList_in_entryRuleOrderedList3766);
             iv_ruleOrderedList=ruleOrderedList();
             _fsp--;
 
              current =iv_ruleOrderedList; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleOrderedList3393); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleOrderedList3776); 
 
             }
 
@@ -4628,7 +5176,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleOrderedList
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1865:1: ruleOrderedList returns [EObject current=null] : ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2109:1: ruleOrderedList returns [EObject current=null] : ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) ;
     public final EObject ruleOrderedList() throws RecognitionException {
         EObject current = null;
 
@@ -4638,45 +5186,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1870:6: ( ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1871:1: ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2114:6: ( ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2115:1: ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1871:1: ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1871:3: 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2115:1: ( 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2115:3: 'ol[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']'
             {
-            match(input,30,FOLLOW_30_in_ruleOrderedList3428); 
+            match(input,35,FOLLOW_35_in_ruleOrderedList3811); 
 
                     createLeafNode(grammarAccess.getOrderedListAccess().getOlKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1875:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+
-            int cnt46=0;
-            loop46:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2119:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+
+            int cnt51=0;
+            loop51:
             do {
-                int alt46=2;
-                alt46 = dfa46.predict(input);
-                switch (alt46) {
+                int alt51=2;
+                alt51 = dfa51.predict(input);
+                switch (alt51) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1875:2: ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2119:2: ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1875:2: ( ruleANY_WS )*
-            	    loop45:
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2119:2: ( ruleANY_WS )*
+            	    loop50:
             	    do {
-            	        int alt45=2;
-            	        int LA45_0 = input.LA(1);
+            	        int alt50=2;
+            	        int LA50_0 = input.LA(1);
 
-            	        if ( ((LA45_0>=RULE_WS && LA45_0<=RULE_MULTI_NL)||LA45_0==RULE_SINGLE_NL) ) {
-            	            alt45=1;
+            	        if ( ((LA50_0>=RULE_WS && LA50_0<=RULE_MULTI_NL)||LA50_0==RULE_SINGLE_NL) ) {
+            	            alt50=1;
             	        }
 
 
-            	        switch (alt45) {
+            	        switch (alt50) {
             	    	case 1 :
-            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1876:5: ruleANY_WS
+            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2120:5: ruleANY_WS
             	    	    {
             	    	     
             	    	            currentNode=createCompositeNode(grammarAccess.getOrderedListAccess().getANY_WSParserRuleCall_1_0(), currentNode); 
             	    	        
-            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleOrderedList3446);
+            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleOrderedList3829);
             	    	    ruleANY_WS();
             	    	    _fsp--;
 
@@ -4688,20 +5236,20 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    	    break;
 
             	    	default :
-            	    	    break loop45;
+            	    	    break loop50;
             	        }
             	    } while (true);
 
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1883:3: ( (lv_items_2_0= ruleItem ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1884:1: (lv_items_2_0= ruleItem )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2127:3: ( (lv_items_2_0= ruleItem ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2128:1: (lv_items_2_0= ruleItem )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1884:1: (lv_items_2_0= ruleItem )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1885:3: lv_items_2_0= ruleItem
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2128:1: (lv_items_2_0= ruleItem )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2129:3: lv_items_2_0= ruleItem
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getOrderedListAccess().getItemsItemParserRuleCall_1_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleItem_in_ruleOrderedList3468);
+            	    pushFollow(FOLLOW_ruleItem_in_ruleOrderedList3851);
             	    lv_items_2_0=ruleItem();
             	    _fsp--;
 
@@ -4733,33 +5281,33 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt46 >= 1 ) break loop46;
+            	    if ( cnt51 >= 1 ) break loop51;
                         EarlyExitException eee =
-                            new EarlyExitException(46, input);
+                            new EarlyExitException(51, input);
                         throw eee;
                 }
-                cnt46++;
+                cnt51++;
             } while (true);
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1907:4: ( ruleANY_WS )*
-            loop47:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2151:4: ( ruleANY_WS )*
+            loop52:
             do {
-                int alt47=2;
-                int LA47_0 = input.LA(1);
+                int alt52=2;
+                int LA52_0 = input.LA(1);
 
-                if ( ((LA47_0>=RULE_WS && LA47_0<=RULE_MULTI_NL)||LA47_0==RULE_SINGLE_NL) ) {
-                    alt47=1;
+                if ( ((LA52_0>=RULE_WS && LA52_0<=RULE_MULTI_NL)||LA52_0==RULE_SINGLE_NL) ) {
+                    alt52=1;
                 }
 
 
-                switch (alt47) {
+                switch (alt52) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1908:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2152:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getOrderedListAccess().getANY_WSParserRuleCall_2(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleOrderedList3487);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleOrderedList3870);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -4771,11 +5319,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop47;
+            	    break loop52;
                 }
             } while (true);
 
-            match(input,13,FOLLOW_13_in_ruleOrderedList3498); 
+            match(input,11,FOLLOW_11_in_ruleOrderedList3881); 
 
                     createLeafNode(grammarAccess.getOrderedListAccess().getRightSquareBracketKeyword_3(), null); 
                 
@@ -4802,7 +5350,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleUnorderedList
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1927:1: entryRuleUnorderedList returns [EObject current=null] : iv_ruleUnorderedList= ruleUnorderedList EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2171:1: entryRuleUnorderedList returns [EObject current=null] : iv_ruleUnorderedList= ruleUnorderedList EOF ;
     public final EObject entryRuleUnorderedList() throws RecognitionException {
         EObject current = null;
 
@@ -4810,16 +5358,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1928:2: (iv_ruleUnorderedList= ruleUnorderedList EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1929:2: iv_ruleUnorderedList= ruleUnorderedList EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2172:2: (iv_ruleUnorderedList= ruleUnorderedList EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2173:2: iv_ruleUnorderedList= ruleUnorderedList EOF
             {
              currentNode = createCompositeNode(grammarAccess.getUnorderedListRule(), currentNode); 
-            pushFollow(FOLLOW_ruleUnorderedList_in_entryRuleUnorderedList3534);
+            pushFollow(FOLLOW_ruleUnorderedList_in_entryRuleUnorderedList3917);
             iv_ruleUnorderedList=ruleUnorderedList();
             _fsp--;
 
              current =iv_ruleUnorderedList; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleUnorderedList3544); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleUnorderedList3927); 
 
             }
 
@@ -4837,7 +5385,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleUnorderedList
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1936:1: ruleUnorderedList returns [EObject current=null] : ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2180:1: ruleUnorderedList returns [EObject current=null] : ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) ;
     public final EObject ruleUnorderedList() throws RecognitionException {
         EObject current = null;
 
@@ -4847,45 +5395,45 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1941:6: ( ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1942:1: ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2185:6: ( ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2186:1: ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1942:1: ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1942:3: 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2186:1: ( 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2186:3: 'ul[' ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+ ( ruleANY_WS )* ']'
             {
-            match(input,31,FOLLOW_31_in_ruleUnorderedList3579); 
+            match(input,36,FOLLOW_36_in_ruleUnorderedList3962); 
 
                     createLeafNode(grammarAccess.getUnorderedListAccess().getUlKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1946:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+
-            int cnt49=0;
-            loop49:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2190:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+
+            int cnt54=0;
+            loop54:
             do {
-                int alt49=2;
-                alt49 = dfa49.predict(input);
-                switch (alt49) {
+                int alt54=2;
+                alt54 = dfa54.predict(input);
+                switch (alt54) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1946:2: ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2190:2: ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1946:2: ( ruleANY_WS )*
-            	    loop48:
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2190:2: ( ruleANY_WS )*
+            	    loop53:
             	    do {
-            	        int alt48=2;
-            	        int LA48_0 = input.LA(1);
+            	        int alt53=2;
+            	        int LA53_0 = input.LA(1);
 
-            	        if ( ((LA48_0>=RULE_WS && LA48_0<=RULE_MULTI_NL)||LA48_0==RULE_SINGLE_NL) ) {
-            	            alt48=1;
+            	        if ( ((LA53_0>=RULE_WS && LA53_0<=RULE_MULTI_NL)||LA53_0==RULE_SINGLE_NL) ) {
+            	            alt53=1;
             	        }
 
 
-            	        switch (alt48) {
+            	        switch (alt53) {
             	    	case 1 :
-            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1947:5: ruleANY_WS
+            	    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2191:5: ruleANY_WS
             	    	    {
             	    	     
             	    	            currentNode=createCompositeNode(grammarAccess.getUnorderedListAccess().getANY_WSParserRuleCall_1_0(), currentNode); 
             	    	        
-            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleUnorderedList3597);
+            	    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleUnorderedList3980);
             	    	    ruleANY_WS();
             	    	    _fsp--;
 
@@ -4897,20 +5445,20 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    	    break;
 
             	    	default :
-            	    	    break loop48;
+            	    	    break loop53;
             	        }
             	    } while (true);
 
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1954:3: ( (lv_items_2_0= ruleItem ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1955:1: (lv_items_2_0= ruleItem )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2198:3: ( (lv_items_2_0= ruleItem ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2199:1: (lv_items_2_0= ruleItem )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1955:1: (lv_items_2_0= ruleItem )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1956:3: lv_items_2_0= ruleItem
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2199:1: (lv_items_2_0= ruleItem )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2200:3: lv_items_2_0= ruleItem
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getUnorderedListAccess().getItemsItemParserRuleCall_1_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleItem_in_ruleUnorderedList3619);
+            	    pushFollow(FOLLOW_ruleItem_in_ruleUnorderedList4002);
             	    lv_items_2_0=ruleItem();
             	    _fsp--;
 
@@ -4942,33 +5490,33 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt49 >= 1 ) break loop49;
+            	    if ( cnt54 >= 1 ) break loop54;
                         EarlyExitException eee =
-                            new EarlyExitException(49, input);
+                            new EarlyExitException(54, input);
                         throw eee;
                 }
-                cnt49++;
+                cnt54++;
             } while (true);
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1978:4: ( ruleANY_WS )*
-            loop50:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2222:4: ( ruleANY_WS )*
+            loop55:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt55=2;
+                int LA55_0 = input.LA(1);
 
-                if ( ((LA50_0>=RULE_WS && LA50_0<=RULE_MULTI_NL)||LA50_0==RULE_SINGLE_NL) ) {
-                    alt50=1;
+                if ( ((LA55_0>=RULE_WS && LA55_0<=RULE_MULTI_NL)||LA55_0==RULE_SINGLE_NL) ) {
+                    alt55=1;
                 }
 
 
-                switch (alt50) {
+                switch (alt55) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1979:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2223:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getUnorderedListAccess().getANY_WSParserRuleCall_2(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleUnorderedList3638);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleUnorderedList4021);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -4980,11 +5528,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop55;
                 }
             } while (true);
 
-            match(input,13,FOLLOW_13_in_ruleUnorderedList3649); 
+            match(input,11,FOLLOW_11_in_ruleUnorderedList4032); 
 
                     createLeafNode(grammarAccess.getUnorderedListAccess().getRightSquareBracketKeyword_3(), null); 
                 
@@ -5011,7 +5559,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleItem
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1998:1: entryRuleItem returns [EObject current=null] : iv_ruleItem= ruleItem EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2242:1: entryRuleItem returns [EObject current=null] : iv_ruleItem= ruleItem EOF ;
     public final EObject entryRuleItem() throws RecognitionException {
         EObject current = null;
 
@@ -5019,16 +5567,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:1999:2: (iv_ruleItem= ruleItem EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2000:2: iv_ruleItem= ruleItem EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2243:2: (iv_ruleItem= ruleItem EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2244:2: iv_ruleItem= ruleItem EOF
             {
              currentNode = createCompositeNode(grammarAccess.getItemRule(), currentNode); 
-            pushFollow(FOLLOW_ruleItem_in_entryRuleItem3685);
+            pushFollow(FOLLOW_ruleItem_in_entryRuleItem4068);
             iv_ruleItem=ruleItem();
             _fsp--;
 
              current =iv_ruleItem; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleItem3695); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleItem4078); 
 
             }
 
@@ -5046,7 +5594,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleItem
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2007:1: ruleItem returns [EObject current=null] : ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2251:1: ruleItem returns [EObject current=null] : ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) ;
     public final EObject ruleItem() throws RecognitionException {
         EObject current = null;
 
@@ -5058,28 +5606,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2012:6: ( ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2013:1: ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2256:6: ( ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2257:1: ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2013:1: ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2013:3: 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2257:1: ( 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2257:3: 'item[' ( RULE_MULTI_NL )? ( (lv_contents_2_0= ruleTextOrMarkup ) ) ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )* ']'
             {
-            match(input,32,FOLLOW_32_in_ruleItem3730); 
+            match(input,37,FOLLOW_37_in_ruleItem4113); 
 
                     createLeafNode(grammarAccess.getItemAccess().getItemKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2017:1: ( RULE_MULTI_NL )?
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2261:1: ( RULE_MULTI_NL )?
+            int alt56=2;
+            int LA56_0 = input.LA(1);
 
-            if ( (LA51_0==RULE_MULTI_NL) ) {
-                alt51=1;
+            if ( (LA56_0==RULE_MULTI_NL) ) {
+                alt56=1;
             }
-            switch (alt51) {
+            switch (alt56) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2017:2: RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2261:2: RULE_MULTI_NL
                     {
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleItem3740); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleItem4123); 
                      
                         createLeafNode(grammarAccess.getItemAccess().getMULTI_NLTerminalRuleCall_1(), null); 
                         
@@ -5089,16 +5637,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2021:3: ( (lv_contents_2_0= ruleTextOrMarkup ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2022:1: (lv_contents_2_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2265:3: ( (lv_contents_2_0= ruleTextOrMarkup ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2266:1: (lv_contents_2_0= ruleTextOrMarkup )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2022:1: (lv_contents_2_0= ruleTextOrMarkup )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2023:3: lv_contents_2_0= ruleTextOrMarkup
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2266:1: (lv_contents_2_0= ruleTextOrMarkup )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2267:3: lv_contents_2_0= ruleTextOrMarkup
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_2_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleItem3762);
+            pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleItem4145);
             lv_contents_2_0=ruleTextOrMarkup();
             _fsp--;
 
@@ -5125,35 +5673,35 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2045:2: ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )*
-            loop52:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2289:2: ( RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) ) )*
+            loop57:
             do {
-                int alt52=2;
-                int LA52_0 = input.LA(1);
+                int alt57=2;
+                int LA57_0 = input.LA(1);
 
-                if ( (LA52_0==RULE_MULTI_NL) ) {
-                    alt52=1;
+                if ( (LA57_0==RULE_MULTI_NL) ) {
+                    alt57=1;
                 }
 
 
-                switch (alt52) {
+                switch (alt57) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2045:3: RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2289:3: RULE_MULTI_NL ( (lv_contents_4_0= ruleTextOrMarkup ) )
             	    {
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleItem3772); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleItem4155); 
             	     
             	        createLeafNode(grammarAccess.getItemAccess().getMULTI_NLTerminalRuleCall_3_0(), null); 
             	        
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2049:1: ( (lv_contents_4_0= ruleTextOrMarkup ) )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2050:1: (lv_contents_4_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2293:1: ( (lv_contents_4_0= ruleTextOrMarkup ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2294:1: (lv_contents_4_0= ruleTextOrMarkup )
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2050:1: (lv_contents_4_0= ruleTextOrMarkup )
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2051:3: lv_contents_4_0= ruleTextOrMarkup
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2294:1: (lv_contents_4_0= ruleTextOrMarkup )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2295:3: lv_contents_4_0= ruleTextOrMarkup
             	    {
             	     
             	    	        currentNode=createCompositeNode(grammarAccess.getItemAccess().getContentsTextOrMarkupParserRuleCall_3_1_0(), currentNode); 
             	    	    
-            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleItem3792);
+            	    pushFollow(FOLLOW_ruleTextOrMarkup_in_ruleItem4175);
             	    lv_contents_4_0=ruleTextOrMarkup();
             	    _fsp--;
 
@@ -5185,11 +5733,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop52;
+            	    break loop57;
                 }
             } while (true);
 
-            match(input,13,FOLLOW_13_in_ruleItem3804); 
+            match(input,11,FOLLOW_11_in_ruleItem4187); 
 
                     createLeafNode(grammarAccess.getItemAccess().getRightSquareBracketKeyword_4(), null); 
                 
@@ -5216,7 +5764,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleCodeRef
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2085:1: entryRuleCodeRef returns [EObject current=null] : iv_ruleCodeRef= ruleCodeRef EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2329:1: entryRuleCodeRef returns [EObject current=null] : iv_ruleCodeRef= ruleCodeRef EOF ;
     public final EObject entryRuleCodeRef() throws RecognitionException {
         EObject current = null;
 
@@ -5224,16 +5772,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2086:2: (iv_ruleCodeRef= ruleCodeRef EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2087:2: iv_ruleCodeRef= ruleCodeRef EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2330:2: (iv_ruleCodeRef= ruleCodeRef EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2331:2: iv_ruleCodeRef= ruleCodeRef EOF
             {
              currentNode = createCompositeNode(grammarAccess.getCodeRefRule(), currentNode); 
-            pushFollow(FOLLOW_ruleCodeRef_in_entryRuleCodeRef3840);
+            pushFollow(FOLLOW_ruleCodeRef_in_entryRuleCodeRef4223);
             iv_ruleCodeRef=ruleCodeRef();
             _fsp--;
 
              current =iv_ruleCodeRef; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCodeRef3850); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCodeRef4233); 
 
             }
 
@@ -5251,28 +5799,28 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleCodeRef
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2094:1: ruleCodeRef returns [EObject current=null] : ( 'codeRef[' ( ( ruleText ) ) ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2338:1: ruleCodeRef returns [EObject current=null] : ( 'codeRef[' ( ( ruleText ) ) ']' ) ;
     public final EObject ruleCodeRef() throws RecognitionException {
         EObject current = null;
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2099:6: ( ( 'codeRef[' ( ( ruleText ) ) ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2100:1: ( 'codeRef[' ( ( ruleText ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2343:6: ( ( 'codeRef[' ( ( ruleText ) ) ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2344:1: ( 'codeRef[' ( ( ruleText ) ) ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2100:1: ( 'codeRef[' ( ( ruleText ) ) ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2100:3: 'codeRef[' ( ( ruleText ) ) ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2344:1: ( 'codeRef[' ( ( ruleText ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2344:3: 'codeRef[' ( ( ruleText ) ) ']'
             {
-            match(input,33,FOLLOW_33_in_ruleCodeRef3885); 
+            match(input,38,FOLLOW_38_in_ruleCodeRef4268); 
 
                     createLeafNode(grammarAccess.getCodeRefAccess().getCodeRefKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2104:1: ( ( ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2105:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2348:1: ( ( ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2349:1: ( ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2105:1: ( ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2106:3: ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2349:1: ( ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2350:3: ruleText
             {
 
             			if (current==null) {
@@ -5283,7 +5831,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
              
             	        currentNode=createCompositeNode(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_1_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleCodeRef3908);
+            pushFollow(FOLLOW_ruleText_in_ruleCodeRef4291);
             ruleText();
             _fsp--;
 
@@ -5296,7 +5844,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleCodeRef3918); 
+            match(input,11,FOLLOW_11_in_ruleCodeRef4301); 
 
                     createLeafNode(grammarAccess.getCodeRefAccess().getRightSquareBracketKeyword_2(), null); 
                 
@@ -5323,7 +5871,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleLink
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2132:1: entryRuleLink returns [EObject current=null] : iv_ruleLink= ruleLink EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2376:1: entryRuleLink returns [EObject current=null] : iv_ruleLink= ruleLink EOF ;
     public final EObject entryRuleLink() throws RecognitionException {
         EObject current = null;
 
@@ -5331,16 +5879,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2133:2: (iv_ruleLink= ruleLink EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2134:2: iv_ruleLink= ruleLink EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2377:2: (iv_ruleLink= ruleLink EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2378:2: iv_ruleLink= ruleLink EOF
             {
              currentNode = createCompositeNode(grammarAccess.getLinkRule(), currentNode); 
-            pushFollow(FOLLOW_ruleLink_in_entryRuleLink3954);
+            pushFollow(FOLLOW_ruleLink_in_entryRuleLink4337);
             iv_ruleLink=ruleLink();
             _fsp--;
 
              current =iv_ruleLink; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleLink3964); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleLink4347); 
 
             }
 
@@ -5358,7 +5906,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleLink
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2141:1: ruleLink returns [EObject current=null] : ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2385:1: ruleLink returns [EObject current=null] : ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' ) ;
     public final EObject ruleLink() throws RecognitionException {
         EObject current = null;
 
@@ -5370,26 +5918,26 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2146:6: ( ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2147:1: ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2390:6: ( ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2391:1: ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2147:1: ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2147:3: 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2391:1: ( 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2391:3: 'link[' ( (lv_url_1_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_text_5_0= ruleText ) ) ']'
             {
-            match(input,34,FOLLOW_34_in_ruleLink3999); 
+            match(input,39,FOLLOW_39_in_ruleLink4382); 
 
                     createLeafNode(grammarAccess.getLinkAccess().getLinkKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2151:1: ( (lv_url_1_0= ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2152:1: (lv_url_1_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2395:1: ( (lv_url_1_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2396:1: (lv_url_1_0= ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2152:1: (lv_url_1_0= ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2153:3: lv_url_1_0= ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2396:1: (lv_url_1_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2397:3: lv_url_1_0= ruleText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getLinkAccess().getUrlTextParserRuleCall_1_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleLink4020);
+            pushFollow(FOLLOW_ruleText_in_ruleLink4403);
             lv_url_1_0=ruleText();
             _fsp--;
 
@@ -5416,29 +5964,29 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleLink4030); 
+            match(input,11,FOLLOW_11_in_ruleLink4413); 
 
                     createLeafNode(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_2(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2179:1: ( ruleANY_WS )*
-            loop53:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2423:1: ( ruleANY_WS )*
+            loop58:
             do {
-                int alt53=2;
-                int LA53_0 = input.LA(1);
+                int alt58=2;
+                int LA58_0 = input.LA(1);
 
-                if ( ((LA53_0>=RULE_WS && LA53_0<=RULE_MULTI_NL)||LA53_0==RULE_SINGLE_NL) ) {
-                    alt53=1;
+                if ( ((LA58_0>=RULE_WS && LA58_0<=RULE_MULTI_NL)||LA58_0==RULE_SINGLE_NL) ) {
+                    alt58=1;
                 }
 
 
-                switch (alt53) {
+                switch (alt58) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2180:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2424:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getLinkAccess().getANY_WSParserRuleCall_3(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleLink4047);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleLink4430);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -5450,24 +5998,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop53;
+            	    break loop58;
                 }
             } while (true);
 
-            match(input,11,FOLLOW_11_in_ruleLink4058); 
+            match(input,15,FOLLOW_15_in_ruleLink4441); 
 
                     createLeafNode(grammarAccess.getLinkAccess().getLeftSquareBracketKeyword_4(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2191:1: ( (lv_text_5_0= ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2192:1: (lv_text_5_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2435:1: ( (lv_text_5_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2436:1: (lv_text_5_0= ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2192:1: (lv_text_5_0= ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2193:3: lv_text_5_0= ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2436:1: (lv_text_5_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2437:3: lv_text_5_0= ruleText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getLinkAccess().getTextTextParserRuleCall_5_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleLink4079);
+            pushFollow(FOLLOW_ruleText_in_ruleLink4462);
             lv_text_5_0=ruleText();
             _fsp--;
 
@@ -5494,7 +6042,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleLink4089); 
+            match(input,11,FOLLOW_11_in_ruleLink4472); 
 
                     createLeafNode(grammarAccess.getLinkAccess().getRightSquareBracketKeyword_6(), null); 
                 
@@ -5521,7 +6069,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleImageRef
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2227:1: entryRuleImageRef returns [EObject current=null] : iv_ruleImageRef= ruleImageRef EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2471:1: entryRuleImageRef returns [EObject current=null] : iv_ruleImageRef= ruleImageRef EOF ;
     public final EObject entryRuleImageRef() throws RecognitionException {
         EObject current = null;
 
@@ -5529,16 +6077,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2228:2: (iv_ruleImageRef= ruleImageRef EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2229:2: iv_ruleImageRef= ruleImageRef EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2472:2: (iv_ruleImageRef= ruleImageRef EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2473:2: iv_ruleImageRef= ruleImageRef EOF
             {
              currentNode = createCompositeNode(grammarAccess.getImageRefRule(), currentNode); 
-            pushFollow(FOLLOW_ruleImageRef_in_entryRuleImageRef4125);
+            pushFollow(FOLLOW_ruleImageRef_in_entryRuleImageRef4508);
             iv_ruleImageRef=ruleImageRef();
             _fsp--;
 
              current =iv_ruleImageRef; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleImageRef4135); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleImageRef4518); 
 
             }
 
@@ -5556,7 +6104,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleImageRef
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2236:1: ruleImageRef returns [EObject current=null] : ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2480:1: ruleImageRef returns [EObject current=null] : ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' ) ;
     public final EObject ruleImageRef() throws RecognitionException {
         EObject current = null;
 
@@ -5573,58 +6121,58 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2241:6: ( ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2242:1: ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2485:6: ( ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2486:1: ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2242:1: ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2242:2: ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2486:1: ( ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2486:2: ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' ) ( (lv_path_6_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_clazz_10_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_style_14_0= ruleText ) ) ']' ( ruleANY_WS )* '[' ( (lv_caption_18_0= ruleText ) ) ']'
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2242:2: ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' )
-            int alt56=2;
-            int LA56_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2486:2: ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' )
+            int alt61=2;
+            int LA61_0 = input.LA(1);
 
-            if ( (LA56_0==35) ) {
-                alt56=1;
+            if ( (LA61_0==40) ) {
+                alt61=1;
             }
-            else if ( (LA56_0==36) ) {
-                alt56=2;
+            else if ( (LA61_0==41) ) {
+                alt61=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("2242:2: ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' )", 56, 0, input);
+                    new NoViableAltException("2486:2: ( ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' ) | 'img[' )", 61, 0, input);
 
                 throw nvae;
             }
-            switch (alt56) {
+            switch (alt61) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2242:3: ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2486:3: ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2242:3: ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2242:5: 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2486:3: ( 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '[' )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2486:5: 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* '['
                     {
-                    match(input,35,FOLLOW_35_in_ruleImageRef4172); 
+                    match(input,40,FOLLOW_40_in_ruleImageRef4555); 
 
                             createLeafNode(grammarAccess.getImageRefAccess().getImgKeyword_0_0_0(), null); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2246:1: ( ruleANY_WS )*
-                    loop54:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2490:1: ( ruleANY_WS )*
+                    loop59:
                     do {
-                        int alt54=2;
-                        int LA54_0 = input.LA(1);
+                        int alt59=2;
+                        int LA59_0 = input.LA(1);
 
-                        if ( ((LA54_0>=RULE_WS && LA54_0<=RULE_MULTI_NL)||LA54_0==RULE_SINGLE_NL) ) {
-                            alt54=1;
+                        if ( ((LA59_0>=RULE_WS && LA59_0<=RULE_MULTI_NL)||LA59_0==RULE_SINGLE_NL) ) {
+                            alt59=1;
                         }
 
 
-                        switch (alt54) {
+                        switch (alt59) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2247:5: ruleANY_WS
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2491:5: ruleANY_WS
                     	    {
                     	     
                     	            currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getANY_WSParserRuleCall_0_0_1(), currentNode); 
                     	        
-                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4189);
+                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4572);
                     	    ruleANY_WS();
                     	    _fsp--;
 
@@ -5636,18 +6184,18 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop54;
+                    	    break loop59;
                         }
                     } while (true);
 
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2254:3: ( (lv_name_2_0= RULE_ID ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2255:1: (lv_name_2_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2498:3: ( (lv_name_2_0= RULE_ID ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2499:1: (lv_name_2_0= RULE_ID )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2255:1: (lv_name_2_0= RULE_ID )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2256:3: lv_name_2_0= RULE_ID
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2499:1: (lv_name_2_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2500:3: lv_name_2_0= RULE_ID
                     {
                     lv_name_2_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleImageRef4207); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleImageRef4590); 
 
                     			createLeafNode(grammarAccess.getImageRefAccess().getNameIDTerminalRuleCall_0_0_2_0(), "name"); 
                     		
@@ -5673,25 +6221,25 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2278:2: ( ruleANY_WS )*
-                    loop55:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2522:2: ( ruleANY_WS )*
+                    loop60:
                     do {
-                        int alt55=2;
-                        int LA55_0 = input.LA(1);
+                        int alt60=2;
+                        int LA60_0 = input.LA(1);
 
-                        if ( ((LA55_0>=RULE_WS && LA55_0<=RULE_MULTI_NL)||LA55_0==RULE_SINGLE_NL) ) {
-                            alt55=1;
+                        if ( ((LA60_0>=RULE_WS && LA60_0<=RULE_MULTI_NL)||LA60_0==RULE_SINGLE_NL) ) {
+                            alt60=1;
                         }
 
 
-                        switch (alt55) {
+                        switch (alt60) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2279:5: ruleANY_WS
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2523:5: ruleANY_WS
                     	    {
                     	     
                     	            currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getANY_WSParserRuleCall_0_0_3(), currentNode); 
                     	        
-                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4229);
+                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4612);
                     	    ruleANY_WS();
                     	    _fsp--;
 
@@ -5703,11 +6251,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop55;
+                    	    break loop60;
                         }
                     } while (true);
 
-                    match(input,11,FOLLOW_11_in_ruleImageRef4240); 
+                    match(input,15,FOLLOW_15_in_ruleImageRef4623); 
 
                             createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_0_0_4(), null); 
                         
@@ -5718,9 +6266,9 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2291:7: 'img['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2535:7: 'img['
                     {
-                    match(input,36,FOLLOW_36_in_ruleImageRef4257); 
+                    match(input,41,FOLLOW_41_in_ruleImageRef4640); 
 
                             createLeafNode(grammarAccess.getImageRefAccess().getImgKeyword_0_1(), null); 
                         
@@ -5730,16 +6278,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2295:2: ( (lv_path_6_0= ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2296:1: (lv_path_6_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2539:2: ( (lv_path_6_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2540:1: (lv_path_6_0= ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2296:1: (lv_path_6_0= ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2297:3: lv_path_6_0= ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2540:1: (lv_path_6_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2541:3: lv_path_6_0= ruleText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getPathTextParserRuleCall_1_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleImageRef4279);
+            pushFollow(FOLLOW_ruleText_in_ruleImageRef4662);
             lv_path_6_0=ruleText();
             _fsp--;
 
@@ -5766,29 +6314,29 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleImageRef4289); 
+            match(input,11,FOLLOW_11_in_ruleImageRef4672); 
 
                     createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_2(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2323:1: ( ruleANY_WS )*
-            loop57:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2567:1: ( ruleANY_WS )*
+            loop62:
             do {
-                int alt57=2;
-                int LA57_0 = input.LA(1);
+                int alt62=2;
+                int LA62_0 = input.LA(1);
 
-                if ( ((LA57_0>=RULE_WS && LA57_0<=RULE_MULTI_NL)||LA57_0==RULE_SINGLE_NL) ) {
-                    alt57=1;
+                if ( ((LA62_0>=RULE_WS && LA62_0<=RULE_MULTI_NL)||LA62_0==RULE_SINGLE_NL) ) {
+                    alt62=1;
                 }
 
 
-                switch (alt57) {
+                switch (alt62) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2324:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2568:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getANY_WSParserRuleCall_3(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4306);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4689);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -5800,24 +6348,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop57;
+            	    break loop62;
                 }
             } while (true);
 
-            match(input,11,FOLLOW_11_in_ruleImageRef4317); 
+            match(input,15,FOLLOW_15_in_ruleImageRef4700); 
 
                     createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_4(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2335:1: ( (lv_clazz_10_0= ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2336:1: (lv_clazz_10_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2579:1: ( (lv_clazz_10_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2580:1: (lv_clazz_10_0= ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2336:1: (lv_clazz_10_0= ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2337:3: lv_clazz_10_0= ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2580:1: (lv_clazz_10_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2581:3: lv_clazz_10_0= ruleText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_5_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleImageRef4338);
+            pushFollow(FOLLOW_ruleText_in_ruleImageRef4721);
             lv_clazz_10_0=ruleText();
             _fsp--;
 
@@ -5844,29 +6392,29 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleImageRef4348); 
+            match(input,11,FOLLOW_11_in_ruleImageRef4731); 
 
                     createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_6(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2363:1: ( ruleANY_WS )*
-            loop58:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2607:1: ( ruleANY_WS )*
+            loop63:
             do {
-                int alt58=2;
-                int LA58_0 = input.LA(1);
+                int alt63=2;
+                int LA63_0 = input.LA(1);
 
-                if ( ((LA58_0>=RULE_WS && LA58_0<=RULE_MULTI_NL)||LA58_0==RULE_SINGLE_NL) ) {
-                    alt58=1;
+                if ( ((LA63_0>=RULE_WS && LA63_0<=RULE_MULTI_NL)||LA63_0==RULE_SINGLE_NL) ) {
+                    alt63=1;
                 }
 
 
-                switch (alt58) {
+                switch (alt63) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2364:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2608:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getANY_WSParserRuleCall_7(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4365);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4748);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -5878,24 +6426,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop58;
+            	    break loop63;
                 }
             } while (true);
 
-            match(input,11,FOLLOW_11_in_ruleImageRef4376); 
+            match(input,15,FOLLOW_15_in_ruleImageRef4759); 
 
                     createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_8(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2375:1: ( (lv_style_14_0= ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2376:1: (lv_style_14_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2619:1: ( (lv_style_14_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2620:1: (lv_style_14_0= ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2376:1: (lv_style_14_0= ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2377:3: lv_style_14_0= ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2620:1: (lv_style_14_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2621:3: lv_style_14_0= ruleText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleImageRef4397);
+            pushFollow(FOLLOW_ruleText_in_ruleImageRef4780);
             lv_style_14_0=ruleText();
             _fsp--;
 
@@ -5922,29 +6470,29 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleImageRef4407); 
+            match(input,11,FOLLOW_11_in_ruleImageRef4790); 
 
                     createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_10(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2403:1: ( ruleANY_WS )*
-            loop59:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2647:1: ( ruleANY_WS )*
+            loop64:
             do {
-                int alt59=2;
-                int LA59_0 = input.LA(1);
+                int alt64=2;
+                int LA64_0 = input.LA(1);
 
-                if ( ((LA59_0>=RULE_WS && LA59_0<=RULE_MULTI_NL)||LA59_0==RULE_SINGLE_NL) ) {
-                    alt59=1;
+                if ( ((LA64_0>=RULE_WS && LA64_0<=RULE_MULTI_NL)||LA64_0==RULE_SINGLE_NL) ) {
+                    alt64=1;
                 }
 
 
-                switch (alt59) {
+                switch (alt64) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2404:5: ruleANY_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2648:5: ruleANY_WS
             	    {
             	     
             	            currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getANY_WSParserRuleCall_11(), currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4424);
+            	    pushFollow(FOLLOW_ruleANY_WS_in_ruleImageRef4807);
             	    ruleANY_WS();
             	    _fsp--;
 
@@ -5956,24 +6504,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop59;
+            	    break loop64;
                 }
             } while (true);
 
-            match(input,11,FOLLOW_11_in_ruleImageRef4435); 
+            match(input,15,FOLLOW_15_in_ruleImageRef4818); 
 
                     createLeafNode(grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_12(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2415:1: ( (lv_caption_18_0= ruleText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2416:1: (lv_caption_18_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2659:1: ( (lv_caption_18_0= ruleText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2660:1: (lv_caption_18_0= ruleText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2416:1: (lv_caption_18_0= ruleText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2417:3: lv_caption_18_0= ruleText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2660:1: (lv_caption_18_0= ruleText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2661:3: lv_caption_18_0= ruleText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_13_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleText_in_ruleImageRef4456);
+            pushFollow(FOLLOW_ruleText_in_ruleImageRef4839);
             lv_caption_18_0=ruleText();
             _fsp--;
 
@@ -6000,7 +6548,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleImageRef4466); 
+            match(input,11,FOLLOW_11_in_ruleImageRef4849); 
 
                     createLeafNode(grammarAccess.getImageRefAccess().getRightSquareBracketKeyword_14(), null); 
                 
@@ -6027,7 +6575,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleCodeBlock
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2451:1: entryRuleCodeBlock returns [EObject current=null] : iv_ruleCodeBlock= ruleCodeBlock EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2695:1: entryRuleCodeBlock returns [EObject current=null] : iv_ruleCodeBlock= ruleCodeBlock EOF ;
     public final EObject entryRuleCodeBlock() throws RecognitionException {
         EObject current = null;
 
@@ -6035,16 +6583,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2452:2: (iv_ruleCodeBlock= ruleCodeBlock EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2453:2: iv_ruleCodeBlock= ruleCodeBlock EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2696:2: (iv_ruleCodeBlock= ruleCodeBlock EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2697:2: iv_ruleCodeBlock= ruleCodeBlock EOF
             {
              currentNode = createCompositeNode(grammarAccess.getCodeBlockRule(), currentNode); 
-            pushFollow(FOLLOW_ruleCodeBlock_in_entryRuleCodeBlock4502);
+            pushFollow(FOLLOW_ruleCodeBlock_in_entryRuleCodeBlock4885);
             iv_ruleCodeBlock=ruleCodeBlock();
             _fsp--;
 
              current =iv_ruleCodeBlock; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCodeBlock4512); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCodeBlock4895); 
 
             }
 
@@ -6062,7 +6610,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleCodeBlock
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2460:1: ruleCodeBlock returns [EObject current=null] : ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2704:1: ruleCodeBlock returns [EObject current=null] : ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' ) ;
     public final EObject ruleCodeBlock() throws RecognitionException {
         EObject current = null;
 
@@ -6081,42 +6629,42 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2465:6: ( ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2466:1: ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2709:6: ( ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2710:1: ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2466:1: ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2466:3: 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2710:1: ( 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2710:3: 'code[' ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )? ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ ) ']'
             {
-            match(input,37,FOLLOW_37_in_ruleCodeBlock4547); 
+            match(input,42,FOLLOW_42_in_ruleCodeBlock4930); 
 
                     createLeafNode(grammarAccess.getCodeBlockAccess().getCodeKeyword_0(), null); 
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2470:1: ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )?
-            int alt63=2;
-            alt63 = dfa63.predict(input);
-            switch (alt63) {
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2714:1: ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )?
+            int alt68=2;
+            alt68 = dfa68.predict(input);
+            switch (alt68) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2470:2: ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '['
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2714:2: ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '['
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2470:2: ( ruleANY_WS )*
-                    loop60:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2714:2: ( ruleANY_WS )*
+                    loop65:
                     do {
-                        int alt60=2;
-                        int LA60_0 = input.LA(1);
+                        int alt65=2;
+                        int LA65_0 = input.LA(1);
 
-                        if ( ((LA60_0>=RULE_WS && LA60_0<=RULE_MULTI_NL)||LA60_0==RULE_SINGLE_NL) ) {
-                            alt60=1;
+                        if ( ((LA65_0>=RULE_WS && LA65_0<=RULE_MULTI_NL)||LA65_0==RULE_SINGLE_NL) ) {
+                            alt65=1;
                         }
 
 
-                        switch (alt60) {
+                        switch (alt65) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2471:5: ruleANY_WS
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2715:5: ruleANY_WS
                     	    {
                     	     
                     	            currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getANY_WSParserRuleCall_1_0(), currentNode); 
                     	        
-                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleCodeBlock4565);
+                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleCodeBlock4948);
                     	    ruleANY_WS();
                     	    _fsp--;
 
@@ -6128,18 +6676,18 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop60;
+                    	    break loop65;
                         }
                     } while (true);
 
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2478:3: ( (lv_language_2_0= RULE_ID ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2479:1: (lv_language_2_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2722:3: ( (lv_language_2_0= RULE_ID ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2723:1: (lv_language_2_0= RULE_ID )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2479:1: (lv_language_2_0= RULE_ID )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2480:3: lv_language_2_0= RULE_ID
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2723:1: (lv_language_2_0= RULE_ID )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2724:3: lv_language_2_0= RULE_ID
                     {
                     lv_language_2_0=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCodeBlock4583); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCodeBlock4966); 
 
                     			createLeafNode(grammarAccess.getCodeBlockAccess().getLanguageIDTerminalRuleCall_1_1_0(), "language"); 
                     		
@@ -6165,25 +6713,25 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2502:2: ( ruleANY_WS )*
-                    loop61:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2746:2: ( ruleANY_WS )*
+                    loop66:
                     do {
-                        int alt61=2;
-                        int LA61_0 = input.LA(1);
+                        int alt66=2;
+                        int LA66_0 = input.LA(1);
 
-                        if ( ((LA61_0>=RULE_WS && LA61_0<=RULE_MULTI_NL)||LA61_0==RULE_SINGLE_NL) ) {
-                            alt61=1;
+                        if ( ((LA66_0>=RULE_WS && LA66_0<=RULE_MULTI_NL)||LA66_0==RULE_SINGLE_NL) ) {
+                            alt66=1;
                         }
 
 
-                        switch (alt61) {
+                        switch (alt66) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2503:5: ruleANY_WS
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2747:5: ruleANY_WS
                     	    {
                     	     
                     	            currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getANY_WSParserRuleCall_1_2(), currentNode); 
                     	        
-                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleCodeBlock4605);
+                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleCodeBlock4988);
                     	    ruleANY_WS();
                     	    _fsp--;
 
@@ -6195,33 +6743,33 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop61;
+                    	    break loop66;
                         }
                     } while (true);
 
-                    match(input,13,FOLLOW_13_in_ruleCodeBlock4616); 
+                    match(input,11,FOLLOW_11_in_ruleCodeBlock4999); 
 
                             createLeafNode(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_1_3(), null); 
                         
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2514:1: ( ruleANY_WS )*
-                    loop62:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2758:1: ( ruleANY_WS )*
+                    loop67:
                     do {
-                        int alt62=2;
-                        int LA62_0 = input.LA(1);
+                        int alt67=2;
+                        int LA67_0 = input.LA(1);
 
-                        if ( ((LA62_0>=RULE_WS && LA62_0<=RULE_MULTI_NL)||LA62_0==RULE_SINGLE_NL) ) {
-                            alt62=1;
+                        if ( ((LA67_0>=RULE_WS && LA67_0<=RULE_MULTI_NL)||LA67_0==RULE_SINGLE_NL) ) {
+                            alt67=1;
                         }
 
 
-                        switch (alt62) {
+                        switch (alt67) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2515:5: ruleANY_WS
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2759:5: ruleANY_WS
                     	    {
                     	     
                     	            currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getANY_WSParserRuleCall_1_4(), currentNode); 
                     	        
-                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleCodeBlock4633);
+                    	    pushFollow(FOLLOW_ruleANY_WS_in_ruleCodeBlock5016);
                     	    ruleANY_WS();
                     	    _fsp--;
 
@@ -6233,11 +6781,11 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop62;
+                    	    break loop67;
                         }
                     } while (true);
 
-                    match(input,11,FOLLOW_11_in_ruleCodeBlock4644); 
+                    match(input,15,FOLLOW_15_in_ruleCodeBlock5027); 
 
                             createLeafNode(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_1_5(), null); 
                         
@@ -6247,39 +6795,39 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2526:3: ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ )
-            int alt68=2;
-            int LA68_0 = input.LA(1);
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2770:3: ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ )
+            int alt73=2;
+            int LA73_0 = input.LA(1);
 
-            if ( ((LA68_0>=RULE_WS && LA68_0<=RULE_ANY_OTHER)||(LA68_0>=22 && LA68_0<=23)) ) {
-                alt68=1;
+            if ( ((LA73_0>=RULE_WS && LA73_0<=RULE_ANY_OTHER)||(LA73_0>=27 && LA73_0<=28)) ) {
+                alt73=1;
             }
-            else if ( ((LA68_0>=27 && LA68_0<=29)) ) {
-                alt68=2;
+            else if ( ((LA73_0>=32 && LA73_0<=34)) ) {
+                alt73=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("2526:3: ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ )", 68, 0, input);
+                    new NoViableAltException("2770:3: ( ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* ) | ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+ )", 73, 0, input);
 
                 throw nvae;
             }
-            switch (alt68) {
+            switch (alt73) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2526:4: ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2770:4: ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2526:4: ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2526:5: ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )*
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2770:4: ( ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )* )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2770:5: ( (lv_contents_7_0= ruleCode ) ) ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )*
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2526:5: ( (lv_contents_7_0= ruleCode ) )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2527:1: (lv_contents_7_0= ruleCode )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2770:5: ( (lv_contents_7_0= ruleCode ) )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2771:1: (lv_contents_7_0= ruleCode )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2527:1: (lv_contents_7_0= ruleCode )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2528:3: lv_contents_7_0= ruleCode
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2771:1: (lv_contents_7_0= ruleCode )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2772:3: lv_contents_7_0= ruleCode
                     {
                      
                     	        currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_2_0_0_0(), currentNode); 
                     	    
-                    pushFollow(FOLLOW_ruleCode_in_ruleCodeBlock4669);
+                    pushFollow(FOLLOW_ruleCode_in_ruleCodeBlock5052);
                     lv_contents_7_0=ruleCode();
                     _fsp--;
 
@@ -6306,31 +6854,31 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2550:2: ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )*
-                    loop65:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2794:2: ( ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )? )*
+                    loop70:
                     do {
-                        int alt65=2;
-                        int LA65_0 = input.LA(1);
+                        int alt70=2;
+                        int LA70_0 = input.LA(1);
 
-                        if ( ((LA65_0>=27 && LA65_0<=29)) ) {
-                            alt65=1;
+                        if ( ((LA70_0>=32 && LA70_0<=34)) ) {
+                            alt70=1;
                         }
 
 
-                        switch (alt65) {
+                        switch (alt70) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2550:3: ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )?
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2794:3: ( (lv_contents_8_0= ruleMarkupInCode ) ) ( (lv_contents_9_0= ruleCode ) )?
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2550:3: ( (lv_contents_8_0= ruleMarkupInCode ) )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2551:1: (lv_contents_8_0= ruleMarkupInCode )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2794:3: ( (lv_contents_8_0= ruleMarkupInCode ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2795:1: (lv_contents_8_0= ruleMarkupInCode )
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2551:1: (lv_contents_8_0= ruleMarkupInCode )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2552:3: lv_contents_8_0= ruleMarkupInCode
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2795:1: (lv_contents_8_0= ruleMarkupInCode )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2796:3: lv_contents_8_0= ruleMarkupInCode
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getContentsMarkupInCodeParserRuleCall_2_0_1_0_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4691);
+                    	    pushFollow(FOLLOW_ruleMarkupInCode_in_ruleCodeBlock5074);
                     	    lv_contents_8_0=ruleMarkupInCode();
                     	    _fsp--;
 
@@ -6357,24 +6905,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2574:2: ( (lv_contents_9_0= ruleCode ) )?
-                    	    int alt64=2;
-                    	    int LA64_0 = input.LA(1);
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2818:2: ( (lv_contents_9_0= ruleCode ) )?
+                    	    int alt69=2;
+                    	    int LA69_0 = input.LA(1);
 
-                    	    if ( ((LA64_0>=RULE_WS && LA64_0<=RULE_ANY_OTHER)||(LA64_0>=22 && LA64_0<=23)) ) {
-                    	        alt64=1;
+                    	    if ( ((LA69_0>=RULE_WS && LA69_0<=RULE_ANY_OTHER)||(LA69_0>=27 && LA69_0<=28)) ) {
+                    	        alt69=1;
                     	    }
-                    	    switch (alt64) {
+                    	    switch (alt69) {
                     	        case 1 :
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2575:1: (lv_contents_9_0= ruleCode )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2819:1: (lv_contents_9_0= ruleCode )
                     	            {
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2575:1: (lv_contents_9_0= ruleCode )
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2576:3: lv_contents_9_0= ruleCode
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2819:1: (lv_contents_9_0= ruleCode )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2820:3: lv_contents_9_0= ruleCode
                     	            {
                     	             
                     	            	        currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_2_0_1_1_0(), currentNode); 
                     	            	    
-                    	            pushFollow(FOLLOW_ruleCode_in_ruleCodeBlock4712);
+                    	            pushFollow(FOLLOW_ruleCode_in_ruleCodeBlock5095);
                     	            lv_contents_9_0=ruleCode();
                     	            _fsp--;
 
@@ -6409,7 +6957,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    break loop65;
+                    	    break loop70;
                         }
                     } while (true);
 
@@ -6420,34 +6968,34 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2599:6: ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2843:6: ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2599:6: ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+
-                    int cnt67=0;
-                    loop67:
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2843:6: ( ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )? )+
+                    int cnt72=0;
+                    loop72:
                     do {
-                        int alt67=2;
-                        int LA67_0 = input.LA(1);
+                        int alt72=2;
+                        int LA72_0 = input.LA(1);
 
-                        if ( ((LA67_0>=27 && LA67_0<=29)) ) {
-                            alt67=1;
+                        if ( ((LA72_0>=32 && LA72_0<=34)) ) {
+                            alt72=1;
                         }
 
 
-                        switch (alt67) {
+                        switch (alt72) {
                     	case 1 :
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2599:7: ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )?
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2843:7: ( (lv_contents_10_0= ruleMarkupInCode ) ) ( (lv_contents_11_0= ruleCode ) )?
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2599:7: ( (lv_contents_10_0= ruleMarkupInCode ) )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2600:1: (lv_contents_10_0= ruleMarkupInCode )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2843:7: ( (lv_contents_10_0= ruleMarkupInCode ) )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2844:1: (lv_contents_10_0= ruleMarkupInCode )
                     	    {
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2600:1: (lv_contents_10_0= ruleMarkupInCode )
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2601:3: lv_contents_10_0= ruleMarkupInCode
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2844:1: (lv_contents_10_0= ruleMarkupInCode )
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2845:3: lv_contents_10_0= ruleMarkupInCode
                     	    {
                     	     
                     	    	        currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getContentsMarkupInCodeParserRuleCall_2_1_0_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4744);
+                    	    pushFollow(FOLLOW_ruleMarkupInCode_in_ruleCodeBlock5127);
                     	    lv_contents_10_0=ruleMarkupInCode();
                     	    _fsp--;
 
@@ -6474,24 +7022,24 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
                     	    }
 
-                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2623:2: ( (lv_contents_11_0= ruleCode ) )?
-                    	    int alt66=2;
-                    	    int LA66_0 = input.LA(1);
+                    	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2867:2: ( (lv_contents_11_0= ruleCode ) )?
+                    	    int alt71=2;
+                    	    int LA71_0 = input.LA(1);
 
-                    	    if ( ((LA66_0>=RULE_WS && LA66_0<=RULE_ANY_OTHER)||(LA66_0>=22 && LA66_0<=23)) ) {
-                    	        alt66=1;
+                    	    if ( ((LA71_0>=RULE_WS && LA71_0<=RULE_ANY_OTHER)||(LA71_0>=27 && LA71_0<=28)) ) {
+                    	        alt71=1;
                     	    }
-                    	    switch (alt66) {
+                    	    switch (alt71) {
                     	        case 1 :
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2624:1: (lv_contents_11_0= ruleCode )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2868:1: (lv_contents_11_0= ruleCode )
                     	            {
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2624:1: (lv_contents_11_0= ruleCode )
-                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2625:3: lv_contents_11_0= ruleCode
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2868:1: (lv_contents_11_0= ruleCode )
+                    	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2869:3: lv_contents_11_0= ruleCode
                     	            {
                     	             
                     	            	        currentNode=createCompositeNode(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_2_1_1_0(), currentNode); 
                     	            	    
-                    	            pushFollow(FOLLOW_ruleCode_in_ruleCodeBlock4765);
+                    	            pushFollow(FOLLOW_ruleCode_in_ruleCodeBlock5148);
                     	            lv_contents_11_0=ruleCode();
                     	            _fsp--;
 
@@ -6526,12 +7074,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     	    break;
 
                     	default :
-                    	    if ( cnt67 >= 1 ) break loop67;
+                    	    if ( cnt72 >= 1 ) break loop72;
                                 EarlyExitException eee =
-                                    new EarlyExitException(67, input);
+                                    new EarlyExitException(72, input);
                                 throw eee;
                         }
-                        cnt67++;
+                        cnt72++;
                     } while (true);
 
 
@@ -6540,7 +7088,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,13,FOLLOW_13_in_ruleCodeBlock4779); 
+            match(input,11,FOLLOW_11_in_ruleCodeBlock5162); 
 
                     createLeafNode(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_3(), null); 
                 
@@ -6567,7 +7115,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleCode
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2659:1: entryRuleCode returns [EObject current=null] : iv_ruleCode= ruleCode EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2903:1: entryRuleCode returns [EObject current=null] : iv_ruleCode= ruleCode EOF ;
     public final EObject entryRuleCode() throws RecognitionException {
         EObject current = null;
 
@@ -6575,16 +7123,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2660:2: (iv_ruleCode= ruleCode EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2661:2: iv_ruleCode= ruleCode EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2904:2: (iv_ruleCode= ruleCode EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2905:2: iv_ruleCode= ruleCode EOF
             {
              currentNode = createCompositeNode(grammarAccess.getCodeRule(), currentNode); 
-            pushFollow(FOLLOW_ruleCode_in_entryRuleCode4815);
+            pushFollow(FOLLOW_ruleCode_in_entryRuleCode5198);
             iv_ruleCode=ruleCode();
             _fsp--;
 
              current =iv_ruleCode; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCode4825); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCode5208); 
 
             }
 
@@ -6602,7 +7150,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleCode
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2668:1: ruleCode returns [EObject current=null] : ( (lv_contents_0_0= ruleCodeText ) ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2912:1: ruleCode returns [EObject current=null] : ( (lv_contents_0_0= ruleCodeText ) ) ;
     public final EObject ruleCode() throws RecognitionException {
         EObject current = null;
 
@@ -6612,19 +7160,19 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2673:6: ( ( (lv_contents_0_0= ruleCodeText ) ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2674:1: ( (lv_contents_0_0= ruleCodeText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2917:6: ( ( (lv_contents_0_0= ruleCodeText ) ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2918:1: ( (lv_contents_0_0= ruleCodeText ) )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2674:1: ( (lv_contents_0_0= ruleCodeText ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2675:1: (lv_contents_0_0= ruleCodeText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2918:1: ( (lv_contents_0_0= ruleCodeText ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2919:1: (lv_contents_0_0= ruleCodeText )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2675:1: (lv_contents_0_0= ruleCodeText )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2676:3: lv_contents_0_0= ruleCodeText
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2919:1: (lv_contents_0_0= ruleCodeText )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2920:3: lv_contents_0_0= ruleCodeText
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getCodeAccess().getContentsCodeTextParserRuleCall_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleCodeText_in_ruleCode4870);
+            pushFollow(FOLLOW_ruleCodeText_in_ruleCode5253);
             lv_contents_0_0=ruleCodeText();
             _fsp--;
 
@@ -6671,7 +7219,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleMarkupInCode
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2706:1: entryRuleMarkupInCode returns [EObject current=null] : iv_ruleMarkupInCode= ruleMarkupInCode EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2950:1: entryRuleMarkupInCode returns [EObject current=null] : iv_ruleMarkupInCode= ruleMarkupInCode EOF ;
     public final EObject entryRuleMarkupInCode() throws RecognitionException {
         EObject current = null;
 
@@ -6679,16 +7227,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2707:2: (iv_ruleMarkupInCode= ruleMarkupInCode EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2708:2: iv_ruleMarkupInCode= ruleMarkupInCode EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2951:2: (iv_ruleMarkupInCode= ruleMarkupInCode EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2952:2: iv_ruleMarkupInCode= ruleMarkupInCode EOF
             {
              currentNode = createCompositeNode(grammarAccess.getMarkupInCodeRule(), currentNode); 
-            pushFollow(FOLLOW_ruleMarkupInCode_in_entryRuleMarkupInCode4905);
+            pushFollow(FOLLOW_ruleMarkupInCode_in_entryRuleMarkupInCode5288);
             iv_ruleMarkupInCode=ruleMarkupInCode();
             _fsp--;
 
              current =iv_ruleMarkupInCode; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleMarkupInCode4915); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleMarkupInCode5298); 
 
             }
 
@@ -6706,7 +7254,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleMarkupInCode
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2715:1: ruleMarkupInCode returns [EObject current=null] : (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2959:1: ruleMarkupInCode returns [EObject current=null] : (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef ) ;
     public final EObject ruleMarkupInCode() throws RecognitionException {
         EObject current = null;
 
@@ -6720,42 +7268,42 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2720:6: ( (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2721:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2964:6: ( (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2965:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2721:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef )
-            int alt69=3;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2965:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef )
+            int alt74=3;
             switch ( input.LA(1) ) {
-            case 27:
+            case 32:
                 {
-                alt69=1;
+                alt74=1;
                 }
                 break;
-            case 28:
+            case 33:
                 {
-                alt69=2;
+                alt74=2;
                 }
                 break;
-            case 29:
+            case 34:
                 {
-                alt69=3;
+                alt74=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2721:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef )", 69, 0, input);
+                    new NoViableAltException("2965:1: (this_Emphasize_0= ruleEmphasize | this_Anchor_1= ruleAnchor | this_Ref_2= ruleRef )", 74, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt69) {
+            switch (alt74) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2722:5: this_Emphasize_0= ruleEmphasize
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2966:5: this_Emphasize_0= ruleEmphasize
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkupInCodeAccess().getEmphasizeParserRuleCall_0(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleEmphasize_in_ruleMarkupInCode4962);
+                    pushFollow(FOLLOW_ruleEmphasize_in_ruleMarkupInCode5345);
                     this_Emphasize_0=ruleEmphasize();
                     _fsp--;
 
@@ -6767,12 +7315,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2732:5: this_Anchor_1= ruleAnchor
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2976:5: this_Anchor_1= ruleAnchor
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkupInCodeAccess().getAnchorParserRuleCall_1(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleAnchor_in_ruleMarkupInCode4989);
+                    pushFollow(FOLLOW_ruleAnchor_in_ruleMarkupInCode5372);
                     this_Anchor_1=ruleAnchor();
                     _fsp--;
 
@@ -6784,12 +7332,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2742:5: this_Ref_2= ruleRef
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2986:5: this_Ref_2= ruleRef
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getMarkupInCodeAccess().getRefParserRuleCall_2(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleRef_in_ruleMarkupInCode5016);
+                    pushFollow(FOLLOW_ruleRef_in_ruleMarkupInCode5399);
                     this_Ref_2=ruleRef();
                     _fsp--;
 
@@ -6823,7 +7371,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleCodeText
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2758:1: entryRuleCodeText returns [String current=null] : iv_ruleCodeText= ruleCodeText EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3002:1: entryRuleCodeText returns [String current=null] : iv_ruleCodeText= ruleCodeText EOF ;
     public final String entryRuleCodeText() throws RecognitionException {
         String current = null;
 
@@ -6831,16 +7379,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2759:2: (iv_ruleCodeText= ruleCodeText EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2760:2: iv_ruleCodeText= ruleCodeText EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3003:2: (iv_ruleCodeText= ruleCodeText EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3004:2: iv_ruleCodeText= ruleCodeText EOF
             {
              currentNode = createCompositeNode(grammarAccess.getCodeTextRule(), currentNode); 
-            pushFollow(FOLLOW_ruleCodeText_in_entryRuleCodeText5052);
+            pushFollow(FOLLOW_ruleCodeText_in_entryRuleCodeText5435);
             iv_ruleCodeText=ruleCodeText();
             _fsp--;
 
              current =iv_ruleCodeText.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCodeText5063); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleCodeText5446); 
 
             }
 
@@ -6858,7 +7406,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleCodeText
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2767:1: ruleCodeText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3011:1: ruleCodeText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ ;
     public final AntlrDatatypeRuleToken ruleCodeText() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -6872,59 +7420,59 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2772:6: ( (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2773:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3016:6: ( (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+ )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3017:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2773:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
-            int cnt70=0;
-            loop70:
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3017:1: (this_ID_0= RULE_ID | this_MULTI_NL_1= RULE_MULTI_NL | this_WS_2= RULE_WS | this_SINGLE_NL_3= RULE_SINGLE_NL | this_ANY_OTHER_4= RULE_ANY_OTHER | kw= '\\\\[' | kw= '\\\\]' )+
+            int cnt75=0;
+            loop75:
             do {
-                int alt70=8;
+                int alt75=8;
                 switch ( input.LA(1) ) {
                 case RULE_ID:
                     {
-                    alt70=1;
+                    alt75=1;
                     }
                     break;
                 case RULE_MULTI_NL:
                     {
-                    alt70=2;
+                    alt75=2;
                     }
                     break;
                 case RULE_WS:
                     {
-                    alt70=3;
+                    alt75=3;
                     }
                     break;
                 case RULE_SINGLE_NL:
                     {
-                    alt70=4;
+                    alt75=4;
                     }
                     break;
                 case RULE_ANY_OTHER:
                     {
-                    alt70=5;
+                    alt75=5;
                     }
                     break;
-                case 22:
+                case 27:
                     {
-                    alt70=6;
+                    alt75=6;
                     }
                     break;
-                case 23:
+                case 28:
                     {
-                    alt70=7;
+                    alt75=7;
                     }
                     break;
 
                 }
 
-                switch (alt70) {
+                switch (alt75) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2773:6: this_ID_0= RULE_ID
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3017:6: this_ID_0= RULE_ID
             	    {
             	    this_ID_0=(Token)input.LT(1);
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCodeText5103); 
+            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleCodeText5486); 
 
             	    		current.merge(this_ID_0);
             	        
@@ -6935,10 +7483,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 2 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2781:10: this_MULTI_NL_1= RULE_MULTI_NL
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3025:10: this_MULTI_NL_1= RULE_MULTI_NL
             	    {
             	    this_MULTI_NL_1=(Token)input.LT(1);
-            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleCodeText5129); 
+            	    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleCodeText5512); 
 
             	    		current.merge(this_MULTI_NL_1);
             	        
@@ -6949,10 +7497,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 3 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2789:10: this_WS_2= RULE_WS
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3033:10: this_WS_2= RULE_WS
             	    {
             	    this_WS_2=(Token)input.LT(1);
-            	    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleCodeText5155); 
+            	    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleCodeText5538); 
 
             	    		current.merge(this_WS_2);
             	        
@@ -6963,10 +7511,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 4 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2797:10: this_SINGLE_NL_3= RULE_SINGLE_NL
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3041:10: this_SINGLE_NL_3= RULE_SINGLE_NL
             	    {
             	    this_SINGLE_NL_3=(Token)input.LT(1);
-            	    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleCodeText5181); 
+            	    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleCodeText5564); 
 
             	    		current.merge(this_SINGLE_NL_3);
             	        
@@ -6977,10 +7525,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 5 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2805:10: this_ANY_OTHER_4= RULE_ANY_OTHER
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3049:10: this_ANY_OTHER_4= RULE_ANY_OTHER
             	    {
             	    this_ANY_OTHER_4=(Token)input.LT(1);
-            	    match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_ruleCodeText5207); 
+            	    match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_ruleCodeText5590); 
 
             	    		current.merge(this_ANY_OTHER_4);
             	        
@@ -6991,10 +7539,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 6 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2814:2: kw= '\\\\['
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3058:2: kw= '\\\\['
             	    {
             	    kw=(Token)input.LT(1);
-            	    match(input,22,FOLLOW_22_in_ruleCodeText5231); 
+            	    match(input,27,FOLLOW_27_in_ruleCodeText5614); 
 
             	            current.merge(kw);
             	            createLeafNode(grammarAccess.getCodeTextAccess().getReverseSolidusLeftSquareBracketKeyword_5(), null); 
@@ -7003,10 +7551,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    }
             	    break;
             	case 7 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2821:2: kw= '\\\\]'
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3065:2: kw= '\\\\]'
             	    {
             	    kw=(Token)input.LT(1);
-            	    match(input,23,FOLLOW_23_in_ruleCodeText5250); 
+            	    match(input,28,FOLLOW_28_in_ruleCodeText5633); 
 
             	            current.merge(kw);
             	            createLeafNode(grammarAccess.getCodeTextAccess().getReverseSolidusRightSquareBracketKeyword_6(), null); 
@@ -7016,12 +7564,12 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    if ( cnt70 >= 1 ) break loop70;
+            	    if ( cnt75 >= 1 ) break loop75;
                         EarlyExitException eee =
-                            new EarlyExitException(70, input);
+                            new EarlyExitException(75, input);
                         throw eee;
                 }
-                cnt70++;
+                cnt75++;
             } while (true);
 
 
@@ -7044,7 +7592,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleANY_WS
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2834:1: entryRuleANY_WS returns [String current=null] : iv_ruleANY_WS= ruleANY_WS EOF ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3078:1: entryRuleANY_WS returns [String current=null] : iv_ruleANY_WS= ruleANY_WS EOF ;
     public final String entryRuleANY_WS() throws RecognitionException {
         String current = null;
 
@@ -7052,16 +7600,16 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2835:2: (iv_ruleANY_WS= ruleANY_WS EOF )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2836:2: iv_ruleANY_WS= ruleANY_WS EOF
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3079:2: (iv_ruleANY_WS= ruleANY_WS EOF )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3080:2: iv_ruleANY_WS= ruleANY_WS EOF
             {
              currentNode = createCompositeNode(grammarAccess.getANY_WSRule(), currentNode); 
-            pushFollow(FOLLOW_ruleANY_WS_in_entryRuleANY_WS5292);
+            pushFollow(FOLLOW_ruleANY_WS_in_entryRuleANY_WS5675);
             iv_ruleANY_WS=ruleANY_WS();
             _fsp--;
 
              current =iv_ruleANY_WS.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleANY_WS5303); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleANY_WS5686); 
 
             }
 
@@ -7079,7 +7627,7 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleANY_WS
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2843:1: ruleANY_WS returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3087:1: ruleANY_WS returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) ;
     public final AntlrDatatypeRuleToken ruleANY_WS() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -7090,40 +7638,40 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2848:6: ( (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2849:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3092:6: ( (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3093:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2849:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
-            int alt71=3;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3093:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )
+            int alt76=3;
             switch ( input.LA(1) ) {
             case RULE_MULTI_NL:
                 {
-                alt71=1;
+                alt76=1;
                 }
                 break;
             case RULE_SINGLE_NL:
                 {
-                alt71=2;
+                alt76=2;
                 }
                 break;
             case RULE_WS:
                 {
-                alt71=3;
+                alt76=3;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("2849:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )", 71, 0, input);
+                    new NoViableAltException("3093:1: (this_MULTI_NL_0= RULE_MULTI_NL | this_SINGLE_NL_1= RULE_SINGLE_NL | this_WS_2= RULE_WS )", 76, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt71) {
+            switch (alt76) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2849:6: this_MULTI_NL_0= RULE_MULTI_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3093:6: this_MULTI_NL_0= RULE_MULTI_NL
                     {
                     this_MULTI_NL_0=(Token)input.LT(1);
-                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleANY_WS5343); 
+                    match(input,RULE_MULTI_NL,FOLLOW_RULE_MULTI_NL_in_ruleANY_WS5726); 
 
                     		current.merge(this_MULTI_NL_0);
                         
@@ -7134,10 +7682,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2857:10: this_SINGLE_NL_1= RULE_SINGLE_NL
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3101:10: this_SINGLE_NL_1= RULE_SINGLE_NL
                     {
                     this_SINGLE_NL_1=(Token)input.LT(1);
-                    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS5369); 
+                    match(input,RULE_SINGLE_NL,FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS5752); 
 
                     		current.merge(this_SINGLE_NL_1);
                         
@@ -7148,10 +7696,10 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXDoc.g:2865:10: this_WS_2= RULE_WS
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3109:10: this_WS_2= RULE_WS
                     {
                     this_WS_2=(Token)input.LT(1);
-                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleANY_WS5395); 
+                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleANY_WS5778); 
 
                     		current.merge(this_WS_2);
                         
@@ -7183,547 +7731,570 @@ public class InternalXDocParser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleANY_WS
 
 
-    protected DFA32 dfa32 = new DFA32(this);
-    protected DFA35 dfa35 = new DFA35(this);
-    protected DFA46 dfa46 = new DFA46(this);
-    protected DFA49 dfa49 = new DFA49(this);
-    protected DFA63 dfa63 = new DFA63(this);
-    static final String DFA32_eotS =
+    protected DFA37 dfa37 = new DFA37(this);
+    protected DFA40 dfa40 = new DFA40(this);
+    protected DFA51 dfa51 = new DFA51(this);
+    protected DFA54 dfa54 = new DFA54(this);
+    protected DFA68 dfa68 = new DFA68(this);
+    static final String DFA37_eotS =
         "\6\uffff";
-    static final String DFA32_eofS =
+    static final String DFA37_eofS =
         "\6\uffff";
-    static final String DFA32_minS =
+    static final String DFA37_minS =
         "\4\4\2\uffff";
-    static final String DFA32_maxS =
-        "\4\31\2\uffff";
-    static final String DFA32_acceptS =
+    static final String DFA37_maxS =
+        "\4\36\2\uffff";
+    static final String DFA37_acceptS =
         "\4\uffff\1\2\1\1";
-    static final String DFA32_specialS =
+    static final String DFA37_specialS =
         "\6\uffff}>";
-    static final String[] DFA32_transitionS = {
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\13\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\13\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\13\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\13\uffff\1\5",
+    static final String[] DFA37_transitionS = {
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\22\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\22\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\22\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\22\uffff\1\5",
             "",
             ""
     };
 
-    static final short[] DFA32_eot = DFA.unpackEncodedString(DFA32_eotS);
-    static final short[] DFA32_eof = DFA.unpackEncodedString(DFA32_eofS);
-    static final char[] DFA32_min = DFA.unpackEncodedStringToUnsignedChars(DFA32_minS);
-    static final char[] DFA32_max = DFA.unpackEncodedStringToUnsignedChars(DFA32_maxS);
-    static final short[] DFA32_accept = DFA.unpackEncodedString(DFA32_acceptS);
-    static final short[] DFA32_special = DFA.unpackEncodedString(DFA32_specialS);
-    static final short[][] DFA32_transition;
+    static final short[] DFA37_eot = DFA.unpackEncodedString(DFA37_eotS);
+    static final short[] DFA37_eof = DFA.unpackEncodedString(DFA37_eofS);
+    static final char[] DFA37_min = DFA.unpackEncodedStringToUnsignedChars(DFA37_minS);
+    static final char[] DFA37_max = DFA.unpackEncodedStringToUnsignedChars(DFA37_maxS);
+    static final short[] DFA37_accept = DFA.unpackEncodedString(DFA37_acceptS);
+    static final short[] DFA37_special = DFA.unpackEncodedString(DFA37_specialS);
+    static final short[][] DFA37_transition;
 
     static {
-        int numStates = DFA32_transitionS.length;
-        DFA32_transition = new short[numStates][];
+        int numStates = DFA37_transitionS.length;
+        DFA37_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA32_transition[i] = DFA.unpackEncodedString(DFA32_transitionS[i]);
+            DFA37_transition[i] = DFA.unpackEncodedString(DFA37_transitionS[i]);
         }
     }
 
-    class DFA32 extends DFA {
+    class DFA37 extends DFA {
 
-        public DFA32(BaseRecognizer recognizer) {
+        public DFA37(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 32;
-            this.eot = DFA32_eot;
-            this.eof = DFA32_eof;
-            this.min = DFA32_min;
-            this.max = DFA32_max;
-            this.accept = DFA32_accept;
-            this.special = DFA32_special;
-            this.transition = DFA32_transition;
+            this.decisionNumber = 37;
+            this.eot = DFA37_eot;
+            this.eof = DFA37_eof;
+            this.min = DFA37_min;
+            this.max = DFA37_max;
+            this.accept = DFA37_accept;
+            this.special = DFA37_special;
+            this.transition = DFA37_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 1447:1: ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+";
+            return "()+ loopback of 1691:1: ( ( ruleANY_WS )* ( (lv_rows_2_0= ruleTableRow ) ) )+";
         }
     }
-    static final String DFA35_eotS =
+    static final String DFA40_eotS =
         "\6\uffff";
-    static final String DFA35_eofS =
+    static final String DFA40_eofS =
         "\6\uffff";
-    static final String DFA35_minS =
+    static final String DFA40_minS =
         "\4\4\2\uffff";
-    static final String DFA35_maxS =
-        "\4\32\2\uffff";
-    static final String DFA35_acceptS =
+    static final String DFA40_maxS =
+        "\4\37\2\uffff";
+    static final String DFA40_acceptS =
         "\4\uffff\1\2\1\1";
-    static final String DFA35_specialS =
+    static final String DFA40_specialS =
         "\6\uffff}>";
-    static final String[] DFA35_transitionS = {
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\14\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\14\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\14\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\14\uffff\1\5",
+    static final String[] DFA40_transitionS = {
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\23\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\23\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\23\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\23\uffff\1\5",
             "",
             ""
     };
 
-    static final short[] DFA35_eot = DFA.unpackEncodedString(DFA35_eotS);
-    static final short[] DFA35_eof = DFA.unpackEncodedString(DFA35_eofS);
-    static final char[] DFA35_min = DFA.unpackEncodedStringToUnsignedChars(DFA35_minS);
-    static final char[] DFA35_max = DFA.unpackEncodedStringToUnsignedChars(DFA35_maxS);
-    static final short[] DFA35_accept = DFA.unpackEncodedString(DFA35_acceptS);
-    static final short[] DFA35_special = DFA.unpackEncodedString(DFA35_specialS);
-    static final short[][] DFA35_transition;
+    static final short[] DFA40_eot = DFA.unpackEncodedString(DFA40_eotS);
+    static final short[] DFA40_eof = DFA.unpackEncodedString(DFA40_eofS);
+    static final char[] DFA40_min = DFA.unpackEncodedStringToUnsignedChars(DFA40_minS);
+    static final char[] DFA40_max = DFA.unpackEncodedStringToUnsignedChars(DFA40_maxS);
+    static final short[] DFA40_accept = DFA.unpackEncodedString(DFA40_acceptS);
+    static final short[] DFA40_special = DFA.unpackEncodedString(DFA40_specialS);
+    static final short[][] DFA40_transition;
 
     static {
-        int numStates = DFA35_transitionS.length;
-        DFA35_transition = new short[numStates][];
+        int numStates = DFA40_transitionS.length;
+        DFA40_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA35_transition[i] = DFA.unpackEncodedString(DFA35_transitionS[i]);
+            DFA40_transition[i] = DFA.unpackEncodedString(DFA40_transitionS[i]);
         }
     }
 
-    class DFA35 extends DFA {
+    class DFA40 extends DFA {
 
-        public DFA35(BaseRecognizer recognizer) {
+        public DFA40(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 35;
-            this.eot = DFA35_eot;
-            this.eof = DFA35_eof;
-            this.min = DFA35_min;
-            this.max = DFA35_max;
-            this.accept = DFA35_accept;
-            this.special = DFA35_special;
-            this.transition = DFA35_transition;
+            this.decisionNumber = 40;
+            this.eot = DFA40_eot;
+            this.eof = DFA40_eof;
+            this.min = DFA40_min;
+            this.max = DFA40_max;
+            this.accept = DFA40_accept;
+            this.special = DFA40_special;
+            this.transition = DFA40_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 1518:1: ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+";
+            return "()+ loopback of 1762:1: ( ( ruleANY_WS )* ( (lv_data_2_0= ruleTableData ) ) )+";
         }
     }
-    static final String DFA46_eotS =
+    static final String DFA51_eotS =
         "\6\uffff";
-    static final String DFA46_eofS =
+    static final String DFA51_eofS =
         "\6\uffff";
-    static final String DFA46_minS =
+    static final String DFA51_minS =
         "\4\4\2\uffff";
-    static final String DFA46_maxS =
-        "\4\40\2\uffff";
-    static final String DFA46_acceptS =
+    static final String DFA51_maxS =
+        "\4\45\2\uffff";
+    static final String DFA51_acceptS =
         "\4\uffff\1\2\1\1";
-    static final String DFA46_specialS =
+    static final String DFA51_specialS =
         "\6\uffff}>";
-    static final String[] DFA46_transitionS = {
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
+    static final String[] DFA51_transitionS = {
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
             "",
             ""
     };
 
-    static final short[] DFA46_eot = DFA.unpackEncodedString(DFA46_eotS);
-    static final short[] DFA46_eof = DFA.unpackEncodedString(DFA46_eofS);
-    static final char[] DFA46_min = DFA.unpackEncodedStringToUnsignedChars(DFA46_minS);
-    static final char[] DFA46_max = DFA.unpackEncodedStringToUnsignedChars(DFA46_maxS);
-    static final short[] DFA46_accept = DFA.unpackEncodedString(DFA46_acceptS);
-    static final short[] DFA46_special = DFA.unpackEncodedString(DFA46_specialS);
-    static final short[][] DFA46_transition;
+    static final short[] DFA51_eot = DFA.unpackEncodedString(DFA51_eotS);
+    static final short[] DFA51_eof = DFA.unpackEncodedString(DFA51_eofS);
+    static final char[] DFA51_min = DFA.unpackEncodedStringToUnsignedChars(DFA51_minS);
+    static final char[] DFA51_max = DFA.unpackEncodedStringToUnsignedChars(DFA51_maxS);
+    static final short[] DFA51_accept = DFA.unpackEncodedString(DFA51_acceptS);
+    static final short[] DFA51_special = DFA.unpackEncodedString(DFA51_specialS);
+    static final short[][] DFA51_transition;
 
     static {
-        int numStates = DFA46_transitionS.length;
-        DFA46_transition = new short[numStates][];
+        int numStates = DFA51_transitionS.length;
+        DFA51_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA46_transition[i] = DFA.unpackEncodedString(DFA46_transitionS[i]);
+            DFA51_transition[i] = DFA.unpackEncodedString(DFA51_transitionS[i]);
         }
     }
 
-    class DFA46 extends DFA {
+    class DFA51 extends DFA {
 
-        public DFA46(BaseRecognizer recognizer) {
+        public DFA51(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 46;
-            this.eot = DFA46_eot;
-            this.eof = DFA46_eof;
-            this.min = DFA46_min;
-            this.max = DFA46_max;
-            this.accept = DFA46_accept;
-            this.special = DFA46_special;
-            this.transition = DFA46_transition;
+            this.decisionNumber = 51;
+            this.eot = DFA51_eot;
+            this.eof = DFA51_eof;
+            this.min = DFA51_min;
+            this.max = DFA51_max;
+            this.accept = DFA51_accept;
+            this.special = DFA51_special;
+            this.transition = DFA51_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 1875:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+";
+            return "()+ loopback of 2119:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+";
         }
     }
-    static final String DFA49_eotS =
+    static final String DFA54_eotS =
         "\6\uffff";
-    static final String DFA49_eofS =
+    static final String DFA54_eofS =
         "\6\uffff";
-    static final String DFA49_minS =
+    static final String DFA54_minS =
         "\4\4\2\uffff";
-    static final String DFA49_maxS =
-        "\4\40\2\uffff";
-    static final String DFA49_acceptS =
+    static final String DFA54_maxS =
+        "\4\45\2\uffff";
+    static final String DFA54_acceptS =
         "\4\uffff\1\2\1\1";
-    static final String DFA49_specialS =
+    static final String DFA54_specialS =
         "\6\uffff}>";
-    static final String[] DFA49_transitionS = {
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
-            "\1\3\1\1\1\uffff\1\2\5\uffff\1\4\22\uffff\1\5",
+    static final String[] DFA54_transitionS = {
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
+            "\1\3\1\1\1\uffff\1\2\3\uffff\1\4\31\uffff\1\5",
             "",
             ""
     };
 
-    static final short[] DFA49_eot = DFA.unpackEncodedString(DFA49_eotS);
-    static final short[] DFA49_eof = DFA.unpackEncodedString(DFA49_eofS);
-    static final char[] DFA49_min = DFA.unpackEncodedStringToUnsignedChars(DFA49_minS);
-    static final char[] DFA49_max = DFA.unpackEncodedStringToUnsignedChars(DFA49_maxS);
-    static final short[] DFA49_accept = DFA.unpackEncodedString(DFA49_acceptS);
-    static final short[] DFA49_special = DFA.unpackEncodedString(DFA49_specialS);
-    static final short[][] DFA49_transition;
+    static final short[] DFA54_eot = DFA.unpackEncodedString(DFA54_eotS);
+    static final short[] DFA54_eof = DFA.unpackEncodedString(DFA54_eofS);
+    static final char[] DFA54_min = DFA.unpackEncodedStringToUnsignedChars(DFA54_minS);
+    static final char[] DFA54_max = DFA.unpackEncodedStringToUnsignedChars(DFA54_maxS);
+    static final short[] DFA54_accept = DFA.unpackEncodedString(DFA54_acceptS);
+    static final short[] DFA54_special = DFA.unpackEncodedString(DFA54_specialS);
+    static final short[][] DFA54_transition;
 
     static {
-        int numStates = DFA49_transitionS.length;
-        DFA49_transition = new short[numStates][];
+        int numStates = DFA54_transitionS.length;
+        DFA54_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA49_transition[i] = DFA.unpackEncodedString(DFA49_transitionS[i]);
+            DFA54_transition[i] = DFA.unpackEncodedString(DFA54_transitionS[i]);
         }
     }
 
-    class DFA49 extends DFA {
+    class DFA54 extends DFA {
 
-        public DFA49(BaseRecognizer recognizer) {
+        public DFA54(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 49;
-            this.eot = DFA49_eot;
-            this.eof = DFA49_eof;
-            this.min = DFA49_min;
-            this.max = DFA49_max;
-            this.accept = DFA49_accept;
-            this.special = DFA49_special;
-            this.transition = DFA49_transition;
+            this.decisionNumber = 54;
+            this.eot = DFA54_eot;
+            this.eof = DFA54_eof;
+            this.min = DFA54_min;
+            this.max = DFA54_max;
+            this.accept = DFA54_accept;
+            this.special = DFA54_special;
+            this.transition = DFA54_transition;
         }
         public String getDescription() {
-            return "()+ loopback of 1946:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+";
+            return "()+ loopback of 2190:1: ( ( ruleANY_WS )* ( (lv_items_2_0= ruleItem ) ) )+";
         }
     }
-    static final String DFA63_eotS =
+    static final String DFA68_eotS =
         "\21\uffff";
-    static final String DFA63_eofS =
+    static final String DFA68_eofS =
         "\6\uffff\1\5\3\uffff\3\5\1\uffff\3\5";
-    static final String DFA63_minS =
+    static final String DFA68_minS =
         "\5\4\1\uffff\7\4\1\uffff\3\4";
-    static final String DFA63_maxS =
-        "\5\35\1\uffff\1\45\3\35\3\45\1\uffff\3\45";
-    static final String DFA63_acceptS =
+    static final String DFA68_maxS =
+        "\5\42\1\uffff\1\52\3\42\3\52\1\uffff\3\52";
+    static final String DFA68_acceptS =
         "\5\uffff\1\2\7\uffff\1\1\3\uffff";
-    static final String DFA63_specialS =
+    static final String DFA68_specialS =
         "\21\uffff}>";
-    static final String[] DFA63_transitionS = {
-            "\1\3\1\1\1\4\1\2\1\5\15\uffff\2\5\3\uffff\3\5",
-            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\2\5\3\uffff\3\5",
-            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\2\5\3\uffff\3\5",
-            "\1\3\1\1\1\4\1\2\1\5\4\uffff\1\5\10\uffff\2\5\3\uffff\3\5",
-            "\1\10\1\7\1\5\1\11\1\5\4\uffff\1\6\10\uffff\2\5\3\uffff\3\5",
+    static final String[] DFA68_transitionS = {
+            "\1\3\1\1\1\4\1\2\1\5\22\uffff\2\5\3\uffff\3\5",
+            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\17\uffff\2\5\3\uffff\3\5",
+            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\17\uffff\2\5\3\uffff\3\5",
+            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\17\uffff\2\5\3\uffff\3\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\2\5\3\uffff\3\5",
             "",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\3"+
+            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\3"+
             "\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\10\1\7\1\5\1\11\1\5\4\uffff\1\6\10\uffff\2\5\3\uffff\3\5",
-            "\1\10\1\7\1\5\1\11\1\5\4\uffff\1\6\10\uffff\2\5\3\uffff\3\5",
-            "\1\10\1\7\1\5\1\11\1\5\4\uffff\1\6\10\uffff\2\5\3\uffff\3\5",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\3"+
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\2\5\3\uffff\3\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\2\5\3\uffff\3\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\2\5\3\uffff\3\5",
+            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\3"+
             "\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\3"+
+            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\3"+
             "\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\16\1\15\1\5\1\17\1\5\1\uffff\1\5\1\15\15\5\2\uffff\5\5\1"+
-            "\uffff\5\5",
+            "\1\16\1\15\1\5\1\17\1\5\1\uffff\2\5\2\uffff\1\5\1\15\16\5\2"+
+            "\uffff\5\5\1\uffff\5\5",
             "",
-            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\3"+
+            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\3"+
             "\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\15\1\uffff\1\5\10\uffff\3"+
+            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\3"+
             "\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\16\1\15\1\5\1\17\1\5\1\uffff\1\5\1\15\1\5\1\uffff\13\5\2"+
+            "\1\16\1\15\1\5\1\17\1\5\1\uffff\1\5\3\uffff\1\5\1\15\16\5\2"+
             "\uffff\5\5\1\uffff\5\5"
     };
 
-    static final short[] DFA63_eot = DFA.unpackEncodedString(DFA63_eotS);
-    static final short[] DFA63_eof = DFA.unpackEncodedString(DFA63_eofS);
-    static final char[] DFA63_min = DFA.unpackEncodedStringToUnsignedChars(DFA63_minS);
-    static final char[] DFA63_max = DFA.unpackEncodedStringToUnsignedChars(DFA63_maxS);
-    static final short[] DFA63_accept = DFA.unpackEncodedString(DFA63_acceptS);
-    static final short[] DFA63_special = DFA.unpackEncodedString(DFA63_specialS);
-    static final short[][] DFA63_transition;
+    static final short[] DFA68_eot = DFA.unpackEncodedString(DFA68_eotS);
+    static final short[] DFA68_eof = DFA.unpackEncodedString(DFA68_eofS);
+    static final char[] DFA68_min = DFA.unpackEncodedStringToUnsignedChars(DFA68_minS);
+    static final char[] DFA68_max = DFA.unpackEncodedStringToUnsignedChars(DFA68_maxS);
+    static final short[] DFA68_accept = DFA.unpackEncodedString(DFA68_acceptS);
+    static final short[] DFA68_special = DFA.unpackEncodedString(DFA68_specialS);
+    static final short[][] DFA68_transition;
 
     static {
-        int numStates = DFA63_transitionS.length;
-        DFA63_transition = new short[numStates][];
+        int numStates = DFA68_transitionS.length;
+        DFA68_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA63_transition[i] = DFA.unpackEncodedString(DFA63_transitionS[i]);
+            DFA68_transition[i] = DFA.unpackEncodedString(DFA68_transitionS[i]);
         }
     }
 
-    class DFA63 extends DFA {
+    class DFA68 extends DFA {
 
-        public DFA63(BaseRecognizer recognizer) {
+        public DFA68(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 63;
-            this.eot = DFA63_eot;
-            this.eof = DFA63_eof;
-            this.min = DFA63_min;
-            this.max = DFA63_max;
-            this.accept = DFA63_accept;
-            this.special = DFA63_special;
-            this.transition = DFA63_transition;
+            this.decisionNumber = 68;
+            this.eot = DFA68_eot;
+            this.eof = DFA68_eof;
+            this.min = DFA68_min;
+            this.max = DFA68_max;
+            this.accept = DFA68_accept;
+            this.special = DFA68_special;
+            this.transition = DFA68_transition;
         }
         public String getDescription() {
-            return "2470:1: ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )?";
+            return "2714:1: ( ( ruleANY_WS )* ( (lv_language_2_0= RULE_ID ) ) ( ruleANY_WS )* ']' ( ruleANY_WS )* '[' )?";
         }
     }
  
 
-    public static final BitSet FOLLOW_ruleDocument_in_entryRuleDocument75 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDocument85 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_WS_in_ruleDocument129 = new BitSet(new long[]{0x000000000003D422L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument140 = new BitSet(new long[]{0x000000000003D402L});
-    public static final BitSet FOLLOW_ruleChapter_in_ruleDocument165 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument175 = new BitSet(new long[]{0x0000000000001400L});
-    public static final BitSet FOLLOW_ruleChapter_in_ruleDocument195 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_ruleSection_in_ruleDocument226 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument236 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_ruleSection_in_ruleDocument256 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_ruleSection2_in_ruleDocument287 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument297 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_ruleSection2_in_ruleDocument317 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleChapter_in_entryRuleChapter370 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleChapter380 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_10_in_ruleChapter417 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleChapter434 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleChapter449 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_12_in_ruleChapter466 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleChapter488 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleChapter498 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleChapter508 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleChapter528 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleChapter540 = new BitSet(new long[]{0x000000000000C000L});
-    public static final BitSet FOLLOW_ruleSection_in_ruleChapter560 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_ruleSection_in_entryRuleSection598 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSection608 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleSection645 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleSection662 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleSection677 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_15_in_ruleSection694 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection716 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleSection726 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection736 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection756 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection768 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_ruleSection2_in_ruleSection788 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_ruleSection2_in_entryRuleSection2826 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSection2836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleSection2873 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleSection2890 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleSection2905 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_17_in_ruleSection2922 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection2944 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleSection2954 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection2964 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection2984 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection2996 = new BitSet(new long[]{0x00000000000C0000L});
-    public static final BitSet FOLLOW_ruleSection3_in_ruleSection21016 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_ruleSection3_in_entryRuleSection31054 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSection31064 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_ruleSection31101 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleSection31118 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleSection31133 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_19_in_ruleSection31150 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection31172 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleSection31182 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection31192 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection31212 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection31224 = new BitSet(new long[]{0x0000000000300000L});
-    public static final BitSet FOLLOW_ruleSection4_in_ruleSection31244 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_ruleSection4_in_entryRuleSection41282 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSection41292 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleSection41329 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleSection41346 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_11_in_ruleSection41361 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_21_in_ruleSection41378 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection41400 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleSection41410 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection41420 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection41440 = new BitSet(new long[]{0x0000000000000022L});
-    public static final BitSet FOLLOW_ruleAbstractSection_in_entryRuleAbstractSection1478 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAbstractSection1488 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleChapter_in_ruleAbstractSection1535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection_in_ruleAbstractSection1562 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection2_in_ruleAbstractSection1589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection3_in_ruleAbstractSection1616 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSection4_in_ruleAbstractSection1643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_entryRuleTextOrMarkup1680 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTextOrMarkup1690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTextPart_in_ruleTextOrMarkup1737 = new BitSet(new long[]{0x0000003EF9000002L});
-    public static final BitSet FOLLOW_ruleMarkUp_in_ruleTextOrMarkup1759 = new BitSet(new long[]{0x0000003EF9C001D2L});
-    public static final BitSet FOLLOW_ruleTextPart_in_ruleTextOrMarkup1780 = new BitSet(new long[]{0x0000003EF9000002L});
-    public static final BitSet FOLLOW_ruleMarkUp_in_ruleTextOrMarkup1812 = new BitSet(new long[]{0x0000003EF9C001D2L});
-    public static final BitSet FOLLOW_ruleTextPart_in_ruleTextOrMarkup1833 = new BitSet(new long[]{0x0000003EF9000002L});
-    public static final BitSet FOLLOW_ruleTextPart_in_entryRuleTextPart1872 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTextPart1882 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_ruleTextPart1927 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_entryRuleText1963 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleText1974 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleText2014 = new BitSet(new long[]{0x0000000000C001D2L});
-    public static final BitSet FOLLOW_RULE_WS_in_ruleText2040 = new BitSet(new long[]{0x0000000000C001D2L});
-    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleText2066 = new BitSet(new long[]{0x0000000000C001D2L});
-    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleText2092 = new BitSet(new long[]{0x0000000000C001D2L});
-    public static final BitSet FOLLOW_22_in_ruleText2116 = new BitSet(new long[]{0x0000000000C001D2L});
-    public static final BitSet FOLLOW_23_in_ruleText2135 = new BitSet(new long[]{0x0000000000C001D2L});
-    public static final BitSet FOLLOW_ruleMarkUp_in_entryRuleMarkUp2176 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMarkUp2186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEmphasize_in_ruleMarkUp2233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAnchor_in_ruleMarkUp2260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRef_in_ruleMarkUp2287 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOrderedList_in_ruleMarkUp2314 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnorderedList_in_ruleMarkUp2341 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodeBlock_in_ruleMarkUp2368 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodeRef_in_ruleMarkUp2395 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLink_in_ruleMarkUp2422 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImageRef_in_ruleMarkUp2449 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTable_in_ruleMarkUp2476 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTable_in_entryRuleTable2511 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTable2521 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleTable2556 = new BitSet(new long[]{0x00000000020000B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTable2574 = new BitSet(new long[]{0x00000000020000B0L});
-    public static final BitSet FOLLOW_ruleTableRow_in_ruleTable2596 = new BitSet(new long[]{0x00000000020020B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTable2615 = new BitSet(new long[]{0x00000000000020B0L});
-    public static final BitSet FOLLOW_13_in_ruleTable2626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTableRow_in_entryRuleTableRow2662 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTableRow2672 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_ruleTableRow2707 = new BitSet(new long[]{0x00000000040000B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTableRow2725 = new BitSet(new long[]{0x00000000040000B0L});
-    public static final BitSet FOLLOW_ruleTableData_in_ruleTableRow2747 = new BitSet(new long[]{0x00000000040020B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTableRow2766 = new BitSet(new long[]{0x00000000000020B0L});
-    public static final BitSet FOLLOW_13_in_ruleTableRow2777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleTableData_in_entryRuleTableData2813 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleTableData2823 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_26_in_ruleTableData2858 = new BitSet(new long[]{0x0000003EF9C001F0L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleTableData2868 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleTableData2890 = new BitSet(new long[]{0x0000000000002020L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleTableData2900 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleTableData2920 = new BitSet(new long[]{0x0000000000002020L});
-    public static final BitSet FOLLOW_13_in_ruleTableData2932 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEmphasize_in_entryRuleEmphasize2968 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEmphasize2978 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_ruleEmphasize3013 = new BitSet(new long[]{0x0000003EF9C001F0L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3023 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleEmphasize3045 = new BitSet(new long[]{0x0000000000002020L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3055 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleEmphasize3066 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAnchor_in_entryRuleAnchor3102 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleAnchor3112 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_ruleAnchor3147 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleAnchor3164 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleAnchor3179 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRef_in_entryRuleRef3215 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleRef3225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_ruleRef3260 = new BitSet(new long[]{0x0000000000000040L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleRef3278 = new BitSet(new long[]{0x0000000000000802L});
-    public static final BitSet FOLLOW_11_in_ruleRef3289 = new BitSet(new long[]{0x0000003EF9C021F0L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleRef3299 = new BitSet(new long[]{0x0000003EF9C021D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleRef3322 = new BitSet(new long[]{0x0000000000002020L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleRef3332 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleRef3345 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOrderedList_in_entryRuleOrderedList3383 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleOrderedList3393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_ruleOrderedList3428 = new BitSet(new long[]{0x00000001000000B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleOrderedList3446 = new BitSet(new long[]{0x00000001000000B0L});
-    public static final BitSet FOLLOW_ruleItem_in_ruleOrderedList3468 = new BitSet(new long[]{0x00000001000020B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleOrderedList3487 = new BitSet(new long[]{0x00000000000020B0L});
-    public static final BitSet FOLLOW_13_in_ruleOrderedList3498 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleUnorderedList_in_entryRuleUnorderedList3534 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleUnorderedList3544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_ruleUnorderedList3579 = new BitSet(new long[]{0x00000001000000B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleUnorderedList3597 = new BitSet(new long[]{0x00000001000000B0L});
-    public static final BitSet FOLLOW_ruleItem_in_ruleUnorderedList3619 = new BitSet(new long[]{0x00000001000020B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleUnorderedList3638 = new BitSet(new long[]{0x00000000000020B0L});
-    public static final BitSet FOLLOW_13_in_ruleUnorderedList3649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleItem_in_entryRuleItem3685 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleItem3695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_ruleItem3730 = new BitSet(new long[]{0x0000003EF9C001F0L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleItem3740 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleItem3762 = new BitSet(new long[]{0x0000000000002020L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleItem3772 = new BitSet(new long[]{0x0000003EF9C001D0L});
-    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleItem3792 = new BitSet(new long[]{0x0000000000002020L});
-    public static final BitSet FOLLOW_13_in_ruleItem3804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodeRef_in_entryRuleCodeRef3840 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCodeRef3850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_ruleCodeRef3885 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_ruleText_in_ruleCodeRef3908 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleCodeRef3918 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLink_in_entryRuleLink3954 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleLink3964 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_ruleLink3999 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_ruleText_in_ruleLink4020 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleLink4030 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleLink4047 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_11_in_ruleLink4058 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_ruleText_in_ruleLink4079 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleLink4089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImageRef_in_entryRuleImageRef4125 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleImageRef4135 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_ruleImageRef4172 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4189 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleImageRef4207 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4229 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_11_in_ruleImageRef4240 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_36_in_ruleImageRef4257 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4279 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleImageRef4289 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4306 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_11_in_ruleImageRef4317 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4338 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleImageRef4348 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4365 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_11_in_ruleImageRef4376 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4397 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleImageRef4407 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4424 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_11_in_ruleImageRef4435 = new BitSet(new long[]{0x0000000000C001D0L});
-    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4456 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleImageRef4466 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodeBlock_in_entryRuleCodeBlock4502 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCodeBlock4512 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_ruleCodeBlock4547 = new BitSet(new long[]{0x0000000038C001F0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock4565 = new BitSet(new long[]{0x00000000000000F0L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCodeBlock4583 = new BitSet(new long[]{0x00000000000020B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock4605 = new BitSet(new long[]{0x00000000000020B0L});
-    public static final BitSet FOLLOW_13_in_ruleCodeBlock4616 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock4633 = new BitSet(new long[]{0x00000000000008B0L});
-    public static final BitSet FOLLOW_11_in_ruleCodeBlock4644 = new BitSet(new long[]{0x0000000038C001F0L});
-    public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock4669 = new BitSet(new long[]{0x0000000038002000L});
-    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4691 = new BitSet(new long[]{0x0000000038C021F0L});
-    public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock4712 = new BitSet(new long[]{0x0000000038002000L});
-    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock4744 = new BitSet(new long[]{0x0000000038C021F0L});
-    public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock4765 = new BitSet(new long[]{0x0000000038002000L});
-    public static final BitSet FOLLOW_13_in_ruleCodeBlock4779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCode_in_entryRuleCode4815 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCode4825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodeText_in_ruleCode4870 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleMarkupInCode_in_entryRuleMarkupInCode4905 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleMarkupInCode4915 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEmphasize_in_ruleMarkupInCode4962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAnchor_in_ruleMarkupInCode4989 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRef_in_ruleMarkupInCode5016 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCodeText_in_entryRuleCodeText5052 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCodeText5063 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleCodeText5103 = new BitSet(new long[]{0x0000000000C001F2L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleCodeText5129 = new BitSet(new long[]{0x0000000000C001F2L});
-    public static final BitSet FOLLOW_RULE_WS_in_ruleCodeText5155 = new BitSet(new long[]{0x0000000000C001F2L});
-    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleCodeText5181 = new BitSet(new long[]{0x0000000000C001F2L});
-    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleCodeText5207 = new BitSet(new long[]{0x0000000000C001F2L});
-    public static final BitSet FOLLOW_22_in_ruleCodeText5231 = new BitSet(new long[]{0x0000000000C001F2L});
-    public static final BitSet FOLLOW_23_in_ruleCodeText5250 = new BitSet(new long[]{0x0000000000C001F2L});
-    public static final BitSet FOLLOW_ruleANY_WS_in_entryRuleANY_WS5292 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleANY_WS5303 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleANY_WS5343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS5369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_WS_in_ruleANY_WS5395 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleXdocFile_in_entryRuleXdocFile75 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleXdocFile85 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_WS_in_ruleXdocFile129 = new BitSet(new long[]{0x00000000007F4422L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleXdocFile140 = new BitSet(new long[]{0x00000000007F4402L});
+    public static final BitSet FOLLOW_ruleDocument_in_ruleXdocFile165 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleXdocFile175 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_ruleDocument_in_ruleXdocFile195 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleChapter_in_ruleXdocFile226 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleXdocFile236 = new BitSet(new long[]{0x0000000000034000L});
+    public static final BitSet FOLLOW_ruleChapter_in_ruleXdocFile256 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleSection_in_ruleXdocFile287 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleXdocFile297 = new BitSet(new long[]{0x00000000001C0000L});
+    public static final BitSet FOLLOW_ruleSection_in_ruleXdocFile317 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleSection2_in_ruleXdocFile348 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleXdocFile358 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_ruleSection2_in_ruleXdocFile378 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleXdocFile392 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDocument_in_entryRuleDocument431 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDocument441 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_10_in_ruleDocument476 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleDocument497 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleDocument507 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument517 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_12_in_ruleDocument526 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleDocument547 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleDocument557 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument569 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_13_in_ruleDocument578 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleDocument599 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleDocument609 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleDocument621 = new BitSet(new long[]{0x0000000000034000L});
+    public static final BitSet FOLLOW_ruleChapter_in_ruleDocument641 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleChapter_in_entryRuleChapter679 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleChapter689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleChapterRef_in_ruleChapter736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_ruleChapter754 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleChapter771 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleChapter786 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_16_in_ruleChapter803 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleChapter825 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleChapter835 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleChapter845 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleChapter865 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleChapter877 = new BitSet(new long[]{0x00000000001C0000L});
+    public static final BitSet FOLLOW_ruleSection_in_ruleChapter897 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleChapterRef_in_entryRuleChapterRef936 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleChapterRef946 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_ruleChapterRef981 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleChapterRef999 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleChapterRef1009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSection_in_entryRuleSection1045 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSection1055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSectionRef_in_ruleSection1102 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_ruleSection1120 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSection1137 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleSection1152 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_19_in_ruleSection1169 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection1191 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleSection1201 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection1211 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection1231 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection1243 = new BitSet(new long[]{0x0000000000600000L});
+    public static final BitSet FOLLOW_ruleSection2_in_ruleSection1263 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleSectionRef_in_entryRuleSectionRef1302 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSectionRef1312 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleSectionRef1347 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSectionRef1365 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleSectionRef1375 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSection2_in_entryRuleSection21411 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSection21421 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ruleSection21458 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSection21475 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleSection21490 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_22_in_ruleSection21507 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection21529 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleSection21539 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection21549 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection21569 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection21581 = new BitSet(new long[]{0x0000000001800000L});
+    public static final BitSet FOLLOW_ruleSection3_in_ruleSection21601 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleSection3_in_entryRuleSection31639 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSection31649 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleSection31686 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSection31703 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleSection31718 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_24_in_ruleSection31735 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection31757 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleSection31767 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection31777 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection31797 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection31809 = new BitSet(new long[]{0x0000000006000000L});
+    public static final BitSet FOLLOW_ruleSection4_in_ruleSection31829 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleSection4_in_entryRuleSection41867 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSection41877 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_ruleSection41914 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleSection41931 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleSection41946 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_26_in_ruleSection41963 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection41985 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleSection41995 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleSection42005 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleSection42025 = new BitSet(new long[]{0x0000000000000022L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_entryRuleTextOrMarkup2063 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTextOrMarkup2073 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTextPart_in_ruleTextOrMarkup2120 = new BitSet(new long[]{0x000007DF20000002L});
+    public static final BitSet FOLLOW_ruleMarkUp_in_ruleTextOrMarkup2142 = new BitSet(new long[]{0x000007DF380001D2L});
+    public static final BitSet FOLLOW_ruleTextPart_in_ruleTextOrMarkup2163 = new BitSet(new long[]{0x000007DF20000002L});
+    public static final BitSet FOLLOW_ruleMarkUp_in_ruleTextOrMarkup2195 = new BitSet(new long[]{0x000007DF380001D2L});
+    public static final BitSet FOLLOW_ruleTextPart_in_ruleTextOrMarkup2216 = new BitSet(new long[]{0x000007DF20000002L});
+    public static final BitSet FOLLOW_ruleTextPart_in_entryRuleTextPart2255 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTextPart2265 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_ruleTextPart2310 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_entryRuleText2346 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleText2357 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleText2397 = new BitSet(new long[]{0x00000000180001D2L});
+    public static final BitSet FOLLOW_RULE_WS_in_ruleText2423 = new BitSet(new long[]{0x00000000180001D2L});
+    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleText2449 = new BitSet(new long[]{0x00000000180001D2L});
+    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleText2475 = new BitSet(new long[]{0x00000000180001D2L});
+    public static final BitSet FOLLOW_27_in_ruleText2499 = new BitSet(new long[]{0x00000000180001D2L});
+    public static final BitSet FOLLOW_28_in_ruleText2518 = new BitSet(new long[]{0x00000000180001D2L});
+    public static final BitSet FOLLOW_ruleMarkUp_in_entryRuleMarkUp2559 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMarkUp2569 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEmphasize_in_ruleMarkUp2616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnchor_in_ruleMarkUp2643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRef_in_ruleMarkUp2670 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOrderedList_in_ruleMarkUp2697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnorderedList_in_ruleMarkUp2724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodeBlock_in_ruleMarkUp2751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodeRef_in_ruleMarkUp2778 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLink_in_ruleMarkUp2805 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImageRef_in_ruleMarkUp2832 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTable_in_ruleMarkUp2859 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTable_in_entryRuleTable2894 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTable2904 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_ruleTable2939 = new BitSet(new long[]{0x00000000400000B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTable2957 = new BitSet(new long[]{0x00000000400000B0L});
+    public static final BitSet FOLLOW_ruleTableRow_in_ruleTable2979 = new BitSet(new long[]{0x00000000400008B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTable2998 = new BitSet(new long[]{0x00000000000008B0L});
+    public static final BitSet FOLLOW_11_in_ruleTable3009 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTableRow_in_entryRuleTableRow3045 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTableRow3055 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_ruleTableRow3090 = new BitSet(new long[]{0x00000000800000B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTableRow3108 = new BitSet(new long[]{0x00000000800000B0L});
+    public static final BitSet FOLLOW_ruleTableData_in_ruleTableRow3130 = new BitSet(new long[]{0x00000000800008B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleTableRow3149 = new BitSet(new long[]{0x00000000000008B0L});
+    public static final BitSet FOLLOW_11_in_ruleTableRow3160 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleTableData_in_entryRuleTableData3196 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleTableData3206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_ruleTableData3241 = new BitSet(new long[]{0x000007DF380001F0L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleTableData3251 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleTableData3273 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleTableData3283 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleTableData3303 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_11_in_ruleTableData3315 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEmphasize_in_entryRuleEmphasize3351 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEmphasize3361 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_ruleEmphasize3396 = new BitSet(new long[]{0x000007DF380001F0L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3406 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleEmphasize3428 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleEmphasize3438 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleEmphasize3449 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnchor_in_entryRuleAnchor3485 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleAnchor3495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_ruleAnchor3530 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleAnchor3547 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleAnchor3562 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRef_in_entryRuleRef3598 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleRef3608 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_ruleRef3643 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleRef3661 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15_in_ruleRef3672 = new BitSet(new long[]{0x000007DF380009F0L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleRef3682 = new BitSet(new long[]{0x000007DF380009D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleRef3705 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleRef3715 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleRef3728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOrderedList_in_entryRuleOrderedList3766 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleOrderedList3776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_ruleOrderedList3811 = new BitSet(new long[]{0x00000020000000B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleOrderedList3829 = new BitSet(new long[]{0x00000020000000B0L});
+    public static final BitSet FOLLOW_ruleItem_in_ruleOrderedList3851 = new BitSet(new long[]{0x00000020000008B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleOrderedList3870 = new BitSet(new long[]{0x00000000000008B0L});
+    public static final BitSet FOLLOW_11_in_ruleOrderedList3881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleUnorderedList_in_entryRuleUnorderedList3917 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleUnorderedList3927 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_ruleUnorderedList3962 = new BitSet(new long[]{0x00000020000000B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleUnorderedList3980 = new BitSet(new long[]{0x00000020000000B0L});
+    public static final BitSet FOLLOW_ruleItem_in_ruleUnorderedList4002 = new BitSet(new long[]{0x00000020000008B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleUnorderedList4021 = new BitSet(new long[]{0x00000000000008B0L});
+    public static final BitSet FOLLOW_11_in_ruleUnorderedList4032 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleItem_in_entryRuleItem4068 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleItem4078 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_ruleItem4113 = new BitSet(new long[]{0x000007DF380001F0L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleItem4123 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleItem4145 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleItem4155 = new BitSet(new long[]{0x000007DF380001D0L});
+    public static final BitSet FOLLOW_ruleTextOrMarkup_in_ruleItem4175 = new BitSet(new long[]{0x0000000000000820L});
+    public static final BitSet FOLLOW_11_in_ruleItem4187 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodeRef_in_entryRuleCodeRef4223 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCodeRef4233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_ruleCodeRef4268 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_ruleText_in_ruleCodeRef4291 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleCodeRef4301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLink_in_entryRuleLink4337 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleLink4347 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_ruleLink4382 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_ruleText_in_ruleLink4403 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleLink4413 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleLink4430 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_15_in_ruleLink4441 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_ruleText_in_ruleLink4462 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleLink4472 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImageRef_in_entryRuleImageRef4508 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleImageRef4518 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_ruleImageRef4555 = new BitSet(new long[]{0x00000000000000F0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4572 = new BitSet(new long[]{0x00000000000000F0L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleImageRef4590 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4612 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_15_in_ruleImageRef4623 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_41_in_ruleImageRef4640 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4662 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleImageRef4672 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4689 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_15_in_ruleImageRef4700 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4721 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleImageRef4731 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4748 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_15_in_ruleImageRef4759 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4780 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleImageRef4790 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleImageRef4807 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_15_in_ruleImageRef4818 = new BitSet(new long[]{0x00000000180001D0L});
+    public static final BitSet FOLLOW_ruleText_in_ruleImageRef4839 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_11_in_ruleImageRef4849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodeBlock_in_entryRuleCodeBlock4885 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCodeBlock4895 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_ruleCodeBlock4930 = new BitSet(new long[]{0x00000007180001F0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock4948 = new BitSet(new long[]{0x00000000000000F0L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCodeBlock4966 = new BitSet(new long[]{0x00000000000008B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock4988 = new BitSet(new long[]{0x00000000000008B0L});
+    public static final BitSet FOLLOW_11_in_ruleCodeBlock4999 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_ruleCodeBlock5016 = new BitSet(new long[]{0x00000000000080B0L});
+    public static final BitSet FOLLOW_15_in_ruleCodeBlock5027 = new BitSet(new long[]{0x00000007180001F0L});
+    public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock5052 = new BitSet(new long[]{0x0000000700000800L});
+    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock5074 = new BitSet(new long[]{0x00000007180009F0L});
+    public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock5095 = new BitSet(new long[]{0x0000000700000800L});
+    public static final BitSet FOLLOW_ruleMarkupInCode_in_ruleCodeBlock5127 = new BitSet(new long[]{0x00000007180009F0L});
+    public static final BitSet FOLLOW_ruleCode_in_ruleCodeBlock5148 = new BitSet(new long[]{0x0000000700000800L});
+    public static final BitSet FOLLOW_11_in_ruleCodeBlock5162 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCode_in_entryRuleCode5198 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCode5208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodeText_in_ruleCode5253 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleMarkupInCode_in_entryRuleMarkupInCode5288 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleMarkupInCode5298 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEmphasize_in_ruleMarkupInCode5345 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAnchor_in_ruleMarkupInCode5372 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRef_in_ruleMarkupInCode5399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCodeText_in_entryRuleCodeText5435 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleCodeText5446 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleCodeText5486 = new BitSet(new long[]{0x00000000180001F2L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleCodeText5512 = new BitSet(new long[]{0x00000000180001F2L});
+    public static final BitSet FOLLOW_RULE_WS_in_ruleCodeText5538 = new BitSet(new long[]{0x00000000180001F2L});
+    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleCodeText5564 = new BitSet(new long[]{0x00000000180001F2L});
+    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleCodeText5590 = new BitSet(new long[]{0x00000000180001F2L});
+    public static final BitSet FOLLOW_27_in_ruleCodeText5614 = new BitSet(new long[]{0x00000000180001F2L});
+    public static final BitSet FOLLOW_28_in_ruleCodeText5633 = new BitSet(new long[]{0x00000000180001F2L});
+    public static final BitSet FOLLOW_ruleANY_WS_in_entryRuleANY_WS5675 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleANY_WS5686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_MULTI_NL_in_ruleANY_WS5726 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SINGLE_NL_in_ruleANY_WS5752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_WS_in_ruleANY_WS5778 = new BitSet(new long[]{0x0000000000000002L});
 
 }

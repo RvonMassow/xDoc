@@ -12,19 +12,19 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Inject;
 
-import org.eclipse.xtext.xdoc.services.XDocGrammarAccess;
+import org.eclipse.xtext.xdoc.services.XdocGrammarAccess;
 
-public class XDocParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
+public class XdocParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	
 	@Inject
-	private XDocGrammarAccess grammarAccess;
+	private XdocGrammarAccess grammarAccess;
 	
 	@Override
 	protected IParseResult parse(String ruleName, CharStream in) {
 		TokenSource tokenSource = createLexer(in);
 		XtextTokenStream tokenStream = createTokenStream(tokenSource);
 		tokenStream.setInitialHiddenTokens("RULE_SL_COMMENT");
-		org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXDocParser parser = createParser(tokenStream);
+		org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXdocParser parser = createParser(tokenStream);
 		parser.setTokenTypeMap(getTokenDefProvider().getTokenDefMap());
 		parser.setSyntaxErrorProvider(getSyntaxErrorProvider());
 		IUnorderedGroupHelper helper = getUnorderedGroupHelper().get();
@@ -39,20 +39,20 @@ public class XDocParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrPars
 		}
 	}
 	
-	protected org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXDocParser createParser(XtextTokenStream stream) {
-		return new org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXDocParser(stream, getElementFactory(), getGrammarAccess());
+	protected org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXdocParser createParser(XtextTokenStream stream) {
+		return new org.eclipse.xtext.xdoc.parser.antlr.internal.InternalXdocParser(stream, getElementFactory(), getGrammarAccess());
 	}
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Document";
+		return "XdocFile";
 	}
 	
-	public XDocGrammarAccess getGrammarAccess() {
+	public XdocGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
 	
-	public void setGrammarAccess(XDocGrammarAccess grammarAccess) {
+	public void setGrammarAccess(XdocGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}
 	

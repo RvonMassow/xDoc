@@ -8,7 +8,7 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.util.Pair;
 import org.eclipse.xtext.util.Tuples;
-import org.eclipse.xtext.xdoc.XDocStandaloneSetup;
+import org.eclipse.xtext.xdoc.XdocStandaloneSetup;
 
 import com.google.inject.Key;
 import com.google.inject.name.Names;
@@ -18,7 +18,7 @@ public class LexerTest extends AbstractXtextTests {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		with(new XDocStandaloneSetup());
+		with(new XdocStandaloneSetup());
 	}
 
 	@SuppressWarnings("unchecked")

@@ -1,10 +1,10 @@
-module org.eclipse.xtext.xdoc.XDoc
+module org.eclipse.xtext.xdoc.Xdoc
 
 import org.eclipse.emf.mwe.utils.*
 import org.eclipse.xtext.generator.*
 import org.eclipse.xtext.ui.generator.*
 
-var grammarURI = "platform:/resource/org.eclipse.xtext.xdoc/src/org/eclipse/xtext/xdoc/XDoc.xtext"
+var grammarURI = "platform:/resource/org.eclipse.xtext.xdoc/src/org/eclipse/xtext/xdoc/Xdoc.xtext"
 var file.extensions = "xdoc"
 var projectName = "org.eclipse.xtext.xdoc"
 var runtimeProject = "../${projectName}"
@@ -14,6 +14,15 @@ Workflow {
 		platformUri = "${runtimeProject}/../.."
 	}
 
+	component = DirectoryCleaner {
+		directory = "${runtimeProject}/emf-gen"
+	}
+	
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = "platform:/resource/org.eclipse.xtext.xdoc/model/Xdoc.genmodel"
+		srcPath = "platform:/resource/org.eclipse.xtext.xdoc/src"
+	}
+	
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}/src-gen"
 	}
@@ -33,11 +42,6 @@ Workflow {
 
 			// Java API to access grammar elements (required by several other fragments)
 			fragment = grammarAccess.GrammarAccessFragment {}
-
-			// generates Java API for the generated EPackages 
-			fragment = ecore.EcoreGeneratorFragment {
-			 	referencedGenModels = "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel"
-			}
 
 			// the serialization component
 			fragment = parseTreeConstructor.ParseTreeConstructorFragment {}

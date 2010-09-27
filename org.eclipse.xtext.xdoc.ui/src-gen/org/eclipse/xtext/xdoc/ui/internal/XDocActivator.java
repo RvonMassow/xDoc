@@ -21,10 +21,10 @@ import java.util.HashMap;
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
  */
-public class XDocActivator extends AbstractUIPlugin {
+public class XdocActivator extends AbstractUIPlugin {
 
 	private Map<String,Injector> injectors = new HashMap<String,Injector>();
-	private static XDocActivator INSTANCE;
+	private static XdocActivator INSTANCE;
 
 	public Injector getInjector(String languageName) {
 		return injectors.get(languageName);
@@ -35,7 +35,7 @@ public class XDocActivator extends AbstractUIPlugin {
 		super.start(context);
 		INSTANCE = this;
 		try {
-			registerInjectorFor("org.eclipse.xtext.xdoc.XDoc");
+			registerInjectorFor("org.eclipse.xtext.xdoc.Xdoc");
 			
 		} catch (Exception e) {
 			Logger.getLogger(getClass()).error(e.getMessage(), e);
@@ -55,21 +55,21 @@ public class XDocActivator extends AbstractUIPlugin {
 		super.stop(context);
 	}
 	
-	public static XDocActivator getInstance() {
+	public static XdocActivator getInstance() {
 		return INSTANCE;
 	}
 	
 	protected Module getRuntimeModule(String grammar) {
-		if ("org.eclipse.xtext.xdoc.XDoc".equals(grammar)) {
-		  return new org.eclipse.xtext.xdoc.XDocRuntimeModule();
+		if ("org.eclipse.xtext.xdoc.Xdoc".equals(grammar)) {
+		  return new org.eclipse.xtext.xdoc.XdocRuntimeModule();
 		}
 		
 		throw new IllegalArgumentException(grammar);
 	}
 	
 	protected Module getUiModule(String grammar) {
-		if ("org.eclipse.xtext.xdoc.XDoc".equals(grammar)) {
-		  return new org.eclipse.xtext.xdoc.ui.XDocUiModule(this);
+		if ("org.eclipse.xtext.xdoc.Xdoc".equals(grammar)) {
+		  return new org.eclipse.xtext.xdoc.ui.XdocUiModule(this);
 		}
 		
 		throw new IllegalArgumentException(grammar);
