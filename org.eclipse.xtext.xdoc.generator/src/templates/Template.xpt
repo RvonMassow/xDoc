@@ -3,10 +3,11 @@
 
 «DEFINE main FOR Document -»
 «FILE "out.tex"-»
-\documentclass[a4paper,10pt]{scrreprt}
+\documentclass[a4paper]{scrreprt}
 
-\usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{ae,aecompl} 
+\usepackage[latin1]{inputenc}
 \usepackage{listings}
 
 %%\usepackage{helvet}
