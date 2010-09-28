@@ -40,8 +40,12 @@
 \usepackage{hyperref}
 
 \newlength{\itemindentlen}
+\author{«EXPAND genContent FOR this.authors»}
+\title{«EXPAND genContent FOR this.title»}
+
 
 \begin{document}
+\maketitle
 «EXPAND genContent FOREACH this.chapters»
 \end{document}
 «ENDFILE-»
