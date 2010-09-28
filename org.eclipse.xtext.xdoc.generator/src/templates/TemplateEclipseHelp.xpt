@@ -1,10 +1,12 @@
 «IMPORT org::eclipse::xtext::xdoc::xdoc»
+«IMPORT templates»
+
 «EXTENSION templates::Extensions»
 
 «DEFINE main FOR Document -»
 
 «FILE "toc.xml"-»
-<toc topic="src-gen/index.html" label="Xtext User Guide">
+<toc topic="src-gen/index.html" label="«EXPAND genPlainText FOR title»">
 «EXPAND genTocEntry FOREACH chapters»
 </toc>
 
@@ -25,12 +27,13 @@
 </body>
 «ENDFILE-»
 
-«EXPAND genContent(this.chapters, "") FOR this.chapters»
-
+«EXPAND genContent FOREACH this.chapters»
 «ENDDEFINE»
+
 
 «DEFINE genTocEntry FOR AbstractSection»
 «ENDDEFINE»
+
 
 «DEFINE genTocEntry FOR Chapter»
 <topic href="«((String)GLOBALVAR dir) +fileName(this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
@@ -45,7 +48,7 @@
 «ENDDEFINE»
 
 «DEFINE genTocEntry FOR Section3»
-<topic href="«((String)GLOBALVAR dir) +fileName((Section2)this.eContainer())».html#«labelName(this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) +fileName((Section2)this.eContainer())».html#«fileName(this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry FOR Section4»
@@ -53,59 +56,50 @@
 «ENDDEFINE»
 
 
-«DEFINE genContent(List[Chapter] chapters, String pre) FOR List[Chapter]»
-«FOREACH this AS chapter»
-«FILE fileName(chapter)+".html"»«EXPAND preamble FOR chapter»
-<h1>«EXPAND genContent FOR chapter.title»</h1>
-«EXPAND genContent FOREACH chapter.contents»
-</body>
-</html>
-«ENDFILE»
-«EXPAND genContent1(chapter.subSections, chapters.indexOf(chapter).toString()+"-")»
-«ENDFOREACH»
-«ENDDEFINE»
-
-«DEFINE genContent1 (List[Section] sections, String prefix) FOR List[Section]»
-«FOREACH sections AS section»
-«FILE fileName(section)+".html"»«EXPAND preamble FOR section»
-<h1>«EXPAND genContent FOR section.title»</h1>
-«EXPAND genContent FOREACH section.contents»
-</body>
-</html>
-«ENDFILE»
-«EXPAND genContent2(prefix + sections.indexOf(section).toString(), section.subSections)»
-«ENDFOREACH»
-«ENDDEFINE»
-
-«DEFINE genContent2(String prefix, List[Section2] sections) FOR List[Section2]»
-«FOREACH sections AS section»
-«FILE fileName(section)+".html"»«EXPAND preamble FOR section»
-<h1>«EXPAND genContent FOR section.title»</h1>
-«EXPAND genContent FOREACH section.contents»
-«EXPAND genContent3 FOREACH section.subSections»
-</body>
-</html>
-«ENDFILE»
-«ENDFOREACH»
-«ENDDEFINE»
-
-
-«DEFINE genContent3 FOR Section3»«EXPAND genLabel FOR labelName(this)»
-<h2 class="title" style="clear: both">«EXPAND genContent FOR this.title» </h2>
+«DEFINE genContent FOR Chapter»
+«FILE (String)fileName(this)+".html"»«EXPAND preamble FOR this»
 «EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
-</p>
-«ENDFOREACH»
-«EXPAND genContent4 FOREACH this.subSections»
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">«
+EXPAND TemplateHTML::genContent FOR this.title»</h1>
+«EXPAND TemplateHTML::genContent FOREACH this.contents»
+«EXPAND genContent FOREACH this.subSections»
+</body>
+</html>
+«ENDFILE»
 «ENDDEFINE»
 
 
-«DEFINE genContent4 FOR Section4»«EXPAND genLabel FOR labelName(this)»
-<div class="section" title="«EXPAND genPlainText FOR this.title»">
-<div class="titlepage">
-<h3 class="title">«EXPAND genContent FOR this.title»</h3>
+«DEFINE genContent FOR Section»
+«EXPAND genLabel FOR this.name»
+«EXPAND preamble FOR this»
+«EXPAND genContent FOREACH this.contents»
+«EXPAND genContent FOREACH this.subSections»
 </div>
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Section2»
 «EXPAND genLabel FOR this.name»
+«EXPAND preamble FOR this»
+«EXPAND genContent FOREACH this.contents»
+«EXPAND genContent FOREACH this.subSections»
+</div>
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Section3»
+«EXPAND genLabel FOR this.name»
+«EXPAND genLabel FOR this.name»
+«EXPAND preamble FOR this»
+«EXPAND genContent FOREACH this.contents»
+«EXPAND TemplateHTML::genContent FOREACH this.subSections»
+</div>
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Section4»
+«EXPAND genLabel FOR this.name»
+«EXPAND preamble FOR this»
 «FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
 </p>
 «ENDFOREACH»
@@ -210,18 +204,38 @@
 
 «DEFINE genURLText FOR Object»«ENDDEFINE»
 
-«DEFINE preamble FOR AbstractSection»<html>
+«DEFINE preamble FOR AbstractSection»
+<a name="sec-«fileName(this)»"></a>
+«EXPAND genStyleClasses FOR this»
+«ENDDEFINE»
+
+«DEFINE genStyleClasses FOR AbstractSection»<div class="section" title="«EXPAND Lib::genPlainText FOR this.title»">
+<div class="titlepage">
+<div>
+<div>
+«EXPAND head FOR this»
+</div>
+</div>
+</div>
+«ENDDEFINE»
+
+«DEFINE head FOR AbstractSection»«throwUnsupportedOperation("<h?> tags for AbstractSection", this)»«ENDDEFINE»
+
+«DEFINE head FOR Section»<h2 class="title">«EXPAND TemplateHTML::genContent FOR this.title»</h2>«ENDDEFINE»
+
+«DEFINE head FOR Section2»<h3 class="title">«EXPAND TemplateHTML::genContent FOR this.title»</h3>«ENDDEFINE»
+
+«DEFINE head FOR Section3»<h4 class="title">«EXPAND TemplateHTML::genContent FOR this.title»</h4>«ENDDEFINE»
+
+«DEFINE preamble FOR Chapter»<html>
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>«EXPAND genPlainText FOR this.title»</title>
+<title>«EXPAND Lib::genPlainText FOR this.title»</title>
 <link href="book.css" rel="stylesheet" type="text/css">
-«REM» TODO stuff
-<meta content="DocBook XSL Stylesheets V1.75.1" name="generator">
-<link rel="home" href="index.html" title="Xtext User Guide">
-<link rel="up" href="RuntimeConcepts.html" title="Runtime Concepts">
-<link rel="prev" href="linking.html" title="Linking">
-<link rel="next" href="valueconverter.html" title="Value Converter">
-«ENDREM»
+<link rel="home" href="index.html" title="">
+«IF !Chapter.isInstance(this)»«EXPAND Lib::genLink FOR this.eContainer()»«ENDIF»
+«IF !isFirst(this)»«EXPAND Lib::genLink FOR sibling(this, -1)»«ENDIF»
+«IF !isLast(this)»«EXPAND Lib::genLink FOR sibling(this, 1)»«ENDIF»
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 «ENDDEFINE»

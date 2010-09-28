@@ -1,7 +1,7 @@
 import org::eclipse::xtext::xdoc::xdoc;
 
 lstEscapeToTex():
-	"Â°";
+	"Â";
 
 escapeLatexChars(String s):
 	s.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
@@ -31,26 +31,73 @@ boolean block(TextOrMarkup c):
 
 
 // eclipse help helpers
-fileName(AbstractSection as):
+String fileName(AbstractSection as):
 	as.name;
 
-fileName(Chapter c):
-	((Document)c.eContainer()).chapters.indexOf(c).toString();
+String fileName(Chapter c):
+	if(Document.isInstance(c.eContainer())) then
+		((Document)c.eContainer()).chapters.indexOf(c).toString()
+	else
+		((XdocFile)c.eContainer()).sections.indexOf(c).toString();
 
-fileName(Section c):
+String fileName(Section c):
 	fileName((Chapter)c.eContainer()) + "-" + ((Chapter)c.eContainer()).subSections.indexOf(c).toString();
 
-fileName(Section2 c):
+String fileName(Section2 c):
 	fileName((Section)c.eContainer()) + "-" + ((Section)c.eContainer()).subSections.indexOf(c).toString();
 	
-labelName(Section3 s):
-	"sub"+((Section)s.eContainer()).subSections.indexOf(s).toString();
+String fileName(Section3 s):
+	fileName((Section2)s.eContainer()) + "-" + ((Section)s.eContainer()).subSections.indexOf(s).toString();
 
-labelName(Section4 s):
-	labelName((Section3)s.eContainer()) +"-"+ ((Section3)s.eContainer()).subSections.indexOf(s).toString();
+String labelName(Section4 s):
+	fileName((Section3)s.eContainer()) +"-"+ ((Section3)s.eContainer()).subSections.indexOf(s).toString();
 
 remWS(String s):
 	s.replaceAll("\\s", "");
+
+
+fileName(Object o):
+	o.toString();
+
+isFirst(AbstractSection as):
+	false;
+
+isFirst(Section2 s):
+	((Section)s.eContainer()).subSections.first() == s;
+
+isFirst(Section s):
+	((Chapter)s.eContainer()).subSections.first() == s;
+
+isFirst(Chapter c):
+	((Document)c.eContainer()).chapters.first() == c;
+
+isLast(AbstractSection as):
+	false;
+
+isLast(Section2 s):
+	((Section)s.eContainer()).subSections.last() == s;
+
+isLast(Section s):
+	((Chapter)s.eContainer()).subSections.last() == s;
+
+isLast(Chapter c):
+	((Document)c.eContainer()).chapters.last() == c;
+
+sibling(AbstractSection as, Integer i):
+	as;
+
+sibling(Chapter c, Integer i):
+	let d =((Document)c.eContainer()):
+		d.chapters.get(d.chapters.indexOf(c) + i);
+
+sibling(Section s, Integer i):
+	let c =((Chapter)s.eContainer()):
+		c.subSections.get(c.subSections.indexOf(s) + i);
+
+sibling(Section2 c, Integer i):
+	let d =((Section)c.eContainer()):
+		d.subSections.get(d.subSections.indexOf(c) + i);
+
 
 String encode(String s):
 	JAVA templates.util.StringFormatter.encode(java.lang.String);
