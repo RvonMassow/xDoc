@@ -1,6 +1,7 @@
 package workflow;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -17,8 +18,7 @@ public class LatexRunner implements IWorkflowComponent {
 	private String outputDir;
 	private int numberOfPasses = 3;
 	private Logger log = LogManager.getLogger(this.getClass());
-	private String pdfLatexCommandParams = "--interaction scrollmode";
-	private String pdfLatextOutputDirectory = "--output-directory ";
+	private String pdfLatexInteractionMode = "--interaction scrollmode";
 	private String pdfLatex = "pdflatex";
 	private String inputSlot;
 	
@@ -36,7 +36,7 @@ public class LatexRunner implements IWorkflowComponent {
 	}
 	
 	public void setPdfLatexCommandParams(String pdfLatexCommandParams) {
-		this.pdfLatexCommandParams = pdfLatexCommandParams;
+		this.pdfLatexInteractionMode = pdfLatexCommandParams;
 	}
 
 	public void setNumberOfPasses(int numberOfPasses) {
@@ -69,13 +69,13 @@ public class LatexRunner implements IWorkflowComponent {
 	public void invoke(IWorkflowContext ctx) {
 		for (Document doc : (List<Document>) ctx.get(inputSlot)) {
 			String inputFile = doc.getName();
-			String[] cmdArgs = { pdfLatex, pdfLatexCommandParams,
-					pdfLatextOutputDirectory + outputDir,
-					outputDir + "/" + inputFile+".tex" };
+			String[] cmdArgs = { pdfLatex, pdfLatexInteractionMode,
+					inputFile+".tex" };
+			System.out.println(outputDir);
 			try {
 				for (int i = 0; i < numberOfPasses; i++) {
 					log.info("pdflatex pass " + (i + 1));
-					Process p = Runtime.getRuntime().exec(cmdArgs);
+					Process p = Runtime.getRuntime().exec(cmdArgs, null, new File(outputDir));
 					BufferedReader is = new BufferedReader(
 							new InputStreamReader(p.getInputStream()));
 					String s = is.readLine();
