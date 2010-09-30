@@ -32,7 +32,7 @@
 
 %\lstdefinelanguage{xtext}{keywords={terminal, grammar, import, generate, hidden, as}, sensitive=true,string={"},morestring={'},comment={//},morecomment=[s]{/*}{*/}}
 
-\lstset{tabsize=4, basicstyle=\sffamily\footnotesize, keywordstyle=\bfseries, language=Xbase, columns=[r]fullflexible}
+\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, language=Xbase, columns=[r]fullflexible}
 
 \usepackage[english]{babel}
 
