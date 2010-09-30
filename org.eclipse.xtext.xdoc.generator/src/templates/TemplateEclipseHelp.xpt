@@ -39,23 +39,23 @@
 
 
 «DEFINE genTocEntry(Document doc) FOR Chapter»
-<topic href="«((String)GLOBALVAR dir) +fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section»
-<topic href="«((String)GLOBALVAR dir) +fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section2»
-<topic href="«((String)GLOBALVAR dir) + fileName(doc,this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section3»
-<topic href="«((String)GLOBALVAR dir) +fileName(doc,(Section2)this.eContainer())».html#«fileName(doc, this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«fileName(doc, this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section4»
-<topic href="«((String)GLOBALVAR dir) +fileName(doc,(Section2)this.eContainer().eContainer())».html#«fileName(doc,this)»" label="«EXPAND genPlainText FOR this.title»" />
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«fileName(doc,this)»" label="«EXPAND genPlainText FOR this.title»" />
 «ENDDEFINE»
 
 

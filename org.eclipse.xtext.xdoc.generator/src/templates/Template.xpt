@@ -53,7 +53,7 @@
 
 «DEFINE genContent FOR Chapter»
 \chapter{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»
+«EXPAND genLabel FOR this»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 
@@ -138,7 +138,7 @@
 «DEFINE genText FOR Emphasize»\textit{«EXPAND genContent FOREACH this.contents»}«ENDDEFINE»
 
 «DEFINE genText FOR Ref»
-«IF this.contents.isEmpty»\autoref{«this.ref.name»}«ELSE»\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»~(\ref*{«this.ref.name»})}«ENDIF»«ENDDEFINE»
+«IF this.contents.isEmpty»\autoref{«this.ref.name»}«ELSE»\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»~(§\ref*{«this.ref.name»})}«ENDIF»«ENDDEFINE»
 
 «DEFINE genText FOR Anchor»
 \phantomsection
@@ -167,5 +167,18 @@
 
 «DEFINE genCode FOR MarkupInCode»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDDEFINE»
 
-«DEFINE genLabel FOR String»«IF this != null »\label{«this»}«ENDIF»«ENDDEFINE»
+«DEFINE genLabel FOR ChapterRef-»
+«IF this != null-»
+\label{«this.chapter.name»}«
+ENDIF-»
+«ENDDEFINE»
 
+«DEFINE genLabel FOR Chapter-»
+\label{«this.name»}
+«ENDDEFINE»
+
+«DEFINE genLabel FOR String-»
+«IF this != null -»
+\label{«this»}«
+ENDIF-»
+«ENDDEFINE»

@@ -42,15 +42,15 @@ String fileName(Document doc, Chapter c):
 			i.toString()
 	;
 
-String fileName(Document doc, Section s):
+String fileName(Document doc, AbstractSection s):
 	fileName(doc, s.eContainer());
-
+/*
 String fileName(Document doc, Section2 s):
 	fileName(doc, s.eContainer());
 
 String fileName(Document doc, Section3 s):
 	fileName(doc, s.eContainer());
-
+*/
 fileName(Document doc,Ref r):
 	fileName(doc, r.ref);
 
