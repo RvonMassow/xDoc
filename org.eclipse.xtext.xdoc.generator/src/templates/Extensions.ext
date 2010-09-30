@@ -27,7 +27,7 @@ boolean block(TextOrMarkup c):
 	(TextPart.isInstance(c.contents.first())
 		&& ((TextPart)c.contents.first()).text.matches("^\\s*$") 
 		&& CodeBlock.isInstance(c.contents.get(1)))
-	|| CodeBlock.isInstance(c.contents.first());
+	|| (CodeBlock.isInstance(c.contents.first()) && !inline((CodeBlock)c.contents.first()));
 
 
 // eclipse help helpers
