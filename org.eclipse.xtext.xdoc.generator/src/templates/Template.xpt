@@ -2,7 +2,7 @@
 «EXTENSION templates::Extensions»
 
 «DEFINE main FOR Document -»
-«FILE "out.tex"-»
+«FILE this.name + ".tex"-»
 \documentclass[a4paper]{scrreprt}
 
 \usepackage[T1]{fontenc}

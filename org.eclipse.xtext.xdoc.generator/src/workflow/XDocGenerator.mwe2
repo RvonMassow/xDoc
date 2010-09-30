@@ -34,6 +34,6 @@ Workflow {
 	
 	component = workflow.LatexRunner auto-inject {
 		outputDir = targetDir
-		inputFile = "${targetDir}/out.tex"
+		inputSlot = "doc"
 	}
 }

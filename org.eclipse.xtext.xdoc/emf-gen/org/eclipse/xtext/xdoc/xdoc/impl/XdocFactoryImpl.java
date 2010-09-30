@@ -119,7 +119,7 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
 	 */
 	public Document createDocument()
 	{
-		DocumentImpl document = new DocumentImpl();
+		DocumentImpl document = new DocumentImplCustom();
 		return document;
 	}
 
