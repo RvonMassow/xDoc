@@ -31,33 +31,46 @@ boolean block(TextOrMarkup c):
 
 
 // eclipse help helpers
-String fileName(AbstractSection as):
-	as.name;
+fileName(Document doc, Object o):
+	throwUnsupportedOperation("Cannot determine target filename for "+o.toString(), o);
 
-String fileName(Chapter c):
-	if(Document.isInstance(c.eContainer())) then
-		((Document)c.eContainer()).chapters.indexOf(c).toString()
-	else
-		((XdocFile)c.eContainer()).sections.indexOf(c).toString();
+String fileName(Document doc, Chapter c):
+	let i = doc.chapters.indexOf(c):
+		if(i == -1) then
+			doc.chapters.indexOf(doc.chapters.typeSelect(ChapterRef).select(e|e.chapter == c).first()).toString()
+		else
+			i.toString()
+	;
 
-String fileName(Section c):
-	fileName((Chapter)c.eContainer()) + "-" + ((Chapter)c.eContainer()).subSections.indexOf(c).toString();
+String fileName(Document doc, Section s):
+	fileName(doc, s.eContainer());
 
-String fileName(Section2 c):
-	fileName((Section)c.eContainer()) + "-" + ((Section)c.eContainer()).subSections.indexOf(c).toString();
-	
-String fileName(Section3 s):
-	fileName((Section2)s.eContainer()) + "-" + ((Section)s.eContainer()).subSections.indexOf(s).toString();
+String fileName(Document doc, Section2 s):
+	fileName(doc, s.eContainer());
 
-String labelName(Section4 s):
-	fileName((Section3)s.eContainer()) +"-"+ ((Section3)s.eContainer()).subSections.indexOf(s).toString();
+String fileName(Document doc, Section3 s):
+	fileName(doc, s.eContainer());
+
+fileName(Document doc,Ref r):
+	fileName(doc, r.ref);
+
+fileName(Document doc,Item i):
+	fileName(doc, i.eContainer());
+
+fileName(Document doc,OrderedList ol):
+	fileName(doc, ol.eContainer());
+
+fileName(Document doc,UnorderedList ul):
+	fileName(doc, ul.eContainer());
+
+fileName(Document doc,TextOrMarkup tom):
+	fileName(doc, tom.eContainer());
+
+//String labelName(Section4 s):
+//	fileName((Section3)s.eContainer()) +"-"+ ((Section3)s.eContainer()).subSections.indexOf(s).toString();
 
 remWS(String s):
 	s.replaceAll("\\s", "");
-
-
-fileName(Object o):
-	o.toString();
 
 isFirst(AbstractSection as):
 	false;

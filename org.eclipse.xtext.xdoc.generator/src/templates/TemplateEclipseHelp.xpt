@@ -1,4 +1,5 @@
 «IMPORT org::eclipse::xtext::xdoc::xdoc»
+«IMPORT org::eclipse::emf::ecore»
 «IMPORT templates»
 
 «EXTENSION templates::Extensions»
@@ -7,7 +8,7 @@
 
 «FILE "toc.xml"-»
 <toc topic="src-gen/index.html" label="«EXPAND genPlainText FOR title»">
-«EXPAND genTocEntry FOREACH chapters»
+«EXPAND genTocEntry(this) FOREACH chapters»
 </toc>
 
 «ENDFILE»
@@ -27,82 +28,87 @@
 </body>
 «ENDFILE-»
 
-«EXPAND genContent FOREACH this.chapters»
+«EXPAND genContent(this) FOREACH this.chapters»
 «ENDDEFINE»
 
+«DEFINE genContent(List[Chapter] chapters, Document doc) FOR List[Chapter]-»
+«ENDDEFINE»
 
 «DEFINE genTocEntry FOR AbstractSection»
 «ENDDEFINE»
 
 
-«DEFINE genTocEntry FOR Chapter»
-<topic href="«((String)GLOBALVAR dir) +fileName(this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+«DEFINE genTocEntry(Document doc) FOR Chapter»
+<topic href="«((String)GLOBALVAR dir) +fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-«DEFINE genTocEntry FOR Section»
-<topic href="«((String)GLOBALVAR dir) +fileName(this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+«DEFINE genTocEntry(Document doc) FOR Section»
+<topic href="«((String)GLOBALVAR dir) +fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-«DEFINE genTocEntry FOR Section2»
-<topic href="«((String)GLOBALVAR dir) + fileName(this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+«DEFINE genTocEntry(Document doc) FOR Section2»
+<topic href="«((String)GLOBALVAR dir) + fileName(doc,this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-«DEFINE genTocEntry FOR Section3»
-<topic href="«((String)GLOBALVAR dir) +fileName((Section2)this.eContainer())».html#«fileName(this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+«DEFINE genTocEntry(Document doc) FOR Section3»
+<topic href="«((String)GLOBALVAR dir) +fileName(doc,(Section2)this.eContainer())».html#«fileName(doc, this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
 «ENDDEFINE»
 
-«DEFINE genTocEntry FOR Section4»
-<topic href="«((String)GLOBALVAR dir) +fileName((Section2)this.eContainer().eContainer())».html#«labelName(this)»" label="«EXPAND genPlainText FOR this.title»" />
+«DEFINE genTocEntry(Document doc) FOR Section4»
+<topic href="«((String)GLOBALVAR dir) +fileName(doc,(Section2)this.eContainer().eContainer())».html#«fileName(doc,this)»" label="«EXPAND genPlainText FOR this.title»" />
 «ENDDEFINE»
 
 
-«DEFINE genContent FOR Chapter»
-«FILE (String)fileName(this)+".html"»«EXPAND preamble FOR this»
-«EXPAND genLabel FOR this.name»
+«DEFINE genContent(Document doc) FOR Chapter -»
+«FILE fileName(doc,this)+".html"»«EXPAND preamble(doc) FOR this»
+«EXPAND genLabel(doc) FOR this.name»
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">«
-EXPAND TemplateHTML::genContent FOR this.title»</h1>
-«EXPAND TemplateHTML::genContent FOREACH this.contents»
-«EXPAND genContent FOREACH this.subSections»
+EXPAND genNonParContent(doc) FOR this.title»</h1>
+«EXPAND genContent(doc) FOREACH this.contents»
+«EXPAND genContent(doc) FOREACH this.subSections»
 </body>
 </html>
 «ENDFILE»
 «ENDDEFINE»
 
 
-«DEFINE genContent FOR Section»
-«EXPAND genLabel FOR this.name»
-«EXPAND preamble FOR this»
-«EXPAND genContent FOREACH this.contents»
-«EXPAND genContent FOREACH this.subSections»
+«DEFINE genContent(Document doc) FOR Section»
+«EXPAND genLabel(doc) FOR this.name»
+«EXPAND preamble(doc) FOR this»
+«EXPAND genContent(doc) FOREACH this.contents»
+«EXPAND genContent(doc) FOREACH this.subSections»
 </div>
 «ENDDEFINE»
 
 
-«DEFINE genContent FOR Section2»
-«EXPAND genLabel FOR this.name»
-«EXPAND preamble FOR this»
-«EXPAND genContent FOREACH this.contents»
-«EXPAND genContent FOREACH this.subSections»
+«DEFINE genContent(Document doc) FOR Section2»
+«EXPAND genLabel(doc) FOR this.name»
+«EXPAND preamble(doc) FOR this»
+«EXPAND genContent(doc) FOREACH this.contents»
+«EXPAND genContent(doc) FOREACH this.subSections»
 </div>
 «ENDDEFINE»
 
 
-«DEFINE genContent FOR Section3»
-«EXPAND genLabel FOR this.name»
-«EXPAND genLabel FOR this.name»
-«EXPAND preamble FOR this»
-«EXPAND genContent FOREACH this.contents»
-«EXPAND TemplateHTML::genContent FOREACH this.subSections»
+«DEFINE genContent(Document doc) FOR Section3»
+«EXPAND genLabel(doc) FOR this.name»
+«EXPAND preamble(doc) FOR this»
+«EXPAND genContent(doc) FOREACH this.contents»
+«EXPAND genContent(doc) FOREACH this.subSections»
 </div>
 «ENDDEFINE»
 
 
-«DEFINE genContent FOR Section4»
-«EXPAND genLabel FOR this.name»
-«EXPAND preamble FOR this»
-«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
-</p>
-«ENDFOREACH»
+«DEFINE genContent(Document doc) FOR Section4»
+«EXPAND genLabel(doc) FOR this.name»
+«EXPAND preamble(doc) FOR this»
+«EXPAND genContent(doc) FOREACH this.contents»
+«ENDDEFINE»
+
+«DEFINE genNonParContent(Document doc) FOR TextOrMarkup-»
+«FOREACH this.contents AS par-»
+«EXPAND genText(doc) FOR par-»
+«ENDFOREACH-»
 «ENDDEFINE»
 
 «REM»
@@ -113,55 +119,71 @@ EXPAND TemplateHTML::genContent FOR this.title»</h1>
 
 «REM» start html template«ENDREM»
 
-«DEFINE genContent FOR TextOrMarkup»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
-
-
-«DEFINE genContent FOR Object»
+«DEFINE genContent(Document doc) FOR TextOrMarkup»
+<p>
+«EXPAND genText(doc) FOREACH this.contents»
+</p>
 «ENDDEFINE»
 
-«DEFINE genText FOR Object»
+
+«DEFINE genContent(Document doc) FOR Object»
 «ENDDEFINE»
 
-«DEFINE genText FOR TextPart»«escapeHTMLChars(unescapeXdocChars(this.text))»«ENDDEFINE»
+«DEFINE genText(Document doc) FOR Object»
+«ENDDEFINE»
 
-«DEFINE genText FOR OrderedList»
+«DEFINE genText(Document doc) FOR TextPart-»
+«escapeHTMLChars(unescapeXdocChars(this.text))-»
+«ENDDEFINE»
+
+«DEFINE genText(Document doc) FOR OrderedList»
 <ol>
-«EXPAND genText FOREACH items»
+«EXPAND genText(doc) FOREACH items»
 </ol>
 «ENDDEFINE»
 
-«DEFINE genText FOR UnorderedList»
+«DEFINE genText(Document doc) FOR UnorderedList»
 <ul>
-«EXPAND genText FOREACH items»
+«EXPAND genText(doc) FOREACH items»
 </ul>
 «ENDDEFINE»
 
-«DEFINE genText FOR Item»
+«DEFINE genText(Document doc) FOR Item»
 <li>
-«EXPAND genContent FOREACH this.contents»
+«EXPAND genContent(doc) FOREACH this.contents»
 </li>
 «ENDDEFINE»
 
-«DEFINE genText FOR Emphasize»<em>«EXPAND genContent FOREACH this.contents»</em>«ENDDEFINE»
+«DEFINE genText(Document doc) FOR Emphasize-»
+<em>«EXPAND genContent(doc) FOREACH this.contents»</em>«
+ENDDEFINE»
 
-«DEFINE genText FOR Ref»
-«IF this.contents.isEmpty»<a href="#«this.ref.name»">«this.ref»</a>«ELSE»<a href="#«this.ref.name»">«EXPAND genContent FOREACH this.contents»</a>«ENDIF»«ENDDEFINE»
+«DEFINE genText(Document doc) FOR Ref»
+«IF this.contents.isEmpty-»
+<a href="«fileName(doc, this)».html#«this.ref.name»">section «this.ref.name»</a>«
+ELSE-»
+<a href="«fileName(doc, this)».html#«this.ref.name»">«
+EXPAND genNonParContent(doc) FOREACH this.contents»</a>«
+ENDIF-»
+«ENDDEFINE»
 
-«DEFINE genText FOR Anchor»
+«DEFINE genText(Document doc) FOR Anchor»
 <a name="«this.name»"></a>
 «ENDDEFINE»
 
-«DEFINE genText FOR Link»<a href="«this.url»">«escapeHTMLChars(unescapeXdocChars(this.text))»</a>«ENDDEFINE»
+«DEFINE genText(Document doc) FOR Link-»
+<a href="«this.url»">«escapeHTMLChars(unescapeXdocChars(this.text))»</a>«
+ENDDEFINE»
 
 «REM»TODO: better code implementation«ENDREM»
-«DEFINE genText FOR CodeBlock»
+«DEFINE genText(Document doc) FOR CodeBlock»
 <pre>
 «EXPAND genCode FOREACH contents»
 </pre>
 «ENDDEFINE»
 
 «REM»TODO: generate urls for code refs«ENDREM»
-«DEFINE genText FOR CodeRef»
+«DEFINE genText(Document doc) FOR CodeRef»
 <em>«escapeHTMLChars(unescapeXdocChars(this.element.canonicalName))»</em>
 «ENDDEFINE»
 
@@ -175,7 +197,9 @@ EXPAND TemplateHTML::genContent FOR this.title»</h1>
 «REM»TODO: find solution for escaping to html, refers to better code concept«ENDREM»
 «DEFINE genCode FOR MarkupInCode»«REM»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDREM»«ENDDEFINE»
 
-«DEFINE genLabel FOR String»«IF this != null »<a name="«this»"></a>«ENDIF»
+«DEFINE genLabel(Document doc) FOR String-»
+«IF this != null »<a name="«this»"></a>«
+ENDIF-»
 «ENDDEFINE»
 
 «REM» end html template«ENDREM»
@@ -204,8 +228,8 @@ EXPAND TemplateHTML::genContent FOR this.title»</h1>
 
 «DEFINE genURLText FOR Object»«ENDDEFINE»
 
-«DEFINE preamble FOR AbstractSection»
-<a name="sec-«fileName(this)»"></a>
+«DEFINE preamble(Document doc) FOR AbstractSection»
+<a name="sec-«fileName(doc, this)»"></a>
 «EXPAND genStyleClasses FOR this»
 «ENDDEFINE»
 
@@ -227,15 +251,18 @@ EXPAND TemplateHTML::genContent FOR this.title»</h1>
 
 «DEFINE head FOR Section3»<h4 class="title">«EXPAND TemplateHTML::genContent FOR this.title»</h4>«ENDDEFINE»
 
-«DEFINE preamble FOR Chapter»<html>
+«DEFINE preamble(Document doc) FOR Chapter»<html>
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>«EXPAND Lib::genPlainText FOR this.title»</title>
 <link href="book.css" rel="stylesheet" type="text/css">
 <link rel="home" href="index.html" title="">
-«IF !Chapter.isInstance(this)»«EXPAND Lib::genLink FOR this.eContainer()»«ENDIF»
-«IF !isFirst(this)»«EXPAND Lib::genLink FOR sibling(this, -1)»«ENDIF»
-«IF !isLast(this)»«EXPAND Lib::genLink FOR sibling(this, 1)»«ENDIF»
+«IF !isFirst(this)-»
+«EXPAND Lib::genLink(doc) FOR sibling(this, -1)»
+«ENDIF-»
+«IF !isLast(this)-»
+«EXPAND Lib::genLink(doc) FOR sibling(this, 1)»
+«ENDIF-»
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
 «ENDDEFINE»
