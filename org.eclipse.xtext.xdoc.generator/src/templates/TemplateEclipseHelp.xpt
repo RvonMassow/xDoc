@@ -155,7 +155,7 @@ EXPAND genNonParContent(doc) FOR this.title»</h1>
 «ENDDEFINE»
 
 «DEFINE genText(Document doc) FOR Emphasize-»
-<em>«EXPAND genContent(doc) FOREACH this.contents»</em>«
+<em>«EXPAND genNonParContent(doc) FOREACH this.contents»</em>«
 ENDDEFINE»
 
 «DEFINE genText(Document doc) FOR Ref»
@@ -176,10 +176,16 @@ ENDIF-»
 ENDDEFINE»
 
 «REM»TODO: better code implementation«ENDREM»
-«DEFINE genText(Document doc) FOR CodeBlock»
-<pre>
+«DEFINE genText(Document doc) FOR CodeBlock-»
+«IF inline(this) -»
+<span class="inlinecode">«EXPAND genCode FOREACH contents»</span>«
+ELSE»
+<div class="literallayout">
+<code class="code">
 «EXPAND genCode FOREACH contents»
-</pre>
+</code>
+</div>
+«ENDIF»
 «ENDDEFINE»
 
 «REM»TODO: generate urls for code refs«ENDREM»
@@ -190,7 +196,7 @@ ENDDEFINE»
 «DEFINE genCode FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode FOR Code»«escapeHTMLChars(unescapeXdocChars(this.contents))»«ENDDEFINE»
+«DEFINE genCode FOR Code»«formatCode(unescapeXdocChars(this.contents))»«ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 

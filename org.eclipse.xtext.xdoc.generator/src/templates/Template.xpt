@@ -109,7 +109,7 @@
 «DEFINE genText FOR Object»«throwUnsupportedOperation("genText",this)»«ENDDEFINE»
 
 «DEFINE genText FOR Table»
-\begin{tabular}{«EXPAND genColumns FOR this.rows.first().data»}
+\noindent\begin{tabular}{«EXPAND genColumns FOR this.rows.first().data»}
 «EXPAND genText FOREACH this.rows SEPARATOR "\\\\\n"»
 \end{tabular}
 «ENDDEFINE»
@@ -128,18 +128,18 @@
 «DEFINE genText FOR OrderedList»
 \setlength{\itemindentlen}{\textwidth}
 \begin{enumerate}
-\addtolength{\itemindentlen}{-2em}
+\addtolength{\itemindentlen}{-2.5em}
 «EXPAND genText FOREACH items»
 \end{enumerate}
-\addtolength{\itemindentlen}{2em}«ENDDEFINE»
+\addtolength{\itemindentlen}{2.5em}«ENDDEFINE»
 
 «DEFINE genText FOR UnorderedList»
 \setlength{\itemindentlen}{\textwidth}
 \begin{itemize}
-\addtolength{\itemindentlen}{-2em}
+\addtolength{\itemindentlen}{-2.5em}
 «EXPAND genText FOREACH items»
 \end{itemize}
-\addtolength{\itemindentlen}{2em}«ENDDEFINE»
+\addtolength{\itemindentlen}{2.5em}«ENDDEFINE»
 
 «DEFINE genText FOR Item»
 \item \begin{minipage}[t]{\itemindentlen}«IF block(this.contents.first())»\vspace*{-\baselineskip}«ENDIF»
@@ -161,7 +161,7 @@
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline«IF language!=null» [language=«this.language»]«ENDIF»°«EXPAND genCode FOREACH this.contents»°«
+ IF inline(this)»\lstinline[«IF language!=null» language=«this.language»«ENDIF»]°«EXPAND genCode FOREACH this.contents»°«
  ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«
  ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»

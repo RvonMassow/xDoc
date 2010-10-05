@@ -20,6 +20,10 @@ escapeHTMLChars(String s):
 	s.replaceAll("&", "&amp;").replaceAll("\"", "&quot;").replaceAll("'", "&apos;")
 		.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
+formatCode(String text):
+	text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br />");
+
+// simple heuristic to determine if code is meant to be inline
 boolean inline(CodeBlock c):
 	c.contents.size == 1 && !c.contents.first().toString().contains("\n");
 

@@ -99,9 +99,11 @@
 
 «REM»TODO: better code implementation«ENDREM»
 «DEFINE genText FOR CodeBlock»
-<pre>
+<div class="literallayout">
+<code>
 «EXPAND genCode FOREACH contents»
-</pre>
+</code>
+<div>
 «ENDDEFINE»
 
 «REM»TODO: generate urls for code refs«ENDREM»
@@ -112,7 +114,7 @@
 «DEFINE genCode FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode FOR Code»«escapeHTMLChars(unescapeXdocChars(this.contents))»«ENDDEFINE»
+«DEFINE genCode FOR Code»«formatCode(unescapeXdocChars(this.contents))»«ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
