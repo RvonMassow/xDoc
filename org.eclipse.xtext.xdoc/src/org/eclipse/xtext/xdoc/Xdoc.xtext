@@ -75,22 +75,26 @@ MarkUp:
 	Table;
 	
 Table :
+	{Table}
 	'table['
-		(ANY_WS*  rows+=TableRow)+
+		(ANY_WS*  rows+=TableRow)*
 		ANY_WS*
 	']';
 
 TableRow :
+	{TableRow}
 	'tr['
-		(ANY_WS* data+=TableData)+
+		(ANY_WS* data+=TableData)*
 		ANY_WS*
 	']';
 
 TableData :
-	'td[' MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']';
+	{TableData}
+	'td[' (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? ']';
 
 Emphasize:
-	'e[' MULTI_NL? contents+=TextOrMarkup MULTI_NL? ']';
+	{Emphasize}
+	'e[' (MULTI_NL? contents+=TextOrMarkup MULTI_NL?)? ']';
 
 Anchor:
 	'a[' name=ID ']';
@@ -99,30 +103,35 @@ Ref:
 	'ref:' ref=[Identifiable] ('[' MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? ']')?;
 
 OrderedList:
+	{OrderedList}
 	'ol['
-		(ANY_WS* items+=Item)+
+		(ANY_WS* items+=Item)*
 		ANY_WS*
 	']';
 
 UnorderedList:
+	{UnorderedList}
 	'ul['
-		(ANY_WS* items+=Item)+
+		(ANY_WS* items+=Item)*
 		ANY_WS*
 	']';
 
 Item:
-	'item[' MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)* ']';
+	{Item}
+	'item[' (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? ']';
 
 CodeRef:
-	'codeRef[' element=[types::JvmIdentifyableElement|Text] ']';
+	{CodeRef}
+	'codeRef[' (element=[types::JvmIdentifyableElement|Text])? ']';
 
 Link:
-	'link[' url=Text ']' ANY_WS* '[' text=Text ']';
+	{Link}
+	'link[' (url=Text)? ']' ANY_WS* '[' (text=Text)? ']';
 
 	// Don't think this was the discussed syntax
 ImageRef:
 	('img:' ANY_WS* name=ID ANY_WS* '['|'img[') path=Text /*TODO make it a crossreference to images */ ']' ANY_WS*
-	'[' clazz=Text ']' ANY_WS* '[' style=Text ']' ANY_WS* '[' caption=Text ']';
+	'[' clazz=Text? ']' ANY_WS* '[' style=Text? ']' ANY_WS* '[' caption=Text? ']';
 
 CodeBlock:
 	'code[' (ANY_WS* language=ID ANY_WS* ']' ANY_WS* '[')? 
