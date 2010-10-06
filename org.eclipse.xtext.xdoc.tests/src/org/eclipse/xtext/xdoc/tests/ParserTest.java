@@ -104,7 +104,8 @@ public class ParserTest extends AbstractXtextTests {
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
 				code.getContents());
 		cb = (CodeBlock) textOrMarkup.getContents().get(1);
-//		assertEquals(0, cb.getContents().size());
+		System.out.println(cb.getContents().size());
+		assertEquals(0, cb.getContents().size());
 		
 	}
 

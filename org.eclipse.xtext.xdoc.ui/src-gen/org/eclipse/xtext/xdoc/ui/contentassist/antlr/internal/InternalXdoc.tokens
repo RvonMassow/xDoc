@@ -17,6 +17,7 @@ RULE_SINGLE_NL=6
 'section4:'=29
 'chapter-ref['=24
 '\\]'=16
+'todo['=43
 'section3['=13
 'img['=17
 'ref:'=35

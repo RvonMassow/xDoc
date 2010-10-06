@@ -331,6 +331,15 @@ public class XdocSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XdocPackage.TODO:
+			{
+				Todo todo = (Todo)theEObject;
+				T result = caseTodo(todo);
+				if (result == null) result = caseMarkUp(todo);
+				if (result == null) result = caseMarkupInCode(todo);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -795,6 +804,22 @@ public class XdocSwitch<T>
 	 * @generated
 	 */
 	public T caseMarkupInCode(MarkupInCode object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Todo</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Todo</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTodo(Todo object)
 	{
 		return null;
 	}

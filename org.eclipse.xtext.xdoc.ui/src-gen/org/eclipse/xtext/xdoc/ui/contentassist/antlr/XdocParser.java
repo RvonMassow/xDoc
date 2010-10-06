@@ -49,7 +49,7 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTextAccess().getAlternatives(), "rule__Text__Alternatives");
 					put(grammarAccess.getMarkUpAccess().getAlternatives(), "rule__MarkUp__Alternatives");
 					put(grammarAccess.getImageRefAccess().getAlternatives_0(), "rule__ImageRef__Alternatives_0");
-					put(grammarAccess.getCodeBlockAccess().getAlternatives_2(), "rule__CodeBlock__Alternatives_2");
+					put(grammarAccess.getCodeBlockAccess().getAlternatives_3(), "rule__CodeBlock__Alternatives_3");
 					put(grammarAccess.getMarkupInCodeAccess().getAlternatives(), "rule__MarkupInCode__Alternatives");
 					put(grammarAccess.getCodeTextAccess().getAlternatives(), "rule__CodeText__Alternatives");
 					put(grammarAccess.getANY_WSAccess().getAlternatives(), "rule__ANY_WS__Alternatives");
@@ -116,10 +116,11 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImageRefAccess().getGroup(), "rule__ImageRef__Group__0");
 					put(grammarAccess.getImageRefAccess().getGroup_0_0(), "rule__ImageRef__Group_0_0__0");
 					put(grammarAccess.getCodeBlockAccess().getGroup(), "rule__CodeBlock__Group__0");
-					put(grammarAccess.getCodeBlockAccess().getGroup_1(), "rule__CodeBlock__Group_1__0");
-					put(grammarAccess.getCodeBlockAccess().getGroup_2_0(), "rule__CodeBlock__Group_2_0__0");
-					put(grammarAccess.getCodeBlockAccess().getGroup_2_0_1(), "rule__CodeBlock__Group_2_0_1__0");
-					put(grammarAccess.getCodeBlockAccess().getGroup_2_1(), "rule__CodeBlock__Group_2_1__0");
+					put(grammarAccess.getCodeBlockAccess().getGroup_2(), "rule__CodeBlock__Group_2__0");
+					put(grammarAccess.getCodeBlockAccess().getGroup_3_0(), "rule__CodeBlock__Group_3_0__0");
+					put(grammarAccess.getCodeBlockAccess().getGroup_3_0_1(), "rule__CodeBlock__Group_3_0_1__0");
+					put(grammarAccess.getCodeBlockAccess().getGroup_3_1(), "rule__CodeBlock__Group_3_1__0");
+					put(grammarAccess.getTodoAccess().getGroup(), "rule__Todo__Group__0");
 					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_0_0(), "rule__XdocFile__SectionsAssignment_3_0_0_0");
 					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_0_1_1(), "rule__XdocFile__SectionsAssignment_3_0_0_1_1");
 					put(grammarAccess.getXdocFileAccess().getSectionsAssignment_3_0_1_0(), "rule__XdocFile__SectionsAssignment_3_0_1_0");
@@ -179,12 +180,13 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getImageRefAccess().getClazzAssignment_5(), "rule__ImageRef__ClazzAssignment_5");
 					put(grammarAccess.getImageRefAccess().getStyleAssignment_9(), "rule__ImageRef__StyleAssignment_9");
 					put(grammarAccess.getImageRefAccess().getCaptionAssignment_13(), "rule__ImageRef__CaptionAssignment_13");
-					put(grammarAccess.getCodeBlockAccess().getLanguageAssignment_1_1(), "rule__CodeBlock__LanguageAssignment_1_1");
-					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_2_0_0(), "rule__CodeBlock__ContentsAssignment_2_0_0");
-					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_2_0_1_0(), "rule__CodeBlock__ContentsAssignment_2_0_1_0");
-					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_2_0_1_1(), "rule__CodeBlock__ContentsAssignment_2_0_1_1");
-					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_2_1_0(), "rule__CodeBlock__ContentsAssignment_2_1_0");
-					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_2_1_1(), "rule__CodeBlock__ContentsAssignment_2_1_1");
+					put(grammarAccess.getCodeBlockAccess().getLanguageAssignment_2_1(), "rule__CodeBlock__LanguageAssignment_2_1");
+					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_3_0_0(), "rule__CodeBlock__ContentsAssignment_3_0_0");
+					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_3_0_1_0(), "rule__CodeBlock__ContentsAssignment_3_0_1_0");
+					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_3_0_1_1(), "rule__CodeBlock__ContentsAssignment_3_0_1_1");
+					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_3_1_0(), "rule__CodeBlock__ContentsAssignment_3_1_0");
+					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_3_1_1(), "rule__CodeBlock__ContentsAssignment_3_1_1");
+					put(grammarAccess.getTodoAccess().getTextAssignment_2(), "rule__Todo__TextAssignment_2");
 					put(grammarAccess.getCodeAccess().getContentsAssignment(), "rule__Code__ContentsAssignment");
 				}
 			};

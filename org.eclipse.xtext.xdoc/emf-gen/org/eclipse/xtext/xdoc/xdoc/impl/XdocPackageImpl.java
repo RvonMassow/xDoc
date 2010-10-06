@@ -41,6 +41,7 @@ import org.eclipse.xtext.xdoc.xdoc.TableData;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
+import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
@@ -256,6 +257,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * @generated
 	 */
 	private EClass markupInCodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass todoEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -968,6 +976,26 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTodo()
+	{
+		return todoEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTodo_Text()
+	{
+		return (EAttribute)todoEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XdocFactory getXdocFactory()
 	{
 		return (XdocFactory)getEFactoryInstance();
@@ -1085,6 +1113,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		createEAttribute(codeEClass, CODE__CONTENTS);
 
 		markupInCodeEClass = createEClass(MARKUP_IN_CODE);
+
+		todoEClass = createEClass(TODO);
+		createEAttribute(todoEClass, TODO__TEXT);
 	}
 
 	/**
@@ -1142,6 +1173,8 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		linkEClass.getESuperTypes().add(this.getMarkUp());
 		imageRefEClass.getESuperTypes().add(this.getMarkUp());
 		codeBlockEClass.getESuperTypes().add(this.getMarkUp());
+		todoEClass.getESuperTypes().add(this.getMarkUp());
+		todoEClass.getESuperTypes().add(this.getMarkupInCode());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(xdocFileEClass, XdocFile.class, "XdocFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1236,6 +1269,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEAttribute(getCode_Contents(), ecorePackage.getEString(), "contents", null, 0, 1, Code.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(markupInCodeEClass, MarkupInCode.class, "MarkupInCode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(todoEClass, Todo.class, "Todo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTodo_Text(), ecorePackage.getEString(), "text", "", 0, 1, Todo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

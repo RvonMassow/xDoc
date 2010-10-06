@@ -1177,6 +1177,34 @@ public interface XdocPackage extends EPackage
 	 */
 	int MARKUP_IN_CODE_FEATURE_COUNT = 0;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TodoImpl <em>Todo</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.TodoImpl
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTodo()
+	 * @generated
+	 */
+	int TODO = 29;
+
+	/**
+	 * The feature id for the '<em><b>Text</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TODO__TEXT = MARK_UP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Todo</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TODO_FEATURE_COUNT = MARK_UP_FEATURE_COUNT + 1;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.XdocFile <em>File</em>}'.
@@ -1854,6 +1882,27 @@ public interface XdocPackage extends EPackage
 	EClass getMarkupInCode();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Todo <em>Todo</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Todo</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Todo
+	 * @generated
+	 */
+	EClass getTodo();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.Todo#getText <em>Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Text</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Todo#getText()
+	 * @see #getTodo()
+	 * @generated
+	 */
+	EAttribute getTodo_Text();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2445,6 +2494,24 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EClass MARKUP_IN_CODE = eINSTANCE.getMarkupInCode();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.TodoImpl <em>Todo</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.TodoImpl
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getTodo()
+		 * @generated
+		 */
+		EClass TODO = eINSTANCE.getTodo();
+
+		/**
+		 * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TODO__TEXT = eINSTANCE.getTodo_Text();
 
 	}
 

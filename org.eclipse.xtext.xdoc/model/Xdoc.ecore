@@ -112,4 +112,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contents" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MarkupInCode"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Todo" eSuperTypes="#//MarkUp #//MarkupInCode">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+  </eClassifiers>
 </ecore:EPackage>
