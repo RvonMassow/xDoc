@@ -5996,7 +5996,7 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
                     	        }
                             
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0(), currentNode); 
                     	    
                     pushFollow(FOLLOW_ruleText_in_ruleCodeRef4372);
                     ruleText();

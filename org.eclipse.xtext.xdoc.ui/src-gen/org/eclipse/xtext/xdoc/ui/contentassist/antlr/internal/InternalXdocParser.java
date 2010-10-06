@@ -24305,20 +24305,20 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9111:1: ( ( ruleText ) )
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9112:1: ( ruleText )
             {
-             before(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0()); 
+             before(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0()); 
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9113:1: ( ruleText )
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9114:1: ruleText
             {
-             before(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementTextParserRuleCall_2_0_1()); 
+             before(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeTextParserRuleCall_2_0_1()); 
             pushFollow(FOLLOW_ruleText_in_rule__CodeRef__ElementAssignment_218387);
             ruleText();
             _fsp--;
 
-             after(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementTextParserRuleCall_2_0_1()); 
+             after(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeTextParserRuleCall_2_0_1()); 
 
             }
 
-             after(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0()); 
+             after(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0()); 
 
             }
 

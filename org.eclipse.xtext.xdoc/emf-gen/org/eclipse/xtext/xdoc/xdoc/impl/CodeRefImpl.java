@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmDeclaredType;
 
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
@@ -40,7 +40,7 @@ public class CodeRefImpl extends MarkUpImpl implements CodeRef
 	 * @generated
 	 * @ordered
 	 */
-	protected JvmIdentifyableElement element;
+	protected JvmDeclaredType element;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -68,12 +68,12 @@ public class CodeRefImpl extends MarkUpImpl implements CodeRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmIdentifyableElement getElement()
+	public JvmDeclaredType getElement()
 	{
 		if (element != null && element.eIsProxy())
 		{
 			InternalEObject oldElement = (InternalEObject)element;
-			element = (JvmIdentifyableElement)eResolveProxy(oldElement);
+			element = (JvmDeclaredType)eResolveProxy(oldElement);
 			if (element != oldElement)
 			{
 				if (eNotificationRequired())
@@ -88,7 +88,7 @@ public class CodeRefImpl extends MarkUpImpl implements CodeRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmIdentifyableElement basicGetElement()
+	public JvmDeclaredType basicGetElement()
 	{
 		return element;
 	}
@@ -98,9 +98,9 @@ public class CodeRefImpl extends MarkUpImpl implements CodeRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setElement(JvmIdentifyableElement newElement)
+	public void setElement(JvmDeclaredType newElement)
 	{
-		JvmIdentifyableElement oldElement = element;
+		JvmDeclaredType oldElement = element;
 		element = newElement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.CODE_REF__ELEMENT, oldElement, element));
@@ -134,7 +134,7 @@ public class CodeRefImpl extends MarkUpImpl implements CodeRef
 		switch (featureID)
 		{
 			case XdocPackage.CODE_REF__ELEMENT:
-				setElement((JvmIdentifyableElement)newValue);
+				setElement((JvmDeclaredType)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -151,7 +151,7 @@ public class CodeRefImpl extends MarkUpImpl implements CodeRef
 		switch (featureID)
 		{
 			case XdocPackage.CODE_REF__ELEMENT:
-				setElement((JvmIdentifyableElement)null);
+				setElement((JvmDeclaredType)null);
 				return;
 		}
 		super.eUnset(featureID);

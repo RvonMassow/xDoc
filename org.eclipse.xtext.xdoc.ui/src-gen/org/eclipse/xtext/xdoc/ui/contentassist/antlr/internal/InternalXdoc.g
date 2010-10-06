@@ -9109,12 +9109,12 @@ rule__CodeRef__ElementAssignment_2
     }
 :
 (
-{ before(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0()); }
+{ before(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0()); }
 (
-{ before(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementTextParserRuleCall_2_0_1()); }
-	ruleText{ after(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementTextParserRuleCall_2_0_1()); }
+{ before(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeTextParserRuleCall_2_0_1()); }
+	ruleText{ after(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeTextParserRuleCall_2_0_1()); }
 )
-{ after(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0()); }
+{ after(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0()); }
 )
 
 ;

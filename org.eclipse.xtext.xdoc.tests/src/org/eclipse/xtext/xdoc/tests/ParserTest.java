@@ -33,7 +33,8 @@ public class ParserTest extends AbstractXtextTests {
 	private static final String TEST_FILE_DIR = "testfiles"
 			+ File.separatorChar;
 	private static final String DNL = "\n\n";
-	String head = "chapter[foo]\n\n";
+	private static final String head = "chapter[foo]\n\n";
+	private static final String closeBracket = "]";
 
 	@Override
 	protected void setUp() throws Exception {
@@ -95,12 +96,16 @@ public class ParserTest extends AbstractXtextTests {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "codeTest.xdoc");
 		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getSections().get(0)
 				.getContents().get(0);
-		assertEquals(1, textOrMarkup.getContents().size());
+		assertEquals(2, textOrMarkup.getContents().size());
 		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
+		Code code = (Code) cb.getContents().get(0);
 		assertEquals("\nclass Foo {\n"
 				+ "public static void main(String\\[\\] args){\n"
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
-				((Code) cb.getContents().get(0)).getContents());
+				code.getContents());
+		cb = (CodeBlock) textOrMarkup.getContents().get(1);
+//		assertEquals(0, cb.getContents().size());
+		
 	}
 
 	public void testCodeWithLanguage() throws Exception {
@@ -236,19 +241,18 @@ public class ParserTest extends AbstractXtextTests {
 	
 	public void testTable() throws Exception{
 		String tableStart = "table[";
-		String closeBracket = "]";
 		String row = "tr[";
 		String dataString = "this is";
 			String dataString2 = "a two paragraph table entry";
 		String d = head + tableStart + row +"td["+ dataString + DNL+dataString2+
-			closeBracket + closeBracket + closeBracket;
+			closeBracket + "td[]" + closeBracket + closeBracket;
 		XdocFile file = getDoc(d);
 		EList<TextOrMarkup> textOrMarkup = file.getSections().get(0).getContents();
 		assertEquals(1, textOrMarkup.size());
 		Table t = (Table)textOrMarkup.get(0).getContents().get(0);
 		assertEquals(1, t.getRows().size());
 		EList<TableData> data = t.getRows().get(0).getData();
-		assertEquals(1, data.size());
+		assertEquals(2, data.size());
 		TableData td = data.get(0);
 		EList<TextOrMarkup> contents = td.getContents();
 		assertEquals(2, contents.size());
@@ -256,6 +260,8 @@ public class ParserTest extends AbstractXtextTests {
 		assertEquals(dataString, text.getText());
 		text = (TextPart)contents.get(1).getContents().get(0);
 		assertEquals(dataString2, text.getText());
+		td = data.get(1);
+		assertEquals(0, td.getContents().size());
 	}
 
 	protected XdocFile getDoc(String string) throws Exception {

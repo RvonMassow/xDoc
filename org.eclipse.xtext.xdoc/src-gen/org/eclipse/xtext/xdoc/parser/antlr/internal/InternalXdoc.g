@@ -2442,7 +2442,7 @@ ruleCodeRef returns [EObject current=null]
 	        }
         }
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0(), currentNode); 
 	    }
 		ruleText		{ 
 	        currentNode = currentNode.getParent();

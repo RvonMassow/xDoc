@@ -5,7 +5,7 @@
  */
 package org.eclipse.xtext.xdoc.xdoc;
 
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmDeclaredType;
 
 /**
  * <!-- begin-user-doc -->
@@ -34,12 +34,12 @@ public interface CodeRef extends MarkUp
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element</em>' reference.
-	 * @see #setElement(JvmIdentifyableElement)
+	 * @see #setElement(JvmDeclaredType)
 	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getCodeRef_Element()
 	 * @model
 	 * @generated
 	 */
-	JvmIdentifyableElement getElement();
+	JvmDeclaredType getElement();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.CodeRef#getElement <em>Element</em>}' reference.
@@ -49,6 +49,6 @@ public interface CodeRef extends MarkUp
 	 * @see #getElement()
 	 * @generated
 	 */
-	void setElement(JvmIdentifyableElement value);
+	void setElement(JvmDeclaredType value);
 
 } // CodeRef

@@ -122,7 +122,7 @@ Item:
 
 CodeRef:
 	{CodeRef}
-	'codeRef[' (element=[types::JvmIdentifyableElement|Text])? ']';
+	'codeRef[' (element=[types::JvmDeclaredType|Text])? ']';
 
 Link:
 	{Link}

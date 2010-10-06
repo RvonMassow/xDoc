@@ -6437,11 +6437,11 @@ protected class Item_RightSquareBracketKeyword_3 extends KeywordToken  {
 /************ begin Rule CodeRef ****************
  *
  * CodeRef:
- * 	{CodeRef} "codeRef[" element=[types::JvmIdentifyableElement|Text]? "]";
+ * 	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]";
  *
  **/
 
-// {CodeRef} "codeRef[" element=[types::JvmIdentifyableElement|Text]? "]"
+// {CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]"
 protected class CodeRef_Group extends GroupToken {
 	
 	public CodeRef_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6518,7 +6518,7 @@ protected class CodeRef_CodeRefKeyword_1 extends KeywordToken  {
 
 }
 
-// element=[types::JvmIdentifyableElement|Text]?
+// element=[types::JvmDeclaredType|Text]?
 protected class CodeRef_ElementAssignment_2 extends AssignmentToken  {
 	
 	public CodeRef_ElementAssignment_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -6544,9 +6544,9 @@ protected class CodeRef_ElementAssignment_2 extends AssignmentToken  {
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("element");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getCodeRefAccess().getElementJvmIdentifyableElementCrossReference_2_0(); 
+				element = grammarAccess.getCodeRefAccess().getElementJvmDeclaredTypeCrossReference_2_0(); 
 				return obj;
 			}
 		}

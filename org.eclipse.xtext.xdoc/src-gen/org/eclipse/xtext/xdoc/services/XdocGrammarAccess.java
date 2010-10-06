@@ -1352,15 +1352,15 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cCodeRefAction_0 = (Action)cGroup.eContents().get(0);
 		private final Keyword cCodeRefKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cElementAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final CrossReference cElementJvmIdentifyableElementCrossReference_2_0 = (CrossReference)cElementAssignment_2.eContents().get(0);
-		private final RuleCall cElementJvmIdentifyableElementTextParserRuleCall_2_0_1 = (RuleCall)cElementJvmIdentifyableElementCrossReference_2_0.eContents().get(1);
+		private final CrossReference cElementJvmDeclaredTypeCrossReference_2_0 = (CrossReference)cElementAssignment_2.eContents().get(0);
+		private final RuleCall cElementJvmDeclaredTypeTextParserRuleCall_2_0_1 = (RuleCall)cElementJvmDeclaredTypeCrossReference_2_0.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//CodeRef:
-		//	{CodeRef} "codeRef[" element=[types::JvmIdentifyableElement|Text]? "]";
+		//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]";
 		public ParserRule getRule() { return rule; }
 
-		//{CodeRef} "codeRef[" element=[types::JvmIdentifyableElement|Text]? "]"
+		//{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]"
 		public Group getGroup() { return cGroup; }
 
 		//{CodeRef}
@@ -1369,14 +1369,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//"codeRef["
 		public Keyword getCodeRefKeyword_1() { return cCodeRefKeyword_1; }
 
-		//element=[types::JvmIdentifyableElement|Text]?
+		//element=[types::JvmDeclaredType|Text]?
 		public Assignment getElementAssignment_2() { return cElementAssignment_2; }
 
-		//[types::JvmIdentifyableElement|Text]
-		public CrossReference getElementJvmIdentifyableElementCrossReference_2_0() { return cElementJvmIdentifyableElementCrossReference_2_0; }
+		//[types::JvmDeclaredType|Text]
+		public CrossReference getElementJvmDeclaredTypeCrossReference_2_0() { return cElementJvmDeclaredTypeCrossReference_2_0; }
 
 		//Text
-		public RuleCall getElementJvmIdentifyableElementTextParserRuleCall_2_0_1() { return cElementJvmIdentifyableElementTextParserRuleCall_2_0_1; }
+		public RuleCall getElementJvmDeclaredTypeTextParserRuleCall_2_0_1() { return cElementJvmDeclaredTypeTextParserRuleCall_2_0_1; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
@@ -2050,7 +2050,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeRef:
-	//	{CodeRef} "codeRef[" element=[types::JvmIdentifyableElement|Text]? "]";
+	//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]";
 	public CodeRefElements getCodeRefAccess() {
 		return (pCodeRef != null) ? pCodeRef : (pCodeRef = new CodeRefElements());
 	}

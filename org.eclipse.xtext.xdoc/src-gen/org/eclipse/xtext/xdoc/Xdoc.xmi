@@ -581,7 +581,7 @@
       <elements xsi:type="xtext:Assignment" cardinality="?" feature="element" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.1">
-            <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/JavaVMTypes#//JvmIdentifyableElement"/>
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/JavaVMTypes#//JvmDeclaredType"/>
           </type>
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.11"/>
         </terminal>
