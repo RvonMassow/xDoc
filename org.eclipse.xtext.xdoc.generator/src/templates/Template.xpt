@@ -10,6 +10,8 @@
 \usepackage[latin1]{inputenc}
 \usepackage{listings}
 
+\usepackage{todonotes}
+
 %%\usepackage{helvet}
 
 \lstdefinelanguage{Xtext}
@@ -178,6 +180,10 @@
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
 «DEFINE genCode FOR MarkupInCode»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDDEFINE»
+
+«DEFINE genText FOR Todo-»
+\todo{«this.text»}«
+ENDDEFINE»
 
 «DEFINE genLabel FOR ChapterRef-»
 «IF this != null-»
