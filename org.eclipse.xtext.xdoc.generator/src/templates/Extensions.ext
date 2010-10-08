@@ -78,7 +78,7 @@ remWS(String s):
 
 isFirst(AbstractSection as):
 	false;
-
+	
 isFirst(Section2 s):
 	((Section)s.eContainer()).subSections.first() == s;
 

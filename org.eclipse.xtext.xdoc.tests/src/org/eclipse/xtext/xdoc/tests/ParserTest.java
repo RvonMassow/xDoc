@@ -96,17 +96,17 @@ public class ParserTest extends AbstractXtextTests {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "codeTest.xdoc");
 		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getSections().get(0)
 				.getContents().get(0);
-		assertEquals(2, textOrMarkup.getContents().size());
+		assertEquals(1, textOrMarkup.getContents().size());
 		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		Code code = (Code) cb.getContents().get(0);
 		assertEquals("\nclass Foo {\n"
 				+ "public static void main(String\\[\\] args){\n"
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
 				code.getContents());
-		cb = (CodeBlock) textOrMarkup.getContents().get(1);
-		System.out.println(cb.getContents().size());
+		textOrMarkup = (TextOrMarkup) file.getSections().get(0)
+				.getContents().get(1);
+		cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		assertEquals(0, cb.getContents().size());
-		
 	}
 
 	public void testCodeWithLanguage() throws Exception {

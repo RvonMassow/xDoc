@@ -62,6 +62,7 @@
 \maketitle
 \tableofcontents
 «EXPAND genContent FOREACH this.chapters»
+«EXPAND genLol FOR this»
 \end{document}
 «ENDFILE-»
 «ENDDEFINE»
@@ -192,4 +193,7 @@ ENDIF-»
 «IF this != null -»
 \label{«this»}«
 ENDIF-»
+«ENDDEFINE»
+
+«DEFINE genLol FOR Document -»
 «ENDDEFINE»
