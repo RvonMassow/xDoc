@@ -64,7 +64,10 @@
 \maketitle
 \tableofcontents
 «EXPAND genContent FOREACH this.chapters»
-«EXPAND genLol FOR this»
+«EXPAND genLol FOR this-»
+«IF ((String) (GLOBALVAR release)) == "false"»
+\listoftodos«
+ENDIF»
 \end{document}
 «ENDFILE-»
 «ENDDEFINE»
