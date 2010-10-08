@@ -157,7 +157,7 @@
 \label{«this.name»}
 «ENDDEFINE»
 
-«DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«ENDDEFINE»
+«DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«storeLink(this)»«ENDDEFINE»
 
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
@@ -196,4 +196,10 @@ ENDIF-»
 «ENDDEFINE»
 
 «DEFINE genLol FOR Document -»
+\chapter*{List of External Links}
+«EXPAND genURL FOREACH getStoredLinks() SEPARATOR "\n\n"»
 «ENDDEFINE»
+
+«DEFINE genURL FOR String -»
+\noindent\url{«this»}«
+ENDDEFINE»

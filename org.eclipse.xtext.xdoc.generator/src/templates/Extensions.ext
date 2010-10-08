@@ -124,3 +124,9 @@ CodeBlock removeIndent(CodeBlock cb):
 	
 Void throwUnsupportedOperation(String msg, Object param) :
 	JAVA templates.util.Errors.throwUnsupportedOperation(java.lang.String, java.lang.Object);
+	
+Void storeLink(Link link):
+	JAVA templates.util.StringFormatter.storeLink(org.eclipse.xtext.xdoc.xdoc.Link);
+
+Set[String] getStoredLinks():
+	JAVA templates.util.StringFormatter.getStoredLinks();

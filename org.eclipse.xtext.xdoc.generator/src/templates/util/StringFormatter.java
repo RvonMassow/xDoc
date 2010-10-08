@@ -2,11 +2,16 @@ package templates.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.Link;
 
 public class StringFormatter {
+	
+	static private HashSet<String> links = new HashSet<String>();
 	
 	static public final CodeBlock removeIndent(CodeBlock cb){
 		if(cb.getContents().get(0) instanceof Code){
@@ -35,4 +40,13 @@ public class StringFormatter {
 			return "";
 		}
 	}
+	
+	static public void storeLink(Link link){
+		links.add(link.getUrl());
+	}
+	
+	static public Set<String> getStoredLinks(){
+		return links;
+	}
+	
 }
