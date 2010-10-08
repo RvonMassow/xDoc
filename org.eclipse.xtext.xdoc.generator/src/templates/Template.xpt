@@ -12,6 +12,10 @@
 
 \usepackage{todonotes}
 
+«IF ((String) (GLOBALVAR release)) != "false"»
+\renewcommand{\todo}[1]{}«
+ENDIF»
+
 %%\usepackage{helvet}
 
 \lstdefinelanguage{Xtext}

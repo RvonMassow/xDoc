@@ -5,6 +5,7 @@ package org.eclipse.xtext.xdoc.formatting;
 
 import org.eclipse.xtext.formatting.impl.AbstractDeclarativeFormatter;
 import org.eclipse.xtext.formatting.impl.FormattingConfig;
+import org.eclipse.xtext.xdoc.services.XdocGrammarAccess;
 
 /**
  * This class contains custom formatting description.
@@ -18,10 +19,74 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-// It's usually a good idea to activate the following three statements.
-// They will add and preserve newlines around comments
-//		c.setLinewrap(0, 1, 2).before(getGrammarAccess().getSL_COMMENTRule());
-//		c.setLinewrap(0, 1, 2).before(getGrammarAccess().getML_COMMENTRule());
-//		c.setLinewrap(0, 1, 1).after(getGrammarAccess().getML_COMMENTRule());
+		XdocGrammarAccess grammarAccess = (XdocGrammarAccess) getGrammarAccess();
+		c.setAutoLinewrap(120);
+		
+		c.setLinewrap(2, 2, 3).between(grammarAccess.getTextOrMarkupRule(), grammarAccess.getTextOrMarkupRule());
+		configureChapter(c, grammarAccess);
+		configureSection(c, grammarAccess);
+		configureSection2(c, grammarAccess);
+		configureSection3(c, grammarAccess);
+		configureSection4(c, grammarAccess);
+		
+		configureCodeBlock(c, grammarAccess);
+		
+		configureRef(c,grammarAccess);
+}
+
+	private void configureRef(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().around(grammarAccess.getRefAccess().getRefKeyword_0());
+		c.setNoSpace().around(grammarAccess.getRefAccess().getLeftSquareBracketKeyword_2_0());
+		c.setNoSpace().before(grammarAccess.getRefAccess().getRightSquareBracketKeyword_2_3());
+	}
+
+	private void configureCodeBlock(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoLinewrap().between(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_2_5(), grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_4());
+		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_2_5());
+		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getCodeKeyword_1());
+		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_2_3());
+		c.setNoSpace().before(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_4());
+}
+
+	private void configureChapter(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().after(grammarAccess.getChapterAccess().getChapterKeyword_1_0_0_0());
+		c.setNoSpace().after(grammarAccess.getChapterAccess().getChapterKeyword_1_0_1());
+		c.setNoSpace().around(grammarAccess.getChapterAccess().getLeftSquareBracketKeyword_1_0_0_2());
+		c.setNoSpace().around(grammarAccess.getChapterAccess().getRightSquareBracketKeyword_1_2());
+	}
+
+	private void configureSection(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().after(grammarAccess.getSectionAccess().getSectionKeyword_1_0_0_0());
+		c.setNoSpace().after(grammarAccess.getSectionAccess().getSectionKeyword_1_0_1());
+		c.setNoSpace().around(grammarAccess.getSectionAccess().getLeftSquareBracketKeyword_1_0_0_2());
+		c.setNoSpace().around(grammarAccess.getSectionAccess().getRightSquareBracketKeyword_1_2());
+	}
+
+	private void configureSection2(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().after(grammarAccess.getSection2Access().getSection2Keyword_0_0_0());
+		c.setNoSpace().after(grammarAccess.getSection2Access().getSection2Keyword_0_1());
+		c.setNoSpace().around(grammarAccess.getSection2Access().getLeftSquareBracketKeyword_0_0_2());
+		c.setNoSpace().around(grammarAccess.getSection2Access().getRightSquareBracketKeyword_2());
+	}
+
+	private void configureSection3(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().after(grammarAccess.getSection3Access().getSection3Keyword_0_0_0());
+		c.setNoSpace().after(grammarAccess.getSection3Access().getSection3Keyword_0_1());
+		c.setNoSpace().around(grammarAccess.getSection3Access().getLeftSquareBracketKeyword_0_0_2());
+		c.setNoSpace().around(grammarAccess.getSection3Access().getRightSquareBracketKeyword_2());
+	}
+
+	private void configureSection4(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().after(grammarAccess.getSection4Access().getSection4Keyword_0_0_0());
+		c.setNoSpace().after(grammarAccess.getSection4Access().getSection4Keyword_0_1());
+		c.setNoSpace().around(grammarAccess.getSection4Access().getLeftSquareBracketKeyword_0_0_2());
+		c.setNoSpace().around(grammarAccess.getSection4Access().getRightSquareBracketKeyword_2());
 	}
 }
