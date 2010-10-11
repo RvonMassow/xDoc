@@ -23,16 +23,69 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 		c.setAutoLinewrap(120);
 		
 		c.setLinewrap(2, 2, 3).between(grammarAccess.getTextOrMarkupRule(), grammarAccess.getTextOrMarkupRule());
+		
+		c.setNoSpace().around(grammarAccess.getWSRule());
+		c.setNoSpace().around(grammarAccess.getANY_WSRule());
+		c.setNoSpace().around(grammarAccess.getMULTI_NLRule());
+		
 		configureChapter(c, grammarAccess);
 		configureSection(c, grammarAccess);
 		configureSection2(c, grammarAccess);
 		configureSection3(c, grammarAccess);
 		configureSection4(c, grammarAccess);
-		
+
 		configureCodeBlock(c, grammarAccess);
+		configureCodeRef(c, grammarAccess);
 		
 		configureRef(c,grammarAccess);
+		configureEm(c, grammarAccess);
+		configureTextPart(c, grammarAccess);
+		
+		configureTables(c, grammarAccess);
+		
+		configureLists(c, grammarAccess);
 }
+
+	private void configureCodeRef(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().around(grammarAccess.getCodeRefAccess().getCodeRefKeyword_1());
+		c.setNoSpace().around(grammarAccess.getCodeRefAccess().getRightSquareBracketKeyword_3());
+	}
+
+	private void configureTables(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().after(grammarAccess.getTableRowAccess().getTrKeyword_1());
+		c.setNoSpace().around(grammarAccess.getTableRowAccess().getRightSquareBracketKeyword_4());
+		c.setNoSpace().after(grammarAccess.getTableDataAccess().getTdKeyword_1());
+//		c.setNoSpace().after(grammarAccess.getTableDataAccess().getGroup_2());
+		c.setNoSpace().before(grammarAccess.getTableDataAccess().getRightSquareBracketKeyword_3());
+	}
+
+	private void configureLists(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setIndentationIncrement().after(grammarAccess.getItemAccess().getItemKeyword_1());
+		c.setIndentationDecrement().before(grammarAccess.getItemAccess().getRightSquareBracketKeyword_3());
+
+
+		c.setIndentationIncrement().before(grammarAccess.getItemAccess().getItemKeyword_1());
+		c.setIndentationDecrement().after(grammarAccess.getItemAccess().getRightSquareBracketKeyword_3());
+		
+//		c.setIndentationIncrement().after(grammarAccess.getOrderedListAccess().getOlKeyword_1());
+//		c.setIndentationDecrement().before(grammarAccess.getOrderedListAccess().getRightSquareBracketKeyword_4());
+//
+//		c.setIndentationIncrement().after(grammarAccess.getUnorderedListAccess().getUlKeyword_1());
+//		c.setIndentationDecrement().before(grammarAccess.getUnorderedListAccess().getRightSquareBracketKeyword_4());
+
+		c.setNoSpace().around(grammarAccess.getItemRule());
+		c.setLinewrap(1,2,2).between(grammarAccess.getItemRule(), grammarAccess.getItemRule());
+//		c.setLinewrap(1,1,1).after(grammarAccess.getItemAccess().getItemKeyword_1());
+		c.setLinewrap(0,1,1).before(grammarAccess.getItemAccess().getRightSquareBracketKeyword_3());
+	}
+
+	private void configureTextPart(FormattingConfig c,
+			XdocGrammarAccess grammarAccess) {
+		c.setNoSpace().before(grammarAccess.getTextPartRule());
+	}
 
 	private void configureRef(FormattingConfig c,
 			XdocGrammarAccess grammarAccess) {
@@ -55,7 +108,7 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 		c.setNoSpace().after(grammarAccess.getChapterAccess().getChapterKeyword_1_0_0_0());
 		c.setNoSpace().after(grammarAccess.getChapterAccess().getChapterKeyword_1_0_1());
 		c.setNoSpace().around(grammarAccess.getChapterAccess().getLeftSquareBracketKeyword_1_0_0_2());
-		c.setNoSpace().around(grammarAccess.getChapterAccess().getRightSquareBracketKeyword_1_2());
+		c.setNoSpace().before(grammarAccess.getChapterAccess().getRightSquareBracketKeyword_1_2());
 	}
 
 	private void configureSection(FormattingConfig c,
@@ -88,5 +141,11 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 		c.setNoSpace().after(grammarAccess.getSection4Access().getSection4Keyword_0_1());
 		c.setNoSpace().around(grammarAccess.getSection4Access().getLeftSquareBracketKeyword_0_0_2());
 		c.setNoSpace().around(grammarAccess.getSection4Access().getRightSquareBracketKeyword_2());
+	}
+	
+	private void configureEm(FormattingConfig c,
+			XdocGrammarAccess grammarAccess){
+		c.setNoSpace().after(grammarAccess.getEmphasizeAccess().getEKeyword_1());
+		c.setNoSpace().before(grammarAccess.getEmphasizeAccess().getRightSquareBracketKeyword_3());
 	}
 }
