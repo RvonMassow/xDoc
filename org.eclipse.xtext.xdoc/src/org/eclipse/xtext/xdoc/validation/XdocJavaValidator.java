@@ -3,6 +3,7 @@ package org.eclipse.xtext.xdoc.validation;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.xdoc.xdoc.Code;
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
@@ -33,6 +34,13 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 						tableRow,
 						XdocPackage.TABLE_ROW__DATA);
 			}
+		}
+	}
+	
+	@Check
+	public void checkCodeLanguage(CodeBlock cb){
+		if(cb.getLanguage() == null) {
+			warning("You should specify a language for syntax highlighting", cb, XdocPackage.CODE_BLOCK__LANGUAGE);
 		}
 	}
 
