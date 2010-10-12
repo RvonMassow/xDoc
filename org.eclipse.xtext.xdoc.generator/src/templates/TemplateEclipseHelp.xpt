@@ -181,9 +181,9 @@ ENDDEFINE»
 <span class="inlinecode">«EXPAND genCode FOREACH contents»</span>«
 ELSE»
 <div class="literallayout">
-<code class="code">
+<pre class="code">
 «EXPAND genCode FOREACH contents»
-</code>
+</pre>
 </div>
 «ENDIF»
 «ENDDEFINE»

@@ -5,6 +5,7 @@ import org.eclipse.emf.mwe.utils.*
 var targetDir = "src-gen"
 var fileEncoding = "ISO-8859-1"
 var modelPath = "src/model"
+var languageDefinitions = modelPath
 
 Workflow {
 
@@ -27,6 +28,10 @@ Workflow {
 		globalVar = {
 			name ='dir'
 			value = "${targetDir}/"
+		}
+		globalVar = {
+			name = "languageDir"
+			value = languageDefinitions
 		}
 		expand = "templates::TemplateEclipseHelp::main FOREACH doc"
 		outlet = {

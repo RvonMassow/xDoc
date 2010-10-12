@@ -130,3 +130,6 @@ Void storeLink(Link link):
 
 Set[String] getStoredLinks():
 	JAVA templates.util.StringFormatter.getStoredLinks();
+
+String highlightKeywords(String string, String language, String languageDir):
+	JAVA templates.util.StringFormatter.highlightKeywords(java.lang.String, java.lang.String, java.lang.String);

@@ -1,7 +1,15 @@
 package templates.util;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +19,9 @@ import org.eclipse.xtext.xdoc.xdoc.Link;
 
 public class StringFormatter {
 	
-	static private HashSet<String> links = new HashSet<String>();
+	static private HashMap<String, Set<String>> languages = new HashMap<String, Set<String>>();
+	
+	static private Set<String> links = new HashSet<String>();
 	
 	static public final CodeBlock removeIndent(CodeBlock cb){
 		if(cb.getContents().get(0) instanceof Code){
@@ -49,4 +59,40 @@ public class StringFormatter {
 		return links;
 	}
 	
+	static public String highlightKeywords(String text, final String langName, String dirName){
+		File dir = new File(dirName);
+		if(dir.exists() && dir.isDirectory() && dir.canRead()){
+			File[] langs = dir.listFiles(new FilenameFilter() {
+				
+				public boolean accept(File arg0, String arg1) {
+					return arg0.equals(langName);
+				}
+			});
+			if(langs.length != 1){
+				return text;
+			} else {
+				File langFile = langs[0];
+				if(!langFile.canRead()){
+					return text;
+				}
+				try {
+					BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(langFile)));
+					StringBuilder fileContents = new StringBuilder();
+					String current = null;
+					while((current = br.readLine()) != null){
+						fileContents.append(current);
+					}
+					String[] keywords = fileContents.toString().split("(?<!\\),");
+					for (String keyword : keywords) {
+						text = text.replaceAll(keyword.trim(), "<span class=\"keyword\">" + keyword.trim() + "</span>");
+					}
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return text;
+	}
 }
