@@ -20,8 +20,8 @@ escapeHTMLChars(String s):
 	s.replaceAll("&", "&amp;").replaceAll("\"", "&quot;").replaceAll("'", "&apos;")
 		.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
-formatCode(String text):
-	text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\n", "<br />");
+formatCode(String text, String dir, String language):
+	highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />"), dir, language);
 
 // simple heuristic to determine if code is meant to be inline
 boolean inline(CodeBlock c):

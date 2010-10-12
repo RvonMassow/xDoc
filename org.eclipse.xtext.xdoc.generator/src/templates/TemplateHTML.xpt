@@ -100,8 +100,8 @@
 «REM»TODO: better code implementation«ENDREM»
 «DEFINE genText FOR CodeBlock»
 <div class="literallayout">
-<code>
-«EXPAND genCode FOREACH contents»
+<code>«REM» make this div«ENDREM»
+«EXPAND genCode(this.language) FOREACH contents»
 </code>
 <div>
 «ENDDEFINE»
@@ -111,15 +111,15 @@
 <em>«escapeHTMLChars(unescapeXdocChars(this.element.canonicalName))»</em>
 «ENDDEFINE»
 
-«DEFINE genCode FOR Object»
+«DEFINE genCode(String language) FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode FOR Code»«formatCode(unescapeXdocChars(this.contents))»«ENDDEFINE»
+«DEFINE genCode(String language) FOR Code»«formatCode(unescapeXdocChars(this.contents), (String) GLOBALVAR languageDir, language)»«ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
 «REM»TODO: find solution for escaping to html, refers to better code concept«ENDREM»
-«DEFINE genCode FOR MarkupInCode»«REM»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDREM»«ENDDEFINE»
+«DEFINE genCode FOR MarkupInCode»«ENDDEFINE»
 
 «DEFINE genLabel FOR String»«IF this != null »<a name="«this»"></a>«ENDIF»
 «ENDDEFINE»

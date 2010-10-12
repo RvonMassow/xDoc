@@ -19,6 +19,7 @@ import org.eclipse.xtext.xdoc.xdoc.Link;
 
 public class StringFormatter {
 	
+	@SuppressWarnings("unused")
 	static private HashMap<String, Set<String>> languages = new HashMap<String, Set<String>>();
 	
 	static private Set<String> links = new HashSet<String>();
@@ -59,13 +60,16 @@ public class StringFormatter {
 		return links;
 	}
 	
-	static public String highlightKeywords(String text, final String langName, String dirName){
-		File dir = new File(dirName);
+	static public String highlightKeywords(String text, final String dirName, final String langName){
+		if(langName == null || dirName == null){
+			return text;
+		}
+		File dir = new File(dirName.trim());
 		if(dir.exists() && dir.isDirectory() && dir.canRead()){
 			File[] langs = dir.listFiles(new FilenameFilter() {
 				
-				public boolean accept(File arg0, String arg1) {
-					return arg0.equals(langName);
+				public boolean accept(File dir, String file) {
+					return file.equals(langName.trim());
 				}
 			});
 			if(langs.length != 1){
@@ -82,9 +86,13 @@ public class StringFormatter {
 					while((current = br.readLine()) != null){
 						fileContents.append(current);
 					}
-					String[] keywords = fileContents.toString().split("(?<!\\),");
+					String[] keywords = fileContents.toString().split("(?<!\\\\),");
 					for (String keyword : keywords) {
-						text = text.replaceAll(keyword.trim(), "<span class=\"keyword\">" + keyword.trim() + "</span>");
+						if(keyword.trim().equals("class")){
+							text = text.replaceAll("(?<!<span )" + keyword.trim() + "(?>!\\=\"keyword\">)", "<span class=\"keyword\">" + keyword.trim() + "</span>");
+						} else{
+							text = text.replaceAll(keyword.trim(), "<span class=\"keyword\">" + keyword.trim() + "</span>");
+						}
 					}
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();

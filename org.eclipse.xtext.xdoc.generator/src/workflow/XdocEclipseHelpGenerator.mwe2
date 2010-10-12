@@ -31,7 +31,7 @@ Workflow {
 		}
 		globalVar = {
 			name = "languageDir"
-			value = languageDefinitions
+			value = "${languageDefinitions}/"
 		}
 		expand = "templates::TemplateEclipseHelp::main FOREACH doc"
 		outlet = {
