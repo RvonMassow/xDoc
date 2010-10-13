@@ -184,7 +184,9 @@ ELSE»
 <div class="literallayout">
 <div class="incode">
 <p class="code">
-«EXPAND genCode(this.language) FOREACH contents»
+«LET removeIndent(this) AS block-»
+«EXPAND genCode(this.language) FOREACH block.contents»
+«ENDLET-»
 </p>
 </div>
 </div>
