@@ -28,7 +28,7 @@ public class StringFormatter {
 		if(cb.getContents().get(0) instanceof Code){
 			String code = ((Code)cb.getContents().get(0)).getContents();
 			int indent = code.length();
-			indent -= code.replaceAll("^(\n)?\\s*", "\\1").length();
+			indent -= code.replaceAll("^(\n*)\\s*", "$1").length();
 			String string = "\n\\s{"+indent+"}";
 			for(int i = 0; i < cb.getContents().size(); i++) {
 				if (cb.getContents().get(i) instanceof Code) {
@@ -92,16 +92,16 @@ public class StringFormatter {
 					String[] keywords = fileContents.toString().split("(?<!\\\\),");
 					for (String keyword : keywords) {
 						if(keyword.trim().equals("class")){
-							text = text.replaceAll("(?<!<span )" + keyword.trim() + "(?!\\=\"keyword\">)",
+							text = text.replaceAll("(?<!<span )" + makePattern(keyword.trim()) + "(?!\\=\"keyword\">)",
 									"<span class=\"keyword\">" + keyword.trim() + "</span>");
 						} else if(keyword.trim().equals("span")){
-							text = text.replaceAll("((?<!<)" + keyword.trim() + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
+							text = text.replaceAll("((?<!<)" + makePattern(keyword.trim()) + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
 									"<span class=\"keyword\">" + keyword.trim() + "</span>");
 						} else if(keyword.trim().equals("keyword")){
-							text = text.replaceAll("(?<!<span class=\")" + keyword.trim() + "(?!\">)",
+							text = text.replaceAll("(?<!<span class=\")" + makePattern(keyword.trim()) + "(?!\">)",
 									"<span class=\"keyword\">" + keyword.trim() + "</span>");
 						} else {
-							text = text.replaceAll(keyword.trim(), "<span class=\"keyword\">" + keyword.trim() + "</span>");
+							text = text.replaceAll(makePattern(keyword.trim()), "<span class=\"keyword\">" + keyword.trim() + "</span>");
 						}
 					}
 				} catch (FileNotFoundException e) {
@@ -112,5 +112,9 @@ public class StringFormatter {
 			}
 		}
 		return text;
+	}
+
+	private static String makePattern(String keyword) {
+		return "(?<![\\w\\^])"+keyword+"(?!\\w)";
 	}
 }
