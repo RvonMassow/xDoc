@@ -16,8 +16,18 @@
 }
 
 .keyword {
-	font-weight: bold !important;
+	font-weight: bold;
 	color: #7F0055;
+}
+
+.string {
+	font-weight: normal !important;
+	color: #2A00FF;
+}
+
+.comment {
+	font-style: italic;
+	color: #3F7F5F;
 }
 
 .incode {

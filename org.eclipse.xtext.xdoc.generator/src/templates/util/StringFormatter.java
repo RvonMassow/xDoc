@@ -62,7 +62,15 @@ public class StringFormatter {
 	static public Set<String> getStoredLinks(){
 		return links;
 	}
-	
+
+	/**
+	 * Highlight keywords in a text.
+	 * 
+	 * @param text a piece of source code
+	 * @param dirName a directory to read a language file from
+	 * @param langName the name of the language
+	 * @return the string with keywords highlighted
+	 */
 	static public String highlightKeywords(String text, final String dirName, final String langName){
 		if(langName == null || dirName == null){
 			return text;
