@@ -89,8 +89,15 @@ public class StringFormatter {
 					String[] keywords = fileContents.toString().split("(?<!\\\\),");
 					for (String keyword : keywords) {
 						if(keyword.trim().equals("class")){
-							text = text.replaceAll("(?<!<span )" + keyword.trim() + "(?>!\\=\"keyword\">)", "<span class=\"keyword\">" + keyword.trim() + "</span>");
-						} else{
+							text = text.replaceAll("(?<!<span )" + keyword.trim() + "(?!\\=\"keyword\">)",
+									"<span class=\"keyword\">" + keyword.trim() + "</span>");
+						} else if(keyword.trim().equals("span")){
+							text = text.replaceAll("((?<!<)" + keyword.trim() + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
+									"<span class=\"keyword\">" + keyword.trim() + "</span>");
+						} else if(keyword.trim().equals("keyword")){
+							text = text.replaceAll("(?<!<span class=\")" + keyword.trim() + "(?!\">)",
+									"<span class=\"keyword\">" + keyword.trim() + "</span>");
+						} else {
 							text = text.replaceAll(keyword.trim(), "<span class=\"keyword\">" + keyword.trim() + "</span>");
 						}
 					}
