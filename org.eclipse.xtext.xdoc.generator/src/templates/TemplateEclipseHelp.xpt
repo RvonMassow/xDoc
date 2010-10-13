@@ -7,7 +7,7 @@
 «DEFINE main FOR Document -»
 
 «FILE "toc.xml"-»
-<toc topic="src-gen/index.html" label="«EXPAND genPlainText FOR title»">
+<toc topic=«(String) GLOBALVAR dir»"index.html" label="«EXPAND genPlainText FOR title»">
 «EXPAND genTocEntry(this) FOREACH chapters»
 </toc>
 
@@ -35,28 +35,39 @@
 «DEFINE genContent(List[Chapter] chapters, Document doc) FOR List[Chapter]-»
 «ENDDEFINE»
 
-«DEFINE genTocEntry FOR AbstractSection»
+«DEFINE genTocEntry(Document doc) FOR AbstractSection-»
+«throwUnsupportedOperation("Cannot generate toc entry for " + this, this)-»
 «ENDDEFINE»
 
 
 «DEFINE genTocEntry(Document doc) FOR Chapter»
-<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«
+EXPAND genTocEntry(doc) FOREACH this.subSections-»
+</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section»
-<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«labelName(doc, this)»" label="«EXPAND genPlainText FOR this.title»" >«
+EXPAND genTocEntry(doc) FOREACH this.subSections-»
+</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section2»
-<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«labelName(doc, this)»" label="«EXPAND genPlainText FOR this.title»" >«
+EXPAND genTocEntry(doc) FOREACH this.subSections-»
+</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section3»
-<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«fileName(doc, this)»" label="«EXPAND genPlainText FOR this.title»" >«EXPAND genTocEntry FOREACH this.subSections»</topic>
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«labelName(doc, this)»" label="«EXPAND genPlainText FOR this.title»" >«
+EXPAND genTocEntry(doc) FOREACH this.subSections-»
+</topic>
 «ENDDEFINE»
 
 «DEFINE genTocEntry(Document doc) FOR Section4»
-<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«fileName(doc,this)»" label="«EXPAND genPlainText FOR this.title»" />
+<topic href="«((String)GLOBALVAR dir) + fileName(doc, this)».html#«labelName(doc, this)»" label="«
+EXPAND genPlainText FOR this.title-»
+" />
 «ENDDEFINE»
 
 
@@ -242,7 +253,7 @@ ENDIF-»
 «DEFINE genURLText FOR Object»«ENDDEFINE»
 
 «DEFINE preamble(Document doc) FOR AbstractSection»
-<a name="sec-«fileName(doc, this)»"></a>
+<a name="«labelName(doc, this)»"></a>
 «EXPAND genStyleClasses FOR this»
 «ENDDEFINE»
 

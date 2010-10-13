@@ -73,6 +73,21 @@ fileName(Document doc,TextOrMarkup tom):
 //String labelName(Section4 s):
 //	fileName((Section3)s.eContainer()) +"-"+ ((Section3)s.eContainer()).subSections.indexOf(s).toString();
 
+String labelName(Document doc, Object o):
+	throwUnsupportedOperation("Labelname for " + o + " undefined", o);
+
+labelName(Document doc, Section sec):
+	"sec-" + ((Chapter)sec.eContainer()).subSections.indexOf(sec);
+
+labelName(Document doc, Section2 sec):
+	labelName(doc, sec.eContainer()) + "-" + ((Section)sec.eContainer()).subSections.indexOf(sec);
+
+labelName(Document doc, Section3 sec):
+	labelName(doc, sec.eContainer()) + "-" + ((Section2)sec.eContainer()).subSections.indexOf(sec);
+
+labelName(Document doc, Section4 sec):
+	labelName(doc, sec.eContainer()) + "-" + ((Section3)sec.eContainer()).subSections.indexOf(sec);
+
 remWS(String s):
 	s.replaceAll("\\s", "");
 
