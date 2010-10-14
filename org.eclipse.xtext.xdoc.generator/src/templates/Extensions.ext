@@ -4,11 +4,11 @@ lstEscapeToTex():
 	"Â";
 
 escapeLatexChars(String s):
-	s.replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
-		.replaceAll("\\\\([^{}])", "\\\\textbackslash{}$1")
+	s.replaceAll("\\$", "\\\\\\$").replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
+		.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}")
 		.replaceAll("#", "\\\\#").replaceAll("%", "\\\\%")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
-		.replaceAll("&", "\\\\&").replaceAll("\\$", "\\\\$");
+		.replaceAll("&", "\\\\&");
 
 unescapeXdocChars(String s):
 	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");

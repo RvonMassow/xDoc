@@ -178,11 +178,13 @@ ENDIF»
 \end{lstlisting}
 «ENDIF»«ENDDEFINE»
 
-«DEFINE genText FOR CodeRef»\lstinline{«escapeLatexChars(unescapeXdocChars(this.element.canonicalName))»}«ENDDEFINE»
+«DEFINE genText FOR CodeRef»\lstinline°«escapeLatexChars(unescapeXdocChars(this.element.canonicalName))»°«ENDDEFINE»
 
 «DEFINE genCode FOR Object»«ENDDEFINE»
 
 «DEFINE genCode FOR Code»«prepareListingsString(unescapeXdocChars(this.contents))»«ENDDEFINE»
+
+«DEFINE genText FOR ImageRef»«ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
