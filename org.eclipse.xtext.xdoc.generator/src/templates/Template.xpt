@@ -85,7 +85,7 @@ ENDIF»
 
 «DEFINE genContent FOR Section»
 \section{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»
+«EXPAND genLabel FOR this»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"»
 «ENDDEFINE»
@@ -191,7 +191,7 @@ ENDIF»
 «DEFINE genCode FOR MarkupInCode»«lstEscapeToTex()»«EXPAND genText FOR this»«lstEscapeToTex()»«ENDDEFINE»
 
 «DEFINE genText FOR Todo-»
-\todo{«this.text»}«
+\todo[inline]{«escapeLatexChars(unescapeXdocChars(this.text))»}«
 ENDDEFINE»
 
 «DEFINE genLabel FOR ChapterRef-»
@@ -202,6 +202,18 @@ ENDIF-»
 
 «DEFINE genLabel FOR Chapter-»
 \label{«this.name»}
+«ENDDEFINE»
+
+«DEFINE genLabel FOR Section-»
+«IF this != null-»
+\label{«this.name»}«
+ENDIF-»
+«ENDDEFINE»
+
+«DEFINE genLabel FOR SectionRef-»
+«IF this != null-»
+\label{«this.section.name»}«
+ENDIF-»
 «ENDDEFINE»
 
 «DEFINE genLabel FOR String-»

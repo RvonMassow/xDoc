@@ -6,7 +6,7 @@ var targetDir = "src-gen"
 var fileEncoding = "ISO-8859-1"
 var modelPath = "src/model"
 var pdfLatex = "pdflatex"
-var release = true
+var release = false
 
 Workflow {
 
