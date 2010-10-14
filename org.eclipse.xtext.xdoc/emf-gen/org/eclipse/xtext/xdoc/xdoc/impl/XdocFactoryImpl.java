@@ -97,6 +97,7 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
 			case XdocPackage.CODE: return createCode();
 			case XdocPackage.MARKUP_IN_CODE: return createMarkupInCode();
 			case XdocPackage.TODO: return createTodo();
+			case XdocPackage.LANG_DEF: return createLangDef();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -430,6 +431,17 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
 	{
 		TodoImpl todo = new TodoImpl();
 		return todo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LangDef createLangDef()
+	{
+		LangDefImpl langDef = new LangDefImpl();
+		return langDef;
 	}
 
 	/**

@@ -130,6 +130,8 @@ sibling(Section2 c, Integer i):
 	let d =((Section)c.eContainer()):
 		d.subSections.get(d.subSections.indexOf(c) + i);
 
+String percentToFloat(String percent):
+	JAVA templates.util.StringFormatter.percentToFloat(java.lang.String);
 
 String encode(String s):
 	JAVA templates.util.StringFormatter.encode(java.lang.String);

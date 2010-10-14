@@ -296,6 +296,15 @@ public interface XdocFactory extends EFactory
 	Todo createTodo();
 
 	/**
+	 * Returns a new object of class '<em>Lang Def</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Lang Def</em>'.
+	 * @generated
+	 */
+	LangDef createLangDef();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

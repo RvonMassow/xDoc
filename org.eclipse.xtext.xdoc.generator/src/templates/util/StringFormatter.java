@@ -122,6 +122,10 @@ public class StringFormatter {
 		return text;
 	}
 
+	public static String percentToFloat(String percent){
+		return (Float.parseFloat(percent.replaceAll("%", ""))/100) +"";
+	}
+
 	private static String makePattern(String keyword) {
 		return "(?<![\\w\\^])"+keyword+"(?!\\w)";
 	}

@@ -226,13 +226,31 @@ public interface XdocPackage extends EPackage
 	int DOCUMENT__CHAPTERS = ABSTRACT_SECTION_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Lang Defs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__LANG_DEFS = ABSTRACT_SECTION_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Default Lang</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__DEFAULT_LANG = ABSTRACT_SECTION_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 3;
+	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -1205,6 +1223,43 @@ public interface XdocPackage extends EPackage
 	 */
 	int TODO_FEATURE_COUNT = MARK_UP_FEATURE_COUNT + 1;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.LangDefImpl <em>Lang Def</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.LangDefImpl
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getLangDef()
+	 * @generated
+	 */
+	int LANG_DEF = 30;
+
+	/**
+	 * The feature id for the '<em><b>Keywords</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANG_DEF__KEYWORDS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANG_DEF__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Lang Def</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LANG_DEF_FEATURE_COUNT = 2;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.XdocFile <em>File</em>}'.
@@ -1269,6 +1324,28 @@ public interface XdocPackage extends EPackage
 	 * @generated
 	 */
 	EReference getDocument_Chapters();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Document#getLangDefs <em>Lang Defs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Lang Defs</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Document#getLangDefs()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EReference getDocument_LangDefs();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.Document#getDefaultLang <em>Default Lang</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default Lang</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Document#getDefaultLang()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EAttribute getDocument_DefaultLang();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Chapter <em>Chapter</em>}'.
@@ -1903,6 +1980,38 @@ public interface XdocPackage extends EPackage
 	EAttribute getTodo_Text();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.LangDef <em>Lang Def</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Lang Def</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.LangDef
+	 * @generated
+	 */
+	EClass getLangDef();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.xtext.xdoc.xdoc.LangDef#getKeywords <em>Keywords</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Keywords</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.LangDef#getKeywords()
+	 * @see #getLangDef()
+	 * @generated
+	 */
+	EAttribute getLangDef_Keywords();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.LangDef#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.LangDef#getName()
+	 * @see #getLangDef()
+	 * @generated
+	 */
+	EAttribute getLangDef_Name();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1976,6 +2085,22 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EReference DOCUMENT__CHAPTERS = eINSTANCE.getDocument_Chapters();
+
+		/**
+		 * The meta object literal for the '<em><b>Lang Defs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOCUMENT__LANG_DEFS = eINSTANCE.getDocument_LangDefs();
+
+		/**
+		 * The meta object literal for the '<em><b>Default Lang</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOCUMENT__DEFAULT_LANG = eINSTANCE.getDocument_DefaultLang();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -2512,6 +2637,32 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute TODO__TEXT = eINSTANCE.getTodo_Text();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.LangDefImpl <em>Lang Def</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.LangDefImpl
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getLangDef()
+		 * @generated
+		 */
+		EClass LANG_DEF = eINSTANCE.getLangDef();
+
+		/**
+		 * The meta object literal for the '<em><b>Keywords</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANG_DEF__KEYWORDS = eINSTANCE.getLangDef_Keywords();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute LANG_DEF__NAME = eINSTANCE.getLangDef_Name();
 
 	}
 

@@ -26,6 +26,7 @@ import org.eclipse.xtext.xdoc.xdoc.Emphasize;
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.Item;
+import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.MarkUp;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
@@ -266,6 +267,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	private EClass todoEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass langDefEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -389,6 +397,26 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	public EReference getDocument_Chapters()
 	{
 		return (EReference)documentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDocument_LangDefs()
+	{
+		return (EReference)documentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDocument_DefaultLang()
+	{
+		return (EAttribute)documentEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -996,6 +1024,36 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getLangDef()
+	{
+		return langDefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLangDef_Keywords()
+	{
+		return (EAttribute)langDefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getLangDef_Name()
+	{
+		return (EAttribute)langDefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XdocFactory getXdocFactory()
 	{
 		return (XdocFactory)getEFactoryInstance();
@@ -1028,6 +1086,8 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		createEReference(documentEClass, DOCUMENT__SUBTITLE);
 		createEReference(documentEClass, DOCUMENT__AUTHORS);
 		createEReference(documentEClass, DOCUMENT__CHAPTERS);
+		createEReference(documentEClass, DOCUMENT__LANG_DEFS);
+		createEAttribute(documentEClass, DOCUMENT__DEFAULT_LANG);
 
 		chapterEClass = createEClass(CHAPTER);
 		createEReference(chapterEClass, CHAPTER__SUB_SECTIONS);
@@ -1116,6 +1176,10 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		todoEClass = createEClass(TODO);
 		createEAttribute(todoEClass, TODO__TEXT);
+
+		langDefEClass = createEClass(LANG_DEF);
+		createEAttribute(langDefEClass, LANG_DEF__KEYWORDS);
+		createEAttribute(langDefEClass, LANG_DEF__NAME);
 	}
 
 	/**
@@ -1184,6 +1248,8 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEReference(getDocument_Subtitle(), this.getTextOrMarkup(), null, "subtitle", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Authors(), this.getTextOrMarkup(), null, "authors", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Chapters(), this.getChapter(), null, "chapters", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDocument_LangDefs(), this.getLangDef(), null, "langDefs", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getDocument_DefaultLang(), ecorePackage.getEString(), "defaultLang", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(chapterEClass, Chapter.class, "Chapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChapter_SubSections(), this.getSection(), null, "subSections", null, 0, -1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1272,6 +1338,10 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		initEClass(todoEClass, Todo.class, "Todo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTodo_Text(), ecorePackage.getEString(), "text", "", 0, 1, Todo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(langDefEClass, LangDef.class, "LangDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getLangDef_Keywords(), ecorePackage.getEString(), "keywords", null, 0, -1, LangDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLangDef_Name(), ecorePackage.getEString(), "name", null, 1, 1, LangDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

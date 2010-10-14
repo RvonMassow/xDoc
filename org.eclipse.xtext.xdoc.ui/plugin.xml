@@ -179,5 +179,20 @@
             class="org.eclipse.xtext.xdoc.ui.XdocExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator">
       </markerResolutionGenerator>
    </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.xtext.xdoc.ui.wizard.new"
+            name="Xdoc Project">
+      </category>
+      <wizard
+            category="org.eclipse.xtext.xdoc.ui.wizard.new"
+            class="org.eclipse.xtext.xdoc.ui.NewWizard"
+            finalPerspective="org.eclipse.jdt.ui.JavaPerspective"
+            id="org.eclipse.xtext.xdoc.ui.wizard"
+            name="Xdoc Project"
+            project="true">
+      </wizard>
+   </extension>
 
 </plugin>

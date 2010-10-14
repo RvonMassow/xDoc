@@ -457,9 +457,89 @@ ruleDocument returns [EObject current=null]
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getChaptersChapterParserRuleCall_5_1_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getLangDefsLangDefParserRuleCall_5_1_0(), currentNode); 
 	    }
-		lv_chapters_12_0=ruleChapter		{
+		lv_langDefs_12_0=ruleLangDef		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	        }
+	        try {
+	       		add(
+	       			$current, 
+	       			"langDefs",
+	        		lv_langDefs_12_0, 
+	        		"LangDef", 
+	        		currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
+
+)
+))*(RULE_MULTI_NL
+    { 
+    createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_6_0(), null); 
+    }
+	'defaultcodelanguage[' 
+    {
+        createLeafNode(grammarAccess.getDocumentAccess().getDefaultcodelanguageKeyword_6_1(), null); 
+    }
+(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getANY_WSParserRuleCall_6_2(), currentNode); 
+    }
+ruleANY_WS
+    { 
+        currentNode = currentNode.getParent();
+    }
+)*(
+(
+		lv_defaultLang_16_0=RULE_ID
+		{
+			createLeafNode(grammarAccess.getDocumentAccess().getDefaultLangIDTerminalRuleCall_6_3_0(), "defaultLang"); 
+		}
+		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"defaultLang",
+	        		lv_defaultLang_16_0, 
+	        		"ID", 
+	        		lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+
+)
+)(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getANY_WSParserRuleCall_6_4(), currentNode); 
+    }
+ruleANY_WS
+    { 
+        currentNode = currentNode.getParent();
+    }
+)*	']' 
+    {
+        createLeafNode(grammarAccess.getDocumentAccess().getRightSquareBracketKeyword_6_5(), null); 
+    }
+)?(RULE_MULTI_NL
+    { 
+    createLeafNode(grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_7_0(), null); 
+    }
+(
+(
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getDocumentAccess().getChaptersChapterParserRuleCall_7_1_0(), currentNode); 
+	    }
+		lv_chapters_20_0=ruleChapter		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getDocumentRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -468,7 +548,7 @@ ruleDocument returns [EObject current=null]
 	       		add(
 	       			$current, 
 	       			"chapters",
-	        		lv_chapters_12_0, 
+	        		lv_chapters_20_0, 
 	        		"Chapter", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -1538,6 +1618,13 @@ ruleText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
     {
         $current.merge(kw);
         createLeafNode(grammarAccess.getTextAccess().getReverseSolidusRightSquareBracketKeyword_5(), null); 
+    }
+
+    |
+	kw=',' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getTextAccess().getCommaKeyword_6(), null); 
     }
 )+
     ;
@@ -3194,6 +3281,153 @@ ruleMarkupInCode returns [EObject current=null]
 
 
 
+// Entry rule entryRuleLangDef
+entryRuleLangDef returns [EObject current=null] 
+	:
+	{ currentNode = createCompositeNode(grammarAccess.getLangDefRule(), currentNode); }
+	 iv_ruleLangDef=ruleLangDef 
+	 { $current=$iv_ruleLangDef.current; } 
+	 EOF 
+;
+
+// Rule LangDef
+ruleLangDef returns [EObject current=null] 
+    @init { EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+    }
+    @after { resetLookahead(); 
+    	lastConsumedNode = currentNode;
+    }:
+(	'codelanguage-def[' 
+    {
+        createLeafNode(grammarAccess.getLangDefAccess().getCodelanguageDefKeyword_0(), null); 
+    }
+(
+(
+		lv_name_1_0=RULE_ID
+		{
+			createLeafNode(grammarAccess.getLangDefAccess().getNameIDTerminalRuleCall_1_0(), "name"); 
+		}
+		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getLangDefRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        try {
+	       		set(
+	       			$current, 
+	       			"name",
+	        		lv_name_1_0, 
+	        		"ID", 
+	        		lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+
+)
+)	']' 
+    {
+        createLeafNode(grammarAccess.getLangDefAccess().getRightSquareBracketKeyword_2(), null); 
+    }
+(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getLangDefAccess().getANY_WSParserRuleCall_3(), currentNode); 
+    }
+ruleANY_WS
+    { 
+        currentNode = currentNode.getParent();
+    }
+)*	'[' 
+    {
+        createLeafNode(grammarAccess.getLangDefAccess().getLeftSquareBracketKeyword_4(), null); 
+    }
+((
+    { 
+        currentNode=createCompositeNode(grammarAccess.getLangDefAccess().getANY_WSParserRuleCall_5_0(), currentNode); 
+    }
+ruleANY_WS
+    { 
+        currentNode = currentNode.getParent();
+    }
+)*(
+(
+		lv_keywords_6_0=RULE_ID
+		{
+			createLeafNode(grammarAccess.getLangDefAccess().getKeywordsIDTerminalRuleCall_5_1_0(), "keywords"); 
+		}
+		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getLangDefRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        try {
+	       		add(
+	       			$current, 
+	       			"keywords",
+	        		lv_keywords_6_0, 
+	        		"ID", 
+	        		lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+
+)
+)(	',' 
+    {
+        createLeafNode(grammarAccess.getLangDefAccess().getCommaKeyword_5_2_0(), null); 
+    }
+(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getLangDefAccess().getANY_WSParserRuleCall_5_2_1(), currentNode); 
+    }
+ruleANY_WS
+    { 
+        currentNode = currentNode.getParent();
+    }
+)*(
+(
+		lv_keywords_9_0=RULE_ID
+		{
+			createLeafNode(grammarAccess.getLangDefAccess().getKeywordsIDTerminalRuleCall_5_2_2_0(), "keywords"); 
+		}
+		{
+	        if ($current==null) {
+	            $current = factory.create(grammarAccess.getLangDefRule().getType().getClassifier());
+	            associateNodeWithAstElement(currentNode, $current);
+	        }
+	        try {
+	       		add(
+	       			$current, 
+	       			"keywords",
+	        		lv_keywords_9_0, 
+	        		"ID", 
+	        		lastConsumedNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
+
+)
+)(
+    { 
+        currentNode=createCompositeNode(grammarAccess.getLangDefAccess().getANY_WSParserRuleCall_5_2_3(), currentNode); 
+    }
+ruleANY_WS
+    { 
+        currentNode = currentNode.getParent();
+    }
+)*)*)?	']' 
+    {
+        createLeafNode(grammarAccess.getLangDefAccess().getRightSquareBracketKeyword_6(), null); 
+    }
+)
+;
+
+
+
+
+
 // Entry rule entryRuleCodeText
 entryRuleCodeText returns [String current=null] 
 	:
@@ -3262,6 +3496,13 @@ ruleCodeText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
     {
         $current.merge(kw);
         createLeafNode(grammarAccess.getCodeTextAccess().getReverseSolidusRightSquareBracketKeyword_6(), null); 
+    }
+
+    |
+	kw=',' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getCodeTextAccess().getCommaKeyword_7(), null); 
     }
 )+
     ;

@@ -191,16 +191,30 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
 		private final RuleCall cMULTI_NLTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cChaptersAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cChaptersChapterParserRuleCall_5_1_0 = (RuleCall)cChaptersAssignment_5_1.eContents().get(0);
+		private final Assignment cLangDefsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cLangDefsLangDefParserRuleCall_5_1_0 = (RuleCall)cLangDefsAssignment_5_1.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final RuleCall cMULTI_NLTerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
+		private final Keyword cDefaultcodelanguageKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
+		private final RuleCall cANY_WSParserRuleCall_6_2 = (RuleCall)cGroup_6.eContents().get(2);
+		private final Assignment cDefaultLangAssignment_6_3 = (Assignment)cGroup_6.eContents().get(3);
+		private final RuleCall cDefaultLangIDTerminalRuleCall_6_3_0 = (RuleCall)cDefaultLangAssignment_6_3.eContents().get(0);
+		private final RuleCall cANY_WSParserRuleCall_6_4 = (RuleCall)cGroup_6.eContents().get(4);
+		private final Keyword cRightSquareBracketKeyword_6_5 = (Keyword)cGroup_6.eContents().get(5);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final RuleCall cMULTI_NLTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
+		private final Assignment cChaptersAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cChaptersChapterParserRuleCall_7_1_0 = (RuleCall)cChaptersAssignment_7_1.eContents().get(0);
 		
 		//Document:
 		//	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
-		//	authors=TextOrMarkup "]")? (MULTI_NL chapters+=Chapter)*;
+		//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL "defaultcodelanguage[" ANY_WS* defaultLang=ID
+		//	ANY_WS* "]")? (MULTI_NL chapters+=Chapter)*;
 		public ParserRule getRule() { return rule; }
 
 		//"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
-		//authors=TextOrMarkup "]")? (MULTI_NL chapters+=Chapter)*
+		//authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL "defaultcodelanguage[" ANY_WS* defaultLang=ID
+		//ANY_WS* "]")? (MULTI_NL chapters+=Chapter)*
 		public Group getGroup() { return cGroup; }
 
 		//"document["
@@ -251,17 +265,53 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//"]"
 		public Keyword getRightSquareBracketKeyword_4_3() { return cRightSquareBracketKeyword_4_3; }
 
-		//(MULTI_NL chapters+=Chapter)*
+		//(MULTI_NL langDefs+=LangDef)*
 		public Group getGroup_5() { return cGroup_5; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_5_0() { return cMULTI_NLTerminalRuleCall_5_0; }
 
+		//langDefs+=LangDef
+		public Assignment getLangDefsAssignment_5_1() { return cLangDefsAssignment_5_1; }
+
+		//LangDef
+		public RuleCall getLangDefsLangDefParserRuleCall_5_1_0() { return cLangDefsLangDefParserRuleCall_5_1_0; }
+
+		//(MULTI_NL "defaultcodelanguage[" ANY_WS* defaultLang=ID ANY_WS* "]")?
+		public Group getGroup_6() { return cGroup_6; }
+
+		//MULTI_NL
+		public RuleCall getMULTI_NLTerminalRuleCall_6_0() { return cMULTI_NLTerminalRuleCall_6_0; }
+
+		//"defaultcodelanguage["
+		public Keyword getDefaultcodelanguageKeyword_6_1() { return cDefaultcodelanguageKeyword_6_1; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_6_2() { return cANY_WSParserRuleCall_6_2; }
+
+		//defaultLang=ID
+		public Assignment getDefaultLangAssignment_6_3() { return cDefaultLangAssignment_6_3; }
+
+		//ID
+		public RuleCall getDefaultLangIDTerminalRuleCall_6_3_0() { return cDefaultLangIDTerminalRuleCall_6_3_0; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_6_4() { return cANY_WSParserRuleCall_6_4; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_6_5() { return cRightSquareBracketKeyword_6_5; }
+
+		//(MULTI_NL chapters+=Chapter)*
+		public Group getGroup_7() { return cGroup_7; }
+
+		//MULTI_NL
+		public RuleCall getMULTI_NLTerminalRuleCall_7_0() { return cMULTI_NLTerminalRuleCall_7_0; }
+
 		//chapters+=Chapter
-		public Assignment getChaptersAssignment_5_1() { return cChaptersAssignment_5_1; }
+		public Assignment getChaptersAssignment_7_1() { return cChaptersAssignment_7_1; }
 
 		//Chapter
-		public RuleCall getChaptersChapterParserRuleCall_5_1_0() { return cChaptersChapterParserRuleCall_5_1_0; }
+		public RuleCall getChaptersChapterParserRuleCall_7_1_0() { return cChaptersChapterParserRuleCall_7_1_0; }
 	}
 
 	public class ChapterElements extends AbstractParserRuleElementFinder {
@@ -847,12 +897,13 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cANY_OTHERTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cCommaKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		
 		//Text:
-		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
+		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+
+		//(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -872,6 +923,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"\\]"
 		public Keyword getReverseSolidusRightSquareBracketKeyword_5() { return cReverseSolidusRightSquareBracketKeyword_5; }
+
+		//","
+		public Keyword getCommaKeyword_6() { return cCommaKeyword_6; }
 	}
 
 	public class MarkUpElements extends AbstractParserRuleElementFinder {
@@ -1751,6 +1805,86 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getTodoParserRuleCall_3() { return cTodoParserRuleCall_3; }
 	}
 
+	public class LangDefElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LangDef");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cCodelanguageDefKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final RuleCall cANY_WSParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final RuleCall cANY_WSParserRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final Assignment cKeywordsAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cKeywordsIDTerminalRuleCall_5_1_0 = (RuleCall)cKeywordsAssignment_5_1.eContents().get(0);
+		private final Group cGroup_5_2 = (Group)cGroup_5.eContents().get(2);
+		private final Keyword cCommaKeyword_5_2_0 = (Keyword)cGroup_5_2.eContents().get(0);
+		private final RuleCall cANY_WSParserRuleCall_5_2_1 = (RuleCall)cGroup_5_2.eContents().get(1);
+		private final Assignment cKeywordsAssignment_5_2_2 = (Assignment)cGroup_5_2.eContents().get(2);
+		private final RuleCall cKeywordsIDTerminalRuleCall_5_2_2_0 = (RuleCall)cKeywordsAssignment_5_2_2.eContents().get(0);
+		private final RuleCall cANY_WSParserRuleCall_5_2_3 = (RuleCall)cGroup_5_2.eContents().get(3);
+		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		
+		//LangDef:
+		//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
+		public ParserRule getRule() { return rule; }
+
+		//"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]"
+		public Group getGroup() { return cGroup; }
+
+		//"codelanguage-def["
+		public Keyword getCodelanguageDefKeyword_0() { return cCodelanguageDefKeyword_0; }
+
+		//name=ID
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//ID
+		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_3() { return cANY_WSParserRuleCall_3; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
+
+		//(ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)?
+		public Group getGroup_5() { return cGroup_5; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_5_0() { return cANY_WSParserRuleCall_5_0; }
+
+		//keywords+=ID
+		public Assignment getKeywordsAssignment_5_1() { return cKeywordsAssignment_5_1; }
+
+		//ID
+		public RuleCall getKeywordsIDTerminalRuleCall_5_1_0() { return cKeywordsIDTerminalRuleCall_5_1_0; }
+
+		//("," ANY_WS* keywords+=ID ANY_WS*)*
+		public Group getGroup_5_2() { return cGroup_5_2; }
+
+		//","
+		public Keyword getCommaKeyword_5_2_0() { return cCommaKeyword_5_2_0; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_5_2_1() { return cANY_WSParserRuleCall_5_2_1; }
+
+		//keywords+=ID
+		public Assignment getKeywordsAssignment_5_2_2() { return cKeywordsAssignment_5_2_2; }
+
+		//ID
+		public RuleCall getKeywordsIDTerminalRuleCall_5_2_2_0() { return cKeywordsIDTerminalRuleCall_5_2_2_0; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_5_2_3() { return cANY_WSParserRuleCall_5_2_3; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
+	}
+
 	public class CodeTextElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CodeText");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -1761,12 +1895,13 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cANY_OTHERTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cCommaKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		
 		//CodeText:
-		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
+		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+
+		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -1789,6 +1924,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"\\]"
 		public Keyword getReverseSolidusRightSquareBracketKeyword_6() { return cReverseSolidusRightSquareBracketKeyword_6; }
+
+		//","
+		public Keyword getCommaKeyword_7() { return cCommaKeyword_7; }
 	}
 
 	public class ANY_WSElements extends AbstractParserRuleElementFinder {
@@ -1845,6 +1983,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	private TodoElements pTodo;
 	private CodeElements pCode;
 	private MarkupInCodeElements pMarkupInCode;
+	private LangDefElements pLangDef;
 	private CodeTextElements pCodeText;
 	private ANY_WSElements pANY_WS;
 	private TerminalRule tID;
@@ -1881,7 +2020,8 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Document:
 	//	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
-	//	authors=TextOrMarkup "]")? (MULTI_NL chapters+=Chapter)*;
+	//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL "defaultcodelanguage[" ANY_WS* defaultLang=ID
+	//	ANY_WS* "]")? (MULTI_NL chapters+=Chapter)*;
 	public DocumentElements getDocumentAccess() {
 		return (pDocument != null) ? pDocument : (pDocument = new DocumentElements());
 	}
@@ -1985,7 +2125,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Text:
-	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
+	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
 	public TextElements getTextAccess() {
 		return (pText != null) ? pText : (pText = new TextElements());
 	}
@@ -2167,8 +2307,18 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		return getMarkupInCodeAccess().getRule();
 	}
 
+	//LangDef:
+	//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
+	public LangDefElements getLangDefAccess() {
+		return (pLangDef != null) ? pLangDef : (pLangDef = new LangDefElements());
+	}
+	
+	public ParserRule getLangDefRule() {
+		return getLangDefAccess().getRule();
+	}
+
 	//CodeText:
-	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]")+;
+	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
 	public CodeTextElements getCodeTextAccess() {
 		return (pCodeText != null) ? pCodeText : (pCodeText = new CodeTextElements());
 	}

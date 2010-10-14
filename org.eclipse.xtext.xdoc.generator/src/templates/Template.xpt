@@ -18,14 +18,16 @@ ENDIF»
 
 %%\usepackage{helvet}
 
-\lstdefinelanguage{Xtext}
-  {morekeywords={grammar, generate, import, as, terminal, hidden},
-    sensitive=true,
-    morecomment=[l]{//},
-    morecomment=[s]{/*}{*/},
-    morestring=[b]",
-    morestring=[b]',
-  }
+«EXPAND genLangDef FOREACH this.langDefs-»
+
+%\lstdefinelanguage{Xtext}
+%  {morekeywords={grammar, generate, import, as, terminal, hidden},
+%    sensitive=true,
+%    morecomment=[l]{//},
+%    morecomment=[s]{/*}{*/},
+%    morestring=[b]",
+%    morestring=[b]',
+%  }
 
 \lstdefinelanguage{Xbase}
   {morekeywords={super, val, var, extends, instanceof, new,%
@@ -52,7 +54,9 @@ ENDIF»
 
 %\lstdefinelanguage{xtext}{keywords={terminal, grammar, import, generate, hidden, as}, sensitive=true,string={"},morestring={'},comment={//},morecomment=[s]{/*}{*/}}
 
-\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, language=Xbase, columns=[r]fullflexible}
+\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, «
+IF this.defaultLang!=null» language=«this.defaultLang», «
+ENDIF»columns=[r]fullflexible}
 
 \usepackage[english]{babel}
 
@@ -74,6 +78,17 @@ ENDIF»
 ENDIF»
 \end{document}
 «ENDFILE-»
+«ENDDEFINE»
+
+«DEFINE genLangDef FOR LangDef»
+\lstdefinelanguage{«this.name»}
+  {morekeywords={«EXPAND genText FOREACH this.keywords SEPARATOR ', '»},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    morestring=[b]',
+  }
 «ENDDEFINE»
 
 «DEFINE genContent FOR Chapter-»
@@ -230,3 +245,7 @@ ENDIF-»
 «DEFINE genURL FOR String -»
 \noindent\url{«this»}«
 ENDDEFINE»
+
+«DEFINE genText FOR String-»
+«this-»
+«ENDDEFINE»

@@ -17,6 +17,8 @@ Document:
 	'document[' title=TextOrMarkup ']'
 	(MULTI_NL 'subtitle[' subtitle=TextOrMarkup ']')?
 	(MULTI_NL 'authors[' authors=TextOrMarkup ']')?
+	(MULTI_NL langDefs+=LangDef)*
+	(MULTI_NL 'defaultcodelanguage['ANY_WS* defaultLang=ID ANY_WS*']')?
 	(MULTI_NL chapters+=Chapter)*;
 
 Chapter:
@@ -60,7 +62,7 @@ TextPart:
 	text=Text;
 
 Text:
-	(ID | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]')+;
+	(ID | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',')+;
 
 MarkUp:
 	Emphasize |
@@ -155,8 +157,11 @@ MarkupInCode:
 	Ref |
 	Todo;
 
+LangDef:
+	'codelanguage-def['name=ID']'ANY_WS*'['(ANY_WS* keywords+=ID (','ANY_WS* keywords+=ID ANY_WS*)*)?']';
+
 CodeText:
-	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' )+;
+	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',')+;
 
 ANY_WS:
 	MULTI_NL | SINGLE_NL | WS;

@@ -14,6 +14,9 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chapters" upperBound="-1"
         eType="#//Chapter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="langDefs" upperBound="-1"
+        eType="#//LangDef" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultLang" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Chapter" eSuperTypes="#//AbstractSection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
@@ -115,5 +118,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="Todo" eSuperTypes="#//MarkUp #//MarkupInCode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LangDef">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="keywords" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        iD="true"/>
   </eClassifiers>
 </ecore:EPackage>

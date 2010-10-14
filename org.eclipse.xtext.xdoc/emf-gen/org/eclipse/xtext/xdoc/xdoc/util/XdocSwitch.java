@@ -340,6 +340,13 @@ public class XdocSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XdocPackage.LANG_DEF:
+			{
+				LangDef langDef = (LangDef)theEObject;
+				T result = caseLangDef(langDef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -820,6 +827,22 @@ public class XdocSwitch<T>
 	 * @generated
 	 */
 	public T caseTodo(Todo object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Lang Def</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Lang Def</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLangDef(LangDef object)
 	{
 		return null;
 	}

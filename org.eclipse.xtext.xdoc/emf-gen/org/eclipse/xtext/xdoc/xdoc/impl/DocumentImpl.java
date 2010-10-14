@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
@@ -35,6 +36,8 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getSubtitle <em>Subtitle</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getAuthors <em>Authors</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getChapters <em>Chapters</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getLangDefs <em>Lang Defs</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getDefaultLang <em>Default Lang</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,6 +74,36 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 	 * @ordered
 	 */
 	protected EList<Chapter> chapters;
+
+	/**
+	 * The cached value of the '{@link #getLangDefs() <em>Lang Defs</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLangDefs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<LangDef> langDefs;
+
+	/**
+	 * The default value of the '{@link #getDefaultLang() <em>Default Lang</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultLang()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DEFAULT_LANG_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDefaultLang() <em>Default Lang</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDefaultLang()
+	 * @generated
+	 * @ordered
+	 */
+	protected String defaultLang = DEFAULT_LANG_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -208,6 +241,43 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<LangDef> getLangDefs()
+	{
+		if (langDefs == null)
+		{
+			langDefs = new EObjectContainmentEList<LangDef>(LangDef.class, this, XdocPackage.DOCUMENT__LANG_DEFS);
+		}
+		return langDefs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDefaultLang()
+	{
+		return defaultLang;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefaultLang(String newDefaultLang)
+	{
+		String oldDefaultLang = defaultLang;
+		defaultLang = newDefaultLang;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.DOCUMENT__DEFAULT_LANG, oldDefaultLang, defaultLang));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -219,6 +289,8 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				return basicSetAuthors(null, msgs);
 			case XdocPackage.DOCUMENT__CHAPTERS:
 				return ((InternalEList<?>)getChapters()).basicRemove(otherEnd, msgs);
+			case XdocPackage.DOCUMENT__LANG_DEFS:
+				return ((InternalEList<?>)getLangDefs()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -239,6 +311,10 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				return getAuthors();
 			case XdocPackage.DOCUMENT__CHAPTERS:
 				return getChapters();
+			case XdocPackage.DOCUMENT__LANG_DEFS:
+				return getLangDefs();
+			case XdocPackage.DOCUMENT__DEFAULT_LANG:
+				return getDefaultLang();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -264,6 +340,13 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				getChapters().clear();
 				getChapters().addAll((Collection<? extends Chapter>)newValue);
 				return;
+			case XdocPackage.DOCUMENT__LANG_DEFS:
+				getLangDefs().clear();
+				getLangDefs().addAll((Collection<? extends LangDef>)newValue);
+				return;
+			case XdocPackage.DOCUMENT__DEFAULT_LANG:
+				setDefaultLang((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -287,6 +370,12 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 			case XdocPackage.DOCUMENT__CHAPTERS:
 				getChapters().clear();
 				return;
+			case XdocPackage.DOCUMENT__LANG_DEFS:
+				getLangDefs().clear();
+				return;
+			case XdocPackage.DOCUMENT__DEFAULT_LANG:
+				setDefaultLang(DEFAULT_LANG_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -307,8 +396,29 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				return authors != null;
 			case XdocPackage.DOCUMENT__CHAPTERS:
 				return chapters != null && !chapters.isEmpty();
+			case XdocPackage.DOCUMENT__LANG_DEFS:
+				return langDefs != null && !langDefs.isEmpty();
+			case XdocPackage.DOCUMENT__DEFAULT_LANG:
+				return DEFAULT_LANG_EDEFAULT == null ? defaultLang != null : !DEFAULT_LANG_EDEFAULT.equals(defaultLang);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (defaultLang: ");
+		result.append(defaultLang);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DocumentImpl
