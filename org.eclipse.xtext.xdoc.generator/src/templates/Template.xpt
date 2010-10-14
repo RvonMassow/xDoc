@@ -195,7 +195,7 @@ ENDIF»
 ENDDEFINE»
 
 «DEFINE genLabel FOR ChapterRef-»
-«IF this != null-»
+«IF this.chapter.name != null-»
 \label{«this.chapter.name»}«
 ENDIF-»
 «ENDDEFINE»
@@ -205,13 +205,13 @@ ENDIF-»
 «ENDDEFINE»
 
 «DEFINE genLabel FOR Section-»
-«IF this != null-»
+«IF this.name != null-»
 \label{«this.name»}«
 ENDIF-»
 «ENDDEFINE»
 
 «DEFINE genLabel FOR SectionRef-»
-«IF this != null-»
+«IF this.section.name != null-»
 \label{«this.section.name»}«
 ENDIF-»
 «ENDDEFINE»

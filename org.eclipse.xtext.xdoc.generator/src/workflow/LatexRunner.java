@@ -83,9 +83,14 @@ public class LatexRunner implements IWorkflowComponent {
 						if (s.toLowerCase().indexOf("error") != -1) {
 							log.error(s);
 						} else {
-							// only log during the last run
-							if (i + 1 == numberOfPasses)
+							// only log during the first run (for missing packages...)
+							if (i == 0) {
 								log.info(s);
+							} else if(i == numberOfPasses - 1){
+								if(s.contains("Warning")){
+									log.warn(s);
+								}
+							}
 						}
 						s = is.readLine();
 					}
