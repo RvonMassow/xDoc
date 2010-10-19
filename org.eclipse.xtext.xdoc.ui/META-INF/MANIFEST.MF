@@ -12,7 +12,6 @@ Require-Bundle: org.eclipse.xtext.xdoc;visibility:=reexport,
  org.eclipse.xtext.ui.shared,
  org.eclipse.ui,
  org.eclipse.xtext.builder,
- org.eclipse.xtext.common.types.ui
  org.antlr.runtime,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.jdt.core;bundle-version="3.5.2"
