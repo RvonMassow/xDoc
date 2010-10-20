@@ -12,856 +12,775 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalXdocLexer extends Lexer {
-    public static final int T__42=42;
-    public static final int T__12=12;
-    public static final int T__28=28;
-    public static final int T__23=23;
-    public static final int T__13=13;
-    public static final int T__21=21;
-    public static final int T__19=19;
-    public static final int T__39=39;
-    public static final int T__30=30;
-    public static final int T__46=46;
-    public static final int T__17=17;
-    public static final int RULE_MULTI_NL=5;
-    public static final int T__27=27;
-    public static final int T__24=24;
-    public static final int T__10=10;
-    public static final int T__34=34;
-    public static final int T__15=15;
-    public static final int T__35=35;
     public static final int RULE_ID=6;
-    public static final int T__36=36;
-    public static final int T__20=20;
-    public static final int T__44=44;
-    public static final int T__14=14;
-    public static final int T__33=33;
-    public static final int T__22=22;
-    public static final int T__11=11;
-    public static final int T__29=29;
-    public static final int T__45=45;
-    public static final int RULE_WS=4;
-    public static final int T__43=43;
-    public static final int T__31=31;
-    public static final int T__40=40;
-    public static final int EOF=-1;
-    public static final int RULE_SINGLE_NL=7;
-    public static final int T__16=16;
-    public static final int T__32=32;
-    public static final int T__38=38;
-    public static final int T__37=37;
     public static final int RULE_ANY_OTHER=8;
-    public static final int T__26=26;
-    public static final int T__25=25;
+    public static final int T29=29;
+    public static final int T28=28;
+    public static final int T27=27;
+    public static final int T26=26;
+    public static final int T25=25;
+    public static final int EOF=-1;
+    public static final int T24=24;
+    public static final int T23=23;
+    public static final int T22=22;
+    public static final int T21=21;
+    public static final int T20=20;
+    public static final int T38=38;
+    public static final int T37=37;
+    public static final int T39=39;
+    public static final int T34=34;
+    public static final int T33=33;
+    public static final int T36=36;
+    public static final int T35=35;
+    public static final int T30=30;
+    public static final int T32=32;
+    public static final int T31=31;
+    public static final int RULE_MULTI_NL=5;
+    public static final int T43=43;
+    public static final int Tokens=47;
     public static final int RULE_SL_COMMENT=9;
-    public static final int T__41=41;
-    public static final int T__18=18;
-
-    // delegates
-    // delegators
-
+    public static final int T42=42;
+    public static final int T41=41;
+    public static final int T40=40;
+    public static final int T46=46;
+    public static final int T45=45;
+    public static final int RULE_SINGLE_NL=7;
+    public static final int T44=44;
+    public static final int T10=10;
+    public static final int T11=11;
+    public static final int T12=12;
+    public static final int T13=13;
+    public static final int T14=14;
+    public static final int T15=15;
+    public static final int RULE_WS=4;
+    public static final int T16=16;
+    public static final int T17=17;
+    public static final int T18=18;
+    public static final int T19=19;
     public InternalXdocLexer() {;} 
     public InternalXdocLexer(CharStream input) {
-        this(input, new RecognizerSharedState());
-    }
-    public InternalXdocLexer(CharStream input, RecognizerSharedState state) {
-        super(input,state);
-
+        super(input);
     }
     public String getGrammarFileName() { return "../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g"; }
 
-    // $ANTLR start "T__10"
-    public final void mT__10() throws RecognitionException {
+    // $ANTLR start T10
+    public final void mT10() throws RecognitionException {
         try {
-            int _type = T__10;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:11:7: ( 'document[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:11:9: 'document['
+            int _type = T10;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:10:5: ( 'document[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:10:7: 'document['
             {
             match("document["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__10"
+    // $ANTLR end T10
 
-    // $ANTLR start "T__11"
-    public final void mT__11() throws RecognitionException {
+    // $ANTLR start T11
+    public final void mT11() throws RecognitionException {
         try {
-            int _type = T__11;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:12:7: ( ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:12:9: ']'
+            int _type = T11;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:11:5: ( ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:11:7: ']'
             {
             match(']'); 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__11"
+    // $ANTLR end T11
 
-    // $ANTLR start "T__12"
-    public final void mT__12() throws RecognitionException {
+    // $ANTLR start T12
+    public final void mT12() throws RecognitionException {
         try {
-            int _type = T__12;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:13:7: ( 'subtitle[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:13:9: 'subtitle['
+            int _type = T12;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:12:5: ( 'subtitle[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:12:7: 'subtitle['
             {
             match("subtitle["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__12"
+    // $ANTLR end T12
 
-    // $ANTLR start "T__13"
-    public final void mT__13() throws RecognitionException {
+    // $ANTLR start T13
+    public final void mT13() throws RecognitionException {
         try {
-            int _type = T__13;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:14:7: ( 'authors[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:14:9: 'authors['
+            int _type = T13;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:13:5: ( 'authors[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:13:7: 'authors['
             {
             match("authors["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__13"
+    // $ANTLR end T13
 
-    // $ANTLR start "T__14"
-    public final void mT__14() throws RecognitionException {
+    // $ANTLR start T14
+    public final void mT14() throws RecognitionException {
         try {
-            int _type = T__14;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:15:7: ( 'defaultcodelanguage[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:15:9: 'defaultcodelanguage['
+            int _type = T14;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:14:5: ( 'defaultcodelanguage[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:14:7: 'defaultcodelanguage['
             {
             match("defaultcodelanguage["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__14"
+    // $ANTLR end T14
 
-    // $ANTLR start "T__15"
-    public final void mT__15() throws RecognitionException {
+    // $ANTLR start T15
+    public final void mT15() throws RecognitionException {
         try {
-            int _type = T__15;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:16:7: ( 'chapter:' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:16:9: 'chapter:'
+            int _type = T15;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:15:5: ( 'chapter:' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:15:7: 'chapter:'
             {
             match("chapter:"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__15"
+    // $ANTLR end T15
 
-    // $ANTLR start "T__16"
-    public final void mT__16() throws RecognitionException {
+    // $ANTLR start T16
+    public final void mT16() throws RecognitionException {
         try {
-            int _type = T__16;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:17:7: ( '[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:17:9: '['
+            int _type = T16;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:16:5: ( '[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:16:7: '['
             {
             match('['); 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__16"
+    // $ANTLR end T16
 
-    // $ANTLR start "T__17"
-    public final void mT__17() throws RecognitionException {
+    // $ANTLR start T17
+    public final void mT17() throws RecognitionException {
         try {
-            int _type = T__17;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:18:7: ( 'chapter[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:18:9: 'chapter['
+            int _type = T17;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:17:5: ( 'chapter[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:17:7: 'chapter['
             {
             match("chapter["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__17"
+    // $ANTLR end T17
 
-    // $ANTLR start "T__18"
-    public final void mT__18() throws RecognitionException {
+    // $ANTLR start T18
+    public final void mT18() throws RecognitionException {
         try {
-            int _type = T__18;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:19:7: ( 'chapter-ref[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:19:9: 'chapter-ref['
+            int _type = T18;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:18:5: ( 'chapter-ref[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:18:7: 'chapter-ref['
             {
             match("chapter-ref["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__18"
+    // $ANTLR end T18
 
-    // $ANTLR start "T__19"
-    public final void mT__19() throws RecognitionException {
+    // $ANTLR start T19
+    public final void mT19() throws RecognitionException {
         try {
-            int _type = T__19;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:20:7: ( 'section:' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:20:9: 'section:'
+            int _type = T19;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:19:5: ( 'section:' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:19:7: 'section:'
             {
             match("section:"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__19"
+    // $ANTLR end T19
 
-    // $ANTLR start "T__20"
-    public final void mT__20() throws RecognitionException {
+    // $ANTLR start T20
+    public final void mT20() throws RecognitionException {
         try {
-            int _type = T__20;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:21:7: ( 'section[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:21:9: 'section['
+            int _type = T20;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:20:5: ( 'section[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:20:7: 'section['
             {
             match("section["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__20"
+    // $ANTLR end T20
 
-    // $ANTLR start "T__21"
-    public final void mT__21() throws RecognitionException {
+    // $ANTLR start T21
+    public final void mT21() throws RecognitionException {
         try {
-            int _type = T__21;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:22:7: ( 'section-ref[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:22:9: 'section-ref['
+            int _type = T21;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:21:5: ( 'section-ref[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:21:7: 'section-ref['
             {
             match("section-ref["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__21"
+    // $ANTLR end T21
 
-    // $ANTLR start "T__22"
-    public final void mT__22() throws RecognitionException {
+    // $ANTLR start T22
+    public final void mT22() throws RecognitionException {
         try {
-            int _type = T__22;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:23:7: ( 'section2:' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:23:9: 'section2:'
+            int _type = T22;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:22:5: ( 'section2:' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:22:7: 'section2:'
             {
             match("section2:"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__22"
+    // $ANTLR end T22
 
-    // $ANTLR start "T__23"
-    public final void mT__23() throws RecognitionException {
+    // $ANTLR start T23
+    public final void mT23() throws RecognitionException {
         try {
-            int _type = T__23;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:24:7: ( 'section2[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:24:9: 'section2['
+            int _type = T23;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:23:5: ( 'section2[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:23:7: 'section2['
             {
             match("section2["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__23"
+    // $ANTLR end T23
 
-    // $ANTLR start "T__24"
-    public final void mT__24() throws RecognitionException {
+    // $ANTLR start T24
+    public final void mT24() throws RecognitionException {
         try {
-            int _type = T__24;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:25:7: ( 'section3:' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:25:9: 'section3:'
+            int _type = T24;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:24:5: ( 'section3:' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:24:7: 'section3:'
             {
             match("section3:"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__24"
+    // $ANTLR end T24
 
-    // $ANTLR start "T__25"
-    public final void mT__25() throws RecognitionException {
+    // $ANTLR start T25
+    public final void mT25() throws RecognitionException {
         try {
-            int _type = T__25;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:26:7: ( 'section3[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:26:9: 'section3['
+            int _type = T25;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:25:5: ( 'section3[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:25:7: 'section3['
             {
             match("section3["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__25"
+    // $ANTLR end T25
 
-    // $ANTLR start "T__26"
-    public final void mT__26() throws RecognitionException {
+    // $ANTLR start T26
+    public final void mT26() throws RecognitionException {
         try {
-            int _type = T__26;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:27:7: ( 'section4:' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:27:9: 'section4:'
+            int _type = T26;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:26:5: ( 'section4:' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:26:7: 'section4:'
             {
             match("section4:"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__26"
+    // $ANTLR end T26
 
-    // $ANTLR start "T__27"
-    public final void mT__27() throws RecognitionException {
+    // $ANTLR start T27
+    public final void mT27() throws RecognitionException {
         try {
-            int _type = T__27;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:28:7: ( 'section4[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:28:9: 'section4['
+            int _type = T27;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:27:5: ( 'section4[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:27:7: 'section4['
             {
             match("section4["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__27"
+    // $ANTLR end T27
 
-    // $ANTLR start "T__28"
-    public final void mT__28() throws RecognitionException {
+    // $ANTLR start T28
+    public final void mT28() throws RecognitionException {
         try {
-            int _type = T__28;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:29:7: ( '\\\\[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:29:9: '\\\\['
+            int _type = T28;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:28:5: ( '\\\\[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:28:7: '\\\\['
             {
             match("\\["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__28"
+    // $ANTLR end T28
 
-    // $ANTLR start "T__29"
-    public final void mT__29() throws RecognitionException {
+    // $ANTLR start T29
+    public final void mT29() throws RecognitionException {
         try {
-            int _type = T__29;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:30:7: ( '\\\\]' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:30:9: '\\\\]'
+            int _type = T29;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:29:5: ( '\\\\]' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:29:7: '\\\\]'
             {
             match("\\]"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__29"
+    // $ANTLR end T29
 
-    // $ANTLR start "T__30"
-    public final void mT__30() throws RecognitionException {
+    // $ANTLR start T30
+    public final void mT30() throws RecognitionException {
         try {
-            int _type = T__30;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:31:7: ( ',' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:31:9: ','
+            int _type = T30;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:30:5: ( ',' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:30:7: ','
             {
             match(','); 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__30"
+    // $ANTLR end T30
 
-    // $ANTLR start "T__31"
-    public final void mT__31() throws RecognitionException {
+    // $ANTLR start T31
+    public final void mT31() throws RecognitionException {
         try {
-            int _type = T__31;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:32:7: ( 'table[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:32:9: 'table['
+            int _type = T31;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:31:5: ( 'table[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:31:7: 'table['
             {
             match("table["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__31"
+    // $ANTLR end T31
 
-    // $ANTLR start "T__32"
-    public final void mT__32() throws RecognitionException {
+    // $ANTLR start T32
+    public final void mT32() throws RecognitionException {
         try {
-            int _type = T__32;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:33:7: ( 'tr[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:33:9: 'tr['
+            int _type = T32;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:32:5: ( 'tr[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:32:7: 'tr['
             {
             match("tr["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__32"
+    // $ANTLR end T32
 
-    // $ANTLR start "T__33"
-    public final void mT__33() throws RecognitionException {
+    // $ANTLR start T33
+    public final void mT33() throws RecognitionException {
         try {
-            int _type = T__33;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:34:7: ( 'td[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:34:9: 'td['
+            int _type = T33;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:33:5: ( 'td[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:33:7: 'td['
             {
             match("td["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__33"
+    // $ANTLR end T33
 
-    // $ANTLR start "T__34"
-    public final void mT__34() throws RecognitionException {
+    // $ANTLR start T34
+    public final void mT34() throws RecognitionException {
         try {
-            int _type = T__34;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:35:7: ( 'e[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:35:9: 'e['
+            int _type = T34;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:34:5: ( 'e[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:34:7: 'e['
             {
             match("e["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__34"
+    // $ANTLR end T34
 
-    // $ANTLR start "T__35"
-    public final void mT__35() throws RecognitionException {
+    // $ANTLR start T35
+    public final void mT35() throws RecognitionException {
         try {
-            int _type = T__35;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:36:7: ( 'a[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:36:9: 'a['
+            int _type = T35;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:35:5: ( 'a[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:35:7: 'a['
             {
             match("a["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__35"
+    // $ANTLR end T35
 
-    // $ANTLR start "T__36"
-    public final void mT__36() throws RecognitionException {
+    // $ANTLR start T36
+    public final void mT36() throws RecognitionException {
         try {
-            int _type = T__36;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:37:7: ( 'ref:' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:37:9: 'ref:'
+            int _type = T36;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:36:5: ( 'ref:' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:36:7: 'ref:'
             {
             match("ref:"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__36"
+    // $ANTLR end T36
 
-    // $ANTLR start "T__37"
-    public final void mT__37() throws RecognitionException {
+    // $ANTLR start T37
+    public final void mT37() throws RecognitionException {
         try {
-            int _type = T__37;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:38:7: ( 'ol[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:38:9: 'ol['
+            int _type = T37;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:37:5: ( 'ol[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:37:7: 'ol['
             {
             match("ol["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__37"
+    // $ANTLR end T37
 
-    // $ANTLR start "T__38"
-    public final void mT__38() throws RecognitionException {
+    // $ANTLR start T38
+    public final void mT38() throws RecognitionException {
         try {
-            int _type = T__38;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:39:7: ( 'ul[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:39:9: 'ul['
+            int _type = T38;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:38:5: ( 'ul[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:38:7: 'ul['
             {
             match("ul["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__38"
+    // $ANTLR end T38
 
-    // $ANTLR start "T__39"
-    public final void mT__39() throws RecognitionException {
+    // $ANTLR start T39
+    public final void mT39() throws RecognitionException {
         try {
-            int _type = T__39;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:40:7: ( 'item[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:40:9: 'item['
+            int _type = T39;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:39:5: ( 'item[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:39:7: 'item['
             {
             match("item["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__39"
+    // $ANTLR end T39
 
-    // $ANTLR start "T__40"
-    public final void mT__40() throws RecognitionException {
+    // $ANTLR start T40
+    public final void mT40() throws RecognitionException {
         try {
-            int _type = T__40;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:41:7: ( 'codeRef[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:41:9: 'codeRef['
+            int _type = T40;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:40:5: ( 'codeRef[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:40:7: 'codeRef['
             {
             match("codeRef["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__40"
+    // $ANTLR end T40
 
-    // $ANTLR start "T__41"
-    public final void mT__41() throws RecognitionException {
+    // $ANTLR start T41
+    public final void mT41() throws RecognitionException {
         try {
-            int _type = T__41;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:42:7: ( 'link[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:42:9: 'link['
+            int _type = T41;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:41:5: ( 'link[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:41:7: 'link['
             {
             match("link["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__41"
+    // $ANTLR end T41
 
-    // $ANTLR start "T__42"
-    public final void mT__42() throws RecognitionException {
+    // $ANTLR start T42
+    public final void mT42() throws RecognitionException {
         try {
-            int _type = T__42;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:43:7: ( 'img:' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:43:9: 'img:'
+            int _type = T42;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:42:5: ( 'img:' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:42:7: 'img:'
             {
             match("img:"); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__42"
+    // $ANTLR end T42
 
-    // $ANTLR start "T__43"
-    public final void mT__43() throws RecognitionException {
+    // $ANTLR start T43
+    public final void mT43() throws RecognitionException {
         try {
-            int _type = T__43;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:44:7: ( 'img[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:44:9: 'img['
+            int _type = T43;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:43:5: ( 'img[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:43:7: 'img['
             {
             match("img["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__43"
+    // $ANTLR end T43
 
-    // $ANTLR start "T__44"
-    public final void mT__44() throws RecognitionException {
+    // $ANTLR start T44
+    public final void mT44() throws RecognitionException {
         try {
-            int _type = T__44;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:45:7: ( 'code[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:45:9: 'code['
+            int _type = T44;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:44:5: ( 'code[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:44:7: 'code['
             {
             match("code["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__44"
+    // $ANTLR end T44
 
-    // $ANTLR start "T__45"
-    public final void mT__45() throws RecognitionException {
+    // $ANTLR start T45
+    public final void mT45() throws RecognitionException {
         try {
-            int _type = T__45;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:46:7: ( 'todo[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:46:9: 'todo['
+            int _type = T45;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:45:5: ( 'todo[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:45:7: 'todo['
             {
             match("todo["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__45"
+    // $ANTLR end T45
 
-    // $ANTLR start "T__46"
-    public final void mT__46() throws RecognitionException {
+    // $ANTLR start T46
+    public final void mT46() throws RecognitionException {
         try {
-            int _type = T__46;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:47:7: ( 'codelanguage-def[' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:47:9: 'codelanguage-def['
+            int _type = T46;
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:46:5: ( 'codelanguage-def[' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:46:7: 'codelanguage-def['
             {
             match("codelanguage-def["); 
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "T__46"
+    // $ANTLR end T46
 
-    // $ANTLR start "RULE_ID"
+    // $ANTLR start RULE_ID
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3554:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3554:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3560:9: ( ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3560:11: ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
 
             }
             else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
+                MismatchedSetException mse =
+                    new MismatchedSetException(null,input);
+                recover(mse);    throw mse;
+            }
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3554:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3560:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop1:
             do {
                 int alt1=2;
@@ -881,9 +800,10 @@ public class InternalXdocLexer extends Lexer {
 
             	    }
             	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;}
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recover(mse);    throw mse;
+            	    }
 
 
             	    }
@@ -897,47 +817,46 @@ public class InternalXdocLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "RULE_ID"
+    // $ANTLR end RULE_ID
 
-    // $ANTLR start "RULE_SL_COMMENT"
+    // $ANTLR start RULE_SL_COMMENT
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3556:17: ( '%%' (~ ( ( '\\n' | '\\r' ) ) )* ( '\\r' )? '\\n' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3556:19: '%%' (~ ( ( '\\n' | '\\r' ) ) )* ( '\\r' )? '\\n'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:17: ( '%%' (~ ( ( '\\n' | '\\r' ) ) )* ( '\\r' )? '\\n' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:19: '%%' (~ ( ( '\\n' | '\\r' ) ) )* ( '\\r' )? '\\n'
             {
             match("%%"); 
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3556:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop2:
             do {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( ((LA2_0>='\u0000' && LA2_0<='\t')||(LA2_0>='\u000B' && LA2_0<='\f')||(LA2_0>='\u000E' && LA2_0<='\uFFFF')) ) {
+                if ( ((LA2_0>='\u0000' && LA2_0<='\t')||(LA2_0>='\u000B' && LA2_0<='\f')||(LA2_0>='\u000E' && LA2_0<='\uFFFE')) ) {
                     alt2=1;
                 }
 
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3556:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
 
             	    }
             	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;}
+            	        MismatchedSetException mse =
+            	            new MismatchedSetException(null,input);
+            	        recover(mse);    throw mse;
+            	    }
 
 
             	    }
@@ -948,7 +867,7 @@ public class InternalXdocLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3556:40: ( '\\r' )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:40: ( '\\r' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -957,7 +876,7 @@ public class InternalXdocLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3556:40: '\\r'
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:40: '\\r'
                     {
                     match('\r'); 
 
@@ -970,23 +889,21 @@ public class InternalXdocLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "RULE_SL_COMMENT"
+    // $ANTLR end RULE_SL_COMMENT
 
-    // $ANTLR start "RULE_MULTI_NL"
+    // $ANTLR start RULE_MULTI_NL
     public final void mRULE_MULTI_NL() throws RecognitionException {
         try {
             int _type = RULE_MULTI_NL;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:15: ( ( '\\r' )? '\\n' ( ( '\\r' )? '\\n' )+ )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:17: ( '\\r' )? '\\n' ( ( '\\r' )? '\\n' )+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:15: ( ( '\\r' )? '\\n' ( ( '\\r' )? '\\n' )+ )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:17: ( '\\r' )? '\\n' ( ( '\\r' )? '\\n' )+
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:17: ( '\\r' )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:17: ( '\\r' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -995,7 +912,7 @@ public class InternalXdocLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:17: '\\r'
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:17: '\\r'
                     {
                     match('\r'); 
 
@@ -1005,7 +922,7 @@ public class InternalXdocLexer extends Lexer {
             }
 
             match('\n'); 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:28: ( ( '\\r' )? '\\n' )+
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:28: ( ( '\\r' )? '\\n' )+
             int cnt6=0;
             loop6:
             do {
@@ -1019,9 +936,9 @@ public class InternalXdocLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:29: ( '\\r' )? '\\n'
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:29: ( '\\r' )? '\\n'
             	    {
-            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:29: ( '\\r' )?
+            	    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:29: ( '\\r' )?
             	    int alt5=2;
             	    int LA5_0 = input.LA(1);
 
@@ -1030,7 +947,7 @@ public class InternalXdocLexer extends Lexer {
             	    }
             	    switch (alt5) {
             	        case 1 :
-            	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3558:29: '\\r'
+            	            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:29: '\\r'
             	            {
             	            match('\r'); 
 
@@ -1056,23 +973,21 @@ public class InternalXdocLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "RULE_MULTI_NL"
+    // $ANTLR end RULE_MULTI_NL
 
-    // $ANTLR start "RULE_SINGLE_NL"
+    // $ANTLR start RULE_SINGLE_NL
     public final void mRULE_SINGLE_NL() throws RecognitionException {
         try {
             int _type = RULE_SINGLE_NL;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3560:16: ( ( '\\r' )? '\\n' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3560:18: ( '\\r' )? '\\n'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3566:16: ( ( '\\r' )? '\\n' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3566:18: ( '\\r' )? '\\n'
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3560:18: ( '\\r' )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3566:18: ( '\\r' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1081,7 +996,7 @@ public class InternalXdocLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3560:18: '\\r'
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3566:18: '\\r'
                     {
                     match('\r'); 
 
@@ -1094,363 +1009,1191 @@ public class InternalXdocLexer extends Lexer {
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "RULE_SINGLE_NL"
+    // $ANTLR end RULE_SINGLE_NL
 
-    // $ANTLR start "RULE_WS"
+    // $ANTLR start RULE_WS
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:9: ( ( ' ' | '\\t' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3562:11: ( ' ' | '\\t' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3568:9: ( ( ' ' | '\\t' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3568:11: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
 
             }
             else {
-                MismatchedSetException mse = new MismatchedSetException(null,input);
-                recover(mse);
-                throw mse;}
+                MismatchedSetException mse =
+                    new MismatchedSetException(null,input);
+                recover(mse);    throw mse;
+            }
 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "RULE_WS"
+    // $ANTLR end RULE_WS
 
-    // $ANTLR start "RULE_ANY_OTHER"
+    // $ANTLR start RULE_ANY_OTHER
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:16: ( . )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3564:18: .
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3570:16: ( . )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:3570:18: .
             {
             matchAny(); 
 
             }
 
-            state.type = _type;
-            state.channel = _channel;
+            this.type = _type;
         }
         finally {
         }
     }
-    // $ANTLR end "RULE_ANY_OTHER"
+    // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:8: ( T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_SINGLE_NL | RULE_WS | RULE_ANY_OTHER )
+        // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:8: ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_SINGLE_NL | RULE_WS | RULE_ANY_OTHER )
         int alt8=43;
-        alt8 = dfa8.predict(input);
+        int LA8_0 = input.LA(1);
+
+        if ( (LA8_0=='d') ) {
+            switch ( input.LA(2) ) {
+            case 'o':
+                {
+                int LA8_22 = input.LA(3);
+
+                if ( (LA8_22=='c') ) {
+                    int LA8_52 = input.LA(4);
+
+                    if ( (LA8_52=='u') ) {
+                        int LA8_69 = input.LA(5);
+
+                        if ( (LA8_69=='m') ) {
+                            int LA8_83 = input.LA(6);
+
+                            if ( (LA8_83=='e') ) {
+                                int LA8_96 = input.LA(7);
+
+                                if ( (LA8_96=='n') ) {
+                                    int LA8_105 = input.LA(8);
+
+                                    if ( (LA8_105=='t') ) {
+                                        int LA8_113 = input.LA(9);
+
+                                        if ( (LA8_113=='[') ) {
+                                            alt8=1;
+                                        }
+                                        else {
+                                            alt8=38;}
+                                    }
+                                    else {
+                                        alt8=38;}
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            case 'e':
+                {
+                int LA8_23 = input.LA(3);
+
+                if ( (LA8_23=='f') ) {
+                    int LA8_53 = input.LA(4);
+
+                    if ( (LA8_53=='a') ) {
+                        int LA8_70 = input.LA(5);
+
+                        if ( (LA8_70=='u') ) {
+                            int LA8_84 = input.LA(6);
+
+                            if ( (LA8_84=='l') ) {
+                                int LA8_97 = input.LA(7);
+
+                                if ( (LA8_97=='t') ) {
+                                    int LA8_106 = input.LA(8);
+
+                                    if ( (LA8_106=='c') ) {
+                                        int LA8_114 = input.LA(9);
+
+                                        if ( (LA8_114=='o') ) {
+                                            int LA8_129 = input.LA(10);
+
+                                            if ( (LA8_129=='d') ) {
+                                                int LA8_138 = input.LA(11);
+
+                                                if ( (LA8_138=='e') ) {
+                                                    int LA8_140 = input.LA(12);
+
+                                                    if ( (LA8_140=='l') ) {
+                                                        int LA8_142 = input.LA(13);
+
+                                                        if ( (LA8_142=='a') ) {
+                                                            int LA8_144 = input.LA(14);
+
+                                                            if ( (LA8_144=='n') ) {
+                                                                int LA8_146 = input.LA(15);
+
+                                                                if ( (LA8_146=='g') ) {
+                                                                    int LA8_147 = input.LA(16);
+
+                                                                    if ( (LA8_147=='u') ) {
+                                                                        int LA8_148 = input.LA(17);
+
+                                                                        if ( (LA8_148=='a') ) {
+                                                                            int LA8_149 = input.LA(18);
+
+                                                                            if ( (LA8_149=='g') ) {
+                                                                                int LA8_150 = input.LA(19);
+
+                                                                                if ( (LA8_150=='e') ) {
+                                                                                    int LA8_151 = input.LA(20);
+
+                                                                                    if ( (LA8_151=='[') ) {
+                                                                                        alt8=5;
+                                                                                    }
+                                                                                    else {
+                                                                                        alt8=38;}
+                                                                                }
+                                                                                else {
+                                                                                    alt8=38;}
+                                                                            }
+                                                                            else {
+                                                                                alt8=38;}
+                                                                        }
+                                                                        else {
+                                                                            alt8=38;}
+                                                                    }
+                                                                    else {
+                                                                        alt8=38;}
+                                                                }
+                                                                else {
+                                                                    alt8=38;}
+                                                            }
+                                                            else {
+                                                                alt8=38;}
+                                                        }
+                                                        else {
+                                                            alt8=38;}
+                                                    }
+                                                    else {
+                                                        alt8=38;}
+                                                }
+                                                else {
+                                                    alt8=38;}
+                                            }
+                                            else {
+                                                alt8=38;}
+                                        }
+                                        else {
+                                            alt8=38;}
+                                    }
+                                    else {
+                                        alt8=38;}
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            default:
+                alt8=38;}
+
+        }
+        else if ( (LA8_0==']') ) {
+            alt8=2;
+        }
+        else if ( (LA8_0=='s') ) {
+            switch ( input.LA(2) ) {
+            case 'u':
+                {
+                int LA8_26 = input.LA(3);
+
+                if ( (LA8_26=='b') ) {
+                    int LA8_54 = input.LA(4);
+
+                    if ( (LA8_54=='t') ) {
+                        int LA8_71 = input.LA(5);
+
+                        if ( (LA8_71=='i') ) {
+                            int LA8_85 = input.LA(6);
+
+                            if ( (LA8_85=='t') ) {
+                                int LA8_98 = input.LA(7);
+
+                                if ( (LA8_98=='l') ) {
+                                    int LA8_107 = input.LA(8);
+
+                                    if ( (LA8_107=='e') ) {
+                                        int LA8_115 = input.LA(9);
+
+                                        if ( (LA8_115=='[') ) {
+                                            alt8=3;
+                                        }
+                                        else {
+                                            alt8=38;}
+                                    }
+                                    else {
+                                        alt8=38;}
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            case 'e':
+                {
+                int LA8_27 = input.LA(3);
+
+                if ( (LA8_27=='c') ) {
+                    int LA8_55 = input.LA(4);
+
+                    if ( (LA8_55=='t') ) {
+                        int LA8_72 = input.LA(5);
+
+                        if ( (LA8_72=='i') ) {
+                            int LA8_86 = input.LA(6);
+
+                            if ( (LA8_86=='o') ) {
+                                int LA8_99 = input.LA(7);
+
+                                if ( (LA8_99=='n') ) {
+                                    switch ( input.LA(8) ) {
+                                    case ':':
+                                        {
+                                        alt8=10;
+                                        }
+                                        break;
+                                    case '2':
+                                        {
+                                        switch ( input.LA(9) ) {
+                                        case '[':
+                                            {
+                                            alt8=14;
+                                            }
+                                            break;
+                                        case ':':
+                                            {
+                                            alt8=13;
+                                            }
+                                            break;
+                                        default:
+                                            alt8=38;}
+
+                                        }
+                                        break;
+                                    case '4':
+                                        {
+                                        switch ( input.LA(9) ) {
+                                        case '[':
+                                            {
+                                            alt8=18;
+                                            }
+                                            break;
+                                        case ':':
+                                            {
+                                            alt8=17;
+                                            }
+                                            break;
+                                        default:
+                                            alt8=38;}
+
+                                        }
+                                        break;
+                                    case '-':
+                                        {
+                                        alt8=12;
+                                        }
+                                        break;
+                                    case '3':
+                                        {
+                                        switch ( input.LA(9) ) {
+                                        case '[':
+                                            {
+                                            alt8=16;
+                                            }
+                                            break;
+                                        case ':':
+                                            {
+                                            alt8=15;
+                                            }
+                                            break;
+                                        default:
+                                            alt8=38;}
+
+                                        }
+                                        break;
+                                    case '[':
+                                        {
+                                        alt8=11;
+                                        }
+                                        break;
+                                    default:
+                                        alt8=38;}
+
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            default:
+                alt8=38;}
+
+        }
+        else if ( (LA8_0=='a') ) {
+            switch ( input.LA(2) ) {
+            case '[':
+                {
+                alt8=26;
+                }
+                break;
+            case 'u':
+                {
+                int LA8_29 = input.LA(3);
+
+                if ( (LA8_29=='t') ) {
+                    int LA8_56 = input.LA(4);
+
+                    if ( (LA8_56=='h') ) {
+                        int LA8_73 = input.LA(5);
+
+                        if ( (LA8_73=='o') ) {
+                            int LA8_87 = input.LA(6);
+
+                            if ( (LA8_87=='r') ) {
+                                int LA8_100 = input.LA(7);
+
+                                if ( (LA8_100=='s') ) {
+                                    int LA8_109 = input.LA(8);
+
+                                    if ( (LA8_109=='[') ) {
+                                        alt8=4;
+                                    }
+                                    else {
+                                        alt8=38;}
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            default:
+                alt8=38;}
+
+        }
+        else if ( (LA8_0=='c') ) {
+            switch ( input.LA(2) ) {
+            case 'h':
+                {
+                int LA8_30 = input.LA(3);
+
+                if ( (LA8_30=='a') ) {
+                    int LA8_57 = input.LA(4);
+
+                    if ( (LA8_57=='p') ) {
+                        int LA8_74 = input.LA(5);
+
+                        if ( (LA8_74=='t') ) {
+                            int LA8_88 = input.LA(6);
+
+                            if ( (LA8_88=='e') ) {
+                                int LA8_101 = input.LA(7);
+
+                                if ( (LA8_101=='r') ) {
+                                    switch ( input.LA(8) ) {
+                                    case '[':
+                                        {
+                                        alt8=8;
+                                        }
+                                        break;
+                                    case '-':
+                                        {
+                                        alt8=9;
+                                        }
+                                        break;
+                                    case ':':
+                                        {
+                                        alt8=6;
+                                        }
+                                        break;
+                                    default:
+                                        alt8=38;}
+
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            case 'o':
+                {
+                int LA8_31 = input.LA(3);
+
+                if ( (LA8_31=='d') ) {
+                    int LA8_58 = input.LA(4);
+
+                    if ( (LA8_58=='e') ) {
+                        switch ( input.LA(5) ) {
+                        case '[':
+                            {
+                            alt8=35;
+                            }
+                            break;
+                        case 'l':
+                            {
+                            int LA8_90 = input.LA(6);
+
+                            if ( (LA8_90=='a') ) {
+                                int LA8_102 = input.LA(7);
+
+                                if ( (LA8_102=='n') ) {
+                                    int LA8_111 = input.LA(8);
+
+                                    if ( (LA8_111=='g') ) {
+                                        int LA8_126 = input.LA(9);
+
+                                        if ( (LA8_126=='u') ) {
+                                            int LA8_137 = input.LA(10);
+
+                                            if ( (LA8_137=='a') ) {
+                                                int LA8_139 = input.LA(11);
+
+                                                if ( (LA8_139=='g') ) {
+                                                    int LA8_141 = input.LA(12);
+
+                                                    if ( (LA8_141=='e') ) {
+                                                        int LA8_143 = input.LA(13);
+
+                                                        if ( (LA8_143=='-') ) {
+                                                            alt8=37;
+                                                        }
+                                                        else {
+                                                            alt8=38;}
+                                                    }
+                                                    else {
+                                                        alt8=38;}
+                                                }
+                                                else {
+                                                    alt8=38;}
+                                            }
+                                            else {
+                                                alt8=38;}
+                                        }
+                                        else {
+                                            alt8=38;}
+                                    }
+                                    else {
+                                        alt8=38;}
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                            }
+                            break;
+                        case 'R':
+                            {
+                            int LA8_91 = input.LA(6);
+
+                            if ( (LA8_91=='e') ) {
+                                int LA8_103 = input.LA(7);
+
+                                if ( (LA8_103=='f') ) {
+                                    int LA8_112 = input.LA(8);
+
+                                    if ( (LA8_112=='[') ) {
+                                        alt8=31;
+                                    }
+                                    else {
+                                        alt8=38;}
+                                }
+                                else {
+                                    alt8=38;}
+                            }
+                            else {
+                                alt8=38;}
+                            }
+                            break;
+                        default:
+                            alt8=38;}
+
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            default:
+                alt8=38;}
+
+        }
+        else if ( (LA8_0=='[') ) {
+            alt8=7;
+        }
+        else if ( (LA8_0=='\\') ) {
+            switch ( input.LA(2) ) {
+            case '[':
+                {
+                alt8=19;
+                }
+                break;
+            case ']':
+                {
+                alt8=20;
+                }
+                break;
+            default:
+                alt8=43;}
+
+        }
+        else if ( (LA8_0==',') ) {
+            alt8=21;
+        }
+        else if ( (LA8_0=='t') ) {
+            switch ( input.LA(2) ) {
+            case 'a':
+                {
+                int LA8_36 = input.LA(3);
+
+                if ( (LA8_36=='b') ) {
+                    int LA8_59 = input.LA(4);
+
+                    if ( (LA8_59=='l') ) {
+                        int LA8_76 = input.LA(5);
+
+                        if ( (LA8_76=='e') ) {
+                            int LA8_92 = input.LA(6);
+
+                            if ( (LA8_92=='[') ) {
+                                alt8=22;
+                            }
+                            else {
+                                alt8=38;}
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            case 'r':
+                {
+                int LA8_37 = input.LA(3);
+
+                if ( (LA8_37=='[') ) {
+                    alt8=23;
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            case 'd':
+                {
+                int LA8_38 = input.LA(3);
+
+                if ( (LA8_38=='[') ) {
+                    alt8=24;
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            case 'o':
+                {
+                int LA8_39 = input.LA(3);
+
+                if ( (LA8_39=='d') ) {
+                    int LA8_62 = input.LA(4);
+
+                    if ( (LA8_62=='o') ) {
+                        int LA8_77 = input.LA(5);
+
+                        if ( (LA8_77=='[') ) {
+                            alt8=36;
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            default:
+                alt8=38;}
+
+        }
+        else if ( (LA8_0=='e') ) {
+            int LA8_10 = input.LA(2);
+
+            if ( (LA8_10=='[') ) {
+                alt8=25;
+            }
+            else {
+                alt8=38;}
+        }
+        else if ( (LA8_0=='r') ) {
+            int LA8_11 = input.LA(2);
+
+            if ( (LA8_11=='e') ) {
+                int LA8_41 = input.LA(3);
+
+                if ( (LA8_41=='f') ) {
+                    int LA8_63 = input.LA(4);
+
+                    if ( (LA8_63==':') ) {
+                        alt8=27;
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+            }
+            else {
+                alt8=38;}
+        }
+        else if ( (LA8_0=='o') ) {
+            int LA8_12 = input.LA(2);
+
+            if ( (LA8_12=='l') ) {
+                int LA8_42 = input.LA(3);
+
+                if ( (LA8_42=='[') ) {
+                    alt8=28;
+                }
+                else {
+                    alt8=38;}
+            }
+            else {
+                alt8=38;}
+        }
+        else if ( (LA8_0=='u') ) {
+            int LA8_13 = input.LA(2);
+
+            if ( (LA8_13=='l') ) {
+                int LA8_43 = input.LA(3);
+
+                if ( (LA8_43=='[') ) {
+                    alt8=29;
+                }
+                else {
+                    alt8=38;}
+            }
+            else {
+                alt8=38;}
+        }
+        else if ( (LA8_0=='i') ) {
+            switch ( input.LA(2) ) {
+            case 't':
+                {
+                int LA8_44 = input.LA(3);
+
+                if ( (LA8_44=='e') ) {
+                    int LA8_66 = input.LA(4);
+
+                    if ( (LA8_66=='m') ) {
+                        int LA8_79 = input.LA(5);
+
+                        if ( (LA8_79=='[') ) {
+                            alt8=30;
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            case 'm':
+                {
+                int LA8_45 = input.LA(3);
+
+                if ( (LA8_45=='g') ) {
+                    switch ( input.LA(4) ) {
+                    case ':':
+                        {
+                        alt8=33;
+                        }
+                        break;
+                    case '[':
+                        {
+                        alt8=34;
+                        }
+                        break;
+                    default:
+                        alt8=38;}
+
+                }
+                else {
+                    alt8=38;}
+                }
+                break;
+            default:
+                alt8=38;}
+
+        }
+        else if ( (LA8_0=='l') ) {
+            int LA8_15 = input.LA(2);
+
+            if ( (LA8_15=='i') ) {
+                int LA8_46 = input.LA(3);
+
+                if ( (LA8_46=='n') ) {
+                    int LA8_68 = input.LA(4);
+
+                    if ( (LA8_68=='k') ) {
+                        int LA8_82 = input.LA(5);
+
+                        if ( (LA8_82=='[') ) {
+                            alt8=32;
+                        }
+                        else {
+                            alt8=38;}
+                    }
+                    else {
+                        alt8=38;}
+                }
+                else {
+                    alt8=38;}
+            }
+            else {
+                alt8=38;}
+        }
+        else if ( ((LA8_0>='A' && LA8_0<='Z')||LA8_0=='_'||LA8_0=='b'||(LA8_0>='f' && LA8_0<='h')||(LA8_0>='j' && LA8_0<='k')||(LA8_0>='m' && LA8_0<='n')||(LA8_0>='p' && LA8_0<='q')||(LA8_0>='v' && LA8_0<='z')) ) {
+            alt8=38;
+        }
+        else if ( (LA8_0=='%') ) {
+            int LA8_17 = input.LA(2);
+
+            if ( (LA8_17=='%') ) {
+                alt8=39;
+            }
+            else {
+                alt8=43;}
+        }
+        else if ( (LA8_0=='\r') ) {
+            int LA8_18 = input.LA(2);
+
+            if ( (LA8_18=='\n') ) {
+                int LA8_48 = input.LA(3);
+
+                if ( (LA8_48=='\n'||LA8_48=='\r') ) {
+                    alt8=40;
+                }
+                else {
+                    alt8=41;}
+            }
+            else {
+                alt8=43;}
+        }
+        else if ( (LA8_0=='\n') ) {
+            int LA8_19 = input.LA(2);
+
+            if ( (LA8_19=='\n'||LA8_19=='\r') ) {
+                alt8=40;
+            }
+            else {
+                alt8=41;}
+        }
+        else if ( (LA8_0=='\t'||LA8_0==' ') ) {
+            alt8=42;
+        }
+        else if ( ((LA8_0>='\u0000' && LA8_0<='\b')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\u001F')||(LA8_0>='!' && LA8_0<='$')||(LA8_0>='&' && LA8_0<='+')||(LA8_0>='-' && LA8_0<='@')||LA8_0=='^'||LA8_0=='`'||(LA8_0>='{' && LA8_0<='\uFFFE')) ) {
+            alt8=43;
+        }
+        else {
+            NoViableAltException nvae =
+                new NoViableAltException("1:1: Tokens : ( T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | T31 | T32 | T33 | T34 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_SINGLE_NL | RULE_WS | RULE_ANY_OTHER );", 8, 0, input);
+
+            throw nvae;
+        }
         switch (alt8) {
             case 1 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:10: T__10
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:10: T10
                 {
-                mT__10(); 
+                mT10(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:16: T__11
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:14: T11
                 {
-                mT__11(); 
+                mT11(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:22: T__12
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:18: T12
                 {
-                mT__12(); 
+                mT12(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:28: T__13
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:22: T13
                 {
-                mT__13(); 
+                mT13(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:34: T__14
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:26: T14
                 {
-                mT__14(); 
+                mT14(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:40: T__15
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:30: T15
                 {
-                mT__15(); 
+                mT15(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:46: T__16
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:34: T16
                 {
-                mT__16(); 
+                mT16(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:52: T__17
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:38: T17
                 {
-                mT__17(); 
+                mT17(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:58: T__18
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:42: T18
                 {
-                mT__18(); 
+                mT18(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:64: T__19
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:46: T19
                 {
-                mT__19(); 
+                mT19(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:70: T__20
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:50: T20
                 {
-                mT__20(); 
+                mT20(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:76: T__21
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:54: T21
                 {
-                mT__21(); 
+                mT21(); 
 
                 }
                 break;
             case 13 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:82: T__22
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:58: T22
                 {
-                mT__22(); 
+                mT22(); 
 
                 }
                 break;
             case 14 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:88: T__23
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:62: T23
                 {
-                mT__23(); 
+                mT23(); 
 
                 }
                 break;
             case 15 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:94: T__24
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:66: T24
                 {
-                mT__24(); 
+                mT24(); 
 
                 }
                 break;
             case 16 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:100: T__25
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:70: T25
                 {
-                mT__25(); 
+                mT25(); 
 
                 }
                 break;
             case 17 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:106: T__26
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:74: T26
                 {
-                mT__26(); 
+                mT26(); 
 
                 }
                 break;
             case 18 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:112: T__27
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:78: T27
                 {
-                mT__27(); 
+                mT27(); 
 
                 }
                 break;
             case 19 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:118: T__28
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:82: T28
                 {
-                mT__28(); 
+                mT28(); 
 
                 }
                 break;
             case 20 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:124: T__29
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:86: T29
                 {
-                mT__29(); 
+                mT29(); 
 
                 }
                 break;
             case 21 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:130: T__30
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:90: T30
                 {
-                mT__30(); 
+                mT30(); 
 
                 }
                 break;
             case 22 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:136: T__31
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:94: T31
                 {
-                mT__31(); 
+                mT31(); 
 
                 }
                 break;
             case 23 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:142: T__32
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:98: T32
                 {
-                mT__32(); 
+                mT32(); 
 
                 }
                 break;
             case 24 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:148: T__33
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:102: T33
                 {
-                mT__33(); 
+                mT33(); 
 
                 }
                 break;
             case 25 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:154: T__34
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:106: T34
                 {
-                mT__34(); 
+                mT34(); 
 
                 }
                 break;
             case 26 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:160: T__35
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:110: T35
                 {
-                mT__35(); 
+                mT35(); 
 
                 }
                 break;
             case 27 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:166: T__36
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:114: T36
                 {
-                mT__36(); 
+                mT36(); 
 
                 }
                 break;
             case 28 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:172: T__37
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:118: T37
                 {
-                mT__37(); 
+                mT37(); 
 
                 }
                 break;
             case 29 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:178: T__38
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:122: T38
                 {
-                mT__38(); 
+                mT38(); 
 
                 }
                 break;
             case 30 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:184: T__39
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:126: T39
                 {
-                mT__39(); 
+                mT39(); 
 
                 }
                 break;
             case 31 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:190: T__40
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:130: T40
                 {
-                mT__40(); 
+                mT40(); 
 
                 }
                 break;
             case 32 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:196: T__41
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:134: T41
                 {
-                mT__41(); 
+                mT41(); 
 
                 }
                 break;
             case 33 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:202: T__42
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:138: T42
                 {
-                mT__42(); 
+                mT42(); 
 
                 }
                 break;
             case 34 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:208: T__43
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:142: T43
                 {
-                mT__43(); 
+                mT43(); 
 
                 }
                 break;
             case 35 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:214: T__44
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:146: T44
                 {
-                mT__44(); 
+                mT44(); 
 
                 }
                 break;
             case 36 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:220: T__45
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:150: T45
                 {
-                mT__45(); 
+                mT45(); 
 
                 }
                 break;
             case 37 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:226: T__46
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:154: T46
                 {
-                mT__46(); 
+                mT46(); 
 
                 }
                 break;
             case 38 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:232: RULE_ID
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:158: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 39 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:240: RULE_SL_COMMENT
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:166: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 40 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:256: RULE_MULTI_NL
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:182: RULE_MULTI_NL
                 {
                 mRULE_MULTI_NL(); 
 
                 }
                 break;
             case 41 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:270: RULE_SINGLE_NL
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:196: RULE_SINGLE_NL
                 {
                 mRULE_SINGLE_NL(); 
 
                 }
                 break;
             case 42 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:285: RULE_WS
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:211: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 43 :
-                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:293: RULE_ANY_OTHER
+                // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:1:219: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1462,301 +2205,6 @@ public class InternalXdocLexer extends Lexer {
     }
 
 
-    protected DFA8 dfa8 = new DFA8(this);
-    static final String DFA8_eotS =
-        "\1\uffff\1\30\1\uffff\3\30\1\uffff\1\25\1\uffff\7\30\1\uffff\2\25"+
-        "\1\61\2\uffff\2\30\2\uffff\3\30\1\uffff\2\30\4\uffff\4\30\1\uffff"+
-        "\6\30\1\uffff\1\61\3\uffff\10\30\2\uffff\2\30\2\uffff\14\30\1\uffff"+
-        "\1\30\2\uffff\10\30\1\uffff\2\30\3\uffff\10\30\1\uffff\13\30\3\uffff"+
-        "\3\30\5\uffff\1\30\1\uffff\1\30\7\uffff\10\30\1\uffff\6\30\1\uffff";
-    static final String DFA8_eofS =
-        "\u0099\uffff";
-    static final String DFA8_minS =
-        "\1\0\1\145\1\uffff\1\145\1\133\1\150\1\uffff\1\133\1\uffff\1\141"+
-        "\1\133\1\145\2\154\1\155\1\151\1\uffff\1\45\2\12\2\uffff\1\143\1"+
-        "\146\2\uffff\1\142\1\143\1\164\1\uffff\1\141\1\144\4\uffff\1\142"+
-        "\2\133\1\144\1\uffff\1\146\2\133\1\145\1\147\1\156\1\uffff\1\12"+
-        "\3\uffff\1\165\1\141\2\164\1\150\1\160\1\145\1\154\2\uffff\1\157"+
-        "\1\72\2\uffff\1\155\1\72\1\153\1\155\1\165\2\151\1\157\1\164\1\122"+
-        "\1\145\1\133\1\uffff\1\133\2\uffff\1\133\1\145\1\154\1\164\1\157"+
-        "\1\162\2\145\1\uffff\1\141\1\133\3\uffff\1\156\1\164\1\154\1\156"+
-        "\1\163\1\162\1\146\1\156\1\uffff\1\164\1\143\1\145\1\55\1\133\1"+
-        "\55\1\133\1\147\1\133\1\157\1\133\3\uffff\3\72\5\uffff\1\165\1\uffff"+
-        "\1\144\7\uffff\1\141\1\145\1\147\1\154\1\145\1\141\1\55\1\156\1"+
-        "\uffff\1\147\1\165\1\141\1\147\1\145\1\133\1\uffff";
-    static final String DFA8_maxS =
-        "\1\uffff\1\157\1\uffff\2\165\1\157\1\uffff\1\135\1\uffff\1\162\1"+
-        "\133\1\145\2\154\1\164\1\151\1\uffff\1\45\1\12\1\15\2\uffff\1\143"+
-        "\1\146\2\uffff\1\142\1\143\1\164\1\uffff\1\141\1\144\4\uffff\1\142"+
-        "\2\133\1\144\1\uffff\1\146\2\133\1\145\1\147\1\156\1\uffff\1\15"+
-        "\3\uffff\1\165\1\141\2\164\1\150\1\160\1\145\1\154\2\uffff\1\157"+
-        "\1\72\2\uffff\1\155\1\133\1\153\1\155\1\165\2\151\1\157\1\164\1"+
-        "\154\1\145\1\133\1\uffff\1\133\2\uffff\1\133\1\145\1\154\1\164\1"+
-        "\157\1\162\2\145\1\uffff\1\141\1\133\3\uffff\1\156\1\164\1\154\1"+
-        "\156\1\163\1\162\1\146\1\156\1\uffff\1\164\1\143\1\145\4\133\1\147"+
-        "\1\133\1\157\1\133\3\uffff\3\133\5\uffff\1\165\1\uffff\1\144\7\uffff"+
-        "\1\141\1\145\1\147\1\154\1\145\1\141\1\55\1\156\1\uffff\1\147\1"+
-        "\165\1\141\1\147\1\145\1\133\1\uffff";
-    static final String DFA8_acceptS =
-        "\2\uffff\1\2\3\uffff\1\7\1\uffff\1\25\7\uffff\1\46\3\uffff\1\52"+
-        "\1\53\2\uffff\1\46\1\2\3\uffff\1\32\2\uffff\1\7\1\23\1\24\1\25\4"+
-        "\uffff\1\31\6\uffff\1\47\1\uffff\1\51\1\50\1\52\10\uffff\1\27\1"+
-        "\30\2\uffff\1\34\1\35\14\uffff\1\33\1\uffff\1\41\1\42\10\uffff\1"+
-        "\43\2\uffff\1\44\1\36\1\40\10\uffff\1\26\13\uffff\1\12\1\13\1\14"+
-        "\3\uffff\1\4\1\6\1\10\1\11\1\37\1\uffff\1\1\1\uffff\1\3\1\15\1\16"+
-        "\1\17\1\20\1\21\1\22\10\uffff\1\45\6\uffff\1\5";
-    static final String DFA8_specialS =
-        "\1\0\u0098\uffff}>";
-    static final String[] DFA8_transitionS = {
-            "\11\25\1\24\1\23\2\25\1\22\22\25\1\24\4\25\1\21\6\25\1\10\24"+
-            "\25\32\20\1\6\1\7\1\2\1\25\1\20\1\25\1\4\1\20\1\5\1\1\1\12\3"+
-            "\20\1\16\2\20\1\17\2\20\1\14\2\20\1\13\1\3\1\11\1\15\5\20\uff85"+
-            "\25",
-            "\1\27\11\uffff\1\26",
-            "",
-            "\1\33\17\uffff\1\32",
-            "\1\35\31\uffff\1\34",
-            "\1\36\6\uffff\1\37",
-            "",
-            "\1\41\1\uffff\1\42",
-            "",
-            "\1\44\2\uffff\1\46\12\uffff\1\47\2\uffff\1\45",
-            "\1\50",
-            "\1\51",
-            "\1\52",
-            "\1\53",
-            "\1\55\6\uffff\1\54",
-            "\1\56",
-            "",
-            "\1\57",
-            "\1\60",
-            "\1\62\2\uffff\1\62",
-            "",
-            "",
-            "\1\64",
-            "\1\65",
-            "",
-            "",
-            "\1\66",
-            "\1\67",
-            "\1\70",
-            "",
-            "\1\71",
-            "\1\72",
-            "",
-            "",
-            "",
-            "",
-            "\1\73",
-            "\1\74",
-            "\1\75",
-            "\1\76",
-            "",
-            "\1\77",
-            "\1\100",
-            "\1\101",
-            "\1\102",
-            "\1\103",
-            "\1\104",
-            "",
-            "\1\62\2\uffff\1\62",
-            "",
-            "",
-            "",
-            "\1\105",
-            "\1\106",
-            "\1\107",
-            "\1\110",
-            "\1\111",
-            "\1\112",
-            "\1\113",
-            "\1\114",
-            "",
-            "",
-            "\1\115",
-            "\1\116",
-            "",
-            "",
-            "\1\117",
-            "\1\120\40\uffff\1\121",
-            "\1\122",
-            "\1\123",
-            "\1\124",
-            "\1\125",
-            "\1\126",
-            "\1\127",
-            "\1\130",
-            "\1\131\10\uffff\1\132\20\uffff\1\133",
-            "\1\134",
-            "\1\135",
-            "",
-            "\1\136",
-            "",
-            "",
-            "\1\137",
-            "\1\140",
-            "\1\141",
-            "\1\142",
-            "\1\143",
-            "\1\144",
-            "\1\145",
-            "\1\146",
-            "",
-            "\1\147",
-            "\1\150",
-            "",
-            "",
-            "",
-            "\1\151",
-            "\1\152",
-            "\1\153",
-            "\1\154",
-            "\1\155",
-            "\1\156",
-            "\1\157",
-            "\1\160",
-            "",
-            "\1\161",
-            "\1\162",
-            "\1\163",
-            "\1\166\4\uffff\1\167\1\170\1\171\5\uffff\1\164\40\uffff\1\165",
-            "\1\172",
-            "\1\175\14\uffff\1\173\40\uffff\1\174",
-            "\1\176",
-            "\1\177",
-            "\1\u0080",
-            "\1\u0081",
-            "\1\u0082",
-            "",
-            "",
-            "",
-            "\1\u0083\40\uffff\1\u0084",
-            "\1\u0085\40\uffff\1\u0086",
-            "\1\u0087\40\uffff\1\u0088",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\u0089",
-            "",
-            "\1\u008a",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\u008b",
-            "\1\u008c",
-            "\1\u008d",
-            "\1\u008e",
-            "\1\u008f",
-            "\1\u0090",
-            "\1\u0091",
-            "\1\u0092",
-            "",
-            "\1\u0093",
-            "\1\u0094",
-            "\1\u0095",
-            "\1\u0096",
-            "\1\u0097",
-            "\1\u0098",
-            ""
-    };
-
-    static final short[] DFA8_eot = DFA.unpackEncodedString(DFA8_eotS);
-    static final short[] DFA8_eof = DFA.unpackEncodedString(DFA8_eofS);
-    static final char[] DFA8_min = DFA.unpackEncodedStringToUnsignedChars(DFA8_minS);
-    static final char[] DFA8_max = DFA.unpackEncodedStringToUnsignedChars(DFA8_maxS);
-    static final short[] DFA8_accept = DFA.unpackEncodedString(DFA8_acceptS);
-    static final short[] DFA8_special = DFA.unpackEncodedString(DFA8_specialS);
-    static final short[][] DFA8_transition;
-
-    static {
-        int numStates = DFA8_transitionS.length;
-        DFA8_transition = new short[numStates][];
-        for (int i=0; i<numStates; i++) {
-            DFA8_transition[i] = DFA.unpackEncodedString(DFA8_transitionS[i]);
-        }
-    }
-
-    class DFA8 extends DFA {
-
-        public DFA8(BaseRecognizer recognizer) {
-            this.recognizer = recognizer;
-            this.decisionNumber = 8;
-            this.eot = DFA8_eot;
-            this.eof = DFA8_eof;
-            this.min = DFA8_min;
-            this.max = DFA8_max;
-            this.accept = DFA8_accept;
-            this.special = DFA8_special;
-            this.transition = DFA8_transition;
-        }
-        public String getDescription() {
-            return "1:1: Tokens : ( T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | RULE_ID | RULE_SL_COMMENT | RULE_MULTI_NL | RULE_SINGLE_NL | RULE_WS | RULE_ANY_OTHER );";
-        }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
-            IntStream input = _input;
-        	int _s = s;
-            switch ( s ) {
-                    case 0 : 
-                        int LA8_0 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA8_0=='d') ) {s = 1;}
-
-                        else if ( (LA8_0==']') ) {s = 2;}
-
-                        else if ( (LA8_0=='s') ) {s = 3;}
-
-                        else if ( (LA8_0=='a') ) {s = 4;}
-
-                        else if ( (LA8_0=='c') ) {s = 5;}
-
-                        else if ( (LA8_0=='[') ) {s = 6;}
-
-                        else if ( (LA8_0=='\\') ) {s = 7;}
-
-                        else if ( (LA8_0==',') ) {s = 8;}
-
-                        else if ( (LA8_0=='t') ) {s = 9;}
-
-                        else if ( (LA8_0=='e') ) {s = 10;}
-
-                        else if ( (LA8_0=='r') ) {s = 11;}
-
-                        else if ( (LA8_0=='o') ) {s = 12;}
-
-                        else if ( (LA8_0=='u') ) {s = 13;}
-
-                        else if ( (LA8_0=='i') ) {s = 14;}
-
-                        else if ( (LA8_0=='l') ) {s = 15;}
-
-                        else if ( ((LA8_0>='A' && LA8_0<='Z')||LA8_0=='_'||LA8_0=='b'||(LA8_0>='f' && LA8_0<='h')||(LA8_0>='j' && LA8_0<='k')||(LA8_0>='m' && LA8_0<='n')||(LA8_0>='p' && LA8_0<='q')||(LA8_0>='v' && LA8_0<='z')) ) {s = 16;}
-
-                        else if ( (LA8_0=='%') ) {s = 17;}
-
-                        else if ( (LA8_0=='\r') ) {s = 18;}
-
-                        else if ( (LA8_0=='\n') ) {s = 19;}
-
-                        else if ( (LA8_0=='\t'||LA8_0==' ') ) {s = 20;}
-
-                        else if ( ((LA8_0>='\u0000' && LA8_0<='\b')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\u001F')||(LA8_0>='!' && LA8_0<='$')||(LA8_0>='&' && LA8_0<='+')||(LA8_0>='-' && LA8_0<='@')||LA8_0=='^'||LA8_0=='`'||(LA8_0>='{' && LA8_0<='\uFFFF')) ) {s = 21;}
-
-                        if ( s>=0 ) return s;
-                        break;
-            }
-            NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 8, _s, input);
-            error(nvae);
-            throw nvae;
-        }
-    }
  
 
 }
