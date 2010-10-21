@@ -192,14 +192,19 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("import org.eclipse.emf.mwe.utils.*\n\n");
 		fileContents.append("var targetDir = \"src-gen\"\n");
 		fileContents.append("var modelPath = \"src\"\n");
-		fileContents.append("var texbin = \"/usr/bin/pdflatex\"\n");
+		fileContents.append("var texbin = \"/usr/bin/pdflatex\"\n\n");
 		fileContents.append("Workflow {\n\n");
 
-		fileContents.append("\tcomponent = @workflow.XDocGenerator {\n");
+		fileContents.append("//\tcomponent = @workflow.XDocGenerator {\n");
+		fileContents.append("//\t\t// or define search scope explicitly\n");
+		fileContents.append("//\t\tmodelPath = modelPath\n");
+		fileContents.append("//\t\ttargetDir = targetDir\n");
+		fileContents.append("//\t\tpdfLatex = texbin\n");
+		fileContents.append("//\t}\n\n");
+		fileContents.append("\tcomponent = @workflow.XDocEclipseHelpGenerator{\n");
 		fileContents.append("\t\t// or define search scope explicitly\n");
 		fileContents.append("\t\tmodelPath = modelPath\n");
 		fileContents.append("\t\ttargetDir = targetDir\n");
-		fileContents.append("\t\tpdfLatex = texbin\n");
 		fileContents.append("\t}\n}\n");
 		createFile(project, monitor, fileContents.toString(), "workflow/generateDocs.mwe2");
 	}
