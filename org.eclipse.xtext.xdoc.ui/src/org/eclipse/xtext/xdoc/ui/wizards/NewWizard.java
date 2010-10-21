@@ -1,7 +1,6 @@
 package org.eclipse.xtext.xdoc.ui.wizards;
 
 import java.io.ByteArrayInputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 
@@ -17,7 +16,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.emf.mwe2.runtime.workflow.Workflow;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
@@ -30,15 +28,16 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.XtextProjectHelper;
 
-@SuppressWarnings("unused")
 public class NewWizard extends Wizard implements INewWizard {
 
 	private static final String MANIFEST_NAME = "META-INF/MANIFEST.MF";
 	private static final String WIZARD_PAGE_DESCRIPTION = org.eclipse.xtext.xdoc.ui.wizards.Messages.XDOC_NEW_PROJECT_WIZARD_DESCRIPTION;
 	private WizardNewProjectCreationPage npp;
+	@SuppressWarnings("unused")
 	private IWorkbench workbench;
+	@SuppressWarnings("unused")
 	private IStructuredSelection selection;
-
+	
 	private IWorkspace workspace;
 
 	private String[] natures = { JavaCore.NATURE_ID, XtextProjectHelper.NATURE_ID, "org.eclipse.pde.PluginNature", };
@@ -48,7 +47,6 @@ public class NewWizard extends Wizard implements INewWizard {
 			XtextProjectHelper.BUILDER_ID};
 	
 	private String[] folders = {"src", "src-gen", "META-INF", "workflow" };
-	private String[] files = {"src/00-Document.xdoc", "src/01-Chapter1.xdoc", "src/workflow/generateDocument.mwe2", MANIFEST_NAME};
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 	private String name;
@@ -97,6 +95,7 @@ public class NewWizard extends Wizard implements INewWizard {
 							realException.getMessage());
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -146,7 +145,7 @@ public class NewWizard extends Wizard implements INewWizard {
 		cp[1] = JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"));
 		IClasspathEntry src = JavaCore.newSourceEntry(project.getFolder("src").getFullPath());
 		cp[2] = src;
-		cp[3] = JavaCore.newSourceEntry(project.getFolder("workspace").getFullPath());
+		cp[3] = JavaCore.newSourceEntry(project.getFolder("workflow").getFullPath());
 		jProject.setRawClasspath(cp, subMonitor.newChild(1));
 		setupFiles(project, subMonitor);
 	}
@@ -169,8 +168,8 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
 		fileContents.append("Require-Bundle: org.eclipse.xtext.xdoc;bundle-version=\"1.0.0\";resolution:=optional,\n");
 		fileContents.append(" org.eclipse.xtext.xdoc.generator;bundle-version=\"1.0.0\";resolution:=optional\n");
-		fileContents.append(" org.eclipse.emf.mwe2.launch\n");
-		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\"");
+		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\",\n");
+		fileContents.append(" org.apache.commons.logging;version=\"1.0.4\"\n");
 		createFile(project, monitor, fileContents.toString(), MANIFEST_NAME);
 	}
 	
@@ -201,7 +200,7 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("//\t\ttargetDir = targetDir\n");
 		fileContents.append("//\t\tpdfLatex = texbin\n");
 		fileContents.append("//\t}\n\n");
-		fileContents.append("\tcomponent = @workflow.XDocEclipseHelpGenerator{\n");
+		fileContents.append("\tcomponent = @workflow.XdocEclipseHelpGenerator{\n");
 		fileContents.append("\t\t// or define search scope explicitly\n");
 		fileContents.append("\t\tmodelPath = modelPath\n");
 		fileContents.append("\t\ttargetDir = targetDir\n");

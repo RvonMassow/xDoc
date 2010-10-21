@@ -12,7 +12,7 @@ Require-Bundle: org.eclipse.xtext.xdoc;visibility:=reexport,
  org.eclipse.xtext.ui.shared,
  org.eclipse.ui,
  org.eclipse.xtext.builder,
- org.antlr.runtime,
+ org.antlr.runtime;bundle-version="3.2.0";visibility:=reexport,
  org.eclipse.xtext.common.types.ui,
  org.eclipse.jdt.core;bundle-version="3.5.2"
 Import-Package: org.apache.log4j
