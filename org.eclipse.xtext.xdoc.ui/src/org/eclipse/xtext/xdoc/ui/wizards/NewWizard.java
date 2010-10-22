@@ -1,9 +1,11 @@
 package org.eclipse.xtext.xdoc.ui.wizards;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
+import java.net.URL;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.ICommand;
@@ -28,6 +30,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.XtextProjectHelper;
+import org.eclipse.xtext.xdoc.ui.internal.XdocActivator;
 
 public class NewWizard extends Wizard implements INewWizard {
 
@@ -161,6 +164,18 @@ public class NewWizard extends Wizard implements INewWizard {
 		createDocumentAndChapter(project, subMonitor);
 		createWorkflow(project, subMonitor);
 		createPluginXML(project, subMonitor);
+		createCSSFiles(project, subMonitor);
+	}
+
+	private void createCSSFiles(IProject project, SubMonitor subMonitor) {
+		try {
+			URL url = XdocActivator.getInstance().getBundle().getResource("styles/code.css");
+			createFile(project, subMonitor, url.openStream(), "styles/code.css");
+			url = XdocActivator.getInstance().getBundle().getResource("styles/book.css");
+			createFile(project, subMonitor, url.openStream(), "styles/book.css");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void createManifest(IProject project, SubMonitor monitor) {
@@ -194,7 +209,7 @@ public class NewWizard extends Wizard implements INewWizard {
 	
 	private void createWorkflow(IProject project, SubMonitor monitor) {
 		StringBuilder fileContents = new StringBuilder();
-		fileContents.append("module Generate"+project.getName()+"\n\n");
+		fileContents.append("module GenerateDocs\n\n");
 		fileContents.append("import org.eclipse.emf.mwe.utils.*\n\n");
 		fileContents.append("var targetDir = \"src-gen\"\n");
 		fileContents.append("var modelPath = \"src\"\n");
@@ -255,7 +270,6 @@ public class NewWizard extends Wizard implements INewWizard {
 	}
 	
 
-	@SuppressWarnings("unused")
 	private void createFile(IProject project, SubMonitor monitor, InputStream stream, String fileName) {
 		IFile file = project.getFile(fileName);
 		if(!file.exists()){
