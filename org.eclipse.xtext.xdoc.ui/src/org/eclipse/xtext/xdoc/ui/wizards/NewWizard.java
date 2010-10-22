@@ -27,6 +27,7 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.XtextProjectHelper;
+import org.eclipse.xtext.xdoc.ui.nature.XdocNature;
 
 public class NewWizard extends Wizard implements INewWizard {
 
@@ -40,7 +41,10 @@ public class NewWizard extends Wizard implements INewWizard {
 	
 	private IWorkspace workspace;
 
-	private String[] natures = { JavaCore.NATURE_ID, XtextProjectHelper.NATURE_ID, "org.eclipse.pde.PluginNature", };
+	private String[] natures = { JavaCore.NATURE_ID,
+			XtextProjectHelper.NATURE_ID,
+			"org.eclipse.pde.PluginNature",
+			XdocNature.NATURE_ID};
 	
 	private String[] builders = {JavaCore.BUILDER_ID,
 			"org.eclipse.pde.SchemaBuilder",
