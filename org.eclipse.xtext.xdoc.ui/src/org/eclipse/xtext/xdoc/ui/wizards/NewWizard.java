@@ -1,6 +1,7 @@
 package org.eclipse.xtext.xdoc.ui.wizards;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 
@@ -27,7 +28,6 @@ import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.XtextProjectHelper;
-import org.eclipse.xtext.xdoc.ui.nature.XdocNature;
 
 public class NewWizard extends Wizard implements INewWizard {
 
@@ -44,13 +44,14 @@ public class NewWizard extends Wizard implements INewWizard {
 	private String[] natures = { JavaCore.NATURE_ID,
 			XtextProjectHelper.NATURE_ID,
 			"org.eclipse.pde.PluginNature",
-			XdocNature.NATURE_ID};
+		//	XdocNature.NATURE_ID
+		};
 	
 	private String[] builders = {JavaCore.BUILDER_ID,
 			"org.eclipse.pde.SchemaBuilder",
 			XtextProjectHelper.BUILDER_ID};
 	
-	private String[] folders = {"src", "src-gen", "META-INF", "workflow" };
+	private String[] folders = {"src", "src-gen", "META-INF", "workflow", "styles" };
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 	private String name;
@@ -159,6 +160,7 @@ public class NewWizard extends Wizard implements INewWizard {
 		createManifest(project, subMonitor);
 		createDocumentAndChapter(project, subMonitor);
 		createWorkflow(project, subMonitor);
+		createPluginXML(project, subMonitor);
 	}
 
 	private void createManifest(IProject project, SubMonitor monitor) {
@@ -166,11 +168,12 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("Manifest-Version: 1.0\n");
 		fileContents.append("Bundle-ManifestVersion: 2\n");
 		fileContents.append("Bundle-Name: " + project.getName().trim() + "\n");
-		fileContents.append("Bundle-SymbolicName: " + project.getName().trim() + "\n");
+		fileContents.append("Bundle-SymbolicName: " + project.getName().trim() + ";singleton:=true\n");
 		fileContents.append("Bundle-Version: 1.0.0.qualifier\n");
 		fileContents.append("Bundle-Vendor: Eclipse Modeling\n");
 		fileContents.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
-		fileContents.append("Require-Bundle: org.eclipse.xtext.xdoc;bundle-version=\"1.0.0\";resolution:=optional,\n");
+		fileContents.append("Require-Bundle: org.eclipse.help,\n");
+		fileContents.append(" org.eclipse.xtext.xdoc;bundle-version=\"1.0.0\";resolution:=optional,\n");
 		fileContents.append(" org.eclipse.xtext.xdoc.generator;bundle-version=\"1.0.0\";resolution:=optional\n");
 		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\",\n");
 		fileContents.append(" org.apache.commons.logging;version=\"1.0.4\"\n");
@@ -195,7 +198,7 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("import org.eclipse.emf.mwe.utils.*\n\n");
 		fileContents.append("var targetDir = \"src-gen\"\n");
 		fileContents.append("var modelPath = \"src\"\n");
-		fileContents.append("var texbin = \"/usr/bin/pdflatex\"\n\n");
+		fileContents.append("//var texbin = \"/usr/bin/pdflatex\"\n\n");
 		fileContents.append("Workflow {\n\n");
 
 		fileContents.append("//\tcomponent = @workflow.XDocGenerator {\n");
@@ -211,6 +214,28 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("\t}\n}\n");
 		createFile(project, monitor, fileContents.toString(), "workflow/generateDocs.mwe2");
 	}
+	
+	private void createPluginXML(IProject project, SubMonitor monitor){
+		StringBuilder fileContents = new StringBuilder();
+		fileContents.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
+		fileContents.append("<?eclipse version=\"3.4\"?>\n");
+		fileContents.append("<plugin>\n");
+		fileContents.append("   <extension\n");
+		fileContents.append("         point=\"org.eclipse.help.toc\">\n");
+		fileContents.append("      <toc\n");
+		fileContents.append("            file=\"src-gen/toc.xml\"\n");
+		fileContents.append("            primary=\"true\">\n");
+		fileContents.append("      </toc>\n");
+		fileContents.append("   </extension>\n\n");
+		fileContents.append("   <extension\n");
+		fileContents.append("         point=\"org.eclipse.help.index\">\n");
+		fileContents.append("      <index\n");
+		fileContents.append("            file=\"src-gen/index.xml\">\n");
+		fileContents.append("      </index>\n");
+		fileContents.append("   </extension>\n\n");
+		fileContents.append("</plugin>\n");
+		createFile(project, monitor, fileContents.toString(), "plugin.xml");
+	}
 
 	private void createFile(IProject project, SubMonitor monitor, String string, String fileName) {
 		IFile file = project.getFile(fileName);
@@ -221,6 +246,22 @@ public class NewWizard extends Wizard implements INewWizard {
 				file.create(stream,
 						false, monitor.newChild(1));
 				stream.close();
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+			} finally{
+				monitor.done();
+			}
+		}
+	}
+	
+
+	@SuppressWarnings("unused")
+	private void createFile(IProject project, SubMonitor monitor, InputStream stream, String fileName) {
+		IFile file = project.getFile(fileName);
+		if(!file.exists()){
+			try {
+				file.create(stream,
+						false, monitor.newChild(1));
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 			} finally{

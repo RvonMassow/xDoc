@@ -7,7 +7,7 @@
 «DEFINE main FOR Document -»
 
 «FILE "toc.xml"-»
-<toc topic=«(String) GLOBALVAR dir»"index.html" label="«EXPAND genPlainText FOR title»">
+<toc topic="«(String) GLOBALVAR dir»index.html" label="«EXPAND genPlainText FOR title»">
 «EXPAND genTocEntry(this) FOREACH chapters»
 </toc>
 
@@ -196,7 +196,11 @@ ELSE»
 <div class="incode">
 <p class="code">
 «LET removeIndent(this) AS block-»
+«IF language == null-»
+«EXPAND genCode(doc.defaultLang) FOREACH block.contents»
+«ELSE-»
 «EXPAND genCode(this.language) FOREACH block.contents»
+«ENDIF-»
 «ENDLET-»
 </p>
 </div>

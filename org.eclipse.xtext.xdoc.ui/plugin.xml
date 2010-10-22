@@ -195,7 +195,7 @@
             project="true">
       </wizard>
    </extension>
-   <extension
+   <!--<extension
          id="org.eclipse.xtext.xdoc.builder"
          name="Xdoc Builder"
          point="org.eclipse.xtext.builder.participant">
@@ -213,7 +213,7 @@
          </run>
       </runtime>
       <builder
-            id="org.eclipse.xtext.xdoc.ui.xdocBuilder">
+            id="org.eclipse.xtext.xdoc.builder">
       </builder>
-   </extension>
+   </extension> -->
 </plugin>

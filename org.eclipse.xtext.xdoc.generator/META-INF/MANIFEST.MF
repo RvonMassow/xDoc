@@ -15,8 +15,7 @@ Require-Bundle: org.eclipse.xtext.xdoc;visibility:=reexport,
  org.eclipse.xtext.builder
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: workflow;
-  uses:="org.eclipse.emf.mwe.core.issues,
+Export-Package: workflow;uses:="org.eclipse.emf.mwe.core.issues,
    org.eclipse.emf.mwe.core,
    org.eclipse.emf.mwe.core.monitor,
    org.eclipse.emf.mwe.core.lib"
