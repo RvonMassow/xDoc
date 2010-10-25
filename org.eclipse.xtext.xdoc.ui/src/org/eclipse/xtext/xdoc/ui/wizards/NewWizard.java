@@ -1,15 +1,11 @@
 package org.eclipse.xtext.xdoc.ui.wizards;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URI;
 import java.net.URL;
 
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.ICommand;
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -31,6 +27,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.eclipse.xtext.ui.XtextProjectHelper;
 import org.eclipse.xtext.xdoc.ui.internal.XdocActivator;
+import org.eclipse.xtext.xdoc.ui.utils.ProjectUtils;
 
 public class NewWizard extends Wizard implements INewWizard {
 
@@ -57,8 +54,7 @@ public class NewWizard extends Wizard implements INewWizard {
 	private String[] folders = {"src", "src-gen", "META-INF", "workflow", "styles" };
 	
 	private Logger logger = Logger.getLogger(this.getClass());
-	private String name;
-	private URI location;
+	private ProjectUtils utils = new ProjectUtils();
 
 	public NewWizard() {
 	}
@@ -71,10 +67,10 @@ public class NewWizard extends Wizard implements INewWizard {
 
 	@Override
 	public boolean performFinish() {
-		name = npp.getProjectName();
-		location = null;
+		utils.setName(npp.getProjectName());
+		utils.setLocation(npp.getLocationURI());
 		if (!npp.useDefaults()) {
-			location = npp.getLocationURI();
+			utils.setLocation(npp.getLocationURI());
 		}
 		IRunnableWithProgress op = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor)
@@ -111,11 +107,11 @@ public class NewWizard extends Wizard implements INewWizard {
 		IProject project = null;
 		
 		try {
-			IProjectDescription description = workspace.newProjectDescription(this.name);
-			if (location != null) {
-				description.setLocationURI(location);
+			IProjectDescription description = workspace.newProjectDescription(this.utils.getName());
+			if (utils.getLocation() != null) {
+				description.setLocationURI(utils.getLocation());
 			}
-			project = workspace.getRoot().getProject(this.name);
+			project = workspace.getRoot().getProject(this.utils.getName());
 			description.setNatureIds(this.natures);
 			addBuilders(description);
 			SubMonitor subMonitor = SubMonitor.convert(monitor, 10);
@@ -170,9 +166,9 @@ public class NewWizard extends Wizard implements INewWizard {
 	private void createCSSFiles(IProject project, SubMonitor subMonitor) {
 		try {
 			URL url = XdocActivator.getInstance().getBundle().getResource("styles/code.css");
-			createFile(project, subMonitor, url.openStream(), "styles/code.css");
+			utils.createFile(project, subMonitor, url.openStream(), "styles/code.css");
 			url = XdocActivator.getInstance().getBundle().getResource("styles/book.css");
-			createFile(project, subMonitor, url.openStream(), "styles/book.css");
+			utils.createFile(project, subMonitor, url.openStream(), "styles/book.css");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -192,7 +188,7 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append(" org.eclipse.xtext.xdoc.generator;bundle-version=\"1.0.0\";resolution:=optional\n");
 		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\",\n");
 		fileContents.append(" org.apache.commons.logging;version=\"1.0.4\"\n");
-		createFile(project, monitor, fileContents.toString(), MANIFEST_NAME);
+		utils.createFile(project, monitor, fileContents.toString(), MANIFEST_NAME);
 	}
 	
 	private void createDocumentAndChapter(IProject project, SubMonitor monitor) {
@@ -200,11 +196,11 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("document[My Document]\n\n");
 		fileContents.append("authors[" + System.getProperty("user.name") + "]\n\n");
 		fileContents.append("chapter-ref[chapter1]");
-		createFile(project, monitor, fileContents.toString(), "src/00-Document.xdoc");
+		utils.createFile(project, monitor, fileContents.toString(), "src/00-Document.xdoc");
 		fileContents = new StringBuilder();
 		fileContents.append("chapter:chapter1[First Chapter]\n\n");
 		fileContents.append("This is text for the first chapter.");
-		createFile(project, monitor, fileContents.toString(), "src/01-Chapter1.xdoc");
+		utils.createFile(project, monitor, fileContents.toString(), "src/01-Chapter1.xdoc");
 	}
 	
 	private void createWorkflow(IProject project, SubMonitor monitor) {
@@ -227,7 +223,7 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("\t\tmodelPath = modelPath\n");
 		fileContents.append("\t\ttargetDir = targetDir\n");
 		fileContents.append("\t}\n}\n");
-		createFile(project, monitor, fileContents.toString(), "workflow/generateDocs.mwe2");
+		utils.createFile(project, monitor, fileContents.toString(), "workflow/generateDocs.mwe2");
 	}
 	
 	private void createPluginXML(IProject project, SubMonitor monitor){
@@ -249,39 +245,7 @@ public class NewWizard extends Wizard implements INewWizard {
 		fileContents.append("      </index>\n");
 		fileContents.append("   </extension>\n\n");
 		fileContents.append("</plugin>\n");
-		createFile(project, monitor, fileContents.toString(), "plugin.xml");
-	}
-
-	private void createFile(IProject project, SubMonitor monitor, String string, String fileName) {
-		IFile file = project.getFile(fileName);
-		if(!file.exists()){
-			ByteArrayInputStream stream;
-			try {
-				stream = new ByteArrayInputStream(string.getBytes(file.getCharset(true)));
-				file.create(stream,
-						false, monitor.newChild(1));
-				stream.close();
-			} catch (Exception e) {
-				logger.error(e.getMessage(), e);
-			} finally{
-				monitor.done();
-			}
-		}
-	}
-	
-
-	private void createFile(IProject project, SubMonitor monitor, InputStream stream, String fileName) {
-		IFile file = project.getFile(fileName);
-		if(!file.exists()){
-			try {
-				file.create(stream,
-						false, monitor.newChild(1));
-			} catch (Exception e) {
-				logger.error(e.getMessage(), e);
-			} finally{
-				monitor.done();
-			}
-		}
+		utils.createFile(project, monitor, fileContents.toString(), "plugin.xml");
 	}
 
 	@Override
