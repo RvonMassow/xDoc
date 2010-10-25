@@ -1,23 +1,10 @@
 package org.eclipse.xtext.xdoc.ui.wizards;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 
 import org.apache.log4j.Logger;
-import org.eclipse.core.resources.ICommand;
-import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.jdt.core.IClasspathEntry;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -25,33 +12,16 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
-import org.eclipse.xtext.ui.XtextProjectHelper;
-import org.eclipse.xtext.xdoc.ui.internal.XdocActivator;
 import org.eclipse.xtext.xdoc.ui.utils.ProjectUtils;
 
 public class NewWizard extends Wizard implements INewWizard {
 
-	private static final String MANIFEST_NAME = "META-INF/MANIFEST.MF";
 	private static final String WIZARD_PAGE_DESCRIPTION = org.eclipse.xtext.xdoc.ui.wizards.Messages.XDOC_NEW_PROJECT_WIZARD_DESCRIPTION;
 	private WizardNewProjectCreationPage npp;
 	@SuppressWarnings("unused")
 	private IWorkbench workbench;
 	@SuppressWarnings("unused")
 	private IStructuredSelection selection;
-	
-	private IWorkspace workspace;
-
-	private String[] natures = { JavaCore.NATURE_ID,
-			XtextProjectHelper.NATURE_ID,
-			"org.eclipse.pde.PluginNature",
-		//	XdocNature.NATURE_ID
-		};
-	
-	private String[] builders = {JavaCore.BUILDER_ID,
-			"org.eclipse.pde.SchemaBuilder",
-			XtextProjectHelper.BUILDER_ID};
-	
-	private String[] folders = {"src", "src-gen", "META-INF", "workflow", "styles" };
 	
 	private Logger logger = Logger.getLogger(this.getClass());
 	private ProjectUtils utils = new ProjectUtils();
@@ -62,7 +32,7 @@ public class NewWizard extends Wizard implements INewWizard {
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
 		this.selection = selection;
-		this.workspace = ResourcesPlugin.getWorkspace();
+		this.utils.setWorkspace(ResourcesPlugin.getWorkspace());
 	}
 
 	@Override
@@ -76,7 +46,7 @@ public class NewWizard extends Wizard implements INewWizard {
 			public void run(IProgressMonitor monitor)
 					throws InvocationTargetException, InterruptedException {
 				try {
-					createProject(monitor);
+					utils.createProject(monitor);
 				} catch (Exception e) {
 					throw new InvocationTargetException(e);
 				}finally {
@@ -101,151 +71,6 @@ public class NewWizard extends Wizard implements INewWizard {
 		}
 		
 		return true;
-	}
-
-	private void createProject(IProgressMonitor monitor) {
-		IProject project = null;
-		
-		try {
-			IProjectDescription description = workspace.newProjectDescription(this.utils.getName());
-			if (utils.getLocation() != null) {
-				description.setLocationURI(utils.getLocation());
-			}
-			project = workspace.getRoot().getProject(this.utils.getName());
-			description.setNatureIds(this.natures);
-			addBuilders(description);
-			SubMonitor subMonitor = SubMonitor.convert(monitor, 10);
-			project.create(description, subMonitor.newChild(1));
-			project.open(subMonitor.newChild(1));
-			project.setDescription(description, subMonitor.newChild(1));
-			setupProject(project, subMonitor);
-			subMonitor.done();
-		} catch (CoreException e) {
-			logger.error(e.getMessage(), e);
-		}
-
-	}
-
-	private void addBuilders(IProjectDescription description) {
-		ICommand[] commands = new ICommand[builders.length];
-		for (int i = 0; i < commands.length; i++) {
-			ICommand cmd = description.newCommand();
-			cmd.setBuilderName(builders[i]);
-			commands[i] = cmd;
-		}
-		description.setBuildSpec(commands);
-	}
-
-	private void setupProject(IProject project, SubMonitor subMonitor) throws CoreException {
-		for (String folderName : folders) {
-			IFolder folder = project.getFolder(folderName);
-			if(!folder.exists()){
-				folder.create(false, true, subMonitor.newChild(1));
-			}
-		}
-		IJavaProject jProject = JavaCore.create(project);
-		IClasspathEntry[] cp = new IClasspathEntry[4];
-		cp[0] = JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"));
-		cp[1] = JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"));
-		IClasspathEntry src = JavaCore.newSourceEntry(project.getFolder("src").getFullPath());
-		cp[2] = src;
-		cp[3] = JavaCore.newSourceEntry(project.getFolder("workflow").getFullPath());
-		jProject.setRawClasspath(cp, subMonitor.newChild(1));
-		setupFiles(project, subMonitor);
-	}
-
-
-	private void setupFiles(IProject project, SubMonitor subMonitor) throws CoreException {
-		createManifest(project, subMonitor);
-		createDocumentAndChapter(project, subMonitor);
-		createWorkflow(project, subMonitor);
-		createPluginXML(project, subMonitor);
-		createCSSFiles(project, subMonitor);
-	}
-
-	private void createCSSFiles(IProject project, SubMonitor subMonitor) {
-		try {
-			URL url = XdocActivator.getInstance().getBundle().getResource("styles/code.css");
-			utils.createFile(project, subMonitor, url.openStream(), "styles/code.css");
-			url = XdocActivator.getInstance().getBundle().getResource("styles/book.css");
-			utils.createFile(project, subMonitor, url.openStream(), "styles/book.css");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void createManifest(IProject project, SubMonitor monitor) {
-		StringBuilder fileContents = new StringBuilder();
-		fileContents.append("Manifest-Version: 1.0\n");
-		fileContents.append("Bundle-ManifestVersion: 2\n");
-		fileContents.append("Bundle-Name: " + project.getName().trim() + "\n");
-		fileContents.append("Bundle-SymbolicName: " + project.getName().trim() + ";singleton:=true\n");
-		fileContents.append("Bundle-Version: 1.0.0.qualifier\n");
-		fileContents.append("Bundle-Vendor: Eclipse Modeling\n");
-		fileContents.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
-		fileContents.append("Require-Bundle: org.eclipse.help,\n");
-		fileContents.append(" org.eclipse.xtext.xdoc;bundle-version=\"1.0.0\";resolution:=optional,\n");
-		fileContents.append(" org.eclipse.xtext.xdoc.generator;bundle-version=\"1.0.0\";resolution:=optional\n");
-		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\",\n");
-		fileContents.append(" org.apache.commons.logging;version=\"1.0.4\"\n");
-		utils.createFile(project, monitor, fileContents.toString(), MANIFEST_NAME);
-	}
-	
-	private void createDocumentAndChapter(IProject project, SubMonitor monitor) {
-		StringBuilder fileContents = new StringBuilder();
-		fileContents.append("document[My Document]\n\n");
-		fileContents.append("authors[" + System.getProperty("user.name") + "]\n\n");
-		fileContents.append("chapter-ref[chapter1]");
-		utils.createFile(project, monitor, fileContents.toString(), "src/00-Document.xdoc");
-		fileContents = new StringBuilder();
-		fileContents.append("chapter:chapter1[First Chapter]\n\n");
-		fileContents.append("This is text for the first chapter.");
-		utils.createFile(project, monitor, fileContents.toString(), "src/01-Chapter1.xdoc");
-	}
-	
-	private void createWorkflow(IProject project, SubMonitor monitor) {
-		StringBuilder fileContents = new StringBuilder();
-		fileContents.append("module GenerateDocs\n\n");
-		fileContents.append("import org.eclipse.emf.mwe.utils.*\n\n");
-		fileContents.append("var targetDir = \"src-gen\"\n");
-		fileContents.append("var modelPath = \"src\"\n");
-		fileContents.append("//var texbin = \"/usr/bin/pdflatex\"\n\n");
-		fileContents.append("Workflow {\n\n");
-
-		fileContents.append("//\tcomponent = @workflow.XDocGenerator {\n");
-		fileContents.append("//\t\t// or define search scope explicitly\n");
-		fileContents.append("//\t\tmodelPath = modelPath\n");
-		fileContents.append("//\t\ttargetDir = targetDir\n");
-		fileContents.append("//\t\tpdfLatex = texbin\n");
-		fileContents.append("//\t}\n\n");
-		fileContents.append("\tcomponent = @workflow.XdocEclipseHelpGenerator{\n");
-		fileContents.append("\t\t// or define search scope explicitly\n");
-		fileContents.append("\t\tmodelPath = modelPath\n");
-		fileContents.append("\t\ttargetDir = targetDir\n");
-		fileContents.append("\t}\n}\n");
-		utils.createFile(project, monitor, fileContents.toString(), "workflow/generateDocs.mwe2");
-	}
-	
-	private void createPluginXML(IProject project, SubMonitor monitor){
-		StringBuilder fileContents = new StringBuilder();
-		fileContents.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
-		fileContents.append("<?eclipse version=\"3.4\"?>\n");
-		fileContents.append("<plugin>\n");
-		fileContents.append("   <extension\n");
-		fileContents.append("         point=\"org.eclipse.help.toc\">\n");
-		fileContents.append("      <toc\n");
-		fileContents.append("            file=\"src-gen/toc.xml\"\n");
-		fileContents.append("            primary=\"true\">\n");
-		fileContents.append("      </toc>\n");
-		fileContents.append("   </extension>\n\n");
-		fileContents.append("   <extension\n");
-		fileContents.append("         point=\"org.eclipse.help.index\">\n");
-		fileContents.append("      <index\n");
-		fileContents.append("            file=\"src-gen/index.xml\">\n");
-		fileContents.append("      </index>\n");
-		fileContents.append("   </extension>\n\n");
-		fileContents.append("</plugin>\n");
-		utils.createFile(project, monitor, fileContents.toString(), "plugin.xml");
 	}
 
 	@Override
