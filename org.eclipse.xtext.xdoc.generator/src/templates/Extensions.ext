@@ -20,8 +20,8 @@ escapeHTMLChars(String s):
 	s.replaceAll("&", "&amp;").replaceAll("\"", "&quot;").replaceAll("'", "&apos;")
 		.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
-formatCode(String text, String dir, String language):
-	highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />"), dir, language);
+formatCode(String text, LangDef language):
+	highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />"), language);
 
 // simple heuristic to determine if code is meant to be inline
 boolean inline(CodeBlock c):
@@ -148,5 +148,5 @@ Void storeLink(Link link):
 Set[String] getStoredLinks():
 	JAVA templates.util.StringFormatter.getStoredLinks();
 
-String highlightKeywords(String string, String language, String languageDir):
-	JAVA templates.util.StringFormatter.highlightKeywords(java.lang.String, java.lang.String, java.lang.String);
+String highlightKeywords(String string, LangDef language):
+	JAVA templates.util.StringFormatter.highlightKeywords(java.lang.String, org.eclipse.xtext.xdoc.xdoc.LangDef);

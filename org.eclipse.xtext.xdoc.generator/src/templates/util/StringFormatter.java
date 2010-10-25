@@ -1,20 +1,15 @@
 package templates.util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 
 public class StringFormatter {
@@ -71,51 +66,21 @@ public class StringFormatter {
 	 * @param langName the name of the language
 	 * @return the string with keywords highlighted
 	 */
-	static public String highlightKeywords(String text, final String dirName, final String langName){
-		if(langName == null || dirName == null){
-			return text;
-		}
-		File dir = new File(dirName.trim());
-		if(dir.exists() && dir.isDirectory() && dir.canRead()){
-			File[] langs = dir.listFiles(new FilenameFilter() {
-				
-				public boolean accept(File dir, String file) {
-					return file.equals(langName.trim());
-				}
-			});
-			if(langs.length != 1){
-				return text;
-			} else {
-				File langFile = langs[0];
-				if(!langFile.canRead()){
-					return text;
-				}
-				try {
-					BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(langFile)));
-					StringBuilder fileContents = new StringBuilder();
-					String current = null;
-					while((current = br.readLine()) != null){
-						fileContents.append(current);
-					}
-					String[] keywords = fileContents.toString().split("(?<!\\\\),");
-					for (String keyword : keywords) {
-						if(keyword.trim().equals("class")){
-							text = text.replaceAll("(?<!<span )" + makePattern(keyword.trim()) + "(?!\\=\"keyword\">)",
-									"<span class=\"keyword\">" + keyword.trim() + "</span>");
-						} else if(keyword.trim().equals("span")){
-							text = text.replaceAll("((?<!<)" + makePattern(keyword.trim()) + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
-									"<span class=\"keyword\">" + keyword.trim() + "</span>");
-						} else if(keyword.trim().equals("keyword")){
-							text = text.replaceAll("(?<!<span class=\")" + makePattern(keyword.trim()) + "(?!\">)",
-									"<span class=\"keyword\">" + keyword.trim() + "</span>");
-						} else {
-							text = text.replaceAll(makePattern(keyword.trim()), "<span class=\"keyword\">" + keyword.trim() + "</span>");
-						}
-					}
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
+	static public String highlightKeywords(String text, final LangDef lang){
+		if(lang != null){
+			List<String> keywords = lang.getKeywords();
+			for (String keyword : keywords) {
+				if(keyword.trim().equals("class")){
+					text = text.replaceAll("(?<!<span )" + makePattern(keyword.trim()) + "(?!\\=\"keyword\">)",
+							"<span class=\"keyword\">" + keyword.trim() + "</span>");
+				} else if(keyword.trim().equals("span")){
+					text = text.replaceAll("((?<!<)" + makePattern(keyword.trim()) + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
+							"<span class=\"keyword\">" + keyword.trim() + "</span>");
+				} else if(keyword.trim().equals("keyword")){
+					text = text.replaceAll("(?<!<span class=\")" + makePattern(keyword.trim()) + "(?!\">)",
+							"<span class=\"keyword\">" + keyword.trim() + "</span>");
+				} else {
+					text = text.replaceAll(makePattern(keyword.trim()), "<span class=\"keyword\">" + keyword.trim() + "</span>");
 				}
 			}
 		}

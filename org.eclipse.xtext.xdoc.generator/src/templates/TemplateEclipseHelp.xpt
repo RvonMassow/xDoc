@@ -190,16 +190,20 @@ ENDDEFINE»
 «REM»TODO: better code implementation«ENDREM»
 «DEFINE genText(Document doc) FOR CodeBlock-»
 «IF inline(this) -»
-<span class="inlinecode">«EXPAND genCode(this.language) FOREACH contents»</span>«
+<span class="inlinecode">«IF language == null-»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == doc.defaultLang)) FOREACH this.contents-»
+«ELSE-»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == this.language)) FOREACH this.contents-»
+«ENDIF-»</span>«
 ELSE»
 <div class="literallayout">
 <div class="incode">
 <p class="code">
 «LET removeIndent(this) AS block-»
 «IF language == null-»
-«EXPAND genCode(doc.defaultLang) FOREACH block.contents»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == doc.defaultLang)) FOREACH block.contents»
 «ELSE-»
-«EXPAND genCode(this.language) FOREACH block.contents»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == this.language)) FOREACH block.contents»
 «ENDIF-»
 «ENDLET-»
 </p>
@@ -213,16 +217,15 @@ ELSE»
 <em>«escapeHTMLChars(unescapeXdocChars(this.element.canonicalName))»</em>
 «ENDDEFINE»
 
-«DEFINE genCode(String language) FOR Object»
+«DEFINE genCode(LangDef language) FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode(String language) FOR Code-»
-«formatCode(unescapeXdocChars(this.contents), (String) GLOBALVAR languageDir, language)-»
+«DEFINE genCode(LangDef language) FOR Code-»
+«formatCode(unescapeXdocChars(this.contents), language)-»
 «ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
-«REM»TODO: find solution for escaping to html, refers to better code concept«ENDREM»
 «DEFINE genCode FOR MarkupInCode»«ENDDEFINE»
 
 «DEFINE genLabel(Document doc) FOR String-»
@@ -231,10 +234,6 @@ ENDIF-»
 «ENDDEFINE»
 
 «REM» end html template«ENDREM»
-
-
-
-
 
 «DEFINE genPlainText FOR TextOrMarkup»«EXPAND genPlainText FOREACH this.contents»«ENDDEFINE»
 
