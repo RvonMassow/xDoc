@@ -257,26 +257,26 @@ ENDIF-»
 
 «DEFINE preamble(Document doc) FOR AbstractSection»
 <a name="«labelName(doc, this)»"></a>
-«EXPAND genStyleClasses FOR this»
+«EXPAND genStyleClasses(doc) FOR this»
 «ENDDEFINE»
 
-«DEFINE genStyleClasses FOR AbstractSection»<div class="section" title="«EXPAND Lib::genPlainText FOR this.title»">
+«DEFINE genStyleClasses(Document doc) FOR AbstractSection»<div class="section" title="«EXPAND Lib::genPlainText FOR this.title»">
 <div class="titlepage">
 <div>
 <div>
-«EXPAND head FOR this»
+«EXPAND head(doc) FOR this»
 </div>
 </div>
 </div>
 «ENDDEFINE»
 
-«DEFINE head FOR AbstractSection»«throwUnsupportedOperation("<h?> tags for AbstractSection", this)»«ENDDEFINE»
+«DEFINE head(Document doc) FOR AbstractSection»«throwUnsupportedOperation("<h?> tags for AbstractSection", this)»«ENDDEFINE»
 
-«DEFINE head FOR Section»<h2 class="title">«EXPAND TemplateHTML::genContent FOR this.title»</h2>«ENDDEFINE»
+«DEFINE head(Document doc) FOR Section»<h2 class="title">«EXPAND TemplateHTML::genContent(doc) FOR this.title»</h2>«ENDDEFINE»
 
-«DEFINE head FOR Section2»<h3 class="title">«EXPAND TemplateHTML::genContent FOR this.title»</h3>«ENDDEFINE»
+«DEFINE head(Document doc) FOR Section2»<h3 class="title">«EXPAND TemplateHTML::genContent(doc) FOR this.title»</h3>«ENDDEFINE»
 
-«DEFINE head FOR Section3»<h4 class="title">«EXPAND TemplateHTML::genContent FOR this.title»</h4>«ENDDEFINE»
+«DEFINE head(Document doc) FOR Section3»<h4 class="title">«EXPAND TemplateHTML::genContent(doc) FOR this.title»</h4>«ENDDEFINE»
 
 «DEFINE preamble(Document doc) FOR Chapter»<html>
 <head>

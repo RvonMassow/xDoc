@@ -2,125 +2,164 @@
 «EXTENSION templates::Extensions»
 
 «DEFINE main FOR Document -»
-«FILE "out.html"-»
+«FILE this.name + ".html"-»
 <head>
 </head>
 <body>
-«EXPAND genContent FOREACH this.chapters»
+«EXPAND genContent(this) FOREACH this.chapters»
 </body>
 «ENDFILE-»
 «ENDDEFINE»
 
-«DEFINE genContent FOR Chapter»
-<h1>«EXPAND genContent FOR this.title»</h1>
-«EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+«DEFINE genContent(Document doc) FOR Chapter»
+<h1>«EXPAND genContent(doc) FOR this.title»</h1>
+«EXPAND genLabel(doc) FOR this.name»
+«FOREACH this.contents AS par»<p>«EXPAND genContent(doc) FOR par»
 </p>
 «ENDFOREACH»
-«EXPAND genContent FOREACH this.subSections»
+«EXPAND genContent(doc) FOREACH this.subSections»
 «ENDDEFINE»
 
-«DEFINE genContent FOR Section»
-<h2>«EXPAND genContent FOR this.title»</h2>
-«EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+«DEFINE genContent(Document doc) FOR Section»
+<h2>«EXPAND genContent(doc) FOR this.title»</h2>
+«EXPAND genLabel(doc) FOR this.name»
+«FOREACH this.contents AS par-»
+<p>«EXPAND genContent(doc) FOR par»
 </p>
 «ENDFOREACH»
-«EXPAND genContent FOREACH this.subSections»
+«EXPAND genContent(doc) FOREACH this.subSections»
 «ENDDEFINE»
 
-«DEFINE genContent FOR Section2»
-<h3> «EXPAND genContent FOR this.title» </h3>
-«EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+«DEFINE genContent(Document doc) FOR Section2»
+<h3> «EXPAND genContent(doc) FOR this.title» </h3>
+«EXPAND genLabel(doc) FOR this.name»
+«FOREACH this.contents AS par-»
+<p>«EXPAND genContent(doc) FOR par»
 </p>
 «ENDFOREACH»
-«EXPAND genContent FOREACH this.subSections»
+«EXPAND genContent(doc) FOREACH this.subSections»
 «ENDDEFINE»
 
-«DEFINE genContent FOR Section3»
-<h4>«EXPAND genContent FOR this.title» </h4>
-«EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+«DEFINE genContent(Document doc) FOR Section3»
+<h4>«EXPAND genContent(doc) FOR this.title» </h4>
+«EXPAND genLabel(doc) FOR this.name»
+«FOREACH this.contents AS par-»
+<p>«EXPAND genContent(doc) FOR par»
 </p>
 «ENDFOREACH»
-«EXPAND genContent FOREACH this.subSections»
+«EXPAND genContent(doc) FOREACH this.subSections»
 «ENDDEFINE»
 
-«DEFINE genContent FOR Section4»
-<h5>«EXPAND genContent FOR this.title»</h5>
-«EXPAND genLabel FOR this.name»
-«FOREACH this.contents AS par»<p>«EXPAND genContent FOR par»
+«DEFINE genContent(Document doc) FOR Section4»
+<h5>«EXPAND genContent(doc) FOR this.title»</h5>
+«EXPAND genLabel(doc) FOR this.name»
+«FOREACH this.contents AS par-»
+<p>«EXPAND genContent(doc) FOR par»
 </p>
 «ENDFOREACH»
 «ENDDEFINE»
 
-«DEFINE genNonParContent FOR TextOrMarkup»«EXPAND genText FOREACH this.contents»«ENDDEFINE»
-
-«DEFINE genContent FOR TextOrMarkup»«FOREACH this.contents AS par»«EXPAND genText FOR par»«ENDFOREACH»«ENDDEFINE»
-
-
-«DEFINE genContent FOR Object»
+«DEFINE genNonParContent(Document doc) FOR TextOrMarkup-»
+«EXPAND genText(doc) FOREACH this.contents-»
 «ENDDEFINE»
 
-«DEFINE genText FOR Object»
+«DEFINE genContent(Document doc) FOR TextOrMarkup-»
+«FOREACH this.contents AS par-»
+«EXPAND genText(doc) FOR par-»
+«ENDFOREACH-»
 «ENDDEFINE»
 
-«DEFINE genText FOR TextPart»«escapeHTMLChars(unescapeXdocChars(this.text))»«ENDDEFINE»
 
-«DEFINE genText FOR OrderedList»
+«DEFINE genContent(Document doc) FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText(Document doc) FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText(Document doc) FOR TextPart-»
+«escapeHTMLChars(unescapeXdocChars(this.text))-»
+«ENDDEFINE»
+
+«DEFINE genText(Document doc) FOR OrderedList»
 <ol>
-«EXPAND genText FOREACH items»
+«EXPAND genText(doc) FOREACH items»
 </ol>
 «ENDDEFINE»
 
-«DEFINE genText FOR UnorderedList»
+«DEFINE genText(Document doc) FOR UnorderedList»
 <ul>
-«EXPAND genText FOREACH items»
+«EXPAND genText(doc) FOREACH items»
 </ul>
 «ENDDEFINE»
 
-«DEFINE genText FOR Item»
+«DEFINE genText(Document doc) FOR Item»
 <li>
-«EXPAND genContent FOREACH this.contents»
+«EXPAND genContent(doc) FOREACH this.contents»
 </li>
 «ENDDEFINE»
 
-«DEFINE genText FOR Emphasize»<em>«EXPAND genContent FOREACH this.contents»</em>«ENDDEFINE»
+«DEFINE genText(Document doc) FOR Emphasize-»
+<em>«EXPAND genContent(doc) FOREACH this.contents»</em>«
+ENDDEFINE»
 
-«DEFINE genText FOR Ref»
-«IF this.contents.isEmpty»<a href="#«this.ref.name»">«this.ref»</a>«ELSE»<a href="#«this.ref.name»">«EXPAND genContent FOREACH this.contents»</a>«ENDIF»«ENDDEFINE»
+«DEFINE genText(Document doc) FOR Ref»
+«IF this.contents.isEmpty-»
+<a href="#«this.ref.name»">«this.ref»</a>«
+ELSE-»
+<a href="#«this.ref.name»">«
+EXPAND genContent(doc) FOREACH this.contents»</a>«
+ENDIF-»
+«ENDDEFINE»
 
-«DEFINE genText FOR Anchor»
+«DEFINE genText(Document doc) FOR Anchor»
 <a name="«this.name»"></a>
 «ENDDEFINE»
 
-«DEFINE genText FOR Link»<a href="«this.url»">«escapeHTMLChars(unescapeXdocChars(this.text))»</a>«ENDDEFINE»
+«DEFINE genText(Document doc) FOR Link-»
+<a href="«this.url»">«escapeHTMLChars(unescapeXdocChars(this.text))»</a>«
+ENDDEFINE»
 
-«REM»TODO: better code implementation«ENDREM»
-«DEFINE genText FOR CodeBlock»
+«DEFINE genText(Document doc) FOR CodeBlock-»
+«IF inline(this) -»
+<span class="inlinecode">«IF language == null-»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == doc.defaultLang)) FOREACH this.contents-»
+«ELSE-»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == this.language)) FOREACH this.contents-»
+«ENDIF-»</span>«
+ELSE»
 <div class="literallayout">
-<code>«REM» make this div«ENDREM»
-«EXPAND genCode(this.language) FOREACH contents»
-</code>
-<div>
+<div class="incode">
+<p class="code">
+«LET removeIndent(this) AS block-»
+«IF language == null-»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == doc.defaultLang)) FOREACH block.contents»
+«ELSE-»
+«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == this.language)) FOREACH block.contents»
+«ENDIF-»
+«ENDLET-»
+</p>
+</div>
+</div>
+«ENDIF»
 «ENDDEFINE»
 
 «REM»TODO: generate urls for code refs«ENDREM»
-«DEFINE genText FOR CodeRef»
+«DEFINE genText(Document doc) FOR CodeRef»
 <em>«escapeHTMLChars(unescapeXdocChars(this.element.canonicalName))»</em>
 «ENDDEFINE»
 
-«DEFINE genCode(String language) FOR Object»
+«DEFINE genCode(LangDef language) FOR Object»
 «ENDDEFINE»
 
-«DEFINE genCode(String language) FOR Code»«formatCode(unescapeXdocChars(this.contents), (String) GLOBALVAR languageDir, language)»«ENDDEFINE»
+«DEFINE genCode(LangDef language) FOR Code-»
+«formatCode(unescapeXdocChars(this.contents), language)-»
+«ENDDEFINE»
 
-«DEFINE genText FOR MarkupInCode»«ENDDEFINE»
+«DEFINE genText(Document doc) FOR MarkupInCode»«ENDDEFINE»
 
 «REM»TODO: find solution for escaping to html, refers to better code concept«ENDREM»
-«DEFINE genCode FOR MarkupInCode»«ENDDEFINE»
+«DEFINE genCode(Document doc) FOR MarkupInCode»«ENDDEFINE»
 
-«DEFINE genLabel FOR String»«IF this != null »<a name="«this»"></a>«ENDIF»
+«DEFINE genLabel(Document doc) FOR String»«IF this != null »<a name="«this»"></a>«ENDIF»
 «ENDDEFINE»
 

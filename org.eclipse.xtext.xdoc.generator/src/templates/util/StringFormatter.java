@@ -92,6 +92,6 @@ public class StringFormatter {
 	}
 
 	private static String makePattern(String keyword) {
-		return "(?<![\\w\\^])"+keyword+"(?!\\w)";
+		return "(?<![\\w])"+keyword+"(?!\\w)";
 	}
 }
