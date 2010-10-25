@@ -5,6 +5,8 @@ import org.eclipse.emf.mwe.utils.*
 var targetDir = "src-gen"
 var fileEncoding = "ISO-8859-1"
 var modelPath = "src/model"
+var stylePath = "styles"
+var verbose = false
 var languageDefinitions = modelPath
 
 Workflow {
@@ -22,6 +24,12 @@ Workflow {
 			slot = "doc"
 			type = "Document"
 		}
+	}
+	
+	component = CopyFiles {
+		source = "${stylePath}/"
+		destination = "${targetDir}/"
+		verbose = verbose
 	}
 
 	component = org.eclipse.xpand2.Generator {
