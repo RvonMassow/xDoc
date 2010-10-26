@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.ui.builder;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IFolder;
@@ -11,6 +12,9 @@ import org.eclipse.xpand2.XpandFacade;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
+import org.eclipse.xtend.expression.ResourceManager;
+import org.eclipse.xtend.expression.ResourceManagerDefaultImpl;
+import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtext.builder.IXtextBuilderParticipant;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -19,6 +23,8 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 	
+	private static final String EXPAND = "templates::TemplateEclipseHelp::main";
+
 	public XdocBuilderParticipant() {
 	}
 
@@ -33,8 +39,19 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 		Output output = new OutputImpl();
 		output.addOutlet(outlet);
 
-		XpandExecutionContextImpl xpandContext = new XpandExecutionContextImpl(output, null,null,null,null);
+		ResourceManager rm = new ResourceManagerDefaultImpl();
+
+//		rm.registerParser(XpandUtil.TEMPLATE_EXTENSION, new ResourceParser() {
+//			public Resource parse(Reader in, String fileName) {
+//				return XpandParseFacade.file(in, fileName);
+//			}
+//		});
+//		
+//		rm.loadResource("templates.TemplateEclipseHelp", "xpt");
+	    
+		XpandExecutionContextImpl xpandContext = new XpandExecutionContextImpl(rm, output, null, Collections.singletonMap("dir",  new Variable("dir", "src-gen/")), null, null, null, null);//new XpandExecutionContextImpl(output, null,null,null,null);
 		xpandContext.registerMetaModel(new JavaBeansMetaModel());
+		xpandContext.getResourceManager().setFileEncoding("ISO-8859-1");
 
 		List<IResourceDescription.Delta> deltas = context.getDeltas();
 		for (IResourceDescription.Delta delta : deltas) {
@@ -56,6 +73,6 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 	protected void generate(IEObjectDescription desc, XpandExecutionContextImpl ctx, IBuildContext context) {
 		EObject eObject = context.getResourceSet().getEObject(desc.getEObjectURI(), true);
 		XpandFacade facade = XpandFacade.create(ctx);
-		facade.evaluate("org::eclipse::xtext::xdoc::ui::builder::TemplateEclipseHelp::main FOR doc", eObject);
+		facade.evaluate(EXPAND, eObject);
 	}
 }
