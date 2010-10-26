@@ -40,14 +40,6 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 		output.addOutlet(outlet);
 
 		ResourceManager rm = new ResourceManagerDefaultImpl();
-
-//		rm.registerParser(XpandUtil.TEMPLATE_EXTENSION, new ResourceParser() {
-//			public Resource parse(Reader in, String fileName) {
-//				return XpandParseFacade.file(in, fileName);
-//			}
-//		});
-//		
-//		rm.loadResource("templates.TemplateEclipseHelp", "xpt");
 	    
 		XpandExecutionContextImpl xpandContext = new XpandExecutionContextImpl(rm, output, null, Collections.singletonMap("dir",  new Variable("dir", "src-gen/")), null, null, null, null);//new XpandExecutionContextImpl(output, null,null,null,null);
 		xpandContext.registerMetaModel(new JavaBeansMetaModel());
