@@ -30,12 +30,18 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 
 	public void build(IBuildContext context, IProgressMonitor monitor)
 			throws CoreException {
-		IFolder target = context.getBuiltProject().getFolder("src-gen/");
+		final IFolder target = context.getBuiltProject().getFolder("src-gen/");
 		if(target == null){
 			return;
 		}
+
 		Outlet outlet = new Outlet();
-		outlet.setPath(target.getProjectRelativePath().toString());
+		outlet.setAppend(false);
+		outlet.setFileEncoding("ISO-8859-1");
+		outlet.setOverwrite(true);
+		String string = context.getBuiltProject().getLocation().makeAbsolute().toString() + "/src-gen/";
+		outlet.setPath(string + "/");
+
 		Output output = new OutputImpl();
 		output.addOutlet(outlet);
 
