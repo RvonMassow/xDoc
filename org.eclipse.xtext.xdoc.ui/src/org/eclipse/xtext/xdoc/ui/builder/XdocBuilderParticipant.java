@@ -1,5 +1,7 @@
 package org.eclipse.xtext.xdoc.ui.builder;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -23,12 +25,15 @@ import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtext.builder.IXtextBuilderParticipant;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.xdoc.ui.internal.XdocActivator;
+import org.eclipse.xtext.xdoc.ui.utils.ProjectUtils;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 	
 	private static final String EXPAND = "templates::TemplateEclipseHelp::main";
 	private Set<IEObjectDescription> build = new HashSet<IEObjectDescription>();
+	private ProjectUtils projectUtils = new ProjectUtils();
 
 	public XdocBuilderParticipant() {
 	}
@@ -72,6 +77,14 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 					generate(obj, xpandContext, context);
 				}
 			}
+		}
+		try {
+			URL url = XdocActivator.getInstance().getBundle().getResource("styles/code.css");
+			this.projectUtils.createFile(context.getBuiltProject(), null, url.openStream(), "src-gen/code.css");
+			url = XdocActivator.getInstance().getBundle().getResource("styles/book.css");
+			this.projectUtils.createFile(context.getBuiltProject(), null, url.openStream(), "src-gen/book.css");
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 		this.build.clear();
 		target.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
