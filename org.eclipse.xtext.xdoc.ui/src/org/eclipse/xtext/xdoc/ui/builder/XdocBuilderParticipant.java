@@ -1,11 +1,15 @@
 package org.eclipse.xtext.xdoc.ui.builder;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.XpandFacade;
@@ -24,11 +28,12 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 	
 	private static final String EXPAND = "templates::TemplateEclipseHelp::main";
+	private Set<IEObjectDescription> build = new HashSet<IEObjectDescription>();
 
 	public XdocBuilderParticipant() {
 	}
 
-	public void build(IBuildContext context, IProgressMonitor monitor)
+	public synchronized void build(IBuildContext context, IProgressMonitor monitor)
 			throws CoreException {
 		final IFolder target = context.getBuiltProject().getFolder("src-gen/");
 		if(target == null){
@@ -57,20 +62,27 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 				for (IEObjectDescription obj : delta.getOld().getExportedObjects(XdocPackage.Literals.DOCUMENT)) {
 					generate(obj, xpandContext, context);
 				}
-			} else if(delta.getOld() != null) {
-				for (IEObjectDescription obj : delta.getOld().getExportedObjects(XdocPackage.Literals.DOCUMENT)) {
-					generate(obj, xpandContext, context);
+			} else {
+				if(delta.getOld() != null) {
+					for (IEObjectDescription obj : delta.getOld().getExportedObjects(XdocPackage.Literals.DOCUMENT)) {
+						generate(obj, xpandContext, context);
+					}
 				}
 				for (IEObjectDescription obj : delta.getNew().getExportedObjects(XdocPackage.Literals.DOCUMENT)) {
 					generate(obj, xpandContext, context);
 				}
 			}
 		}
+		this.build.clear();
+		target.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 	}
 
 	protected void generate(IEObjectDescription desc, XpandExecutionContextImpl ctx, IBuildContext context) {
-		EObject eObject = context.getResourceSet().getEObject(desc.getEObjectURI(), true);
-		XpandFacade facade = XpandFacade.create(ctx);
-		facade.evaluate(EXPAND, eObject);
+		if(!this.build.contains(desc)){
+			this.build.add(desc);
+			EObject eObject = context.getResourceSet().getEObject(desc.getEObjectURI(), true);
+			XpandFacade facade = XpandFacade.create(ctx);
+			facade.evaluate(EXPAND, eObject);
+		}
 	}
 }
