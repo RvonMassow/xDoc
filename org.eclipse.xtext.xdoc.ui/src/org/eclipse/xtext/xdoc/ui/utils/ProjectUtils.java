@@ -28,7 +28,7 @@ public class ProjectUtils {
 	private URI location;
 	private Logger logger = Logger.getLogger(this.getClass());
 
-	private String[] folders = {"src", "src-gen", "META-INF", "workflow", "styles" };
+	private String[] folders = {"src", "contents", "META-INF" };
 
 	private String[] natures = { JavaCore.NATURE_ID,
 			XtextProjectHelper.NATURE_ID,
@@ -140,12 +140,11 @@ public class ProjectUtils {
 			}
 		}
 		IJavaProject jProject = JavaCore.create(project);
-		IClasspathEntry[] cp = new IClasspathEntry[4];
-		cp[0] = JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"));
+		IClasspathEntry[] cp = new IClasspathEntry[3];
+		cp[0] = JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER"));
 		cp[1] = JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"));
 		IClasspathEntry src = JavaCore.newSourceEntry(project.getFolder("src").getFullPath());
 		cp[2] = src;
-		cp[3] = JavaCore.newSourceEntry(project.getFolder("workflow").getFullPath());
 		jProject.setRawClasspath(cp, subMonitor.newChild(1));
 		setupFiles(project, subMonitor);
 	}
@@ -154,17 +153,17 @@ public class ProjectUtils {
 	private void setupFiles(IProject project, SubMonitor subMonitor) throws CoreException {
 		createManifest(project, subMonitor);
 		createDocumentAndChapter(project, subMonitor);
-		createWorkflow(project, subMonitor);
+//		createWorkflow(project, subMonitor);
 		createPluginXML(project, subMonitor);
 		createCSSFiles(project, subMonitor);
 	}
 
 	private void createCSSFiles(IProject project, SubMonitor subMonitor) {
 		try {
-			URL url = XdocActivator.getInstance().getBundle().getResource("styles/code.css");
-			this.createFile(project, subMonitor, url.openStream(), "styles/code.css");
-			url = XdocActivator.getInstance().getBundle().getResource("styles/book.css");
-			this.createFile(project, subMonitor, url.openStream(), "styles/book.css");
+			URL url = XdocActivator.getInstance().getBundle().getResource("resources/code.css");
+			this.createFile(project, subMonitor, url.openStream(), "contents/code.css");
+			url = XdocActivator.getInstance().getBundle().getResource("resources/book.css");
+			this.createFile(project, subMonitor, url.openStream(), "contents/book.css");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -177,50 +176,51 @@ public class ProjectUtils {
 		fileContents.append("Bundle-Name: " + project.getName().trim() + "\n");
 		fileContents.append("Bundle-SymbolicName: " + project.getName().trim() + ";singleton:=true\n");
 		fileContents.append("Bundle-Version: 1.0.0.qualifier\n");
-		fileContents.append("Bundle-Vendor: Eclipse Modeling\n");
-		fileContents.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
-		fileContents.append("Require-Bundle: org.eclipse.help,\n");
-		fileContents.append(" org.eclipse.xtext.xdoc;bundle-version=\"1.0.0\";resolution:=optional,\n");
-		fileContents.append(" org.eclipse.xtext.xdoc.generator;bundle-version=\"1.0.0\";resolution:=optional\n");
-		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\",\n");
-		fileContents.append(" org.apache.commons.logging;version=\"1.0.4\"\n");
+		fileContents.append("Bundle-Vendor: My Company\n");
+//		fileContents.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
+		fileContents.append("Require-Bundle: org.eclipse.help");
+//		fileContents.append(" org.eclipse.xtext.xdoc;bundle-version=\"1.0.0\";resolution:=optional,\n");
+//		fileContents.append(" org.eclipse.xtext.xdoc.generator;bundle-version=\"1.0.0\";resolution:=optional\n");
+//		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\",\n");
+//		fileContents.append(" org.apache.commons.logging;version=\"1.0.4\"\n");
 		this.createFile(project, monitor, fileContents.toString(), "META-INF/MANIFEST.MF");
 	}
 	
 	private void createDocumentAndChapter(IProject project, SubMonitor monitor) {
-		StringBuilder fileContents = new StringBuilder();
-		fileContents.append("document[My Document]\n\n");
-		fileContents.append("authors[" + System.getProperty("user.name") + "]\n\n");
-		fileContents.append("chapter-ref[chapter1]");
-		this.createFile(project, monitor, fileContents.toString(), "src/00-Document.xdoc");
-		fileContents = new StringBuilder();
-		fileContents.append("chapter:chapter1[First Chapter]\n\n");
-		fileContents.append("This is text for the first chapter.");
-		this.createFile(project, monitor, fileContents.toString(), "src/01-Chapter1.xdoc");
+		try {
+			URL url = XdocActivator.getInstance().getBundle().getResource("resources/00-Main.xdoc");
+			this.createFile(project, monitor, url.openStream(), "src/00-Main.xdoc");
+			url = XdocActivator.getInstance().getBundle().getResource("resources/01-Introduction.xdoc");
+			this.createFile(project, monitor, url.openStream(), "src/01-Introduction.xdoc");
+			url = XdocActivator.getInstance().getBundle().getResource("resources/02-GettingStarted.xdoc");
+			this.createFile(project, monitor, url.openStream(), "src/02-GettingStarted.xdoc");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	private void createWorkflow(IProject project, SubMonitor monitor) {
-		StringBuilder fileContents = new StringBuilder();
-		fileContents.append("module GenerateDocs\n\n");
-		fileContents.append("import org.eclipse.emf.mwe.utils.*\n\n");
-		fileContents.append("var targetDir = \"src-gen\"\n");
-		fileContents.append("var modelPath = \"src\"\n");
-		fileContents.append("//var texbin = \"/usr/bin/pdflatex\"\n\n");
-		fileContents.append("Workflow {\n\n");
-
-		fileContents.append("//\tcomponent = @workflow.XDocGenerator {\n");
-		fileContents.append("//\t\t// or define search scope explicitly\n");
-		fileContents.append("//\t\tmodelPath = modelPath\n");
-		fileContents.append("//\t\ttargetDir = targetDir\n");
-		fileContents.append("//\t\tpdfLatex = texbin\n");
-		fileContents.append("//\t}\n\n");
-		fileContents.append("\tcomponent = @workflow.XdocEclipseHelpGenerator{\n");
-		fileContents.append("\t\t// or define search scope explicitly\n");
-		fileContents.append("\t\tmodelPath = modelPath\n");
-		fileContents.append("\t\ttargetDir = targetDir\n");
-		fileContents.append("\t}\n}\n");
-		this.createFile(project, monitor, fileContents.toString(), "workflow/generateDocs.mwe2");
-	}
+//	private void createWorkflow(IProject project, SubMonitor monitor) {
+//		StringBuilder fileContents = new StringBuilder();
+//		fileContents.append("module GenerateDocs\n\n");
+//		fileContents.append("import org.eclipse.emf.mwe.utils.*\n\n");
+//		fileContents.append("var targetDir = \"src-gen\"\n");
+//		fileContents.append("var modelPath = \"src\"\n");
+//		fileContents.append("//var texbin = \"/usr/bin/pdflatex\"\n\n");
+//		fileContents.append("Workflow {\n\n");
+//
+//		fileContents.append("//\tcomponent = @workflow.XDocGenerator {\n");
+//		fileContents.append("//\t\t// or define search scope explicitly\n");
+//		fileContents.append("//\t\tmodelPath = modelPath\n");
+//		fileContents.append("//\t\ttargetDir = targetDir\n");
+//		fileContents.append("//\t\tpdfLatex = texbin\n");
+//		fileContents.append("//\t}\n\n");
+//		fileContents.append("\tcomponent = @workflow.XdocEclipseHelpGenerator{\n");
+//		fileContents.append("\t\t// or define search scope explicitly\n");
+//		fileContents.append("\t\tmodelPath = modelPath\n");
+//		fileContents.append("\t\ttargetDir = targetDir\n");
+//		fileContents.append("\t}\n}\n");
+//		this.createFile(project, monitor, fileContents.toString(), "workflow/generateDocs.mwe2");
+//	}
 	
 	private void createPluginXML(IProject project, SubMonitor monitor){
 		StringBuilder fileContents = new StringBuilder();
@@ -230,16 +230,16 @@ public class ProjectUtils {
 		fileContents.append("   <extension\n");
 		fileContents.append("         point=\"org.eclipse.help.toc\">\n");
 		fileContents.append("      <toc\n");
-		fileContents.append("            file=\"src-gen/toc.xml\"\n");
+		fileContents.append("            file=\"contents/toc.xml\"\n");
 		fileContents.append("            primary=\"true\">\n");
 		fileContents.append("      </toc>\n");
 		fileContents.append("   </extension>\n\n");
-		fileContents.append("   <extension\n");
-		fileContents.append("         point=\"org.eclipse.help.index\">\n");
-		fileContents.append("      <index\n");
-		fileContents.append("            file=\"src-gen/index.xml\">\n");
-		fileContents.append("      </index>\n");
-		fileContents.append("   </extension>\n\n");
+//		fileContents.append("   <extension\n");
+//		fileContents.append("         point=\"org.eclipse.help.index\">\n");
+//		fileContents.append("      <index\n");
+//		fileContents.append("            file=\"contents/index.xml\">\n");
+//		fileContents.append("      </index>\n");
+//		fileContents.append("   </extension>\n\n");
 		fileContents.append("</plugin>\n");
 		this.createFile(project, monitor, fileContents.toString(), "plugin.xml");
 	}

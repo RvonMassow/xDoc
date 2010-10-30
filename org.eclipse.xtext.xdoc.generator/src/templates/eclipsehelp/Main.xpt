@@ -1,0 +1,231 @@
+«IMPORT org::eclipse::xtext::xdoc::xdoc»
+«IMPORT org::eclipse::emf::ecore»
+
+«EXTENSION templates::Extensions»
+«EXTENSION templates::eclipsehelp::Util»
+
+«DEFINE main FOR XdocFile»
+	«EXPAND main FOR mainSection»
+«ENDDEFINE»
+
+«DEFINE main FOR Document-»
+	«EXPAND templates::eclipsehelp::Toc::toc»
+«ENDDEFINE»
+
+«DEFINE main FOR AbstractSection-»
+	«EXPAND genContent»
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Chapter -»
+«FILE fileName()+".html"»«EXPAND preamble»
+«EXPAND genLabel FOR name»
+<h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">«
+EXPAND genNonParContent FOR title»</h1>
+«EXPAND genContent FOREACH contents»
+«EXPAND genContent FOREACH subSections»
+</body>
+</html>
+«ENDFILE»
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Section»
+«EXPAND genLabel FOR name»
+«EXPAND preamble»
+«EXPAND genContent FOREACH contents»
+«EXPAND genContent FOREACH subSections»
+</div>
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Section2»
+«EXPAND genLabel FOR name»
+«EXPAND preamble»
+«EXPAND genContent FOREACH contents»
+«EXPAND genContent FOREACH subSections»
+</div>
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Section3»
+«EXPAND genLabel FOR name»
+«EXPAND preamble»
+«EXPAND genContent FOREACH contents»
+«EXPAND genContent FOREACH subSections»
+</div>
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Section4»
+«EXPAND genLabel FOR name»
+«EXPAND preamble»
+«EXPAND genContent FOREACH contents»
+«ENDDEFINE»
+
+«DEFINE genNonParContent FOR TextOrMarkup-»
+«FOREACH contents AS par-»
+«EXPAND genText FOR par-»
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«REM»
+«DEFINE genTocEntry(List[AbstractSection] l, String s) FOR List»
+«ENDDEFINE»
+«ENDREM»
+
+
+«REM» start html template«ENDREM»
+
+«DEFINE genContent FOR TextOrMarkup»
+<p>
+«EXPAND genText FOREACH contents»
+</p>
+«ENDDEFINE»
+
+
+«DEFINE genContent FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText FOR Object»
+«ENDDEFINE»
+
+«DEFINE genText FOR TextOrMarkup»
+«EXPAND genText FOREACH contents»
+«ENDDEFINE»
+
+«DEFINE genText FOR TextPart-»
+«escapeHTMLChars(unescapeXdocChars(text))-»
+«ENDDEFINE»
+
+«DEFINE genText FOR OrderedList»
+<ol>
+«EXPAND genText FOREACH items»
+</ol>
+«ENDDEFINE»
+
+«DEFINE genText FOR UnorderedList»
+<ul>
+«EXPAND genText FOREACH items»
+</ul>
+«ENDDEFINE»
+
+«DEFINE genText FOR Item»
+<li>
+«EXPAND genContent FOREACH contents»
+</li>
+«ENDDEFINE»
+
+«DEFINE genText FOR Emphasize-»
+<em>«EXPAND genNonParContent FOREACH contents»</em>«
+ENDDEFINE»
+
+«DEFINE genText FOR Ref»
+«IF contents.isEmpty-»
+<a href="«fileName(ref)».html#«ref.name»">section «ref.name»</a>«
+ELSE-»
+<a href="«fileName(ref)».html#«ref.name»">«
+EXPAND genNonParContent FOREACH contents»</a>«
+ENDIF-»
+«ENDDEFINE»
+
+«DEFINE genText FOR Anchor»
+<a name="«name»"></a>
+«ENDDEFINE»
+
+«DEFINE genText FOR Link-»
+<a href="«url»">«escapeHTMLChars(unescapeXdocChars(text))»</a>«
+ENDDEFINE»
+
+«REM»TODO: better code implementation«ENDREM»
+«DEFINE genText FOR CodeBlock-»
+«IF inline() -»
+<span class="inlinecode">«EXPAND genCode(language) FOREACH contents-»</span>«
+ELSE»
+<div class="literallayout">
+<div class="incode">
+<p class="code">
+«LET removeIndent() AS block-»
+«EXPAND genCode(language) FOREACH block.contents»
+«ENDLET-»
+</p>
+</div>
+</div>
+«ENDIF»
+«ENDDEFINE»
+
+«REM»TODO: generate urls for code refs«ENDREM»
+«DEFINE genText FOR CodeRef»
+<em>«escapeHTMLChars(unescapeXdocChars(element.canonicalName))»</em>
+«ENDDEFINE»
+
+«DEFINE genCode(LangDef language) FOR Object»
+«ENDDEFINE»
+
+«DEFINE genCode(LangDef language) FOR Code-»
+«formatCode(unescapeXdocChars(contents), language)-»
+«ENDDEFINE»
+
+«DEFINE genText FOR MarkupInCode»«ENDDEFINE»
+
+«DEFINE genCode FOR MarkupInCode»«ENDDEFINE»
+
+«DEFINE genLabel FOR String-»
+«IF this != null »<a name="«this»"></a>«
+ENDIF-»
+«ENDDEFINE»
+
+«REM» end html template«ENDREM»
+«DEFINE genPlainText FOR TextOrMarkup»«EXPAND genPlainText FOREACH contents»«ENDDEFINE»
+
+«DEFINE genPlainText FOR TextPart»«text»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Emphasize»«EXPAND genPlainText FOREACH contents»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Link»«text»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Object»«ENDDEFINE»
+
+«DEFINE genURLText FOR TextOrMarkup»«EXPAND genURLText FOREACH contents»«ENDDEFINE»
+
+«DEFINE genURLText FOR TextPart»«encode(text)»«ENDDEFINE»
+
+«DEFINE genURLText FOR Emphasize»«EXPAND genPlainText FOREACH contents»«ENDDEFINE»
+
+«DEFINE genURLText FOR Link»«encode(text)»«ENDDEFINE»
+
+«DEFINE genURLText FOR Object»«ENDDEFINE»
+
+«DEFINE preamble FOR AbstractSection»
+<a name="«labelName()»"></a>
+«EXPAND genStyleClasses»
+«ENDDEFINE»
+
+«DEFINE genStyleClasses FOR AbstractSection»<div class="section" title="«EXPAND genPlainText FOR title»">
+<div class="titlepage">
+<div>
+<div>
+«EXPAND head»
+</div>
+</div>
+</div>
+«ENDDEFINE»
+
+«DEFINE head FOR AbstractSection»«throwUnsupportedOperation("<h?> tags for AbstractSection", this)»«ENDDEFINE»
+
+«DEFINE head FOR Section»<h2 class="title">«EXPAND genText FOR title»</h2>«ENDDEFINE»
+
+«DEFINE head FOR Section2»<h3 class="title">«EXPAND genText FOR title»</h3>«ENDDEFINE»
+
+«DEFINE head FOR Section3»<h4 class="title">«EXPAND genText FOR title»</h4>«ENDDEFINE»
+
+«DEFINE preamble FOR Chapter»<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>«EXPAND genPlainText FOR title»</title>
+<link href="book.css" rel="stylesheet" type="text/css">
+<link href="code.css" rel="stylesheet" type="text/css">
+<link rel="home" href="index.html" title="">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+«ENDDEFINE»

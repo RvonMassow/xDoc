@@ -354,7 +354,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getXdocFile_Sections()
+	public EReference getXdocFile_MainSection()
 	{
 		return (EReference)xdocFileEClass.getEStructuralFeatures().get(0);
 	}
@@ -407,16 +407,6 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	public EReference getDocument_LangDefs()
 	{
 		return (EReference)documentEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getDocument_DefaultLang()
-	{
-		return (EAttribute)documentEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -954,9 +944,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getCodeBlock_Language()
+	public EReference getCodeBlock_Contents()
 	{
-		return (EAttribute)codeBlockEClass.getEStructuralFeatures().get(0);
+		return (EReference)codeBlockEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -964,7 +954,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCodeBlock_Contents()
+	public EReference getCodeBlock_Language()
 	{
 		return (EReference)codeBlockEClass.getEStructuralFeatures().get(1);
 	}
@@ -1080,14 +1070,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		// Create classes and their features
 		xdocFileEClass = createEClass(XDOC_FILE);
-		createEReference(xdocFileEClass, XDOC_FILE__SECTIONS);
+		createEReference(xdocFileEClass, XDOC_FILE__MAIN_SECTION);
 
 		documentEClass = createEClass(DOCUMENT);
 		createEReference(documentEClass, DOCUMENT__SUBTITLE);
 		createEReference(documentEClass, DOCUMENT__AUTHORS);
 		createEReference(documentEClass, DOCUMENT__CHAPTERS);
 		createEReference(documentEClass, DOCUMENT__LANG_DEFS);
-		createEAttribute(documentEClass, DOCUMENT__DEFAULT_LANG);
 
 		chapterEClass = createEClass(CHAPTER);
 		createEReference(chapterEClass, CHAPTER__SUB_SECTIONS);
@@ -1166,8 +1155,8 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		createEAttribute(imageRefEClass, IMAGE_REF__CAPTION);
 
 		codeBlockEClass = createEClass(CODE_BLOCK);
-		createEAttribute(codeBlockEClass, CODE_BLOCK__LANGUAGE);
 		createEReference(codeBlockEClass, CODE_BLOCK__CONTENTS);
+		createEReference(codeBlockEClass, CODE_BLOCK__LANGUAGE);
 
 		codeEClass = createEClass(CODE);
 		createEAttribute(codeEClass, CODE__CONTENTS);
@@ -1242,14 +1231,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(xdocFileEClass, XdocFile.class, "XdocFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getXdocFile_Sections(), this.getAbstractSection(), null, "sections", null, 0, -1, XdocFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getXdocFile_MainSection(), this.getAbstractSection(), null, "mainSection", null, 0, 1, XdocFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(documentEClass, Document.class, "Document", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDocument_Subtitle(), this.getTextOrMarkup(), null, "subtitle", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Authors(), this.getTextOrMarkup(), null, "authors", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Chapters(), this.getChapter(), null, "chapters", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_LangDefs(), this.getLangDef(), null, "langDefs", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getDocument_DefaultLang(), ecorePackage.getEString(), "defaultLang", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(chapterEClass, Chapter.class, "Chapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChapter_SubSections(), this.getSection(), null, "subSections", null, 0, -1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1328,8 +1316,8 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEAttribute(getImageRef_Caption(), ecorePackage.getEString(), "caption", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(codeBlockEClass, CodeBlock.class, "CodeBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getCodeBlock_Language(), ecorePackage.getEString(), "language", null, 0, 1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCodeBlock_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodeBlock_Language(), this.getLangDef(), null, "language", null, 0, 1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(codeEClass, Code.class, "Code", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCode_Contents(), ecorePackage.getEString(), "contents", null, 0, 1, Code.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

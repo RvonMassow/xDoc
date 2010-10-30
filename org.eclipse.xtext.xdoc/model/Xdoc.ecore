@@ -4,8 +4,8 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="xdoc"
     nsURI="http://www.eclipse.org/xtext/xdoc/Xdoc" nsPrefix="xdoc">
   <eClassifiers xsi:type="ecore:EClass" name="XdocFile">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="sections" upperBound="-1"
-        eType="#//AbstractSection" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mainSection" eType="#//AbstractSection"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//AbstractSection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subtitle" eType="#//TextOrMarkup"
@@ -16,7 +16,6 @@
         eType="#//Chapter" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="langDefs" upperBound="-1"
         eType="#//LangDef" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="defaultLang" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Chapter" eSuperTypes="#//AbstractSection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
@@ -107,9 +106,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="caption" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CodeBlock" eSuperTypes="#//MarkUp">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contents" upperBound="-1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="language" eType="#//LangDef"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Code">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="contents" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -17,11 +17,11 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFile;
  */
 public class XdocOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	
-	protected void doCreateChildren(DocumentRootNode parentNode, XdocFile document) {
+	protected void _createChildren(DocumentRootNode parentNode, XdocFile document) {
 		createChildrenForSections(parentNode, document);
 	}
 	
-	protected void doCreateChildren(IOutlineNode parentNode, EObject container) {
+	protected void _createChildren(IOutlineNode parentNode, EObject container) {
 		createChildrenForSections(parentNode, container);
 	}
 

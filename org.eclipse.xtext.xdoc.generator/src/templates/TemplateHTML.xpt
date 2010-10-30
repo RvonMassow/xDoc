@@ -121,22 +121,12 @@ ENDDEFINE»
 
 «DEFINE genText(Document doc) FOR CodeBlock-»
 «IF inline(this) -»
-<span class="inlinecode">«IF language == null-»
-«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == doc.defaultLang)) FOREACH this.contents-»
-«ELSE-»
-«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == this.language)) FOREACH this.contents-»
-«ENDIF-»</span>«
+<span class="inlinecode">«EXPAND genCode(language) FOREACH contents-»</span>«
 ELSE»
 <div class="literallayout">
 <div class="incode">
 <p class="code">
-«LET removeIndent(this) AS block-»
-«IF language == null-»
-«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == doc.defaultLang)) FOREACH block.contents»
-«ELSE-»
-«EXPAND genCode(doc.langDefs.selectFirst(e|e.name == this.language)) FOREACH block.contents»
-«ENDIF-»
-«ENDLET-»
+«LET removeIndent(this) AS block-»«EXPAND genCode(language) FOREACH block.contents»«ENDLET-»
 </p>
 </div>
 </div>

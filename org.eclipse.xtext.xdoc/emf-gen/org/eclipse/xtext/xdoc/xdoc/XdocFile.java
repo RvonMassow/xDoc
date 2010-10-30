@@ -5,8 +5,6 @@
  */
 package org.eclipse.xtext.xdoc.xdoc;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -17,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.XdocFile#getSections <em>Sections</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.XdocFile#getMainSection <em>Main Section</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,19 +26,29 @@ import org.eclipse.emf.ecore.EObject;
 public interface XdocFile extends EObject
 {
 	/**
-	 * Returns the value of the '<em><b>Sections</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.AbstractSection}.
+	 * Returns the value of the '<em><b>Main Section</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sections</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Main Section</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Sections</em>' containment reference list.
-	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getXdocFile_Sections()
+	 * @return the value of the '<em>Main Section</em>' containment reference.
+	 * @see #setMainSection(AbstractSection)
+	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getXdocFile_MainSection()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<AbstractSection> getSections();
+	AbstractSection getMainSection();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.XdocFile#getMainSection <em>Main Section</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Main Section</em>' containment reference.
+	 * @see #getMainSection()
+	 * @generated
+	 */
+	void setMainSection(AbstractSection value);
 
 } // XdocFile

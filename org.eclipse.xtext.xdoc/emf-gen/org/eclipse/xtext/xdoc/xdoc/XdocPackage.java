@@ -70,13 +70,13 @@ public interface XdocPackage extends EPackage
 	int XDOC_FILE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Sections</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Main Section</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int XDOC_FILE__SECTIONS = 0;
+	int XDOC_FILE__MAIN_SECTION = 0;
 
 	/**
 	 * The number of structural features of the '<em>File</em>' class.
@@ -235,22 +235,13 @@ public interface XdocPackage extends EPackage
 	int DOCUMENT__LANG_DEFS = ABSTRACT_SECTION_FEATURE_COUNT + 3;
 
 	/**
-	 * The feature id for the '<em><b>Default Lang</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DOCUMENT__DEFAULT_LANG = ABSTRACT_SECTION_FEATURE_COUNT + 4;
-
-	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 5;
+	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -1122,22 +1113,22 @@ public interface XdocPackage extends EPackage
 	int CODE_BLOCK = 26;
 
 	/**
-	 * The feature id for the '<em><b>Language</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CODE_BLOCK__LANGUAGE = MARK_UP_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Contents</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CODE_BLOCK__CONTENTS = MARK_UP_FEATURE_COUNT + 1;
+	int CODE_BLOCK__CONTENTS = MARK_UP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Language</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODE_BLOCK__LANGUAGE = MARK_UP_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Code Block</em>' class.
@@ -1272,15 +1263,15 @@ public interface XdocPackage extends EPackage
 	EClass getXdocFile();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.XdocFile#getSections <em>Sections</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.XdocFile#getMainSection <em>Main Section</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Sections</em>'.
-	 * @see org.eclipse.xtext.xdoc.xdoc.XdocFile#getSections()
+	 * @return the meta object for the containment reference '<em>Main Section</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.XdocFile#getMainSection()
 	 * @see #getXdocFile()
 	 * @generated
 	 */
-	EReference getXdocFile_Sections();
+	EReference getXdocFile_MainSection();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Document <em>Document</em>}'.
@@ -1335,17 +1326,6 @@ public interface XdocPackage extends EPackage
 	 * @generated
 	 */
 	EReference getDocument_LangDefs();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.Document#getDefaultLang <em>Default Lang</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Default Lang</em>'.
-	 * @see org.eclipse.xtext.xdoc.xdoc.Document#getDefaultLang()
-	 * @see #getDocument()
-	 * @generated
-	 */
-	EAttribute getDocument_DefaultLang();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Chapter <em>Chapter</em>}'.
@@ -1906,17 +1886,6 @@ public interface XdocPackage extends EPackage
 	EClass getCodeBlock();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.CodeBlock#getLanguage <em>Language</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Language</em>'.
-	 * @see org.eclipse.xtext.xdoc.xdoc.CodeBlock#getLanguage()
-	 * @see #getCodeBlock()
-	 * @generated
-	 */
-	EAttribute getCodeBlock_Language();
-
-	/**
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.CodeBlock#getContents <em>Contents</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1926,6 +1895,17 @@ public interface XdocPackage extends EPackage
 	 * @generated
 	 */
 	EReference getCodeBlock_Contents();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xtext.xdoc.xdoc.CodeBlock#getLanguage <em>Language</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Language</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.CodeBlock#getLanguage()
+	 * @see #getCodeBlock()
+	 * @generated
+	 */
+	EReference getCodeBlock_Language();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Code <em>Code</em>}'.
@@ -2045,12 +2025,12 @@ public interface XdocPackage extends EPackage
 		EClass XDOC_FILE = eINSTANCE.getXdocFile();
 
 		/**
-		 * The meta object literal for the '<em><b>Sections</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Main Section</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference XDOC_FILE__SECTIONS = eINSTANCE.getXdocFile_Sections();
+		EReference XDOC_FILE__MAIN_SECTION = eINSTANCE.getXdocFile_MainSection();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl <em>Document</em>}' class.
@@ -2093,14 +2073,6 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EReference DOCUMENT__LANG_DEFS = eINSTANCE.getDocument_LangDefs();
-
-		/**
-		 * The meta object literal for the '<em><b>Default Lang</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute DOCUMENT__DEFAULT_LANG = eINSTANCE.getDocument_DefaultLang();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -2577,20 +2549,20 @@ public interface XdocPackage extends EPackage
 		EClass CODE_BLOCK = eINSTANCE.getCodeBlock();
 
 		/**
-		 * The meta object literal for the '<em><b>Language</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute CODE_BLOCK__LANGUAGE = eINSTANCE.getCodeBlock_Language();
-
-		/**
 		 * The meta object literal for the '<em><b>Contents</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference CODE_BLOCK__CONTENTS = eINSTANCE.getCodeBlock_Contents();
+
+		/**
+		 * The meta object literal for the '<em><b>Language</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CODE_BLOCK__LANGUAGE = eINSTANCE.getCodeBlock_Language();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeImpl <em>Code</em>}' class.

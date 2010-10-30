@@ -5,19 +5,14 @@
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
-import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
@@ -30,7 +25,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.XdocFileImpl#getSections <em>Sections</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.XdocFileImpl#getMainSection <em>Main Section</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,14 +34,14 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 public class XdocFileImpl extends MinimalEObjectImpl.Container implements XdocFile
 {
 	/**
-	 * The cached value of the '{@link #getSections() <em>Sections</em>}' containment reference list.
+	 * The cached value of the '{@link #getMainSection() <em>Main Section</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSections()
+	 * @see #getMainSection()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractSection> sections;
+	protected AbstractSection mainSection;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,13 +69,47 @@ public class XdocFileImpl extends MinimalEObjectImpl.Container implements XdocFi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<AbstractSection> getSections()
+	public AbstractSection getMainSection()
 	{
-		if (sections == null)
+		return mainSection;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetMainSection(AbstractSection newMainSection, NotificationChain msgs)
+	{
+		AbstractSection oldMainSection = mainSection;
+		mainSection = newMainSection;
+		if (eNotificationRequired())
 		{
-			sections = new EObjectContainmentEList<AbstractSection>(AbstractSection.class, this, XdocPackage.XDOC_FILE__SECTIONS);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XdocPackage.XDOC_FILE__MAIN_SECTION, oldMainSection, newMainSection);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return sections;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMainSection(AbstractSection newMainSection)
+	{
+		if (newMainSection != mainSection)
+		{
+			NotificationChain msgs = null;
+			if (mainSection != null)
+				msgs = ((InternalEObject)mainSection).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XdocPackage.XDOC_FILE__MAIN_SECTION, null, msgs);
+			if (newMainSection != null)
+				msgs = ((InternalEObject)newMainSection).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XdocPackage.XDOC_FILE__MAIN_SECTION, null, msgs);
+			msgs = basicSetMainSection(newMainSection, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.XDOC_FILE__MAIN_SECTION, newMainSection, newMainSection));
 	}
 
 	/**
@@ -93,8 +122,8 @@ public class XdocFileImpl extends MinimalEObjectImpl.Container implements XdocFi
 	{
 		switch (featureID)
 		{
-			case XdocPackage.XDOC_FILE__SECTIONS:
-				return ((InternalEList<?>)getSections()).basicRemove(otherEnd, msgs);
+			case XdocPackage.XDOC_FILE__MAIN_SECTION:
+				return basicSetMainSection(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -109,8 +138,8 @@ public class XdocFileImpl extends MinimalEObjectImpl.Container implements XdocFi
 	{
 		switch (featureID)
 		{
-			case XdocPackage.XDOC_FILE__SECTIONS:
-				return getSections();
+			case XdocPackage.XDOC_FILE__MAIN_SECTION:
+				return getMainSection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -120,15 +149,13 @@ public class XdocFileImpl extends MinimalEObjectImpl.Container implements XdocFi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case XdocPackage.XDOC_FILE__SECTIONS:
-				getSections().clear();
-				getSections().addAll((Collection<? extends AbstractSection>)newValue);
+			case XdocPackage.XDOC_FILE__MAIN_SECTION:
+				setMainSection((AbstractSection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -144,8 +171,8 @@ public class XdocFileImpl extends MinimalEObjectImpl.Container implements XdocFi
 	{
 		switch (featureID)
 		{
-			case XdocPackage.XDOC_FILE__SECTIONS:
-				getSections().clear();
+			case XdocPackage.XDOC_FILE__MAIN_SECTION:
+				setMainSection((AbstractSection)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -161,8 +188,8 @@ public class XdocFileImpl extends MinimalEObjectImpl.Container implements XdocFi
 	{
 		switch (featureID)
 		{
-			case XdocPackage.XDOC_FILE__SECTIONS:
-				return sections != null && !sections.isEmpty();
+			case XdocPackage.XDOC_FILE__MAIN_SECTION:
+				return mainSection != null;
 		}
 		return super.eIsSet(featureID);
 	}

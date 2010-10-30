@@ -7,10 +7,10 @@ import "platform:/resource/org.eclipse.xtext.xdoc/model/Xdoc.ecore"
 XdocFile:
 	{XdocFile}
 	WS? MULTI_NL?
-	(((sections+=Document (MULTI_NL sections+=Document)*) |
-	(sections+=Chapter (MULTI_NL sections+=Chapter)*) |
-	(sections+=Section (MULTI_NL sections+=Section)*) |
-	(sections+=Section2 (MULTI_NL sections+=Section2)*))
+	(mainSection=(Document |
+					Chapter |
+					Section |
+					Section2)
 	MULTI_NL?)?;
 	
 Document:
@@ -18,7 +18,6 @@ Document:
 	(MULTI_NL 'subtitle[' subtitle=TextOrMarkup ']')?
 	(MULTI_NL 'authors[' authors=TextOrMarkup ']')?
 	(MULTI_NL langDefs+=LangDef)*
-	(MULTI_NL 'defaultcodelanguage['ANY_WS* defaultLang=ID ANY_WS*']')?
 	(MULTI_NL chapters+=Chapter)*;
 
 Chapter:
@@ -138,7 +137,7 @@ ImageRef:
 
 CodeBlock:
 	{CodeBlock}
-	'code[' (ANY_WS* language=ID ANY_WS* ']' ANY_WS* '[')? 
+	'code[' (ANY_WS* language=[LangDef] ANY_WS* ']' ANY_WS* '[')? 
 		(contents+=Code
 		(contents+=MarkupInCode contents+=Code?)* |
 		(contents+=MarkupInCode contents+=Code?)+)?
@@ -158,7 +157,8 @@ MarkupInCode:
 	Todo;
 
 LangDef:
-	'codelanguage-def['name=ID']'ANY_WS*'['(ANY_WS* keywords+=ID (','ANY_WS* keywords+=ID ANY_WS*)*)?']';
+	'codelanguage-def['name=ID']'ANY_WS*'['(ANY_WS* keywords+=ID (','ANY_WS* keywords+=ID ANY_WS*)*)?']' |
+	{LangDef} 'codelanguage-def['(ANY_WS* keywords+=ID (','ANY_WS* keywords+=ID ANY_WS*)*)?']';
 
 CodeText:
 	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',')+;

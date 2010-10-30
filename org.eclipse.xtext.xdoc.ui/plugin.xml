@@ -185,13 +185,14 @@
          point="org.eclipse.ui.newWizards">
       <category
             id="org.eclipse.xtext.xdoc.ui.wizards"
-            name="Xdoc">
+            name="Eclipse Help">
       </category>
       <wizard
             category="org.eclipse.xtext.xdoc.ui.wizards"
             class="org.eclipse.xtext.xdoc.ui.wizards.NewWizard"
+            icon="icons/toc_open.gif"
             id="org.eclipse.xtext.xdoc.ui.wizards"
-            name="New Xdoc Project"
+            name="New Eclipse Help Project"
             project="true">
       </wizard>
    </extension>

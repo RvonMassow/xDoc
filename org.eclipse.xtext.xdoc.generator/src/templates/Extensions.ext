@@ -1,4 +1,5 @@
 import org::eclipse::xtext::xdoc::xdoc;
+import org::eclipse::emf::ecore;
 
 lstEscapeToTex():
 	"Â";
@@ -33,60 +34,6 @@ boolean block(TextOrMarkup c):
 		&& CodeBlock.isInstance(c.contents.get(1)))
 	|| (CodeBlock.isInstance(c.contents.first()) && !inline((CodeBlock)c.contents.first()));
 
-
-// eclipse help helpers
-fileName(Document doc, Object o):
-	throwUnsupportedOperation("Cannot determine target filename for "+o.toString(), o);
-
-String fileName(Document doc, Chapter c):
-	let i = doc.chapters.indexOf(c):
-		if(i == -1) then
-			doc.chapters.indexOf(doc.chapters.typeSelect(ChapterRef).select(e|e.chapter == c).first()).toString()
-		else
-			i.toString()
-	;
-
-String fileName(Document doc, AbstractSection s):
-	fileName(doc, s.eContainer());
-/*
-String fileName(Document doc, Section2 s):
-	fileName(doc, s.eContainer());
-
-String fileName(Document doc, Section3 s):
-	fileName(doc, s.eContainer());
-*/
-fileName(Document doc,Ref r):
-	fileName(doc, r.ref);
-
-fileName(Document doc,Item i):
-	fileName(doc, i.eContainer());
-
-fileName(Document doc,OrderedList ol):
-	fileName(doc, ol.eContainer());
-
-fileName(Document doc,UnorderedList ul):
-	fileName(doc, ul.eContainer());
-
-fileName(Document doc,TextOrMarkup tom):
-	fileName(doc, tom.eContainer());
-
-//String labelName(Section4 s):
-//	fileName((Section3)s.eContainer()) +"-"+ ((Section3)s.eContainer()).subSections.indexOf(s).toString();
-
-String labelName(Document doc, Object o):
-	throwUnsupportedOperation("Labelname for " + o + " undefined", o);
-
-labelName(Document doc, Section sec):
-	"sec-" + ((Chapter)sec.eContainer()).subSections.indexOf(sec);
-
-labelName(Document doc, Section2 sec):
-	labelName(doc, sec.eContainer()) + "-" + ((Section)sec.eContainer()).subSections.indexOf(sec);
-
-labelName(Document doc, Section3 sec):
-	labelName(doc, sec.eContainer()) + "-" + ((Section2)sec.eContainer()).subSections.indexOf(sec);
-
-labelName(Document doc, Section4 sec):
-	labelName(doc, sec.eContainer()) + "-" + ((Section3)sec.eContainer()).subSections.indexOf(sec);
 
 remWS(String s):
 	s.replaceAll("\\s", "");
@@ -139,6 +86,9 @@ String encode(String s):
 CodeBlock removeIndent(CodeBlock cb):
 	JAVA templates.util.StringFormatter.removeIndent(org.eclipse.xtext.xdoc.xdoc.CodeBlock);
 	
+Void throwUnsupportedOperation(String msg) :
+	throwUnsupportedOperation(msg,'null');
+	
 Void throwUnsupportedOperation(String msg, Object param) :
 	JAVA templates.util.Errors.throwUnsupportedOperation(java.lang.String, java.lang.Object);
 	
@@ -150,3 +100,6 @@ Set[String] getStoredLinks():
 
 String highlightKeywords(String string, LangDef language):
 	JAVA templates.util.StringFormatter.highlightKeywords(java.lang.String, org.eclipse.xtext.xdoc.xdoc.LangDef);
+	
+String toString(TextOrMarkup txt) :
+	JAVA org.eclipse.xtext.xdoc.XdocUtil.toString(java.lang.Object);

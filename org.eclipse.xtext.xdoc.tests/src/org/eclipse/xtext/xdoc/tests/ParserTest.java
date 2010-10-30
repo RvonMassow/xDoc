@@ -16,8 +16,8 @@ import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
-import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.Item;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
@@ -51,7 +51,7 @@ public class ParserTest extends AbstractXtextTests {
 				+ emphasized + "]" + secondPart + "\n\n";
 		//System.out.println(text);
 		XdocFile model = (XdocFile) getModel(text);
-		Chapter chapter = (Chapter) model.getSections().get(0);
+		Chapter chapter = (Chapter) model.getMainSection();
 		assertEquals(title,
 				((TextPart) (((TextOrMarkup) chapter.getTitle()).getContents()
 						.get(0))).getText());
@@ -77,7 +77,7 @@ public class ParserTest extends AbstractXtextTests {
 		String refText = " to ";
 		String ref = " ref:refName[" + refText + "]";
 		XdocFile file = getDoc(head + anchor + fill + ref);
-		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getSections().get(0)
+		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getMainSection()
 				.getContents().get(0);
 		assertEquals(4, textOrMarkup.getContents().size());
 		Anchor a = (Anchor) textOrMarkup.getContents().get(1);
@@ -94,7 +94,7 @@ public class ParserTest extends AbstractXtextTests {
 
 	public void testCode() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "codeTest.xdoc");
-		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getSections().get(0)
+		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getMainSection()
 				.getContents().get(0);
 		assertEquals(1, textOrMarkup.getContents().size());
 		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
@@ -103,7 +103,7 @@ public class ParserTest extends AbstractXtextTests {
 				+ "public static void main(String\\[\\] args){\n"
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
 				code.getContents());
-		textOrMarkup = (TextOrMarkup) file.getSections().get(0)
+		textOrMarkup = (TextOrMarkup) file.getMainSection()
 				.getContents().get(1);
 		cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		assertEquals(0, cb.getContents().size());
@@ -112,25 +112,25 @@ public class ParserTest extends AbstractXtextTests {
 	public void testCodeWithLanguage() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR
 				+ "codeWithLanguageTest.xdoc");
-		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getSections().get(0)
-				.getContents().get(0);
+		Document abstractSection = (Document) file.getMainSection();
+		TextOrMarkup textOrMarkup = (TextOrMarkup) abstractSection.getChapters().get(0).getContents().get(0);
 		assertEquals(1, textOrMarkup.getContents().size());
 		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		assertEquals("\nclass Foo {\n"
 				+ "public static void main(String\\[\\] args){\n"
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
 				((Code) cb.getContents().get(0)).getContents());
-		assertEquals("Java", cb.getLanguage());
+		assertEquals("Java", cb.getLanguage().getName());
 	}
 
 	public void testComment() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "commentTest.xdoc");
-		assertEquals(1, file.getSections().get(0).getContents().size());
+		assertEquals(1, file.getMainSection().getContents().size());
 	}
 
 	public void testLink() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "linkTest.xdoc");
-		Link link = (Link) ((TextOrMarkup) file.getSections().get(0)
+		Link link = (Link) ((TextOrMarkup) file.getMainSection()
 				.getContents().get(0)).getContents().get(0);
 		URL url;
 		url = new URL(link.getUrl());
@@ -141,17 +141,16 @@ public class ParserTest extends AbstractXtextTests {
 	public void testNamedReference() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR
 				+ "namedRefAndTextTest.xdoc");
-		Ref r = (Ref) ((TextOrMarkup) file.getSections().get(0).getContents()
+		Ref r = (Ref) ((TextOrMarkup) file.getMainSection().getContents()
 				.get(0)).getContents().get(0);
-		assertEquals(file.getSections().get(0), r.getRef());
+		assertEquals(file.getMainSection(), r.getRef());
 		assertEquals("a Chapter", ((TextPart) r.getContents().get(0)
 				.getContents().get(0)).getText());
 	}
 
 	public void testNestedList() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "nestedListTest.xdoc");
-		UnorderedList outer = (UnorderedList) ((TextOrMarkup) file.getSections()
-				.get(0).getContents().get(0)).getContents().get(0);
+		UnorderedList outer = (UnorderedList) ((TextOrMarkup) file.getMainSection().getContents().get(0)).getContents().get(0);
 		List<Item> items = outer.getItems();
 		assertEquals(1, items.size());
 		List<TextOrMarkup> itemContents = items.get(0).getContents();
@@ -172,41 +171,22 @@ public class ParserTest extends AbstractXtextTests {
 
 	public void testSimpleRef() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "simpleRefTest.xdoc");
-		List<AbstractSection> sections = file.getSections();
-		assertEquals(1, sections.size());
-		List<TextOrMarkup> contents = sections.get(0).getContents();
+		AbstractSection section = file.getMainSection();
+		List<TextOrMarkup> contents = section.getContents();
 		assertEquals(1, contents.size());
 		TextOrMarkup textOrMarkup = contents.get(0);
 		assertEquals(2, textOrMarkup.getContents().size());
 		assertEquals("This is ", ((TextPart)textOrMarkup.getContents().get(0)).getText());
-		assertEquals(sections.get(0), ((Ref)textOrMarkup.getContents().get(1)).getRef());
+		assertEquals(section, ((Ref)textOrMarkup.getContents().get(1)).getRef());
 	}
 
 	public void testEscape() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "testEscape.xdoc");
-		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getSections().get(0)
+		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getMainSection()
 				.getContents().get(0);
 		assertEquals(1, textOrMarkup.getContents().size());
 		TextPart p = (TextPart) textOrMarkup.getContents().get(0);
 		assertEquals("\\\\ \\[ \\]", p.getText());
-	}
-
-	public void testTwoChaptersXRef() throws Exception {
-		XdocFile file = getDocFromFile(TEST_FILE_DIR + "twoChapters.xdoc");
-		assertEquals(2, file.getSections().size());
-		Chapter chapter1 = (Chapter) file.getSections().get(1);
-		TextOrMarkup textOrMarkup = (TextOrMarkup) chapter1.getContents()
-				.get(0);
-		assertEquals(4, textOrMarkup.getContents().size());
-		Ref ref = (Ref) textOrMarkup.getContents().get(1);
-		Identifiable chapterRef = ref.getRef();
-		Chapter chapter0 = (Chapter) file.getSections().get(0);
-		assertEquals(chapter0, chapterRef);
-		TextOrMarkup textOrMarkup2 = (TextOrMarkup) chapter0.getContents().get(0);
-		assertEquals(2, textOrMarkup2.getContents().size());
-		EObject anchor = textOrMarkup2.getContents().get(1);
-		Identifiable anchorRef = ((Ref) textOrMarkup.getContents().get(3)).getRef();
-		assertEquals(anchor, anchorRef);
 	}
 
 	public void testImg() throws Exception {
@@ -215,8 +195,7 @@ public class ParserTest extends AbstractXtextTests {
 
 	public void testUL() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "ulTest.xdoc");
-		assertEquals(1, file.getSections().size());
-		Chapter chapter = (Chapter) file.getSections().get(0);
+		Chapter chapter = (Chapter) file.getMainSection();
 		List<TextOrMarkup> contents = chapter.getContents();
 		assertEquals(1, contents.size());
 		TextOrMarkup textOrMarkup = contents.get(0);
@@ -248,7 +227,7 @@ public class ParserTest extends AbstractXtextTests {
 		String d = head + tableStart + row +"td["+ dataString + DNL+dataString2+
 			closeBracket + "td[]" + closeBracket + closeBracket;
 		XdocFile file = getDoc(d);
-		EList<TextOrMarkup> textOrMarkup = file.getSections().get(0).getContents();
+		EList<TextOrMarkup> textOrMarkup = file.getMainSection().getContents();
 		assertEquals(1, textOrMarkup.size());
 		Table t = (Table)textOrMarkup.get(0).getContents().get(0);
 		assertEquals(1, t.getRows().size());

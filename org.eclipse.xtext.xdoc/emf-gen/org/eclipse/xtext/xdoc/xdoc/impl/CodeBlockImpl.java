@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 /**
@@ -31,8 +32,8 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#getLanguage <em>Language</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#getContents <em>Contents</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#getLanguage <em>Language</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,26 +41,6 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  */
 public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 {
-	/**
-	 * The default value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String LANGUAGE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLanguage()
-	 * @generated
-	 * @ordered
-	 */
-	protected String language = LANGUAGE_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getContents() <em>Contents</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -69,6 +50,16 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	 * @ordered
 	 */
 	protected EList<EObject> contents;
+
+	/**
+	 * The cached value of the '{@link #getLanguage() <em>Language</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLanguage()
+	 * @generated
+	 * @ordered
+	 */
+	protected LangDef language;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,7 +87,41 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getLanguage()
+	public EList<EObject> getContents()
+	{
+		if (contents == null)
+		{
+			contents = new EObjectContainmentEList<EObject>(EObject.class, this, XdocPackage.CODE_BLOCK__CONTENTS);
+		}
+		return contents;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LangDef getLanguage()
+	{
+		if (language != null && language.eIsProxy())
+		{
+			InternalEObject oldLanguage = (InternalEObject)language;
+			language = (LangDef)eResolveProxy(oldLanguage);
+			if (language != oldLanguage)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XdocPackage.CODE_BLOCK__LANGUAGE, oldLanguage, language));
+			}
+		}
+		return language;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public LangDef basicGetLanguage()
 	{
 		return language;
 	}
@@ -106,26 +131,12 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLanguage(String newLanguage)
+	public void setLanguage(LangDef newLanguage)
 	{
-		String oldLanguage = language;
+		LangDef oldLanguage = language;
 		language = newLanguage;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.CODE_BLOCK__LANGUAGE, oldLanguage, language));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<EObject> getContents()
-	{
-		if (contents == null)
-		{
-			contents = new EObjectContainmentEList<EObject>(EObject.class, this, XdocPackage.CODE_BLOCK__CONTENTS);
-		}
-		return contents;
 	}
 
 	/**
@@ -154,10 +165,11 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	{
 		switch (featureID)
 		{
-			case XdocPackage.CODE_BLOCK__LANGUAGE:
-				return getLanguage();
 			case XdocPackage.CODE_BLOCK__CONTENTS:
 				return getContents();
+			case XdocPackage.CODE_BLOCK__LANGUAGE:
+				if (resolve) return getLanguage();
+				return basicGetLanguage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -173,12 +185,12 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	{
 		switch (featureID)
 		{
-			case XdocPackage.CODE_BLOCK__LANGUAGE:
-				setLanguage((String)newValue);
-				return;
 			case XdocPackage.CODE_BLOCK__CONTENTS:
 				getContents().clear();
 				getContents().addAll((Collection<? extends EObject>)newValue);
+				return;
+			case XdocPackage.CODE_BLOCK__LANGUAGE:
+				setLanguage((LangDef)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -194,11 +206,11 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	{
 		switch (featureID)
 		{
-			case XdocPackage.CODE_BLOCK__LANGUAGE:
-				setLanguage(LANGUAGE_EDEFAULT);
-				return;
 			case XdocPackage.CODE_BLOCK__CONTENTS:
 				getContents().clear();
+				return;
+			case XdocPackage.CODE_BLOCK__LANGUAGE:
+				setLanguage((LangDef)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -214,29 +226,12 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	{
 		switch (featureID)
 		{
-			case XdocPackage.CODE_BLOCK__LANGUAGE:
-				return LANGUAGE_EDEFAULT == null ? language != null : !LANGUAGE_EDEFAULT.equals(language);
 			case XdocPackage.CODE_BLOCK__CONTENTS:
 				return contents != null && !contents.isEmpty();
+			case XdocPackage.CODE_BLOCK__LANGUAGE:
+				return language != null;
 		}
 		return super.eIsSet(featureID);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString()
-	{
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (language: ");
-		result.append(language);
-		result.append(')');
-		return result.toString();
 	}
 
 } //CodeBlockImpl

@@ -1,0 +1,31 @@
+«IMPORT org::eclipse::xtext::xdoc::xdoc»
+«IMPORT org::eclipse::emf::ecore»
+
+«EXTENSION templates::Extensions»
+«EXTENSION templates::eclipsehelp::Util»
+
+«DEFINE toc FOR Document»
+«IF !chapters.isEmpty»
+«FILE "toc.xml"-»
+<toc topic="contents/«fileName(chapters.first())».html" label="«EXPAND genPlainText FOR title»">
+«EXPAND genTocEntry FOREACH chapters-»
+</toc>
+«ENDFILE»
+«ENDIF»
+«ENDDEFINE»
+
+«DEFINE genTocEntry FOR AbstractSection-»
+<topic href="contents/«fileName(this)».html«urlSuffix()»" label="«EXPAND genPlainText FOR this.title»" >
+«EXPAND genTocEntry FOREACH subSections()-»
+</topic>
+«ENDDEFINE»
+
+«DEFINE genPlainText FOR TextOrMarkup»«EXPAND genPlainText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genPlainText FOR TextPart»«this.text»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Emphasize»«EXPAND genPlainText FOREACH this.contents»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Link»«this.text»«ENDDEFINE»
+
+«DEFINE genPlainText FOR Object»«ENDDEFINE»

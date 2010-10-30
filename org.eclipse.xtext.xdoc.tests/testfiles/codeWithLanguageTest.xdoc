@@ -1,3 +1,7 @@
+document[Main]
+
+codelanguage-def[Java][]
+
 chapter[Dummy Title]
 
 code[Java][

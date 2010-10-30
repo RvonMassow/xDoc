@@ -1,0 +1,40 @@
+import org::eclipse::xtext::xdoc::xdoc;
+import org::eclipse::emf::ecore;
+
+// eclipse help helpers
+String fileName(ChapterRef obj):
+	fileName(obj.chapter);
+	
+String fileName(SectionRef obj):
+	fileName(obj.section);
+
+String fileName(EObject obj):
+	obj.eResource().URI.lastSegment();
+
+urlSuffix(ChapterRef this) :
+	urlSuffix(chapter);
+	
+urlSuffix(SectionRef this) :
+	urlSuffix(section);
+
+urlSuffix(AbstractSection this) :
+	if (XdocFile.isInstance(eContainer())) 
+		then ""
+		else "#"+labelName();
+
+labelName(Object any):
+	"";
+
+labelName(AbstractSection this):
+	if name!=null
+		then name
+		else labelName(eContainer())+"-"+eContainer().eContents().indexOf(this);
+
+subSections(ChapterRef this) :
+	subSections(chapter);
+	
+subSections(SectionRef this) :
+	subSections(section);
+
+subSections(AbstractSection this) :
+	eContents().typeSelect(AbstractSection);

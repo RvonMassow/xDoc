@@ -19,7 +19,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getAuthors <em>Authors</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getChapters <em>Chapters</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getLangDefs <em>Lang Defs</em>}</li>
- *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getDefaultLang <em>Default Lang</em>}</li>
  * </ul>
  * </p>
  *
@@ -112,31 +111,5 @@ public interface Document extends AbstractSection
 	 * @generated
 	 */
 	EList<LangDef> getLangDefs();
-
-	/**
-	 * Returns the value of the '<em><b>Default Lang</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default Lang</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Lang</em>' attribute.
-	 * @see #setDefaultLang(String)
-	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getDocument_DefaultLang()
-	 * @model
-	 * @generated
-	 */
-	String getDefaultLang();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.Document#getDefaultLang <em>Default Lang</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Lang</em>' attribute.
-	 * @see #getDefaultLang()
-	 * @generated
-	 */
-	void setDefaultLang(String value);
 
 } // Document
