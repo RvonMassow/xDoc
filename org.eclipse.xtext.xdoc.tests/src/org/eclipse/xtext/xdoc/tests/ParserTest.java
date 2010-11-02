@@ -30,7 +30,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 public class ParserTest extends AbstractXtextTests {
 
-	private static final String TEST_FILE_DIR = "testfiles"
+	public static final String TEST_FILE_DIR = "testfiles"
 			+ File.separatorChar;
 	private static final String DNL = "\n\n";
 	private static final String head = "chapter[foo]\n\n";

@@ -1,6 +1,6 @@
 document[Main]
 
-codelanguage-def[Java][]
+codelanguage-def[Java][class, public, static, void]
 
 chapter[Dummy Title]
 
