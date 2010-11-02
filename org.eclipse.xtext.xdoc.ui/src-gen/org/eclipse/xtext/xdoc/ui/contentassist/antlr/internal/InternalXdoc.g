@@ -7067,9 +7067,9 @@ rule__ImageRef__Group__5__Impl
     }
 :
 (
-{ before(grammarAccess.getImageRefAccess().getClazzAssignment_5()); }
-(rule__ImageRef__ClazzAssignment_5)?
-{ after(grammarAccess.getImageRefAccess().getClazzAssignment_5()); }
+{ before(grammarAccess.getImageRefAccess().getCaptionAssignment_5()); }
+(rule__ImageRef__CaptionAssignment_5)?
+{ after(grammarAccess.getImageRefAccess().getCaptionAssignment_5()); }
 )
 
 ;
@@ -7187,9 +7187,9 @@ rule__ImageRef__Group__9__Impl
     }
 :
 (
-{ before(grammarAccess.getImageRefAccess().getStyleAssignment_9()); }
-(rule__ImageRef__StyleAssignment_9)?
-{ after(grammarAccess.getImageRefAccess().getStyleAssignment_9()); }
+{ before(grammarAccess.getImageRefAccess().getClazzAssignment_9()); }
+(rule__ImageRef__ClazzAssignment_9)?
+{ after(grammarAccess.getImageRefAccess().getClazzAssignment_9()); }
 )
 
 ;
@@ -7307,9 +7307,9 @@ rule__ImageRef__Group__13__Impl
     }
 :
 (
-{ before(grammarAccess.getImageRefAccess().getCaptionAssignment_13()); }
-(rule__ImageRef__CaptionAssignment_13)?
-{ after(grammarAccess.getImageRefAccess().getCaptionAssignment_13()); }
+{ before(grammarAccess.getImageRefAccess().getStyleAssignment_13()); }
+(rule__ImageRef__StyleAssignment_13)?
+{ after(grammarAccess.getImageRefAccess().getStyleAssignment_13()); }
 )
 
 ;
@@ -9752,14 +9752,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImageRef__ClazzAssignment_5
+rule__ImageRef__CaptionAssignment_5
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_5_0()); }
-	ruleText{ after(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_5_0()); }
+{ before(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_5_0()); }
+	ruleText{ after(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_5_0()); }
 )
 
 ;
@@ -9767,14 +9767,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImageRef__StyleAssignment_9
+rule__ImageRef__ClazzAssignment_9
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0()); }
-	ruleText{ after(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0()); }
+{ before(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_9_0()); }
+	ruleText{ after(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_9_0()); }
 )
 
 ;
@@ -9782,14 +9782,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__ImageRef__CaptionAssignment_13
+rule__ImageRef__StyleAssignment_13
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_13_0()); }
-	ruleText{ after(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_13_0()); }
+{ before(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_13_0()); }
+	ruleText{ after(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_13_0()); }
 )
 
 ;

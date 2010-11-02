@@ -25,49 +25,49 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_WS", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_MULTI_NL", "RULE_SL_COMMENT", "'chapter['", "'section['", "'section2['", "'section3['", "'section4['", "'\\\\['", "'\\\\]'", "','", "'img['", "'document['", "']'", "'subtitle['", "'authors['", "'chapter:'", "'['", "'chapter-ref['", "'section:'", "'section-ref['", "'section2:'", "'section3:'", "'section4:'", "'table['", "'tr['", "'td['", "'e['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'code['", "'todo['", "'codelanguage-def['"
     };
-    public static final int T__42=42;
-    public static final int T__12=12;
-    public static final int T__28=28;
-    public static final int T__23=23;
-    public static final int T__13=13;
-    public static final int T__21=21;
-    public static final int T__19=19;
-    public static final int T__39=39;
-    public static final int T__30=30;
-    public static final int T__17=17;
-    public static final int RULE_MULTI_NL=8;
-    public static final int T__27=27;
-    public static final int T__24=24;
-    public static final int T__10=10;
-    public static final int T__34=34;
-    public static final int T__15=15;
-    public static final int T__35=35;
     public static final int RULE_ID=4;
-    public static final int T__36=36;
-    public static final int T__20=20;
-    public static final int T__44=44;
-    public static final int T__14=14;
-    public static final int T__33=33;
-    public static final int T__22=22;
-    public static final int T__11=11;
     public static final int T__29=29;
-    public static final int T__45=45;
-    public static final int RULE_WS=5;
-    public static final int T__43=43;
-    public static final int T__31=31;
-    public static final int T__40=40;
-    public static final int EOF=-1;
-    public static final int T__16=16;
-    public static final int T__32=32;
-    public static final int RULE_SINGLE_NL=6;
-    public static final int T__38=38;
-    public static final int T__37=37;
+    public static final int T__28=28;
+    public static final int T__27=27;
     public static final int T__26=26;
-    public static final int RULE_ANY_OTHER=7;
     public static final int T__25=25;
-    public static final int RULE_SL_COMMENT=9;
-    public static final int T__41=41;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
+    public static final int T__21=21;
+    public static final int RULE_ANY_OTHER=7;
+    public static final int T__20=20;
+    public static final int EOF=-1;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__15=15;
     public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int T__10=10;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int RULE_MULTI_NL=8;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_SINGLE_NL=6;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=5;
 
     // delegates
     // delegators
@@ -4344,11 +4344,6 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
                     }
                     else if ( (LA19_2==20) ) {
                         switch ( input.LA(4) ) {
-                        case EOF:
-                            {
-                            alt19=2;
-                            }
-                            break;
                         case RULE_MULTI_NL:
                             {
                             int LA19_5 = input.LA(5);
@@ -4372,6 +4367,11 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
                         case 24:
                             {
                             alt19=1;
+                            }
+                            break;
+                        case EOF:
+                            {
+                            alt19=2;
                             }
                             break;
                         default:
@@ -19487,20 +19487,20 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImageRef__Group__5__Impl"
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7064:1: rule__ImageRef__Group__5__Impl : ( ( rule__ImageRef__ClazzAssignment_5 )? ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7064:1: rule__ImageRef__Group__5__Impl : ( ( rule__ImageRef__CaptionAssignment_5 )? ) ;
     public final void rule__ImageRef__Group__5__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7068:1: ( ( ( rule__ImageRef__ClazzAssignment_5 )? ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7069:1: ( ( rule__ImageRef__ClazzAssignment_5 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7068:1: ( ( ( rule__ImageRef__CaptionAssignment_5 )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7069:1: ( ( rule__ImageRef__CaptionAssignment_5 )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7069:1: ( ( rule__ImageRef__ClazzAssignment_5 )? )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7070:1: ( rule__ImageRef__ClazzAssignment_5 )?
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7069:1: ( ( rule__ImageRef__CaptionAssignment_5 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7070:1: ( rule__ImageRef__CaptionAssignment_5 )?
             {
-             before(grammarAccess.getImageRefAccess().getClazzAssignment_5()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7071:1: ( rule__ImageRef__ClazzAssignment_5 )?
+             before(grammarAccess.getImageRefAccess().getCaptionAssignment_5()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7071:1: ( rule__ImageRef__CaptionAssignment_5 )?
             int alt72=2;
             int LA72_0 = input.LA(1);
 
@@ -19509,10 +19509,10 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             }
             switch (alt72) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7071:2: rule__ImageRef__ClazzAssignment_5
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7071:2: rule__ImageRef__CaptionAssignment_5
                     {
-                    pushFollow(FOLLOW_rule__ImageRef__ClazzAssignment_5_in_rule__ImageRef__Group__5__Impl14305);
-                    rule__ImageRef__ClazzAssignment_5();
+                    pushFollow(FOLLOW_rule__ImageRef__CaptionAssignment_5_in_rule__ImageRef__Group__5__Impl14305);
+                    rule__ImageRef__CaptionAssignment_5();
 
                     state._fsp--;
 
@@ -19522,7 +19522,7 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getImageRefAccess().getClazzAssignment_5()); 
+             after(grammarAccess.getImageRefAccess().getCaptionAssignment_5()); 
 
             }
 
@@ -19836,20 +19836,20 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImageRef__Group__9__Impl"
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7184:1: rule__ImageRef__Group__9__Impl : ( ( rule__ImageRef__StyleAssignment_9 )? ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7184:1: rule__ImageRef__Group__9__Impl : ( ( rule__ImageRef__ClazzAssignment_9 )? ) ;
     public final void rule__ImageRef__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7188:1: ( ( ( rule__ImageRef__StyleAssignment_9 )? ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7189:1: ( ( rule__ImageRef__StyleAssignment_9 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7188:1: ( ( ( rule__ImageRef__ClazzAssignment_9 )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7189:1: ( ( rule__ImageRef__ClazzAssignment_9 )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7189:1: ( ( rule__ImageRef__StyleAssignment_9 )? )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7190:1: ( rule__ImageRef__StyleAssignment_9 )?
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7189:1: ( ( rule__ImageRef__ClazzAssignment_9 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7190:1: ( rule__ImageRef__ClazzAssignment_9 )?
             {
-             before(grammarAccess.getImageRefAccess().getStyleAssignment_9()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7191:1: ( rule__ImageRef__StyleAssignment_9 )?
+             before(grammarAccess.getImageRefAccess().getClazzAssignment_9()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7191:1: ( rule__ImageRef__ClazzAssignment_9 )?
             int alt74=2;
             int LA74_0 = input.LA(1);
 
@@ -19858,10 +19858,10 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             }
             switch (alt74) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7191:2: rule__ImageRef__StyleAssignment_9
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7191:2: rule__ImageRef__ClazzAssignment_9
                     {
-                    pushFollow(FOLLOW_rule__ImageRef__StyleAssignment_9_in_rule__ImageRef__Group__9__Impl14552);
-                    rule__ImageRef__StyleAssignment_9();
+                    pushFollow(FOLLOW_rule__ImageRef__ClazzAssignment_9_in_rule__ImageRef__Group__9__Impl14552);
+                    rule__ImageRef__ClazzAssignment_9();
 
                     state._fsp--;
 
@@ -19871,7 +19871,7 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getImageRefAccess().getStyleAssignment_9()); 
+             after(grammarAccess.getImageRefAccess().getClazzAssignment_9()); 
 
             }
 
@@ -20185,20 +20185,20 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__ImageRef__Group__13__Impl"
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7304:1: rule__ImageRef__Group__13__Impl : ( ( rule__ImageRef__CaptionAssignment_13 )? ) ;
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7304:1: rule__ImageRef__Group__13__Impl : ( ( rule__ImageRef__StyleAssignment_13 )? ) ;
     public final void rule__ImageRef__Group__13__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7308:1: ( ( ( rule__ImageRef__CaptionAssignment_13 )? ) )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7309:1: ( ( rule__ImageRef__CaptionAssignment_13 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7308:1: ( ( ( rule__ImageRef__StyleAssignment_13 )? ) )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7309:1: ( ( rule__ImageRef__StyleAssignment_13 )? )
             {
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7309:1: ( ( rule__ImageRef__CaptionAssignment_13 )? )
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7310:1: ( rule__ImageRef__CaptionAssignment_13 )?
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7309:1: ( ( rule__ImageRef__StyleAssignment_13 )? )
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7310:1: ( rule__ImageRef__StyleAssignment_13 )?
             {
-             before(grammarAccess.getImageRefAccess().getCaptionAssignment_13()); 
-            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7311:1: ( rule__ImageRef__CaptionAssignment_13 )?
+             before(grammarAccess.getImageRefAccess().getStyleAssignment_13()); 
+            // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7311:1: ( rule__ImageRef__StyleAssignment_13 )?
             int alt76=2;
             int LA76_0 = input.LA(1);
 
@@ -20207,10 +20207,10 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             }
             switch (alt76) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7311:2: rule__ImageRef__CaptionAssignment_13
+                    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:7311:2: rule__ImageRef__StyleAssignment_13
                     {
-                    pushFollow(FOLLOW_rule__ImageRef__CaptionAssignment_13_in_rule__ImageRef__Group__13__Impl14799);
-                    rule__ImageRef__CaptionAssignment_13();
+                    pushFollow(FOLLOW_rule__ImageRef__StyleAssignment_13_in_rule__ImageRef__Group__13__Impl14799);
+                    rule__ImageRef__StyleAssignment_13();
 
                     state._fsp--;
 
@@ -20220,7 +20220,7 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getImageRefAccess().getCaptionAssignment_13()); 
+             after(grammarAccess.getImageRefAccess().getStyleAssignment_13()); 
 
             }
 
@@ -26783,9 +26783,9 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__ImageRef__PathAssignment_1"
 
 
-    // $ANTLR start "rule__ImageRef__ClazzAssignment_5"
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9755:1: rule__ImageRef__ClazzAssignment_5 : ( ruleText ) ;
-    public final void rule__ImageRef__ClazzAssignment_5() throws RecognitionException {
+    // $ANTLR start "rule__ImageRef__CaptionAssignment_5"
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9755:1: rule__ImageRef__CaptionAssignment_5 : ( ruleText ) ;
+    public final void rule__ImageRef__CaptionAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -26796,13 +26796,13 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9760:1: ( ruleText )
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9761:1: ruleText
             {
-             before(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__ClazzAssignment_519700);
+             before(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_5_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__CaptionAssignment_519700);
             ruleText();
 
             state._fsp--;
 
-             after(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_5_0()); 
+             after(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_5_0()); 
 
             }
 
@@ -26821,12 +26821,12 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImageRef__ClazzAssignment_5"
+    // $ANTLR end "rule__ImageRef__CaptionAssignment_5"
 
 
-    // $ANTLR start "rule__ImageRef__StyleAssignment_9"
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9770:1: rule__ImageRef__StyleAssignment_9 : ( ruleText ) ;
-    public final void rule__ImageRef__StyleAssignment_9() throws RecognitionException {
+    // $ANTLR start "rule__ImageRef__ClazzAssignment_9"
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9770:1: rule__ImageRef__ClazzAssignment_9 : ( ruleText ) ;
+    public final void rule__ImageRef__ClazzAssignment_9() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -26837,13 +26837,13 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9775:1: ( ruleText )
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9776:1: ruleText
             {
-             before(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0()); 
-            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__StyleAssignment_919731);
+             before(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_9_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__ClazzAssignment_919731);
             ruleText();
 
             state._fsp--;
 
-             after(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0()); 
+             after(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_9_0()); 
 
             }
 
@@ -26862,12 +26862,12 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImageRef__StyleAssignment_9"
+    // $ANTLR end "rule__ImageRef__ClazzAssignment_9"
 
 
-    // $ANTLR start "rule__ImageRef__CaptionAssignment_13"
-    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9785:1: rule__ImageRef__CaptionAssignment_13 : ( ruleText ) ;
-    public final void rule__ImageRef__CaptionAssignment_13() throws RecognitionException {
+    // $ANTLR start "rule__ImageRef__StyleAssignment_13"
+    // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9785:1: rule__ImageRef__StyleAssignment_13 : ( ruleText ) ;
+    public final void rule__ImageRef__StyleAssignment_13() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -26878,13 +26878,13 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9790:1: ( ruleText )
             // ../org.eclipse.xtext.xdoc.ui/src-gen/org/eclipse/xtext/xdoc/ui/contentassist/antlr/internal/InternalXdoc.g:9791:1: ruleText
             {
-             before(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_13_0()); 
-            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__CaptionAssignment_1319762);
+             before(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_13_0()); 
+            pushFollow(FOLLOW_ruleText_in_rule__ImageRef__StyleAssignment_1319762);
             ruleText();
 
             state._fsp--;
 
-             after(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_13_0()); 
+             after(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_13_0()); 
 
             }
 
@@ -26903,7 +26903,7 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__ImageRef__CaptionAssignment_13"
+    // $ANTLR end "rule__ImageRef__StyleAssignment_13"
 
 
     // $ANTLR start "rule__CodeBlock__LanguageAssignment_2_1"
@@ -27661,41 +27661,41 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     static final String[] DFA79_transitionS = {
             "\1\4\1\3\1\2\1\5\1\1\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5\7"+
             "\uffff\1\5",
-            "\1\6\1\11\1\10\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
+            "\1\6\1\10\1\11\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\6\1\11\1\10\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
+            "\1\6\1\10\1\11\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\6\1\11\1\10\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
+            "\1\6\1\10\1\11\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\5\1\14\1\13\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\13\1\14\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
             "",
-            "\1\5\1\14\1\13\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\13\1\14\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
-            "\1\6\1\11\1\10\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
+            "\1\6\1\10\1\11\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\6\1\11\1\10\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
+            "\1\6\1\10\1\11\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\6\1\11\1\10\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
+            "\1\6\1\10\1\11\1\5\1\7\6\uffff\3\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\5\1\14\1\13\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\13\1\14\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
-            "\1\5\1\14\1\13\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\13\1\14\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
-            "\1\5\1\14\1\13\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\13\1\14\1\5\1\12\6\uffff\3\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
             "\1\5\1\16\1\17\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
             "\1\5\1\24\1\25\1\5\1\21\1\uffff\11\5\1\uffff\1\5\2\uffff\1"+
             "\5\1\21\7\5\2\uffff\5\5\1\uffff\5\5",
             "",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
             "\1\5\1\26\1\27\1\5\1\30\6\uffff\4\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
@@ -28370,7 +28370,7 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_24_in_rule__ImageRef__Group__4__Impl14244 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__5__Impl_in_rule__ImageRef__Group__514275 = new BitSet(new long[]{0x00000000001380F0L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__6_in_rule__ImageRef__Group__514278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__ClazzAssignment_5_in_rule__ImageRef__Group__5__Impl14305 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__CaptionAssignment_5_in_rule__ImageRef__Group__5__Impl14305 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__6__Impl_in_rule__ImageRef__Group__614336 = new BitSet(new long[]{0x0000000001000160L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__7_in_rule__ImageRef__Group__614339 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_20_in_rule__ImageRef__Group__6__Impl14367 = new BitSet(new long[]{0x0000000000000002L});
@@ -28382,7 +28382,7 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_24_in_rule__ImageRef__Group__8__Impl14491 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__9__Impl_in_rule__ImageRef__Group__914522 = new BitSet(new long[]{0x00000000001380F0L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__10_in_rule__ImageRef__Group__914525 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__StyleAssignment_9_in_rule__ImageRef__Group__9__Impl14552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__ClazzAssignment_9_in_rule__ImageRef__Group__9__Impl14552 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__10__Impl_in_rule__ImageRef__Group__1014583 = new BitSet(new long[]{0x0000000001000160L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__11_in_rule__ImageRef__Group__1014586 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_20_in_rule__ImageRef__Group__10__Impl14614 = new BitSet(new long[]{0x0000000000000002L});
@@ -28394,7 +28394,7 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_24_in_rule__ImageRef__Group__12__Impl14738 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__13__Impl_in_rule__ImageRef__Group__1314769 = new BitSet(new long[]{0x00000000001380F0L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__14_in_rule__ImageRef__Group__1314772 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ImageRef__CaptionAssignment_13_in_rule__ImageRef__Group__13__Impl14799 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImageRef__StyleAssignment_13_in_rule__ImageRef__Group__13__Impl14799 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ImageRef__Group__14__Impl_in_rule__ImageRef__Group__1414830 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_20_in_rule__ImageRef__Group__14__Impl14858 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ImageRef__Group_0_0__0__Impl_in_rule__ImageRef__Group_0_0__014919 = new BitSet(new long[]{0x0000000000000170L});
@@ -28584,9 +28584,9 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_ruleText_in_rule__Link__TextAssignment_619607 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__ImageRef__NameAssignment_0_0_219638 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__PathAssignment_119669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__ClazzAssignment_519700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__StyleAssignment_919731 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__CaptionAssignment_1319762 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__CaptionAssignment_519700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__ClazzAssignment_919731 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleText_in_rule__ImageRef__StyleAssignment_1319762 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__CodeBlock__LanguageAssignment_2_119797 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleCode_in_rule__CodeBlock__ContentsAssignment_3_0_019832 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleMarkupInCode_in_rule__CodeBlock__ContentsAssignment_3_0_1_019863 = new BitSet(new long[]{0x0000000000000002L});

@@ -120,6 +120,15 @@ EXPAND genNonParContent FOR title»</h1>
 <em>«EXPAND genNonParContent FOREACH contents»</em>«
 ENDDEFINE»
 
+«DEFINE genText FOR ImageRef-»
+<div class="image" >
+«IF this.name != null»«EXPAND genLabel FOR this.name»
+«ENDIF-»
+<img src="«this.path.unescapeXdocChars()»" class="«this.clazz.unescapeXdocChars()»" />
+«escapeHTMLChars(unescapeXdocChars(this.caption))»
+</div>«
+ENDDEFINE»
+
 «DEFINE genText FOR Ref»
 «IF contents.isEmpty-»
 <a href="«fileName(ref)».html#«ref.name»">section «ref.name»</a>«

@@ -1377,28 +1377,28 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		private final RuleCall cANY_WSParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		private final Keyword cLeftSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cClazzAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cClazzTextParserRuleCall_5_0 = (RuleCall)cClazzAssignment_5.eContents().get(0);
+		private final Assignment cCaptionAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cCaptionTextParserRuleCall_5_0 = (RuleCall)cCaptionAssignment_5.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final RuleCall cANY_WSParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
 		private final Keyword cLeftSquareBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Assignment cStyleAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cStyleTextParserRuleCall_9_0 = (RuleCall)cStyleAssignment_9.eContents().get(0);
+		private final Assignment cClazzAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cClazzTextParserRuleCall_9_0 = (RuleCall)cClazzAssignment_9.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final RuleCall cANY_WSParserRuleCall_11 = (RuleCall)cGroup.eContents().get(11);
 		private final Keyword cLeftSquareBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Assignment cCaptionAssignment_13 = (Assignment)cGroup.eContents().get(13);
-		private final RuleCall cCaptionTextParserRuleCall_13_0 = (RuleCall)cCaptionAssignment_13.eContents().get(0);
+		private final Assignment cStyleAssignment_13 = (Assignment)cGroup.eContents().get(13);
+		private final RuleCall cStyleTextParserRuleCall_13_0 = (RuleCall)cStyleAssignment_13.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		
 		//// Don't think this was the discussed syntax
 		//ImageRef:
 		//	("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
-		//	clazz=Text? "]" ANY_WS* "[" style=Text? "]" ANY_WS* "[" caption=Text? "]";
+		//	caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]";
 		public ParserRule getRule() { return rule; }
 
 		//("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
-		//clazz=Text? "]" ANY_WS* "[" style=Text? "]" ANY_WS* "[" caption=Text? "]"
+		//caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]"
 		public Group getGroup() { return cGroup; }
 
 		//"img:" ANY_WS* name=ID ANY_WS* "[" | "img["
@@ -1443,11 +1443,11 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_4() { return cLeftSquareBracketKeyword_4; }
 
-		//clazz=Text?
-		public Assignment getClazzAssignment_5() { return cClazzAssignment_5; }
+		//caption=Text?
+		public Assignment getCaptionAssignment_5() { return cCaptionAssignment_5; }
 
 		//Text
-		public RuleCall getClazzTextParserRuleCall_5_0() { return cClazzTextParserRuleCall_5_0; }
+		public RuleCall getCaptionTextParserRuleCall_5_0() { return cCaptionTextParserRuleCall_5_0; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_6() { return cRightSquareBracketKeyword_6; }
@@ -1458,11 +1458,11 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_8() { return cLeftSquareBracketKeyword_8; }
 
-		//style=Text?
-		public Assignment getStyleAssignment_9() { return cStyleAssignment_9; }
+		//clazz=Text?
+		public Assignment getClazzAssignment_9() { return cClazzAssignment_9; }
 
 		//Text
-		public RuleCall getStyleTextParserRuleCall_9_0() { return cStyleTextParserRuleCall_9_0; }
+		public RuleCall getClazzTextParserRuleCall_9_0() { return cClazzTextParserRuleCall_9_0; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_10() { return cRightSquareBracketKeyword_10; }
@@ -1473,11 +1473,11 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_12() { return cLeftSquareBracketKeyword_12; }
 
-		//caption=Text?
-		public Assignment getCaptionAssignment_13() { return cCaptionAssignment_13; }
+		//style=Text?
+		public Assignment getStyleAssignment_13() { return cStyleAssignment_13; }
 
 		//Text
-		public RuleCall getCaptionTextParserRuleCall_13_0() { return cCaptionTextParserRuleCall_13_0; }
+		public RuleCall getStyleTextParserRuleCall_13_0() { return cStyleTextParserRuleCall_13_0; }
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_14() { return cRightSquareBracketKeyword_14; }
@@ -2188,7 +2188,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	//// Don't think this was the discussed syntax
 	//ImageRef:
 	//	("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
-	//	clazz=Text? "]" ANY_WS* "[" style=Text? "]" ANY_WS* "[" caption=Text? "]";
+	//	caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]";
 	public ImageRefElements getImageRefAccess() {
 		return (pImageRef != null) ? pImageRef : (pImageRef = new ImageRefElements());
 	}

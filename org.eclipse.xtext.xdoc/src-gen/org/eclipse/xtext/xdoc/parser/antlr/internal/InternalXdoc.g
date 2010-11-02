@@ -2596,9 +2596,9 @@ ruleANY_WS
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_5_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_5_0(), currentNode); 
 	    }
-		lv_clazz_10_0=ruleText		{
+		lv_caption_10_0=ruleText		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -2606,8 +2606,8 @@ ruleANY_WS
 	        try {
 	       		set(
 	       			$current, 
-	       			"clazz",
-	        		lv_clazz_10_0, 
+	       			"caption",
+	        		lv_caption_10_0, 
 	        		"Text", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -2636,9 +2636,9 @@ ruleANY_WS
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_9_0(), currentNode); 
 	    }
-		lv_style_14_0=ruleText		{
+		lv_clazz_14_0=ruleText		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -2646,8 +2646,8 @@ ruleANY_WS
 	        try {
 	       		set(
 	       			$current, 
-	       			"style",
-	        		lv_style_14_0, 
+	       			"clazz",
+	        		lv_clazz_14_0, 
 	        		"Text", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {
@@ -2676,9 +2676,9 @@ ruleANY_WS
 (
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_13_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_13_0(), currentNode); 
 	    }
-		lv_caption_18_0=ruleText		{
+		lv_style_18_0=ruleText		{
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getImageRefRule().getType().getClassifier());
 	            associateNodeWithAstElement(currentNode.getParent(), $current);
@@ -2686,8 +2686,8 @@ ruleANY_WS
 	        try {
 	       		set(
 	       			$current, 
-	       			"caption",
-	        		lv_caption_18_0, 
+	       			"style",
+	        		lv_style_18_0, 
 	        		"Text", 
 	        		currentNode);
 	        } catch (ValueConverterException vce) {

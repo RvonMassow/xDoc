@@ -171,9 +171,9 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLinkAccess().getTextAssignment_6(), "rule__Link__TextAssignment_6");
 					put(grammarAccess.getImageRefAccess().getNameAssignment_0_0_2(), "rule__ImageRef__NameAssignment_0_0_2");
 					put(grammarAccess.getImageRefAccess().getPathAssignment_1(), "rule__ImageRef__PathAssignment_1");
-					put(grammarAccess.getImageRefAccess().getClazzAssignment_5(), "rule__ImageRef__ClazzAssignment_5");
-					put(grammarAccess.getImageRefAccess().getStyleAssignment_9(), "rule__ImageRef__StyleAssignment_9");
-					put(grammarAccess.getImageRefAccess().getCaptionAssignment_13(), "rule__ImageRef__CaptionAssignment_13");
+					put(grammarAccess.getImageRefAccess().getCaptionAssignment_5(), "rule__ImageRef__CaptionAssignment_5");
+					put(grammarAccess.getImageRefAccess().getClazzAssignment_9(), "rule__ImageRef__ClazzAssignment_9");
+					put(grammarAccess.getImageRefAccess().getStyleAssignment_13(), "rule__ImageRef__StyleAssignment_13");
 					put(grammarAccess.getCodeBlockAccess().getLanguageAssignment_2_1(), "rule__CodeBlock__LanguageAssignment_2_1");
 					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_3_0_0(), "rule__CodeBlock__ContentsAssignment_3_0_0");
 					put(grammarAccess.getCodeBlockAccess().getContentsAssignment_3_0_1_0(), "rule__CodeBlock__ContentsAssignment_3_0_1_0");

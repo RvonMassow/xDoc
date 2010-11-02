@@ -132,8 +132,8 @@ Link:
 
 	// Don't think this was the discussed syntax
 ImageRef:
-	('img:' ANY_WS* name=ID ANY_WS* '['|'img[') path=Text /*TODO make it a crossreference to images */ ']' ANY_WS*
-	'[' clazz=Text? ']' ANY_WS* '[' style=Text? ']' ANY_WS* '[' caption=Text? ']';
+	('img:' ANY_WS* name=ID ANY_WS* '['|'img[') path=Text /*TODO make it a crossreference to images */ ']'
+	ANY_WS* '[' caption=Text? ']' ANY_WS* '[' clazz=Text? ']' ANY_WS* '[' style=Text? ']' ;
 
 CodeBlock:
 	{CodeBlock}

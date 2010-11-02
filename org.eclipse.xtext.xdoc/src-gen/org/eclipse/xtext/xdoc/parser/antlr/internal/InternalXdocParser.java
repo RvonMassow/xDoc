@@ -26,49 +26,49 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_WS", "RULE_MULTI_NL", "RULE_ID", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_SL_COMMENT", "'document['", "']'", "'subtitle['", "'authors['", "'chapter:'", "'['", "'chapter['", "'chapter-ref['", "'section:'", "'section['", "'section-ref['", "'section2:'", "'section2['", "'section3:'", "'section3['", "'section4:'", "'section4['", "'\\\\['", "'\\\\]'", "','", "'table['", "'tr['", "'td['", "'e['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'img['", "'code['", "'todo['", "'codelanguage-def['"
     };
-    public static final int T__42=42;
-    public static final int T__12=12;
-    public static final int T__28=28;
-    public static final int T__23=23;
-    public static final int T__13=13;
-    public static final int T__21=21;
-    public static final int T__19=19;
-    public static final int T__39=39;
-    public static final int T__30=30;
-    public static final int T__17=17;
-    public static final int T__27=27;
-    public static final int RULE_MULTI_NL=5;
-    public static final int T__24=24;
-    public static final int T__10=10;
-    public static final int T__34=34;
-    public static final int T__15=15;
-    public static final int T__35=35;
     public static final int RULE_ID=6;
-    public static final int T__36=36;
-    public static final int T__20=20;
-    public static final int T__44=44;
-    public static final int T__14=14;
-    public static final int T__33=33;
-    public static final int T__22=22;
-    public static final int T__11=11;
     public static final int T__29=29;
-    public static final int T__45=45;
-    public static final int RULE_WS=4;
-    public static final int T__43=43;
-    public static final int T__31=31;
-    public static final int T__40=40;
-    public static final int EOF=-1;
-    public static final int T__16=16;
-    public static final int T__32=32;
-    public static final int RULE_SINGLE_NL=7;
-    public static final int T__38=38;
-    public static final int T__37=37;
-    public static final int RULE_ANY_OTHER=8;
+    public static final int T__28=28;
+    public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
-    public static final int RULE_SL_COMMENT=9;
-    public static final int T__41=41;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
+    public static final int RULE_ANY_OTHER=8;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int EOF=-1;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__15=15;
     public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int T__10=10;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int RULE_MULTI_NL=5;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_SINGLE_NL=7;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=4;
 
     // delegates
     // delegators
@@ -6276,7 +6276,7 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleImageRef"
-    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2497:1: ruleImageRef returns [EObject current=null] : ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_clazz_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_style_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_caption_18_0= ruleText ) )? otherlv_19= ']' ) ;
+    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2497:1: ruleImageRef returns [EObject current=null] : ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_caption_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_clazz_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_style_18_0= ruleText ) )? otherlv_19= ']' ) ;
     public final EObject ruleImageRef() throws RecognitionException {
         EObject current = null;
 
@@ -6293,21 +6293,21 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
         Token otherlv_19=null;
         AntlrDatatypeRuleToken lv_path_6_0 = null;
 
-        AntlrDatatypeRuleToken lv_clazz_10_0 = null;
+        AntlrDatatypeRuleToken lv_caption_10_0 = null;
 
-        AntlrDatatypeRuleToken lv_style_14_0 = null;
+        AntlrDatatypeRuleToken lv_clazz_14_0 = null;
 
-        AntlrDatatypeRuleToken lv_caption_18_0 = null;
+        AntlrDatatypeRuleToken lv_style_18_0 = null;
 
 
          EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2502:6: ( ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_clazz_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_style_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_caption_18_0= ruleText ) )? otherlv_19= ']' ) )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2503:1: ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_clazz_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_style_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_caption_18_0= ruleText ) )? otherlv_19= ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2502:6: ( ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_caption_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_clazz_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_style_18_0= ruleText ) )? otherlv_19= ']' ) )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2503:1: ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_caption_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_clazz_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_style_18_0= ruleText ) )? otherlv_19= ']' )
             {
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2503:1: ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_clazz_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_style_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_caption_18_0= ruleText ) )? otherlv_19= ']' )
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2503:2: ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_clazz_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_style_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_caption_18_0= ruleText ) )? otherlv_19= ']'
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2503:1: ( ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_caption_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_clazz_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_style_18_0= ruleText ) )? otherlv_19= ']' )
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2503:2: ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' ) ( (lv_path_6_0= ruleText ) ) otherlv_7= ']' ( ruleANY_WS )* otherlv_9= '[' ( (lv_caption_10_0= ruleText ) )? otherlv_11= ']' ( ruleANY_WS )* otherlv_13= '[' ( (lv_clazz_14_0= ruleText ) )? otherlv_15= ']' ( ruleANY_WS )* otherlv_17= '[' ( (lv_style_18_0= ruleText ) )? otherlv_19= ']'
             {
             // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2503:2: ( (otherlv_0= 'img:' ( ruleANY_WS )* ( (lv_name_2_0= RULE_ID ) ) ( ruleANY_WS )* otherlv_4= '[' ) | otherlv_5= 'img[' )
             int alt64=2;
@@ -6541,7 +6541,7 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
 
                 	createLeafNode(otherlv_9, grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_4(), null);
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2596:1: ( (lv_clazz_10_0= ruleText ) )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2596:1: ( (lv_caption_10_0= ruleText ) )?
             int alt66=2;
             int LA66_0 = input.LA(1);
 
@@ -6550,16 +6550,16 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
             }
             switch (alt66) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2597:1: (lv_clazz_10_0= ruleText )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2597:1: (lv_caption_10_0= ruleText )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2597:1: (lv_clazz_10_0= ruleText )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2598:3: lv_clazz_10_0= ruleText
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2597:1: (lv_caption_10_0= ruleText )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2598:3: lv_caption_10_0= ruleText
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_5_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_5_0(), currentNode); 
                     	    
                     pushFollow(FOLLOW_ruleText_in_ruleImageRef4909);
-                    lv_clazz_10_0=ruleText();
+                    lv_caption_10_0=ruleText();
 
                     state._fsp--;
 
@@ -6571,8 +6571,8 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"clazz",
-                    	        		lv_clazz_10_0, 
+                    	       			"caption",
+                    	        		lv_caption_10_0, 
                     	        		"Text", 
                     	        		currentNode);
                     	        } catch (ValueConverterException vce) {
@@ -6632,7 +6632,7 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
 
                 	createLeafNode(otherlv_13, grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_8(), null);
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2636:1: ( (lv_style_14_0= ruleText ) )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2636:1: ( (lv_clazz_14_0= ruleText ) )?
             int alt68=2;
             int LA68_0 = input.LA(1);
 
@@ -6641,16 +6641,16 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
             }
             switch (alt68) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2637:1: (lv_style_14_0= ruleText )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2637:1: (lv_clazz_14_0= ruleText )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2637:1: (lv_style_14_0= ruleText )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2638:3: lv_style_14_0= ruleText
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2637:1: (lv_clazz_14_0= ruleText )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2638:3: lv_clazz_14_0= ruleText
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_9_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getClazzTextParserRuleCall_9_0(), currentNode); 
                     	    
                     pushFollow(FOLLOW_ruleText_in_ruleImageRef4973);
-                    lv_style_14_0=ruleText();
+                    lv_clazz_14_0=ruleText();
 
                     state._fsp--;
 
@@ -6662,8 +6662,8 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"style",
-                    	        		lv_style_14_0, 
+                    	       			"clazz",
+                    	        		lv_clazz_14_0, 
                     	        		"Text", 
                     	        		currentNode);
                     	        } catch (ValueConverterException vce) {
@@ -6723,7 +6723,7 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
 
                 	createLeafNode(otherlv_17, grammarAccess.getImageRefAccess().getLeftSquareBracketKeyword_12(), null);
                 
-            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2676:1: ( (lv_caption_18_0= ruleText ) )?
+            // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2676:1: ( (lv_style_18_0= ruleText ) )?
             int alt70=2;
             int LA70_0 = input.LA(1);
 
@@ -6732,16 +6732,16 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
             }
             switch (alt70) {
                 case 1 :
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2677:1: (lv_caption_18_0= ruleText )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2677:1: (lv_style_18_0= ruleText )
                     {
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2677:1: (lv_caption_18_0= ruleText )
-                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2678:3: lv_caption_18_0= ruleText
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2677:1: (lv_style_18_0= ruleText )
+                    // ../org.eclipse.xtext.xdoc/src-gen/org/eclipse/xtext/xdoc/parser/antlr/internal/InternalXdoc.g:2678:3: lv_style_18_0= ruleText
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getCaptionTextParserRuleCall_13_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getImageRefAccess().getStyleTextParserRuleCall_13_0(), currentNode); 
                     	    
                     pushFollow(FOLLOW_ruleText_in_ruleImageRef5037);
-                    lv_caption_18_0=ruleText();
+                    lv_style_18_0=ruleText();
 
                     state._fsp--;
 
@@ -6753,8 +6753,8 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
                     	        try {
                     	       		set(
                     	       			current, 
-                    	       			"caption",
-                    	        		lv_caption_18_0, 
+                    	       			"style",
+                    	        		lv_style_18_0, 
                     	        		"Text", 
                     	        		currentNode);
                     	        } catch (ValueConverterException vce) {
@@ -7853,13 +7853,13 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
             if ( (LA93_0==45) ) {
                 int LA93_1 = input.LA(2);
 
-                if ( ((LA93_1>=RULE_WS && LA93_1<=RULE_MULTI_NL)||LA93_1==RULE_SINGLE_NL||LA93_1==11) ) {
-                    alt93=2;
-                }
-                else if ( (LA93_1==RULE_ID) ) {
-                    int LA93_3 = input.LA(3);
+                if ( (LA93_1==RULE_ID) ) {
+                    int LA93_2 = input.LA(3);
 
-                    if ( (LA93_3==11) ) {
+                    if ( (LA93_2==29) ) {
+                        alt93=2;
+                    }
+                    else if ( (LA93_2==11) ) {
                         switch ( input.LA(4) ) {
                         case RULE_MULTI_NL:
                             {
@@ -7879,16 +7879,16 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
                             }
                             }
                             break;
-                        case EOF:
-                            {
-                            alt93=2;
-                            }
-                            break;
                         case RULE_WS:
                         case RULE_SINGLE_NL:
                         case 15:
                             {
                             alt93=1;
+                            }
+                            break;
+                        case EOF:
+                            {
+                            alt93=2;
                             }
                             break;
                         default:
@@ -7899,15 +7899,15 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
                         }
 
                     }
-                    else if ( (LA93_3==29) ) {
-                        alt93=2;
-                    }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 93, 3, input);
+                            new NoViableAltException("", 93, 2, input);
 
                         throw nvae;
                     }
+                }
+                else if ( ((LA93_1>=RULE_WS && LA93_1<=RULE_MULTI_NL)||LA93_1==RULE_SINGLE_NL||LA93_1==11) ) {
+                    alt93=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -9099,7 +9099,7 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
     static final String DFA74_eotS =
         "\21\uffff";
     static final String DFA74_eofS =
-        "\11\uffff\4\5\1\uffff\3\5";
+        "\6\uffff\1\5\3\uffff\3\5\1\uffff\3\5";
     static final String DFA74_minS =
         "\5\4\1\uffff\7\4\1\uffff\3\4";
     static final String DFA74_maxS =
@@ -9117,23 +9117,23 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
             "\uffff\1\5",
             "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\17\uffff\3\5\3\uffff\3\5\10"+
             "\uffff\1\5",
-            "\1\10\1\6\1\5\1\7\1\5\2\uffff\1\11\17\uffff\3\5\3\uffff\3\5"+
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\3\5\3\uffff\3\5"+
             "\10\uffff\1\5",
             "",
-            "\1\10\1\6\1\5\1\7\1\5\2\uffff\1\11\17\uffff\3\5\3\uffff\3\5"+
-            "\10\uffff\1\5",
-            "\1\10\1\6\1\5\1\7\1\5\2\uffff\1\11\17\uffff\3\5\3\uffff\3\5"+
-            "\10\uffff\1\5",
-            "\1\10\1\6\1\5\1\7\1\5\2\uffff\1\11\17\uffff\3\5\3\uffff\3\5"+
-            "\10\uffff\1\5",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\4"+
+            "\1\14\1\12\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\4"+
             "\5\2\uffff\5\5\1\uffff\6\5",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\4"+
-            "\5\2\uffff\5\5\1\uffff\6\5",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\4"+
-            "\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\3\5\3\uffff\3\5"+
+            "\10\uffff\1\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\3\5\3\uffff\3\5"+
+            "\10\uffff\1\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\17\uffff\3\5\3\uffff\3\5"+
+            "\10\uffff\1\5",
             "\1\16\1\15\1\5\1\17\1\5\2\uffff\1\5\2\uffff\1\5\1\15\17\5\2"+
             "\uffff\5\5\1\uffff\6\5",
+            "\1\14\1\12\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\4"+
+            "\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\14\1\12\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\4"+
+            "\5\2\uffff\5\5\1\uffff\6\5",
             "",
             "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\5\3\uffff\1\15\13\uffff\4"+
             "\5\2\uffff\5\5\1\uffff\6\5",

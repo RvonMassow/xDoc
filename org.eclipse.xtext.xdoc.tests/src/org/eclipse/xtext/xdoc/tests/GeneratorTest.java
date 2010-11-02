@@ -73,9 +73,33 @@ public class GeneratorTest extends AbstractXtextTests {
 	}
 
 	public void testImg() throws Exception {
-		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "commentTest.xdoc");
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "imgTest.xdoc");
 		generate(file);
 		validate(EXPECTATION_DIR + "imgTest.html", RESULT_FILE);
+	}
+
+	public void testLink() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "linkTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "linkTest.html", RESULT_FILE);
+	}
+
+	public void testRefText() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "namedRefAndTextTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "namedRefTextTest.html", RESULT_FILE);
+	}
+
+	public void testNestedList() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "nestedListTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "nestedListTest.html", RESULT_FILE);
+	}
+
+	public void testSimpleRef() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "simpleRefTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "simpleRefTest.html", RESULT_FILE);
 	}
 
 	protected void generate(EObject eObject) {
