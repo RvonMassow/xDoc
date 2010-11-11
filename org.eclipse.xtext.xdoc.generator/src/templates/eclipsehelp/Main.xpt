@@ -228,6 +228,8 @@ ENDIF-»
 
 «DEFINE head FOR Section3»<h4 class="title">«EXPAND genText FOR title»</h4>«ENDDEFINE»
 
+«DEFINE head FOR Section4»<h5 class="title">«EXPAND genText FOR title»</h5>«ENDDEFINE»
+
 «DEFINE preamble FOR Chapter»<html>
 <head>
 <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">

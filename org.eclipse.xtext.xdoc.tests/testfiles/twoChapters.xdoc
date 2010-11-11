@@ -1,3 +1,5 @@
+document[Foo Title]
+
 chapter:id[Dummy Title]
 
 Some content a[anchor]
@@ -5,3 +7,4 @@ Some content a[anchor]
 chapter[Dummy Title]
 
 More content with ref to ref:id[the other chapter] and ref:anchor[an anchor]
+
