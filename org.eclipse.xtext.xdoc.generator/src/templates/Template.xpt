@@ -29,16 +29,16 @@ ENDIF»
 %    morestring=[b]',
 %  }
 
-\lstdefinelanguage{Xbase}
-  {morekeywords={super, val, var, extends, instanceof, new,%
-   null, true, false, if, else, switch, case, default, do,%
-   while, for, def, class, as, throw, try, catch, finally},
-    sensitive=true,
-    morecomment=[l]{//},
-    morecomment=[s]{/*}{*/},
-    morestring=[b]",
-    morestring=[b]',
-  }
+%\lstdefinelanguage{Xbase}
+%  {morekeywords={super, val, var, extends, instanceof, new,%
+%   null, true, false, if, else, switch, case, default, do,%
+%   while, for, def, class, as, throw, try, catch, finally},
+%    sensitive=true,
+%    morecomment=[l]{//},
+%    morecomment=[s]{/*}{*/},
+%    morestring=[b]",
+%    morestring=[b]',
+%  }
 
 %% force more space between subsections!
 \makeatletter
@@ -184,8 +184,8 @@ ENDIF»
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline[«IF language!=null» language=«this.language»«ENDIF»]°«EXPAND genCode FOREACH this.contents»°«
- ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language»]«
+ IF inline(this)»\lstinline[«IF language!=null» language=«this.language.name»«ENDIF»]°«EXPAND genCode FOREACH this.contents»°«
+ ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language.name»]«
  ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
 \end{lstlisting}
