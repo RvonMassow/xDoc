@@ -766,12 +766,13 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cCommaKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cHyphenMinusKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		
 		//Text:
-		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
+		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+
+		//(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -794,6 +795,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//","
 		public Keyword getCommaKeyword_6() { return cCommaKeyword_6; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_7() { return cHyphenMinusKeyword_7; }
 	}
 
 	public class MarkUpElements extends AbstractParserRuleElementFinder {
@@ -1690,12 +1694,12 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0_5 = (Group)cGroup_0.eContents().get(5);
 		private final RuleCall cANY_WSParserRuleCall_0_5_0 = (RuleCall)cGroup_0_5.eContents().get(0);
 		private final Assignment cKeywordsAssignment_0_5_1 = (Assignment)cGroup_0_5.eContents().get(1);
-		private final RuleCall cKeywordsIDTerminalRuleCall_0_5_1_0 = (RuleCall)cKeywordsAssignment_0_5_1.eContents().get(0);
+		private final RuleCall cKeywordsKeyWordParserRuleCall_0_5_1_0 = (RuleCall)cKeywordsAssignment_0_5_1.eContents().get(0);
 		private final Group cGroup_0_5_2 = (Group)cGroup_0_5.eContents().get(2);
 		private final Keyword cCommaKeyword_0_5_2_0 = (Keyword)cGroup_0_5_2.eContents().get(0);
 		private final RuleCall cANY_WSParserRuleCall_0_5_2_1 = (RuleCall)cGroup_0_5_2.eContents().get(1);
 		private final Assignment cKeywordsAssignment_0_5_2_2 = (Assignment)cGroup_0_5_2.eContents().get(2);
-		private final RuleCall cKeywordsIDTerminalRuleCall_0_5_2_2_0 = (RuleCall)cKeywordsAssignment_0_5_2_2.eContents().get(0);
+		private final RuleCall cKeywordsKeyWordParserRuleCall_0_5_2_2_0 = (RuleCall)cKeywordsAssignment_0_5_2_2.eContents().get(0);
 		private final RuleCall cANY_WSParserRuleCall_0_5_2_3 = (RuleCall)cGroup_0_5_2.eContents().get(3);
 		private final Keyword cRightSquareBracketKeyword_0_6 = (Keyword)cGroup_0.eContents().get(6);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
@@ -1714,15 +1718,15 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//LangDef:
-		//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]" |
-		//	{LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
+		//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)? "]"
+		//	| {LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
 		public ParserRule getRule() { return rule; }
 
-		//"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]" | {LangDef}
-		//"codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]"
+		//"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)? "]" |
+		//{LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]"
+		//"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)? "]"
 		public Group getGroup_0() { return cGroup_0; }
 
 		//"codelanguage-def["
@@ -1743,19 +1747,19 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//"["
 		public Keyword getLeftSquareBracketKeyword_0_4() { return cLeftSquareBracketKeyword_0_4; }
 
-		//(ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)?
+		//(ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)?
 		public Group getGroup_0_5() { return cGroup_0_5; }
 
 		//ANY_WS*
 		public RuleCall getANY_WSParserRuleCall_0_5_0() { return cANY_WSParserRuleCall_0_5_0; }
 
-		//keywords+=ID
+		//keywords+=KeyWord
 		public Assignment getKeywordsAssignment_0_5_1() { return cKeywordsAssignment_0_5_1; }
 
-		//ID
-		public RuleCall getKeywordsIDTerminalRuleCall_0_5_1_0() { return cKeywordsIDTerminalRuleCall_0_5_1_0; }
+		//KeyWord
+		public RuleCall getKeywordsKeyWordParserRuleCall_0_5_1_0() { return cKeywordsKeyWordParserRuleCall_0_5_1_0; }
 
-		//("," ANY_WS* keywords+=ID ANY_WS*)*
+		//("," ANY_WS* keywords+=KeyWord ANY_WS*)*
 		public Group getGroup_0_5_2() { return cGroup_0_5_2; }
 
 		//","
@@ -1764,11 +1768,11 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//ANY_WS*
 		public RuleCall getANY_WSParserRuleCall_0_5_2_1() { return cANY_WSParserRuleCall_0_5_2_1; }
 
-		//keywords+=ID
+		//keywords+=KeyWord
 		public Assignment getKeywordsAssignment_0_5_2_2() { return cKeywordsAssignment_0_5_2_2; }
 
-		//ID
-		public RuleCall getKeywordsIDTerminalRuleCall_0_5_2_2_0() { return cKeywordsIDTerminalRuleCall_0_5_2_2_0; }
+		//KeyWord
+		public RuleCall getKeywordsKeyWordParserRuleCall_0_5_2_2_0() { return cKeywordsKeyWordParserRuleCall_0_5_2_2_0; }
 
 		//ANY_WS*
 		public RuleCall getANY_WSParserRuleCall_0_5_2_3() { return cANY_WSParserRuleCall_0_5_2_3; }
@@ -1830,12 +1834,13 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		private final Keyword cCommaKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cHyphenMinusKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
 		
 		//CodeText:
-		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
+		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+
+		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -1861,6 +1866,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//","
 		public Keyword getCommaKeyword_7() { return cCommaKeyword_7; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_8() { return cHyphenMinusKeyword_8; }
 	}
 
 	public class ANY_WSElements extends AbstractParserRuleElementFinder {
@@ -1885,6 +1893,26 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_2() { return cWSTerminalRuleCall_2; }
+	}
+
+	public class KeyWordElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "KeyWord");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		
+		//KeyWord:
+		//	(ID | "-")+;
+		public ParserRule getRule() { return rule; }
+
+		//(ID | "-")+
+		public Alternatives getAlternatives() { return cAlternatives; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
 	}
 	
 	
@@ -1920,6 +1948,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	private LangDefElements pLangDef;
 	private CodeTextElements pCodeText;
 	private ANY_WSElements pANY_WS;
+	private KeyWordElements pKeyWord;
 	private TerminalRule tID;
 	private TerminalRule tSL_COMMENT;
 	private TerminalRule tMULTI_NL;
@@ -2056,7 +2085,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Text:
-	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
+	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
 	public TextElements getTextAccess() {
 		return (pText != null) ? pText : (pText = new TextElements());
 	}
@@ -2239,8 +2268,8 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LangDef:
-	//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]" |
-	//	{LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
+	//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)? "]"
+	//	| {LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
 	public LangDefElements getLangDefAccess() {
 		return (pLangDef != null) ? pLangDef : (pLangDef = new LangDefElements());
 	}
@@ -2250,7 +2279,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeText:
-	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | ",")+;
+	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
 	public CodeTextElements getCodeTextAccess() {
 		return (pCodeText != null) ? pCodeText : (pCodeText = new CodeTextElements());
 	}
@@ -2267,6 +2296,16 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getANY_WSRule() {
 		return getANY_WSAccess().getRule();
+	}
+
+	//KeyWord:
+	//	(ID | "-")+;
+	public KeyWordElements getKeyWordAccess() {
+		return (pKeyWord != null) ? pKeyWord : (pKeyWord = new KeyWordElements());
+	}
+	
+	public ParserRule getKeyWordRule() {
+		return getKeyWordAccess().getRule();
 	}
 
 	//terminal ID:

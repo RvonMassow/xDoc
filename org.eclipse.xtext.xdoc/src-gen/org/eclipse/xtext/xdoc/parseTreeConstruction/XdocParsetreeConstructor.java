@@ -7750,13 +7750,13 @@ protected class MarkupInCode_TodoParserRuleCall_3 extends RuleCallToken {
 /************ begin Rule LangDef ****************
  *
  * LangDef:
- * 	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]" |
- * 	{LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
+ * 	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)? "]"
+ * 	| {LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]";
  *
  **/
 
-// "codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]" | {LangDef}
-// "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]"
+// "codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)? "]" |
+// {LangDef} "codelanguage-def[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]"
 protected class LangDef_Alternatives extends AlternativesToken {
 
 	public LangDef_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7786,7 +7786,7 @@ protected class LangDef_Alternatives extends AlternativesToken {
 
 }
 
-// "codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)? "]"
+// "codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)? "]"
 protected class LangDef_Group_0 extends GroupToken {
 	
 	public LangDef_Group_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7907,7 +7907,7 @@ protected class LangDef_LeftSquareBracketKeyword_0_4 extends KeywordToken  {
 
 }
 
-// (ANY_WS* keywords+=ID ("," ANY_WS* keywords+=ID ANY_WS*)*)?
+// (ANY_WS* keywords+=KeyWord ("," ANY_WS* keywords+=KeyWord ANY_WS*)*)?
 protected class LangDef_Group_0_5 extends GroupToken {
 	
 	public LangDef_Group_0_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7930,7 +7930,7 @@ protected class LangDef_Group_0_5 extends GroupToken {
 
 }
 
-// keywords+=ID
+// keywords+=KeyWord
 protected class LangDef_KeywordsAssignment_0_5_1 extends AssignmentToken  {
 	
 	public LangDef_KeywordsAssignment_0_5_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -7954,9 +7954,9 @@ protected class LangDef_KeywordsAssignment_0_5_1 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("keywords",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("keywords");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLangDefAccess().getKeywordsIDTerminalRuleCall_0_5_1_0(), value, null)) {
-			type = AssignmentType.TERMINAL_RULE_CALL;
-			element = grammarAccess.getLangDefAccess().getKeywordsIDTerminalRuleCall_0_5_1_0();
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLangDefAccess().getKeywordsKeyWordParserRuleCall_0_5_1_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getLangDefAccess().getKeywordsKeyWordParserRuleCall_0_5_1_0();
 			return obj;
 		}
 		return null;
@@ -7964,7 +7964,7 @@ protected class LangDef_KeywordsAssignment_0_5_1 extends AssignmentToken  {
 
 }
 
-// ("," ANY_WS* keywords+=ID ANY_WS*)*
+// ("," ANY_WS* keywords+=KeyWord ANY_WS*)*
 protected class LangDef_Group_0_5_2 extends GroupToken {
 	
 	public LangDef_Group_0_5_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8009,7 +8009,7 @@ protected class LangDef_CommaKeyword_0_5_2_0 extends KeywordToken  {
 
 }
 
-// keywords+=ID
+// keywords+=KeyWord
 protected class LangDef_KeywordsAssignment_0_5_2_2 extends AssignmentToken  {
 	
 	public LangDef_KeywordsAssignment_0_5_2_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8033,9 +8033,9 @@ protected class LangDef_KeywordsAssignment_0_5_2_2 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("keywords",false)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("keywords");
-		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLangDefAccess().getKeywordsIDTerminalRuleCall_0_5_2_2_0(), value, null)) {
-			type = AssignmentType.TERMINAL_RULE_CALL;
-			element = grammarAccess.getLangDefAccess().getKeywordsIDTerminalRuleCall_0_5_2_2_0();
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getLangDefAccess().getKeywordsKeyWordParserRuleCall_0_5_2_2_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getLangDefAccess().getKeywordsKeyWordParserRuleCall_0_5_2_2_0();
 			return obj;
 		}
 		return null;
@@ -8303,6 +8303,7 @@ protected class LangDef_RightSquareBracketKeyword_1_3 extends KeywordToken  {
 
 
 /************ end Rule LangDef ****************/
+
 
 
 
