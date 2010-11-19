@@ -25,50 +25,50 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_WS", "RULE_SINGLE_NL", "RULE_ANY_OTHER", "RULE_MULTI_NL", "RULE_SL_COMMENT", "'chapter['", "'section['", "'section2['", "'section3['", "'section4['", "'\\\\['", "'\\\\]'", "','", "'-'", "'img['", "'document['", "']'", "'subtitle['", "'authors['", "'chapter:'", "'['", "'chapter-ref['", "'section:'", "'section-ref['", "'section2:'", "'section3:'", "'section4:'", "'table['", "'tr['", "'td['", "'e['", "'a['", "'ref:'", "'ol['", "'ul['", "'item['", "'codeRef['", "'link['", "'img:'", "'code['", "'todo['", "'codelanguage-def['"
     };
-    public static final int RULE_ID=4;
-    public static final int T__29=29;
+    public static final int T__42=42;
+    public static final int T__12=12;
     public static final int T__28=28;
+    public static final int T__23=23;
+    public static final int T__13=13;
+    public static final int T__21=21;
+    public static final int T__19=19;
+    public static final int T__39=39;
+    public static final int T__30=30;
+    public static final int T__46=46;
+    public static final int T__17=17;
+    public static final int RULE_MULTI_NL=8;
     public static final int T__27=27;
+    public static final int T__24=24;
+    public static final int T__10=10;
+    public static final int T__34=34;
+    public static final int T__15=15;
+    public static final int T__35=35;
+    public static final int RULE_ID=4;
+    public static final int T__36=36;
+    public static final int T__20=20;
+    public static final int T__44=44;
+    public static final int T__14=14;
+    public static final int T__33=33;
+    public static final int T__22=22;
+    public static final int T__11=11;
+    public static final int T__29=29;
+    public static final int T__45=45;
+    public static final int RULE_WS=5;
+    public static final int T__43=43;
+    public static final int T__31=31;
+    public static final int T__40=40;
+    public static final int EOF=-1;
+    public static final int T__16=16;
+    public static final int T__32=32;
+    public static final int RULE_SINGLE_NL=6;
+    public static final int T__38=38;
+    public static final int T__37=37;
+    public static final int RULE_ANY_OTHER=7;
     public static final int T__26=26;
     public static final int T__25=25;
-    public static final int T__24=24;
-    public static final int T__23=23;
-    public static final int T__22=22;
-    public static final int RULE_ANY_OTHER=7;
-    public static final int T__21=21;
-    public static final int T__20=20;
-    public static final int EOF=-1;
-    public static final int T__19=19;
-    public static final int T__16=16;
-    public static final int T__15=15;
-    public static final int T__18=18;
-    public static final int T__17=17;
-    public static final int T__12=12;
-    public static final int T__11=11;
-    public static final int T__14=14;
-    public static final int T__13=13;
-    public static final int T__10=10;
-    public static final int T__42=42;
-    public static final int T__43=43;
-    public static final int T__40=40;
-    public static final int T__41=41;
-    public static final int T__46=46;
-    public static final int T__44=44;
-    public static final int T__45=45;
-    public static final int RULE_MULTI_NL=8;
     public static final int RULE_SL_COMMENT=9;
-    public static final int RULE_SINGLE_NL=6;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
-    public static final int T__33=33;
-    public static final int T__34=34;
-    public static final int T__35=35;
-    public static final int T__36=36;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int T__39=39;
-    public static final int RULE_WS=5;
+    public static final int T__41=41;
+    public static final int T__18=18;
 
     // delegates
     // delegators
@@ -4477,19 +4477,14 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             if ( (LA20_0==46) ) {
                 int LA20_1 = input.LA(2);
 
-                if ( (LA20_1==RULE_ID) ) {
-                    int LA20_2 = input.LA(3);
+                if ( ((LA20_1>=RULE_WS && LA20_1<=RULE_SINGLE_NL)||LA20_1==RULE_MULTI_NL||LA20_1==21) ) {
+                    alt20=2;
+                }
+                else if ( (LA20_1==RULE_ID) ) {
+                    int LA20_3 = input.LA(3);
 
-                    if ( (LA20_2==17) ) {
-                        alt20=2;
-                    }
-                    else if ( (LA20_2==21) ) {
+                    if ( (LA20_3==21) ) {
                         switch ( input.LA(4) ) {
-                        case EOF:
-                            {
-                            alt20=2;
-                            }
-                            break;
                         case RULE_MULTI_NL:
                             {
                             int LA20_5 = input.LA(5);
@@ -4515,6 +4510,11 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
                             alt20=1;
                             }
                             break;
+                        case EOF:
+                            {
+                            alt20=2;
+                            }
+                            break;
                         default:
                             NoViableAltException nvae =
                                 new NoViableAltException("", 20, 4, input);
@@ -4523,15 +4523,15 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
                         }
 
                     }
+                    else if ( (LA20_3==17) ) {
+                        alt20=2;
+                    }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("", 20, 2, input);
+                            new NoViableAltException("", 20, 3, input);
 
                         throw nvae;
                     }
-                }
-                else if ( ((LA20_1>=RULE_WS && LA20_1<=RULE_SINGLE_NL)||LA20_1==RULE_MULTI_NL||LA20_1==21) ) {
-                    alt20=2;
                 }
                 else {
                     NoViableAltException nvae =
@@ -27907,10 +27907,10 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             "\7\uffff\1\5",
             "\1\6\1\11\1\10\1\5\1\7\6\uffff\4\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\14\1\13\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
             "",
-            "\1\5\1\13\1\14\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\14\1\13\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
             "\1\6\1\11\1\10\1\5\1\7\6\uffff\4\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
@@ -27918,35 +27918,35 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
             "\7\uffff\1\5",
             "\1\6\1\11\1\10\1\5\1\7\6\uffff\4\5\2\uffff\1\5\15\uffff\3\5"+
             "\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\14\1\13\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\14\1\13\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
+            "\1\5\1\14\1\13\1\5\1\12\6\uffff\4\5\2\uffff\1\15\15\uffff\3"+
             "\5\7\uffff\1\5",
             "\1\5\1\16\1\17\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
             "\1\5\1\24\1\25\1\5\1\21\1\uffff\12\5\1\uffff\1\5\2\uffff\1"+
             "\5\1\21\7\5\2\uffff\5\5\1\uffff\5\5",
             "",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\23\1\22\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\22\1\23\1\5\1\20\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\30\1\27\1\5\1\26\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\26\1\27\1\5\1\30\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\30\1\27\1\5\1\26\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\1\5\1\26\1\27\1\5\1\30\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\26\1\27\1\5\1\30\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
+            "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\26\1\27\1\5\1\30\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
             "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
             "\1\5\1\24\1\25\1\5\1\21\1\uffff\12\5\4\uffff\1\5\1\21\7\5\2"+
-            "\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\30\1\27\1\5\1\26\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
-            "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\30\1\27\1\5\1\26\6\uffff\5\5\1\uffff\1\5\3\uffff\1\21"+
-            "\6\uffff\1\5\2\uffff\5\5\1\uffff\5\5"
+            "\uffff\5\5\1\uffff\5\5"
     };
 
     static final short[] DFA81_eot = DFA.unpackEncodedString(DFA81_eotS);
