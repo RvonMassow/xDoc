@@ -24,8 +24,8 @@ import java.util.List;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -78,10 +78,10 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 	
 	protected void highlightFeature(EObject obj,
 			IHighlightedPositionAcceptor acceptor, EReference feature, String id) {
-		List<AbstractNode> list = NodeUtil.findNodesForFeature(obj, feature);
+		List<INode> list = NodeModelUtils.findNodesForFeature(obj, feature);
 		if (list.isEmpty())
 			return;
-		AbstractNode node = list.get(0);
+		INode node = list.get(0);
 		acceptor.addPosition(node.getOffset(), node.getLength(), id);
 	}
 
