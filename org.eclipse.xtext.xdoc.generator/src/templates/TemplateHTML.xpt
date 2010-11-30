@@ -119,6 +119,15 @@ ENDIF-»
 <a href="«this.url»">«escapeHTMLChars(unescapeXdocChars(this.text))»</a>«
 ENDDEFINE»
 
+«DEFINE genText(Document doc) FOR ImageRef-»
+<div class="image" >
+«IF this.name != null»«EXPAND genLabel(doc) FOR this.name»
+«ENDIF-»
+<img src="«this.path.unescapeXdocChars()»" class="«this.clazz.unescapeXdocChars()»" style="«this.style.unescapeXdocChars()"» />
+«escapeHTMLChars(unescapeXdocChars(this.caption))»
+</div>«
+ENDDEFINE»
+
 «DEFINE genText(Document doc) FOR CodeBlock-»
 «IF inline(this) -»
 <span class="inlinecode">«EXPAND genCode(language) FOREACH contents-»</span>«
