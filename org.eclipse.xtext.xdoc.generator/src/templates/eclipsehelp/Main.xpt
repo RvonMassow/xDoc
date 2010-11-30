@@ -124,7 +124,7 @@ ENDDEFINE»
 <div class="image" >
 «IF this.name != null»«EXPAND genLabel FOR this.name»
 «ENDIF-»
-<img src="«this.path.unescapeXdocChars()»" class="«this.clazz.unescapeXdocChars()»" />
+<img src="«this.path.unescapeXdocChars()»" class="«this.clazz.unescapeXdocChars()»" style="«this.style.unescapeXdocChars()»" />
 «escapeHTMLChars(unescapeXdocChars(this.caption))»
 </div>«
 ENDDEFINE»

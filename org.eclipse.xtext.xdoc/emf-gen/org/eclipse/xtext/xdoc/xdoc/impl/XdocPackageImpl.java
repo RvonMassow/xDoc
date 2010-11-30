@@ -5,6 +5,10 @@
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
+import images.ImagesPackage;
+
+import images.impl.ImagesPackageImpl;
+
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -324,11 +328,16 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		// Initialize simple dependencies
 		TypesPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		ImagesPackageImpl theImagesPackage = (ImagesPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ImagesPackage.eNS_URI) instanceof ImagesPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ImagesPackage.eNS_URI) : ImagesPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theXdocPackage.createPackageContents();
+		theImagesPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theXdocPackage.initializePackageContents();
+		theImagesPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theXdocPackage.freeze();
@@ -934,6 +943,16 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getImageRef_Image()
+	{
+		return (EReference)imageRefEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getCodeBlock()
 	{
 		return codeBlockEClass;
@@ -1153,6 +1172,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		createEAttribute(imageRefEClass, IMAGE_REF__CLAZZ);
 		createEAttribute(imageRefEClass, IMAGE_REF__STYLE);
 		createEAttribute(imageRefEClass, IMAGE_REF__CAPTION);
+		createEReference(imageRefEClass, IMAGE_REF__IMAGE);
 
 		codeBlockEClass = createEClass(CODE_BLOCK);
 		createEReference(codeBlockEClass, CODE_BLOCK__CONTENTS);
@@ -1197,6 +1217,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		// Obtain other dependent packages
 		TypesPackage theTypesPackage = (TypesPackage)EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
+		ImagesPackage theImagesPackage = (ImagesPackage)EPackage.Registry.INSTANCE.getEPackage(ImagesPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -1314,6 +1335,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEAttribute(getImageRef_Clazz(), ecorePackage.getEString(), "clazz", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageRef_Style(), ecorePackage.getEString(), "style", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageRef_Caption(), ecorePackage.getEString(), "caption", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getImageRef_Image(), theImagesPackage.getImageProxy(), null, "image", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(codeBlockEClass, CodeBlock.class, "CodeBlock", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCodeBlock_Contents(), ecorePackage.getEObject(), null, "contents", null, 0, -1, CodeBlock.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

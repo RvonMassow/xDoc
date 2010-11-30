@@ -5,9 +5,12 @@
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
+import images.ImageProxy;
+
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -26,6 +29,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.ImageRefImpl#getClazz <em>Clazz</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.ImageRefImpl#getStyle <em>Style</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.ImageRefImpl#getCaption <em>Caption</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.ImageRefImpl#getImage <em>Image</em>}</li>
  * </ul>
  * </p>
  *
@@ -132,6 +136,16 @@ public class ImageRefImpl extends MarkUpImpl implements ImageRef
 	 * @ordered
 	 */
 	protected String caption = CAPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getImage() <em>Image</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getImage()
+	 * @generated
+	 * @ordered
+	 */
+	protected ImageProxy image;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -274,6 +288,49 @@ public class ImageRefImpl extends MarkUpImpl implements ImageRef
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ImageProxy getImage()
+	{
+		if (image != null && image.eIsProxy())
+		{
+			InternalEObject oldImage = (InternalEObject)image;
+			image = (ImageProxy)eResolveProxy(oldImage);
+			if (image != oldImage)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, XdocPackage.IMAGE_REF__IMAGE, oldImage, image));
+			}
+		}
+		return image;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ImageProxy basicGetImage()
+	{
+		return image;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setImage(ImageProxy newImage)
+	{
+		ImageProxy oldImage = image;
+		image = newImage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.IMAGE_REF__IMAGE, oldImage, image));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -289,6 +346,9 @@ public class ImageRefImpl extends MarkUpImpl implements ImageRef
 				return getStyle();
 			case XdocPackage.IMAGE_REF__CAPTION:
 				return getCaption();
+			case XdocPackage.IMAGE_REF__IMAGE:
+				if (resolve) return getImage();
+				return basicGetImage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,6 +377,9 @@ public class ImageRefImpl extends MarkUpImpl implements ImageRef
 				return;
 			case XdocPackage.IMAGE_REF__CAPTION:
 				setCaption((String)newValue);
+				return;
+			case XdocPackage.IMAGE_REF__IMAGE:
+				setImage((ImageProxy)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -347,6 +410,9 @@ public class ImageRefImpl extends MarkUpImpl implements ImageRef
 			case XdocPackage.IMAGE_REF__CAPTION:
 				setCaption(CAPTION_EDEFAULT);
 				return;
+			case XdocPackage.IMAGE_REF__IMAGE:
+				setImage((ImageProxy)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -371,6 +437,8 @@ public class ImageRefImpl extends MarkUpImpl implements ImageRef
 				return STYLE_EDEFAULT == null ? style != null : !STYLE_EDEFAULT.equals(style);
 			case XdocPackage.IMAGE_REF__CAPTION:
 				return CAPTION_EDEFAULT == null ? caption != null : !CAPTION_EDEFAULT.equals(caption);
+			case XdocPackage.IMAGE_REF__IMAGE:
+				return image != null;
 		}
 		return super.eIsSet(featureID);
 	}
