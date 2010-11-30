@@ -193,11 +193,11 @@ ENDIF»
 
 «DEFINE genText FOR CodeRef»\lstinline°«escapeLatexChars(unescapeXdocChars(this.element.canonicalName))»°«ENDDEFINE»
 
+«DEFINE genText FOR ImageRef»\includegraphics{«this.path»}«ENDDEFINE»
+
 «DEFINE genCode FOR Object»«ENDDEFINE»
 
 «DEFINE genCode FOR Code»«prepareListingsString(unescapeXdocChars(this.contents))»«ENDDEFINE»
-
-«DEFINE genText FOR ImageRef»«ENDDEFINE»
 
 «DEFINE genText FOR MarkupInCode»«ENDDEFINE»
 
