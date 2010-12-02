@@ -5,7 +5,7 @@
  */
 package org.eclipse.xtext.xdoc.xdoc;
 
-import images.ImageProxy;
+import org.eclipse.xtext.xdoc.images.ImageProxy;
 
 /**
  * <!-- begin-user-doc -->

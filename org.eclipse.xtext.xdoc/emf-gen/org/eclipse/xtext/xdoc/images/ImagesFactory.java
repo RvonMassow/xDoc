@@ -3,7 +3,7 @@
  * </copyright>
  *
  */
-package images;
+package org.eclipse.xtext.xdoc.images;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see images.ImagesPackage
+ * @see org.eclipse.xtext.xdoc.images.ImagesPackage
  * @generated
  */
 public interface ImagesFactory extends EFactory
@@ -23,7 +23,7 @@ public interface ImagesFactory extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ImagesFactory eINSTANCE = images.impl.ImagesFactoryImpl.init();
+	ImagesFactory eINSTANCE = org.eclipse.xtext.xdoc.images.impl.ImagesFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Image Proxy</em>'.

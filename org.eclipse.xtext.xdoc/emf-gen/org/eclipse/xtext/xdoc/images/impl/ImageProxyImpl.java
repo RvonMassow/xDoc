@@ -3,10 +3,7 @@
  * </copyright>
  *
  */
-package images.impl;
-
-import images.ImageProxy;
-import images.ImagesPackage;
+package org.eclipse.xtext.xdoc.images.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,6 +12,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.xtext.xdoc.images.ImageProxy;
+import org.eclipse.xtext.xdoc.images.ImagesPackage;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Image Proxy</b></em>'.
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link images.impl.ImageProxyImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.images.impl.ImageProxyImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *

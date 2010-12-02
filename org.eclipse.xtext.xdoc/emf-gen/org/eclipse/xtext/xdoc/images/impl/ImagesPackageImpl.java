@@ -3,11 +3,7 @@
  * </copyright>
  *
  */
-package images.impl;
-
-import images.ImageProxy;
-import images.ImagesFactory;
-import images.ImagesPackage;
+package org.eclipse.xtext.xdoc.images.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -16,6 +12,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.xtext.common.types.TypesPackage;
+
+import org.eclipse.xtext.xdoc.images.ImageProxy;
+import org.eclipse.xtext.xdoc.images.ImagesFactory;
+import org.eclipse.xtext.xdoc.images.ImagesPackage;
 
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
@@ -47,7 +47,7 @@ public class ImagesPackageImpl extends EPackageImpl implements ImagesPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see images.ImagesPackage#eNS_URI
+	 * @see org.eclipse.xtext.xdoc.images.ImagesPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

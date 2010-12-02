@@ -5,14 +5,14 @@
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
-import images.ImageProxy;
-
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.xtext.xdoc.images.ImageProxy;
 
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;

@@ -3,7 +3,7 @@
  * </copyright>
  *
  */
-package images;
+package org.eclipse.xtext.xdoc.images;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see images.ImagesFactory
+ * @see org.eclipse.xtext.xdoc.images.ImagesFactory
  * @model kind="package"
  * @generated
  */
@@ -56,14 +56,14 @@ public interface ImagesPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ImagesPackage eINSTANCE = images.impl.ImagesPackageImpl.init();
+	ImagesPackage eINSTANCE = org.eclipse.xtext.xdoc.images.impl.ImagesPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link images.impl.ImageProxyImpl <em>Image Proxy</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.images.impl.ImageProxyImpl <em>Image Proxy</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see images.impl.ImageProxyImpl
-	 * @see images.impl.ImagesPackageImpl#getImageProxy()
+	 * @see org.eclipse.xtext.xdoc.images.impl.ImageProxyImpl
+	 * @see org.eclipse.xtext.xdoc.images.impl.ImagesPackageImpl#getImageProxy()
 	 * @generated
 	 */
 	int IMAGE_PROXY = 0;
@@ -88,21 +88,21 @@ public interface ImagesPackage extends EPackage
 
 
 	/**
-	 * Returns the meta object for class '{@link images.ImageProxy <em>Image Proxy</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.images.ImageProxy <em>Image Proxy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Image Proxy</em>'.
-	 * @see images.ImageProxy
+	 * @see org.eclipse.xtext.xdoc.images.ImageProxy
 	 * @generated
 	 */
 	EClass getImageProxy();
 
 	/**
-	 * Returns the meta object for the attribute '{@link images.ImageProxy#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.images.ImageProxy#getName <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see images.ImageProxy#getName()
+	 * @see org.eclipse.xtext.xdoc.images.ImageProxy#getName()
 	 * @see #getImageProxy()
 	 * @generated
 	 */
@@ -132,11 +132,11 @@ public interface ImagesPackage extends EPackage
 	interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link images.impl.ImageProxyImpl <em>Image Proxy</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.images.impl.ImageProxyImpl <em>Image Proxy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see images.impl.ImageProxyImpl
-		 * @see images.impl.ImagesPackageImpl#getImageProxy()
+		 * @see org.eclipse.xtext.xdoc.images.impl.ImageProxyImpl
+		 * @see org.eclipse.xtext.xdoc.images.impl.ImagesPackageImpl#getImageProxy()
 		 * @generated
 		 */
 		EClass IMAGE_PROXY = eINSTANCE.getImageProxy();

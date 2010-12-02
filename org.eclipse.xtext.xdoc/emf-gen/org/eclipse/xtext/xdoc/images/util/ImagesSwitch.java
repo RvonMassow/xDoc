@@ -3,14 +3,14 @@
  * </copyright>
  *
  */
-package images.util;
-
-import images.*;
+package org.eclipse.xtext.xdoc.images.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import org.eclipse.xtext.xdoc.images.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see images.ImagesPackage
+ * @see org.eclipse.xtext.xdoc.images.ImagesPackage
  * @generated
  */
 public class ImagesSwitch<T>

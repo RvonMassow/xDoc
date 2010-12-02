@@ -3,9 +3,7 @@
  * </copyright>
  *
  */
-package images.impl;
-
-import images.*;
+package org.eclipse.xtext.xdoc.images.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -14,6 +12,8 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import org.eclipse.xtext.xdoc.images.*;
 
 /**
  * <!-- begin-user-doc -->

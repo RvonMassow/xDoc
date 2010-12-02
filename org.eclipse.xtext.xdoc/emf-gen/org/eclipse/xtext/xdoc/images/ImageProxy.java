@@ -3,7 +3,7 @@
  * </copyright>
  *
  */
-package images;
+package org.eclipse.xtext.xdoc.images;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link images.ImageProxy#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.images.ImageProxy#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see images.ImagesPackage#getImageProxy()
+ * @see org.eclipse.xtext.xdoc.images.ImagesPackage#getImageProxy()
  * @model
  * @generated
  */
@@ -35,14 +35,14 @@ public interface ImageProxy extends EObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see images.ImagesPackage#getImageProxy_Name()
+	 * @see org.eclipse.xtext.xdoc.images.ImagesPackage#getImageProxy_Name()
 	 * @model
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link images.ImageProxy#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.xtext.xdoc.images.ImageProxy#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
