@@ -18,7 +18,7 @@ prepareListingsString(String s):
 	s.replaceAll("^\n", "");
 
 escapeHTMLChars(String s):
-	s.replaceAll("&", "&amp;").replaceAll("\"", "&quot;").replaceAll("'", "&apos;")
+	s.replaceAll("&", "&amp;").replaceAll("'", "&apos;")
 		.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 formatCode(String text, LangDef language):

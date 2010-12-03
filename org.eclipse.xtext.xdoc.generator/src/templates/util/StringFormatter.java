@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -66,25 +68,35 @@ public class StringFormatter {
 	 * @param langName the name of the language
 	 * @return the string with keywords highlighted
 	 */
-	static public String highlightKeywords(String text, final LangDef lang){
+	static public String highlightKeywords(String t, final LangDef lang){
 		if(lang != null){
 			List<String> keywords = lang.getKeywords();
-			for (String keyword : keywords) {
-				if(keyword.trim().equals("class")){
-					text = text.replaceAll("(?<!<span )" + makePattern(keyword.trim()) + "(?!\\=\"keyword\">)",
-							"<span class=\"keyword\">" + keyword.trim() + "</span>");
-				} else if(keyword.trim().equals("span")){
-					text = text.replaceAll("((?<!<)" + makePattern(keyword.trim()) + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
-							"<span class=\"keyword\">" + keyword.trim() + "</span>");
-				} else if(keyword.trim().equals("keyword")){
-					text = text.replaceAll("(?<!<span class=\")" + makePattern(keyword.trim()) + "(?!\">)",
-							"<span class=\"keyword\">" + keyword.trim() + "</span>");
-				} else {
-					text = text.replaceAll(makePattern(keyword.trim()), "<span class=\"keyword\">" + keyword.trim() + "</span>");
+			String[] blocks = t.split("\"");
+			List<String> resultTokens = new LinkedList<String>();
+			for(int i = 0; i < blocks.length; i++){
+				String text = blocks[i];
+				if(i%2 == 0){
+					System.out.println(text + " " + i);
+					for (String keyword : keywords) {
+						if(keyword.trim().equals("class")){
+							text = text.replaceAll("(?<!<span )" + makePattern(keyword.trim()) + "(?!\\=\"keyword\">)",
+									"<span class=\"keyword\">" + keyword.trim() + "</span>");
+						} else if(keyword.trim().equals("span")){
+							text = text.replaceAll("((?<!<)" + makePattern(keyword.trim()) + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
+									"<span class=\"keyword\">" + keyword.trim() + "</span>");
+						} else if(keyword.trim().equals("keyword")){
+							text = text.replaceAll("(?<!<span class=\")" + makePattern(keyword.trim()) + "(?!\">)",
+									"<span class=\"keyword\">" + keyword.trim() + "</span>");
+						} else {
+							text = text.replaceAll(makePattern(keyword.trim()), "<span class=\"keyword\">" + keyword.trim() + "</span>");
+						}
+					}
 				}
+				resultTokens.add(text);
 			}
+			return join(resultTokens, "\"");
 		}
-		return text;
+		return null;
 	}
 
 	public static String percentToFloat(String percent){
@@ -93,5 +105,17 @@ public class StringFormatter {
 
 	private static String makePattern(String keyword) {
 		return "(?<![\\w])"+keyword+"(?!\\w)";
+	}
+	
+	private static String join(Iterable<String> i, String delim){
+		StringBuilder res = new StringBuilder();
+		Iterator<String> iter = i.iterator();
+		if(iter.hasNext()){
+			res.append(iter.next());
+		}
+		while(iter.hasNext()){
+			res.append(delim).append(iter.next());
+		}
+		return res.toString();
 	}
 }
