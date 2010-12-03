@@ -76,7 +76,6 @@ public class StringFormatter {
 			for(int i = 0; i < blocks.length; i++){
 				String text = blocks[i];
 				if(i%2 == 0){
-					System.out.println(text + " " + i);
 					for (String keyword : keywords) {
 						if(keyword.trim().equals("class")){
 							text = text.replaceAll("(?<!<span )" + makePattern(keyword.trim()) + "(?!\\=\"keyword\">)",
