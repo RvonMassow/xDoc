@@ -2,7 +2,7 @@ import org::eclipse::xtext::xdoc::xdoc;
 import org::eclipse::emf::ecore;
 
 lstEscapeToTex():
-	"Â";
+	"ß";
 
 escapeLatexChars(String s):
 	s.replaceAll("\\$", "\\\\\\$").replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")

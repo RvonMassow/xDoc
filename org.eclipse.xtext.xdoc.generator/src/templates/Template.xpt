@@ -6,11 +6,13 @@
 \documentclass[a4paper]{scrreprt}
 
 \usepackage[T1]{fontenc}
-\usepackage{ae,aecompl} 
+\usepackage{ae,aecompl,aeguill} 
 \usepackage[latin1]{inputenc}
 \usepackage{listings}
+\usepackage[american]{babel}
 
 \usepackage{todonotes}
+
 
 «IF ((String) (GLOBALVAR release)) != "false"»
 \renewcommand{\todo}[1]{}«
@@ -19,26 +21,6 @@ ENDIF»
 %%\usepackage{helvet}
 
 «EXPAND genLangDef FOREACH this.langDefs-»
-
-%\lstdefinelanguage{Xtext}
-%  {morekeywords={grammar, generate, import, as, terminal, hidden},
-%    sensitive=true,
-%    morecomment=[l]{//},
-%    morecomment=[s]{/*}{*/},
-%    morestring=[b]",
-%    morestring=[b]',
-%  }
-
-%\lstdefinelanguage{Xbase}
-%  {morekeywords={super, val, var, extends, instanceof, new,%
-%   null, true, false, if, else, switch, case, default, do,%
-%   while, for, def, class, as, throw, try, catch, finally},
-%    sensitive=true,
-%    morecomment=[l]{//},
-%    morecomment=[s]{/*}{*/},
-%    morestring=[b]",
-%    morestring=[b]',
-%  }
 
 %% force more space between subsections!
 \makeatletter
@@ -54,9 +36,9 @@ ENDIF»
 
 %\lstdefinelanguage{xtext}{keywords={terminal, grammar, import, generate, hidden, as}, sensitive=true,string={"},morestring={'},comment={//},morecomment=[s]{/*}{*/}}
 
-\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, columns=[r]fullflexible}
+\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={«lstEscapeToTex()»}}
 
-\usepackage[english]{babel}
+%%\usepackage[english]{babel}
 
 % import this as last package
 \usepackage{hyperref}
@@ -86,6 +68,7 @@ ENDIF»
     morecomment=[s]{/*}{*/},
     morestring=[b]",
     morestring=[b]',
+    literate={«"«"»}{{\font\larm=larm1000\larm\char 190}}1
   }
 «ENDDEFINE»
 
@@ -184,8 +167,8 @@ ENDIF»
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline[«IF language!=null» language=«this.language.name»«ENDIF»]°«EXPAND genCode FOREACH this.contents»°«
- ELSE»\begin{lstlisting}«IF language!=null» [language=«this.language.name»]«
+ IF inline(this)»\lstinline«IF language!=null»[language=«this.language.name»«ENDIF»]°«EXPAND genCode FOREACH this.contents»°«
+ ELSE»\begin{lstlisting}«IF language!=null»[language=«this.language.name»]«
  ENDIF»
 «EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
 \end{lstlisting}
