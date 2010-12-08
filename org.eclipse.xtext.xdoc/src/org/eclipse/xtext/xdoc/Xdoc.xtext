@@ -39,9 +39,13 @@ SectionRef:
 	'section-ref[' section=[Section] ']';
 
 Section2:
+	Section2Ref |
 	('section2:' name=ID '['| 'section2[') title=TextOrMarkup ']' 
 	(MULTI_NL contents+=TextOrMarkup)*
 	(MULTI_NL subSections+=Section3)*;
+
+Section2Ref:
+	'section2-ref[' section2=[Section2] ']';
 
 Section3:
 	('section3:' name=ID '['|'section3[') title=TextOrMarkup ']' 

@@ -124,10 +124,10 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 
 	private void configureSection2(FormattingConfig c,
 			XdocGrammarAccess grammarAccess) {
-		c.setNoSpace().after(grammarAccess.getSection2Access().getSection2Keyword_0_0_0());
-		c.setNoSpace().after(grammarAccess.getSection2Access().getSection2Keyword_0_1());
-		c.setNoSpace().around(grammarAccess.getSection2Access().getLeftSquareBracketKeyword_0_0_2());
-		c.setNoSpace().around(grammarAccess.getSection2Access().getRightSquareBracketKeyword_2());
+		c.setNoSpace().after(grammarAccess.getSection2Access().getSection2Keyword_1_0_0_0());
+		c.setNoSpace().after(grammarAccess.getSection2Access().getSection2Keyword_1_0_1());
+		c.setNoSpace().around(grammarAccess.getSection2Access().getLeftSquareBracketKeyword_1_0_0_2());
+		c.setNoSpace().around(grammarAccess.getSection2Access().getRightSquareBracketKeyword_1_2());
 	}
 
 	private void configureSection3(FormattingConfig c,

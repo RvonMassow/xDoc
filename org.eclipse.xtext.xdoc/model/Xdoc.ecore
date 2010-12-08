@@ -35,6 +35,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
         eType="#//Section3" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Section2Ref" eSuperTypes="#//Section2">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="section2" eType="#//Section2"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Section3" eSuperTypes="#//AbstractSection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
         eType="#//Section4" containment="true"/>

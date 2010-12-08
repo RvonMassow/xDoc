@@ -212,6 +212,12 @@ ENDIF-»
 ENDIF-»
 «ENDDEFINE»
 
+«DEFINE genLabel FOR Section2Ref-»
+«IF this.section2.name != null-»
+\label{«this.section2.name»}«
+ENDIF-»
+«ENDDEFINE»
+
 «DEFINE genLabel FOR String-»
 «IF this != null -»
 \label{«this»}«

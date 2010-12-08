@@ -38,6 +38,7 @@ import org.eclipse.xtext.xdoc.xdoc.OrderedList;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
+import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.Section4;
 import org.eclipse.xtext.xdoc.xdoc.SectionRef;
@@ -108,6 +109,13 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * @generated
 	 */
 	private EClass section2EClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass section2RefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -516,6 +524,26 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	public EReference getSection2_SubSections()
 	{
 		return (EReference)section2EClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getSection2Ref()
+	{
+		return section2RefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getSection2Ref_Section2()
+	{
+		return (EReference)section2RefEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -1112,6 +1140,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		section2EClass = createEClass(SECTION2);
 		createEReference(section2EClass, SECTION2__SUB_SECTIONS);
 
+		section2RefEClass = createEClass(SECTION2_REF);
+		createEReference(section2RefEClass, SECTION2_REF__SECTION2);
+
 		section3EClass = createEClass(SECTION3);
 		createEReference(section3EClass, SECTION3__SUB_SECTIONS);
 
@@ -1230,6 +1261,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		sectionEClass.getESuperTypes().add(this.getAbstractSection());
 		sectionRefEClass.getESuperTypes().add(this.getSection());
 		section2EClass.getESuperTypes().add(this.getAbstractSection());
+		section2RefEClass.getESuperTypes().add(this.getSection2());
 		section3EClass.getESuperTypes().add(this.getAbstractSection());
 		section4EClass.getESuperTypes().add(this.getAbstractSection());
 		abstractSectionEClass.getESuperTypes().add(this.getIdentifiable());
@@ -1274,6 +1306,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		initEClass(section2EClass, Section2.class, "Section2", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSection2_SubSections(), this.getSection3(), null, "subSections", null, 0, -1, Section2.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(section2RefEClass, Section2Ref.class, "Section2Ref", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSection2Ref_Section2(), this.getSection2(), null, "section2", null, 0, 1, Section2Ref.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(section3EClass, Section3.class, "Section3", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSection3_SubSections(), this.getSection4(), null, "subSections", null, 0, -1, Section3.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

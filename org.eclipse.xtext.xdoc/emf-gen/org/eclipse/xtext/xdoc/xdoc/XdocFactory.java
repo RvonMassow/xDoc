@@ -89,6 +89,15 @@ public interface XdocFactory extends EFactory
 	Section2 createSection2();
 
 	/**
+	 * Returns a new object of class '<em>Section2 Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Section2 Ref</em>'.
+	 * @generated
+	 */
+	Section2Ref createSection2Ref();
+
+	/**
 	 * Returns a new object of class '<em>Section3</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

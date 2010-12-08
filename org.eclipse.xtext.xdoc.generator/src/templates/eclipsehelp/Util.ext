@@ -17,6 +17,9 @@ urlSuffix(ChapterRef this) :
 urlSuffix(SectionRef this) :
 	urlSuffix(section);
 
+urlSuffix(Section2Ref this) :
+	urlSuffix(section2);
+	
 urlSuffix(AbstractSection this) :
 	if (XdocFile.isInstance(eContainer())) 
 		then ""
@@ -24,6 +27,9 @@ urlSuffix(AbstractSection this) :
 
 labelName(Object any):
 	"";
+
+labelName(Void any):
+    "";
 
 labelName(AbstractSection this):
 	if name!=null
@@ -36,5 +42,8 @@ subSections(ChapterRef this) :
 subSections(SectionRef this) :
 	subSections(section);
 
+subSections(Section2Ref this) :
+	subSections(section2);
+	
 subSections(AbstractSection this) :
 	eContents().typeSelect(AbstractSection);

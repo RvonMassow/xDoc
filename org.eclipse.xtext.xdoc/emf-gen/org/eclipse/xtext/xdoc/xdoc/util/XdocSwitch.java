@@ -158,6 +158,16 @@ public class XdocSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XdocPackage.SECTION2_REF:
+			{
+				Section2Ref section2Ref = (Section2Ref)theEObject;
+				T result = caseSection2Ref(section2Ref);
+				if (result == null) result = caseSection2(section2Ref);
+				if (result == null) result = caseAbstractSection(section2Ref);
+				if (result == null) result = caseIdentifiable(section2Ref);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case XdocPackage.SECTION3:
 			{
 				Section3 section3 = (Section3)theEObject;
@@ -459,6 +469,22 @@ public class XdocSwitch<T>
 	 * @generated
 	 */
 	public T caseSection2(Section2 object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Section2 Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Section2 Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSection2Ref(Section2Ref object)
 	{
 		return null;
 	}

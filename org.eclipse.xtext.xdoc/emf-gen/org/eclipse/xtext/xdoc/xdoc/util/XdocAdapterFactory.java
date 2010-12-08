@@ -113,6 +113,11 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
 				return createSection2Adapter();
 			}
 			@Override
+			public Adapter caseSection2Ref(Section2Ref object)
+			{
+				return createSection2RefAdapter();
+			}
+			@Override
 			public Adapter caseSection3(Section3 object)
 			{
 				return createSection3Adapter();
@@ -355,6 +360,21 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createSection2Adapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.Section2Ref <em>Section2 Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Section2Ref
+	 * @generated
+	 */
+	public Adapter createSection2RefAdapter()
 	{
 		return null;
 	}

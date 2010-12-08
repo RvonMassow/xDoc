@@ -3,17 +3,14 @@
  */
 package org.eclipse.xtext.xdoc.ui.labeling;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
-import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
-import org.eclipse.xtext.xdoc.xdoc.Section;
-import org.eclipse.xtext.xdoc.xdoc.Section2;
-import org.eclipse.xtext.xdoc.xdoc.Section3;
-import org.eclipse.xtext.xdoc.xdoc.Section4;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 
@@ -43,34 +40,15 @@ public class XdocLabelProvider extends DefaultEObjectLabelProvider {
 		return (s.eContainer().eContents().indexOf(s) + 1) + "";
 	}
 
-	protected String version(Chapter c) {
-		String parent = getText(c.eContainer());
-		if (parent == null)
-			return (c.eContainer().eContents().indexOf(c) + 1) + "";
-		else
-			return version.invoke(c.eContainer())
-					+ "."
-					+ (((Document) c.eContainer()).getChapters().indexOf(c) + 1);
-	}
-
-	protected String version(Section s) {
-		return version.invoke(s.eContainer()) + "."
-				+ (((Chapter) s.eContainer()).getSubSections().indexOf(s) + 1);
-	}
-
-	protected String version(Section2 s) {
-		return version.invoke(s.eContainer()) + "."
-				+ (((Section) s.eContainer()).getSubSections().indexOf(s) + 1);
-	}
-
-	protected String version(Section3 s) {
-		return version.invoke(s.eContainer()) + "."
-				+ (((Section2) s.eContainer()).getSubSections().indexOf(s) + 1);
-	}
-
-	protected String version(Section4 s) {
-		return version.invoke(s.eContainer()) + "."
-				+ (((Section3) s.eContainer()).getSubSections().indexOf(s) + 1);
+	protected String version(AbstractSection section) {
+		if (section.eContainer() instanceof AbstractSection || section.eContainer() instanceof Document) {
+			List<?> siblings = (List<?>) section.eContainer().eGet(section.eContainingFeature());
+			int idx = siblings.indexOf(section) + 1;
+			String superSectionVersion = version.invoke(section.eContainer());
+			return superSectionVersion + "." + idx;
+		} else {
+			return String.valueOf(1);
+		}
 	}
 
 	protected String toString(String number, TextOrMarkup title) {
