@@ -108,19 +108,9 @@ public class GeneratorTest extends AbstractXtextTests {
 		validate(EXPECTATION_DIR + "escapeTest.html", RESULT_FILE);
 	}
 
-	public void testTwoChapters() throws Exception {
-		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "twoChapters.xdoc");
-		generate(file);
-		validate(EXPECTATION_DIR + "twoChaptersTest.html", RESULT_FILE);
-	}
-
 	protected void generate(EObject eObject) {
-		try {
-			XpandFacade.create(this.xpandCtx).evaluate(
-					"templates::eclipsehelp::Main::main", eObject);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		XpandFacade.create(this.xpandCtx).evaluate(
+				"templates::eclipsehelp::Main::main", eObject);
 	}
 
 	private void validate(String expected, String result) throws Exception {
