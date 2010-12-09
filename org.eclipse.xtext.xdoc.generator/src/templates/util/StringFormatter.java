@@ -95,7 +95,7 @@ public class StringFormatter {
 			}
 			return join(resultTokens, "\"");
 		}
-		return null;
+		return t;
 	}
 
 	public static String percentToFloat(String percent){

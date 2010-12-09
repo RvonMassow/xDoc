@@ -12,51 +12,51 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class InternalXdocLexer extends Lexer {
-    public static final int T__42=42;
-    public static final int T__12=12;
-    public static final int T__28=28;
-    public static final int T__23=23;
-    public static final int T__13=13;
-    public static final int T__47=47;
-    public static final int T__21=21;
-    public static final int T__19=19;
-    public static final int T__39=39;
-    public static final int T__30=30;
-    public static final int T__46=46;
-    public static final int T__17=17;
-    public static final int T__27=27;
-    public static final int RULE_MULTI_NL=8;
-    public static final int T__24=24;
-    public static final int T__10=10;
-    public static final int T__34=34;
-    public static final int T__15=15;
-    public static final int T__35=35;
     public static final int RULE_ID=4;
-    public static final int T__36=36;
-    public static final int T__20=20;
-    public static final int T__44=44;
-    public static final int T__14=14;
-    public static final int T__33=33;
-    public static final int T__22=22;
-    public static final int T__11=11;
     public static final int T__29=29;
-    public static final int T__45=45;
-    public static final int RULE_WS=5;
-    public static final int T__43=43;
-    public static final int T__31=31;
-    public static final int T__40=40;
-    public static final int EOF=-1;
-    public static final int RULE_SINGLE_NL=6;
-    public static final int T__16=16;
-    public static final int T__32=32;
-    public static final int T__38=38;
-    public static final int T__37=37;
-    public static final int RULE_ANY_OTHER=7;
+    public static final int T__28=28;
+    public static final int T__27=27;
     public static final int T__26=26;
     public static final int T__25=25;
-    public static final int RULE_SL_COMMENT=9;
-    public static final int T__41=41;
+    public static final int T__24=24;
+    public static final int T__23=23;
+    public static final int T__22=22;
+    public static final int T__21=21;
+    public static final int RULE_ANY_OTHER=7;
+    public static final int T__20=20;
+    public static final int EOF=-1;
+    public static final int T__19=19;
+    public static final int T__16=16;
+    public static final int T__15=15;
     public static final int T__18=18;
+    public static final int T__17=17;
+    public static final int T__12=12;
+    public static final int T__11=11;
+    public static final int T__14=14;
+    public static final int T__13=13;
+    public static final int T__10=10;
+    public static final int T__42=42;
+    public static final int T__43=43;
+    public static final int T__40=40;
+    public static final int T__41=41;
+    public static final int T__46=46;
+    public static final int T__47=47;
+    public static final int T__44=44;
+    public static final int T__45=45;
+    public static final int RULE_MULTI_NL=8;
+    public static final int RULE_SL_COMMENT=9;
+    public static final int RULE_SINGLE_NL=6;
+    public static final int T__30=30;
+    public static final int T__31=31;
+    public static final int T__32=32;
+    public static final int T__33=33;
+    public static final int T__34=34;
+    public static final int T__35=35;
+    public static final int T__36=36;
+    public static final int T__37=37;
+    public static final int T__38=38;
+    public static final int T__39=39;
+    public static final int RULE_WS=5;
 
     // delegates
     // delegators
@@ -1493,8 +1493,8 @@ public class InternalXdocLexer extends Lexer {
     protected DFA8 dfa8 = new DFA8(this);
     static final String DFA8_eotS =
         "\1\uffff\2\31\1\26\2\uffff\2\31\1\uffff\1\31\1\uffff\6\31\1\uffff"+
-        "\2\26\1\62\2\uffff\2\31\1\uffff\2\31\4\uffff\3\31\1\uffff\1\31\2"+
-        "\uffff\4\31\1\uffff\4\31\1\uffff\1\62\3\uffff\11\31\2\uffff\2\31"+
+        "\2\26\1\63\2\uffff\2\31\1\uffff\2\31\4\uffff\3\31\1\uffff\1\31\2"+
+        "\uffff\4\31\1\uffff\4\31\1\uffff\1\63\3\uffff\11\31\2\uffff\2\31"+
         "\2\uffff\5\31\2\uffff\5\31\1\uffff\3\31\1\uffff\3\31\1\uffff\3\31"+
         "\2\uffff\7\31\1\uffff\7\31\4\uffff\1\31\1\uffff\3\31\2\uffff\2\31"+
         "\1\uffff\1\31\11\uffff\3\31\1\uffff";
@@ -1527,7 +1527,7 @@ public class InternalXdocLexer extends Lexer {
     static final String DFA8_acceptS =
         "\4\uffff\1\10\1\11\2\uffff\1\14\1\uffff\1\20\6\uffff\1\47\3\uffff"+
         "\1\53\1\54\2\uffff\1\47\2\uffff\1\6\1\7\1\10\1\11\3\uffff\1\14\1"+
-        "\uffff\1\34\1\20\4\uffff\1\33\4\uffff\1\50\1\uffff\1\52\1\51\1\53"+
+        "\uffff\1\34\1\20\4\uffff\1\33\4\uffff\1\50\1\uffff\1\51\1\52\1\53"+
         "\11\uffff\1\31\1\32\2\uffff\1\36\1\37\5\uffff\1\12\1\43\5\uffff"+
         "\1\35\3\uffff\1\44\3\uffff\1\40\3\uffff\1\45\1\42\7\uffff\1\30\7"+
         "\uffff\1\1\1\17\1\21\1\41\1\uffff\1\2\3\uffff\1\22\1\23\2\uffff"+
@@ -1559,7 +1559,7 @@ public class InternalXdocLexer extends Lexer {
             "",
             "\1\60",
             "\1\61",
-            "\1\63\2\uffff\1\63",
+            "\1\62\2\uffff\1\62",
             "",
             "",
             "\1\65",
@@ -1588,7 +1588,7 @@ public class InternalXdocLexer extends Lexer {
             "\1\103",
             "\1\104",
             "",
-            "\1\63\2\uffff\1\63",
+            "\1\62\2\uffff\1\62",
             "",
             "",
             "",
