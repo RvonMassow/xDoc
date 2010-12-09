@@ -11,6 +11,9 @@ String fileName(SectionRef obj):
 String fileName(EObject obj):
 	obj.eResource().URI.lastSegment();
 
+String urlDecode(String url):
+	JAVA templates.util.StringFormatter.urlDecode(java.lang.String);
+
 urlSuffix(ChapterRef this) :
 	urlSuffix(chapter);
 	

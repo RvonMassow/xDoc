@@ -18,7 +18,7 @@
 
 
 «DEFINE genContent FOR Chapter -»
-«FILE fileName()+".html"»«EXPAND preamble»
+«FILE urlDecode(fileName())+".html"»«EXPAND preamble»
 «EXPAND genLabel FOR name»
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">«
 EXPAND genNonParContent FOR title»</h1>

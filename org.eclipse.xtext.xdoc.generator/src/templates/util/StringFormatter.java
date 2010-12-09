@@ -1,6 +1,7 @@
 package templates.util;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,13 +44,12 @@ public class StringFormatter {
 		return cb;
 	}
 
-	static public String encode(String s){
-		try {
-			return URLEncoder.encode(s, "ISO-8859-1");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-			return "";
-		}
+	static public String encode(String s) throws UnsupportedEncodingException {
+		return URLEncoder.encode(s, "ISO-8859-1");
+	}
+	
+	static public String urlDecode(String url) throws UnsupportedEncodingException {
+		return URLDecoder.decode(url, "ISO-8859-1");
 	}
 	
 	static public void storeLink(Link link){
