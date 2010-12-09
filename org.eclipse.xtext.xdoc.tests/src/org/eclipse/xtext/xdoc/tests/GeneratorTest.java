@@ -53,6 +53,14 @@ public class GeneratorTest extends AbstractXtextTests {
 		generate(doc.getChapters().get(0));
 		validate(EXPECTATION_DIR + "codeWithLanguage.html", RESULT_FILE);
 	}
+	
+	public void testGenCode() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeTest.xdoc");
+		Document doc = (Document) file.getMainSection();
+		generate(doc);
+		generate(doc.getChapters().get(0));
+		validate(EXPECTATION_DIR + "code.html", RESULT_FILE);
+	}
 
 	public void testARef() throws Exception {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "aRefTest.xdoc");

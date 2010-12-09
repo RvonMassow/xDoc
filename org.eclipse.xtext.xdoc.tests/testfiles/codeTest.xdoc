@@ -1,3 +1,5 @@
+document[Main]
+
 chapter[Dummy Title]
 
 code[
@@ -9,3 +11,4 @@ System.out.println("Hello World\n");
 ]
 
 code[]
+

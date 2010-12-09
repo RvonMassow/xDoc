@@ -94,8 +94,10 @@ public class ParserTest extends AbstractXtextTests {
 
 	public void testCode() throws Exception {
 		XdocFile file = getDocFromFile(TEST_FILE_DIR + "codeTest.xdoc");
-		TextOrMarkup textOrMarkup = (TextOrMarkup) file.getMainSection()
-				.getContents().get(0);
+		Document doc = (Document) file.getMainSection();
+		EList<TextOrMarkup> contents = doc.getChapters().get(0)
+				.getContents();
+		TextOrMarkup textOrMarkup = (TextOrMarkup) contents.get(0);
 		assertEquals(1, textOrMarkup.getContents().size());
 		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		Code code = (Code) cb.getContents().get(0);
@@ -103,8 +105,7 @@ public class ParserTest extends AbstractXtextTests {
 				+ "public static void main(String\\[\\] args){\n"
 				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
 				code.getContents());
-		textOrMarkup = (TextOrMarkup) file.getMainSection()
-				.getContents().get(1);
+		textOrMarkup = (TextOrMarkup) contents.get(1);
 		cb = (CodeBlock) textOrMarkup.getContents().get(0);
 		assertEquals(0, cb.getContents().size());
 	}

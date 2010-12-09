@@ -23,21 +23,23 @@ public class StringFormatter {
 	static private Set<String> links = new HashSet<String>();
 	
 	static public final CodeBlock removeIndent(CodeBlock cb) {
-		if(cb.getContents().get(0) instanceof Code){
-			String code = ((Code)cb.getContents().get(0)).getContents();
-			int indent = code.length();
-			indent -= code.replaceAll("^(\n*)\\s*", "$1").length();
-			String string = "\n\\s{"+indent+"}";
-			for(int i = 0; i < cb.getContents().size(); i++) {
-				if (cb.getContents().get(i) instanceof Code) {
-					code = ((Code) cb.getContents().get(i)).getContents();
-					code = code.replaceAll(string, "\n");
-					if(i == 0) {
-						code = code.replaceAll("^\n*", "");
-					} else if(i == cb.getContents().size() - 1){
-						code = code.replaceAll("\n*$", "");
+		if(cb != null && cb.getContents().size() > 0){
+			if(cb.getContents().get(0) instanceof Code){
+				String code = ((Code)cb.getContents().get(0)).getContents();
+				int indent = code.length();
+				indent -= code.replaceAll("^(\n*)\\s*", "$1").length();
+				String string = "\n\\s{"+indent+"}";
+				for(int i = 0; i < cb.getContents().size(); i++) {
+					if (cb.getContents().get(i) instanceof Code) {
+						code = ((Code) cb.getContents().get(i)).getContents();
+						code = code.replaceAll(string, "\n");
+						if(i == 0) {
+							code = code.replaceAll("^\n*", "");
+						} else if(i == cb.getContents().size() - 1){
+							code = code.replaceAll("\n*$", "");
+						}
+						((Code)cb.getContents().get(i)).setContents(code);
 					}
-					((Code)cb.getContents().get(i)).setContents(code);
 				}
 			}
 		}
