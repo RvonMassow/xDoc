@@ -118,19 +118,19 @@ EXPAND genNonParContent FOR title»</h1>
 
 «DEFINE genText FOR Table»
 <table>
-«EXPAND genText FOREACH this.rows»
+«EXPAND genText FOREACH this.rows-»
 </table>
 «ENDDEFINE»
 
 «DEFINE genText FOR TableRow-»
 <tr>
-«EXPAND genText FOREACH this.data»
+«EXPAND genText FOREACH this.data-»
 </tr>
 «ENDDEFINE»
 
 «DEFINE genText FOR TableData-»
-<td>
-«EXPAND genText FOREACH this.contents»
+<td>«
+EXPAND genText FOREACH this.contents-»
 </td>
 «ENDDEFINE»
 
