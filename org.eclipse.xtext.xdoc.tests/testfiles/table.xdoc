@@ -1,0 +1,7 @@
+chapter[Dummy Title]
+
+table[
+	tr[td[foo] td[bar]]
+	tr[td[baz] td[fooﬂ]]
+]
+
