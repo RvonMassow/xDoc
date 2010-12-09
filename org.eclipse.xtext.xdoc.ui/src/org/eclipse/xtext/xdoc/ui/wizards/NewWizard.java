@@ -64,7 +64,6 @@ public class NewWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			logger.error(e.getMessage(), e);
-			e.printStackTrace();
 			Throwable realException = e.getTargetException();
 			MessageDialog
 					.openError(

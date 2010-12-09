@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.ui.builder;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
@@ -19,6 +20,8 @@ import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.util.Wrapper;
 
 public class XdocBuilderParticipant implements IXtextBuilderParticipant {
+	
+	private final Logger logger = Logger.getLogger(this.getClass());
 
 	public void build(final IBuildContext context, IProgressMonitor monitor)
 			throws CoreException {
@@ -72,7 +75,8 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 			XpandFacade.create(ctx).evaluate(
 					"templates::eclipsehelp::Main::main", eObject);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
+			throw new RuntimeException(e);
 		}
 	}
 

@@ -165,7 +165,8 @@ public class ProjectUtils {
 			url = XdocActivator.getInstance().getBundle().getResource("resources/book.css");
 			this.createFile(project, subMonitor, url.openStream(), "contents/book.css");
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -195,7 +196,8 @@ public class ProjectUtils {
 			url = XdocActivator.getInstance().getBundle().getResource("resources/02-GettingStarted.xdoc");
 			this.createFile(project, monitor, url.openStream(), "src/02-GettingStarted.xdoc");
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage(), e);
+			throw new RuntimeException(e);
 		}
 	}
 	
