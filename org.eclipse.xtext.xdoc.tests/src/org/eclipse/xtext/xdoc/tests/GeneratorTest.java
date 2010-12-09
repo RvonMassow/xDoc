@@ -46,75 +46,75 @@ public class GeneratorTest extends AbstractXtextTests {
 		xpandCtx.registerMetaModel(new JavaBeansMetaModel());
 	}
 
-//	public void testGenCodeWithLanguage() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeWithLanguageTest.xdoc");
-//		Document doc = (Document) file.getMainSection();
-//		generate(doc);
-//		generate(doc.getChapters().get(0));
-//		validate(EXPECTATION_DIR + "codeWithLanguage.html", RESULT_FILE);
-//	}
-//	
-//	public void testGenCode() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeTest.xdoc");
-//		Document doc = (Document) file.getMainSection();
-//		generate(doc);
-//		generate(doc.getChapters().get(0));
-//		validate(EXPECTATION_DIR + "code.html", RESULT_FILE);
-//	}
-//
-//	public void testARef() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "aRefTest.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "aRefExp.html", RESULT_FILE);
-//	}
-//
-//	public void testCodeRef() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeRef.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "codeRef.html", RESULT_FILE);
-//	}
-//
-//	public void testComment() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "commentTest.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "commentTest.html", RESULT_FILE);
-//	}
-//
-//	public void testImg() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "imgTest.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "imgTest.html", RESULT_FILE);
-//	}
-//
-//	public void testLink() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "linkTest.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "linkTest.html", RESULT_FILE);
-//	}
-//
-//	public void testRefText() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "namedRefAndTextTest.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "namedRefTextTest.html", RESULT_FILE);
-//	}
-//
-//	public void testNestedList() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "nestedListTest.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "nestedListTest.html", RESULT_FILE);
-//	}
-//
-//	public void testSimpleRef() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "simpleRefTest.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "simpleRefTest.html", RESULT_FILE);
-//	}
-//
-//	public void testEscape() throws Exception {
-//		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "testEscape.xdoc");
-//		generate(file);
-//		validate(EXPECTATION_DIR + "escapeTest.html", RESULT_FILE);
-//	}
+	public void testGenCodeWithLanguage() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeWithLanguageTest.xdoc");
+		Document doc = (Document) file.getMainSection();
+		generate(doc);
+		generate(doc.getChapters().get(0));
+		validate(EXPECTATION_DIR + "codeWithLanguage.html", RESULT_FILE);
+	}
+	
+	public void testGenCode() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeTest.xdoc");
+		Document doc = (Document) file.getMainSection();
+		generate(doc);
+		generate(doc.getChapters().get(0));
+		validate(EXPECTATION_DIR + "code.html", RESULT_FILE);
+	}
+
+	public void testARef() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "aRefTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "aRefExp.html", RESULT_FILE);
+	}
+
+	public void testCodeRef() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeRef.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "codeRef.html", RESULT_FILE);
+	}
+
+	public void testComment() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "commentTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "commentTest.html", RESULT_FILE);
+	}
+
+	public void testImg() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "imgTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "imgTest.html", RESULT_FILE);
+	}
+
+	public void testLink() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "linkTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "linkTest.html", RESULT_FILE);
+	}
+
+	public void testRefText() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "namedRefAndTextTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "namedRefTextTest.html", RESULT_FILE);
+	}
+
+	public void testNestedList() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "nestedListTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "nestedListTest.html", RESULT_FILE);
+	}
+
+	public void testSimpleRef() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "simpleRefTest.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "simpleRefTest.html", RESULT_FILE);
+	}
+
+	public void testEscape() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "testEscape.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "escapeTest.html", RESULT_FILE);
+	}
 
 	public void testTable() throws Exception {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "table.xdoc");
