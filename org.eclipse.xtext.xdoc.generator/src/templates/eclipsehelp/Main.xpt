@@ -18,7 +18,8 @@
 
 
 «DEFINE genContent FOR Chapter -»
-«FILE urlDecode(fileName())+".html"»«EXPAND preamble»
+«FILE urlDecode(fileName())+".html" -»
+«EXPAND preamble»
 «EXPAND genLabel FOR name»
 <h1 xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0">«
 EXPAND genNonParContent FOR title»</h1>
@@ -37,7 +38,6 @@ EXPAND genNonParContent FOR title»</h1>
 «EXPAND genContent FOREACH subSections»
 </div>
 «ENDDEFINE»
-
 
 «DEFINE genContent FOR Section2»
 «EXPAND genLabel FOR name»
@@ -68,12 +68,6 @@ EXPAND genNonParContent FOR title»</h1>
 «EXPAND genText FOR par-»
 «ENDFOREACH-»
 «ENDDEFINE»
-
-«REM»
-«DEFINE genTocEntry(List[AbstractSection] l, String s) FOR List»
-«ENDDEFINE»
-«ENDREM»
-
 
 «REM» start html template«ENDREM»
 

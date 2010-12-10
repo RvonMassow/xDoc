@@ -16,7 +16,15 @@
 
 «DEFINE genTocEntry FOR AbstractSection-»
 <topic href="contents/«urlDecode(fileName(this))».html«urlSuffix()»" label="«EXPAND genPlainText FOR this.title»" >
-«EXPAND genTocEntry FOREACH subSections()-»
+«EXPAND genTocEntry(this) FOREACH subSections()-»
+</topic>
+«ENDDEFINE»
+
+«REM»
+«ENDREM»
+«DEFINE genTocEntry(AbstractSection container) FOR AbstractSection-»
+<topic href="contents/«urlDecode(fileName(container))».html«urlSuffix()»" label="«EXPAND genPlainText FOR this.title»" >
+«EXPAND genTocEntry(container) FOREACH subSections()-»
 </topic>
 «ENDDEFINE»
 

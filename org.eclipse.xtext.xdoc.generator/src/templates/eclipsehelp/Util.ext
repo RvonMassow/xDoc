@@ -4,25 +4,34 @@ import org::eclipse::emf::ecore;
 // eclipse help helpers
 String fileName(ChapterRef obj):
 	fileName(obj.chapter);
-	
+
 String fileName(SectionRef obj):
 	fileName(obj.section);
 
+String fileName(Section2Ref obj):
+	fileName(obj.section2);
+
 String fileName(EObject obj):
 	obj.eResource().URI.lastSegment();
+
+
+String fileName(EObject obj, Chapter mainFile):
+	mainFile.eResource().URI.lastSegment();
 
 String urlDecode(String url):
 	JAVA templates.util.StringFormatter.urlDecode(java.lang.String);
 
 urlSuffix(ChapterRef this) :
 	urlSuffix(chapter);
-	
+
+/*
 urlSuffix(SectionRef this) :
 	urlSuffix(section);
 
 urlSuffix(Section2Ref this) :
 	urlSuffix(section2);
-	
+*/
+
 urlSuffix(AbstractSection this) :
 	if (XdocFile.isInstance(eContainer())) 
 		then ""
