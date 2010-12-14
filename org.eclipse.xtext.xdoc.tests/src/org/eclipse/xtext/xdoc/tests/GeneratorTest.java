@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.XpandFacade;
@@ -13,13 +14,18 @@ import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xdoc.XdocStandaloneSetup;
+import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 public class GeneratorTest extends AbstractXtextTests {
 
-	private static final String RESULT_FILE = "test-gen/mytestmodel.xdoc.html";
+	private static final String RESULT_DIR = "test-gen/";
+
+	private static final String RESULT_FILE = RESULT_DIR + "mytestmodel.xdoc.html";
 
 	public static String EXPECTATION_DIR = "expectations/";
 
@@ -53,7 +59,7 @@ public class GeneratorTest extends AbstractXtextTests {
 		generate(doc.getChapters().get(0));
 		validate(EXPECTATION_DIR + "codeWithLanguage.html", RESULT_FILE);
 	}
-	
+
 	public void testGenCode() throws Exception {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeTest.xdoc");
 		Document doc = (Document) file.getMainSection();
@@ -120,6 +126,22 @@ public class GeneratorTest extends AbstractXtextTests {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "table.xdoc");
 		generate(file);
 		validate(EXPECTATION_DIR + "table.html", RESULT_FILE);
+	}
+
+	public void testTwoChapters() throws Exception {
+		XtextResourceSet set = get(XtextResourceSet.class);
+		set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "01-twoChapters.xdoc"), true);
+		set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "02-twoChapters.xdoc"), true);
+		XdocFile file = (XdocFile) getModel((XtextResource)set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "twoChaptersDoc.xdoc"), true));
+		Document doc = (Document) file.getMainSection();
+		for(int i = 0; i < doc.getChapters().size(); i++) {
+			Chapter chapter = doc.getChapters().get(i);
+			generate(chapter);
+		}
+		generate(doc);
+		validate(EXPECTATION_DIR + "01-twoChapters.xdoc.html", RESULT_DIR + "01-twoChapters.xdoc.html");
+		validate(EXPECTATION_DIR + "01-twoChapters.xdoc.html", RESULT_DIR + "01-twoChapters.xdoc.html");
+		validate(EXPECTATION_DIR + "twoChaptersTOC.xml", RESULT_DIR + "toc.xml");
 	}
 
 	protected void generate(EObject eObject) {
