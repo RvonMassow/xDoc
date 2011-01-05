@@ -20,7 +20,7 @@ import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.util.Wrapper;
 
 public class XdocBuilderParticipant implements IXtextBuilderParticipant {
-	
+
 	private final Logger logger = Logger.getLogger(this.getClass());
 
 	public void build(final IBuildContext context, IProgressMonitor monitor)
@@ -66,7 +66,11 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 				}
 			}
 		}
-
+		if(context.getBuildType().equals(BuildType.CLEAN)) {
+			IFile file = folder.get().getFile("toc.xml");
+			if (file.exists())
+				file.delete(true, monitor);
+		}
 	}
 
 	protected void generate(EObject eObject, XpandExecutionContextImpl ctx,
