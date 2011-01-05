@@ -1,0 +1,4 @@
+chapter:bar[Dummy Title]
+
+More content with ref to ref:id[the other chapter] and ref:anchor[an anchor]
+
