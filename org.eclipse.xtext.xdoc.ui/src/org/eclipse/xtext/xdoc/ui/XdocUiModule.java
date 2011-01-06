@@ -46,10 +46,9 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 		return FoldingRegionProvider.class;
 	}
 
-
-	// TODO: replace by reconciler with a SpellingReconcileStrategy
 	@Override
 	public Class<? extends IReconciler> bindIReconciler() {
 		return XdocReconciler.class;
 	}
+
 }
