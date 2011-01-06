@@ -3,6 +3,7 @@
  */
 package org.eclipse.xtext.xdoc.ui;
 
+import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
@@ -13,6 +14,7 @@ import org.eclipse.xtext.xdoc.ui.autoedit.AutoEditProvider;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
 import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
+import org.eclipse.xtext.xdoc.ui.editor.spelling.XdocReconciler;
 import org.eclipse.xtext.xdoc.ui.folding.FoldingRegionProvider;
 
 /**
@@ -22,26 +24,32 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 	public XdocUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
-	
+
 	public Class<? extends DefaultAntlrTokenToAttributeIdMapper> bindTokenToAttributeMapper() {
 		return TokenToAttributeMapper.class;
 	}
-	
+
 	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return SemanticHighlightingCalculator.class;
 	}
-	
+
 	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return SemanticHighlightingConfiguration.class;
 	}
-	
+
 	@Override
 	public Class<? extends AbstractEditStrategyProvider> bindAbstractEditStrategyProvider() {
 		return AutoEditProvider.class;
 	}
-	
+
 	public Class<? extends IFoldingRegionProvider> bindIFoldingRegionProvider() {
 		return FoldingRegionProvider.class;
 	}
-	
+
+
+	// TODO: replace by reconciler with a SpellingReconcileStrategy
+	@Override
+	public Class<? extends IReconciler> bindIReconciler() {
+		return XdocReconciler.class;
+	}
 }
