@@ -28,7 +28,7 @@ public class XdocReconcileStrategy extends XtextDocumentReconcileStrategy implem
 	public void reconcile(IRegion subRegion) {
 		super.reconcile(subRegion);
 		if(spellingStrategy != null){
-			spellingStrategy.initialReconcile();
+			spellingStrategy.reconcile(null, subRegion);
 		}
 	}
 
