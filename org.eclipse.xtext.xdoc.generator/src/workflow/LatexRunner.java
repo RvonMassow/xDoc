@@ -2,6 +2,7 @@ package workflow;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
@@ -21,7 +22,8 @@ public class LatexRunner implements IWorkflowComponent {
 	private String pdfLatexInteractionMode = "--interaction scrollmode";
 	private String pdfLatex = "pdflatex";
 	private String inputSlot;
-	
+	private boolean cleanAfterRun;
+
 
 	public String getInputSlot() {
 		return inputSlot;
@@ -34,7 +36,7 @@ public class LatexRunner implements IWorkflowComponent {
 	public void setPdfLatex(String pdfLatex) {
 		this.pdfLatex = pdfLatex;
 	}
-	
+
 	public void setPdfLatexCommandParams(String pdfLatexCommandParams) {
 		this.pdfLatexInteractionMode = pdfLatexCommandParams;
 	}
@@ -50,7 +52,7 @@ public class LatexRunner implements IWorkflowComponent {
 	public String getOutputDir() {
 		return outputDir;
 	}
-	
+
 	public void preInvoke() {
 		try {
 			Process p = Runtime.getRuntime().exec(pdfLatex + " -version");
@@ -68,7 +70,7 @@ public class LatexRunner implements IWorkflowComponent {
 	@SuppressWarnings("unchecked")
 	public void invoke(IWorkflowContext ctx) {
 		for (Document doc : (List<Document>) ctx.get(inputSlot)) {
-			String inputFile = doc.getName();
+			final String inputFile = doc.getName();
 			String[] cmdArgs = { pdfLatex, pdfLatexInteractionMode,
 					inputFile+".tex" };
 			System.out.println(outputDir);
@@ -95,13 +97,40 @@ public class LatexRunner implements IWorkflowComponent {
 						s = is.readLine();
 					}
 				}
+				if(cleanAfterRun){
+					clean(true);
+				}
 			} catch (IOException e) {
 				log.error(e.getMessage(), e);
 			}
 		}
 	}
 
+	private void clean(final boolean allExceptPDF) {
+		File oDir = new File(outputDir);
+		if (oDir.isDirectory() && oDir.canRead()) {
+			File[] files = oDir.listFiles(new FilenameFilter() {
+				public boolean accept(File dir, String name) {
+					return (!name.endsWith(".pdf") || !allExceptPDF) && !name.endsWith("html");
+				}
+			});
+			for (File file : files) {
+				if (file.canWrite() && !file.isDirectory()) {
+					file.delete();
+				}
+			}
+		}
+	}
+
 	public void postInvoke() {
+	}
+
+	public void setCleanAfterRun(boolean cleanAfterRun) {
+		this.cleanAfterRun = cleanAfterRun;
+	}
+
+	public boolean getCleanAfterRun() {
+		return cleanAfterRun;
 	}
 
 }
