@@ -5,7 +5,10 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.reconciler.DirtyRegion;
 import org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension;
+import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.texteditor.spelling.SpellingReconcileStrategy;
+import org.eclipse.ui.texteditor.spelling.SpellingService;
 import org.eclipse.xtext.ui.editor.reconciler.XtextDocumentReconcileStrategy;
 
 public class XdocReconcileStrategy extends XtextDocumentReconcileStrategy implements IReconcilingStrategyExtension {
@@ -27,7 +30,7 @@ public class XdocReconcileStrategy extends XtextDocumentReconcileStrategy implem
 	@Override
 	public void reconcile(IRegion subRegion) {
 		super.reconcile(subRegion);
-		if(spellingStrategy != null){
+		if(spellingStrategy != null) {
 			spellingStrategy.reconcile(null, subRegion);
 		}
 	}
@@ -35,8 +38,10 @@ public class XdocReconcileStrategy extends XtextDocumentReconcileStrategy implem
 	@Override
 	public void setDocument(IDocument document) {
 		super.setDocument(document);
-		spellingStrategy.setDocument(document);
-		initialReconcile();
+		if(spellingStrategy != null) {
+			spellingStrategy.setDocument(document);
+			initialReconcile();
+		}
 	}
 
 	public void setProgressMonitor(IProgressMonitor monitor) {
@@ -44,14 +49,16 @@ public class XdocReconcileStrategy extends XtextDocumentReconcileStrategy implem
 	}
 
 	public void initialReconcile() {
-		if(spellingStrategy != null){
+		if(spellingStrategy != null) {
 			spellingStrategy.initialReconcile();
 		}
 	}
 
-	public void addSpellSupport(SpellingReconcileStrategy spellingStrategy){
+	public void addSpellSupport(ISourceViewer viewer,
+			SpellingService spellingService) {
 		if(this.spellingStrategy == null) {
-			this.spellingStrategy = spellingStrategy;
+			this.spellingStrategy = new SpellingReconcileStrategy(viewer,
+					EditorsUI.getSpellingService());
 		}
 	}
 }

@@ -7,6 +7,7 @@ import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
+import org.eclipse.xtext.ui.editor.quickfix.XtextQuickAssistProcessor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -16,6 +17,7 @@ import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
 import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
 import org.eclipse.xtext.xdoc.ui.editor.spelling.XdocReconciler;
 import org.eclipse.xtext.xdoc.ui.folding.FoldingRegionProvider;
+import org.eclipse.xtext.xdoc.ui.quickfix.XdocQuickAssistProcessor;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -51,4 +53,7 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 		return XdocReconciler.class;
 	}
 
+	public Class<? extends XtextQuickAssistProcessor> bindXtextQuickAssistProcessor(){
+		return XdocQuickAssistProcessor.class;
+	}
 }
