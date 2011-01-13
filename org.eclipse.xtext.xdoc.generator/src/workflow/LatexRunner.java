@@ -73,7 +73,6 @@ public class LatexRunner implements IWorkflowComponent {
 			final String inputFile = doc.getName();
 			String[] cmdArgs = { pdfLatex, pdfLatexInteractionMode,
 					inputFile+".tex" };
-			System.out.println(outputDir);
 			try {
 				for (int i = 0; i < numberOfPasses; i++) {
 					log.info("pdflatex pass " + (i + 1));

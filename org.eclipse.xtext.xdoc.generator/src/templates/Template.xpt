@@ -176,7 +176,7 @@ ENDIF»
 
 «DEFINE genText FOR CodeRef»\lstinline°«escapeLatexChars(unescapeXdocChars(this.element.canonicalName))»°«ENDDEFINE»
 
-«DEFINE genText FOR ImageRef»\includegraphics{«this.path»}«ENDDEFINE»
+«DEFINE genText FOR ImageRef»«copy((String) GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir)»\includegraphics{«this.path»}«ENDDEFINE»
 
 «DEFINE genCode FOR Object»«ENDDEFINE»
 

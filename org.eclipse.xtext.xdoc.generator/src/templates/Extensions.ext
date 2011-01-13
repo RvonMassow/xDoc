@@ -9,7 +9,7 @@ escapeLatexChars(String s):
 		.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}")
 		.replaceAll("#", "\\\\#").replaceAll("%", "\\\\%")
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
-		.replaceAll("&", "\\\\&");
+		.replaceAll("&", "\\\\&").replaceAll("~", "\\\\textasciitilde{}");
 
 unescapeXdocChars(String s):
 	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");
@@ -76,6 +76,9 @@ sibling(Section s, Integer i):
 sibling(Section2 c, Integer i):
 	let d =((Section)c.eContainer()):
 		d.subSections.get(d.subSections.indexOf(c) + i);
+
+Void copy(String basePath, String imagePath, String target):
+	JAVA templates.util.CopyUtil.copy(java.lang.String, java.lang.String, java.lang.String);
 
 String percentToFloat(String percent):
 	JAVA templates.util.StringFormatter.percentToFloat(java.lang.String);

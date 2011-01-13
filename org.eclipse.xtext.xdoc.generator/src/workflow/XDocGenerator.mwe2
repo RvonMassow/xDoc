@@ -36,6 +36,14 @@ Workflow {
 			name = "release"
 			value = "${release}"
 		}
+		globalVar = {
+			name = "dir"
+			value = targetDir
+		}
+		globalVar = {
+			name = "srcDir"
+			value = modelPath
+		}
 	}
 	
 	component = workflow.LatexRunner auto-inject {
