@@ -136,6 +136,7 @@ ENDDEFINE»
 <div class="image" >
 «IF this.name != null»«EXPAND genLabel FOR this.name»
 «ENDIF-»
+«copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir)-»
 <img src="«this.path.unescapeXdocChars()»" «IF this.clazz != null»class="«this.clazz.unescapeXdocChars()»" «ENDIF»«IF style!=null&&!(style.length==0)» style="«this.style.unescapeXdocChars()»" «ENDIF»/>
 «escapeHTMLChars(unescapeXdocChars(this.caption))»
 </div>«

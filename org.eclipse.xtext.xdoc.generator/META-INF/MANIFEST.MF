@@ -13,7 +13,8 @@ Require-Bundle: org.eclipse.xtext.xdoc;visibility:=reexport,
  org.eclipse.emf.mwe.utils;visibility:=reexport,
  org.eclipse.xtend.typesystem.emf;visibility:=reexport,
  org.eclipse.xtext.builder,
- org.apache.log4j;bundle-version="1.2.15"
+ org.apache.log4j;bundle-version="1.2.15",
+ org.apache.commons.lang;bundle-version="2.0.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: templates,

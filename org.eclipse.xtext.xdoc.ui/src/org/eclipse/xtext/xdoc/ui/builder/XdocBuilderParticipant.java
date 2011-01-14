@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.ui.builder;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,10 +10,9 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
-import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.XpandFacade;
 import org.eclipse.xpand2.output.FileHandle;
@@ -44,51 +44,58 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 		};
 		output.addOutlet(outlet);
 		Map<String, Variable> globalVars = new HashMap<String, Variable>();
-		try{
-			ResourceLoaderFactory.setCurrentThreadResourceLoader(new ResourceLoaderImpl(getClass().getClassLoader()));
-			XpandExecutionContextImpl ctx = new XpandExecutionContextImpl(output,
-					null, null, null, null);
-			ctx.registerMetaModel(new JavaBeansMetaModel());
+		// FIXME resource loading
+		XpandExecutionContextImpl ctx = new XpandExecutionContextImpl(output,
+				null, null, null, null);
+		ctx.registerMetaModel(new JavaBeansMetaModel());
 
-			String projectName = context.getBuiltProject().getName();
-			for (IResourceDescription.Delta delta : context.getDeltas()) {
-				// handle deletion
-				String projectSegment = delta.getUri().segment(1);
-				if (projectName.equals(projectSegment)) {
-					if (delta.getUri().fileExtension().equals("xdoc")) {
-						if (folder.get() == null) {
-							IFolder contentsFolder = context.getBuiltProject().getFolder("contents");
-							if (!contentsFolder.exists())
-								contentsFolder.create(true, true, monitor);
-							folder.set(contentsFolder);
-						}
-						if (delta.getNew() == null) {
-							IFile file = folder.get().getFile(delta.getUri().lastSegment()+".html");
-							if (file.exists())
-								file.delete(true, monitor);
-						} else {
-							Resource resource = context.getResourceSet().getResource(
-									delta.getUri(), true);
-							EObject object = resource.getContents().get(0);
-							Variable var = new Variable("srcDir", resource.getURI().path());
-							globalVars.put("srcDir", var);
-							var = new Variable("dir", "contents");
-							globalVars.put("dir", var);
-							ctx.getGlobalVariables().putAll(globalVars);
-							generate(object, ctx, context);
-						}
+		String projectName = context.getBuiltProject().getName();
+		for (IResourceDescription.Delta delta : context.getDeltas()) {
+			// handle deletion
+			String projectSegment = delta.getUri().segment(1);
+			if (projectName.equals(projectSegment)) {
+				if (delta.getUri().fileExtension().equals("xdoc")) {
+					IFolder contentsFolder = context.getBuiltProject().getFolder("contents");
+					if (folder.get() == null) {
+						if (!contentsFolder.exists())
+							contentsFolder.create(true, true, monitor);
+						folder.set(contentsFolder);
+					}
+					if (delta.getNew() == null) {
+						IFile file = folder.get().getFile(delta.getUri().lastSegment()+".html");
+						if (file.exists())
+							file.delete(true, monitor);
+					} else {
+						Resource resource = context.getResourceSet().getResource(
+								delta.getUri(), true);
+						EObject object = resource.getContents().get(0);
+						// set directories for CopyUtil to be able to copy referenced images
+						String baseDir = context.getBuiltProject().getLocation() + File.separator +
+						concatSegments(2, delta.getUri().segmentCount() - 1, delta.getUri());
+						Variable var = new Variable("srcDir", baseDir);
+						globalVars.put("srcDir", var);
+						var = new Variable("dir", contentsFolder.getLocation().toString());
+						globalVars.put("dir", var);
+						ctx.getGlobalVariables().putAll(globalVars);
+						generate(object, ctx, context);
 					}
 				}
 			}
-			if(context.getBuildType().equals(BuildType.CLEAN)) {
-				IFile file = folder.get().getFile("toc.xml");
-				if (file.exists())
-					file.delete(true, monitor);
-			}
-		}finally{
-			ResourceLoaderFactory.setCurrentThreadResourceLoader(null);
-			ResourceLoaderFactory.setCurrentThreadResourceLoader(ResourceLoaderFactory.createResourceLoader());
 		}
+		if(context.getBuildType().equals(BuildType.CLEAN)) {
+			IFile file = folder.get().getFile("toc.xml");
+			if (file.exists())
+				file.delete(true, monitor);
+		}
+	}
+
+	private String concatSegments(int i, int segmentCount, URI uri) {
+		StringBuilder sb = new StringBuilder();
+		for(; i < segmentCount; i++){
+			sb.append(uri.segment(i));
+			sb.append(File.separatorChar);
+		}
+		return sb.toString();
 	}
 
 	protected void generate(EObject eObject, XpandExecutionContextImpl ctx,
