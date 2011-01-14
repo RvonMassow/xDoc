@@ -82,6 +82,7 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 				}
 			}
 		}
+		context.getBuiltProject().getFolder("contents").refreshLocal(IFolder.DEPTH_INFINITE, monitor);
 		if(context.getBuildType().equals(BuildType.CLEAN)) {
 			if (folder.get() != null) {
 				IFile file = folder.get().getFile("toc.xml");
@@ -89,6 +90,7 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 					file.delete(true, monitor);
 			}
 		}
+
 	}
 
 	private String concatSegments(int i, int segmentCount, URI uri) {
