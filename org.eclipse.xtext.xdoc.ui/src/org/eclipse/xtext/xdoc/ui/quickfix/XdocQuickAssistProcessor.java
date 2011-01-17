@@ -1,8 +1,5 @@
 package org.eclipse.xtext.xdoc.ui.quickfix;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.quickassist.IQuickAssistInvocationContext;
 import org.eclipse.ui.texteditor.spelling.SpellingCorrectionProcessor;
@@ -18,8 +15,11 @@ public class XdocQuickAssistProcessor extends XtextQuickAssistProcessor{
 	@Override
 	public ICompletionProposal[] computeQuickAssistProposals(
 			IQuickAssistInvocationContext invocationContext) {
-		List<ICompletionProposal> proposals = Arrays.asList(spellingCorrectionProcessor.computeQuickAssistProposals(invocationContext));
-		proposals.addAll(Arrays.asList(super.computeQuickAssistProposals(invocationContext)));
-		return proposals.toArray(new ICompletionProposal[proposals.size()]);
+		ICompletionProposal[] spellingProposals = spellingCorrectionProcessor.computeQuickAssistProposals(invocationContext);
+		ICompletionProposal[] xtextProposals = super.computeQuickAssistProposals(invocationContext);
+		ICompletionProposal[] ret = new ICompletionProposal[spellingProposals.length + xtextProposals.length];
+		System.arraycopy(spellingProposals, 0, ret, 0, spellingProposals.length);
+		System.arraycopy(xtextProposals, 0, ret, spellingProposals.length, xtextProposals.length);
+		return ret;
 	}
 }
