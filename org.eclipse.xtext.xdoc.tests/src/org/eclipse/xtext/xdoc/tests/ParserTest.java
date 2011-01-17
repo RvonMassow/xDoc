@@ -23,6 +23,10 @@ import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.OrderedList;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
+import org.eclipse.xtext.xdoc.xdoc.Section;
+import org.eclipse.xtext.xdoc.xdoc.Section2;
+import org.eclipse.xtext.xdoc.xdoc.Section3;
+import org.eclipse.xtext.xdoc.xdoc.Section4;
 import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableData;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
@@ -289,6 +293,39 @@ public class ParserTest extends AbstractXtextTests {
 		for (int i = 0; i < expectedKeywords.length; i++) {
 			assertEquals(expectedKeywords[i], keywords.get(i));
 		}
+	}
+
+	public void testFullSectionHirarchy() throws Exception {
+		XdocFile file = getDocFromFile(TEST_FILE_DIR + "downToSection4Test.xdoc");
+		Document doc = (Document) file.getMainSection();
+		assertEquals(1, doc.getTitle().getContents().size());
+		TextPart textPart = (TextPart)(doc.getTitle().getContents().get(0));
+		assertEquals("foo", textPart.getText());
+		assertEquals(1, doc.getChapters().size());
+		Chapter chapter = doc.getChapters().get(0);
+		assertEquals(1, chapter.getTitle().getContents().size());
+		textPart = (TextPart)(chapter.getTitle().getContents().get(0));
+		assertEquals("bar", textPart.getText());
+		assertEquals(1, chapter.getSubSections().size());
+		Section section = chapter.getSubSections().get(0);
+		assertEquals(1, section.getTitle().getContents().size());
+		textPart = (TextPart) section.getTitle().getContents().get(0);
+		assertEquals("fooß", textPart.getText());
+		assertEquals(1, section.getSubSections().size());
+		Section2 section2 = section.getSubSections().get(0);
+		assertEquals(1, section2.getTitle().getContents().size());
+		textPart = (TextPart) section2.getTitle().getContents().get(0);
+		assertEquals("pilz", textPart.getText());
+		assertEquals(1, section2.getSubSections().size());
+		Section3 section3 = section2.getSubSections().get(0);
+		assertEquals(1, section3.getTitle().getContents().size());
+		textPart = (TextPart) section3.getTitle().getContents().get(0);
+		assertEquals("sna", textPart.getText());
+		assertEquals(1, section3.getSubSections().size());
+		Section4 section4 = section3.getSubSections().get(0);
+		assertEquals(1, section4.getTitle().getContents().size());
+		textPart = (TextPart) section4.getTitle().getContents().get(0);
+		assertEquals("fu", textPart.getText());
 	}
 
 	protected XdocFile getDoc(String string) throws Exception {
