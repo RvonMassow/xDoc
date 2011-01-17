@@ -161,8 +161,8 @@ MarkupInCode:
 	Todo;
 
 LangDef:
-	'codelanguage-def['name=ID']'ANY_WS*'['(ANY_WS* (keywords+=KeyWord) (','ANY_WS* (keywords+=KeyWord) ANY_WS*)*)?']' |
-	{LangDef} 'codelanguage-def['(ANY_WS* keywords+=ID (','ANY_WS* keywords+=ID ANY_WS*)*)?']';
+	'codelanguage-def['name=ID']'ANY_WS*'['(ANY_WS* (keywords+=KeyWord) ANY_WS* (','ANY_WS* (keywords+=KeyWord) ANY_WS*)*)?']' |
+	{LangDef} 'codelanguage-def['(ANY_WS* keywords+=KeyWord ANY_WS* (','ANY_WS* keywords+=KeyWord ANY_WS*)*)?']';
 
 CodeText:
 	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',' | "-")+;

@@ -120,10 +120,10 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getTodoAccess().getGroup(), "rule__Todo__Group__0");
 					put(grammarAccess.getLangDefAccess().getGroup_0(), "rule__LangDef__Group_0__0");
 					put(grammarAccess.getLangDefAccess().getGroup_0_5(), "rule__LangDef__Group_0_5__0");
-					put(grammarAccess.getLangDefAccess().getGroup_0_5_2(), "rule__LangDef__Group_0_5_2__0");
+					put(grammarAccess.getLangDefAccess().getGroup_0_5_3(), "rule__LangDef__Group_0_5_3__0");
 					put(grammarAccess.getLangDefAccess().getGroup_1(), "rule__LangDef__Group_1__0");
 					put(grammarAccess.getLangDefAccess().getGroup_1_2(), "rule__LangDef__Group_1_2__0");
-					put(grammarAccess.getLangDefAccess().getGroup_1_2_2(), "rule__LangDef__Group_1_2_2__0");
+					put(grammarAccess.getLangDefAccess().getGroup_1_2_3(), "rule__LangDef__Group_1_2_3__0");
 					put(grammarAccess.getXdocFileAccess().getMainSectionAssignment_3_0(), "rule__XdocFile__MainSectionAssignment_3_0");
 					put(grammarAccess.getDocumentAccess().getTitleAssignment_1(), "rule__Document__TitleAssignment_1");
 					put(grammarAccess.getDocumentAccess().getSubtitleAssignment_3_2(), "rule__Document__SubtitleAssignment_3_2");
@@ -188,9 +188,9 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getCodeAccess().getContentsAssignment(), "rule__Code__ContentsAssignment");
 					put(grammarAccess.getLangDefAccess().getNameAssignment_0_1(), "rule__LangDef__NameAssignment_0_1");
 					put(grammarAccess.getLangDefAccess().getKeywordsAssignment_0_5_1(), "rule__LangDef__KeywordsAssignment_0_5_1");
-					put(grammarAccess.getLangDefAccess().getKeywordsAssignment_0_5_2_2(), "rule__LangDef__KeywordsAssignment_0_5_2_2");
+					put(grammarAccess.getLangDefAccess().getKeywordsAssignment_0_5_3_2(), "rule__LangDef__KeywordsAssignment_0_5_3_2");
 					put(grammarAccess.getLangDefAccess().getKeywordsAssignment_1_2_1(), "rule__LangDef__KeywordsAssignment_1_2_1");
-					put(grammarAccess.getLangDefAccess().getKeywordsAssignment_1_2_2_2(), "rule__LangDef__KeywordsAssignment_1_2_2_2");
+					put(grammarAccess.getLangDefAccess().getKeywordsAssignment_1_2_3_2(), "rule__LangDef__KeywordsAssignment_1_2_3_2");
 				}
 			};
 		}

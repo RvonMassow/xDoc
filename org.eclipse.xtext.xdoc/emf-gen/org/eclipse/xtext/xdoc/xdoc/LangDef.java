@@ -46,6 +46,7 @@ public interface LangDef extends EObject
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>"XdocDefaultLanguage"</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
@@ -55,7 +56,7 @@ public interface LangDef extends EObject
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getLangDef_Name()
-	 * @model id="true" required="true"
+	 * @model default="XdocDefaultLanguage" id="true" required="true"
 	 * @generated
 	 */
 	String getName();
