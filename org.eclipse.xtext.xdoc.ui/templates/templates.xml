@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+	<template name="empty document" description="template for an empty document"
+		id="org.eclipse.xtext.xdoc.ui.templates.document"
+		context="org.eclipse.xtext.xdoc.Xdoc.Document"
+		enabled="true">document[${title}]
+
+authors[${authors}]
+
+codelanguage-def[${languageName}][
+	${keywords}
+]
+
+chapter:${chapterName}[${chapterTitle}]
+
+${cursor}
+</template>
+
+<template name="empty chapter" description="template for an empty chapter"
+		id="org.eclipse.xtext.xdoc.ui.templates.chapter"
+		context="org.eclipse.xtext.xdoc.Xdoc.Chapter"
+		enabled="true">chapter:${chapterName}[${chapterTitle}]
+
+${cursor}
+</template>
+
+<template name="empty code block" description="template for an empty code block"
+		id="org.eclipse.xtext.xdoc.ui.templates.code"
+		context="org.eclipse.xtext.xdoc.Xdoc.TextPart"
+		enabled="true">code[${language}][
+${code}
+]
+
+${cursor}
+</template>
+
+<template name="inline code block" description="template for an empty inline code element"
+		id="org.eclipse.xtext.xdoc.ui.templates.inlinecode"
+		context="org.eclipse.xtext.xdoc.Xdoc.MarkUp"
+		enabled="true">code[${language}][${code}]${cursor}
+</template>
+
+<template name="unordered list" description="template for an empty unordered list"
+		id="org.eclipse.xtext.xdoc.ui.templates.ul"
+		context="org.eclipse.xtext.xdoc.Xdoc.TextPart"
+		enabled="true">ul[
+	item[${item}]${}
+]
+
+${cursor}
+</template>
+
+<template name="ordered list" description="template for an empty ordered list"
+		id="org.eclipse.xtext.xdoc.ui.templates.ol"
+		context="org.eclipse.xtext.xdoc.Xdoc.TextPart"
+		enabled="true">ul[
+	item[${item}]${}
+]
+
+${cursor}
+</template>
+
+<template name="item" description="template for a list item"
+		id="org.eclipse.xtext.xdoc.ui.templates.item"
+		context="org.eclipse.xtext.xdoc.Xdoc.Item"
+		enabled="true">
+	item[${item}]${cursor}</template>
+
+<template name="table" description="template for a table"
+		id="org.eclipse.xtext.xdoc.ui.templates.table"
+		context="org.eclipse.xtext.xdoc.Xdoc.TextPart"
+		enabled="true">table[
+	tr[td[${content}]]${}
+]
+
+${cursor}
+</template>
+
+<template name="table row" description="template for a table row"
+		id="org.eclipse.xtext.xdoc.ui.templates.tableRow"
+		context="org.eclipse.xtext.xdoc.Xdoc.TableRow"
+		enabled="true">
+	tr[td[${content}]]${cursor}</template>
+
+<template name="codelanguage definition" description="template for a code language definition"
+		id="org.eclipse.xtext.xdoc.ui.templates.langdef"
+		context="org.eclipse.xtext.xdoc.Xdoc.LangDef"
+		enabled="true">
+codelanguage-def[${name}][
+	${keywords}
+]
+
+${cursor}</template>
+
+</templates>
