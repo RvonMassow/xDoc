@@ -22,7 +22,7 @@ escapeHTMLChars(String s):
 		.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
 formatCode(String text, LangDef language):
-	highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />"), language);
+	highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />\n"), language);
 
 // simple heuristic to determine if code is meant to be inline
 boolean inline(CodeBlock c):
