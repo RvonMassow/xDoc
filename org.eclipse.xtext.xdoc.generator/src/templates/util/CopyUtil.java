@@ -15,6 +15,9 @@ public class CopyUtil {
 
 	public void copy(String basePath, String source, String targetDirName) {
 		int fileStart = source.lastIndexOf(File.separatorChar);
+		if(fileStart < 0) {
+			fileStart = 0;
+		}
 		String dir = source.substring(0, fileStart);
 		String fileName = source.substring(fileStart);
 		File targetDir = new File(StringEscapeUtils.escapeJava(targetDirName + File.separatorChar + dir));
