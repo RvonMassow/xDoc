@@ -4,14 +4,18 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 import org.eclipse.xpand2.XpandExecutionContextImpl;
 import org.eclipse.xpand2.XpandFacade;
 import org.eclipse.xpand2.output.Outlet;
 import org.eclipse.xpand2.output.Output;
 import org.eclipse.xpand2.output.OutputImpl;
+import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.resource.XtextResource;
@@ -28,6 +32,8 @@ public class GeneratorTest extends AbstractXtextTests {
 	private static final String RESULT_FILE = RESULT_DIR + "mytestmodel.xdoc.html";
 
 	public static String EXPECTATION_DIR = "expectations/";
+
+	public static String SRC_DIR = "testfiles/";
 
 	private ParserTest pTest;
 	private XpandExecutionContextImpl xpandCtx;
@@ -48,8 +54,16 @@ public class GeneratorTest extends AbstractXtextTests {
 		Output output = new OutputImpl();
 		Outlet outlet = new Outlet("test-gen/");
 		output.addOutlet(outlet);
+
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(new ResourceLoaderImpl(getClass().getClassLoader()));
 		xpandCtx = new XpandExecutionContextImpl(output, null);
+		Map<String, Variable> variables = xpandCtx.getGlobalVariables();
+		Variable srcDir = new Variable("srcDir", SRC_DIR);
+		variables.put("srcDir", srcDir);
+		Variable dir = new Variable("dir", RESULT_DIR);
+		variables.put("dir", dir);
 		xpandCtx.registerMetaModel(new JavaBeansMetaModel());
+		ResourceLoaderFactory.setCurrentThreadResourceLoader(null);
 	}
 
 	public void testGenCodeWithLanguage() throws Exception {
@@ -90,6 +104,7 @@ public class GeneratorTest extends AbstractXtextTests {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "imgTest.xdoc");
 		generate(file);
 		validate(EXPECTATION_DIR + "imgTest.html", RESULT_FILE);
+		validate(EXPECTATION_DIR + "test.png", RESULT_DIR + "test.png");
 	}
 
 	public void testLink() throws Exception {
@@ -142,6 +157,15 @@ public class GeneratorTest extends AbstractXtextTests {
 		validate(EXPECTATION_DIR + "01-twoChapters.xdoc.html", RESULT_DIR + "01-twoChapters.xdoc.html");
 		validate(EXPECTATION_DIR + "02-twoChapters.xdoc.html", RESULT_DIR + "02-twoChapters.xdoc.html");
 		validate(EXPECTATION_DIR + "twoChaptersTOC.xml", RESULT_DIR + "toc.xml");
+	}
+
+	public void testFullHirarchy () throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "downToSection4Test.xdoc");
+		// gen toc.xml
+		generate(file);
+		generate(((Document)file.getMainSection()).getChapters().get(0));
+		validate(EXPECTATION_DIR + "fullHirarchyTOC.xml", RESULT_DIR + "toc.xml");
+		validate(EXPECTATION_DIR + "fullHirarchy.xdoc.html", RESULT_FILE);
 	}
 
 	protected void generate(EObject eObject) {
