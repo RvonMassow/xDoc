@@ -32,7 +32,7 @@ public class StringFormatter {
 	private static String mlCommentStart;
 
 	static public final CodeBlock removeIndent(CodeBlock cb) {
-		if(cb.getContents().get(0) instanceof Code){
+		if(cb.getContents().size() > 0 && cb.getContents().get(0) instanceof Code){
 			String code = ((Code)cb.getContents().get(0)).getContents();
 			int indent = code.length();
 			indent -= code.replaceAll("^(\n*)\\s*", "$1").length();
@@ -102,35 +102,11 @@ public class StringFormatter {
 					t = toks[2];
 				case 2:
 					result.append(toks[1]);
+					break;
 				default: // do nothing
 					;
 				}
 			} while(toks.length == 3);
-			/*
-			StringFormatter.slComment = lang.getSlComment();
-			if(StringFormatter.slComment == null){
-				StringFormatter.slComment = SL_COMMENT_DEFAULT;
-			}
-			boolean inSLComment = false;
-			String[] blocks = t.split("\"");
-			for(int i = 0; i < blocks.length; i++){
-				String text = blocks[i];
-				if(i%2 == 0){
-					// skip single line comments
-					if(slComment.length() > 0 && text.contains(slComment)){
-						inSLComment = true;
-					}
-					if(inSLComment && !text.contains("\n")){
-						resultTokens.add(text);
-						continue;
-					} else if (inSLComment){
-						inSLComment = false;
-					}
-					text = addHighlighting(keywords, text);
-				}
-				resultTokens.add(text);
-			}
-			*/
 			return result.toString();
 		}
 		return t;
@@ -173,21 +149,6 @@ public class StringFormatter {
 		}
 		return new String[] {input};
 	}
-	/*
-			if(min == slC){
-				res = breakApart(input, slC, slComment.length(), "\n");
-				res[1] = "<span class=\"sl_comment\" >" + res[1] + "</span>";
-				return res;
-			} else if(min == mlCStart){
-				res = breakApart(input, mlCStart, mlCommentStart.length(), mlCommentEnd);
-				res[1] = "<span class=\"ml_comment\" >" + res[1] + "</span>";
-				return res;
-			} else if(min == quoteStart) {
-				res = breakApart(input, quoteStart, quote.length(), quote);
-				res[1] = "<span class=\"q_string\" >" + res[1] + "</span>";
-				return res;
-			}
-	 */
 
 	private static String[] breakApart(String input, int startIndex, int len, String end) {
 		String[] ret = { "", "", "" };
