@@ -92,9 +92,9 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 					}
 				}
 			}
-			context.getBuiltProject().getFolder("contents").refreshLocal(IFolder.DEPTH_INFINITE, monitor);
-			if(context.getBuildType().equals(BuildType.CLEAN)) {
-				if (folder.get() != null) {
+			if(folder.get() != null ){
+				folder.get().refreshLocal(IFolder.DEPTH_INFINITE, monitor);
+				if(context.getBuildType().equals(BuildType.CLEAN)) {
 					IFile file = folder.get().getFile("toc.xml");
 					if (file.exists()) {
 						file.delete(true, monitor);
