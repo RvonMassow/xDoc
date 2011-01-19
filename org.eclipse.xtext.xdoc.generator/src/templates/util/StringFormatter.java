@@ -7,7 +7,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
@@ -23,13 +26,27 @@ public class StringFormatter {
 
 	static private Set<String> links = new HashSet<String>();
 
-	private static String slComment;
+	private static String slComment = "//";
+	private static String doubleQuote ="\"";
+	private static String singleQuote ="&apos;";
+	private static String mlCommentEnd = "*/";
+	private static String mlCommentStart = "/*";
 
-	private static String quote;
+	static Map<String, Pattern> patterns;
 
-	private static String mlCommentEnd;
+	static {
+		patterns = new HashMap<String, Pattern>();
+		patterns.put(slComment, makeHighlightRegionPattern(slComment));
+		patterns.put(mlCommentStart, makeHighlightRegionPattern(mlCommentStart));
+		patterns.put(mlCommentEnd, makeHighlightRegionPattern(mlCommentEnd));
+		patterns.put(singleQuote, makeHighlightRegionPattern(singleQuote));
+		patterns.put(doubleQuote, makeHighlightRegionPattern(doubleQuote));
+		patterns.put("\n", makeHighlightRegionPattern("\n"));
+	}
 
-	private static String mlCommentStart;
+	private static Pattern makeHighlightRegionPattern(String regionStarter) {
+		return Pattern.compile("(?<![^\\\\]\\\\(\\\\\\\\){0," + (Short.MAX_VALUE) + "})\\Q" + regionStarter+"\\E");
+	}
 
 	static public final CodeBlock removeIndent(CodeBlock cb) {
 		if(cb.getContents().size() > 0 && cb.getContents().get(0) instanceof Code){
@@ -78,28 +95,20 @@ public class StringFormatter {
 	 * Highlight keywords in a text.
 	 *
 	 * @param text a piece of source code
-	 * @param dirName a directory to read a language file from
-	 * @param langName the name of the language
+	 * @param langDef the language
 	 * @return the string with keywords highlighted
 	 */
-	static public String highlightKeywords(String t, final LangDef lang){
-		if(lang != null && t != null){
-			StringFormatter.mlCommentStart = "/*";
-			StringFormatter.mlCommentEnd = "*/";
-			StringFormatter.slComment = "//";
-			if(slComment == null){
-				StringFormatter.slComment = SL_COMMENT_DEFAULT;
-			}
-			StringFormatter.quote = "\"";
+	static public String highlightKeywords(String text, final LangDef lang){
+		if(lang != null && text != null){
 			List<String> keywords = lang.getKeywords();
 			StringBuilder result = new StringBuilder();
 			String[] toks;
 			do{
-				toks = splitToNext(t);
+				toks = splitToNext(text);
 				result.append(addHighlighting(keywords, toks[0]));
 				switch(toks.length){
 				case 3:
-					t = toks[2];
+					text = toks[2];
 				case 2:
 					result.append(toks[1]);
 					break;
@@ -109,18 +118,26 @@ public class StringFormatter {
 			} while(toks.length == 3);
 			return result.toString();
 		}
-		return t;
+		return text;
 	}
 
-	private static String[] splitToNext(String input){
-		int slC = -1, mlCStart = -1, quoteStart = -1;
-		String slComment = StringFormatter.slComment;
-		String mlCommentStart = StringFormatter.mlCommentStart;
-		slC = input.indexOf(slComment);
+	public static String[] splitToNext(String input){
+		int slC = -1, mlCStart = -1, doubleQuoteStart = -1, singleQuoteStart = -1;
+		Matcher matcher;
 		if(mlCommentEnd != null) {
-			mlCStart = input.indexOf(mlCommentStart);
+			matcher = patterns.get(mlCommentStart).matcher(input);
+			if(matcher.find(0))
+				mlCStart = matcher.start();
 		}
-		quoteStart = input.indexOf(quote);
+		matcher = patterns.get(slComment).matcher(input);
+		if(matcher.find(0))
+			slC = matcher.start();
+		matcher = patterns.get(doubleQuote).matcher(input);
+		if(matcher.find(0))
+			doubleQuoteStart = matcher.start();
+		matcher = patterns.get(singleQuote).matcher(input);
+		if(matcher.find(0))
+			singleQuoteStart = matcher.start();
 		int min = Integer.MAX_VALUE;
 		if(slComment != "" && slC >= 0 && slC < min){
 			min = slC;
@@ -128,21 +145,28 @@ public class StringFormatter {
 		if(mlCommentStart != "" && mlCStart >= 0 && mlCStart < min){
 			min = mlCStart;
 		}
-		if(quoteStart >= 0 && quoteStart < min){
-			min = quoteStart;
+		if(doubleQuoteStart >= 0 && doubleQuoteStart < min){
+			min = doubleQuoteStart;
+		}
+		if(singleQuoteStart >= 0 && singleQuoteStart < min){
+			min = singleQuoteStart;
 		}
 		String[] res;
 		if(min < Integer.MAX_VALUE){
 			if(min == slC){
 				res = breakApart(input, slC, slComment.length(), "\n");
-				res[1] = "<span class=\"comment\" >" + res[1].substring(0, res[1].length()-1) + "</span>\n";
+				res[1] = "<span class=\"comment\" >" + res[1] + "</span>";
 				return res;
 			} else if(min == mlCStart){
 				res = breakApart(input, min, mlCommentStart.length(), mlCommentEnd);
 				res[1] = "<span class=\"comment\" >" + res[1] + "</span>";
 				return res;
-			} else if(min == quoteStart) {
-				res = breakApart(input, min, quote.length(), quote);
+			} else if(min == doubleQuoteStart) {
+				res = breakApart(input, min, doubleQuote.length(), doubleQuote);
+				res[1] = "<span class=\"string\" >" + res[1] + "</span>";
+				return res;
+			} else if(min == singleQuoteStart) {
+				res = breakApart(input, min, singleQuote.length(), singleQuote);
 				res[1] = "<span class=\"string\" >" + res[1] + "</span>";
 				return res;
 			}
@@ -150,15 +174,16 @@ public class StringFormatter {
 		return new String[] {input};
 	}
 
-	private static String[] breakApart(String input, int startIndex, int len, String end) {
+	public static String[] breakApart(String input, int startIndex, int len, String end) {
 		String[] ret = { "", "", "" };
 		ret[0] = input.substring(0, startIndex);
 		ret[1] = input.substring(startIndex);
-		if(ret[1].contains(end)){
+		Matcher matcher = patterns.get(end).matcher(ret[1]);
+		if(matcher.find(len)){
 			String rest = input.substring(startIndex);
 			// split up and stuff
-			ret[1] = rest.substring(0, rest.indexOf(end, len) + end.length());
-			ret[2] = rest.substring(rest.indexOf(end, len) + end.length());
+			ret[1] = rest.substring(0, matcher.end()); // rest.indexOf(end, len) + end.length());
+			ret[2] = rest.substring(matcher.end()); //rest.indexOf(end, len) + end.length());
 			return ret;
 		}
 		return Arrays.copyOf(ret, 2);
@@ -167,16 +192,16 @@ public class StringFormatter {
 	private static String addHighlighting(List<String> keywords, String text) {
 		for (String keyword : keywords) {
 			if(keyword.trim().equals("class")){
-				text = text.replaceAll("(?<!<span )" + makePattern(keyword.trim()) + "(?!\\=\"keyword\">)",
+				text = text.replaceAll("(?<!<span )" + makeKeywordRegex(keyword.trim()) + "(?!\\=\"keyword\">)",
 						"<span class=\"keyword\">" + keyword.trim() + "</span>");
 			} else if(keyword.trim().equals("span")){
-				text = text.replaceAll("((?<!<)" + makePattern(keyword.trim()) + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
+				text = text.replaceAll("((?<!<)" + makeKeywordRegex(keyword.trim()) + "(?!class\\=\"keyword\">)|(?<!</)span(?!>))",
 						"<span class=\"keyword\">" + keyword.trim() + "</span>");
 			} else if(keyword.trim().equals("keyword")){
-				text = text.replaceAll("(?<!<span class=\")" + makePattern(keyword.trim()) + "(?!\">)",
+				text = text.replaceAll("(?<!<span class=\")" + makeKeywordRegex(keyword.trim()) + "(?!\">)",
 						"<span class=\"keyword\">" + keyword.trim() + "</span>");
 			} else {
-				text = text.replaceAll(makePattern(keyword.trim()), "<span class=\"keyword\">" + keyword.trim() + "</span>");
+				text = text.replaceAll(makeKeywordRegex(keyword.trim()), "<span class=\"keyword\">" + keyword.trim() + "</span>");
 			}
 		}
 		return text;
@@ -186,7 +211,7 @@ public class StringFormatter {
 		return (Float.parseFloat(percent.replaceAll("%", ""))/100) +"";
 	}
 
-	private static String makePattern(String keyword) {
+	private static String makeKeywordRegex(String keyword) {
 		return "(?<![\\w])"+keyword+"(?!\\w)";
 	}
 
