@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
@@ -20,7 +21,7 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 		for (String string : lines) {
 			if (string.replaceAll("\t", "    ").length() >= MAX_CHARS_PER_LINE) {
 				warning("Longest Line exceeds "+MAX_CHARS_PER_LINE+". Line will be wrapped in PDF output",
-						XdocPackage.CODE__CONTENTS);
+						XdocPackage.Literals.CODE__CONTENTS);
 			}
 		}
 	}
@@ -35,7 +36,8 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 			if (tableRow.getData().size()!=columns) {
 				error("Each row must have the same number of entries (expected "+columns+" but was "+tableRow.getData().size()+")",
 						tableRow,
-						XdocPackage.TABLE_ROW__DATA);
+						XdocPackage.Literals.TABLE_ROW__DATA,
+						ValidationMessageAcceptor.INSIGNIFICANT_INDEX);
 			}
 		}
 	}
