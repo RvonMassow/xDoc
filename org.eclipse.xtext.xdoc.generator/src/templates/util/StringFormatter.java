@@ -3,7 +3,6 @@ package templates.util;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -186,7 +185,7 @@ public class StringFormatter {
 			ret[2] = rest.substring(matcher.end()); //rest.indexOf(end, len) + end.length());
 			return ret;
 		}
-		return Arrays.copyOf(ret, 2);
+		return new String[]{ret[0], ret[1]};
 	}
 
 	private static String addHighlighting(List<String> keywords, String text) {
