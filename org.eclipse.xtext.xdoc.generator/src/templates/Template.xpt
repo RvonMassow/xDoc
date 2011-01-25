@@ -224,8 +224,10 @@ ENDIF-»
 «ENDDEFINE»
 
 «DEFINE genLol FOR Document -»
+«IF !getStoredLinks().isEmpty-»
 \chapter*{List of External Links}
 «EXPAND genURL FOREACH getStoredLinks() SEPARATOR "\n\n"»
+«ENDIF-»
 «ENDDEFINE»
 
 «DEFINE genURL FOR String -»
