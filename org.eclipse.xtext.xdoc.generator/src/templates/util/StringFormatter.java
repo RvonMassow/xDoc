@@ -56,12 +56,13 @@ public class StringFormatter {
 			for(int i = 0; i < cb.getContents().size(); i++) {
 				if (cb.getContents().get(i) instanceof Code) {
 					code = ((Code) cb.getContents().get(i)).getContents();
-					code = code.replaceAll(string, "\n");
 					if(i == 0) {
-						code = code.replaceAll("^\n*", "");
-					} else if(i == cb.getContents().size() - 1){
-						code = code.replaceAll("\n*$", "");
+						code = code.replaceAll("^\n*", "").replaceAll("^\\s{"+indent+"}", "");
 					}
+					if(i == cb.getContents().size() - 1){
+						code = code.replaceAll("(\\s|\n)*$", "");
+					}
+					code = code.replaceAll(string, "\n");
 					((Code)cb.getContents().get(i)).setContents(code);
 				}
 			}

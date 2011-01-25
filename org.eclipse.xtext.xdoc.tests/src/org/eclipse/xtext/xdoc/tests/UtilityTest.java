@@ -2,6 +2,8 @@ package org.eclipse.xtext.xdoc.tests;
 
 import java.util.Arrays;
 
+import org.eclipse.xtext.xdoc.xdoc.Code;
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 
@@ -10,7 +12,7 @@ import junit.framework.TestCase;
 
 public class UtilityTest extends TestCase {
 
-	String toSplit =
+	String testStringSplitting =
 	"&nbsp;grammar&nbsp;org.eclipse.xtext.common.Terminals&nbsp;<br />\n" +
 	"&nbsp;hidden(WS,&nbsp;ML_COMMENT,&nbsp;SL_COMMENT)<br />\n" +
 	"import&nbsp;\"http://www.eclipse.org/emf/2002/Ecore\"&nbsp;as&nbsp;ecore<br />\n" +
@@ -25,20 +27,33 @@ public class UtilityTest extends TestCase {
 	"terminal&nbsp;WS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;(&apos;&nbsp;&apos;|&apos;\\t&apos;|&apos\\;\\r&apos;|&apos;\\n&apos;)+&nbsp;;<br />\n" +
 	"terminal&nbsp;ANY_OTHER:&nbsp;&nbsp;&nbsp;&nbsp;.&nbsp;;";
 
-	private LangDef xText;
+	private LangDef testLangDef;
 
 	private String[] testKeyWords = {"grammar", "with", "import", "terminal", "returns", };
+
+	private String testCodeString =	"\tclass Foo{\n"+
+									"\t\tstatic int foo = 13;\n" +
+									"\t}\t\n\n  ";
+
+	private String expectationCodeString = "class Foo{\n\tstatic int foo = 13;\n}";
+
+	private CodeBlock testCodeBlock;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 
-		this.xText = XdocFactory.eINSTANCE.createLangDef();
-		xText.getKeywords().addAll(Arrays.asList(testKeyWords));
+		this.testLangDef = XdocFactory.eINSTANCE.createLangDef();
+		testLangDef.getKeywords().addAll(Arrays.asList(testKeyWords));
+
+		this.testCodeBlock = XdocFactory.eINSTANCE.createCodeBlock();
+		Code testCode = XdocFactory.eINSTANCE.createCode();
+		testCode.setContents(testCodeString);
+		testCodeBlock.getContents().add(testCode);
 	}
 
-	public void testHighlighting() throws Exception {
-		String text = toSplit;
+	public void testSplitting() throws Exception {
+		String text = testStringSplitting;
 		String[] toks;
 		do {
 			toks = StringFormatter.splitToNext(text);
@@ -47,5 +62,13 @@ public class UtilityTest extends TestCase {
 				text = toks[2];
 			}
 		} while(toks.length == 3);
+	}
+
+	public void testRemoveIndent() throws Exception {
+		CodeBlock result = StringFormatter.removeIndent(this.testCodeBlock);
+		assertEquals(1, result.getContents().size());
+		assertTrue(result.getContents().get(0) instanceof Code);
+		Code resultCode = (Code) result.getContents().get(0);
+		assertEquals(expectationCodeString, resultCode.getContents());
 	}
 }
