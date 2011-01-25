@@ -98,6 +98,9 @@ Void throwUnsupportedOperation(String msg, Object param) :
 Void storeLink(Link link):
 	JAVA templates.util.StringFormatter.storeLink(org.eclipse.xtext.xdoc.xdoc.Link);
 
+Void clearStoredLinks():
+	JAVA templates.util.StringFormatter.clearStoredLinks();
+
 Set[String] getStoredLinks():
 	JAVA templates.util.StringFormatter.getStoredLinks();
 

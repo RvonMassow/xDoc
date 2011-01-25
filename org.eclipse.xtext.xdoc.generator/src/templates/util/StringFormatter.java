@@ -215,4 +215,8 @@ public class StringFormatter {
 		return "(?<![\\w])"+keyword+"(?!\\w)";
 	}
 
+	public static void clearStoredLinks() {
+		links.clear();
+	}
+
 }

@@ -2,6 +2,7 @@
 «EXTENSION templates::Extensions»
 
 «DEFINE main FOR Document -»
+«clearStoredLinks()»
 «FILE this.name + ".tex"-»
 \documentclass[a4paper]{scrreprt}
 
@@ -33,8 +34,6 @@ ENDIF»
   }%
 }
 \makeatother
-
-%\lstdefinelanguage{xtext}{keywords={terminal, grammar, import, generate, hidden, as}, sensitive=true,string={"},morestring={'},comment={//},morecomment=[s]{/*}{*/}}
 
 \lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={«lstEscapeToTex()»}}
 
