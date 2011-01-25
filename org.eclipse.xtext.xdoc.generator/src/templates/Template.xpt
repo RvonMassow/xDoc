@@ -67,7 +67,6 @@ ENDIF»
     morecomment=[s]{/*}{*/},
     morestring=[b]",
     morestring=[b]',
-    literate={«"«"»}{{\font\larm=larm1000\larm\char 190}}1
   }
 «ENDDEFINE»
 
@@ -196,7 +195,7 @@ ENDIF-»
 «ENDDEFINE»
 
 «DEFINE genLabel FOR Chapter-»
-\label{«this.name»}
+«IF this.name != null»\label{«this.name»}«ENDIF»
 «ENDDEFINE»
 
 «DEFINE genLabel FOR Section-»
