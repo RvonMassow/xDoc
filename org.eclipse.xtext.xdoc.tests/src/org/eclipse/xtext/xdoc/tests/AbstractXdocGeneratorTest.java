@@ -29,6 +29,12 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 
 	public AbstractXdocGeneratorTest() {
 		super();
+		File f = new File(RESULT_DIR);
+		if(f.exists()) {
+			deleteRecursive(f.listFiles());
+		} else {
+			f.mkdir();
+		}
 	}
 
 	@Override
@@ -37,12 +43,6 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 		with(new XdocStandaloneSetup());
 		this.pTest = new ParserTest();
 		this.pTest.setUp();
-
-		File f = new File("test-gen/");
-		if(f.exists()) {
-			f.delete();
-		}
-		f.mkdir();
 
 		Output output = new OutputImpl();
 		Outlet outlet = new Outlet(RESULT_DIR);
@@ -76,6 +76,16 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 
 	protected XpandExecutionContext getXpandCtx() {
 		return xpandCtx;
+	}
+
+	private void deleteRecursive(File... files) {
+		for (File file : files) {
+			if(file.isDirectory()) {
+				deleteRecursive(file.listFiles());
+				file.delete();
+			}
+			file.delete();
+		}
 	}
 
 	public abstract void testGenCodeWithLanguage() throws Exception;
