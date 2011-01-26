@@ -1,0 +1,51 @@
+\documentclass[a4paper]{scrreprt}
+
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl,aeguill} 
+\usepackage[latin1]{inputenc}
+\usepackage{listings}
+\usepackage[american]{babel}
+
+\usepackage{todonotes}
+
+
+
+
+%%\usepackage{helvet}
+
+
+%% force more space between subsections!
+\makeatletter
+\renewcommand\subsection{\medskip\@startsection{subsection}{2}{\z@}%
+  {-.25ex\@plus -.1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex \@minus -.4ex}%
+  {\ifnum \scr@compatibility>\@nameuse{scr@v@2.96}\relax
+    \setlength{\parfillskip}{\z@ plus 1fil}\fi
+    \raggedsection\normalfont\sectfont\nobreak\size@subsection
+  }%
+}
+\makeatother
+
+\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={ß}}
+
+%%\usepackage[english]{babel}
+
+% import this as last package
+\usepackage{hyperref}
+
+\newlength{\itemindentlen}
+\author{}
+\title{imgTest}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\chapter{Dummy title}
+
+
+\includegraphics{test.png}
+
+
+\listoftodos
+\end{document}

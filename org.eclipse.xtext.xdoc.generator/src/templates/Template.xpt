@@ -137,28 +137,28 @@ ENDIF»
 \end{enumerate}
 \addtolength{\itemindentlen}{2.5em}«ENDDEFINE»
 
-«DEFINE genText FOR UnorderedList»
+«DEFINE genText FOR UnorderedList-»
 \setlength{\itemindentlen}{\textwidth}
 \begin{itemize}
 \addtolength{\itemindentlen}{-2.5em}
-«EXPAND genText FOREACH items»
+«EXPAND genText FOREACH items SEPARATOR "\n"»
 \end{itemize}
 \addtolength{\itemindentlen}{2.5em}«ENDDEFINE»
 
-«DEFINE genText FOR Item»
+«DEFINE genText FOR Item-»
 \item \begin{minipage}[t]{\itemindentlen}«IF block(this.contents.first())»\vspace*{-\baselineskip}«ENDIF»
 «EXPAND genContent FOREACH this.contents»
 \end{minipage}«ENDDEFINE»
 
 «DEFINE genText FOR Emphasize»\textit{«EXPAND genContent FOREACH this.contents»}«ENDDEFINE»
 
-«DEFINE genText FOR Ref»
-«IF this.contents.isEmpty»\autoref{«this.ref.name»}«ELSE»\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»~(§\ref*{«this.ref.name»})}«ENDIF»«ENDDEFINE»
+«DEFINE genText FOR Ref-»
+«IF this.contents.isEmpty»\autoref{«this.ref.name»}«ELSE»\hyperref[«this.ref.name»]{«EXPAND genContent FOREACH this.contents»~(§\ref*{«this.ref.name»})}«ENDIF»«
+ENDDEFINE»
 
-«DEFINE genText FOR Anchor»
-\phantomsection
-\label{«this.name»}
-«ENDDEFINE»
+«DEFINE genText FOR Anchor-»
+\phantomsection\label{«this.name»}«
+ENDDEFINE»
 
 «DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«storeLink(this)»«ENDDEFINE»
 

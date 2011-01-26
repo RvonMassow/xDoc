@@ -25,6 +25,7 @@ public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
 	public void testGenCode() throws Exception {
 		Document doc = initDocFromFile("code", "codeTest.xdoc");
 		generate(doc);
+		validate(EXPECTATION_DIR+"codeTest.tex", RESULT_DIR+"Main.tex");
 	}
 
 	@Override
@@ -38,6 +39,7 @@ public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
 	public void testARef() throws Exception {
 		Document doc = initDocFromFile("aRefTest", "aRefTest.xdoc");
 		generate(doc);
+		validate(EXPECTATION_DIR+"aRefTest.tex", RESULT_DIR+"aRefTest.tex");
 	}
 
 	@Override
@@ -107,14 +109,14 @@ public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
 	public void testTwoChapters() throws Exception {
 		Document doc = initDocFromFile("twoChapters", "twoChapters.xdoc");
 		generate(doc);
-		validate(EXPECTATION_DIR + "twoChapters.tex", RESULT_DIR + "twoChapters.tex");
+		validate(EXPECTATION_DIR + "twoChapters.tex", RESULT_DIR + "Foo Title.tex");
 	}
 
 	@Override
 	public void testFullHirarchy() throws Exception {
 		Document doc = initDocFromFile("downToSection4Test", "downToSection4Test.xdoc");
 		generate(doc);
-		validate(EXPECTATION_DIR + "downToSection4Test.tex", RESULT_DIR + "downToSection4Test.tex");
+		validate(EXPECTATION_DIR + "fullHirarchy.tex", RESULT_DIR + "foo.tex");
 	}
 
 	private Document initDocFromFile(String string, String filename) throws Exception {
