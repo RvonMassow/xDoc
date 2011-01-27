@@ -124,9 +124,12 @@ public class ParserTest extends AbstractXtextTests {
 		TextOrMarkup textOrMarkup = abstractSection.getChapters().get(0).getContents().get(0);
 		assertEquals(1, textOrMarkup.getContents().size());
 		CodeBlock cb = (CodeBlock) textOrMarkup.getContents().get(0);
-		assertEquals("\nclass Foo {\n"
-				+ "public static void main(String\\[\\] args){\n"
-				+ "System.out.println(\"Hello World\\n\");\n" + "}\n" + "}\n",
+		assertEquals("\n\t/* a testclass */\n"
+				+ "\tclass Foo {\n"
+				+ "\t\tpublic static void main(String\\[\\] args){\n"
+				+ "\t\t\tSystem.out.println(\"Hello World\"+'\\n'); // say \"hello\"\n"
+				+ "\t\t}\n"
+				+ "\t}\n",
 				((Code) cb.getContents().get(0)).getContents());
 		assertEquals("Java", cb.getLanguage().getName());
 	}
