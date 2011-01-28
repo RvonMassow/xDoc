@@ -2,7 +2,7 @@ h1. Xdoc
 
 h2. What is Xdoc
 
-Xdoc is a simple documentation language for software projects. It focusses on, but is not limited to, Eclipse plugin projects.
+Xdoc is a simple documentation language for software projects. It focusses on, but is not limited to, Eclipse plugin projects, generating a fully functional Eclipse help plugin. We support code chunks and also code references to java classes in the class path. Error markers in the editor show the developers if any links to classes are broken.
 
 h2. Why Xdoc
 
@@ -12,7 +12,7 @@ Another possibility would be to use a language like textile. HTML can be generat
 
 h2. Concepts
 
-So we started to develop a language with several concepts in mind. First: No freedom. The language is easy and simple. You can not adjust the design of the output in an Xdoc file. We think design should be made using CSS and also provide two ready to use CSS files, one to adjust the look of code blocks, the other to adjust the rest (e.g. headlines, tables, lists, ...). PDF files are generated via LaTeX. This way you don't need to layout the documents yourself as LaTeX is a highly optimized typesetting language. Currently we use Koma Script as documentclass, providing a modern layout for the documents.
+So we started to develop a language with several concepts in mind. First: No freedom. The language is easy and simple. You can not adjust the design of the output in an Xdoc file. We think design should be made using CSS and also provide two ready to use CSS files, one to adjust the look of code blocks, the other to adjust the rest (e.g. headlines, tables, lists, ...). PDF files are generated via LaTeX. This way you don't need to layout the documents yourself as LaTeX is a highly optimized typesetting language. Currently we use Koma Script as documentclass, providing a modern layout for the documents. HTML files are generated directly. We also generate a toc.xml and a plugin.xml. This way the project can be exported directly as an Eclipse help plugin.
 
 A description of the basic concepts follows.
 
