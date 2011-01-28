@@ -53,6 +53,10 @@ h3. TODOs
 
 As another concept we also added TODOs. These are ignored in Eclipse help output but inserted as orange boxes in the PDF. Also a list of TODOs is inserted at the end of the document. You can switch the typesetting of TODOs on and off.
 
+h2. Xdoc and Xtext
+
+Xdoc is based on Xtext 2.0 git master branch (git://git.eclipse.org/gitroot/tmf/org.eclipse.xtext.git). As Xtext 2.0 is currently under development Xdoc can be subject to API changes. If you want to import Xdoc to your Eclipse workspace I recommend you follow the workspace setup guide at "the Xtext homepage":http://www.eclipse.org/Xtext/developers/workspaceSetup.php .
+
 h2. Funding
 
 This project is funded by the *Federal Ministry of Education and Research, Germany*.
