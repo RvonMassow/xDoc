@@ -19,27 +19,40 @@ A description of the basic concepts follows.
 h3. Structure and Formatting
 
 Xdoc files can contain different top level elements, allowing to split up documents over different files. Top level elements can be:
-|<code>document[title]</code>| defining a document with the given title that can be compiled|
-|<code>chapter:id[title]</code>| a chapter that can be referenced by <code>chapter-ref[id]</code>|
-|<code>section:id[title]</code>| a section that can be referenced by <code>section-ref[id]</code>|
-|<code>section2:id[title]</code>| a section2 that can be referenced by <code>section2-ref[id]</code>|
+<code>document[title]</code>     defining a document with the given title that can be compiled
+<code>chapter:id[title]</code>   a chapter that can be referenced by <code>chapter-ref[id]</code>
+<code>section:id[title]</code>   a section that can be referenced by <code>section-ref[id]</code>
+<code>section2:id[title]</code>  a section2 that can be referenced by <code>section2-ref[id]</code>
+
+Of cause you are not forced to use this concepts and can write all your chapters and sections in one file. The maximum depth for sections is <code>section4:id[title]</code>.
 
 If you want to start a new paragraph use two newlines.
 
 I said, we don't allow for formatting. But Xdoc features the emphasis concept.  Using <code>em[some text]</code> you can denote parts that have to be emphasized. This does not mean, that it will be nessecarily set in italics.
 
 
-h4. Code
+h3. Code
 
-Typically in the documentation of a software project you drop a line of code here and there. To support this we have the <code>code[language][some code]</code> concept. Like in textile the style is guessed from the input. If you write it it in one line it will be typeset as inline (i.e. span in HTML). If you have newlines in your code it will be typeset as a block. The <code>language</code> of a code element can be defined at the beginning of the document as a list of keywords.
+Typically in the documentation of a software project you drop a line of code here and there. To support this we have the <code>code[language][some code]</code> concept. Like in textile the style is guessed from the input. If you write it it in one line it will be typeset as inline (i.e. span in HTML). If you have newlines in your code it will be typeset as a block. The <code>language</code> of a code element can be defined at the beginning of the document as a list of keywords. Keywords occurring in a code block will be highlit in the output.
 
 We also allow for code references to Java. These are real links and break when a referenced class name is changed. This behaviour enforces a consistent documentation and is of cause supported by the tooling.
 
-h5. Lists and tables
+h3. Lists and Tables
 
 Of cause we have lists and tables. Lists can be ordered (<code>ol[<items>]</code>) or unordered (<code>ul[<items>]). Both contain some items which can be enumerated with <code>item[some item text]</code>.
 
+A table is defined by <code>table[<rows>]</code> and contains rows (<code>tr[<cells>]</code> which in turn contain the table data entries (<code>td[some text]</code>). Each row must contain the same number of data entries.
 
+h3. Links
 
+Like in HTML we support for hyperlinks (<code>link[<url>][some text]</code>, the text can also be obmitted if you want the link to be directly readable) and references (<code>ref:id[some text]</text>, where text can be omitted again to autoinsert some alias for the referenced element, e.g., section §2). References can be seen as internal links and can target any kind of element that has an id. Those are all section types, images and anchors (<code>a[id]</code>. Anchors are special elements that do not contribute to the visible output but only serve as reference targets.
+
+For the PDF output to be meaningful when it is printed we add a list of links at the end of the document.
+
+h3. TODOs
+
+As another concept we also added TODOs. These are ignored in Eclipse help output but inserted as orange boxes in the PDF. Also a list of TODOs is inserted at the end of the document. You can switch the typesetting of TODOs on and off.
+
+h2. Funding
 
 This project is funded by the *Federal Ministry of Education and Research, Germany*.
