@@ -1,1 +1,45 @@
+h1. Xdoc
+
+h2. What is Xdoc
+
+Xdoc is a simple documentation language for software projects. It focusses on, but is not limited to, Eclipse plugin projects.
+
+h2. Why Xdoc
+
+In various projects the documentation is a rather tedious task. Choosing a language like LaTeX, it is possible to generate neat PDF documents. But as Latex is a rather complicated language, you have to learn it before you can actually write your documentation. In addition LaTeX is optimized for printed docuements and does not feature HTML output. Of cause there exists tooling for generating HTML documents, the structure of those was simply not what we where looking for.
+
+Another possibility would be to use a language like textile. HTML can be generated easily. It is also possible to generate PDF or docbook XML files.  It gives the writer of the documentation much freedom in formatting, like changing font color for paragraphs, changing the text alignment or even controlling the output HTML indirectly by setting spans' attributes like id or class. These freedoms can be nice, but for a concise documentation languages they are not needed. They can even have a negative influence as an inconsistent style in a documentation can distract the reader.
+
+h2. Concepts
+
+So we started to develop a language with several concepts in mind. First: No freedom. The language is easy and simple. You can not adjust the design of the output in an Xdoc file. We think design should be made using CSS and also provide two ready to use CSS files, one to adjust the look of code blocks, the other to adjust the rest (e.g. headlines, tables, lists, ...). PDF files are generated via LaTeX. This way you don't need to layout the documents yourself as LaTeX is a highly optimized typesetting language. Currently we use Koma Script as documentclass, providing a modern layout for the documents.
+
+A description of the basic concepts follows.
+
+h3. Structure and Formatting
+
+Xdoc files can contain different top level elements, allowing to split up documents over different files. Top level elements can be:
+|<code>document[title]</code>| defining a document with the given title that can be compiled|
+|<code>chapter:id[title]</code>| a chapter that can be referenced by <code>chapter-ref[id]</code>|
+|<code>section:id[title]</code>| a section that can be referenced by <code>section-ref[id]</code>|
+|<code>section2:id[title]</code>| a section2 that can be referenced by <code>section2-ref[id]</code>|
+
+If you want to start a new paragraph use two newlines.
+
+I said, we don't allow for formatting. But Xdoc features the emphasis concept.  Using <code>em[some text]</code> you can denote parts that have to be emphasized. This does not mean, that it will be nessecarily set in italics.
+
+
+h4. Code
+
+Typically in the documentation of a software project you drop a line of code here and there. To support this we have the <code>code[language][some code]</code> concept. Like in textile the style is guessed from the input. If you write it it in one line it will be typeset as inline (i.e. span in HTML). If you have newlines in your code it will be typeset as a block. The <code>language</code> of a code element can be defined at the beginning of the document as a list of keywords.
+
+We also allow for code references to Java. These are real links and break when a referenced class name is changed. This behaviour enforces a consistent documentation and is of cause supported by the tooling.
+
+h5. Lists and tables
+
+Of cause we have lists and tables. Lists can be ordered (<code>ol[<items>]</code>) or unordered (<code>ul[<items>]). Both contain some items which can be enumerated with <code>item[some item text]</code>.
+
+
+
+
 This project is funded by the *Federal Ministry of Education and Research, Germany*.
