@@ -14,6 +14,12 @@ String fileName(Section2Ref obj):
 String fileName(EObject obj):
 	obj.eResource().URI.lastSegment();
 
+String fileName(Chapter obj):
+	if(!Document.isInstance(obj.eContainer())) then
+		obj.eResource().URI.lastSegment()
+	else
+		obj.eResource().URI.lastSegment()+"-"+((Document)obj.eContainer()).chapters.indexOf(obj);
+
 
 String fileName(EObject obj, Chapter mainFile):
 	mainFile.eResource().URI.lastSegment();

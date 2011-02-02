@@ -10,6 +10,11 @@
 
 «DEFINE main FOR Document-»
 	«EXPAND templates::eclipsehelp::Toc::toc»
+	«FOREACH chapters AS chapter»
+		«IF !ChapterRef.isInstance(chapter)»
+			«EXPAND genContent FOR chapter»
+		«ENDIF»
+	«ENDFOREACH»
 «ENDDEFINE»
 
 «DEFINE main FOR AbstractSection-»
