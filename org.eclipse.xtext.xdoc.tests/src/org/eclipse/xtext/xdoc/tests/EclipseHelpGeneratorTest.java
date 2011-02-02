@@ -14,13 +14,13 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 
 	private static final String RESULT_FILE = RESULT_DIR + "mytestmodel.xdoc.html";
 
+
 	@Override
 	public void testGenCodeWithLanguage() throws Exception {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeWithLanguageTest.xdoc");
 		Document doc = (Document) file.getMainSection();
 		generate(doc);
-		generate(doc.getChapters().get(0));
-		validate(EXPECTATION_DIR + "codeWithLanguage.html", RESULT_FILE);
+		validate(EXPECTATION_DIR + "codeWithLanguage.html", RESULT_DIR + "mytestmodel.xdoc-0.html");
 	}
 
 	@Override
@@ -28,8 +28,7 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeTest.xdoc");
 		Document doc = (Document) file.getMainSection();
 		generate(doc);
-		generate(doc.getChapters().get(0));
-		validate(EXPECTATION_DIR + "code.html", RESULT_FILE);
+		validate(EXPECTATION_DIR + "code.html", RESULT_DIR + "mytestmodel.xdoc-0.html");
 	}
 
 	@Override
@@ -120,14 +119,18 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 		validate(EXPECTATION_DIR + "twoChaptersTOC.xml", RESULT_DIR + "toc.xml");
 	}
 
+	public void testTwoChaptersDirect() throws Exception {
+		Document doc = (Document) pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "twoChapters.xdoc").getMainSection();
+		generate(doc);
+	}
+
 	@Override
 	public void testFullHirarchy () throws Exception {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "downToSection4Test.xdoc");
 		// gen toc.xml
 		generate(file);
-		generate(((Document)file.getMainSection()).getChapters().get(0));
 		validate(EXPECTATION_DIR + "fullHirarchyTOC.xml", RESULT_DIR + "toc.xml");
-		validate(EXPECTATION_DIR + "fullHirarchy.xdoc.html", RESULT_FILE);
+		validate(EXPECTATION_DIR + "fullHirarchy.xdoc.html", RESULT_DIR + "mytestmodel.xdoc-0.html");
 	}
 
 	@Override

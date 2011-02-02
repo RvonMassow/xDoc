@@ -71,7 +71,15 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 		bExp.rewind();
 		resultF.read(bResult);
 		bResult.rewind();
-		assertEquals(0, bExp.compareTo(bResult));
+		if(bExp.compareTo(bResult) != 0){
+			for (int i = 0; bExp.hasRemaining() || bResult.hasRemaining(); i++) {
+				char a = (char) bExp.get();
+				char b = (char) bResult.get();
+				if (a != b) {
+					fail("Expected " + a +" but was " + b+ " at position " + bExp.position());
+				}
+			}
+		}
 	}
 
 	protected XpandExecutionContext getXpandCtx() {
