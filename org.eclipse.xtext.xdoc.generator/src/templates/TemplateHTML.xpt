@@ -144,7 +144,7 @@ ELSE»
 
 «REM»TODO: generate urls for code refs«ENDREM»
 «DEFINE genText(Document doc) FOR CodeRef»
-<em>«escapeHTMLChars(unescapeXdocChars(this.element.canonicalName))»</em>
+<em>«escapeHTMLChars(unescapeXdocChars(this.element.qualifiedName))»</em>
 «ENDDEFINE»
 
 «DEFINE genCode(LangDef language) FOR Object»

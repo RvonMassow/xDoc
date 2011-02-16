@@ -9,6 +9,7 @@
 «ENDDEFINE»
 
 «DEFINE main FOR Document-»
+	«calcIdentifiableName(this, null)»
 	«EXPAND templates::eclipsehelp::Toc::toc»
 	«FOREACH chapters AS chapter»
 		«IF !ChapterRef.isInstance(chapter)»
@@ -183,7 +184,7 @@ ELSE»
 
 «REM»TODO: generate urls for code refs«ENDREM»
 «DEFINE genText FOR CodeRef»
-<em>«escapeHTMLChars(unescapeXdocChars(element.canonicalName))»</em>
+<em>«escapeHTMLChars(unescapeXdocChars(element.qualifiedName))»</em>
 «ENDDEFINE»
 
 «DEFINE genCode(LangDef language) FOR Object»
