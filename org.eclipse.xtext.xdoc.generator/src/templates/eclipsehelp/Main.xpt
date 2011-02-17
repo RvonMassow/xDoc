@@ -9,7 +9,6 @@
 «ENDDEFINE»
 
 «DEFINE main FOR Document-»
-	«calcIdentifiableName(this, null)»
 	«EXPAND templates::eclipsehelp::Toc::toc»
 	«FOREACH chapters AS chapter»
 		«IF !ChapterRef.isInstance(chapter)»
