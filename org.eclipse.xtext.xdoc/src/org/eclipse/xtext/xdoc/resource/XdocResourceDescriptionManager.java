@@ -23,13 +23,9 @@ public class XdocResourceDescriptionManager extends DefaultResourceDescriptionMa
 			throws IllegalArgumentException {
 		Iterable<IEObjectDescription> desc = candidate.getExportedObjectsByType(XdocPackage.Literals.DOCUMENT);
 
-		// check if the candidate maybe even transitively references the resource
+		// TODO check if the candidate maybe even transitively references the resource
 		// if yes, rebuild includee
 
-		Iterable<IEObjectDescription> i = candidate.getExportedObjects();
-		IResourceDescription _new = delta.getNew();
-		for (IEObjectDescription ieObjectDescription : desc) {
-		}
 		return super.isAffected(delta, candidate) || desc.iterator().hasNext();
 	}
 }
