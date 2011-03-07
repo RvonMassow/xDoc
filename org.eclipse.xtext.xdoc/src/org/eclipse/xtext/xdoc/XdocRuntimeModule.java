@@ -3,7 +3,11 @@
  */
 package org.eclipse.xtext.xdoc;
 
+import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
+import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.xdoc.naming.XdocDocumentNameProvider;
+import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
+import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionStrategy;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
@@ -15,10 +19,17 @@ public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntim
 		return XdocDocumentNameProvider.class;
 	}
 
-	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
 	@Override
 	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
 		return org.eclipse.xtext.xdoc.formatting.NullFormatter.class;
+	}
+
+	public Class<? extends IResourceDescription.Manager> bindIResourceDescription$Manager() {
+		return XdocResourceDescriptionManager.class;
+	}
+
+	public Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
+		return XdocResourceDescriptionStrategy.class;
 	}
 
 }
