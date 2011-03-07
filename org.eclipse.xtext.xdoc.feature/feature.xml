@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.xtext.xdoc.feature"
+      label="Xdoc"
+      version="0.0.1.qualifier">
+
+   <description url="https://github.com/RvonMassow/xDoc">
+      Xdoc is a domain specific language for documenting eclipse plugings. It is based on Xtext and is able to create eclipse help plugins as well as PDF files.
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+
+   <requires>
+      <import feature="org.eclipse.xtext.sdk" version="2.0.0.qualifier" match="greaterOrEqual"/>
+      <import plugin="org.apache.commons.lang"/>
+      <import plugin="org.apache.commons.logging"/>
+      <import plugin="org.apache.log4j"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.xtext.xdoc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.xdoc.generator"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.xtext.xdoc.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
