@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.eclipse.xtext.xdoc</groupId>
   <artifactId>org.eclipse.xtext.xdoc.parent</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Xdoc</name>
   <properties>
@@ -16,6 +16,7 @@
     <module>org.eclipse.xtext.xdoc.ui</module>
     <module>org.eclipse.xtext.xdoc.feature</module>
     <module>org.eclipse.xtext.xdoc.releng</module>
+<!--    <module>org.eclipse.xtext.xdoc.tests</module> -->
   </modules>
   <repositories>
     <repository>
