@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.xtext.xdoc.feature"
       label="Xdoc"
-      version="0.0.1.qualifier">
+      version="0.1.0.qualifier">
 
    <description url="https://github.com/RvonMassow/xDoc">
       Xdoc is a domain specific language for documenting eclipse plugings. It is based on Xtext and is able to create eclipse help plugins as well as PDF files.
