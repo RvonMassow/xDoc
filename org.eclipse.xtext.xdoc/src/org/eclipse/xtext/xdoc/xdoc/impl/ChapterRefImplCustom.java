@@ -12,21 +12,22 @@ import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 
 public class ChapterRefImplCustom extends ChapterRefImpl {
+
 	@Override
 	public EList<TextOrMarkup> getContents() {
 		return getChapter().getContents();
 	}
-	
+
 	@Override
 	public String getName() {
 		return null;
 	}
-	
+
 	@Override
 	public EList<Section> getSubSections() {
 		return getChapter().getSubSections();
 	}
-	
+
 	@Override
 	public TextOrMarkup getTitle() {
 		return getChapter().getTitle();

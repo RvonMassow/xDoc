@@ -26,7 +26,7 @@ public class XdocResourceDescriptionStrategy extends
 			QualifiedName qualifiedName = getQualifiedNameProvider().getFullyQualifiedName(eObject);
 			if (qualifiedName != null) {
 				Map<String, String> userData = new HashMap<String, String>();
-				userData.put("hash", "" + XdocUtil.toString(eObject).hashCode());
+				userData.put("hash", "" + XdocUtil.hash(eObject));
 				acceptor.accept(EObjectDescription.create(qualifiedName, eObject, userData));
 			}
 		}catch (Exception e) {
