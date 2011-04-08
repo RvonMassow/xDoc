@@ -235,13 +235,22 @@ public interface XdocPackage extends EPackage
 	int DOCUMENT__LANG_DEFS = ABSTRACT_SECTION_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Glossary</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__GLOSSARY = ABSTRACT_SECTION_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 4;
+	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -1324,6 +1333,80 @@ public interface XdocPackage extends EPackage
 	 */
 	int LANG_DEF_FEATURE_COUNT = 2;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.GlossaryEntryImpl <em>Glossary Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.GlossaryEntryImpl
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getGlossaryEntry()
+	 * @generated
+	 */
+	int GLOSSARY_ENTRY = 32;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOSSARY_ENTRY__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Alias</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOSSARY_ENTRY__ALIAS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOSSARY_ENTRY__DESCRIPTION = 2;
+
+	/**
+	 * The number of structural features of the '<em>Glossary Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOSSARY_ENTRY_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.GlossaryImpl <em>Glossary</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.GlossaryImpl
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getGlossary()
+	 * @generated
+	 */
+	int GLOSSARY = 33;
+
+	/**
+	 * The feature id for the '<em><b>Glossary Entry</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOSSARY__GLOSSARY_ENTRY = 0;
+
+	/**
+	 * The number of structural features of the '<em>Glossary</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GLOSSARY_FEATURE_COUNT = 1;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.XdocFile <em>File</em>}'.
@@ -1399,6 +1482,17 @@ public interface XdocPackage extends EPackage
 	 * @generated
 	 */
 	EReference getDocument_LangDefs();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.Document#getGlossary <em>Glossary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Glossary</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Document#getGlossary()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EReference getDocument_Glossary();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Chapter <em>Chapter</em>}'.
@@ -2097,6 +2191,70 @@ public interface XdocPackage extends EPackage
 	EAttribute getLangDef_Name();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry <em>Glossary Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Glossary Entry</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.GlossaryEntry
+	 * @generated
+	 */
+	EClass getGlossaryEntry();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getName()
+	 * @see #getGlossaryEntry()
+	 * @generated
+	 */
+	EAttribute getGlossaryEntry_Name();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getAlias <em>Alias</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Alias</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getAlias()
+	 * @see #getGlossaryEntry()
+	 * @generated
+	 */
+	EAttribute getGlossaryEntry_Alias();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Description</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getDescription()
+	 * @see #getGlossaryEntry()
+	 * @generated
+	 */
+	EReference getGlossaryEntry_Description();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Glossary <em>Glossary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Glossary</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Glossary
+	 * @generated
+	 */
+	EClass getGlossary();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Glossary#getGlossaryEntry <em>Glossary Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Glossary Entry</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Glossary#getGlossaryEntry()
+	 * @see #getGlossary()
+	 * @generated
+	 */
+	EReference getGlossary_GlossaryEntry();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2178,6 +2336,14 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EReference DOCUMENT__LANG_DEFS = eINSTANCE.getDocument_LangDefs();
+
+		/**
+		 * The meta object literal for the '<em><b>Glossary</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOCUMENT__GLOSSARY = eINSTANCE.getDocument_Glossary();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -2766,6 +2932,58 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute LANG_DEF__NAME = eINSTANCE.getLangDef_Name();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.GlossaryEntryImpl <em>Glossary Entry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.GlossaryEntryImpl
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getGlossaryEntry()
+		 * @generated
+		 */
+		EClass GLOSSARY_ENTRY = eINSTANCE.getGlossaryEntry();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GLOSSARY_ENTRY__NAME = eINSTANCE.getGlossaryEntry_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Alias</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GLOSSARY_ENTRY__ALIAS = eINSTANCE.getGlossaryEntry_Alias();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GLOSSARY_ENTRY__DESCRIPTION = eINSTANCE.getGlossaryEntry_Description();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.GlossaryImpl <em>Glossary</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.GlossaryImpl
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getGlossary()
+		 * @generated
+		 */
+		EClass GLOSSARY = eINSTANCE.getGlossary();
+
+		/**
+		 * The meta object literal for the '<em><b>Glossary Entry</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference GLOSSARY__GLOSSARY_ENTRY = eINSTANCE.getGlossary_GlossaryEntry();
 
 	}
 

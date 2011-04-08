@@ -27,6 +27,8 @@ import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
+import org.eclipse.xtext.xdoc.xdoc.Glossary;
+import org.eclipse.xtext.xdoc.xdoc.GlossaryEntry;
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.Item;
@@ -286,6 +288,20 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	private EClass langDefEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass glossaryEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass glossaryEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -424,6 +440,16 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	public EReference getDocument_LangDefs()
 	{
 		return (EReference)documentEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDocument_Glossary()
+	{
+		return (EReference)documentEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1091,6 +1117,66 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGlossaryEntry()
+	{
+		return glossaryEntryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGlossaryEntry_Name()
+	{
+		return (EAttribute)glossaryEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGlossaryEntry_Alias()
+	{
+		return (EAttribute)glossaryEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGlossaryEntry_Description()
+	{
+		return (EReference)glossaryEntryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getGlossary()
+	{
+		return glossaryEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getGlossary_GlossaryEntry()
+	{
+		return (EReference)glossaryEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XdocFactory getXdocFactory()
 	{
 		return (XdocFactory)getEFactoryInstance();
@@ -1124,6 +1210,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		createEReference(documentEClass, DOCUMENT__AUTHORS);
 		createEReference(documentEClass, DOCUMENT__CHAPTERS);
 		createEReference(documentEClass, DOCUMENT__LANG_DEFS);
+		createEReference(documentEClass, DOCUMENT__GLOSSARY);
 
 		chapterEClass = createEClass(CHAPTER);
 		createEReference(chapterEClass, CHAPTER__SUB_SECTIONS);
@@ -1220,6 +1307,14 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		langDefEClass = createEClass(LANG_DEF);
 		createEAttribute(langDefEClass, LANG_DEF__KEYWORDS);
 		createEAttribute(langDefEClass, LANG_DEF__NAME);
+
+		glossaryEntryEClass = createEClass(GLOSSARY_ENTRY);
+		createEAttribute(glossaryEntryEClass, GLOSSARY_ENTRY__NAME);
+		createEAttribute(glossaryEntryEClass, GLOSSARY_ENTRY__ALIAS);
+		createEReference(glossaryEntryEClass, GLOSSARY_ENTRY__DESCRIPTION);
+
+		glossaryEClass = createEClass(GLOSSARY);
+		createEReference(glossaryEClass, GLOSSARY__GLOSSARY_ENTRY);
 	}
 
 	/**
@@ -1291,6 +1386,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEReference(getDocument_Authors(), this.getTextOrMarkup(), null, "authors", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Chapters(), this.getChapter(), null, "chapters", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_LangDefs(), this.getLangDef(), null, "langDefs", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDocument_Glossary(), this.getGlossary(), null, "glossary", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(chapterEClass, Chapter.class, "Chapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChapter_SubSections(), this.getSection(), null, "subSections", null, 0, -1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1387,6 +1483,14 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEClass(langDefEClass, LangDef.class, "LangDef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLangDef_Keywords(), ecorePackage.getEString(), "keywords", null, 0, -1, LangDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLangDef_Name(), ecorePackage.getEString(), "name", "XdocDefaultLanguage", 1, 1, LangDef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(glossaryEntryEClass, GlossaryEntry.class, "GlossaryEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGlossaryEntry_Name(), ecorePackage.getEString(), "name", null, 1, 1, GlossaryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGlossaryEntry_Alias(), ecorePackage.getEString(), "alias", null, 0, -1, GlossaryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getGlossaryEntry_Description(), this.getTextOrMarkup(), null, "description", null, 1, -1, GlossaryEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(glossaryEClass, Glossary.class, "Glossary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getGlossary_GlossaryEntry(), this.getGlossaryEntry(), null, "glossaryEntry", null, 1, -1, Glossary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

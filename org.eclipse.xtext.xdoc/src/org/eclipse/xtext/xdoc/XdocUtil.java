@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc;
 
 import java.util.Collection;
 
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
@@ -89,8 +90,15 @@ public class XdocUtil {
 
 		PolymorphicDispatcher<Integer> hash = PolymorphicDispatcher.createForSingleTarget("_hash", 1, 1, this);
 
-		public int hash(Object tree) {
-			return hash.invoke(tree);
+		static private Logger log = Logger.getLogger(Hash.class);
+
+		protected int hash(Object obj) {
+			try {
+				return hash.invoke(obj);
+			} catch(Exception e) {
+				log.info("Unable to hash "+obj.toString(), e);
+			}
+			return 0;
 		}
 
 		protected Integer _hash(MarkUp m) {
@@ -98,7 +106,8 @@ public class XdocUtil {
 		}
 
 		protected Integer _hash(Ref ref) {
-			return hash.invoke(ref.getContents()) ^ ref.getRef().getName().hashCode();
+			EList<TextOrMarkup> contents = ref.getContents();
+			return hash.invoke(contents) ^ hash.invoke(ref.getRef());
 		}
 
 		protected Integer _hash(EList<?> list) {
@@ -123,7 +132,7 @@ public class XdocUtil {
 
 		protected Integer _hash(Identifiable i) {
 			String name = i.getName();
-			return name != null? name.hashCode(): 0  ^ hash.invoke(i.eContents());
+			return (name != null? name.hashCode(): 0)  ^ hash.invoke(i.eContents());
 		}
 
 		protected Integer _hash(TextPart tp) {

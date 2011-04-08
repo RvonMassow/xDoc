@@ -97,16 +97,20 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cLangDefsLangDefParserRuleCall_5_1_0 = (RuleCall)cLangDefsAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
 		private final RuleCall cMULTI_NLTerminalRuleCall_6_0 = (RuleCall)cGroup_6.eContents().get(0);
-		private final Assignment cChaptersAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cChaptersChapterParserRuleCall_6_1_0 = (RuleCall)cChaptersAssignment_6_1.eContents().get(0);
+		private final Assignment cGlossaryAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final RuleCall cGlossaryGlossaryParserRuleCall_6_1_0 = (RuleCall)cGlossaryAssignment_6_1.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final RuleCall cMULTI_NLTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
+		private final Assignment cChaptersAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cChaptersChapterParserRuleCall_7_1_0 = (RuleCall)cChaptersAssignment_7_1.eContents().get(0);
 		
 		//Document:
 		//	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
-		//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL chapters+=Chapter)*;
+		//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL chapters+=Chapter)*;
 		public ParserRule getRule() { return rule; }
 
 		//"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
-		//authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL chapters+=Chapter)*
+		//authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL chapters+=Chapter)*
 		public Group getGroup() { return cGroup; }
 
 		//"document["
@@ -169,17 +173,143 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//LangDef
 		public RuleCall getLangDefsLangDefParserRuleCall_5_1_0() { return cLangDefsLangDefParserRuleCall_5_1_0; }
 
-		//(MULTI_NL chapters+=Chapter)*
+		//(MULTI_NL glossary=Glossary)?
 		public Group getGroup_6() { return cGroup_6; }
 
 		//MULTI_NL
 		public RuleCall getMULTI_NLTerminalRuleCall_6_0() { return cMULTI_NLTerminalRuleCall_6_0; }
 
+		//glossary=Glossary
+		public Assignment getGlossaryAssignment_6_1() { return cGlossaryAssignment_6_1; }
+
+		//Glossary
+		public RuleCall getGlossaryGlossaryParserRuleCall_6_1_0() { return cGlossaryGlossaryParserRuleCall_6_1_0; }
+
+		//(MULTI_NL chapters+=Chapter)*
+		public Group getGroup_7() { return cGroup_7; }
+
+		//MULTI_NL
+		public RuleCall getMULTI_NLTerminalRuleCall_7_0() { return cMULTI_NLTerminalRuleCall_7_0; }
+
 		//chapters+=Chapter
-		public Assignment getChaptersAssignment_6_1() { return cChaptersAssignment_6_1; }
+		public Assignment getChaptersAssignment_7_1() { return cChaptersAssignment_7_1; }
 
 		//Chapter
-		public RuleCall getChaptersChapterParserRuleCall_6_1_0() { return cChaptersChapterParserRuleCall_6_1_0; }
+		public RuleCall getChaptersChapterParserRuleCall_7_1_0() { return cChaptersChapterParserRuleCall_7_1_0; }
+	}
+
+	public class GlossaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Glossary");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cMULTI_NLTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Assignment cGlossaryEntryAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cGlossaryEntryGlossaryEntryParserRuleCall_1_0 = (RuleCall)cGlossaryEntryAssignment_1.eContents().get(0);
+		
+		//Glossary:
+		//	(MULTI_NL glossaryEntry+=GlossaryEntry)+;
+		public ParserRule getRule() { return rule; }
+
+		//(MULTI_NL glossaryEntry+=GlossaryEntry)+
+		public Group getGroup() { return cGroup; }
+
+		//MULTI_NL
+		public RuleCall getMULTI_NLTerminalRuleCall_0() { return cMULTI_NLTerminalRuleCall_0; }
+
+		//glossaryEntry+=GlossaryEntry
+		public Assignment getGlossaryEntryAssignment_1() { return cGlossaryEntryAssignment_1; }
+
+		//GlossaryEntry
+		public RuleCall getGlossaryEntryGlossaryEntryParserRuleCall_1_0() { return cGlossaryEntryGlossaryEntryParserRuleCall_1_0; }
+	}
+
+	public class GlossaryEntryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "GlossaryEntry");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cGlossEntryKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameUnpunctTextParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final Keyword cCommaKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final RuleCall cANY_WSParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
+		private final Assignment cAliasAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cAliasUnpunctTextParserRuleCall_2_2_0 = (RuleCall)cAliasAssignment_2_2.eContents().get(0);
+		private final RuleCall cANY_WSParserRuleCall_2_3 = (RuleCall)cGroup_2.eContents().get(3);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final RuleCall cANY_WSParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cDescriptionAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cDescriptionTextOrMarkupParserRuleCall_6_0 = (RuleCall)cDescriptionAssignment_6.eContents().get(0);
+		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
+		private final RuleCall cMULTI_NLTerminalRuleCall_7_0 = (RuleCall)cGroup_7.eContents().get(0);
+		private final Assignment cDescriptionAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cDescriptionTextOrMarkupParserRuleCall_7_1_0 = (RuleCall)cDescriptionAssignment_7_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		
+		//GlossaryEntry:
+		//	"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+		//	(MULTI_NL description+=TextOrMarkup)* "]";
+		public ParserRule getRule() { return rule; }
+
+		//"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+		//(MULTI_NL description+=TextOrMarkup)* "]"
+		public Group getGroup() { return cGroup; }
+
+		//"gloss-entry["
+		public Keyword getGlossEntryKeyword_0() { return cGlossEntryKeyword_0; }
+
+		//name=UnpunctText
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+
+		//UnpunctText
+		public RuleCall getNameUnpunctTextParserRuleCall_1_0() { return cNameUnpunctTextParserRuleCall_1_0; }
+
+		//("," ANY_WS* alias+=UnpunctText ANY_WS*)*
+		public Group getGroup_2() { return cGroup_2; }
+
+		//","
+		public Keyword getCommaKeyword_2_0() { return cCommaKeyword_2_0; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_2_1() { return cANY_WSParserRuleCall_2_1; }
+
+		//alias+=UnpunctText
+		public Assignment getAliasAssignment_2_2() { return cAliasAssignment_2_2; }
+
+		//UnpunctText
+		public RuleCall getAliasUnpunctTextParserRuleCall_2_2_0() { return cAliasUnpunctTextParserRuleCall_2_2_0; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_2_3() { return cANY_WSParserRuleCall_2_3; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+
+		//ANY_WS*
+		public RuleCall getANY_WSParserRuleCall_4() { return cANY_WSParserRuleCall_4; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_5() { return cLeftSquareBracketKeyword_5; }
+
+		//description+=TextOrMarkup
+		public Assignment getDescriptionAssignment_6() { return cDescriptionAssignment_6; }
+
+		//TextOrMarkup
+		public RuleCall getDescriptionTextOrMarkupParserRuleCall_6_0() { return cDescriptionTextOrMarkupParserRuleCall_6_0; }
+
+		//(MULTI_NL description+=TextOrMarkup)*
+		public Group getGroup_7() { return cGroup_7; }
+
+		//MULTI_NL
+		public RuleCall getMULTI_NLTerminalRuleCall_7_0() { return cMULTI_NLTerminalRuleCall_7_0; }
+
+		//description+=TextOrMarkup
+		public Assignment getDescriptionAssignment_7_1() { return cDescriptionAssignment_7_1; }
+
+		//TextOrMarkup
+		public RuleCall getDescriptionTextOrMarkupParserRuleCall_7_1_0() { return cDescriptionTextOrMarkupParserRuleCall_7_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_8() { return cRightSquareBracketKeyword_8; }
 	}
 
 	public class ChapterElements extends AbstractParserRuleElementFinder {
@@ -839,6 +969,74 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"-"
 		public Keyword getHyphenMinusKeyword_7() { return cHyphenMinusKeyword_7; }
+	}
+
+	public class UnpunctTextElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "UnpunctText");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final RuleCall cIDTerminalRuleCall_0_0 = (RuleCall)cAlternatives_0.eContents().get(0);
+		private final RuleCall cANY_OTHERTerminalRuleCall_0_1 = (RuleCall)cAlternatives_0.eContents().get(1);
+		private final Keyword cReverseSolidusLeftSquareBracketKeyword_0_2 = (Keyword)cAlternatives_0.eContents().get(2);
+		private final Keyword cReverseSolidusRightSquareBracketKeyword_0_3 = (Keyword)cAlternatives_0.eContents().get(3);
+		private final Keyword cHyphenMinusKeyword_0_4 = (Keyword)cAlternatives_0.eContents().get(4);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final RuleCall cIDTerminalRuleCall_1_1_0 = (RuleCall)cAlternatives_1_1.eContents().get(0);
+		private final RuleCall cANY_OTHERTerminalRuleCall_1_1_1 = (RuleCall)cAlternatives_1_1.eContents().get(1);
+		private final Keyword cReverseSolidusLeftSquareBracketKeyword_1_1_2 = (Keyword)cAlternatives_1_1.eContents().get(2);
+		private final Keyword cReverseSolidusRightSquareBracketKeyword_1_1_3 = (Keyword)cAlternatives_1_1.eContents().get(3);
+		private final Keyword cHyphenMinusKeyword_1_1_4 = (Keyword)cAlternatives_1_1.eContents().get(4);
+		
+		//UnpunctText:
+		//	(ID | ANY_OTHER | "\\[" | "\\]" | "-")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*;
+		public ParserRule getRule() { return rule; }
+
+		//(ID | ANY_OTHER | "\\[" | "\\]" | "-")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*
+		public Group getGroup() { return cGroup; }
+
+		//(ID | ANY_OTHER | "\\[" | "\\]" | "-")+
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_0_0() { return cIDTerminalRuleCall_0_0; }
+
+		//ANY_OTHER
+		public RuleCall getANY_OTHERTerminalRuleCall_0_1() { return cANY_OTHERTerminalRuleCall_0_1; }
+
+		//"\\["
+		public Keyword getReverseSolidusLeftSquareBracketKeyword_0_2() { return cReverseSolidusLeftSquareBracketKeyword_0_2; }
+
+		//"\\]"
+		public Keyword getReverseSolidusRightSquareBracketKeyword_0_3() { return cReverseSolidusRightSquareBracketKeyword_0_3; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_0_4() { return cHyphenMinusKeyword_0_4; }
+
+		//(WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*
+		public Group getGroup_1() { return cGroup_1; }
+
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+
+		//ID | ANY_OTHER | "\\[" | "\\]" | "-"
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
+
+		//ID
+		public RuleCall getIDTerminalRuleCall_1_1_0() { return cIDTerminalRuleCall_1_1_0; }
+
+		//ANY_OTHER
+		public RuleCall getANY_OTHERTerminalRuleCall_1_1_1() { return cANY_OTHERTerminalRuleCall_1_1_1; }
+
+		//"\\["
+		public Keyword getReverseSolidusLeftSquareBracketKeyword_1_1_2() { return cReverseSolidusLeftSquareBracketKeyword_1_1_2; }
+
+		//"\\]"
+		public Keyword getReverseSolidusRightSquareBracketKeyword_1_1_3() { return cReverseSolidusRightSquareBracketKeyword_1_1_3; }
+
+		//"-"
+		public Keyword getHyphenMinusKeyword_1_1_4() { return cHyphenMinusKeyword_1_1_4; }
 	}
 
 	public class MarkUpElements extends AbstractParserRuleElementFinder {
@@ -1970,6 +2168,8 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	
 	private XdocFileElements pXdocFile;
 	private DocumentElements pDocument;
+	private GlossaryElements pGlossary;
+	private GlossaryEntryElements pGlossaryEntry;
 	private ChapterElements pChapter;
 	private ChapterRefElements pChapterRef;
 	private SectionElements pSection;
@@ -1981,6 +2181,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	private TextOrMarkupElements pTextOrMarkup;
 	private TextPartElements pTextPart;
 	private TextElements pText;
+	private UnpunctTextElements pUnpunctText;
 	private MarkUpElements pMarkUp;
 	private TableElements pTable;
 	private TableRowElements pTableRow;
@@ -2034,13 +2235,34 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 	//Document:
 	//	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
-	//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL chapters+=Chapter)*;
+	//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL chapters+=Chapter)*;
 	public DocumentElements getDocumentAccess() {
 		return (pDocument != null) ? pDocument : (pDocument = new DocumentElements());
 	}
 	
 	public ParserRule getDocumentRule() {
 		return getDocumentAccess().getRule();
+	}
+
+	//Glossary:
+	//	(MULTI_NL glossaryEntry+=GlossaryEntry)+;
+	public GlossaryElements getGlossaryAccess() {
+		return (pGlossary != null) ? pGlossary : (pGlossary = new GlossaryElements());
+	}
+	
+	public ParserRule getGlossaryRule() {
+		return getGlossaryAccess().getRule();
+	}
+
+	//GlossaryEntry:
+	//	"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+	//	(MULTI_NL description+=TextOrMarkup)* "]";
+	public GlossaryEntryElements getGlossaryEntryAccess() {
+		return (pGlossaryEntry != null) ? pGlossaryEntry : (pGlossaryEntry = new GlossaryEntryElements());
+	}
+	
+	public ParserRule getGlossaryEntryRule() {
+		return getGlossaryEntryAccess().getRule();
 	}
 
 	//Chapter:
@@ -2155,6 +2377,16 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public ParserRule getTextRule() {
 		return getTextAccess().getRule();
+	}
+
+	//UnpunctText:
+	//	(ID | ANY_OTHER | "\\[" | "\\]" | "-")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*;
+	public UnpunctTextElements getUnpunctTextAccess() {
+		return (pUnpunctText != null) ? pUnpunctText : (pUnpunctText = new UnpunctTextElements());
+	}
+	
+	public ParserRule getUnpunctTextRule() {
+		return getUnpunctTextAccess().getRule();
 	}
 
 	//MarkUp:

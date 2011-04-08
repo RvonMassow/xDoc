@@ -1,6 +1,6 @@
 package org.eclipse.xtext.xdoc.validation;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
@@ -44,9 +44,7 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
 	@Override
 	protected List<EPackage> getEPackages() {
-		List<EPackage> l = new ArrayList<EPackage>();
-		l.add(XdocPackage.eINSTANCE);
-		return l;
+		return Collections.singletonList((EPackage)XdocPackage.eINSTANCE);
 	}
 
 }

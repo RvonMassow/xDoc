@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getAuthors <em>Authors</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getChapters <em>Chapters</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getLangDefs <em>Lang Defs</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getGlossary <em>Glossary</em>}</li>
  * </ul>
  * </p>
  *
@@ -111,5 +112,31 @@ public interface Document extends AbstractSection
 	 * @generated
 	 */
 	EList<LangDef> getLangDefs();
+
+	/**
+	 * Returns the value of the '<em><b>Glossary</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Glossary</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Glossary</em>' containment reference.
+	 * @see #setGlossary(Glossary)
+	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getDocument_Glossary()
+	 * @model containment="true"
+	 * @generated
+	 */
+	Glossary getGlossary();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.Document#getGlossary <em>Glossary</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Glossary</em>' containment reference.
+	 * @see #getGlossary()
+	 * @generated
+	 */
+	void setGlossary(Glossary value);
 
 } // Document

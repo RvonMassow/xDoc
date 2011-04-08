@@ -18,7 +18,18 @@ Document:
 	(MULTI_NL 'subtitle[' subtitle=TextOrMarkup ']')?
 	(MULTI_NL 'authors[' authors=TextOrMarkup ']')?
 	(MULTI_NL langDefs+=LangDef)*
+	(MULTI_NL glossary=Glossary)?
 	(MULTI_NL chapters+=Chapter)*;
+
+Glossary:
+	(MULTI_NL glossaryEntry+=GlossaryEntry)+
+;
+
+
+GlossaryEntry:
+	'gloss-entry['name=UnpunctText(',' ANY_WS* alias+=UnpunctText ANY_WS*)*']' ANY_WS* '[' description+=TextOrMarkup(MULTI_NL description+=TextOrMarkup)* ']'
+;
+
 
 Chapter:
 	ChapterRef|
@@ -66,6 +77,10 @@ TextPart:
 
 Text:
 	(ID | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',' | "-" )+;
+
+UnpunctText:
+	(ID | ANY_OTHER | '\\[' | '\\]' | "-")+ (WS (ID | ANY_OTHER | '\\[' | '\\]' | "-"))*
+;
 
 MarkUp:
 	Emphasize |

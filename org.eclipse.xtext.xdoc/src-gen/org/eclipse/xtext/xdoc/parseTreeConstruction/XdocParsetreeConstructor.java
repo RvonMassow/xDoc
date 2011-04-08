@@ -33,34 +33,36 @@ protected class ThisRootNode extends RootToken {
 		switch(index) {
 			case 0: return new XdocFile_Group(this, this, 0, inst);
 			case 1: return new Document_Group(this, this, 1, inst);
-			case 2: return new Chapter_Alternatives(this, this, 2, inst);
-			case 3: return new ChapterRef_Group(this, this, 3, inst);
-			case 4: return new Section_Alternatives(this, this, 4, inst);
-			case 5: return new SectionRef_Group(this, this, 5, inst);
-			case 6: return new Section2_Alternatives(this, this, 6, inst);
-			case 7: return new Section2Ref_Group(this, this, 7, inst);
-			case 8: return new Section3_Group(this, this, 8, inst);
-			case 9: return new Section4_Group(this, this, 9, inst);
-			case 10: return new TextOrMarkup_Alternatives(this, this, 10, inst);
-			case 11: return new TextPart_TextAssignment(this, this, 11, inst);
-			case 12: return new MarkUp_Alternatives(this, this, 12, inst);
-			case 13: return new Table_Group(this, this, 13, inst);
-			case 14: return new TableRow_Group(this, this, 14, inst);
-			case 15: return new TableData_Group(this, this, 15, inst);
-			case 16: return new Emphasize_Group(this, this, 16, inst);
-			case 17: return new Anchor_Group(this, this, 17, inst);
-			case 18: return new Ref_Group(this, this, 18, inst);
-			case 19: return new OrderedList_Group(this, this, 19, inst);
-			case 20: return new UnorderedList_Group(this, this, 20, inst);
-			case 21: return new Item_Group(this, this, 21, inst);
-			case 22: return new CodeRef_Group(this, this, 22, inst);
-			case 23: return new Link_Group(this, this, 23, inst);
-			case 24: return new ImageRef_Group(this, this, 24, inst);
-			case 25: return new CodeBlock_Group(this, this, 25, inst);
-			case 26: return new Todo_Group(this, this, 26, inst);
-			case 27: return new Code_ContentsAssignment(this, this, 27, inst);
-			case 28: return new MarkupInCode_Alternatives(this, this, 28, inst);
-			case 29: return new LangDef_Alternatives(this, this, 29, inst);
+			case 2: return new Glossary_Group(this, this, 2, inst);
+			case 3: return new GlossaryEntry_Group(this, this, 3, inst);
+			case 4: return new Chapter_Alternatives(this, this, 4, inst);
+			case 5: return new ChapterRef_Group(this, this, 5, inst);
+			case 6: return new Section_Alternatives(this, this, 6, inst);
+			case 7: return new SectionRef_Group(this, this, 7, inst);
+			case 8: return new Section2_Alternatives(this, this, 8, inst);
+			case 9: return new Section2Ref_Group(this, this, 9, inst);
+			case 10: return new Section3_Group(this, this, 10, inst);
+			case 11: return new Section4_Group(this, this, 11, inst);
+			case 12: return new TextOrMarkup_Alternatives(this, this, 12, inst);
+			case 13: return new TextPart_TextAssignment(this, this, 13, inst);
+			case 14: return new MarkUp_Alternatives(this, this, 14, inst);
+			case 15: return new Table_Group(this, this, 15, inst);
+			case 16: return new TableRow_Group(this, this, 16, inst);
+			case 17: return new TableData_Group(this, this, 17, inst);
+			case 18: return new Emphasize_Group(this, this, 18, inst);
+			case 19: return new Anchor_Group(this, this, 19, inst);
+			case 20: return new Ref_Group(this, this, 20, inst);
+			case 21: return new OrderedList_Group(this, this, 21, inst);
+			case 22: return new UnorderedList_Group(this, this, 22, inst);
+			case 23: return new Item_Group(this, this, 23, inst);
+			case 24: return new CodeRef_Group(this, this, 24, inst);
+			case 25: return new Link_Group(this, this, 25, inst);
+			case 26: return new ImageRef_Group(this, this, 26, inst);
+			case 27: return new CodeBlock_Group(this, this, 27, inst);
+			case 28: return new Todo_Group(this, this, 28, inst);
+			case 29: return new Code_ContentsAssignment(this, this, 29, inst);
+			case 30: return new MarkupInCode_Alternatives(this, this, 30, inst);
+			case 31: return new LangDef_Alternatives(this, this, 31, inst);
 			default: return null;
 		}	
 	}	
@@ -237,12 +239,12 @@ protected class XdocFile_MainSectionAssignment_3_0 extends AssignmentToken  {
  *
  * Document:
  * 	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
- * 	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL chapters+=Chapter)*;
+ * 	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL chapters+=Chapter)*;
  *
  **/
 
 // "document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
-// authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL chapters+=Chapter)*
+// authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL chapters+=Chapter)*
 protected class Document_Group extends GroupToken {
 	
 	public Document_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -257,11 +259,12 @@ protected class Document_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Document_Group_6(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Document_Group_5(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Document_Group_4(lastRuleCallOrigin, this, 2, inst);
-			case 3: return new Document_Group_3(lastRuleCallOrigin, this, 3, inst);
-			case 4: return new Document_RightSquareBracketKeyword_2(lastRuleCallOrigin, this, 4, inst);
+			case 0: return new Document_Group_7(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Document_Group_6(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Document_Group_5(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Document_Group_4(lastRuleCallOrigin, this, 3, inst);
+			case 4: return new Document_Group_3(lastRuleCallOrigin, this, 4, inst);
+			case 5: return new Document_RightSquareBracketKeyword_2(lastRuleCallOrigin, this, 5, inst);
 			default: return null;
 		}	
 	}
@@ -729,7 +732,7 @@ protected class Document_LangDefsAssignment_5_1 extends AssignmentToken  {
 }
 
 
-// (MULTI_NL chapters+=Chapter)*
+// (MULTI_NL glossary=Glossary)?
 protected class Document_Group_6 extends GroupToken {
 	
 	public Document_Group_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -744,7 +747,7 @@ protected class Document_Group_6 extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Document_ChaptersAssignment_6_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new Document_GlossaryAssignment_6_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -766,46 +769,45 @@ protected class Document_MULTI_NLTerminalRuleCall_6_0 extends UnassignedTextToke
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Document_Group_6(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Document_Group_5(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Document_Group_4(lastRuleCallOrigin, this, 2, inst);
-			case 3: return new Document_Group_3(lastRuleCallOrigin, this, 3, inst);
-			case 4: return new Document_RightSquareBracketKeyword_2(lastRuleCallOrigin, this, 4, inst);
+			case 0: return new Document_Group_5(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Document_Group_4(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Document_Group_3(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Document_RightSquareBracketKeyword_2(lastRuleCallOrigin, this, 3, inst);
 			default: return null;
 		}	
 	}
 
 }
 
-// chapters+=Chapter
-protected class Document_ChaptersAssignment_6_1 extends AssignmentToken  {
+// glossary=Glossary
+protected class Document_GlossaryAssignment_6_1 extends AssignmentToken  {
 	
-	public Document_ChaptersAssignment_6_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Document_GlossaryAssignment_6_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getDocumentAccess().getChaptersAssignment_6_1();
+		return grammarAccess.getDocumentAccess().getGlossaryAssignment_6_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Chapter_Alternatives(this, this, 0, inst);
+			case 0: return new Glossary_Group(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
     @Override	
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("chapters",false)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("chapters");
+		if((value = eObjectConsumer.getConsumable("glossary",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("glossary");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getChapterRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getGlossaryRule().getType().getClassifier())) {
 				type = AssignmentType.PARSER_RULE_CALL;
-				element = grammarAccess.getDocumentAccess().getChaptersChapterParserRuleCall_6_1_0(); 
+				element = grammarAccess.getDocumentAccess().getGlossaryGlossaryParserRuleCall_6_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -824,8 +826,588 @@ protected class Document_ChaptersAssignment_6_1 extends AssignmentToken  {
 }
 
 
+// (MULTI_NL chapters+=Chapter)*
+protected class Document_Group_7 extends GroupToken {
+	
+	public Document_Group_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getDocumentAccess().getGroup_7();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Document_ChaptersAssignment_7_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// MULTI_NL
+protected class Document_MULTI_NLTerminalRuleCall_7_0 extends UnassignedTextToken {
+
+	public Document_MULTI_NLTerminalRuleCall_7_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getDocumentAccess().getMULTI_NLTerminalRuleCall_7_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Document_Group_7(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Document_Group_6(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Document_Group_5(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Document_Group_4(lastRuleCallOrigin, this, 3, inst);
+			case 4: return new Document_Group_3(lastRuleCallOrigin, this, 4, inst);
+			case 5: return new Document_RightSquareBracketKeyword_2(lastRuleCallOrigin, this, 5, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// chapters+=Chapter
+protected class Document_ChaptersAssignment_7_1 extends AssignmentToken  {
+	
+	public Document_ChaptersAssignment_7_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getDocumentAccess().getChaptersAssignment_7_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Chapter_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("chapters",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("chapters");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getChapterRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getDocumentAccess().getChaptersChapterParserRuleCall_7_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Document_MULTI_NLTerminalRuleCall_7_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
 
 /************ end Rule Document ****************/
+
+
+/************ begin Rule Glossary ****************
+ *
+ * Glossary:
+ * 	(MULTI_NL glossaryEntry+=GlossaryEntry)+;
+ *
+ **/
+
+// (MULTI_NL glossaryEntry+=GlossaryEntry)+
+protected class Glossary_Group extends GroupToken {
+	
+	public Glossary_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getGlossaryAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Glossary_GlossaryEntryAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// MULTI_NL
+protected class Glossary_MULTI_NLTerminalRuleCall_0 extends UnassignedTextToken {
+
+	public Glossary_MULTI_NLTerminalRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getGlossaryAccess().getMULTI_NLTerminalRuleCall_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new Glossary_Group(lastRuleCallOrigin, this, 0, inst);
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index - 1, inst);
+		}	
+	}
+
+}
+
+// glossaryEntry+=GlossaryEntry
+protected class Glossary_GlossaryEntryAssignment_1 extends AssignmentToken  {
+	
+	public Glossary_GlossaryEntryAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getGlossaryAccess().getGlossaryEntryAssignment_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("glossaryEntry",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("glossaryEntry");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getGlossaryEntryRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getGlossaryAccess().getGlossaryEntryGlossaryEntryParserRuleCall_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new Glossary_MULTI_NLTerminalRuleCall_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+/************ end Rule Glossary ****************/
+
+
+/************ begin Rule GlossaryEntry ****************
+ *
+ * GlossaryEntry:
+ * 	"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+ * 	(MULTI_NL description+=TextOrMarkup)* "]";
+ *
+ **/
+
+// "gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+// (MULTI_NL description+=TextOrMarkup)* "]"
+protected class GlossaryEntry_Group extends GroupToken {
+	
+	public GlossaryEntry_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getGroup();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_RightSquareBracketKeyword_8(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getGlossaryEntryRule().getType().getClassifier())
+			return null;
+		return eObjectConsumer;
+	}
+
+}
+
+// "gloss-entry["
+protected class GlossaryEntry_GlossEntryKeyword_0 extends KeywordToken  {
+	
+	public GlossaryEntry_GlossEntryKeyword_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getGlossEntryKeyword_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+}
+
+// name=UnpunctText
+protected class GlossaryEntry_NameAssignment_1 extends AssignmentToken  {
+	
+	public GlossaryEntry_NameAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getNameAssignment_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_GlossEntryKeyword_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("name",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("name");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getGlossaryEntryAccess().getNameUnpunctTextParserRuleCall_1_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getGlossaryEntryAccess().getNameUnpunctTextParserRuleCall_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+// ("," ANY_WS* alias+=UnpunctText ANY_WS*)*
+protected class GlossaryEntry_Group_2 extends GroupToken {
+	
+	public GlossaryEntry_Group_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getGroup_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_AliasAssignment_2_2(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// ","
+protected class GlossaryEntry_CommaKeyword_2_0 extends KeywordToken  {
+	
+	public GlossaryEntry_CommaKeyword_2_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getCommaKeyword_2_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_Group_2(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new GlossaryEntry_NameAssignment_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// alias+=UnpunctText
+protected class GlossaryEntry_AliasAssignment_2_2 extends AssignmentToken  {
+	
+	public GlossaryEntry_AliasAssignment_2_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getAliasAssignment_2_2();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_CommaKeyword_2_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("alias",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("alias");
+		if(valueSerializer.isValid(obj.getEObject(), grammarAccess.getGlossaryEntryAccess().getAliasUnpunctTextParserRuleCall_2_2_0(), value, null)) {
+			type = AssignmentType.DATATYPE_RULE_CALL;
+			element = grammarAccess.getGlossaryEntryAccess().getAliasUnpunctTextParserRuleCall_2_2_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
+
+// "]"
+protected class GlossaryEntry_RightSquareBracketKeyword_3 extends KeywordToken  {
+	
+	public GlossaryEntry_RightSquareBracketKeyword_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getRightSquareBracketKeyword_3();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_Group_2(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new GlossaryEntry_NameAssignment_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "["
+protected class GlossaryEntry_LeftSquareBracketKeyword_5 extends KeywordToken  {
+	
+	public GlossaryEntry_LeftSquareBracketKeyword_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getLeftSquareBracketKeyword_5();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_RightSquareBracketKeyword_3(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// description+=TextOrMarkup
+protected class GlossaryEntry_DescriptionAssignment_6 extends AssignmentToken  {
+	
+	public GlossaryEntry_DescriptionAssignment_6(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getDescriptionAssignment_6();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TextOrMarkup_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("description",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("description");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTextOrMarkupRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getGlossaryEntryAccess().getDescriptionTextOrMarkupParserRuleCall_6_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new GlossaryEntry_LeftSquareBracketKeyword_5(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// (MULTI_NL description+=TextOrMarkup)*
+protected class GlossaryEntry_Group_7 extends GroupToken {
+	
+	public GlossaryEntry_Group_7(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getGroup_7();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_DescriptionAssignment_7_1(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// MULTI_NL
+protected class GlossaryEntry_MULTI_NLTerminalRuleCall_7_0 extends UnassignedTextToken {
+
+	public GlossaryEntry_MULTI_NLTerminalRuleCall_7_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getMULTI_NLTerminalRuleCall_7_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_Group_7(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new GlossaryEntry_DescriptionAssignment_6(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// description+=TextOrMarkup
+protected class GlossaryEntry_DescriptionAssignment_7_1 extends AssignmentToken  {
+	
+	public GlossaryEntry_DescriptionAssignment_7_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getDescriptionAssignment_7_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new TextOrMarkup_Alternatives(this, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("description",false)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("description");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getTextOrMarkupRule().getType().getClassifier())) {
+				type = AssignmentType.PARSER_RULE_CALL;
+				element = grammarAccess.getGlossaryEntryAccess().getDescriptionTextOrMarkupParserRuleCall_7_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		if(value == inst.getEObject() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new GlossaryEntry_MULTI_NLTerminalRuleCall_7_0(lastRuleCallOrigin, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
+// "]"
+protected class GlossaryEntry_RightSquareBracketKeyword_8 extends KeywordToken  {
+	
+	public GlossaryEntry_RightSquareBracketKeyword_8(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Keyword getGrammarElement() {
+		return grammarAccess.getGlossaryEntryAccess().getRightSquareBracketKeyword_8();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new GlossaryEntry_Group_7(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new GlossaryEntry_DescriptionAssignment_6(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+
+/************ end Rule GlossaryEntry ****************/
 
 
 /************ begin Rule Chapter ****************
@@ -3895,6 +4477,7 @@ protected class TextPart_TextAssignment extends AssignmentToken  {
 }
 
 /************ end Rule TextPart ****************/
+
 
 
 

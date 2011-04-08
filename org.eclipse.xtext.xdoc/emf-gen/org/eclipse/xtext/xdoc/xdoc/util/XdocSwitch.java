@@ -357,6 +357,20 @@ public class XdocSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XdocPackage.GLOSSARY_ENTRY:
+			{
+				GlossaryEntry glossaryEntry = (GlossaryEntry)theEObject;
+				T result = caseGlossaryEntry(glossaryEntry);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XdocPackage.GLOSSARY:
+			{
+				Glossary glossary = (Glossary)theEObject;
+				T result = caseGlossary(glossary);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -869,6 +883,38 @@ public class XdocSwitch<T>
 	 * @generated
 	 */
 	public T caseLangDef(LangDef object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Glossary Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Glossary Entry</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGlossaryEntry(GlossaryEntry object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Glossary</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Glossary</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGlossary(Glossary object)
 	{
 		return null;
 	}

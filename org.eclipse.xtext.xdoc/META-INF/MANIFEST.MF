@@ -20,10 +20,11 @@ Require-Bundle: org.eclipse.xtext;bundle-version="2.0.0";visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.xtext.xdoc,
- org.eclipse.xtext.xdoc.services,
  org.eclipse.xtext.xdoc.parseTreeConstruction,
  org.eclipse.xtext.xdoc.parser.antlr,
  org.eclipse.xtext.xdoc.parser.antlr.internal,
+ org.eclipse.xtext.xdoc.resource,
+ org.eclipse.xtext.xdoc.services,
  org.eclipse.xtext.xdoc.validation,
  org.eclipse.xtext.xdoc.xdoc,
  org.eclipse.xtext.xdoc.xdoc.impl,

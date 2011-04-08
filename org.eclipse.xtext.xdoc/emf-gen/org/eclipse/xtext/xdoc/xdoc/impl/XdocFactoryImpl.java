@@ -99,6 +99,8 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
 			case XdocPackage.MARKUP_IN_CODE: return createMarkupInCode();
 			case XdocPackage.TODO: return createTodo();
 			case XdocPackage.LANG_DEF: return createLangDef();
+			case XdocPackage.GLOSSARY_ENTRY: return createGlossaryEntry();
+			case XdocPackage.GLOSSARY: return createGlossary();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -454,6 +456,28 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
 	{
 		LangDefImpl langDef = new LangDefImpl();
 		return langDef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GlossaryEntry createGlossaryEntry()
+	{
+		GlossaryEntryImpl glossaryEntry = new GlossaryEntryImpl();
+		return glossaryEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Glossary createGlossary()
+	{
+		GlossaryImpl glossary = new GlossaryImpl();
+		return glossary;
 	}
 
 	/**

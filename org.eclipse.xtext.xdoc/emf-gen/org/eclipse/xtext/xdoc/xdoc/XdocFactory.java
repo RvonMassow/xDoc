@@ -314,6 +314,24 @@ public interface XdocFactory extends EFactory
 	LangDef createLangDef();
 
 	/**
+	 * Returns a new object of class '<em>Glossary Entry</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Glossary Entry</em>'.
+	 * @generated
+	 */
+	GlossaryEntry createGlossaryEntry();
+
+	/**
+	 * Returns a new object of class '<em>Glossary</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Glossary</em>'.
+	 * @generated
+	 */
+	Glossary createGlossary();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.Glossary;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
@@ -37,6 +38,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getAuthors <em>Authors</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getChapters <em>Chapters</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getLangDefs <em>Lang Defs</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getGlossary <em>Glossary</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,6 +85,16 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 	 * @ordered
 	 */
 	protected EList<LangDef> langDefs;
+
+	/**
+	 * The cached value of the '{@link #getGlossary() <em>Glossary</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getGlossary()
+	 * @generated
+	 * @ordered
+	 */
+	protected Glossary glossary;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -234,6 +246,54 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Glossary getGlossary()
+	{
+		return glossary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetGlossary(Glossary newGlossary, NotificationChain msgs)
+	{
+		Glossary oldGlossary = glossary;
+		glossary = newGlossary;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, XdocPackage.DOCUMENT__GLOSSARY, oldGlossary, newGlossary);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setGlossary(Glossary newGlossary)
+	{
+		if (newGlossary != glossary)
+		{
+			NotificationChain msgs = null;
+			if (glossary != null)
+				msgs = ((InternalEObject)glossary).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - XdocPackage.DOCUMENT__GLOSSARY, null, msgs);
+			if (newGlossary != null)
+				msgs = ((InternalEObject)newGlossary).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - XdocPackage.DOCUMENT__GLOSSARY, null, msgs);
+			msgs = basicSetGlossary(newGlossary, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.DOCUMENT__GLOSSARY, newGlossary, newGlossary));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -247,6 +307,8 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				return ((InternalEList<?>)getChapters()).basicRemove(otherEnd, msgs);
 			case XdocPackage.DOCUMENT__LANG_DEFS:
 				return ((InternalEList<?>)getLangDefs()).basicRemove(otherEnd, msgs);
+			case XdocPackage.DOCUMENT__GLOSSARY:
+				return basicSetGlossary(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -269,6 +331,8 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				return getChapters();
 			case XdocPackage.DOCUMENT__LANG_DEFS:
 				return getLangDefs();
+			case XdocPackage.DOCUMENT__GLOSSARY:
+				return getGlossary();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -298,6 +362,9 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				getLangDefs().clear();
 				getLangDefs().addAll((Collection<? extends LangDef>)newValue);
 				return;
+			case XdocPackage.DOCUMENT__GLOSSARY:
+				setGlossary((Glossary)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -324,6 +391,9 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 			case XdocPackage.DOCUMENT__LANG_DEFS:
 				getLangDefs().clear();
 				return;
+			case XdocPackage.DOCUMENT__GLOSSARY:
+				setGlossary((Glossary)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -346,6 +416,8 @@ public class DocumentImpl extends AbstractSectionImpl implements Document
 				return chapters != null && !chapters.isEmpty();
 			case XdocPackage.DOCUMENT__LANG_DEFS:
 				return langDefs != null && !langDefs.isEmpty();
+			case XdocPackage.DOCUMENT__GLOSSARY:
+				return glossary != null;
 		}
 		return super.eIsSet(featureID);
 	}

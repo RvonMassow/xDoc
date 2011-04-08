@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IReferenceDescription;
@@ -54,6 +56,7 @@ public class XdocResourceDescriptionManager extends DefaultResourceDescriptionMa
 	}
 
 	private boolean desc(Set<QualifiedName> exportedNames, IResourceDescription cand, IResourceDescriptions context, Collection<IResourceDescription> checked) {
+
 		checked.add(cand);
 		if(!Collections.disjoint(exportedNames, Sets.newHashSet(cand.getImportedNames()))){
 			return true;
@@ -61,11 +64,18 @@ public class XdocResourceDescriptionManager extends DefaultResourceDescriptionMa
 			return false;
 		} else {
 			for (IReferenceDescription referenceDescription: cand.getReferenceDescriptions()) {
-				URI targetFile = referenceDescription.getTargetEObjectUri().trimFragment();
-				IResourceDescription nextCand = context.getResourceDescription(targetFile);
-				if(!checked.contains(nextCand))
-					if(desc(exportedNames, nextCand, context, checked))
-						return true;
+				EReference eReference = referenceDescription.getEReference();
+				if(eReference!= null) {
+					EClassifier eType = eReference.getEType();
+					if(eType == XdocPackage.Literals.CHAPTER_REF || eType == XdocPackage.Literals.SECTION_REF || eType == XdocPackage.Literals.SECTION2_REF
+							|| eType == XdocPackage.Literals.CODE_BLOCK) {
+						URI targetFile = referenceDescription.getTargetEObjectUri().trimFragment();
+						IResourceDescription nextCand = context.getResourceDescription(targetFile);
+						if(!checked.contains(nextCand))
+							if(desc(exportedNames, nextCand, context, checked))
+								return true;
+					}
+				}
 			}
 			return false;
 		}

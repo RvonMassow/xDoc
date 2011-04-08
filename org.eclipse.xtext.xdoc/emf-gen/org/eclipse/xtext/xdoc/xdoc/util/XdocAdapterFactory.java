@@ -238,6 +238,16 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
 				return createLangDefAdapter();
 			}
 			@Override
+			public Adapter caseGlossaryEntry(GlossaryEntry object)
+			{
+				return createGlossaryEntryAdapter();
+			}
+			@Override
+			public Adapter caseGlossary(Glossary object)
+			{
+				return createGlossaryAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -735,6 +745,36 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createLangDefAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry <em>Glossary Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xdoc.xdoc.GlossaryEntry
+	 * @generated
+	 */
+	public Adapter createGlossaryEntryAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.Glossary <em>Glossary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Glossary
+	 * @generated
+	 */
+	public Adapter createGlossaryAdapter()
 	{
 		return null;
 	}
