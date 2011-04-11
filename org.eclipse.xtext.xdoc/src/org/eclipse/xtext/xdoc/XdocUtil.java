@@ -1,6 +1,8 @@
 package org.eclipse.xtext.xdoc;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
@@ -32,6 +34,8 @@ public class XdocUtil {
 			for(String keyword: ld.getKeywords()) {
 				sb.append(keyword);
 			}
+			List<List<String>> l0 = new ArrayList<List<String>>();
+			l0.add(new ArrayList<String>());
 		}
 
 		protected void _toString(StringBuilder sb, Collection<? extends EObject> col) {
@@ -107,7 +111,7 @@ public class XdocUtil {
 
 		protected Integer _hash(Ref ref) {
 			EList<TextOrMarkup> contents = ref.getContents();
-			return hash.invoke(contents) ^ hash.invoke(ref.getRef());
+			return hash.invoke(contents);
 		}
 
 		protected Integer _hash(EList<?> list) {
