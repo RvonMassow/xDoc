@@ -65,12 +65,19 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 		acceptor.accept(new LineBreakInserter(defaultIndentLineAutoEditStrategy.get()), IDocument.DEFAULT_CONTENT_TYPE);
 	}
 
+	@Override
 	protected void configureMultilineComments(IEditStrategyAcceptor acceptor) {
 	}
 
+	@Override
 	protected void configureCurlyBracesBlock(IEditStrategyAcceptor acceptor) {
 	}
+	
+	@Override
+	protected void configureCompoundBracesBlocks(IEditStrategyAcceptor acceptor) {
+	}
 
+	@Override
 	protected void configureSquareBrackets(IEditStrategyAcceptor acceptor) {
 		acceptor.accept(singleLineTerminals.newInstance("[", "]"),IDocument.DEFAULT_CONTENT_TYPE);
 		MultiLineTerminalsEditStrategy newInstance = multiLineTerminals.newInstance("[", null, "]");
@@ -83,9 +90,11 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 		acceptor.accept(newInstance,IDocument.DEFAULT_CONTENT_TYPE);
 	}
 
+	@Override
 	protected void configureParenthesis(IEditStrategyAcceptor acceptor) {
 	}
 	
+	@Override
 	protected void configureStringLiteral(IEditStrategyAcceptor acceptor) {
 	}
 
