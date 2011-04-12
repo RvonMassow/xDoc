@@ -180,4 +180,11 @@
       </markerResolutionGenerator>
    </extension>
 
+   <extension
+         point="org.eclipse.xtext.builder.participant">
+      <participant
+            class="org.eclipse.xtext.xdoc.ui.XdocExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+      </participant>
+   </extension>
+
 </plugin>

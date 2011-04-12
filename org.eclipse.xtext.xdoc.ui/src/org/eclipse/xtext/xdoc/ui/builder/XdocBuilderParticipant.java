@@ -12,7 +12,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.core.resources.OsgiResourceLoader;
@@ -31,7 +30,6 @@ import org.eclipse.xtext.resource.IReferenceDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescription.Delta;
 import org.eclipse.xtext.util.Wrapper;
-import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 import com.google.common.base.Function;
@@ -44,12 +42,8 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 	private final Logger logger = Logger.getLogger(this.getClass());
 
 	@Inject
-	private XdocResourceDescriptionManager resourceDescriptionManager;
-
-	@Inject
 	private AbstractUIPlugin plugin;
 
-	private EClassifier eType;
 
 	public void build(final IBuildContext context, IProgressMonitor monitor)
 			throws CoreException {
@@ -104,6 +98,7 @@ public class XdocBuilderParticipant implements IXtextBuilderParticipant {
 							globalVars.put("dir", var);
 							ctx.getGlobalVariables().putAll(globalVars);
 							// detectChangeSet(delta, getDocuments(context.getBuiltProject()));
+							// IFileSystemAccess access = getFileSystemAccess("contents");
 							generate(object, ctx, context);
 						}
 					}
