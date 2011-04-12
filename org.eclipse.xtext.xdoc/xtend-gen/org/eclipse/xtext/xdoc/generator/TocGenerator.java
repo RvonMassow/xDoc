@@ -23,12 +23,12 @@ public class TocGenerator {
     _builder.append("<toc topic=\"contents/");
     EList<Chapter> _chapters = doc.getChapters();
     Chapter _get = _chapters.get(0);
-    String _fileName = eclipseNamingExtensions.fileName(_get);
+    String _fileName = this.eclipseNamingExtensions.fileName(_get);
     _builder.append(_fileName, "");
     _builder.append(".html\" label=\"");
     final Document typeConverted_doc = (Document)doc;
     TextOrMarkup _title = typeConverted_doc.getTitle();
-    CharSequence _genPlainText = plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
@@ -54,16 +54,16 @@ public class TocGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<topic href=\"contents/");
     final Chapter typeConverted_c = (Chapter)c;
-    String _fileName = eclipseNamingExtensions.fileName(typeConverted_c);
+    String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_c);
     _builder.append(_fileName, "");
     _builder.append(".html");
     final Chapter typeConverted_c_1 = (Chapter)c;
-    String _urlSuffix = eclipseNamingExtensions.urlSuffix(typeConverted_c_1);
+    String _urlSuffix = this.eclipseNamingExtensions.urlSuffix(typeConverted_c_1);
     _builder.append(_urlSuffix, "");
     _builder.append("\" label=\"");
     final Chapter typeConverted_c_2 = (Chapter)c;
     TextOrMarkup _title = typeConverted_c_2.getTitle();
-    CharSequence _genPlainText = plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
@@ -92,25 +92,25 @@ public class TocGenerator {
     String _xtrycatchfinallyexpression = null;
     try {
       final Chapter typeConverted_container = (Chapter)container;
-      String _fileName = eclipseNamingExtensions.fileName(typeConverted_container);
-      String _urlDecode = utils.urlDecode(_fileName);
+      String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_container);
+      String _urlDecode = this.utils.urlDecode(_fileName);
       _xtrycatchfinallyexpression = _urlDecode;
     } catch (Exception e) { 
       _xtrycatchfinallyexpression = null;
     }
     _builder.append(_xtrycatchfinallyexpression, "");
     _builder.append(".html");
-    String _urlSuffix = eclipseNamingExtensions.urlSuffix(aS);
+    String _urlSuffix = this.eclipseNamingExtensions.urlSuffix(aS);
     _builder.append(_urlSuffix, "");
     _builder.append("\" label=\"");
     TextOrMarkup _title = aS.getTitle();
-    CharSequence _genPlainText = plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     {
-      Object _subSection = utils.subSection(aS);
+      Object _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
         _builder.newLineIfNotEmpty();
         _builder.append("\t");

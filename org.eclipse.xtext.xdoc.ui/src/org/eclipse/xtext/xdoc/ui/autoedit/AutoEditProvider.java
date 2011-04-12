@@ -15,22 +15,22 @@ import org.eclipse.xtext.ui.editor.autoedit.MultiLineTerminalsEditStrategy;
 import org.eclipse.xtext.ui.editor.model.DocumentUtil;
 
 public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
-	
+
 	protected static class LineBreakInserter extends AbstractEditStrategy {
-		
+
 		private Widget widget;
 		private final IAutoEditStrategy defaultStrategy;
 
 		protected LineBreakInserter(IAutoEditStrategy defaultStrategy) {
 			this.defaultStrategy = defaultStrategy;
 		}
-		
+
 		@Override
 		public void verifyKey(VerifyEvent event) {
 			super.verifyKey(event);
 			widget = event.widget;
 		}
-		
+
 		@Override
 		protected void internalCustomizeDocumentCommand(IDocument document,
 				DocumentCommand command) throws BadLocationException {
@@ -60,7 +60,7 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 		super.configure(acceptor);
 		configureAutoLinebreakStrategy(acceptor);
 	}
-	
+
 	protected void configureAutoLinebreakStrategy(IEditStrategyAcceptor acceptor) {
 		acceptor.accept(new LineBreakInserter(defaultIndentLineAutoEditStrategy.get()), IDocument.DEFAULT_CONTENT_TYPE);
 	}
@@ -71,10 +71,6 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 
 	@Override
 	protected void configureCurlyBracesBlock(IEditStrategyAcceptor acceptor) {
-	}
-	
-	@Override
-	protected void configureCompoundBracesBlocks(IEditStrategyAcceptor acceptor) {
 	}
 
 	@Override
@@ -93,7 +89,7 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 	@Override
 	protected void configureParenthesis(IEditStrategyAcceptor acceptor) {
 	}
-	
+
 	@Override
 	protected void configureStringLiteral(IEditStrategyAcceptor acceptor) {
 	}

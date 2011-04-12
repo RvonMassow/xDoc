@@ -67,7 +67,7 @@ public class XdocGenerator implements IGenerator {
   
   public void _generate(final Document document, final IFileSystemAccess access) {
     {
-      StringConcatenation _generateToc = tocGenerator.generateToc(document);
+      StringConcatenation _generateToc = this.tocGenerator.generateToc(document);
       access.generateFile("toc.xml", _generateToc);
       EList<Chapter> _chapters = document.getChapters();
       for (Chapter c : _chapters) {
@@ -79,7 +79,7 @@ public class XdocGenerator implements IGenerator {
   
   public void _generate(final Chapter chapter, final IFileSystemAccess access) {
     final Chapter typeConverted_chapter = (Chapter)chapter;
-    String _fileName = eclipseNamingExtensions.fileName(typeConverted_chapter);
+    String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_chapter);
     final Chapter typeConverted_chapter_1 = (Chapter)chapter;
     CharSequence _generate = this.generate(typeConverted_chapter_1);
     access.generateFile(_fileName, _generate);
@@ -97,7 +97,7 @@ public class XdocGenerator implements IGenerator {
       _builder.append("<title>");
       final Chapter typeConverted_aS = (Chapter)aS;
       TextOrMarkup _title = typeConverted_aS.getTitle();
-      CharSequence _genPlainText = plainText.genPlainText(_title);
+      CharSequence _genPlainText = this.plainText.genPlainText(_title);
       _builder.append(_genPlainText, "");
       _builder.append("</title>");
       _builder.newLineIfNotEmpty();
@@ -117,7 +117,7 @@ public class XdocGenerator implements IGenerator {
       _builder.append(">");
       final Chapter typeConverted_aS_1 = (Chapter)aS;
       TextOrMarkup _title_1 = typeConverted_aS_1.getTitle();
-      CharSequence _genPlainText_1 = plainText.genPlainText(_title_1);
+      CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
       _builder.append(_genPlainText_1, "");
       _builder.append("</");
       _builder.append(headtag, "");
@@ -125,7 +125,7 @@ public class XdocGenerator implements IGenerator {
       _builder.newLineIfNotEmpty();
       {
         final Chapter typeConverted_aS_2 = (Chapter)aS;
-        Object _subSection = utils.subSection(typeConverted_aS_2);
+        Object _subSection = this.utils.subSection(typeConverted_aS_2);
         for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
           _builder.newLineIfNotEmpty();
           final AbstractSection typeConverted_ss = (AbstractSection)ss;
@@ -187,7 +187,7 @@ public class XdocGenerator implements IGenerator {
       _builder.append(headtag, "");
       _builder.append(">");
       TextOrMarkup _title = aS.getTitle();
-      CharSequence _genPlainText = plainText.genPlainText(_title);
+      CharSequence _genPlainText = this.plainText.genPlainText(_title);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       _builder.append(headtag, "");
@@ -205,7 +205,7 @@ public class XdocGenerator implements IGenerator {
       }
       _builder.newLineIfNotEmpty();
       {
-        Object _subSection = utils.subSection(aS);
+        Object _subSection = this.utils.subSection(aS);
         for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
           _builder.newLineIfNotEmpty();
           final AbstractSection typeConverted_ss = (AbstractSection)ss;
@@ -251,7 +251,7 @@ public class XdocGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
         _builder.append("<a href=\"");
         Identifiable _ref = ref.getRef();
-        String _fileName = eclipseNamingExtensions.fileName(_ref);
+        String _fileName = this.eclipseNamingExtensions.fileName(_ref);
         _builder.append(_fileName, "");
         _builder.append(".html#");
         Identifiable _ref_1 = ref.getRef();
@@ -266,7 +266,7 @@ public class XdocGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
         _builder.append("<a href=\"");
         Identifiable _ref_3 = ref.getRef();
-        String _fileName_1 = eclipseNamingExtensions.fileName(_ref_3);
+        String _fileName_1 = this.eclipseNamingExtensions.fileName(_ref_3);
         _builder.append(_fileName_1, "");
         _builder.append(".html#");
         Identifiable _ref_4 = ref.getRef();
@@ -366,7 +366,7 @@ public class XdocGenerator implements IGenerator {
   
   public CharSequence _generate(final CodeBlock cb) {
     StringConcatenation _xifexpression = null;
-    Boolean _isInlineCode = utils.isInlineCode(cb);
+    Boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<span class=\"inlinecode\">");

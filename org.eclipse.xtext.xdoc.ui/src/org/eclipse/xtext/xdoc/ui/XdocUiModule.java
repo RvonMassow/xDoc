@@ -59,7 +59,6 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 		return XdocQuickAssistProcessor.class;
 	}
 
-	@Override
 	public Class<? extends IXtextBuilderParticipant> bindIXtextBuilderParticipant() {
 		return XdocBuilderParticipant.class;
 	}
