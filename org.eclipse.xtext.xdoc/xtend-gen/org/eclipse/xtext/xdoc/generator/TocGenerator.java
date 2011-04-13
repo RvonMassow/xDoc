@@ -32,19 +32,15 @@ public class TocGenerator {
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
     {
       EList<Chapter> _chapters_1 = doc.getChapters();
       for(Chapter c : _chapters_1) {
-        _builder.newLineIfNotEmpty();
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(c);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
       }
     }
-    _builder.newLineIfNotEmpty();
     _builder.append("</toc>");
     _builder.newLine();
     return _builder;
@@ -67,20 +63,16 @@ public class TocGenerator {
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
     {
       EList<Section> _subSections = c.getSubSections();
       for(Section ss : _subSections) {
-        _builder.newLineIfNotEmpty();
         _builder.append("\t");
         final Section typeConverted_ss = (Section)ss;
         StringConcatenation _genTocEntry = this.genTocEntry(typeConverted_ss, c);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
       }
     }
-    _builder.newLineIfNotEmpty();
     _builder.append("</topic>");
     _builder.newLine();
     return _builder;
@@ -108,19 +100,15 @@ public class TocGenerator {
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
     {
       Object _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
-        _builder.newLineIfNotEmpty();
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(ss, container);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
-        _builder.append("\t");
       }
     }
-    _builder.newLineIfNotEmpty();
     _builder.append("</topic>");
     _builder.newLine();
     return _builder;

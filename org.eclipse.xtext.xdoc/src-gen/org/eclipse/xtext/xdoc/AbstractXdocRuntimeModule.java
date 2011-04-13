@@ -154,4 +154,9 @@ public abstract class AbstractXdocRuntimeModule extends DefaultRuntimeModule {
 		return org.eclipse.xtext.xdoc.formatting.XdocFormatter.class;
 	}
 
+	// contributed by org.eclipse.xtext.generator.generator.GeneratorFragment
+	public Class<? extends org.eclipse.xtext.generator.IGenerator> bindIGenerator() {
+		return org.eclipse.xtext.xdoc.generator.XdocGenerator.class;
+	}
+
 }

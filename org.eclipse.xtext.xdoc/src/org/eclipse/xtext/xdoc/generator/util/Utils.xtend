@@ -2,6 +2,8 @@ package org.eclipse.xtext.xdoc.generator.util
 
 import org.eclipse.xtext.xdoc.xdoc.*
 import static extension java.net.URLDecoder.*
+import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
+
 
 class Utils {
 
@@ -33,8 +35,34 @@ class Utils {
 		s.decode("ISO-8859-1")
 	}
 
-// TODO report Bug
+	// FIXME wait for patch
 	Boolean isInlineCode (CodeBlock cb) {
-		return cb.contents.size == 1 && !cb.contents.head.toString.contains("\n");
+		(cb.contents.size == 1 && !cb.contents.head.toString.contains("\n"))
 	}
+
+	escapeLatexChars(String s) {
+		s.replaceAll("\\$", "\\\\\\$").replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
+			.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}")
+			.replaceAll("#", "\\\\#").replaceAll("%", "\\\\%")
+			.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
+			.replaceAll("&", "\\\\&").replaceAll("~", "\\\\textasciitilde{}")
+	}
+
+	unescapeXdocChars(String s) {
+		s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]")
+	}
+
+	prepareListingsString(String s) {
+		s.replaceAll("^\n", "")
+	}
+
+	escapeHTMLChars(String s) {
+		s.replaceAll("&", "&amp;").replaceAll("'", "&apos;")
+			.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+	}
+
+	formatCode(String text, LangDef language) {
+		highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />\n"), language)
+	}
+		
 }

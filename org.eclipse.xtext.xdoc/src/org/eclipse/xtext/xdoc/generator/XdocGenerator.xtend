@@ -11,6 +11,7 @@ import static extension java.net.URLDecoder.*
 import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
 import static extension lib.IterableExtensions.*
 import static extension Collections2.*
+import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 
 
 import org.eclipse.xtext.xdoc.xdoc.*
@@ -44,6 +45,8 @@ class XdocGenerator implements IGenerator {
 		switch file:res.contents.get(0) {
 			XdocFile:
 				if(file.mainSection instanceof Document)
+					file.mainSection.generate(access)
+				else if(file.mainSection instanceof Chapter)
 					file.mainSection.generate(access)
 			default: 
 				null
@@ -79,6 +82,9 @@ class XdocGenerator implements IGenerator {
 		</head>
 		<body>
 		<«headtag»>«aS.title.genPlainText»</«headtag»>
+		«FOR content:aS.contents»
+			«content.generatePar»
+		«ENDFOR»
 		«FOR ss:(aS.subSection as Iterable<AbstractSection>)»
 			«ss.generate»
 		«ENDFOR»
@@ -98,7 +104,7 @@ class XdocGenerator implements IGenerator {
 		'''
 		<«headtag»>«aS.title.genPlainText»</«headtag»>
 		«FOR c:aS.contents »
-			«c.generate»
+			«c.generatePar»
 		«ENDFOR»
 		«FOR ss:(aS.subSection as Iterable<AbstractSection>)»
 			«ss.generate»
@@ -110,17 +116,27 @@ class XdocGenerator implements IGenerator {
 		'''
 		«aS.title.genNonParContent»
 		«FOR tom:aS.contents»
-		«tom.generate»
+		«tom.generatePar»
 		«ENDFOR»
+		'''
+	}
+	
+	generatePar(TextOrMarkup tom) {
+		'''
+		<p>
+		«FOR c:tom.contents»
+		«c.generate»
+		«ENDFOR»
+		</p>
 		'''
 	}
 
 	dispatch generate(Ref ref) {
 		'''
 		«IF ref.contents.isEmpty »
-		<a href="«ref.ref.fileName».html#«ref.ref.name»">section «ref.ref.name»</a>
+		<a href="«ref.ref.fileName»#«ref.ref.name»">section «ref.ref.name»</a>
 		«ELSE»
-		<a href="«ref.ref.fileName».html#«ref.ref.name»">
+		<a href="«ref.ref.fileName»#«ref.ref.name»">
 		«FOR tom:ref.contents»
 		«tom.genNonParContent»</a>
 		«ENDFOR»
@@ -131,9 +147,7 @@ class XdocGenerator implements IGenerator {
 	dispatch generate(TextOrMarkup tom) {
 		'''
 		«FOR obj:tom.contents»
-			<p>
 			«obj.generate»
-			</p>
 		«ENDFOR»
 		'''
 //		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.generate»'''])
@@ -143,7 +157,6 @@ class XdocGenerator implements IGenerator {
 		'''
 		<ul>
 			«FOR i:ul.items»
-			
 			  	«i.generate»
 			«ENDFOR»
 		</ul>
@@ -161,22 +174,111 @@ class XdocGenerator implements IGenerator {
 		'''
 	}
 
-	dispatch generate(TextPart tp) {
-		tp.text
+	dispatch generate(Item i) {
+		'''
+		<li>
+			«FOR tom:i.contents»
+				«tom.generate»
+			«ENDFOR»
+		</li>
+		'''
 	}
 
+	dispatch generate(Anchor a) {
+		'''<a name="«a.name»"></a>'''
+	}
 
+	dispatch generate(ImageRef img) {
+		'''
+		<div class="image" >
+		«IF img.name != null»
+			«img.name.genLabel»
+		«ENDIF»
+		«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
+		<img src="«img.image.name.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
+		«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
+		«img.caption.unescapeXdocChars.escapeHTMLChars»
+		</div>
+		'''
+	}
+
+	 genLabel(String name) {
+		'''
+		«IF this != null »
+		<a name="«name»"></a>
+		«ENDIF»
+		'''
+	}
+
+	dispatch generate(TextPart tp) {
+		tp.text.unescapeXdocChars.escapeHTMLChars
+	}
+
+	dispatch generate(Table table) {
+		'''
+		«FOR tr:table.rows»
+			«tr.generate»
+		«ENDFOR»
+		'''
+	}
+
+	dispatch generate(TableRow tr) {
+		'''
+		«FOR td:tr.data»
+			«td.generate»
+		«ENDFOR»
+		'''
+	}
+
+	dispatch generate(TableData td) {
+		'''
+		«FOR c:td.contents»
+			«c.generate»
+		«ENDFOR»
+		'''
+	}
+
+	dispatch generate(Emphasize em) {
+		'''<em>«FOR c:em.contents»«c.generate»«ENDFOR»</em>'''
+	}
+
+	dispatch generate(Link link) {
+		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
+	}
+
+	dispatch generate(CodeRef cRef) {
+		'''<em>«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars»</em>'''
+	}	
 
 	dispatch generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
-			'''<span class="inlinecode">«(cb.contents.head as Code).generate(cb.language)»'''
+			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language)»'''
 		} else {
-			''''''
+			val block = cb.removeIndent
+			'''	
+				<div class="literallayout">
+				<div class="incode">
+				<p class="code">
+				«FOR code:block.contents»
+					«code.generateCode(cb.language)»
+				«ENDFOR»
+				</p>
+				</div>
+				</div>
+			'''
 		}
 	}
 
-	generate (Code code, LangDef lang) {
-		''''''
+	dispatch generateCode (Code code, LangDef lang) {
+		'''«code.contents.unescapeXdocChars.formatCode(lang) »'''
+	}
+	
+	dispatch generateCode (MarkupInCode code, LangDef lang) {
+		'''«code.generate»'''
+	}
+
+	dispatch generateCode (Code code, Void v) {
+		'''«code.contents.unescapeXdocChars.formatCode(null) »'''
 	}
 
 	genNonParContent(TextOrMarkup tom) {

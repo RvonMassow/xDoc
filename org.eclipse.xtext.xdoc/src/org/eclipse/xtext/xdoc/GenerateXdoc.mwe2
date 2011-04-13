@@ -94,6 +94,7 @@ Workflow {
 			// generates a more lightweight Antlr parser and lexer tailored for content assist  
 			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {}
 
+			fragment = generator.GeneratorFragment{}
 			// project wizard (optional) 
 			// fragment = projectWizard.SimpleProjectWizardFragment {
 			// 		generatorProjectName = "${projectName}.generator" 
