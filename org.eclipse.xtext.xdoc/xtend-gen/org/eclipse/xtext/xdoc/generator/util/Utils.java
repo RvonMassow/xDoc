@@ -23,33 +23,33 @@ import org.eclipse.xtext.xdoc.xdoc.Section4;
 @SuppressWarnings("all")
 public class Utils {
   
-  public Iterable<Chapter> _subSection(final Document doc) {
+  public Iterable<? extends AbstractSection> _subSection(final Document doc) {
     EList<Chapter> _chapters = doc.getChapters();
     return _chapters;
   }
   
-  public Iterable<Section> _subSection(final Chapter section) {
+  public Iterable<? extends AbstractSection> _subSection(final Chapter section) {
     EList<Section> _subSections = section.getSubSections();
     return _subSections;
   }
   
-  public Iterable<Section2> _subSection(final Section section) {
+  public Iterable<? extends AbstractSection> _subSection(final Section section) {
     EList<Section2> _subSections = section.getSubSections();
     return _subSections;
   }
   
-  public Iterable<Section3> _subSection(final Section2 section) {
+  public Iterable<? extends AbstractSection> _subSection(final Section2 section) {
     EList<Section3> _subSections = section.getSubSections();
     return _subSections;
   }
   
-  public Iterable<Section4> _subSection(final Section3 section) {
+  public Iterable<? extends AbstractSection> _subSection(final Section3 section) {
     EList<Section4> _subSections = section.getSubSections();
     return _subSections;
   }
   
-  public Iterable<AbstractSection> _subSection(final AbstractSection section) {
-    ArrayList<AbstractSection> _newArrayList = CollectionLiterals.<AbstractSection>newArrayList();
+  public Iterable<? extends AbstractSection> _subSection(final AbstractSection section) {
+    ArrayList<? extends AbstractSection> _newArrayList = CollectionLiterals.<AbstractSection>newArrayList();
     return _newArrayList;
   }
   
@@ -58,7 +58,7 @@ public class Utils {
     return _decode;
   }
   
-  public Boolean isInlineCode(final CodeBlock cb) {
+  public boolean isInlineCode(final CodeBlock cb) {
     boolean _operator_and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();
@@ -73,7 +73,7 @@ public class Utils {
       boolean _operator_not = BooleanExtensions.operator_not(_contains);
       _operator_and = BooleanExtensions.operator_and(_operator_equals, _operator_not);
     }
-    return ((Boolean)_operator_and);
+    return _operator_and;
   }
   
   public String escapeLatexChars(final String s) {
@@ -118,7 +118,7 @@ public class Utils {
     return _highlightKeywords;
   }
   
-  public Object subSection(final AbstractSection section) {
+  public Iterable<? extends AbstractSection> subSection(final AbstractSection section) {
     if ((section instanceof Chapter)) {
       return _subSection((Chapter)section);
     } else if ((section instanceof Document)) {

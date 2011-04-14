@@ -7,27 +7,27 @@ import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 
 class Utils {
 
-	dispatch Iterable<Chapter> subSection(Document doc){
+	dispatch subSection(Document doc){
 		doc.chapters
 	}
 
-	dispatch Iterable<Section> subSection(Chapter section){
+	dispatch subSection(Chapter section){
 		section.subSections
 	}
 
-	dispatch Iterable<Section2> subSection(Section section){
+	dispatch subSection(Section section){
 		section.subSections
 	}
 
-	dispatch Iterable<Section3> subSection(Section2 section){
+	dispatch subSection(Section2 section){
 		section.subSections
 	}
 
-	dispatch Iterable<Section4> subSection(Section3 section){
+	dispatch subSection(Section3 section){
 		section.subSections
 	}
 
-	dispatch Iterable<AbstractSection> subSection(AbstractSection section){
+	dispatch Iterable<? extends AbstractSection> subSection(AbstractSection section){
 		newArrayList
 	}
 
@@ -35,9 +35,9 @@ class Utils {
 		s.decode("ISO-8859-1")
 	}
 
-	// FIXME wait for patch
-	Boolean isInlineCode (CodeBlock cb) {
-		(cb.contents.size == 1 && !cb.contents.head.toString.contains("\n"))
+	boolean isInlineCode (CodeBlock cb) {
+		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
+//		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
 	}
 
 	escapeLatexChars(String s) {

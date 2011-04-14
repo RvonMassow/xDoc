@@ -1,6 +1,7 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
+import java.io.UnsupportedEncodingException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -44,7 +45,6 @@ import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
-import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
@@ -55,38 +55,19 @@ public class XdocGenerator implements IGenerator {
   @Inject private TocGenerator tocGenerator;
   @Inject private PlainText plainText;
   
-  public void doGenerate(final Resource res, final IFileSystemAccess access) {
-    {
+  public void doGenerate(final Resource res, final IFileSystemAccess access) throws RuntimeException {
+    try {
       EList<EObject> _contents = res.getContents();
-      EObject _get = _contents.get(0);
-      final Object file = _get;
-      EList<EObject> _contents_1 = res.getContents();
-      EObject _get_1 = _contents_1.get(0);
-      final EObject file_1 = _get_1;
-      boolean matched = false;
-      if (!matched) {
-        if (file_1 instanceof XdocFile) {
-          final XdocFile file_2 = (XdocFile) file_1;
-          matched=true;
-          AbstractSection _mainSection = file_2.getMainSection();
-          if ((_mainSection instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
-            AbstractSection _mainSection_1 = file_2.getMainSection();
-            this.generate(_mainSection_1, access);
-          } else {
-            AbstractSection _mainSection_2 = file_2.getMainSection();
-            if ((_mainSection_2 instanceof org.eclipse.xtext.xdoc.xdoc.Chapter)) {
-              AbstractSection _mainSection_3 = file_2.getMainSection();
-              this.generate(_mainSection_3, access);
-            }
-          }
-        }
-      }
-      if (!matched) {/*null*/;
-      }
+      EObject _head = IterableExtensions.<EObject>head(_contents);
+      AbstractSection _mainSection = ((org.eclipse.xtext.xdoc.xdoc.XdocFile) _head)==null?(AbstractSection)null:((org.eclipse.xtext.xdoc.xdoc.XdocFile) _head).getMainSection();
+      this.generate(_mainSection, access);
+    } catch (UnsupportedEncodingException e) { 
+      RuntimeException _runtimeException = new RuntimeException(e);
+      throw _runtimeException;
     }
   }
   
-  public void _generate(final Document document, final IFileSystemAccess access) {
+  public void _generate(final Document document, final IFileSystemAccess access) throws UnsupportedEncodingException {
     {
       StringConcatenation _generateToc = this.tocGenerator.generateToc(document);
       access.generateFile("toc.xml", _generateToc);
@@ -107,140 +88,147 @@ public class XdocGenerator implements IGenerator {
   }
   
   public CharSequence _generate(final Chapter aS) {
-    StringConcatenation _xblockexpression = null;
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<html>");
+    _builder.newLine();
+    _builder.append("<head>");
+    _builder.newLine();
+    _builder.append("<title>");
+    final Chapter typeConverted_aS = (Chapter)aS;
+    TextOrMarkup _title = typeConverted_aS.getTitle();
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
+    _builder.append(_genPlainText, "");
+    _builder.append("</title>");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("<link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
+    _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
+    _builder.append("<link rel=\"home\" href=\"index.html\" title=\"\">");
+    _builder.newLine();
+    _builder.append("</head>");
+    _builder.newLine();
+    _builder.append("<body>");
+    _builder.newLine();
+    _builder.append("<");
+    final Chapter typeConverted_aS_1 = (Chapter)aS;
+    String _headtag = this.headtag(typeConverted_aS_1);
+    _builder.append(_headtag, "");
+    _builder.append(">");
+    final Chapter typeConverted_aS_2 = (Chapter)aS;
+    TextOrMarkup _title_1 = typeConverted_aS_2.getTitle();
+    CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
+    _builder.append(_genPlainText_1, "");
+    _builder.append("</");
+    final Chapter typeConverted_aS_3 = (Chapter)aS;
+    String _headtag_1 = this.headtag(typeConverted_aS_3);
+    _builder.append(_headtag_1, "");
+    _builder.append(">");
+    _builder.newLineIfNotEmpty();
     {
-      final String headtag = "h1";
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<html>");
-      _builder.newLine();
-      _builder.append("<head>");
-      _builder.newLine();
-      _builder.append("<title>");
-      final Chapter typeConverted_aS = (Chapter)aS;
-      TextOrMarkup _title = typeConverted_aS.getTitle();
-      CharSequence _genPlainText = this.plainText.genPlainText(_title);
-      _builder.append(_genPlainText, "");
-      _builder.append("</title>");
-      _builder.newLineIfNotEmpty();
-      _builder.newLine();
-      _builder.append("<link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">");
-      _builder.newLine();
-      _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
-      _builder.newLine();
-      _builder.append("<link rel=\"home\" href=\"index.html\" title=\"\">");
-      _builder.newLine();
-      _builder.append("</head>");
-      _builder.newLine();
-      _builder.append("<body>");
-      _builder.newLine();
-      _builder.append("<");
-      _builder.append(headtag, "");
-      _builder.append(">");
-      final Chapter typeConverted_aS_1 = (Chapter)aS;
-      TextOrMarkup _title_1 = typeConverted_aS_1.getTitle();
-      CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
-      _builder.append(_genPlainText_1, "");
-      _builder.append("</");
-      _builder.append(headtag, "");
-      _builder.append(">");
-      _builder.newLineIfNotEmpty();
-      {
-        final Chapter typeConverted_aS_2 = (Chapter)aS;
-        EList<TextOrMarkup> _contents = typeConverted_aS_2.getContents();
-        for(TextOrMarkup content : _contents) {
-          StringConcatenation _generatePar = this.generatePar(content);
-          _builder.append(_generatePar, "");
-          _builder.newLineIfNotEmpty();
-        }
+      final Chapter typeConverted_aS_4 = (Chapter)aS;
+      EList<TextOrMarkup> _contents = typeConverted_aS_4.getContents();
+      for(TextOrMarkup content : _contents) {
+        StringConcatenation _generatePar = this.generatePar(content);
+        _builder.append(_generatePar, "");
+        _builder.newLineIfNotEmpty();
       }
-      {
-        final Chapter typeConverted_aS_3 = (Chapter)aS;
-        Object _subSection = this.utils.subSection(typeConverted_aS_3);
-        for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
-          final AbstractSection typeConverted_ss = (AbstractSection)ss;
-          CharSequence _generate = this.generate(typeConverted_ss);
-          _builder.append(_generate, "");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("</body>");
-      _builder.newLine();
-      _builder.append("</html>");
-      _builder.newLine();
-      _xblockexpression = (_builder);
     }
-    return _xblockexpression;
+    {
+      final Chapter typeConverted_aS_5 = (Chapter)aS;
+      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(typeConverted_aS_5);
+      for(AbstractSection ss : _subSection) {
+        final AbstractSection typeConverted_ss = (AbstractSection)ss;
+        CharSequence _generate = this.generate(typeConverted_ss);
+        _builder.append(_generate, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("</body>");
+    _builder.newLine();
+    _builder.append("</html>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public String headtag(final AbstractSection section) {
+    String _switchResult = null;
+    final AbstractSection section_1 = section;
+    boolean matched = false;
+    if (!matched) {
+      if (section_1 instanceof Chapter) {
+        final Chapter section_2 = (Chapter) section_1;
+        matched=true;
+        _switchResult = "h2";
+      }
+    }
+    if (!matched) {
+      if (section_1 instanceof Section) {
+        final Section section_3 = (Section) section_1;
+        matched=true;
+        _switchResult = "h2";
+      }
+    }
+    if (!matched) {
+      if (section_1 instanceof Section2) {
+        final Section2 section_4 = (Section2) section_1;
+        matched=true;
+        _switchResult = "h3";
+      }
+    }
+    if (!matched) {
+      if (section_1 instanceof Section3) {
+        final Section3 section_5 = (Section3) section_1;
+        matched=true;
+        _switchResult = "h4";
+      }
+    }
+    if (!matched) {
+      if (section_1 instanceof Section4) {
+        final Section4 section_6 = (Section4) section_1;
+        matched=true;
+        _switchResult = "h5";
+      }
+    }
+    if (!matched) {
+      _switchResult = "h1";
+    }
+    return _switchResult;
   }
   
   public CharSequence _generate(final AbstractSection aS) {
-    StringConcatenation _xblockexpression = null;
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<");
+    String _headtag = this.headtag(aS);
+    _builder.append(_headtag, "");
+    _builder.append(">");
+    TextOrMarkup _title = aS.getTitle();
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
+    _builder.append(_genPlainText, "");
+    _builder.append("</");
+    String _headtag_1 = this.headtag(aS);
+    _builder.append(_headtag_1, "");
+    _builder.append(">");
+    _builder.newLineIfNotEmpty();
     {
-      String _switchResult = null;
-      final AbstractSection aS_1 = aS;
-      boolean matched = false;
-      if (!matched) {
-        if (aS_1 instanceof Section) {
-          final Section aS_2 = (Section) aS_1;
-          matched=true;
-          _switchResult = "h2";
-        }
+      EList<TextOrMarkup> _contents = aS.getContents();
+      for(TextOrMarkup c : _contents) {
+        StringConcatenation _generatePar = this.generatePar(c);
+        _builder.append(_generatePar, "");
+        _builder.newLineIfNotEmpty();
       }
-      if (!matched) {
-        if (aS_1 instanceof Section2) {
-          final Section2 aS_3 = (Section2) aS_1;
-          matched=true;
-          _switchResult = "h3";
-        }
-      }
-      if (!matched) {
-        if (aS_1 instanceof Section3) {
-          final Section3 aS_4 = (Section3) aS_1;
-          matched=true;
-          _switchResult = "h4";
-        }
-      }
-      if (!matched) {
-        if (aS_1 instanceof Section4) {
-          final Section4 aS_5 = (Section4) aS_1;
-          matched=true;
-          _switchResult = "h5";
-        }
-      }
-      if (!matched) {
-        _switchResult = "h1";
-      }
-      final String headtag = _switchResult;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<");
-      _builder.append(headtag, "");
-      _builder.append(">");
-      TextOrMarkup _title = aS.getTitle();
-      CharSequence _genPlainText = this.plainText.genPlainText(_title);
-      _builder.append(_genPlainText, "");
-      _builder.append("</");
-      _builder.append(headtag, "");
-      _builder.append(">");
-      _builder.newLineIfNotEmpty();
-      {
-        EList<TextOrMarkup> _contents = aS.getContents();
-        for(TextOrMarkup c : _contents) {
-          StringConcatenation _generatePar = this.generatePar(c);
-          _builder.append(_generatePar, "");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      {
-        Object _subSection = this.utils.subSection(aS);
-        for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
-          final AbstractSection typeConverted_ss = (AbstractSection)ss;
-          CharSequence _generate = this.generate(typeConverted_ss);
-          _builder.append(_generate, "");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _xblockexpression = (_builder);
     }
-    return _xblockexpression;
+    {
+      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
+      for(AbstractSection ss : _subSection) {
+        final AbstractSection typeConverted_ss = (AbstractSection)ss;
+        CharSequence _generate = this.generate(typeConverted_ss);
+        _builder.append(_generate, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
   }
   
   public CharSequence _generate(final Section4 aS) {
@@ -577,7 +565,7 @@ public class XdocGenerator implements IGenerator {
   
   public CharSequence _generate(final CodeBlock cb) {
     StringConcatenation _xifexpression = null;
-    Boolean _isInlineCode = this.utils.isInlineCode(cb);
+    boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<span class=\"inlinecode\">");
@@ -660,7 +648,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public void generate(final AbstractSection chapter, final IFileSystemAccess access) {
+  public void generate(final AbstractSection chapter, final IFileSystemAccess access) throws UnsupportedEncodingException {
     if ((chapter instanceof Chapter)
          && (access instanceof IFileSystemAccess)) {
       _generate((Chapter)chapter, (IFileSystemAccess)access);

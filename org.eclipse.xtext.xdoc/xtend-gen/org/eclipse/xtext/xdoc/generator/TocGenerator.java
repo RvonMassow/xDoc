@@ -1,7 +1,9 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
+import java.io.UnsupportedEncodingException;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
@@ -18,12 +20,12 @@ public class TocGenerator {
   @Inject private PlainText plainText;
   @Inject private Utils utils;
   
-  public StringConcatenation generateToc(final Document doc) {
+  public StringConcatenation generateToc(final Document doc) throws UnsupportedEncodingException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<toc topic=\"contents/");
     EList<Chapter> _chapters = doc.getChapters();
-    Chapter _get = _chapters.get(0);
-    String _fileName = this.eclipseNamingExtensions.fileName(_get);
+    Chapter _head = IterableExtensions.<Chapter>head(_chapters);
+    String _fileName = this.eclipseNamingExtensions.fileName(_head);
     _builder.append(_fileName, "");
     _builder.append(".html\" label=\"");
     final Document typeConverted_doc = (Document)doc;
@@ -46,7 +48,7 @@ public class TocGenerator {
     return _builder;
   }
   
-  public StringConcatenation genTocEntry(final Chapter c) {
+  public StringConcatenation genTocEntry(final Chapter c) throws UnsupportedEncodingException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<topic href=\"contents/");
     final Chapter typeConverted_c = (Chapter)c;
@@ -78,19 +80,13 @@ public class TocGenerator {
     return _builder;
   }
   
-  public StringConcatenation genTocEntry(final AbstractSection aS, final Chapter container) {
+  public StringConcatenation genTocEntry(final AbstractSection aS, final Chapter container) throws UnsupportedEncodingException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<topic href=\"contents/");
-    String _xtrycatchfinallyexpression = null;
-    try {
-      final Chapter typeConverted_container = (Chapter)container;
-      String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_container);
-      String _urlDecode = this.utils.urlDecode(_fileName);
-      _xtrycatchfinallyexpression = _urlDecode;
-    } catch (Exception e) { 
-      _xtrycatchfinallyexpression = null;
-    }
-    _builder.append(_xtrycatchfinallyexpression, "");
+    final Chapter typeConverted_container = (Chapter)container;
+    String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_container);
+    String _urlDecode = this.utils.urlDecode(_fileName);
+    _builder.append(_urlDecode, "");
     _builder.append(".html");
     String _urlSuffix = this.eclipseNamingExtensions.urlSuffix(aS);
     _builder.append(_urlSuffix, "");
@@ -101,7 +97,7 @@ public class TocGenerator {
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
     {
-      Object _subSection = this.utils.subSection(aS);
+      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(ss, container);

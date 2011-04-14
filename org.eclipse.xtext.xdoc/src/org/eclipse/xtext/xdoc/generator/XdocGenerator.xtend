@@ -19,6 +19,7 @@ import org.eclipse.xtext.xdoc.generator.util.*
 import org.eclipse.xtext.xdoc.generator.*
 
 import org.eclipse.emf.ecore.EObject
+import java.io.UnsupportedEncodingException
 
 
 
@@ -41,15 +42,10 @@ class XdocGenerator implements IGenerator {
 //		}.glossaryEntry
 		// 
 		//val glossary = res.allContentsIterable.filter(typeof(Glossary)).head.genPlainText
-		val Object file = res.contents.get(0)
-		switch file:res.contents.get(0) {
-			XdocFile:
-				if(file.mainSection instanceof Document)
-					file.mainSection.generate(access)
-				else if(file.mainSection instanceof Chapter)
-					file.mainSection.generate(access)
-			default: 
-				null
+		try {
+			(res.contents.head as XdocFile)?.mainSection.generate(access)
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e)
 		}
 		// don't want this, rather CharSequence
 //		val ArrayList<StringConcatenation> texts = newArrayList();
@@ -69,9 +65,7 @@ class XdocGenerator implements IGenerator {
 		access.generateFile(chapter.fileName, chapter.generate)
 	}
 
-	dispatch generate(Chapter aS) {
-		val headtag = "h1"
-		'''
+	dispatch generate(Chapter aS) '''
 		<html>
 		<head>
 		<title>«aS.title.genPlainText»</title>
@@ -81,115 +75,100 @@ class XdocGenerator implements IGenerator {
 		<link rel="home" href="index.html" title="">
 		</head>
 		<body>
-		<«headtag»>«aS.title.genPlainText»</«headtag»>
+		<«aS.headtag»>«aS.title.genPlainText»</«aS.headtag»>
 		«FOR content:aS.contents»
 			«content.generatePar»
 		«ENDFOR»
-		«FOR ss:(aS.subSection as Iterable<AbstractSection>)»
+		«FOR ss: aS.subSection»
 			«ss.generate»
 		«ENDFOR»
 		</body>
 		</html>
-		'''
-	}
-
-	dispatch generate(AbstractSection aS) {
-		val headtag = switch aS{
+	'''
+	
+	headtag(AbstractSection section) {
+		switch section {
+			Chapter: 'h2'
 			Section: "h2"
 			Section2: "h3"
 			Section3: "h4"
 			Section4: "h5"
 			default: "h1"
 		}
-		'''
-		<«headtag»>«aS.title.genPlainText»</«headtag»>
-		«FOR c:aS.contents »
+	}
+
+	dispatch generate(AbstractSection aS) '''
+		<«aS.headtag»>«aS.title.genPlainText»</«aS.headtag»>
+		«FOR c : aS.contents »
 			«c.generatePar»
 		«ENDFOR»
-		«FOR ss:(aS.subSection as Iterable<AbstractSection>)»
+		«FOR ss : aS.subSection»
 			«ss.generate»
 		«ENDFOR»
-		'''
-	}
+	'''
 
-	dispatch generate(Section4 aS) {
-		'''
+	dispatch generate(Section4 aS) '''
 		«aS.title.genNonParContent»
-		«FOR tom:aS.contents»
-		«tom.generatePar»
+		«FOR tom : aS.contents»
+			«tom.generatePar»
 		«ENDFOR»
-		'''
-	}
+	'''
 	
-	generatePar(TextOrMarkup tom) {
-		'''
+	generatePar(TextOrMarkup tom) '''
 		<p>
-		«FOR c:tom.contents»
-		«c.generate»
+		«FOR c : tom.contents»
+			«c.generate»
 		«ENDFOR»
 		</p>
-		'''
-	}
+	'''
 
-	dispatch generate(Ref ref) {
-		'''
+	dispatch generate(Ref ref) '''
 		«IF ref.contents.isEmpty »
 		<a href="«ref.ref.fileName»#«ref.ref.name»">section «ref.ref.name»</a>
 		«ELSE»
 		<a href="«ref.ref.fileName»#«ref.ref.name»">
 		«FOR tom:ref.contents»
-		«tom.genNonParContent»</a>
+			«tom.genNonParContent»</a>
 		«ENDFOR»
 		«ENDIF»
-		'''
-	}
+	'''
 
-	dispatch generate(TextOrMarkup tom) {
-		'''
+	dispatch generate(TextOrMarkup tom) '''
 		«FOR obj:tom.contents»
 			«obj.generate»
 		«ENDFOR»
-		'''
+	'''
 //		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.generate»'''])
-	}
 
-	dispatch generate(UnorderedList ul) {
-		'''
+	dispatch generate(UnorderedList ul) '''
 		<ul>
 			«FOR i:ul.items»
 			  	«i.generate»
 			«ENDFOR»
 		</ul>
-		'''
-	}
+	'''
 
-	
-	dispatch generate(OrderedList ul) {
-		'''
+	dispatch generate(OrderedList ul) '''
 		<ol>
 			«FOR i:ul.items»
 				«i.generate»
 			«ENDFOR»
 		</ol>
-		'''
-	}
+	'''
 
-	dispatch generate(Item i) {
-		'''
+	dispatch generate(Item i) '''
 		<li>
 			«FOR tom:i.contents»
 				«tom.generate»
 			«ENDFOR»
 		</li>
-		'''
-	}
+	'''
 
-	dispatch generate(Anchor a) {
+	dispatch generate(Anchor a) 
 		'''<a name="«a.name»"></a>'''
-	}
+	
 
-	dispatch generate(ImageRef img) {
-		'''
+	dispatch generate(ImageRef img) '''
 		<div class="image" >
 		«IF img.name != null»
 			«img.name.genLabel»
@@ -199,56 +178,45 @@ class XdocGenerator implements IGenerator {
 		«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
 		«img.caption.unescapeXdocChars.escapeHTMLChars»
 		</div>
-		'''
-	}
+	'''
 
-	 genLabel(String name) {
-		'''
+	 genLabel(String name) '''
 		«IF this != null »
 		<a name="«name»"></a>
 		«ENDIF»
-		'''
-	}
+	'''
 
 	dispatch generate(TextPart tp) {
 		tp.text.unescapeXdocChars.escapeHTMLChars
 	}
 
-	dispatch generate(Table table) {
-		'''
+	dispatch generate(Table table) '''
 		«FOR tr:table.rows»
 			«tr.generate»
 		«ENDFOR»
-		'''
-	}
+	'''
 
-	dispatch generate(TableRow tr) {
-		'''
+	dispatch generate(TableRow tr) '''
 		«FOR td:tr.data»
 			«td.generate»
 		«ENDFOR»
-		'''
-	}
+	'''
 
-	dispatch generate(TableData td) {
-		'''
+	dispatch generate(TableData td) '''
 		«FOR c:td.contents»
 			«c.generate»
 		«ENDFOR»
-		'''
-	}
+	'''
 
-	dispatch generate(Emphasize em) {
+	dispatch generate(Emphasize em) 
 		'''<em>«FOR c:em.contents»«c.generate»«ENDFOR»</em>'''
-	}
 
-	dispatch generate(Link link) {
+	dispatch generate(Link link) 
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
-	}
+	
 
-	dispatch generate(CodeRef cRef) {
+	dispatch generate(CodeRef cRef) 
 		'''<em>«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars»</em>'''
-	}	
 
 	dispatch generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
@@ -269,24 +237,20 @@ class XdocGenerator implements IGenerator {
 		}
 	}
 
-	dispatch generateCode (Code code, LangDef lang) {
+	dispatch generateCode (Code code, LangDef lang) 
 		'''«code.contents.unescapeXdocChars.formatCode(lang) »'''
-	}
 	
-	dispatch generateCode (MarkupInCode code, LangDef lang) {
+	
+	dispatch generateCode (MarkupInCode code, LangDef lang) 
 		'''«code.generate»'''
-	}
 
-	dispatch generateCode (Code code, Void v) {
+	dispatch generateCode (Code code, Void v) 
 		'''«code.contents.unescapeXdocChars.formatCode(null) »'''
-	}
 
-	genNonParContent(TextOrMarkup tom) {
-		'''
+	genNonParContent(TextOrMarkup tom) '''
 		«FOR obj:tom.contents»
 			«obj.generate»
 		«ENDFOR»
-		'''
-	}
+	'''
 
 }

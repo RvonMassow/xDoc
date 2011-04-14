@@ -9,7 +9,7 @@ class PlainText {
 		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.genPlainText»'''])
 	}
 
-	dispatch CharSequence genPlainText(TextPart tp){
+	dispatch genPlainText(TextPart tp){
 		tp.text
 	}
 
