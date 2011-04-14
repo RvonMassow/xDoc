@@ -68,6 +68,10 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 	@Override
 	protected void configureMultilineComments(IEditStrategyAcceptor acceptor) {
 	}
+	
+	@Override
+	protected void configureCompoundBracesBlocks(IEditStrategyAcceptor acceptor) {
+	}
 
 	@Override
 	protected void configureCurlyBracesBlock(IEditStrategyAcceptor acceptor) {
