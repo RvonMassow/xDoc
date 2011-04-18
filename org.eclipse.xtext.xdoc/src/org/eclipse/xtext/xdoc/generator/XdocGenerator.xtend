@@ -122,6 +122,12 @@ class XdocGenerator implements IGenerator {
 		</p>
 	'''
 
+	dispatch generate(Todo todo) '''
+		<div class="todo" >
+		«todo.text»
+		</div>
+	'''
+
 	dispatch generate(Ref ref) '''
 		«IF ref.contents.isEmpty »
 		<a href="«ref.ref.fileName»#«ref.ref.name»">section «ref.ref.name»</a>

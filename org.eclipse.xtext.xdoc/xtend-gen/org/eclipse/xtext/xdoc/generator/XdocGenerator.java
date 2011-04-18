@@ -44,6 +44,7 @@ import org.eclipse.xtext.xdoc.xdoc.TableData;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
+import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
@@ -263,6 +264,18 @@ public class XdocGenerator implements IGenerator {
       }
     }
     _builder.append("</p>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public CharSequence _generate(final Todo todo) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<div class=\"todo\" >");
+    _builder.newLine();
+    String _text = todo.getText();
+    _builder.append(_text, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("</div>");
     _builder.newLine();
     return _builder;
   }
@@ -685,6 +698,8 @@ public class XdocGenerator implements IGenerator {
       return _generate((Ref)aS);
     } else if ((aS instanceof Table)) {
       return _generate((Table)aS);
+    } else if ((aS instanceof Todo)) {
+      return _generate((Todo)aS);
     } else if ((aS instanceof UnorderedList)) {
       return _generate((UnorderedList)aS);
     } else if ((aS instanceof Item)) {

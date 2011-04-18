@@ -7,6 +7,15 @@
 	color: #000000 !important;
 }
 
+.todo {
+	display: block;
+	border: 3px solid gray;
+	margin: 1em;
+	padding: 1em;
+	background-color: #ff7800 !important;
+	color: #000000 !important;
+}
+
 .inlinecode{
 	background-color: #F0F0F0;
 	padding-left: 3pt;
