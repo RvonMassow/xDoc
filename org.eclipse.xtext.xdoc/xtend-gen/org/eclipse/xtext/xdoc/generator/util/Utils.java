@@ -49,7 +49,7 @@ public class Utils {
   }
   
   public Iterable<? extends AbstractSection> _subSection(final AbstractSection section) {
-    ArrayList<? extends AbstractSection> _newArrayList = CollectionLiterals.<AbstractSection>newArrayList();
+    ArrayList<AbstractSection> _newArrayList = CollectionLiterals.<AbstractSection>newArrayList();
     return _newArrayList;
   }
   

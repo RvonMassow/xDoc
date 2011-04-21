@@ -6,7 +6,7 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation
 class PlainText {
 
 	dispatch genPlainText(TextOrMarkup tom) {
-		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.genPlainText»'''])
+		tom.contents.fold('''''', [e1, e2 | '''«e1»«e2.genPlainText»'''])
 	}
 
 	dispatch genPlainText(TextPart tp){
@@ -14,7 +14,7 @@ class PlainText {
 	}
 
 	dispatch genPlainText(Emphasize em){
-		em.contents.fold('''''', [e1, e2 | '''«e2»«e1.genPlainText»'''])
+		em.contents.fold('''''', [e1, e2 | '''«e1»«e2.genPlainText»'''])
 	}
 
 	dispatch genPlainText(Link l) {

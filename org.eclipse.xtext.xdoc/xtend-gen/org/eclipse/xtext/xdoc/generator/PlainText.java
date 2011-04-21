@@ -17,11 +17,11 @@ public class PlainText {
   public CharSequence _genPlainText(final TextOrMarkup tom) {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<EObject,StringConcatenation,StringConcatenation> _function = new Function2<EObject,StringConcatenation,StringConcatenation>() {
-        public StringConcatenation apply(EObject e1 , StringConcatenation e2) {
+    final Function2<StringConcatenation,EObject,StringConcatenation> _function = new Function2<StringConcatenation,EObject,StringConcatenation>() {
+        public StringConcatenation apply(StringConcatenation e1 , EObject e2) {
           StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append(e2, "");
-          CharSequence _genPlainText = PlainText.this.genPlainText(e1);
+          _builder_1.append(e1, "");
+          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
           _builder_1.append(_genPlainText, "");
           return _builder_1;
         }
@@ -38,12 +38,12 @@ public class PlainText {
   public CharSequence _genPlainText(final Emphasize em) {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<TextOrMarkup,StringConcatenation,StringConcatenation> _function = new Function2<TextOrMarkup,StringConcatenation,StringConcatenation>() {
-        public StringConcatenation apply(TextOrMarkup e1 , StringConcatenation e2) {
+    final Function2<StringConcatenation,TextOrMarkup,StringConcatenation> _function = new Function2<StringConcatenation,TextOrMarkup,StringConcatenation>() {
+        public StringConcatenation apply(StringConcatenation e1 , TextOrMarkup e2) {
           StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append(e2, "");
-          final TextOrMarkup typeConverted_e1 = (TextOrMarkup)e1;
-          CharSequence _genPlainText = PlainText.this.genPlainText(typeConverted_e1);
+          _builder_1.append(e1, "");
+          final TextOrMarkup typeConverted_e2 = (TextOrMarkup)e2;
+          CharSequence _genPlainText = PlainText.this.genPlainText(typeConverted_e2);
           _builder_1.append(_genPlainText, "");
           return _builder_1;
         }
