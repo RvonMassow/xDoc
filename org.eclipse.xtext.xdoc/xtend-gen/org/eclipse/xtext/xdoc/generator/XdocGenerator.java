@@ -13,7 +13,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.TocGenerator;
-import org.eclipse.xtext.xdoc.generator.XdocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
@@ -46,6 +45,7 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
+import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
@@ -60,7 +60,7 @@ public class XdocGenerator implements IGenerator {
     try {
       EList<EObject> _contents = res.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
-      AbstractSection _mainSection = ((org.eclipse.xtext.xdoc.xdoc.XdocFile) _head)==null?(AbstractSection)null:((org.eclipse.xtext.xdoc.xdoc.XdocFile) _head).getMainSection();
+      AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
       this.generate(_mainSection, access);
     } catch (UnsupportedEncodingException e) { 
       RuntimeException _runtimeException = new RuntimeException(e);
@@ -74,17 +74,14 @@ public class XdocGenerator implements IGenerator {
       access.generateFile("toc.xml", _generateToc);
       EList<Chapter> _chapters = document.getChapters();
       for (Chapter c : _chapters) {
-        final Chapter typeConverted_c = (Chapter)c;
-        this.generate(typeConverted_c, access);
+        this.generate(c, access);
       }
     }
   }
   
   public void _generate(final Chapter chapter, final IFileSystemAccess access) {
-    final Chapter typeConverted_chapter = (Chapter)chapter;
-    String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_chapter);
-    final Chapter typeConverted_chapter_1 = (Chapter)chapter;
-    CharSequence _generate = this.generate(typeConverted_chapter_1);
+    String _fileName = this.eclipseNamingExtensions.fileName(chapter);
+    CharSequence _generate = this.generate(chapter);
     access.generateFile(_fileName, _generate);
   }
   
@@ -95,8 +92,7 @@ public class XdocGenerator implements IGenerator {
     _builder.append("<head>");
     _builder.newLine();
     _builder.append("<title>");
-    final Chapter typeConverted_aS = (Chapter)aS;
-    TextOrMarkup _title = typeConverted_aS.getTitle();
+    TextOrMarkup _title = aS.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</title>");
@@ -113,23 +109,19 @@ public class XdocGenerator implements IGenerator {
     _builder.append("<body>");
     _builder.newLine();
     _builder.append("<");
-    final Chapter typeConverted_aS_1 = (Chapter)aS;
-    String _headtag = this.headtag(typeConverted_aS_1);
+    String _headtag = this.headtag(aS);
     _builder.append(_headtag, "");
     _builder.append(">");
-    final Chapter typeConverted_aS_2 = (Chapter)aS;
-    TextOrMarkup _title_1 = typeConverted_aS_2.getTitle();
+    TextOrMarkup _title_1 = aS.getTitle();
     CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
     _builder.append(_genPlainText_1, "");
     _builder.append("</");
-    final Chapter typeConverted_aS_3 = (Chapter)aS;
-    String _headtag_1 = this.headtag(typeConverted_aS_3);
+    String _headtag_1 = this.headtag(aS);
     _builder.append(_headtag_1, "");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
     {
-      final Chapter typeConverted_aS_4 = (Chapter)aS;
-      EList<TextOrMarkup> _contents = typeConverted_aS_4.getContents();
+      EList<TextOrMarkup> _contents = aS.getContents();
       for(TextOrMarkup content : _contents) {
         StringConcatenation _generatePar = this.generatePar(content);
         _builder.append(_generatePar, "");
@@ -137,11 +129,9 @@ public class XdocGenerator implements IGenerator {
       }
     }
     {
-      final Chapter typeConverted_aS_5 = (Chapter)aS;
-      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(typeConverted_aS_5);
+      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : _subSection) {
-        final AbstractSection typeConverted_ss = (AbstractSection)ss;
-        CharSequence _generate = this.generate(typeConverted_ss);
+        CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -223,8 +213,7 @@ public class XdocGenerator implements IGenerator {
     {
       Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : _subSection) {
-        final AbstractSection typeConverted_ss = (AbstractSection)ss;
-        CharSequence _generate = this.generate(typeConverted_ss);
+        CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -234,14 +223,12 @@ public class XdocGenerator implements IGenerator {
   
   public CharSequence _generate(final Section4 aS) {
     StringConcatenation _builder = new StringConcatenation();
-    final Section4 typeConverted_aS = (Section4)aS;
-    TextOrMarkup _title = typeConverted_aS.getTitle();
+    TextOrMarkup _title = aS.getTitle();
     StringConcatenation _genNonParContent = this.genNonParContent(_title);
     _builder.append(_genNonParContent, "");
     _builder.newLineIfNotEmpty();
     {
-      final Section4 typeConverted_aS_1 = (Section4)aS;
-      EList<TextOrMarkup> _contents = typeConverted_aS_1.getContents();
+      EList<TextOrMarkup> _contents = aS.getContents();
       for(TextOrMarkup tom : _contents) {
         StringConcatenation _generatePar = this.generatePar(tom);
         _builder.append(_generatePar, "");
@@ -345,8 +332,7 @@ public class XdocGenerator implements IGenerator {
       EList<Item> _items = ul.getItems();
       for(Item i : _items) {
         _builder.append("\t");
-        final Item typeConverted_i = (Item)i;
-        CharSequence _generate = this.generate(typeConverted_i);
+        CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -364,8 +350,7 @@ public class XdocGenerator implements IGenerator {
       EList<Item> _items = ul.getItems();
       for(Item i : _items) {
         _builder.append("\t");
-        final Item typeConverted_i = (Item)i;
-        CharSequence _generate = this.generate(typeConverted_i);
+        CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -383,8 +368,7 @@ public class XdocGenerator implements IGenerator {
       EList<TextOrMarkup> _contents = i.getContents();
       for(TextOrMarkup tom : _contents) {
         _builder.append("\t");
-        final TextOrMarkup typeConverted_tom = (TextOrMarkup)tom;
-        CharSequence _generate = this.generate(typeConverted_tom);
+        CharSequence _generate = this.generate(tom);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -397,8 +381,7 @@ public class XdocGenerator implements IGenerator {
   public CharSequence _generate(final Anchor a) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
-    final Anchor typeConverted_a = (Anchor)a;
-    String _name = typeConverted_a.getName();
+    String _name = a.getName();
     _builder.append(_name, "");
     _builder.append("\"></a>");
     return _builder;
@@ -447,7 +430,7 @@ public class XdocGenerator implements IGenerator {
       } else {
         String _style_1 = img.getStyle();
         int _length = _style_1.length();
-        boolean _operator_equals = ObjectExtensions.operator_equals(((Object)_length), ((Object)0));
+        boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_length), ((Integer)0));
         boolean _operator_not = BooleanExtensions.operator_not(_operator_equals);
         _operator_and = BooleanExtensions.operator_and(_operator_notEquals_2, _operator_not);
       }
@@ -474,8 +457,7 @@ public class XdocGenerator implements IGenerator {
   public StringConcatenation genLabel(final String name) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      final XdocGenerator typeConverted_this = (XdocGenerator)this;
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(typeConverted_this, null);
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(this, null);
       if (_operator_notEquals) {
         _builder.append("<a name=\"");
         _builder.append(name, "");
@@ -498,8 +480,7 @@ public class XdocGenerator implements IGenerator {
     {
       EList<TableRow> _rows = table.getRows();
       for(TableRow tr : _rows) {
-        final TableRow typeConverted_tr = (TableRow)tr;
-        CharSequence _generate = this.generate(typeConverted_tr);
+        CharSequence _generate = this.generate(tr);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -512,8 +493,7 @@ public class XdocGenerator implements IGenerator {
     {
       EList<TableData> _data = tr.getData();
       for(TableData td : _data) {
-        final TableData typeConverted_td = (TableData)td;
-        CharSequence _generate = this.generate(typeConverted_td);
+        CharSequence _generate = this.generate(td);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -526,8 +506,7 @@ public class XdocGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = td.getContents();
       for(TextOrMarkup c : _contents) {
-        final TextOrMarkup typeConverted_c = (TextOrMarkup)c;
-        CharSequence _generate = this.generate(typeConverted_c);
+        CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -541,8 +520,7 @@ public class XdocGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = em.getContents();
       for(TextOrMarkup c : _contents) {
-        final TextOrMarkup typeConverted_c = (TextOrMarkup)c;
-        CharSequence _generate = this.generate(typeConverted_c);
+        CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
       }
     }
@@ -585,7 +563,7 @@ public class XdocGenerator implements IGenerator {
       EList<EObject> _contents = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
       LangDef _language = cb.getLanguage();
-      StringConcatenation _generateCode = this.generateCode(((org.eclipse.xtext.xdoc.xdoc.Code) _head), _language);
+      StringConcatenation _generateCode = this.generateCode(((Code) _head), _language);
       _builder.append(_generateCode, "");
       _xifexpression = _builder;
     } else {
@@ -633,8 +611,7 @@ public class XdocGenerator implements IGenerator {
   
   public StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
-    final MarkupInCode typeConverted_code = (MarkupInCode)code;
-    CharSequence _generate = this.generate(typeConverted_code);
+    CharSequence _generate = this.generate(code);
     _builder.append(_generate, "");
     return _builder;
   }

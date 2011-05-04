@@ -27,14 +27,15 @@ class XdocGenerator implements IGenerator {
 
 //	@Inject Iterable<GlossaryEntry> as glossary
 
-	@Inject extension Utils
+	@Inject extension Utils utils
 
-	@Inject extension GlossaryExtensions
-	@Inject extension EclipseNamingExtensions
+	@Inject extension GlossaryExtensions glossaryExtensions
+	
+	@Inject extension EclipseNamingExtensions eclipseNamingExtensions
 
-	@Inject extension TocGenerator
+	@Inject extension TocGenerator tocGenerator
 
-	@Inject extension PlainText
+	@Inject extension PlainText plainText
 
 	override doGenerate(Resource res, IFileSystemAccess access) {
 //		glossary = {

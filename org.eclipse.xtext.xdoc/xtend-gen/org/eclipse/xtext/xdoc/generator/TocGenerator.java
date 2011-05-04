@@ -28,8 +28,7 @@ public class TocGenerator {
     String _fileName = this.eclipseNamingExtensions.fileName(_head);
     _builder.append(_fileName, "");
     _builder.append(".html\" label=\"");
-    final Document typeConverted_doc = (Document)doc;
-    TextOrMarkup _title = typeConverted_doc.getTitle();
+    TextOrMarkup _title = doc.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
@@ -51,16 +50,13 @@ public class TocGenerator {
   public StringConcatenation genTocEntry(final Chapter c) throws UnsupportedEncodingException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<topic href=\"contents/");
-    final Chapter typeConverted_c = (Chapter)c;
-    String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_c);
+    String _fileName = this.eclipseNamingExtensions.fileName(c);
     _builder.append(_fileName, "");
     _builder.append(".html");
-    final Chapter typeConverted_c_1 = (Chapter)c;
-    String _urlSuffix = this.eclipseNamingExtensions.urlSuffix(typeConverted_c_1);
+    String _urlSuffix = this.eclipseNamingExtensions.urlSuffix(c);
     _builder.append(_urlSuffix, "");
     _builder.append("\" label=\"");
-    final Chapter typeConverted_c_2 = (Chapter)c;
-    TextOrMarkup _title = typeConverted_c_2.getTitle();
+    TextOrMarkup _title = c.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
@@ -69,8 +65,7 @@ public class TocGenerator {
       EList<Section> _subSections = c.getSubSections();
       for(Section ss : _subSections) {
         _builder.append("\t");
-        final Section typeConverted_ss = (Section)ss;
-        StringConcatenation _genTocEntry = this.genTocEntry(typeConverted_ss, c);
+        StringConcatenation _genTocEntry = this.genTocEntry(ss, c);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -83,8 +78,7 @@ public class TocGenerator {
   public StringConcatenation genTocEntry(final AbstractSection aS, final Chapter container) throws UnsupportedEncodingException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<topic href=\"contents/");
-    final Chapter typeConverted_container = (Chapter)container;
-    String _fileName = this.eclipseNamingExtensions.fileName(typeConverted_container);
+    String _fileName = this.eclipseNamingExtensions.fileName(container);
     String _urlDecode = this.utils.urlDecode(_fileName);
     _builder.append(_urlDecode, "");
     _builder.append(".html");
@@ -98,7 +92,7 @@ public class TocGenerator {
     _builder.newLineIfNotEmpty();
     {
       Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
-      for(AbstractSection ss : ((java.lang.Iterable<org.eclipse.xtext.xdoc.xdoc.AbstractSection>) _subSection)) {
+      for(AbstractSection ss : ((Iterable<AbstractSection>) _subSection)) {
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(ss, container);
         _builder.append(_genTocEntry, "	");

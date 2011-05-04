@@ -5,9 +5,9 @@ import org.eclipse.xtext.xdoc.generator.util.*
 
 class TocGenerator {
 
-	@Inject extension EclipseNamingExtensions
-	@Inject extension PlainText
-	@Inject extension Utils
+	@Inject extension EclipseNamingExtensions eclipseNamingExtensions
+	@Inject extension PlainText plainText
+	@Inject extension Utils utils
 
 	generateToc(Document doc) '''
 		<toc topic="contents/«doc.chapters.head.fileName».html" label="«doc.title.genPlainText»" >
