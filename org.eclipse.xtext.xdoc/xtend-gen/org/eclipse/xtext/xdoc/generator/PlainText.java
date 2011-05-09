@@ -18,7 +18,7 @@ public class PlainText {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
     final Function2<StringConcatenation,EObject,StringConcatenation> _function = new Function2<StringConcatenation,EObject,StringConcatenation>() {
-        public StringConcatenation apply(StringConcatenation e1 , EObject e2) {
+        public StringConcatenation apply(final StringConcatenation e1 , final EObject e2) {
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append(e1, "");
           CharSequence _genPlainText = PlainText.this.genPlainText(e2);
@@ -39,11 +39,10 @@ public class PlainText {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
     final Function2<StringConcatenation,TextOrMarkup,StringConcatenation> _function = new Function2<StringConcatenation,TextOrMarkup,StringConcatenation>() {
-        public StringConcatenation apply(StringConcatenation e1 , TextOrMarkup e2) {
+        public StringConcatenation apply(final StringConcatenation e1 , final TextOrMarkup e2) {
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append(e1, "");
-          final TextOrMarkup typeConverted_e2 = (TextOrMarkup)e2;
-          CharSequence _genPlainText = PlainText.this.genPlainText(typeConverted_e2);
+          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
           _builder_1.append(_genPlainText, "");
           return _builder_1;
         }
@@ -61,8 +60,7 @@ public class PlainText {
       final StringConcatenation text = _builder;
       StringConcatenation _xifexpression = null;
       String _string = text.toString();
-      final StringConcatenation typeConverted_text = (StringConcatenation)text;
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_string, typeConverted_text);
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_string, text);
       if (_operator_notEquals) {
         _xifexpression = text;
       } else {

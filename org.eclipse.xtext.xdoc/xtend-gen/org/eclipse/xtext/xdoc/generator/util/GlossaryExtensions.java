@@ -13,24 +13,21 @@ public class GlossaryExtensions {
     GlossaryEntry _xblockexpression = null;
     {
       final Function1<GlossaryEntry,Boolean> _function = new Function1<GlossaryEntry,Boolean>() {
-          public Boolean apply(GlossaryEntry s) {
+          public Boolean apply(final GlossaryEntry s) {
             String _name = s.getName();
-            final String typeConverted_aliasOrName = (String)aliasOrName;
-            boolean _operator_equals = ObjectExtensions.operator_equals(_name, typeConverted_aliasOrName);
+            boolean _operator_equals = ObjectExtensions.operator_equals(_name, aliasOrName);
             return ((Boolean)_operator_equals);
           }
         };
       GlossaryEntry _findFirst = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function);
       GlossaryEntry matchedEntry = _findFirst;
       GlossaryEntry _xifexpression = null;
-      final GlossaryEntry typeConverted_matchedEntry = (GlossaryEntry)matchedEntry;
-      boolean _operator_equals_1 = ObjectExtensions.operator_equals(typeConverted_matchedEntry, null);
+      boolean _operator_equals_1 = ObjectExtensions.operator_equals(matchedEntry, null);
       if (_operator_equals_1) {
         final Function1<GlossaryEntry,Boolean> _function_1 = new Function1<GlossaryEntry,Boolean>() {
-            public Boolean apply(GlossaryEntry s_1) {
+            public Boolean apply(final GlossaryEntry s_1) {
               EList<String> _alias = s_1.getAlias();
-              final String typeConverted_aliasOrName_1 = (String)aliasOrName;
-              boolean _contains = _alias.contains(typeConverted_aliasOrName_1);
+              boolean _contains = _alias.contains(aliasOrName);
               return ((Boolean)_contains);
             }
           };

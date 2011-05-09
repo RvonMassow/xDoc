@@ -6,7 +6,7 @@ import java.util.ArrayList
 
 class GlossaryExtensions {
 	
-	getEntry(Iterable<GlossaryEntry> glossary, String aliasOrName) {
+	def getEntry(Iterable<GlossaryEntry> glossary, String aliasOrName) {
 		var matchedEntry = glossary.findFirst([s | s.name == aliasOrName]) // || s.alias.contains(aliasOrName))])
 		if(matchedEntry == null) {
 			glossary.findFirst([s | s.alias.contains(aliasOrName)])

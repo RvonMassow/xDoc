@@ -9,34 +9,34 @@ class EclipseNamingExtensions {
 //		""
 //	}
 
-	urlSuffix(AbstractSection aS) {
+	def urlSuffix(AbstractSection aS) {
 		if(aS.eContainer instanceof XdocFile)
 			""
 		else
 			"#" + labelName(aS)
 	}
 
-	dispatch labelName(Object any){
+	def dispatch labelName(Object any){
 		""
 	}
 
-	dispatch String fileName(EObject obj) {
+	def dispatch String fileName(EObject obj) {
 		obj.eResource.URI.lastSegment+".html"
 	}
 
-	dispatch String fileName(ChapterRef obj) {
+	def dispatch String fileName(ChapterRef obj) {
 		fileName(obj.chapter)
 	}
 
-	dispatch String fileName(SectionRef obj) {
+	def dispatch String fileName(SectionRef obj) {
 		fileName(obj.section)
 	}
 
-	dispatch String fileName(Section2Ref obj) {
+	def dispatch String fileName(Section2Ref obj) {
 		fileName(obj.section2)
 	}
 
-	dispatch String labelName(AbstractSection aS){
+	def dispatch String labelName(AbstractSection aS){
 		if(aS.name!=null)
 			aS.name
 		else {

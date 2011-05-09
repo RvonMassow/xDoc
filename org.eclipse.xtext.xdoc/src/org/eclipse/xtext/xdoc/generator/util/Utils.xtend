@@ -7,40 +7,40 @@ import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 
 class Utils {
 
-	dispatch subSection(Document doc){
+	def dispatch subSection(Document doc){
 		doc.chapters
 	}
 
-	dispatch subSection(Chapter section){
+	def dispatch subSection(Chapter section){
 		section.subSections
 	}
 
-	dispatch subSection(Section section){
+	def dispatch subSection(Section section){
 		section.subSections
 	}
 
-	dispatch subSection(Section2 section){
+	def dispatch subSection(Section2 section){
 		section.subSections
 	}
 
-	dispatch subSection(Section3 section){
+	def dispatch subSection(Section3 section){
 		section.subSections
 	}
 
-	dispatch Iterable<? extends AbstractSection> subSection(AbstractSection section){
+	def dispatch Iterable<? extends AbstractSection> subSection(AbstractSection section){
 		newArrayList
 	}
 
-	urlDecode (String s){
+	def urlDecode (String s){
 		s.decode("ISO-8859-1")
 	}
 
-	boolean isInlineCode (CodeBlock cb) {
+	def boolean isInlineCode (CodeBlock cb) {
 		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
 //		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
 	}
 
-	escapeLatexChars(String s) {
+	def escapeLatexChars(String s) {
 		s.replaceAll("\\$", "\\\\\\$").replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
 			.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}")
 			.replaceAll("#", "\\\\#").replaceAll("%", "\\\\%")
@@ -48,20 +48,20 @@ class Utils {
 			.replaceAll("&", "\\\\&").replaceAll("~", "\\\\textasciitilde{}")
 	}
 
-	unescapeXdocChars(String s) {
+	def unescapeXdocChars(String s) {
 		s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]")
 	}
 
-	prepareListingsString(String s) {
+	def prepareListingsString(String s) {
 		s.replaceAll("^\n", "")
 	}
 
-	escapeHTMLChars(String s) {
+	def escapeHTMLChars(String s) {
 		s.replaceAll("&", "&amp;").replaceAll("'", "&apos;")
 			.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
 	}
 
-	formatCode(String text, LangDef language) {
+	def formatCode(String text, LangDef language) {
 		highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />\n"), language)
 	}
 		

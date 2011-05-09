@@ -62,7 +62,7 @@ public class Utils {
     boolean _operator_and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();
-    boolean _operator_equals = ObjectExtensions.operator_equals(((Object)_size), ((Object)1));
+    boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
     if (!_operator_equals) {
       _operator_and = false;
     } else {

@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc.generator
 
 import org.eclipse.xtext.xdoc.xdoc.*
 import org.eclipse.xtext.xdoc.generator.util.*
+import com.google.inject.Inject
 
 class TocGenerator {
 
@@ -9,7 +10,7 @@ class TocGenerator {
 	@Inject extension PlainText plainText
 	@Inject extension Utils utils
 
-	generateToc(Document doc) '''
+	def generateToc(Document doc) '''
 		<toc topic="contents/«doc.chapters.head.fileName».html" label="«doc.title.genPlainText»" >
 			«FOR c:doc.chapters»
 				«c.genTocEntry»
@@ -17,7 +18,7 @@ class TocGenerator {
 		</toc>
 	'''
 
-	genTocEntry(Chapter c) '''
+	def genTocEntry(Chapter c) '''
 		<topic href="contents/«c.fileName».html«c.urlSuffix»" label="«c.title.genPlainText»" >
 			«FOR ss:c.subSections»
 				«genTocEntry(ss,c)»
@@ -26,7 +27,7 @@ class TocGenerator {
 	'''
 
 	// FIXME: remove exception handling
-	genTocEntry(AbstractSection aS, Chapter container) '''
+	def genTocEntry(AbstractSection aS, Chapter container) '''
 		<topic href="contents/«container.fileName.urlDecode».html«aS.urlSuffix»" label="«aS.title.genPlainText»" >
 			«FOR ss:(aS.subSection as Iterable<AbstractSection>)»
 				«genTocEntry(ss, container)»

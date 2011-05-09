@@ -20,7 +20,7 @@ import org.eclipse.xtext.xdoc.generator.*
 
 import org.eclipse.emf.ecore.EObject
 import java.io.UnsupportedEncodingException
-
+import com.google.inject.Inject
 
 
 class XdocGenerator implements IGenerator {
@@ -55,18 +55,18 @@ class XdocGenerator implements IGenerator {
 //		}
 	}
 
-	dispatch generate(Document document, IFileSystemAccess access) {
+	def dispatch generate(Document document, IFileSystemAccess access) {
 		access.generateFile("toc.xml", document.generateToc)
 		for(c:document.chapters){
 			c.generate(access)
 		}
 	}
 
-	dispatch generate(Chapter chapter, IFileSystemAccess access) {
+	def dispatch generate(Chapter chapter, IFileSystemAccess access) {
 		access.generateFile(chapter.fileName, chapter.generate)
 	}
 
-	dispatch generate(Chapter aS) '''
+	def dispatch generate(Chapter aS) '''
 		<html>
 		<head>
 		<title>«aS.title.genPlainText»</title>
@@ -87,7 +87,7 @@ class XdocGenerator implements IGenerator {
 		</html>
 	'''
 	
-	headtag(AbstractSection section) {
+	def headtag(AbstractSection section) {
 		switch section {
 			Chapter: 'h2'
 			Section: "h2"
@@ -98,7 +98,7 @@ class XdocGenerator implements IGenerator {
 		}
 	}
 
-	dispatch generate(AbstractSection aS) '''
+	def dispatch generate(AbstractSection aS) '''
 		<«aS.headtag»>«aS.title.genPlainText»</«aS.headtag»>
 		«FOR c : aS.contents »
 			«c.generatePar»
@@ -108,14 +108,14 @@ class XdocGenerator implements IGenerator {
 		«ENDFOR»
 	'''
 
-	dispatch generate(Section4 aS) '''
+	def dispatch generate(Section4 aS) '''
 		«aS.title.genNonParContent»
 		«FOR tom : aS.contents»
 			«tom.generatePar»
 		«ENDFOR»
 	'''
 	
-	generatePar(TextOrMarkup tom) '''
+	def generatePar(TextOrMarkup tom) '''
 		<p>
 		«FOR c : tom.contents»
 			«c.generate»
@@ -123,13 +123,13 @@ class XdocGenerator implements IGenerator {
 		</p>
 	'''
 
-	dispatch generate(Todo todo) '''
+	def dispatch generate(Todo todo) '''
 		<div class="todo" >
 		«todo.text»
 		</div>
 	'''
 
-	dispatch generate(Ref ref) '''
+	def dispatch generate(Ref ref) '''
 		«IF ref.contents.isEmpty »
 		<a href="«ref.ref.fileName»#«ref.ref.name»">section «ref.ref.name»</a>
 		«ELSE»
@@ -140,14 +140,14 @@ class XdocGenerator implements IGenerator {
 		«ENDIF»
 	'''
 
-	dispatch generate(TextOrMarkup tom) '''
+	def dispatch generate(TextOrMarkup tom) '''
 		«FOR obj:tom.contents»
 			«obj.generate»
 		«ENDFOR»
 	'''
 //		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.generate»'''])
 
-	dispatch generate(UnorderedList ul) '''
+	def dispatch generate(UnorderedList ul) '''
 		<ul>
 			«FOR i:ul.items»
 			  	«i.generate»
@@ -155,7 +155,7 @@ class XdocGenerator implements IGenerator {
 		</ul>
 	'''
 
-	dispatch generate(OrderedList ul) '''
+	def dispatch generate(OrderedList ul) '''
 		<ol>
 			«FOR i:ul.items»
 				«i.generate»
@@ -163,7 +163,7 @@ class XdocGenerator implements IGenerator {
 		</ol>
 	'''
 
-	dispatch generate(Item i) '''
+	def dispatch generate(Item i) '''
 		<li>
 			«FOR tom:i.contents»
 				«tom.generate»
@@ -171,11 +171,11 @@ class XdocGenerator implements IGenerator {
 		</li>
 	'''
 
-	dispatch generate(Anchor a) 
+	def dispatch generate(Anchor a) 
 		'''<a name="«a.name»"></a>'''
 	
 
-	dispatch generate(ImageRef img) '''
+	def dispatch generate(ImageRef img) '''
 		<div class="image" >
 		«IF img.name != null»
 			«img.name.genLabel»
@@ -187,45 +187,45 @@ class XdocGenerator implements IGenerator {
 		</div>
 	'''
 
-	 genLabel(String name) '''
+	def genLabel(String name) '''
 		«IF this != null »
 		<a name="«name»"></a>
 		«ENDIF»
 	'''
 
-	dispatch generate(TextPart tp) {
+	def dispatch generate(TextPart tp) {
 		tp.text.unescapeXdocChars.escapeHTMLChars
 	}
 
-	dispatch generate(Table table) '''
+	def dispatch generate(Table table) '''
 		«FOR tr:table.rows»
 			«tr.generate»
 		«ENDFOR»
 	'''
 
-	dispatch generate(TableRow tr) '''
+	def dispatch generate(TableRow tr) '''
 		«FOR td:tr.data»
 			«td.generate»
 		«ENDFOR»
 	'''
 
-	dispatch generate(TableData td) '''
+	def dispatch generate(TableData td) '''
 		«FOR c:td.contents»
 			«c.generate»
 		«ENDFOR»
 	'''
 
-	dispatch generate(Emphasize em) 
+	def dispatch generate(Emphasize em) 
 		'''<em>«FOR c:em.contents»«c.generate»«ENDFOR»</em>'''
 
-	dispatch generate(Link link) 
+	def dispatch generate(Link link) 
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
 	
 
-	dispatch generate(CodeRef cRef) 
+	def dispatch generate(CodeRef cRef) 
 		'''<em>«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars»</em>'''
 
-	dispatch generate(CodeBlock cb) {
+	def dispatch generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
 			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language)»'''
 		} else {
@@ -244,17 +244,17 @@ class XdocGenerator implements IGenerator {
 		}
 	}
 
-	dispatch generateCode (Code code, LangDef lang) 
+	def dispatch generateCode (Code code, LangDef lang) 
 		'''«code.contents.unescapeXdocChars.formatCode(lang) »'''
 	
 	
-	dispatch generateCode (MarkupInCode code, LangDef lang) 
+	def dispatch generateCode (MarkupInCode code, LangDef lang) 
 		'''«code.generate»'''
 
-	dispatch generateCode (Code code, Void v) 
+	def dispatch generateCode (Code code, Void v) 
 		'''«code.contents.unescapeXdocChars.formatCode(null) »'''
 
-	genNonParContent(TextOrMarkup tom) '''
+	def genNonParContent(TextOrMarkup tom) '''
 		«FOR obj:tom.contents»
 			«obj.generate»
 		«ENDFOR»
