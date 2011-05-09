@@ -16,7 +16,7 @@ section:CodeSections[Code Sections]
 
 A code section looks like this:
 
-code[
+code[Java][
 	class HelloWorld {
 		public void sayHello(String name) {
 			System.out.println("Hello "+name);
@@ -45,6 +45,18 @@ ul[
 	item[Baz]
 ]
 
+section:Tables[Tables]
+
+table[
+tr[ td[This is a table cell] td[and another one]]
+tr[ td[table rows can contain many cells] td[but each row has to contain the same number of cells]]
+]
+
+section:TODO[TODO]
+
+todo[document todo elements]
+
 section:Images[Images]
 
-Images are not fully supported so far, but will of course be added soon :-).
+Images are not fully supported by the new Xtend generator,
+but will of course be readded soon :-)
