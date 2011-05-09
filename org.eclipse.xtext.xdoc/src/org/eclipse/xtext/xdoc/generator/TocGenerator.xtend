@@ -11,7 +11,7 @@ class TocGenerator {
 	@Inject extension Utils utils
 
 	def generateToc(Document doc) '''
-		<toc topic="contents/«doc.chapters.head.fileName».html" label="«doc.title.genPlainText»" >
+		<toc topic="contents/«doc.chapters.head.fileName»" label="«doc.title.genPlainText»" >
 			«FOR c:doc.chapters»
 				«c.genTocEntry»
 			«ENDFOR»
@@ -19,7 +19,7 @@ class TocGenerator {
 	'''
 
 	def genTocEntry(Chapter c) '''
-		<topic href="contents/«c.fileName».html«c.urlSuffix»" label="«c.title.genPlainText»" >
+		<topic href="contents/«c.fileName»«c.urlSuffix»" label="«c.title.genPlainText»" >
 			«FOR ss:c.subSections»
 				«genTocEntry(ss,c)»
 			«ENDFOR»
@@ -28,7 +28,7 @@ class TocGenerator {
 
 	// FIXME: remove exception handling
 	def genTocEntry(AbstractSection aS, Chapter container) '''
-		<topic href="contents/«container.fileName.urlDecode».html«aS.urlSuffix»" label="«aS.title.genPlainText»" >
+		<topic href="contents/«container.fileName.urlDecode»«aS.urlSuffix»" label="«aS.title.genPlainText»" >
 			«FOR ss:(aS.subSection as Iterable<AbstractSection>)»
 				«genTocEntry(ss, container)»
 			«ENDFOR»

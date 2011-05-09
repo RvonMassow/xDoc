@@ -76,6 +76,7 @@ class XdocGenerator implements IGenerator {
 		<link rel="home" href="index.html" title="">
 		</head>
 		<body>
+		<a name="«aS.labelName»"></a>
 		<«aS.headtag»>«aS.title.genPlainText»</«aS.headtag»>
 		«FOR content:aS.contents»
 			«content.generatePar»
@@ -99,6 +100,7 @@ class XdocGenerator implements IGenerator {
 	}
 
 	def dispatch generate(AbstractSection aS) '''
+		<a name="«aS.labelName»"></a>
 		<«aS.headtag»>«aS.title.genPlainText»</«aS.headtag»>
 		«FOR c : aS.contents »
 			«c.generatePar»
@@ -109,7 +111,8 @@ class XdocGenerator implements IGenerator {
 	'''
 
 	def dispatch generate(Section4 aS) '''
-		«aS.title.genNonParContent»
+		<a name="«aS.labelName»"></a>
+		<h5>«aS.title.genNonParContent»</h5>
 		«FOR tom : aS.contents»
 			«tom.generatePar»
 		«ENDFOR»

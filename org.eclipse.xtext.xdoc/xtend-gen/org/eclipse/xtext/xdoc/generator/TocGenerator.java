@@ -27,7 +27,7 @@ public class TocGenerator {
     Chapter _head = IterableExtensions.<Chapter>head(_chapters);
     String _fileName = this.eclipseNamingExtensions.fileName(_head);
     _builder.append(_fileName, "");
-    _builder.append(".html\" label=\"");
+    _builder.append("\" label=\"");
     TextOrMarkup _title = doc.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
@@ -52,7 +52,6 @@ public class TocGenerator {
     _builder.append("<topic href=\"contents/");
     String _fileName = this.eclipseNamingExtensions.fileName(c);
     _builder.append(_fileName, "");
-    _builder.append(".html");
     String _urlSuffix = this.eclipseNamingExtensions.urlSuffix(c);
     _builder.append(_urlSuffix, "");
     _builder.append("\" label=\"");
@@ -81,7 +80,6 @@ public class TocGenerator {
     String _fileName = this.eclipseNamingExtensions.fileName(container);
     String _urlDecode = this.utils.urlDecode(_fileName);
     _builder.append(_urlDecode, "");
-    _builder.append(".html");
     String _urlSuffix = this.eclipseNamingExtensions.urlSuffix(aS);
     _builder.append(_urlSuffix, "");
     _builder.append("\" label=\"");

@@ -108,6 +108,11 @@ public class XdocGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("<body>");
     _builder.newLine();
+    _builder.append("<a name=\"");
+    String _labelName = this.eclipseNamingExtensions.labelName(aS);
+    _builder.append(_labelName, "");
+    _builder.append("\"></a>");
+    _builder.newLineIfNotEmpty();
     _builder.append("<");
     String _headtag = this.headtag(aS);
     _builder.append(_headtag, "");
@@ -190,6 +195,11 @@ public class XdocGenerator implements IGenerator {
   
   public CharSequence _generate(final AbstractSection aS) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<a name=\"");
+    String _labelName = this.eclipseNamingExtensions.labelName(aS);
+    _builder.append(_labelName, "");
+    _builder.append("\"></a>");
+    _builder.newLineIfNotEmpty();
     _builder.append("<");
     String _headtag = this.headtag(aS);
     _builder.append(_headtag, "");
@@ -223,9 +233,16 @@ public class XdocGenerator implements IGenerator {
   
   public CharSequence _generate(final Section4 aS) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<a name=\"");
+    String _labelName = this.eclipseNamingExtensions.labelName(aS);
+    _builder.append(_labelName, "");
+    _builder.append("\"></a>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("<h5>");
     TextOrMarkup _title = aS.getTitle();
     StringConcatenation _genNonParContent = this.genNonParContent(_title);
     _builder.append(_genNonParContent, "");
+    _builder.append("</h5>");
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = aS.getContents();
