@@ -118,15 +118,15 @@ public class XdocUtil {
 		}
 
 		protected Integer _hash(Section2Ref ref) {
-			return hash.invoke(ref.getSection2());
+			return 0;//hash.invoke(ref.getSection2());
 		}
 
 		protected Integer _hash(SectionRef ref) {
-			return hash.invoke(ref.getSection());
+			return 0;//hash.invoke(ref.getSection());
 		}
 
 		protected Integer _hash(ChapterRef ref) {
-			return hash.invoke(ref.getChapter());
+			return 0;//hash.invoke(ref.getChapter());
 		}
 
 		protected Integer _hash(Identifiable i) {
