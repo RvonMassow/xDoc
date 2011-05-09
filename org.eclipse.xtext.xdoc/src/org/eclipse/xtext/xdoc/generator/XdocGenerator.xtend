@@ -47,6 +47,7 @@ class XdocGenerator implements IGenerator {
 			(res.contents.head as XdocFile)?.mainSection.generate(access)
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e)
+		} catch (IllegalArgumentException e) {
 		}
 		// don't want this, rather CharSequence
 //		val ArrayList<StringConcatenation> texts = newArrayList();
@@ -117,7 +118,7 @@ class XdocGenerator implements IGenerator {
 			«tom.generatePar»
 		«ENDFOR»
 	'''
-	
+
 	def generatePar(TextOrMarkup tom) '''
 		<p>
 		«FOR c : tom.contents»
@@ -184,9 +185,9 @@ class XdocGenerator implements IGenerator {
 			«img.name.genLabel»
 		«ENDIF»
 		«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
-		<img src="«img.image.name.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
+		<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
 		«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
-		«img.caption.unescapeXdocChars.escapeHTMLChars»
+		«img.caption?.unescapeXdocChars.escapeHTMLChars»
 		</div>
 	'''
 

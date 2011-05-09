@@ -17,7 +17,6 @@ import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
-import org.eclipse.xtext.xdoc.images.ImageProxy;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
@@ -65,6 +64,7 @@ public class XdocGenerator implements IGenerator {
     } catch (UnsupportedEncodingException e) { 
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
+    } catch (IllegalArgumentException e_1) { 
     }
   }
   
@@ -421,9 +421,8 @@ public class XdocGenerator implements IGenerator {
     _builder.append("", "");
     _builder.newLineIfNotEmpty();
     _builder.append("<img src=\"");
-    ImageProxy _image = img.getImage();
-    String _name_2 = _image.getName();
-    String _unescapeXdocChars = this.utils.unescapeXdocChars(_name_2);
+    String _path = img.getPath();
+    String _unescapeXdocChars = this.utils.unescapeXdocChars(_path);
     _builder.append(_unescapeXdocChars, "");
     _builder.append("\" ");
     {
@@ -462,7 +461,7 @@ public class XdocGenerator implements IGenerator {
     _builder.append("/>");
     _builder.newLineIfNotEmpty();
     String _caption = img.getCaption();
-    String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_caption);
+    String _unescapeXdocChars_3 = this.utils==null?(String)null:this.utils.unescapeXdocChars(_caption);
     String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
     _builder.append(_escapeHTMLChars, "");
     _builder.newLineIfNotEmpty();
