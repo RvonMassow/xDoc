@@ -25,13 +25,13 @@ public class StringUtils {
 
 	static private Set<String> links = new HashSet<String>();
 
-	private static String slComment = "//";
-	private static String doubleQuote ="\"";
-	private static String singleQuote ="&apos;";
-	private static String mlCommentEnd = "*/";
-	private static String mlCommentStart = "/*";
+	public static String slComment = "//";
+	public static String doubleQuote ="\"";
+	public static String singleQuote ="&apos;";
+	public static String mlCommentEnd = "*/";
+	public static String mlCommentStart = "/*";
 
-	static Map<String, Pattern> patterns;
+	public static Map<String, Pattern> patterns;
 
 	static {
 		patterns = new HashMap<String, Pattern>();
@@ -211,7 +211,7 @@ public class StringUtils {
 		return (Float.parseFloat(percent.replaceAll("%", ""))/100) +"";
 	}
 
-	private static String makeKeywordRegex(String keyword) {
+	public static String makeKeywordRegex(String keyword) {
 		return "(?<![\\w])"+keyword+"(?!\\w)";
 	}
 

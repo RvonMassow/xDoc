@@ -28,6 +28,9 @@ import org.eclipse.xtext.ui.editor.utils.TextStyle;
  */
 public class SemanticHighlightingConfiguration extends DefaultHighlightingConfiguration {
 	
+	public static final String CODE_KEYWORD = "Keywords in Code Blocks";
+	public static final String CODE_COMMENT = "Comments in Code Blocks";
+
 	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
@@ -38,6 +41,8 @@ public class SemanticHighlightingConfiguration extends DefaultHighlightingConfig
 		addDefault(acceptor,SECTION4.getName(),defaultTextStyle());
 		addDefault(acceptor,EMPHASIZE.getName(),emphasizedTextStyle());
 		addDefault(acceptor,CODE_BLOCK.getName(),codeBlockTextStyle());
+		addDefault(acceptor,CODE_COMMENT,codeCommentStyle());
+		addDefault(acceptor,CODE_KEYWORD, keywordTextStyle());
 	}
 
 	protected void addDefault(IHighlightingConfigurationAcceptor acceptor,
@@ -55,7 +60,7 @@ public class SemanticHighlightingConfiguration extends DefaultHighlightingConfig
 	
 	public TextStyle codeBlockTextStyle() {
 		TextStyle textStyle = new TextStyle();
-		textStyle.setBackgroundColor(new RGB(255, 255, 255));
+		textStyle.setBackgroundColor(new RGB(0xDE, 0xE5, 0xEF));
 		textStyle.setColor(new RGB(0, 0, 0));
 //		textStyle.setFontData(new FontData("Monaco"));
 		return textStyle;
@@ -64,6 +69,16 @@ public class SemanticHighlightingConfiguration extends DefaultHighlightingConfig
 	public TextStyle emphasizedTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setStyle(SWT.ITALIC);
+		return textStyle;
+	}
+	
+	public TextStyle codeCommentStyle() {
+		TextStyle textStyle = super.commentTextStyle().copy();
+		return textStyle;
+	}
+
+	public TextStyle codeKeywordStyle() {
+		TextStyle textStyle = super.keywordTextStyle().copy();
 		return textStyle;
 	}
 }
