@@ -410,7 +410,7 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
 	 */
 	public CodeBlock createCodeBlock()
 	{
-		CodeBlockImplCustom codeBlock = new CodeBlockImplCustom();
+		CodeBlockImpl codeBlock = new CodeBlockImpl();
 		return codeBlock;
 	}
 
