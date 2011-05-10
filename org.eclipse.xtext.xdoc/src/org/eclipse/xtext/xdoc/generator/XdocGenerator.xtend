@@ -25,7 +25,7 @@ import com.google.inject.Inject
 
 class XdocGenerator implements IGenerator {
 
-//	@Inject Iterable<GlossaryEntry> as glossary
+//	@Inject ArrayList<GlossaryEntry> glossary
 
 	@Inject extension Utils utils
 
@@ -44,10 +44,12 @@ class XdocGenerator implements IGenerator {
 		// 
 		//val glossary = res.allContentsIterable.filter(typeof(Glossary)).head.genPlainText
 		try {
-			(res.contents.head as XdocFile)?.mainSection.generate(access)
+			val aS = (res.contents.head as XdocFile)?.mainSection
+			if(aS instanceof Chapter) {
+				aS.generate(access)
+			}
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e)
-		} catch (IllegalArgumentException e) {
 		}
 		// don't want this, rather CharSequence
 //		val ArrayList<StringConcatenation> texts = newArrayList();
