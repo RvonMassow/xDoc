@@ -14,9 +14,10 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
+	private static int MAX_CHARS_PER_LINE = 74;
+
 	@Check
 	public void checkLineLengthOfCodeSection(Code c) {
-		int MAX_CHARS_PER_LINE = 74;
 		String[] lines = c.getContents().split("\n");
 		for (String string : lines) {
 			if (string.replaceAll("\t", "    ").length() >= MAX_CHARS_PER_LINE) {
@@ -46,5 +47,4 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 	protected List<EPackage> getEPackages() {
 		return Collections.singletonList((EPackage)XdocPackage.eINSTANCE);
 	}
-
 }
