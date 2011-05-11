@@ -91,11 +91,13 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 			int offset = 0;
 			String[] result;
 			String code = obj.getContents();
-			Pattern keywordPattern = getPattern(lang);
+			Pattern keywordPattern = null;
+			if(lang != null)
+				keywordPattern = getPattern(lang);
 			do{
 				result = highlightSpecial(code, acceptor, nodes.get(0), offset);
-				if(lang != null)
-				addKeywordHighLighting(result[0], keywordPattern, nodes.get(0).getOffset() + offset, acceptor);
+				if(keywordPattern != null)
+					addKeywordHighLighting(result[0], keywordPattern, nodes.get(0).getOffset() + offset, acceptor);
 				offset += result[0].length() + (result.length > 1 ? result[1].length() : 0);
 				
 				if(result.length == 3) {
