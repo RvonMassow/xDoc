@@ -24,4 +24,31 @@ class PlainText {
 		else 
 			'''"«l.url»"'''
 	}
+
+	def dispatch genPlainText(Ref ref) {
+		'''
+			«IF !ref.contents.empty »
+				«FOR e :ref.contents»
+					«e.genPlainText»
+				«ENDFOR»
+			«ELSE»
+				«ref.ref.name»
+			«ENDIF»
+		'''
+	}
+
+	def dispatch genPlainText(CodeRef cRef) {
+		'''«cRef.element.qualifiedName»'''
+	}
+
+	def dispatch genPlainText(CodeBlock cb) {
+		'''
+		«FOR c: cb.contents»
+			«c.genPlainText»
+		«ENDFOR»
+		'''
+	}
+
+	def dispatch genPlainText(Object o) '''
+	'''
 }

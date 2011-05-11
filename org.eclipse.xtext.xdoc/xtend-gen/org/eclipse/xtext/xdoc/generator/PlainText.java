@@ -2,11 +2,17 @@ package org.eclipse.xtext.xdoc.generator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.common.types.JvmDeclaredType;
+import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
+import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.Link;
+import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
@@ -76,15 +82,73 @@ public class PlainText {
     return _xblockexpression;
   }
   
-  public CharSequence genPlainText(final EObject em) {
-    if ((em instanceof Emphasize)) {
-      return _genPlainText((Emphasize)em);
-    } else if ((em instanceof Link)) {
-      return _genPlainText((Link)em);
-    } else if ((em instanceof TextOrMarkup)) {
-      return _genPlainText((TextOrMarkup)em);
-    } else if ((em instanceof TextPart)) {
-      return _genPlainText((TextPart)em);
+  public CharSequence _genPlainText(final Ref ref) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<TextOrMarkup> _contents = ref.getContents();
+      boolean _isEmpty = _contents.isEmpty();
+      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+      if (_operator_not) {
+        {
+          EList<TextOrMarkup> _contents_1 = ref.getContents();
+          for(TextOrMarkup e : _contents_1) {
+            CharSequence _genPlainText = this.genPlainText(e);
+            _builder.append(_genPlainText, "");
+            _builder.newLineIfNotEmpty();
+          }
+        }} else {
+        Identifiable _ref = ref.getRef();
+        String _name = _ref.getName();
+        _builder.append(_name, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence _genPlainText(final CodeRef cRef) {
+    StringConcatenation _builder = new StringConcatenation();
+    JvmDeclaredType _element = cRef.getElement();
+    String _qualifiedName = _element.getQualifiedName();
+    _builder.append(_qualifiedName, "");
+    return _builder;
+  }
+  
+  public CharSequence _genPlainText(final CodeBlock cb) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      EList<EObject> _contents = cb.getContents();
+      for(EObject c : _contents) {
+        CharSequence _genPlainText = this.genPlainText(c);
+        _builder.append(_genPlainText, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  public CharSequence _genPlainText(final Object o) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder;
+  }
+  
+  public CharSequence genPlainText(final Object cb) {
+    if ((cb instanceof CodeBlock)) {
+      return _genPlainText((CodeBlock)cb);
+    } else if ((cb instanceof CodeRef)) {
+      return _genPlainText((CodeRef)cb);
+    } else if ((cb instanceof Emphasize)) {
+      return _genPlainText((Emphasize)cb);
+    } else if ((cb instanceof Link)) {
+      return _genPlainText((Link)cb);
+    } else if ((cb instanceof Ref)) {
+      return _genPlainText((Ref)cb);
+    } else if ((cb instanceof TextOrMarkup)) {
+      return _genPlainText((TextOrMarkup)cb);
+    } else if ((cb instanceof TextPart)) {
+      return _genPlainText((TextPart)cb);
+    } else if ((cb instanceof Object)) {
+      return _genPlainText((Object)cb);
     } else {
       throw new IllegalArgumentException();
     }
