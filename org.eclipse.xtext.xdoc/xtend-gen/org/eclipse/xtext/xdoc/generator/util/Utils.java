@@ -77,23 +77,37 @@ public class Utils {
   }
   
   public String escapeLatexChars(final String s) {
-    String _replaceAll = s==null?(String)null:s.replaceAll("\\$", "\\\\\\$");
-    String _replaceAll_1 = _replaceAll.replaceAll("\\{", "\\\\{");
-    String _replaceAll_2 = _replaceAll_1.replaceAll("\\}", "\\\\}");
-    String _replaceAll_3 = _replaceAll_2.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}");
-    String _replaceAll_4 = _replaceAll_3.replaceAll("#", "\\\\#");
-    String _replaceAll_5 = _replaceAll_4.replaceAll("%", "\\\\%");
-    String _replaceAll_6 = _replaceAll_5.replaceAll("_", "\\\\_");
-    String _replaceAll_7 = _replaceAll_6.replaceAll("\\^", "\\\\textasciicircum{}");
-    String _replaceAll_8 = _replaceAll_7.replaceAll("&", "\\\\&");
-    String _replaceAll_9 = _replaceAll_8.replaceAll("~", "\\\\textasciitilde{}");
-    return _replaceAll_9;
+    String _xifexpression = null;
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(s, null);
+    if (_operator_notEquals) {
+      String _replaceAll = s.replaceAll("\\$", "\\\\\\$");
+      String _replaceAll_1 = _replaceAll.replaceAll("\\{", "\\\\{");
+      String _replaceAll_2 = _replaceAll_1.replaceAll("\\}", "\\\\}");
+      String _replaceAll_3 = _replaceAll_2.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}");
+      String _replaceAll_4 = _replaceAll_3.replaceAll("#", "\\\\#");
+      String _replaceAll_5 = _replaceAll_4.replaceAll("%", "\\\\%");
+      String _replaceAll_6 = _replaceAll_5.replaceAll("_", "\\\\_");
+      String _replaceAll_7 = _replaceAll_6.replaceAll("\\^", "\\\\textasciicircum{}");
+      String _replaceAll_8 = _replaceAll_7.replaceAll("&", "\\\\&");
+      String _replaceAll_9 = _replaceAll_8.replaceAll("~", "\\\\textasciitilde{}");
+      _xifexpression = _replaceAll_9;
+    } else {
+      _xifexpression = "";
+    }
+    return _xifexpression;
   }
   
   public String unescapeXdocChars(final String s) {
-    String _replaceAll = s==null?(String)null:s.replaceAll("\\\\\\[", "[");
-    String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
-    return _replaceAll_1;
+    String _xifexpression = null;
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(s, null);
+    if (_operator_notEquals) {
+      String _replaceAll = s.replaceAll("\\\\\\[", "[");
+      String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
+      _xifexpression = _replaceAll_1;
+    } else {
+      _xifexpression = "";
+    }
+    return _xifexpression;
   }
   
   public String prepareListingsString(final String s) {
@@ -102,20 +116,34 @@ public class Utils {
   }
   
   public String escapeHTMLChars(final String s) {
-    String _replaceAll = s==null?(String)null:s.replaceAll("&", "&amp;");
-    String _replaceAll_1 = _replaceAll.replaceAll("\'", "&apos;");
-    String _replaceAll_2 = _replaceAll_1.replaceAll("<", "&lt;");
-    String _replaceAll_3 = _replaceAll_2.replaceAll(">", "&gt;");
-    return _replaceAll_3;
+    String _xifexpression = null;
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(s, null);
+    if (_operator_notEquals) {
+      String _replaceAll = s.replaceAll("&", "&amp;");
+      String _replaceAll_1 = _replaceAll.replaceAll("\'", "&apos;");
+      String _replaceAll_2 = _replaceAll_1.replaceAll("<", "&lt;");
+      String _replaceAll_3 = _replaceAll_2.replaceAll(">", "&gt;");
+      _xifexpression = _replaceAll_3;
+    } else {
+      _xifexpression = "";
+    }
+    return _xifexpression;
   }
   
   public String formatCode(final String text, final LangDef language) {
-    String _escapeHTMLChars = this.escapeHTMLChars(text);
-    String _replaceAll = _escapeHTMLChars.replaceAll(" ", "&nbsp;");
-    String _replaceAll_1 = _replaceAll.replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
-    String _replaceAll_2 = _replaceAll_1.replaceAll("\n", "<br />\n");
-    String _highlightKeywords = StringUtils.highlightKeywords(_replaceAll_2, language);
-    return _highlightKeywords;
+    String _xifexpression = null;
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(text, null);
+    if (_operator_notEquals) {
+      String _escapeHTMLChars = this.escapeHTMLChars(text);
+      String _replaceAll = _escapeHTMLChars.replaceAll(" ", "&nbsp;");
+      String _replaceAll_1 = _replaceAll.replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+      String _replaceAll_2 = _replaceAll_1.replaceAll("\n", "<br />\n");
+      String _highlightKeywords = StringUtils.highlightKeywords(_replaceAll_2, language);
+      _xifexpression = _highlightKeywords;
+    } else {
+      _xifexpression = "";
+    }
+    return _xifexpression;
   }
   
   public Iterable<? extends AbstractSection> subSection(final AbstractSection section) {

@@ -41,15 +41,21 @@ class Utils {
 	}
 
 	def escapeLatexChars(String s) {
-		s?.replaceAll("\\$", "\\\\\\$").replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
-			.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}")
-			.replaceAll("#", "\\\\#").replaceAll("%", "\\\\%")
-			.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
-			.replaceAll("&", "\\\\&").replaceAll("~", "\\\\textasciitilde{}")
+		if(s != null)
+			s.replaceAll("\\$", "\\\\\\$").replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
+				.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}")
+				.replaceAll("#", "\\\\#").replaceAll("%", "\\\\%")
+				.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
+				.replaceAll("&", "\\\\&").replaceAll("~", "\\\\textasciitilde{}")
+		else 
+			""
 	}
 
 	def unescapeXdocChars(String s) {
-		s?.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]")
+		if(s != null)
+			s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]")
+		else
+			""
 	}
 
 	def prepareListingsString(String s) {
@@ -57,12 +63,18 @@ class Utils {
 	}
 
 	def escapeHTMLChars(String s) {
-		s?.replaceAll("&", "&amp;").replaceAll("'", "&apos;")
-			.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+		if(s != null)
+			s.replaceAll("&", "&amp;").replaceAll("'", "&apos;")
+				.replaceAll("<", "&lt;").replaceAll(">", "&gt;")
+		else
+			""
 	}
 
 	def formatCode(String text, LangDef language) {
-		highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />\n"), language)
+		if(text != null)
+			highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />\n"), language)
+		else
+			""
 	}
 		
 }
