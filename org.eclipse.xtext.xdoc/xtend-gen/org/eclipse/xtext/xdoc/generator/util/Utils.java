@@ -24,27 +24,27 @@ import org.eclipse.xtext.xdoc.xdoc.Section4;
 public class Utils {
   
   public Iterable<? extends AbstractSection> _subSection(final Document doc) {
-    EList<Chapter> _chapters = doc.getChapters();
+    EList<Chapter> _chapters = doc==null?(EList<Chapter>)null:doc.getChapters();
     return _chapters;
   }
   
   public Iterable<? extends AbstractSection> _subSection(final Chapter section) {
-    EList<Section> _subSections = section.getSubSections();
+    EList<Section> _subSections = section==null?(EList<Section>)null:section.getSubSections();
     return _subSections;
   }
   
   public Iterable<? extends AbstractSection> _subSection(final Section section) {
-    EList<Section2> _subSections = section.getSubSections();
+    EList<Section2> _subSections = section==null?(EList<Section2>)null:section.getSubSections();
     return _subSections;
   }
   
   public Iterable<? extends AbstractSection> _subSection(final Section2 section) {
-    EList<Section3> _subSections = section.getSubSections();
+    EList<Section3> _subSections = section==null?(EList<Section3>)null:section.getSubSections();
     return _subSections;
   }
   
   public Iterable<? extends AbstractSection> _subSection(final Section3 section) {
-    EList<Section4> _subSections = section.getSubSections();
+    EList<Section4> _subSections = section==null?(EList<Section4>)null:section.getSubSections();
     return _subSections;
   }
   
@@ -77,7 +77,7 @@ public class Utils {
   }
   
   public String escapeLatexChars(final String s) {
-    String _replaceAll = s.replaceAll("\\$", "\\\\\\$");
+    String _replaceAll = s==null?(String)null:s.replaceAll("\\$", "\\\\\\$");
     String _replaceAll_1 = _replaceAll.replaceAll("\\{", "\\\\{");
     String _replaceAll_2 = _replaceAll_1.replaceAll("\\}", "\\\\}");
     String _replaceAll_3 = _replaceAll_2.replaceAll("\\\\(?![{}$])", "\\\\textbackslash{}");
@@ -91,18 +91,18 @@ public class Utils {
   }
   
   public String unescapeXdocChars(final String s) {
-    String _replaceAll = s.replaceAll("\\\\\\[", "[");
+    String _replaceAll = s==null?(String)null:s.replaceAll("\\\\\\[", "[");
     String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
     return _replaceAll_1;
   }
   
   public String prepareListingsString(final String s) {
-    String _replaceAll = s.replaceAll("^\n", "");
+    String _replaceAll = s==null?(String)null:s.replaceAll("^\n", "");
     return _replaceAll;
   }
   
   public String escapeHTMLChars(final String s) {
-    String _replaceAll = s.replaceAll("&", "&amp;");
+    String _replaceAll = s==null?(String)null:s.replaceAll("&", "&amp;");
     String _replaceAll_1 = _replaceAll.replaceAll("\'", "&apos;");
     String _replaceAll_2 = _replaceAll_1.replaceAll("<", "&lt;");
     String _replaceAll_3 = _replaceAll_2.replaceAll(">", "&gt;");
