@@ -46,8 +46,6 @@ import org.eclipse.xtext.xdoc.xdoc.Section4;
 
 public class SemanticHighlightingCalculator implements ISemanticHighlightingCalculator {
 
-	private Pattern singleQuote = Pattern.compile("'");
-	
 	public void provideHighlightingFor(final XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		if (resource == null || resource.getContents().isEmpty())
 			return;
@@ -87,12 +85,12 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		// highlightFeature(obj, acceptor, CODE_BLOCK__CONTENTS, CODE_BLOCK.getName());
 		List<INode> nodes = NodeModelUtils.findNodesForFeature(obj, CODE__CONTENTS);
 		LangDef lang = ((CodeBlock) obj.eContainer()).getLanguage();
-		if(!nodes.isEmpty()) {
+		if (!nodes.isEmpty()) {
 			int offset = 0;
 			String[] result;
 			String code = obj.getContents();
 			Pattern keywordPattern = null;
-			if(lang != null)
+			if(lang != null && !lang.eIsProxy())
 				keywordPattern = getPattern(lang);
 			do{
 				result = highlightSpecial(code, acceptor, nodes.get(0), offset);
