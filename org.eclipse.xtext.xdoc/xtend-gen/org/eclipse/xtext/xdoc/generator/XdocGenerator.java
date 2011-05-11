@@ -50,21 +50,11 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class XdocGenerator implements IGenerator {
-  
-  @Inject
-  private Utils utils;
-  
-  @Inject
-  private GlossaryExtensions glossaryExtensions;
-  
-  @Inject
-  private EclipseNamingExtensions eclipseNamingExtensions;
-  
-  @Inject
-  private TocGenerator tocGenerator;
-  
-  @Inject
-  private PlainText plainText;
+  @Inject private Utils utils;
+  @Inject private GlossaryExtensions glossaryExtensions;
+  @Inject private EclipseNamingExtensions eclipseNamingExtensions;
+  @Inject private TocGenerator tocGenerator;
+  @Inject private PlainText plainText;
   
   public void doGenerate(final Resource res, final IFileSystemAccess access) throws RuntimeException {
     try {
@@ -75,13 +65,7 @@ public class XdocGenerator implements IGenerator {
         AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
         final AbstractSection aS = _mainSection;
         Object _xifexpression = null;
-        boolean _operator_or = false;
-        if ((aS instanceof org.eclipse.xtext.xdoc.xdoc.Chapter)) {
-          _operator_or = true;
-        } else {
-          _operator_or = BooleanExtensions.operator_or((aS instanceof org.eclipse.xtext.xdoc.xdoc.Chapter), (aS instanceof org.eclipse.xtext.xdoc.xdoc.Document));
-        }
-        if (_operator_or) {
+        if ((aS instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
           this.generate(aS, access);
         }
         _xblockexpression = (_xifexpression);

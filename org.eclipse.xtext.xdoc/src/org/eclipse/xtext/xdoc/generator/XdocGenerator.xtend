@@ -45,7 +45,7 @@ class XdocGenerator implements IGenerator {
 		//val glossary = res.allContentsIterable.filter(typeof(Glossary)).head.genPlainText
 		try {
 			val aS = (res.contents.head as XdocFile)?.mainSection
-			if(aS instanceof Chapter || aS instanceof Document) {
+			if(aS instanceof Document) {
 				aS.generate(access)
 			}
 		} catch (UnsupportedEncodingException e) {
