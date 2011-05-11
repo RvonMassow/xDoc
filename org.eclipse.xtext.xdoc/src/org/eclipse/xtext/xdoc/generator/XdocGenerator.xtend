@@ -66,7 +66,7 @@ class XdocGenerator implements IGenerator {
 	}
 
 	def dispatch generate(Chapter chapter, IFileSystemAccess access) {
-		access.generateFile(chapter.fileName, chapter.generate)
+		access.generateFile(chapter.fileName.decode, chapter.generate)
 	}
 
 	def dispatch generate(Chapter aS) '''
@@ -239,7 +239,7 @@ class XdocGenerator implements IGenerator {
 
 	def dispatch generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
-			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language)»'''
+			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language)»</span>'''
 		} else {
 			val block = cb.removeIndent
 			'''	

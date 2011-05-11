@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -104,8 +105,9 @@ public class XdocGenerator implements IGenerator {
   
   public void _generate(final Chapter chapter, final IFileSystemAccess access) {
     String _fileName = this.eclipseNamingExtensions.fileName(chapter);
+    String _decode = URLDecoder.decode(_fileName);
     CharSequence _generate = this.generate(chapter);
-    access.generateFile(_fileName, _generate);
+    access.generateFile(_decode, _generate);
   }
   
   public CharSequence _generate(final Chapter aS) {
@@ -616,6 +618,7 @@ public class XdocGenerator implements IGenerator {
       LangDef _language = cb.getLanguage();
       StringConcatenation _generateCode = this.generateCode(((Code) _head), _language);
       _builder.append(_generateCode, "");
+      _builder.append("</span>");
       _xifexpression = _builder;
     } else {
       StringConcatenation _xblockexpression = null;
