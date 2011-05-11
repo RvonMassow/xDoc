@@ -45,7 +45,7 @@ class XdocGenerator implements IGenerator {
 		//val glossary = res.allContentsIterable.filter(typeof(Glossary)).head.genPlainText
 		try {
 			val aS = (res.contents.head as XdocFile)?.mainSection
-			if(aS instanceof Chapter) {
+			if(aS instanceof Chapter || aS instanceof Document) {
 				aS.generate(access)
 			}
 		} catch (UnsupportedEncodingException e) {
@@ -204,21 +204,27 @@ class XdocGenerator implements IGenerator {
 	}
 
 	def dispatch generate(Table table) '''
+		<table>
 		«FOR tr:table.rows»
 			«tr.generate»
 		«ENDFOR»
+		</table>
 	'''
 
 	def dispatch generate(TableRow tr) '''
+		<tr>
 		«FOR td:tr.data»
 			«td.generate»
 		«ENDFOR»
+		</tr>
 	'''
 
 	def dispatch generate(TableData td) '''
+		<td>
 		«FOR c:td.contents»
 			«c.generate»
 		«ENDFOR»
+		</td>
 	'''
 
 	def dispatch generate(Emphasize em) 

@@ -74,7 +74,13 @@ public class XdocGenerator implements IGenerator {
         AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
         final AbstractSection aS = _mainSection;
         Object _xifexpression = null;
+        boolean _operator_or = false;
         if ((aS instanceof org.eclipse.xtext.xdoc.xdoc.Chapter)) {
+          _operator_or = true;
+        } else {
+          _operator_or = BooleanExtensions.operator_or((aS instanceof org.eclipse.xtext.xdoc.xdoc.Chapter), (aS instanceof org.eclipse.xtext.xdoc.xdoc.Document));
+        }
+        if (_operator_or) {
           this.generate(aS, access);
         }
         _xblockexpression = (_xifexpression);
@@ -510,6 +516,8 @@ public class XdocGenerator implements IGenerator {
   
   public CharSequence _generate(final Table table) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<table>");
+    _builder.newLine();
     {
       EList<TableRow> _rows = table.getRows();
       for(TableRow tr : _rows) {
@@ -518,11 +526,15 @@ public class XdocGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("</table>");
+    _builder.newLine();
     return _builder;
   }
   
   public CharSequence _generate(final TableRow tr) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<tr>");
+    _builder.newLine();
     {
       EList<TableData> _data = tr.getData();
       for(TableData td : _data) {
@@ -531,11 +543,15 @@ public class XdocGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("</tr>");
+    _builder.newLine();
     return _builder;
   }
   
   public CharSequence _generate(final TableData td) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<td>");
+    _builder.newLine();
     {
       EList<TextOrMarkup> _contents = td.getContents();
       for(TextOrMarkup c : _contents) {
@@ -544,6 +560,8 @@ public class XdocGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    _builder.append("</td>");
+    _builder.newLine();
     return _builder;
   }
   
