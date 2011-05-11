@@ -45,6 +45,8 @@ import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.Section4;
 
 public class SemanticHighlightingCalculator implements ISemanticHighlightingCalculator {
+
+	private Pattern singleQuote = Pattern.compile("'");
 	
 	public void provideHighlightingFor(final XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		if (resource == null || resource.getContents().isEmpty())
@@ -147,7 +149,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		matcher = StringUtils.patterns.get(StringUtils.doubleQuote).matcher(code);
 		if(matcher.find(0))
 			doubleQuoteStart = matcher.start();
-		matcher = StringUtils.patterns.get(StringUtils.singleQuote).matcher(code);
+		matcher = StringUtils.patterns.get(StringUtils.singleQuotePlain).matcher(code);
 		if(matcher.find(0))
 			singleQuoteStart = matcher.start();
 		int min = Integer.MAX_VALUE;
@@ -179,7 +181,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 				acceptor.addPosition(node.getOffset() + offset + res[0].length(), res[1].length(), SemanticHighlightingConfiguration.STRING_ID);
 				return res;
 			} else if(min == singleQuoteStart) {
-				res = StringUtils.breakApart(code, min, StringUtils.singleQuote.length(), StringUtils.singleQuote);
+				res = StringUtils.breakApart(code, min, StringUtils.singleQuotePlain.length(), StringUtils.singleQuotePlain);
 				acceptor.addPosition(node.getOffset() + offset + res[0].length(), res[1].length(), SemanticHighlightingConfiguration.STRING_ID);
 				return res;
 			}

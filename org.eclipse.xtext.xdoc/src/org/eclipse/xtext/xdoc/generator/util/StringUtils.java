@@ -27,7 +27,8 @@ public class StringUtils {
 
 	public static String slComment = "//";
 	public static String doubleQuote ="\"";
-	public static String singleQuote ="&apos;";
+	public static String singleQuoteHTML ="&apos;";
+	public static String singleQuotePlain ="'";
 	public static String mlCommentEnd = "*/";
 	public static String mlCommentStart = "/*";
 
@@ -38,8 +39,9 @@ public class StringUtils {
 		patterns.put(slComment, makeHighlightRegionPattern(slComment));
 		patterns.put(mlCommentStart, makeHighlightRegionPattern(mlCommentStart));
 		patterns.put(mlCommentEnd, makeHighlightRegionPattern(mlCommentEnd));
-		patterns.put(singleQuote, makeHighlightRegionPattern(singleQuote));
+		patterns.put(singleQuoteHTML, makeHighlightRegionPattern(singleQuoteHTML));
 		patterns.put(doubleQuote, makeHighlightRegionPattern(doubleQuote));
+		patterns.put(singleQuotePlain, makeHighlightRegionPattern("'"));
 		patterns.put("\n", makeHighlightRegionPattern("\n"));
 	}
 
@@ -135,7 +137,7 @@ public class StringUtils {
 		matcher = patterns.get(doubleQuote).matcher(input);
 		if(matcher.find(0))
 			doubleQuoteStart = matcher.start();
-		matcher = patterns.get(singleQuote).matcher(input);
+		matcher = patterns.get(singleQuoteHTML).matcher(input);
 		if(matcher.find(0))
 			singleQuoteStart = matcher.start();
 		int min = Integer.MAX_VALUE;
@@ -166,7 +168,7 @@ public class StringUtils {
 				res[1] = "<span class=\"string\" >" + res[1] + "</span>";
 				return res;
 			} else if(min == singleQuoteStart) {
-				res = breakApart(input, min, singleQuote.length(), singleQuote);
+				res = breakApart(input, min, singleQuoteHTML.length(), singleQuoteHTML);
 				res[1] = "<span class=\"string\" >" + res[1] + "</span>";
 				return res;
 			}
