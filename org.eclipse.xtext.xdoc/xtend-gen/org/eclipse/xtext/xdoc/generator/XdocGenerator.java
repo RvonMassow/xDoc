@@ -50,11 +50,21 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class XdocGenerator implements IGenerator {
-  @Inject private Utils utils;
-  @Inject private GlossaryExtensions glossaryExtensions;
-  @Inject private EclipseNamingExtensions eclipseNamingExtensions;
-  @Inject private TocGenerator tocGenerator;
-  @Inject private PlainText plainText;
+  
+  @Inject
+  private Utils utils;
+  
+  @Inject
+  private GlossaryExtensions glossaryExtensions;
+  
+  @Inject
+  private EclipseNamingExtensions eclipseNamingExtensions;
+  
+  @Inject
+  private TocGenerator tocGenerator;
+  
+  @Inject
+  private PlainText plainText;
   
   public void doGenerate(final Resource res, final IFileSystemAccess access) throws RuntimeException {
     try {
@@ -165,7 +175,7 @@ public class XdocGenerator implements IGenerator {
       if (section_1 instanceof Chapter) {
         final Chapter section_2 = (Chapter) section_1;
         matched=true;
-        _switchResult = "h2";
+        _switchResult = "h1";
       }
     }
     if (!matched) {
@@ -470,7 +480,7 @@ public class XdocGenerator implements IGenerator {
     _builder.append("/>");
     _builder.newLineIfNotEmpty();
     String _caption = img.getCaption();
-    String _unescapeXdocChars_3 = this.utils==null?(String)null:this.utils.unescapeXdocChars(_caption);
+    String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_caption);
     String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
     _builder.append(_escapeHTMLChars, "");
     _builder.newLineIfNotEmpty();

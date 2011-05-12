@@ -21,6 +21,10 @@ import org.eclipse.xtext.xdoc.generator.*
 import org.eclipse.emf.ecore.EObject
 import java.io.UnsupportedEncodingException
 import com.google.inject.Inject
+import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager
+import org.eclipse.xtext.resource.IResourceDescriptions
+import com.google.inject.internal.Iterables
+import org.eclipse.xtext.xbase.lib.IterableExtensions
 
 
 class XdocGenerator implements IGenerator {
@@ -38,11 +42,6 @@ class XdocGenerator implements IGenerator {
 	@Inject extension PlainText plainText
 
 	override doGenerate(Resource res, IFileSystemAccess access) {
-//		glossary = {
-//			res.allContentsIterable.findFirst(s | s instanceof Glossary) as Glossary
-//		}.glossaryEntry
-		// 
-		//val glossary = res.allContentsIterable.filter(typeof(Glossary)).head.genPlainText
 		try {
 			val aS = (res.contents.head as XdocFile)?.mainSection
 			if(aS instanceof Document) {
@@ -51,11 +50,6 @@ class XdocGenerator implements IGenerator {
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException(e)
 		}
-		// don't want this, rather CharSequence
-//		val ArrayList<StringConcatenation> texts = newArrayList();
-//		for(elem : res.allContentsIterable) {
-//			//texts.add(generate(elem))
-//		}
 	}
 
 	def dispatch generate(Document document, IFileSystemAccess access) {
@@ -63,6 +57,7 @@ class XdocGenerator implements IGenerator {
 		for(c:document.chapters){
 			c.generate(access)
 		}
+		// access.generateFile(document.eResource.URI.lastSegment+".html", generate(document))
 	}
 
 	def dispatch generate(Chapter chapter, IFileSystemAccess access) {
@@ -93,7 +88,7 @@ class XdocGenerator implements IGenerator {
 	
 	def headtag(AbstractSection section) {
 		switch section {
-			Chapter: 'h2'
+			Chapter: "h1"
 			Section: "h2"
 			Section2: "h3"
 			Section3: "h4"
@@ -189,7 +184,7 @@ class XdocGenerator implements IGenerator {
 		«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
 		<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
 		«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
-		«img.caption?.unescapeXdocChars.escapeHTMLChars»
+		«img.caption.unescapeXdocChars.escapeHTMLChars»
 		</div>
 	'''
 

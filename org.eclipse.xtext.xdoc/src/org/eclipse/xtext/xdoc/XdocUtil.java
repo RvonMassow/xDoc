@@ -1,6 +1,7 @@
 package org.eclipse.xtext.xdoc;
 
 import java.util.Collection;
+import java.util.Hashtable;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -89,11 +90,15 @@ public class XdocUtil {
 
 		PolymorphicDispatcher<Integer> hash = PolymorphicDispatcher.createForSingleTarget("_hash", 1, 1, this);
 
-		static private Logger log = Logger.getLogger(Hash.class);
+		private static Logger log = Logger.getLogger(Hash.class);
 
-		protected int hash(Object obj) {
+		private static Hashtable<Object, Integer> cache = new Hashtable<Object, Integer>();
+
+		protected synchronized int hash(Object obj) {
 			try {
-				return hash.invoke(obj);
+				int ret = hash.invoke(obj);
+				cache.clear();
+				return ret;
 			} catch(Exception e) {
 				log.info("Unable to hash "+obj.toString(), e);
 			}
@@ -118,15 +123,15 @@ public class XdocUtil {
 		}
 
 		protected Integer _hash(Section2Ref ref) {
-			return 0;//hash.invoke(ref.getSection2());
+			return hash.invoke(ref.getSection2());
 		}
 
 		protected Integer _hash(SectionRef ref) {
-			return 0;//hash.invoke(ref.getSection());
+			return hash.invoke(ref.getSection());
 		}
 
 		protected Integer _hash(ChapterRef ref) {
-			return 0;//hash.invoke(ref.getChapter());
+			return hash.invoke(ref.getChapter());
 		}
 
 		protected Integer _hash(Identifiable i) {

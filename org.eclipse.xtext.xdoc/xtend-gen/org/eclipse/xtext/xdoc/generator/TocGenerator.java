@@ -16,9 +16,15 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class TocGenerator {
-  @Inject private EclipseNamingExtensions eclipseNamingExtensions;
-  @Inject private PlainText plainText;
-  @Inject private Utils utils;
+  
+  @Inject
+  private EclipseNamingExtensions eclipseNamingExtensions;
+  
+  @Inject
+  private PlainText plainText;
+  
+  @Inject
+  private Utils utils;
   
   public StringConcatenation generateToc(final Document doc) throws UnsupportedEncodingException {
     StringConcatenation _builder = new StringConcatenation();
