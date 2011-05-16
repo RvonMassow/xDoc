@@ -4,7 +4,6 @@ import com.google.inject.Inject;
 import java.util.HashSet;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
@@ -14,6 +13,7 @@ import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
@@ -71,35 +71,28 @@ public class LatexGenerator implements IGenerator {
       if ((element instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
         {
           final Document doc = ((Document) element);
-          Resource _eResource = doc.eResource();
-          URI _uRI = _eResource.getURI();
-          String _lastSegment = _uRI.lastSegment();
-          String _operator_plus = StringExtensions.operator_plus(_lastSegment, ".tex");
+          String _name = doc.getName();
+          String _fileName = this.fileName(_name);
           StringConcatenation _generate = this.generate(doc);
-          fsa.generateFile(_operator_plus, _generate);
+          fsa.generateFile(_fileName, _generate);
         }
       }
     }
   }
   
-  public StringConcatenation doGenerate(final EObject obj, final IFileSystemAccess fsa) {
-    StringConcatenation _xblockexpression = null;
+  public void doGenerate(final EObject obj, final IFileSystemAccess fsa) {
     {
-      if ((obj instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
-        {
-          final Document doc = ((Document) obj);
-          Resource _eResource = doc.eResource();
-          URI _uRI = _eResource.getURI();
-          String _lastSegment = _uRI.lastSegment();
-          String _operator_plus = StringExtensions.operator_plus(_lastSegment, ".tex");
-          StringConcatenation _generate = this.generate(doc);
-          fsa.generateFile(_operator_plus, _generate);
-        }
-      }
-      StringConcatenation _builder = new StringConcatenation();
-      _xblockexpression = (_builder);
+      final Document doc = ((Document) obj);
+      String _name = doc.getName();
+      String _fileName = this.fileName(_name);
+      StringConcatenation _generate = this.generate(doc);
+      fsa.generateFile(_fileName, _generate);
     }
-    return _xblockexpression;
+  }
+  
+  public String fileName(final String name) {
+    String _operator_plus = StringExtensions.operator_plus(name, ".tex");
+    return _operator_plus;
   }
   
   public StringConcatenation _generate(final Document doc) {
@@ -107,9 +100,18 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _preamble = this.preamble();
     _builder.append(_preamble, "");
     _builder.newLineIfNotEmpty();
+    {
+      EList<LangDef> _langDefs = doc.getLangDefs();
+      for(LangDef lang : _langDefs) {
+        StringConcatenation _generate = this.generate(lang);
+        _builder.append(_generate, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     StringConcatenation _configureTodo = this.configureTodo();
     _builder.append(_configureTodo, "");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
     _builder.append("\\usepackage{hyperref}");
     _builder.newLine();
     _builder.newLine();
@@ -128,14 +130,16 @@ public class LatexGenerator implements IGenerator {
     {
       EList<Chapter> _chapters = doc.getChapters();
       for(Chapter chapter : _chapters) {
-        StringConcatenation _generate = this.generate(chapter);
-        _builder.append(_generate, "");
+        _builder.newLine();
+        StringConcatenation _generate_1 = this.generate(chapter);
+        _builder.append(_generate_1, "");
         _builder.newLineIfNotEmpty();
       }
     }
     StringConcatenation _genListOfLinks = this.genListOfLinks();
     _builder.append(_genListOfLinks, "");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
     {
       boolean _release = this.config.release();
       boolean _operator_not = BooleanExtensions.operator_not(_release);
@@ -144,24 +148,30 @@ public class LatexGenerator implements IGenerator {
         _builder.newLine();
       }
     }
-    _builder.append("\\end[document}");
+    _builder.append("\\end{document}");
     _builder.newLine();
     return _builder;
   }
   
   public StringConcatenation genListOfLinks() {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\chapter{List of Links}");
-    _builder.newLine();
-    {
-      for(String link : this.links) {
-        _builder.append("\\url{");
-        _builder.append(link, "");
-        _builder.append("}");
-        _builder.newLineIfNotEmpty();
+    StringConcatenation _xifexpression = null;
+    boolean _isEmpty = this.links.isEmpty();
+    boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+    if (_operator_not) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\\chapter{List of External Links}");
+      _builder.newLine();
+      {
+        for(String link : this.links) {
+          _builder.append("\\noindent\\url{");
+          _builder.append(link, "");
+          _builder.append("}");
+          _builder.newLineIfNotEmpty();
+        }
       }
+      _xifexpression = _builder;
     }
-    return _builder;
+    return _xifexpression;
   }
   
   public StringConcatenation preamble() {
@@ -182,7 +192,6 @@ public class LatexGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("\\usepackage{todonotes}");
     _builder.newLine();
-    _builder.append("%% force more space between subsections!");
     _builder.newLine();
     _builder.append("\\makeatletter");
     _builder.newLine();
@@ -211,7 +220,7 @@ public class LatexGenerator implements IGenerator {
     _builder.append("\\makeatother");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("\\lstset{tabsize=4, basicstyle=\\sffamily\\small, commentstyle=\\textsl, keywordstyle=\\bfseries, columns=[r]fullflexible, escapechar={\u00B0}}");
+    _builder.append("\\lstset{tabsize=4, basicstyle=\\sffamily\\small, commentstyle=\\textsl, keywordstyle=\\bfseries, columns=[r]fullflexible, escapechar={\u00DF}}");
     _builder.newLine();
     _builder.newLine();
     return _builder;
@@ -239,7 +248,7 @@ public class LatexGenerator implements IGenerator {
     _builder.append("  ");
     _builder.append("{morekeywords={");
     EList<String> _keywords = lang.getKeywords();
-    String _join = IterableExtensions.join(_keywords, ",");
+    String _join = IterableExtensions.join(_keywords, ", ");
     _builder.append(_join, "  ");
     _builder.append("},");
     _builder.newLineIfNotEmpty();
@@ -250,7 +259,7 @@ public class LatexGenerator implements IGenerator {
     _builder.append("morecomment=[l]{//},");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("morecomment=[s]{/*}{* /},");
+    _builder.append("morecomment=[s]{/*}{*/},");
     _builder.newLine();
     _builder.append("    ");
     _builder.append("morestring=[b]\",");
@@ -266,29 +275,51 @@ public class LatexGenerator implements IGenerator {
   
   public StringConcatenation authorAndTitle(final Document doc) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\author{");
     {
+      boolean _operator_and = false;
       TextOrMarkup _authors = doc.getAuthors();
-      EList<EObject> _contents = _authors.getContents();
-      for(EObject o : _contents) {
-        StringConcatenation _generate = this.generate(o);
-        _builder.append(_generate, "");
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_authors, null);
+      if (!_operator_notEquals) {
+        _operator_and = false;
+      } else {
+        TextOrMarkup _authors_1 = doc.getAuthors();
+        EList<EObject> _contents = _authors_1.getContents();
+        boolean _isEmpty = _contents.isEmpty();
+        boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+        _operator_and = BooleanExtensions.operator_and(_operator_notEquals, _operator_not);
+      }
+      if (_operator_and) {
+        _builder.append("\\author{");
+        {
+          TextOrMarkup _authors_2 = doc.getAuthors();
+          EList<EObject> _contents_1 = _authors_2.getContents();
+          for(EObject o : _contents_1) {
+            CharSequence _genText = this.genText(o);
+            _builder.append(_genText, "");
+          }
+        }
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("}");
-    _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("\\title{");
     {
       TextOrMarkup _title = doc.getTitle();
-      EList<EObject> _contents_1 = _title.getContents();
-      for(EObject o_1 : _contents_1) {
-        StringConcatenation _generate_1 = this.generate(o_1);
-        _builder.append(_generate_1, "");
+      boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(_title, null);
+      if (_operator_notEquals_1) {
+        _builder.append("\\title{");
+        {
+          TextOrMarkup _title_1 = doc.getTitle();
+          EList<EObject> _contents_2 = _title_1==null?(EList<EObject>)null:_title_1.getContents();
+          for(EObject o_1 : _contents_2) {
+            CharSequence _genText_1 = this.genText(o_1);
+            _builder.append(_genText_1, "");
+          }
+        }
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("}");
-    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -364,31 +395,37 @@ public class LatexGenerator implements IGenerator {
     }
     _builder.append(_switchResult, "");
     _builder.newLineIfNotEmpty();
-    StringConcatenation _switchResult_1 = null;
-    final AbstractSection sec_7 = sec;
-    boolean matched_1 = false;
-    if (!matched_1) {
-      if (sec_7 instanceof Chapter) {
-        final Chapter sec_8 = (Chapter) sec_7;
-        matched_1=true;
-        StringConcatenation _genLabel = this.genLabel(sec_8);
-        _switchResult_1 = _genLabel;
+    StringConcatenation _xifexpression = null;
+    String _name = sec.getName();
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+    if (_operator_notEquals) {
+      StringConcatenation _switchResult_1 = null;
+      final AbstractSection sec_7 = sec;
+      boolean matched_1 = false;
+      if (!matched_1) {
+        if (sec_7 instanceof Chapter) {
+          final Chapter sec_8 = (Chapter) sec_7;
+          matched_1=true;
+          StringConcatenation _genLabel = this.genLabel(sec_8);
+          _switchResult_1 = _genLabel;
+        }
       }
-    }
-    if (!matched_1) {
-      if (sec_7 instanceof Section) {
-        final Section sec_9 = (Section) sec_7;
-        matched_1=true;
-        StringConcatenation _genLabel_1 = this.genLabel(sec_9);
-        _switchResult_1 = _genLabel_1;
+      if (!matched_1) {
+        if (sec_7 instanceof Section) {
+          final Section sec_9 = (Section) sec_7;
+          matched_1=true;
+          StringConcatenation _genLabel_1 = this.genLabel(sec_9);
+          _switchResult_1 = _genLabel_1;
+        }
       }
+      if (!matched_1) {
+        TextOrMarkup _title_5 = sec.getTitle();
+        StringConcatenation _genLabel_2 = this.genLabel(_title_5);
+        _switchResult_1 = _genLabel_2;
+      }
+      _xifexpression = _switchResult_1;
     }
-    if (!matched_1) {
-      TextOrMarkup _title_5 = sec.getTitle();
-      StringConcatenation _genLabel_2 = this.genLabel(_title_5);
-      _switchResult_1 = _genLabel_2;
-    }
-    _builder.append(_switchResult_1, "");
+    _builder.append(_xifexpression, "");
     _builder.newLineIfNotEmpty();
     StringConcatenation _genContent_5 = this.genContent(sec);
     _builder.append(_genContent_5, "");
@@ -403,17 +440,17 @@ public class LatexGenerator implements IGenerator {
       for(TextOrMarkup c : _contents) {
         StringConcatenation _genContent = this.genContent(c);
         _builder.append(_genContent, "");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLineIfNotEmpty();
     {
       EList<Section> _subSections = chap.getSubSections();
       for(Section sub : _subSections) {
-        StringConcatenation _genContent_1 = this.genContent(sub);
-        _builder.append(_genContent_1, "");
-        _builder.newLineIfNotEmpty();
+        StringConcatenation _generate = this.generate(sub);
+        _builder.append(_generate, "");
       }
     }
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -430,8 +467,8 @@ public class LatexGenerator implements IGenerator {
     {
       EList<Section2> _subSections = sec.getSubSections();
       for(Section2 sub : _subSections) {
-        StringConcatenation _genContent_1 = this.genContent(sub);
-        _builder.append(_genContent_1, "");
+        StringConcatenation _generate = this.generate(sub);
+        _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -451,8 +488,8 @@ public class LatexGenerator implements IGenerator {
     {
       EList<Section3> _subSections = sec.getSubSections();
       for(Section3 sub : _subSections) {
-        StringConcatenation _genContent_1 = this.genContent(sub);
-        _builder.append(_genContent_1, "");
+        StringConcatenation _generate = this.generate(sub);
+        _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -464,16 +501,16 @@ public class LatexGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(TextOrMarkup c : _contents) {
-        StringConcatenation _genContent = this.genContent(c);
-        _builder.append(_genContent, "");
+        StringConcatenation _generate = this.generate(c);
+        _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       EList<Section4> _subSections = sec.getSubSections();
       for(Section4 sub : _subSections) {
-        StringConcatenation _genContent_1 = this.genContent(sub);
-        _builder.append(_genContent_1, "");
+        StringConcatenation _generate_1 = this.generate(sub);
+        _builder.append(_generate_1, "");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -500,7 +537,6 @@ public class LatexGenerator implements IGenerator {
       for(EObject e : _contents) {
         CharSequence _genText = this.genText(e);
         _builder.append(_genText, "");
-        _builder.newLineIfNotEmpty();
       }
     }
     return _builder;
@@ -591,7 +627,7 @@ public class LatexGenerator implements IGenerator {
     EList<TableRow> _rows = tab.getRows();
     TableRow _head = IterableExtensions.<TableRow>head(_rows);
     EList<TableData> _data = _head.getData();
-    String _genColumns = this.genColumns(_data);
+    StringConcatenation _genColumns = this.genColumns(_data);
     _builder.append(_genColumns, "");
     _builder.append("}");
     _builder.newLineIfNotEmpty();
@@ -876,6 +912,7 @@ public class LatexGenerator implements IGenerator {
       _xifexpression = _builder;
     } else {
       StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.newLine();
       _builder_1.append("\\begin{lstlisting}");
       LangDef _language_1 = block.getLanguage();
       StringConcatenation _langSpec_1 = this==null?(StringConcatenation)null:this.langSpec(_language_1);
@@ -899,12 +936,32 @@ public class LatexGenerator implements IGenerator {
     return _xifexpression;
   }
   
+  public StringConcatenation test(final CodeBlock foo) {
+    StringConcatenation _xifexpression = null;
+    boolean _inline = LatexUtils.inline(foo);
+    if (_inline) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("foo");
+      LangDef _language = foo.getLanguage();
+      String _string = _language==null?(String)null:_language.toString();
+      _builder.append(_string, "");
+      _builder.append("bar");
+      _xifexpression = _builder;
+    }
+    return _xifexpression;
+  }
+  
   public StringConcatenation langSpec(final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("[language=");
-    String _name = lang.getName();
-    _builder.append(_name, "");
-    _builder.append("]");
+    {
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(lang, null);
+      if (_operator_notEquals) {
+        _builder.append("[language=");
+        String _name = lang.getName();
+        _builder.append(_name, "");
+        _builder.append("]");
+      }
+    }
     return _builder;
   }
   
@@ -931,17 +988,27 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public String genColumns(final EList<TableData> tabData) {
+  public StringConcatenation genColumns(final List<TableData> tabData) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("|p{");
-    XFloat _xFloat = new XFloat(1);
-    int _size = tabData.size();
-    XFloat _xFloat_1 = new XFloat(_size);
-    XFloat _operator_divide = _xFloat.operator_divide(_xFloat_1);
-    _builder.append(_operator_divide, "");
-    _builder.append("\\textwidth}");
-    String _join = IterableExtensions.join(tabData, _builder);
-    return _join;
+    {
+      boolean _isEmpty = tabData.isEmpty();
+      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+      if (_operator_not) {
+        _builder.append("|");
+        {
+          for(TableData td : tabData) {
+            _builder.append("p{");
+            XFloat _xFloat = new XFloat(1);
+            int _size = tabData.size();
+            XFloat _xFloat_1 = new XFloat(_size);
+            XFloat _operator_divide = _xFloat.operator_divide(_xFloat_1);
+            _builder.append(_operator_divide, "");
+            _builder.append("\\textwidth}|");
+          }
+        }
+      }
+    }
+    return _builder;
   }
   
   public StringConcatenation generate(final EObject doc) {

@@ -48,6 +48,9 @@ import org.eclipse.xtext.xdoc.generator.util.LatexUtils
 import org.eclipse.xtext.xdoc.generator.util.XFloat
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 import java.util.HashSet
+import java.io.File
+import java.util.Map
+import java.util.List
 
 class LatexGenerator implements IGenerator{
 
@@ -59,22 +62,33 @@ class LatexGenerator implements IGenerator{
 		for(element: resource.allContentsIterable) {
 			if(element instanceof Document) {
 				val doc = element as Document				
-				fsa.generateFile(doc.eResource.URI.lastSegment+".tex", doc.generate)
+				fsa.generateFile(
+					doc.name.fileName, 
+					doc.generate)
 			}
 		}
 	}
 
 	def doGenerate(EObject obj, IFileSystemAccess fsa) {
-		if (obj instanceof Document){
-			val doc = obj as Document; 
-			fsa.generateFile(doc.eResource.URI.lastSegment+".tex", doc.generate)
-		}
-		''''''
+//		if (obj instanceof Document) {
+		val doc = obj as Document; 
+		fsa.generateFile(doc.name.fileName, doc.generate)
+//		}
 	}
 
+	def fileName(String name) {
+		// System::getProperty("user.dir") + File::separatorChar + 
+		//	"src-gen"+ File::separatorChar + 
+		name +".tex"
+	}
+	
 	def dispatch generate(Document doc) '''
 		«preamble»
+		«FOR lang: doc.langDefs»
+			«lang.generate»
+		«ENDFOR»
 		«configureTodo»
+		
 		\usepackage{hyperref}
 		
 		\newlength{\itemindentlen}
@@ -84,21 +98,26 @@ class LatexGenerator implements IGenerator{
 		\maketitle
 		\tableofcontents
 		«FOR chapter: doc.chapters»
+			
 			«chapter.generate»
 		«ENDFOR»
 		«genListOfLinks»
+		
 		«IF !config.release»
 			\listoftodos
 		«ENDIF»
-		\end[document}
+		\end{document}
 	'''
 
-	def genListOfLinks() '''
-		\chapter{List of Links}
-		«FOR link: links»
-			\url{«link»}
-		«ENDFOR»
-	'''
+	def genListOfLinks() {
+		if(!links.empty)
+			'''
+				\chapter{List of External Links}
+				«FOR link: links»
+					\noindent\url{«link»}
+				«ENDFOR»
+			'''
+	}
 
 	def preamble() '''
 		\documentclass[a4paper]{scrreprt}
@@ -110,7 +129,7 @@ class LatexGenerator implements IGenerator{
 		\usepackage[american]{babel}
 		
 		\usepackage{todonotes}
-		%% force more space between subsections!
+		
 		\makeatletter
 		\renewcommand\subsection{\medskip\@startsection{subsection}{2}{\z@}%
 		  {-.25ex\@plus -.1ex \@minus -.2ex}%
@@ -122,7 +141,7 @@ class LatexGenerator implements IGenerator{
 		}
 		\makeatother
 		
-		\lstset{tabsize=4, basicstyle=\sffamily\small, commentstyle=\textsl, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={°}}
+		\lstset{tabsize=4, basicstyle=\sffamily\small, commentstyle=\textsl, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={ß}}
 		
 	'''
 
@@ -137,10 +156,10 @@ class LatexGenerator implements IGenerator{
 
 	def dispatch generate(LangDef lang) '''
 		\lstdefinelanguage{«lang.name»}
-		  {morekeywords={«lang.keywords.join(",")»},
+		  {morekeywords={«lang.keywords.join(", ")»},
 		    sensitive=true,
 		    morecomment=[l]{//},
-		    morecomment=[s]{/*}{* /},
+		    morecomment=[s]{/*}{*/},
 		    morestring=[b]",
 		    morestring=[b]',
 		  }
@@ -148,9 +167,13 @@ class LatexGenerator implements IGenerator{
 
 	def authorAndTitle(Document doc) {
 		'''
-		\author{«FOR o : doc.authors.contents»«o.generate»«ENDFOR»}
+		«IF doc.authors != null && !doc.authors.contents.empty»
+			\author{«FOR o : doc.authors.contents»«o.genText»«ENDFOR»}
+		«ENDIF»
 		
-		\title{«FOR o : doc.title.contents»«o.generate»«ENDFOR»}
+		«IF doc.title != null»
+			\title{«FOR o : doc.title?.contents»«o.genText»«ENDFOR»}
+		«ENDIF»
 		'''
 	}
 
@@ -173,36 +196,33 @@ class LatexGenerator implements IGenerator{
 			Section4:
 				'''\paragraph{«sec.title.genContent»}'''	
 		}»
-		«switch (sec) {
+		«if(sec.name != null)
+			switch (sec) {
 				Chapter:
 					sec.genLabel
 				Section:
 					sec.genLabel
 				default:
 					sec.title.genLabel				
-		}»
+			}»
 		«sec.genContent»
 		'''
 	}
 
 	def dispatch genContent(Chapter chap){
 		'''
-		«FOR c : chap.contents»
-			«c.genContent»
-		«ENDFOR»
-		«FOR sub : chap.subSections»
-			«sub.genContent»
-		«ENDFOR»
+		«FOR c : chap.contents»«c.genContent»«ENDFOR»
+		«FOR sub : chap.subSections»«sub.generate»«ENDFOR»
 		'''
 	}
 
 	def dispatch genContent(Section sec){
 		'''
 		«FOR c : sec.contents»
-		«c.genContent»
+			«c.genContent»
 		«ENDFOR»
 		«FOR sub : sec.subSections»
-		«sub.genContent»
+			«sub.generate»
 		«ENDFOR»
 		'''
 	}
@@ -210,10 +230,10 @@ class LatexGenerator implements IGenerator{
 	def dispatch genContent(Section2 sec){
 		'''
 		«FOR c : sec.contents»
-		«c.genContent»
+			«c.genContent»
 		«ENDFOR»
 		«FOR sub : sec.subSections»
-		«sub.genContent»
+			«sub.generate»
 		«ENDFOR»
 		'''
 	}
@@ -221,10 +241,10 @@ class LatexGenerator implements IGenerator{
 	def dispatch genContent(Section3 sec){
 		'''
 		«FOR c : sec.contents»
-		«c.genContent»
+			«c.generate»
 		«ENDFOR»
 		«FOR sub : sec.subSections»
-		«sub.genContent»
+			«sub.generate»
 		«ENDFOR»
 		'''
 	}
@@ -232,17 +252,13 @@ class LatexGenerator implements IGenerator{
 	def dispatch genContent(Section4 sec){
 		'''
 		«FOR c : sec.contents»
-		«c.genContent»
+			«c.genContent»
 		«ENDFOR»
 		'''
 	}
 
 	def dispatch genContent(TextOrMarkup tom){
-		'''
-		«FOR e : tom.contents»
-		«e.genText»
-		«ENDFOR»
-		'''
+		'''«FOR e : tom.contents»«e.genText»«ENDFOR»'''
 	}
 
 	/**
@@ -251,7 +267,7 @@ class LatexGenerator implements IGenerator{
 	def genNonParContent(TextOrMarkup tom){
 		'''
 		«FOR e : tom.contents»
-		«e.genText»
+			«e.genText»
 		«ENDFOR»
 		'''
 	}
@@ -399,14 +415,23 @@ class LatexGenerator implements IGenerator{
 	 		'''\lstinline«block.language?.langSpec»°«block.contents.map([e|e.genCode]).join»°'''
 	 	else
 			'''
+				
 				\begin{lstlisting}«block.language?.langSpec»
 				«block.contents.map([e|e.genCode]).join»
 				\end{lstlisting}
 			'''
 	}
 
-	def langSpec(LangDef lang) 
-		'''[language=«lang.name»]'''
+	def test(CodeBlock foo) {
+		if(foo.inline)
+			'''foo«foo.language?.toString»bar'''
+	}
+
+	// see Bug 345934
+	def langSpec(LangDef lang) {
+		'''«IF lang != null»[language=«lang.name»]«ENDIF»'''
+	}
+
 	/**
 	 * genCode
 	 */
@@ -425,7 +450,8 @@ class LatexGenerator implements IGenerator{
 	/**
 	 * genColumns
 	 */
-	 def genColumns(EList<TableData> tabData){
-	 	tabData.join('''|p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''')
+	 def genColumns(List<TableData> tabData){
+	 	'''«IF !tabData.empty»|«FOR td: tabData»p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}|«ENDFOR»«ENDIF»'''
+//	 	tabData.join('''p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''', "|")
 	 }
 }
