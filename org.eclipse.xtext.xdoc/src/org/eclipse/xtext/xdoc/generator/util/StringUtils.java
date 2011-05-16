@@ -5,7 +5,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -101,13 +100,15 @@ public class StringUtils {
 	 * @return the string with keywords highlighted
 	 */
 	static public String highlightKeywords(String text, final LangDef lang){
-		if(lang != null && text != null){
-			List<String> keywords = lang.getKeywords();
+		if(text != null){
 			StringBuilder result = new StringBuilder();
 			String[] toks;
 			do{
 				toks = splitToNext(text);
-				result.append(addHighlighting(keywords, toks[0]));
+				if(lang != null)
+					result.append(addHighlighting(lang, toks[0]));
+				else
+					result.append(toks[0]);
 				switch(toks.length){
 				case 3:
 					text = toks[2];
@@ -191,8 +192,8 @@ public class StringUtils {
 		return new String[]{ret[0], ret[1]};
 	}
 
-	private static String addHighlighting(List<String> keywords, String text) {
-		for (String keyword : keywords) {
+	private static String addHighlighting(LangDef lang, String text) {
+		for (String keyword : lang.getKeywords()) {
 			if(keyword.trim().equals("class")){
 				text = text.replaceAll("(?<!<span )" + makeKeywordRegex(keyword.trim()) + "(?!\\=\"keyword\">)",
 						"<span class=\"keyword\">" + keyword.trim() + "</span>");
