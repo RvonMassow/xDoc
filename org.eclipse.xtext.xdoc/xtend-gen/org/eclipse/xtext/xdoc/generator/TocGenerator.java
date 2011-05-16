@@ -28,6 +28,8 @@ public class TocGenerator {
   
   public StringConcatenation generateToc(final Document doc) throws UnsupportedEncodingException {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?>");
+    _builder.newLine();
     _builder.append("<toc topic=\"contents/");
     EList<Chapter> _chapters = doc.getChapters();
     Chapter _head = IterableExtensions.<Chapter>head(_chapters);

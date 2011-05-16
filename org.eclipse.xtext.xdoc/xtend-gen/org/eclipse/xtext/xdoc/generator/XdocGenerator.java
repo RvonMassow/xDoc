@@ -110,6 +110,8 @@ public class XdocGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("<head>");
     _builder.newLine();
+    _builder.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" >");
+    _builder.newLine();
     _builder.append("<title>");
     TextOrMarkup _title = aS.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);

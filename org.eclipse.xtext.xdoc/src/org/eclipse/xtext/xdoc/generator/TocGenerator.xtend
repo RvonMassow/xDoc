@@ -11,6 +11,7 @@ class TocGenerator {
 	@Inject extension Utils utils
 
 	def generateToc(Document doc) '''
+		<?xml version="1.0" encoding="ISO-8859-1" ?>
 		<toc topic="contents/«doc.chapters.head.fileName»" label="«doc.title.genPlainText»" >
 			«FOR c:doc.chapters»
 				«c.genTocEntry»

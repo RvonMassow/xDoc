@@ -67,6 +67,7 @@ class XdocGenerator implements IGenerator {
 	def dispatch generate(Chapter aS) '''
 		<html>
 		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
 		<title>«aS.title.genPlainText»</title>
 		
 		<link href="book.css" rel="stylesheet" type="text/css">
