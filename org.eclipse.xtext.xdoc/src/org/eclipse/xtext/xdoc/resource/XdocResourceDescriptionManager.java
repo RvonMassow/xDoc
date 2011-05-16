@@ -27,9 +27,11 @@ public class XdocResourceDescriptionManager extends DefaultResourceDescriptionMa
 	@Override
 	public boolean isAffected(Collection<Delta> deltas,
 			IResourceDescription candidate, IResourceDescriptions context) {
-		Iterable<IEObjectDescription> desc = candidate.getExportedObjectsByType(XdocPackage.Literals.DOCUMENT);
-		if(super.isAffected(deltas, candidate, context) || desc.iterator().hasNext())
+		if(!candidate.getURI().lastSegment().endsWith(".xdoc"))
+			return false;
+		if(super.isAffected(deltas, candidate, context) || candidate.getExportedObjectsByType(XdocPackage.Literals.DOCUMENT).iterator().hasNext()){
 			return true;
+		}
 		Collection<IResourceDescription> deltaDescriptions = Collections2.transform(deltas, new Function<Delta, IResourceDescription>(){
 			public IResourceDescription apply(Delta from) {
 				return from.getNew() != null? from.getNew(): from.getOld();
