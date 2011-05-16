@@ -8,13 +8,6 @@
 
 \usepackage{todonotes}
 
-
-
-
-%%\usepackage{helvet}
-
-
-%% force more space between subsections!
 \makeatletter
 \renewcommand\subsection{\medskip\@startsection{subsection}{2}{\z@}%
   {-.25ex\@plus -.1ex \@minus -.2ex}%
@@ -26,27 +19,24 @@
 }
 \makeatother
 
-\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={ß}}
+\lstset{tabsize=4, basicstyle=\sffamily\small, commentstyle=\textsl, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={ß}}
 
-%%\usepackage[english]{babel}
 
-% import this as last package
 \usepackage{hyperref}
 
 \newlength{\itemindentlen}
-\author{}
-\title{Foo Title}
 
+\title{Foo Title}
 
 \begin{document}
 \maketitle
 \tableofcontents
+
 \chapter{Dummy Title}
 \label{id}
+Some content \phantomsection\label{anchor}
 
-Some content \phantomsection\label{anchor}\chapter{Dummy Title}
-
-
+\chapter{Dummy Title}
 More content with ref to \hyperref[id]{the other chapter~(§\ref*{id})} and \hyperref[anchor]{an anchor~(§\ref*{anchor})}
 
 \listoftodos

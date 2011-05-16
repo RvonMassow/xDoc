@@ -41,6 +41,7 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 	protected void setUp() throws Exception {
 		super.setUp();
 		with(new XdocStandaloneSetup());
+		getInjector().injectMembers(this);
 		this.pTest = new ParserTest();
 		this.pTest.setUp();
 

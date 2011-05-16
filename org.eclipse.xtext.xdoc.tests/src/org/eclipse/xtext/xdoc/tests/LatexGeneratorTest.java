@@ -1,10 +1,11 @@
 package org.eclipse.xtext.xdoc.tests;
 
-import java.util.Map;
+import java.io.File;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xpand2.XpandFacade;
-import org.eclipse.xtend.expression.Variable;
+import org.eclipse.xtext.generator.AbstractFileSystemAccess;
+import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
+import org.eclipse.xtext.xdoc.generator.LatexGenerator;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
@@ -13,12 +14,23 @@ import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
+import com.google.inject.Inject;
+
 public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
 
+	@Inject
+	LatexGenerator gen;
 
 	public void testSimpleDoc() throws Exception {
 		Document doc = initDoc("Simple Doc");
 		generate(doc);
+	}
+
+	@Override
+	public void testFullHirarchy() throws Exception {
+		Document doc = initDocFromFile("downToSection4Test", "downToSection4Test.xdoc");
+		generate(doc);
+		validate(EXPECTATION_DIR + "fullHirarchy.tex", RESULT_DIR + "foo.tex");
 	}
 
 	@Override
@@ -112,13 +124,6 @@ public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
 		validate(EXPECTATION_DIR + "twoChapters.tex", RESULT_DIR + "Foo Title.tex");
 	}
 
-	@Override
-	public void testFullHirarchy() throws Exception {
-		Document doc = initDocFromFile("downToSection4Test", "downToSection4Test.xdoc");
-		generate(doc);
-		validate(EXPECTATION_DIR + "fullHirarchy.tex", RESULT_DIR + "foo.tex");
-	}
-
 	private Document initDocFromFile(String string, String filename) throws Exception {
 		XdocFile file = pTest.getDocFromFile(SRC_DIR + filename);
 		AbstractSection mainSection = file.getMainSection();
@@ -148,11 +153,14 @@ public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
 	}
 
 	private void generate(EObject obj, String release) {
-		Map<String, Variable> vars = getXpandCtx().getGlobalVariables();
-		Variable var = new Variable("release", release);
-		vars.put("release", var);
-		XpandFacade.create(getXpandCtx()).evaluate(
-				"templates::Template::main", obj);
+		AbstractFileSystemAccess fsa = new JavaIoFileSystemAccess();
+		fsa.setOutputPath(System.getProperty("user.dir")+File.separatorChar+"test-gen");
+		gen.doGenerate(obj, fsa);
+//		Map<String, Variable> vars = getXpandCtx().getGlobalVariables();
+//		Variable var = new Variable("release", release);
+//		vars.put("release", var);
+//		XpandFacade.create(getXpandCtx()).evaluate(
+//				"templates::Template::main", obj);
 	}
 
 }
