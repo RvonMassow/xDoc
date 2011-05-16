@@ -4,6 +4,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.xtext.builder.JavaProjectBasedBuilderParticipant;
 
 public class XdocJavaBasedProjectBuilder extends JavaProjectBasedBuilderParticipant {
@@ -17,5 +18,11 @@ public class XdocJavaBasedProjectBuilder extends JavaProjectBasedBuilderParticip
 	public void build(IBuildContext context, IProgressMonitor monitor)
 			throws CoreException {
 		super.build(context, monitor);
+	}
+
+	@Override
+	protected boolean isValidOutputFolder(IJavaProject javaProject,
+			IFolder srcGenFolder) {
+		return srcGenFolder.exists();
 	}
 }
