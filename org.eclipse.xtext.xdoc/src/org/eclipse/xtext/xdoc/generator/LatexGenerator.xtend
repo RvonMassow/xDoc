@@ -47,13 +47,14 @@ import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils
 import org.eclipse.xtext.xdoc.generator.util.XFloat
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
+import java.util.HashSet
 
 class LatexGenerator implements IGenerator{
-	
+
 	@Inject extension Utils utils
 	@Inject GeneratorConfig config
-	@Inject Set<String> links
-	
+	@Inject HashSet<String> links
+
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(element: resource.allContentsIterable) {
 			if(element instanceof Document) {
@@ -62,7 +63,7 @@ class LatexGenerator implements IGenerator{
 			}
 		}
 	}
-	
+
 	def doGenerate(EObject obj, IFileSystemAccess fsa) {
 		if (obj instanceof Document){
 			val doc = obj as Document; 
@@ -70,9 +71,8 @@ class LatexGenerator implements IGenerator{
 		}
 		''''''
 	}
-	
-	def dispatch generate(Document doc)
-		'''
+
+	def dispatch generate(Document doc) '''
 		«preamble»
 		«configureTodo»
 		\usepackage{hyperref}
@@ -84,22 +84,23 @@ class LatexGenerator implements IGenerator{
 		\maketitle
 		\tableofcontents
 		«FOR chapter: doc.chapters»
-		«chapter.generate»
+			«chapter.generate»
 		«ENDFOR»
 		«genListOfLinks»
 		«IF !config.release»
-		\listoftodos
+			\listoftodos
 		«ENDIF»
 		\end[document}
-		'''
+	'''
 
 	def genListOfLinks() '''
 		\chapter{List of Links}
 		«FOR link: links»
-		\url{«link»}
+			\url{«link»}
 		«ENDFOR»
 	'''
-		def preamble() '''
+
+	def preamble() '''
 		\documentclass[a4paper]{scrreprt}
 		
 		\usepackage[T1]{fontenc}
@@ -123,7 +124,7 @@ class LatexGenerator implements IGenerator{
 		
 		\lstset{tabsize=4, basicstyle=\sffamily\small, commentstyle=\textsl, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={°}}
 		
-		'''
+	'''
 
 	// TODO: migrate to generate
 	def configureTodo() {
@@ -152,13 +153,12 @@ class LatexGenerator implements IGenerator{
 		\title{«FOR o : doc.title.contents»«o.generate»«ENDFOR»}
 		'''
 	}
-	
+
 	/**
 	 * genContent
 	 * 
 	 * Generates the content for the single structures. 
 	 */
-	
 	def dispatch generate(AbstractSection sec){
 		'''
 		«switch (sec){
@@ -172,7 +172,7 @@ class LatexGenerator implements IGenerator{
 				'''\subsubsection{«sec.title.genContent»}'''	
 			Section4:
 				'''\paragraph{«sec.title.genContent»}'''	
-			}»
+		}»
 		«switch (sec) {
 				Chapter:
 					sec.genLabel
@@ -180,20 +180,22 @@ class LatexGenerator implements IGenerator{
 					sec.genLabel
 				default:
 					sec.title.genLabel				
-			}»
+		}»
 		«sec.genContent»
 		'''
 	}
+
 	def dispatch genContent(Chapter chap){
 		'''
 		«FOR c : chap.contents»
-		«c.genContent»
+			«c.genContent»
 		«ENDFOR»
 		«FOR sub : chap.subSections»
-		«sub.genContent»
+			«sub.genContent»
 		«ENDFOR»
 		'''
 	}
+
 	def dispatch genContent(Section sec){
 		'''
 		«FOR c : sec.contents»
@@ -204,6 +206,7 @@ class LatexGenerator implements IGenerator{
 		«ENDFOR»
 		'''
 	}
+
 	def dispatch genContent(Section2 sec){
 		'''
 		«FOR c : sec.contents»
@@ -214,6 +217,7 @@ class LatexGenerator implements IGenerator{
 		«ENDFOR»
 		'''
 	}
+
 	def dispatch genContent(Section3 sec){
 		'''
 		«FOR c : sec.contents»
@@ -224,6 +228,7 @@ class LatexGenerator implements IGenerator{
 		«ENDFOR»
 		'''
 	}
+
 	def dispatch genContent(Section4 sec){
 		'''
 		«FOR c : sec.contents»
@@ -231,7 +236,7 @@ class LatexGenerator implements IGenerator{
 		«ENDFOR»
 		'''
 	}
-	
+
 	def dispatch genContent(TextOrMarkup tom){
 		'''
 		«FOR e : tom.contents»
@@ -239,8 +244,7 @@ class LatexGenerator implements IGenerator{
 		«ENDFOR»
 		'''
 	}
-	
-	
+
 	/**
 	 * genNonParContent
 	 */
@@ -251,6 +255,7 @@ class LatexGenerator implements IGenerator{
 		«ENDFOR»
 		'''
 	}
+
 	/**
 	 * genLabel
 	 * Generates a label
@@ -258,69 +263,63 @@ class LatexGenerator implements IGenerator{
 	def dispatch genLabel(ChapterRef cRef){
 		'''\label{«cRef.chapter.name?.toString»}'''
 	}
-	
+
 	def dispatch genLabel(Chapter chap){
 		'''\label{«chap.name?.toString»}'''
 	}
-	
+
 	def dispatch genLabel(SectionRef sRef){
 		'''\label{«sRef.section.name?.toString»}'''
 	}
-	
+
 	def dispatch genLabel(Section2Ref sRef){
 		'''\label{«sRef.section2.name?.toString»}'''
 	}
-	
+
 	def dispatch genLabel(Section sec){
 		'''\label{«sec.name?.toString»}'''
 	}
 	def dispatch genLabel(TextOrMarkup tom){
 		''''''
 	}
-	
+
 	/**
 	 * genUrl
 	 */
 	 def genURL(String str){
 	 	'''\noindent\url{«str»}'''
 	 }
-	
-	
-	
+
 	/**
 	 * genText
 	 */
-	def dispatch genText(Table tab){
-		'''
+	def dispatch genText(Table tab) '''
 		\noindent\begin{tabular}{«tab.rows.head.data.genColumns»}
 		«tab.rows.map([e | e.genText]).join("\\\\\n")»
 		\end{tabular}
-		'''
-	}
+	'''
 
 	def dispatch genText(TableRow row){
 		row.data.map([e|e.genText]).join(" & ")
 	}
-	
+
 	def dispatch genText(TableData tData){
 		tData.contents.map([e|e.genContent]).join
 	}
-	
+
 	def dispatch genText(TextPart part){
 		part.text.unescapeXdocChars.escapeLatexChars
 	}
-	
-	def dispatch genText(OrderedList ol){
-		'''
+
+	def dispatch genText(OrderedList ol) '''
 		\setlength{\itemindentlen}{\textwidth}
 		\begin{enumerate}
 		\addtolength{\itemindentlen}{-2.5em}
 		«ol.items.map([e | e.genText]).join»
 		\end{enumerate}
 		\addtolength{\itemindentlen}{2.5em}
-		'''
-	}
-	
+	'''
+
 	def dispatch genText(UnorderedList ul){
 		'''
 		\setlength{\itemindentlen}{\textwidth}
@@ -331,6 +330,7 @@ class LatexGenerator implements IGenerator{
 		\addtolength{\itemindentlen}{2.5em}
 		'''
 	}
+
 	def dispatch genText(Item item){
 		'''
 		\item \begin{minipage}[t]{\itemindentlen}«IF item.contents.head.block»\vspace*{-\baselineskip}«ENDIF»
@@ -338,31 +338,32 @@ class LatexGenerator implements IGenerator{
 		\end{minipage}
 		'''	
 	}
-	
+
 	def dispatch genText(Emphasize em){
 		'''\textit{«em.contents.map([e|e.genContent]).join»}'''
 	}
-	
+
 	def dispatch genText(Ref ref){
 		'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genContent]).join»~(§\ref*{«ref.ref.name»})}«ENDIF»'''
 	}
-	
+
 	def dispatch genText(Anchor anchor) {
 		'''\phantomsection\label{«anchor.name»}'''
 	}
-	
+
 	def dispatch genText(Link link){
-		'''\href{«link.url»}{«link.text»}«links.add(link.url)»'''
+		links.add(link.url)
+		'''\href{«link.url»}{«link.text»}'''
 	}
-	
+
 	def dispatch genText(CodeBlock block){
 		block.removeIndent.specialGenCode
 	}
-	
+
 	def dispatch genText(CodeRef codeRef){
 		'''\lstinline°«codeRef.element.qualifiedName.unescapeXdocChars.escapeLatexChars»°'''
 	}
-	
+
 	def dispatch genText(ImageRef imgRef){
 		/*
 		* TODO:
@@ -370,55 +371,61 @@ class LatexGenerator implements IGenerator{
 		*/
 		''''''
 	}
+
 	def dispatch genText(Todo todo){
 		'''\todo[inline]{«todo.text.unescapeXdocChars.escapeLatexChars»}'''
 	}
-	
+
 	def dispatch genText(MarkupInCode mic){
 		''''''
 	}
-	
+
 	def dispatch genText(String str){
 		str
 	}
-	
+
 	def dispatch genText(EObject o){
 		//throw new UnsupportedOperationException("genText")
 		''''''
 	}
-	
+
 	/**
 	 * specialGenCode
 	 * 
 	 * TODO: block.language != null  should be  language != null  
 	 */
-	 def specialGenCode(CodeBlock block){
-	 	'''
-	 	«IF block.inline»\lstinline«IF block.language!=null»[language=«block.language.name»]«ENDIF»°«block.contents.map([e|e.genCode]).join»°«ELSE»\begin{lstlisting}«IF block.language!=null»[language=«block.language.name»]«ENDIF»
-		«block.contents.map([e|e.genCode]).join»
-		\end{lstlisting}
-		«ENDIF»
-		'''
-	 }
-	 
-	 /**
-	  * genCode
-	  */
-	  def dispatch genCode(Code code){
-	  	code.contents.unescapeXdocChars.prepareListingsString
-	  }
-	  def dispatch genCode(MarkupInCode mic){
-	  	'''«lstEscapeToTex()»«mic.genText»«lstEscapeToTex()»'''
-	  	}
-	  def dispatch genCode(Object o){
-	  	''''''	  	
-	  }
+	 def specialGenCode(CodeBlock block) {
+		if(block.inline)
+	 		'''\lstinline«block.language?.langSpec»°«block.contents.map([e|e.genCode]).join»°'''
+	 	else
+			'''
+				\begin{lstlisting}«block.language?.langSpec»
+				«block.contents.map([e|e.genCode]).join»
+				\end{lstlisting}
+			'''
+	}
+
+	def langSpec(LangDef lang) 
+		'''[language=«lang.name»]'''
+	/**
+	 * genCode
+	 */
+	def dispatch genCode(Code code){
+		code.contents.unescapeXdocChars.prepareListingsString
+	}
+
+	def dispatch genCode(MarkupInCode mic){
+		'''«lstEscapeToTex()»«mic.genText»«lstEscapeToTex()»'''
+	}
+
+	def dispatch genCode(Object o){
+		''''''	  	
+	}
+
 	/**
 	 * genColumns
 	 */
 	 def genColumns(EList<TableData> tabData){
 	 	tabData.join('''|p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''')
 	 }
-	 
-	 	  
 }
