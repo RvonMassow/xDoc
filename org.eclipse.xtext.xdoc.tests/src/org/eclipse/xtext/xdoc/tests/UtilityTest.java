@@ -128,4 +128,10 @@ public class UtilityTest extends TestCase {
 		String code = utils.formatCode("/* mein foo ist bar nicht baz.", null);
 		assertEquals("/*&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.", code);
 	}
+	
+	public void testFormatCode_05() throws Exception {
+		final Utils utils = new Utils();
+		String code = utils.formatCode("'\\[mein\\]'", null);
+		assertEquals("<span class=\"string\">'\\[mein\\]'</span>", code);
+	}
 }

@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g 2011-05-18 15:25:24
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g 2011-05-18 20:16:26
 
 package org.eclipse.xtext.xdoc.generator.util.lexer;
 
@@ -117,10 +117,10 @@ public class Common extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:8: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) ) )
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
+            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:8: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) ) )
+            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
             {
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
+            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -138,10 +138,10 @@ public class Common extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:11: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:11: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:15: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:15: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -157,10 +157,10 @@ public class Common extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:16: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:16: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
-                    	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
+                    	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||(input.LA(1)>='[' && input.LA(1)<=']')||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
                     	        input.consume();
 
                     	    }
@@ -173,7 +173,7 @@ public class Common extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:57: ~ ( ( '\\\\' | '\"' ) )
+                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:65: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -198,10 +198,10 @@ public class Common extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:77: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF )
+                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:85: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF )
                     {
                     match('\''); 
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:82: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:90: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -217,10 +217,10 @@ public class Common extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:83: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' )
+                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:91: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
-                    	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
+                    	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||(input.LA(1)>='[' && input.LA(1)<=']')||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
                     	        input.consume();
 
                     	    }
@@ -233,7 +233,7 @@ public class Common extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:124: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:140: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -253,7 +253,7 @@ public class Common extends Lexer {
                         }
                     } while (true);
 
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:141: ( '\\'' | EOF )
+                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:157: ( '\\'' | EOF )
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -264,14 +264,14 @@ public class Common extends Lexer {
                         alt5=2;}
                     switch (alt5) {
                         case 1 :
-                            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:142: '\\''
+                            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:158: '\\''
                             {
                             match('\''); 
 
                             }
                             break;
                         case 2 :
-                            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:149: EOF
+                            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:165: EOF
                             {
                             match(EOF); 
 
