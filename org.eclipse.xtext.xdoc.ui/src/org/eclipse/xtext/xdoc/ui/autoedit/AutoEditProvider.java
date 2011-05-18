@@ -80,14 +80,14 @@ public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 	@Override
 	protected void configureSquareBrackets(IEditStrategyAcceptor acceptor) {
 		acceptor.accept(singleLineTerminals.newInstance("[", "]"),IDocument.DEFAULT_CONTENT_TYPE);
-		MultiLineTerminalsEditStrategy newInstance = multiLineTerminals.newInstance("[", null, "]");
-		newInstance.setDocumentUtil(new DocumentUtil(){
-			@Override
-			protected String preProcessSearchString(String string) {
-				return string.replace("\\[", "  ").replace("\\]", "  ");
-			}
-		});
-		acceptor.accept(newInstance,IDocument.DEFAULT_CONTENT_TYPE);
+//		MultiLineTerminalsEditStrategy newInstance = multiLineTerminals.newInstance("[", null, "]");
+//		newInstance.setDocumentUtil(new DocumentUtil(){
+//			@Override
+//			protected String preProcessSearchString(String string) {
+//				return string.replace("\\[", "  ").replace("\\]", "  ");
+//			}
+//		});
+//		acceptor.accept(newInstance,IDocument.DEFAULT_CONTENT_TYPE);
 	}
 
 	@Override
