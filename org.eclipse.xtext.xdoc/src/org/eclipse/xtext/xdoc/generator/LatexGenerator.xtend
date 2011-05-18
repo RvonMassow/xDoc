@@ -372,7 +372,7 @@ class LatexGenerator implements IGenerator{
 		'''\href{«link.url»}{«link.text»}'''
 	}
 
-	def dispatch genText(CodeBlock block){
+	def dispatch genText(CodeBlock block) {
 		block.removeIndent.specialGenCode
 	}
 

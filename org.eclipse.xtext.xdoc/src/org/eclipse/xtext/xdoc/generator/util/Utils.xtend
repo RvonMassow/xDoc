@@ -3,6 +3,10 @@ package org.eclipse.xtext.xdoc.generator.util
 import org.eclipse.xtext.xdoc.xdoc.*
 import static extension java.net.URLDecoder.*
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
+import java.util.List
+import org.antlr.runtime.Token
+import org.eclipse.xtext.xdoc.generator.util.lexer.Common
+import org.antlr.runtime.ANTLRStringStream
 
 
 class Utils {
@@ -72,9 +76,54 @@ class Utils {
 
 	def formatCode(String text, LangDef language) {
 		if(text != null)
-			highlightKeywords(text.escapeHTMLChars().replaceAll(" ", "&nbsp;").replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replaceAll("\n", "<br />\n"), language)
+			getHighlightedHtmlCode(text, language)
 		else
 			""
 	}
-		
+	
+	def getHighlightedHtmlCode(String code, LangDef language) {
+		val lexer = new Common()
+		lexer.setCharStream(new ANTLRStringStream(code))
+		val keywords = if (language !=null) 
+							language.keywords.toSet
+						else
+							emptySet
+		var token = lexer.nextToken
+		val result = new StringBuilder()
+		while (token.type != Token::EOF) {
+			switch (token.type) {
+				case Common::ID : {
+					if (keywords.contains(token.text)) {
+						result.append('<span class="keyword">')
+							.append(whitespace2Entities(token.text))
+							.append('</span>')
+					} else {
+						result.append(token.text)
+					}
+				}
+				case Common::WS : {
+					result.append(whitespace2Entities(token.text))
+				}
+				case Common::STRING : {
+					result.append('<span class="string">')
+						.append(whitespace2Entities(token.text))
+						.append('</span>')
+				} 
+				case Common::COMMENT : {
+					result.append('<span class="comment">')
+						.append(whitespace2Entities(token.text))
+						.append('</span>')
+				} 
+				default :
+					result.append(whitespace2Entities(token.text))
+			}
+			token = lexer.nextToken
+		}
+		return result.toString
+	}
+	
+	def String whitespace2Entities(String s) {
+		return s.replace(' ','&nbsp;').replace('\n','</br>').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
+	}
+	
 }

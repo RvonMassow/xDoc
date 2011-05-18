@@ -2,6 +2,8 @@ package org.eclipse.xtext.xdoc.tests;
 
 import java.util.Arrays;
 
+import org.eclipse.xtext.util.StopWatch;
+import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
@@ -70,5 +72,60 @@ public class UtilityTest extends TestCase {
 		assertTrue(result.getContents().get(0) instanceof Code);
 		Code resultCode = (Code) result.getContents().get(0);
 		assertEquals(expectationCodeString, resultCode.getContents());
+	}
+	
+	public void testFormatCode() throws Exception {
+		LangDef langDef = XdocFactory.eINSTANCE.createLangDef();
+		langDef.getKeywords().add("foo");
+		langDef.getKeywords().add("bar");
+		langDef.getKeywords().add("baz");
+		langDef.getKeywords().add("dfsdf");
+		langDef.getKeywords().add("wweee");
+		langDef.getKeywords().add("dsfsd");
+		final Utils utils = new Utils();
+		String code = null;
+		StopWatch watch = new StopWatch();
+		for (int i = 0; i < 2 ;i++) {
+			code = utils.formatCode("mein foo ist bar nicht baz.", langDef);
+		}
+		watch.resetAndLog("keywords");
+		assertEquals("mein&nbsp;<span class=\"keyword\">foo</span>&nbsp;ist&nbsp;<span class=\"keyword\">bar</span>&nbsp;nicht&nbsp;<span class=\"keyword\">baz</span>.", code);
+	}
+	public void testFormatCode_01() throws Exception {
+		LangDef langDef = XdocFactory.eINSTANCE.createLangDef();
+		langDef.getKeywords().add("foo");
+		langDef.getKeywords().add("bar");
+		langDef.getKeywords().add("baz");
+		langDef.getKeywords().add("dfsdf");
+		langDef.getKeywords().add("wweee");
+		langDef.getKeywords().add("dsfsd");
+		final Utils utils = new Utils();
+		String code = utils.formatCode("/* mein foo ist bar nicht baz.*/", langDef);
+		assertEquals("<span class=\"comment\">/*&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.*/</span>", code);
+	}
+	
+	public void testFormatCode_02() throws Exception {
+		LangDef langDef = XdocFactory.eINSTANCE.createLangDef();
+		langDef.getKeywords().add("foo");
+		langDef.getKeywords().add("bar");
+		langDef.getKeywords().add("baz");
+		langDef.getKeywords().add("dfsdf");
+		langDef.getKeywords().add("wweee");
+		langDef.getKeywords().add("dsfsd");
+		final Utils utils = new Utils();
+		String code = utils.formatCode("' mein foo ist bar nicht baz.'", langDef);
+		assertEquals("<span class=\"string\">'&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.'</span>", code);
+	}
+	
+	public void testFormatCode_03() throws Exception {
+		final Utils utils = new Utils();
+		String code = utils.formatCode("' mein foo ist bar nicht baz.", null);
+		assertEquals("<span class=\"string\">'&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.</span>", code);
+	}
+	
+	public void testFormatCode_04() throws Exception {
+		final Utils utils = new Utils();
+		String code = utils.formatCode("/* mein foo ist bar nicht baz.", null);
+		assertEquals("/*&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.", code);
 	}
 }

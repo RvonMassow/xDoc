@@ -68,17 +68,14 @@ public class XdocGenerator implements IGenerator {
   
   public void doGenerate(final Resource res, final IFileSystemAccess access) throws RuntimeException {
     try {
-      Object _xblockexpression = null;
       {
         EList<EObject> _contents = res.getContents();
         EObject _head = IterableExtensions.<EObject>head(_contents);
         AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
         final AbstractSection aS = _mainSection;
-        Object _xifexpression = null;
         if ((aS instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
           this.generate(aS, access);
         }
-        _xblockexpression = (_xifexpression);
       }
     } catch (UnsupportedEncodingException e) { 
       RuntimeException _runtimeException = new RuntimeException(e);

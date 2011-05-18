@@ -3,7 +3,7 @@
  */
 package org.eclipse.xtext.xdoc.scoping;
 
-import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+import org.eclipse.xtext.scoping.impl.SimpleLocalScopeProvider;
 
 /**
  * This class contains custom scoping description.
@@ -12,6 +12,6 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  * on how and when to use it 
  *
  */
-public class XdocScopeProvider extends AbstractDeclarativeScopeProvider {
+public class XdocScopeProvider extends SimpleLocalScopeProvider {
 
 }
