@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc.generator.util
 
 import org.eclipse.xtext.xdoc.xdoc.*
 import static extension java.net.URLDecoder.*
+import static extension java.net.URLEncoder.*
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 import java.util.List
 import org.antlr.runtime.Token
@@ -15,8 +16,8 @@ class Utils {
 		doc?.chapters
 	}
 
-	def dispatch subSection(Chapter section){
-		section?.subSections
+	def dispatch subSection(Chapter chapter){
+		chapter?.subSections
 	}
 
 	def dispatch subSection(Section section){
@@ -31,12 +32,16 @@ class Utils {
 		section?.subSections
 	}
 
-	def dispatch Iterable<? extends AbstractSection> subSection(AbstractSection section){
+	def dispatch List<? extends AbstractSection> subSection(AbstractSection section){
 		newArrayList
 	}
 
 	def urlDecode (String s){
 		s?.decode("ISO-8859-1")
+	}
+
+	def urlEncode (String s){
+		s?.encode("UTF-8")
 	}
 
 	def boolean isInlineCode (CodeBlock cb) {
