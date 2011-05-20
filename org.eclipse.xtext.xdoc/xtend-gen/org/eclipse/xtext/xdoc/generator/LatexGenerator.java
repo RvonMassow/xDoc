@@ -936,21 +936,6 @@ public class LatexGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  public StringConcatenation test(final CodeBlock foo) {
-    StringConcatenation _xifexpression = null;
-    boolean _inline = LatexUtils.inline(foo);
-    if (_inline) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("foo");
-      LangDef _language = foo.getLanguage();
-      String _string = _language==null?(String)null:_language.toString();
-      _builder.append(_string, "");
-      _builder.append("bar");
-      _xifexpression = _builder;
-    }
-    return _xifexpression;
-  }
-  
   public StringConcatenation langSpec(final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     {

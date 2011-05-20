@@ -6,14 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.generator.AbstractFileSystemAccess;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.xdoc.generator.LatexGenerator;
-import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
-import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
-import org.eclipse.xtext.xdoc.xdoc.TextPart;
-import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
-import org.eclipse.xtext.xdoc.xdoc.XdocFile;
-
 import com.google.inject.Inject;
 
 public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
@@ -122,29 +115,6 @@ public class LatexGeneratorTest extends AbstractXdocGeneratorTest {
 		Document doc = initDocFromFile("twoChapters", "twoChapters.xdoc");
 		generate(doc);
 		validate(EXPECTATION_DIR + "twoChapters.tex", RESULT_DIR + "Foo Title.tex");
-	}
-
-	private Document initDocFromFile(String string, String filename) throws Exception {
-		XdocFile file = pTest.getDocFromFile(SRC_DIR + filename);
-		AbstractSection mainSection = file.getMainSection();
-		if(mainSection instanceof Document) {
-			return (Document) mainSection;
-		} else if(mainSection instanceof Chapter) {
-			Document doc = initDoc(string);
-			doc.getChapters().add((Chapter) mainSection);
-			return doc;
-		}
-		return null;
-	}
-
-	private Document initDoc(String name) {
-		Document result = XdocFactory.eINSTANCE.createDocument();
-		TextOrMarkup tomTitle = XdocFactory.eINSTANCE.createTextOrMarkup();
-		TextPart title = XdocFactory.eINSTANCE.createTextPart();
-		title.setText(name);
-		tomTitle.getContents().add(title);
-		result.setTitle(tomTitle);
-		return result;
 	}
 
 	@Override

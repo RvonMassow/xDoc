@@ -80,7 +80,8 @@ class EclipseNamingExtensions {
 		//println(resD.map(r | r.importedNames.join(",")).join(";"))
 		// this is the IRD for the resource containing the (section[2]?)-ref referring to obj
 		val ird = resD.findFirst(r | r.referenceDescriptions.exists(
-			ref | (ref.EReference.EReferenceType == XdocPackage$Literals::SECTION2) || (ref.EReference.EReferenceType == XdocPackage$Literals::SECTION)
+			ref | (ref.EReference.EReferenceType == XdocPackage$Literals::SECTION2) || 
+					(ref.EReference.EReferenceType == XdocPackage$Literals::SECTION)
 				&& r.URI.lastSegment.endsWith("xdoc"))
 		)
 		// lets get the resource and return its mainsection

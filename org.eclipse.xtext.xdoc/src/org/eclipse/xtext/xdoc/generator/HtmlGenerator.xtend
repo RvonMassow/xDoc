@@ -13,242 +13,195 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions
 import com.google.inject.Inject
 import org.eclipse.xtext.xdoc.generator.util.Utils
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
+import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions
 
 class HtmlGenerator implements IGenerator {
 	
 	@Inject extension Utils utils
+	@Inject extension PlainText plaintext
+	@Inject extension HTMLNamingExtensions naming
+	@Inject XdocGenerator helpGen
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for(element: resource.allContentsIterable) {
-			if(element instanceof Document) {
-				val doc = element as Document				
-				fsa.generateFile(doc.eResource.URI.lastSegment+".hmtl", doc.generate)
+		try{
+			for(file: resource.allContentsIterable.filter(typeof(XdocFile))) {
+				if(file.mainSection instanceof Document)
+					generate(file.mainSection, fsa)
 			}
+		} catch(Exception e) {
+			throw new RuntimeException(e)
 		}
 	}
-	def doGenerate(EObject obj, IFileSystemAccess fsa) {
-		if (obj instanceof Document){
-			val doc = obj as Document; 
-			fsa.generateFile(doc.eResource.URI.lastSegment+".html", doc.generate)
-		}
-		''''''
-	}
-	
-	def dispatch generate(Document doc) {
+
+	def dispatch generate(Document doc, IFileSystemAccess fsa) {
+		fsa.generateFile(doc.fileName, 
 		'''
 		<html>
-			<head>
-			<title>«doc.title.generate»</title>
-			</head>
-			<body>
-				<h1>«doc.title.generate»</h1>
-				«doc.chapters.map([e|e.generate]).join»
-			</body>
+		  «header(doc.title)»
+		«doc.body»
 		</html>
 		'''
+		)
+		// fsa.generateFile("toc.html", )
+		''''''
 	}
-	def dispatch generate(Chapter chap){
+
+	def dispatch generate(Chapter chap, IFileSystemAccess fsa){
+		fsa.generateFile(chap.fileName,
 		'''
-		<h2>«chap.title.generate»</h2>
-		«chap.name.genLabel»
-		«FOR c : chap.contents»
-		<p>
-			«c.generate»
-		</p>
+		<html>
+		  «chap.title.header»
+		
+		<body>
+		
+		<«chap.tag»>«chap.title.genNonParText»</«chap.tag»>
+		«chap.toc»
+		
+		«FOR c : chap.contents »
+			«c.genText»
 		«ENDFOR»
-		«chap.subSections.map([e|e.generate]).join»
+		</body>
+		</html>
 		'''
+		)
+		''''''
 	}
-	def dispatch generate(Section sec){
+
+	def dispatch generate(Section sec, IFileSystemAccess fsa){
+		fsa.generateFile(sec.fileName,
 		'''
-		<h3>«sec.title.generate»</h3>
-		«sec.name.genLabel»
+		<«sec.tag»>«sec.title.genNonParText»</«sec.tag»>
 		«FOR c : sec.contents»
-		<p>
-			«c.generate»
-		</p>
 		«ENDFOR»
-		«sec.subSections.map([e|e.generate]).join»
 		'''
+		)
+		''''''
 	}
-	
+
+	def tag(AbstractSection ^as) {
+		switch (^as) {
+			Document: "h1"
+			Chapter: "h1"
+			Section: "h1"
+			Section2: "h2"
+			Section3: "h3"
+			Section4: "h4"
+		}
+	}
 	def dispatch generate(Section2 sec){
 		'''
-		<h4>«sec.title.generate»</h4>
-		«sec.name.genLabel»
+		<«sec.tag»>«sec.title.genNonParText»</«sec.tag»>
 		«FOR c : sec.contents»
-		<p>
-			«c.generate»
-		</p>
 		«ENDFOR»
-		«sec.subSections.map([e|e.generate]).join»
 		'''
 	}
 	def dispatch generate(Section3 sec){
 		'''
-		<h5>«sec.title.generate»</h5>
-		«sec.name.genLabel»
+		<«sec.tag»>«sec.title.genNonParText»</«sec.tag»>
 		«FOR c : sec.contents»
-		<p>
-			«c.generate»
-		</p>
 		«ENDFOR»
-		«sec.subSections.map([e|e.generate]).join»
 		'''
 	}
+
 	def dispatch generate(Section4 sec){
 		'''
+		<«sec.tag»>«sec.title.genText»</«sec.tag»>
 		«FOR c : sec.contents»
-		<p>
-			<b>«sec.title.generate»<b> < br />
-			«sec.name.genLabel»
-			«c.generate»
-		</p>
 		«ENDFOR»
 		'''
 	}
-	def dispatch generate(TextOrMarkup tom){
+
+	def header (TextOrMarkup title) '''
+		<head>
+		  <title>«title.genPlainText»</title>
+		</head>
+	'''
+
+	def body(Document doc) '''
+		<body>
+		«doc.genAuthors»
+		«doc.toc»
+		</body>
+	'''
+
+	def toc(AbstractSection ^as) {
+		if(!^as.subSection.empty)
 		'''
-		«FOR c : tom.contents»
-		«c.genText»
-		«ENDFOR»
-		'''
-	}
-	
-	def genLabel(String s){
-		'''
-		«IF s != null »
-		<a name="«s»""></a>
-		«ENDIF»
-		'''
-	}
-	def dispatch genText(Object o){
-		''''''
-	}
-	def dispatch genText(Table tab){
-		'''
-		<table>
-		«FOR row : tab.rows»
-			<tr>
-				«row.genText»
-			</tr>
-		«ENDFOR»
-		</table>
-		'''
-	}
-	
-	def dispatch genText(TableRow row){
-		'''
-		«FOR td : row.data»
-			<td>
-				«td.genText»
-			</td>
-		«ENDFOR»
-		'''
-	}
-	
-	def dispatch genText(TableData tData){
-		tData.contents.map([e|e.generate]).join
-	}
-	
-	def dispatch genText(TextPart tp){
-		'''
-		«tp.text.unescapeXdocChars.escapeHTMLChars»
-		'''
-	}
-	
-	def dispatch genText(OrderedList ol){
-		'''
-		<ol>
-			«FOR item:ol.items»
-				«item.genText»
-			«ENDFOR»
-		</ol>'''
-	}
-	def dispatch genText(UnorderedList ol){
-		'''
-		<ul>
-			«FOR item:ol.items»
-				«item.genText»
-			«ENDFOR»
-		</ul>'''
-	}
-	
-	def dispatch genText(Item item){
-		'''
-		<li>
-		«FOR c:item.contents»
-			«c.generate»
-		«ENDFOR»
-		</li>'''
-	}
-	def dispatch genText(Emphasize em){
-		'''
-		<em>
-		«FOR c:em.contents»
-			«c.generate»
-		«ENDFOR»
-		</em>'''
-	}
-	def dispatch genText(Ref a){
-		'''
-		<a href="#«a.ref.name»">
-		«IF a.contents.isEmpty()»
-			«a.ref»
-		«ELSE»
-			«FOR c:a.contents»
-				«c.generate»
-			«ENDFOR»
-		«ENDIF»
-		</a>
-		'''
-	}
-	def dispatch genText(Anchor a){
-		'''<a href="#«a.name»"></a>'''
-	}
-	def dispatch genText(Link link){
-		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
-	}
-	def dispatch genText(ImageRef img){
-		//
-		'''
-		<div class="image" >
-			«IF img.name != null»
-			«img.name.genLabel»
-			«ENDIF»
-			<img src="«img.path.unescapeXdocChars»" class="«img.clazz.unescapeXdocChars»" style="«img.style.unescapeXdocChars»" />
-			«img.caption.unescapeXdocChars.escapeHTMLChars»
-		</div>'''
-	}
-	def dispatch genText(CodeBlock code){
-		'''
-		«IF code.isInlineCode»
-		<span class="inlinecode">«FOR c:code.contents»«code.contents.genCode(code.language)»«ENDFOR»</span>
-		«ELSE»
-		<div class="literallayout">
-			<div class="incode">
-			<p class="code">
-			«FOR c:code.removeIndent.contents»
-				«c.genCode(code.language)»
-			«ENDFOR»
-			</p>
+			<div class="toc" >
+			  «^as.subToc»
 			</div>
-		</div>
-		«ENDIF»
 		'''
 	}
-	def dispatch genText(CodeRef cref){
-		'''<em>«cref.element.qualifiedName.unescapeXdocChars.escapeHTMLChars»</em>'''
+
+	def subToc(AbstractSection ^as) '''
+		<ol>
+		  «FOR ss: ^as.subSection»
+		    «ss.tocEntry»
+		  «ENDFOR»
+		</ol>
+	'''
+
+	def dispatch tocEntry(Chapter chapter) 
+	'''<li><a href="«chapter.fileName.urlEncode»" >«chapter.title.genNonParText»</a>«IF !chapter.subSection.empty»
+	«chapter.subToc»«ENDIF»</li>
+	'''
+
+	def dispatch tocEntry(Section section) '''
+		<li><a href="«section.fileName.urlEncode»" >«section.title.genNonParText »</a></li>
+	'''
+
+	def genAuthors(Document doc) {
+		if(doc.authors != null)
+			'''
+				<div class="authors">
+				«doc.authors.genText»
+				</div>
+			'''
 	}
-	def dispatch genText(MarkupInCode mic){''''''}
-	
-	
-	def dispatch genCode(Object o, LangDef lang){}
-	def dispatch genCode(Code code, LangDef lang){
+
+	def genNonParText(TextOrMarkup tom) {
+		'''«FOR c: tom.contents»«c.genText»«ENDFOR»'''
+	}
+
+	def dispatch genText(TextOrMarkup tom) {
+		'''
+		«FOR c: tom.contents»
+			<p>
+			«c.genText»
+			</p>
+		«ENDFOR»
+		'''
+	}
+
+	def dispatch genText(CodeBlock cb) {
+		if(cb.inlineCode)
+			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language)»</span>'''
+		else {
+			val block = cb.removeIndent
+			'''	
+				<div class="literallayout">
+				<div class="incode">
+				<p class="code">
+				«FOR code:block.contents»
+					«code.generateCode(cb.language)»
+				«ENDFOR»
+				</p>
+				</div>
+				</div>
+			'''
+		}
+	}
+
+	def dispatch generateCode(Code code, LangDef lang)
 		'''«code.contents.unescapeXdocChars.formatCode(lang)»'''
+
+	def dispatch generateCode(Code code, Void lang)
+		'''«code.contents.unescapeXdocChars.formatCode(null)»'''
+
+	def dispatch generateCode(MarkupInCode mic, LangDef lang)
+		'''«mic.genText»'''
+
+	def dispatch genText(TextPart tp) {
+		tp.text
 	}
-	def dispatch genCode(MarkupInCode mic, LangDef lang){}
-	
-	
-	
 }
