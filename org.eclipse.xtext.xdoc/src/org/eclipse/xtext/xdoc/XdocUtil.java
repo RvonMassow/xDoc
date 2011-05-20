@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
+import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
@@ -103,6 +104,10 @@ public class XdocUtil {
 				log.info("Unable to hash "+obj.toString(), e);
 			}
 			return 0;
+		}
+
+		protected Integer _hash(Anchor a) {
+			return a.getName().hashCode();
 		}
 
 		protected Integer _hash(MarkUp m) {

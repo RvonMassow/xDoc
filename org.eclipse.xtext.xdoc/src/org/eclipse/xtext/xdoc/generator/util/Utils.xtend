@@ -128,7 +128,7 @@ class Utils {
 	}
 	
 	def String whitespace2Entities(String s) {
-		return s.replace(' ','&nbsp;').replace('\n','</br>').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
+		return s.replace(' ','&nbsp;').replace('\n','</br>\n').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
 	}
 	
 }

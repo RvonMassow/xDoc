@@ -245,7 +245,7 @@ public class Utils {
   
   public String whitespace2Entities(final String s) {
     String _replace = s.replace(" ", "&nbsp;");
-    String _replace_1 = _replace.replace("\n", "</br>");
+    String _replace_1 = _replace.replace("\n", "</br>\n");
     String _replace_2 = _replace_1.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
     return _replace_2;
   }
