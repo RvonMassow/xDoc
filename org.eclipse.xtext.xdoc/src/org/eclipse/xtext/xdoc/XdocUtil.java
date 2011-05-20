@@ -166,6 +166,6 @@ public class XdocUtil {
 	private static Hash HASH = new Hash();
 
 	public static int hash(Object tree) {
-		return HASH.hash(tree);
+		return tree.hashCode();//HASH.hash(tree);
 	}
 }
