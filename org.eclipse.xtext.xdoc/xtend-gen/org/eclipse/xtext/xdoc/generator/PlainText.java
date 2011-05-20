@@ -20,7 +20,7 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 @SuppressWarnings("all")
 public class PlainText {
   
-  public CharSequence _genPlainText(final TextOrMarkup tom) {
+  protected CharSequence _genPlainText(final TextOrMarkup tom) {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
     final Function2<StringConcatenation,EObject,StringConcatenation> _function = new Function2<StringConcatenation,EObject,StringConcatenation>() {
@@ -36,12 +36,12 @@ public class PlainText {
     return _fold;
   }
   
-  public CharSequence _genPlainText(final TextPart tp) {
+  protected CharSequence _genPlainText(final TextPart tp) {
     String _text = tp.getText();
     return _text;
   }
   
-  public CharSequence _genPlainText(final Emphasize em) {
+  protected CharSequence _genPlainText(final Emphasize em) {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
     final Function2<StringConcatenation,TextOrMarkup,StringConcatenation> _function = new Function2<StringConcatenation,TextOrMarkup,StringConcatenation>() {
@@ -57,7 +57,7 @@ public class PlainText {
     return _fold;
   }
   
-  public CharSequence _genPlainText(final Link l) {
+  protected CharSequence _genPlainText(final Link l) {
     StringConcatenation _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
@@ -82,7 +82,7 @@ public class PlainText {
     return _xblockexpression;
   }
   
-  public CharSequence _genPlainText(final Ref ref) {
+  protected CharSequence _genPlainText(final Ref ref) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = ref.getContents();
@@ -106,7 +106,7 @@ public class PlainText {
     return _builder;
   }
   
-  public CharSequence _genPlainText(final CodeRef cRef) {
+  protected CharSequence _genPlainText(final CodeRef cRef) {
     StringConcatenation _builder = new StringConcatenation();
     JvmDeclaredType _element = cRef.getElement();
     String _qualifiedName = _element.getQualifiedName();
@@ -114,7 +114,7 @@ public class PlainText {
     return _builder;
   }
   
-  public CharSequence _genPlainText(final CodeBlock cb) {
+  protected CharSequence _genPlainText(final CodeBlock cb) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = cb.getContents();
@@ -127,7 +127,7 @@ public class PlainText {
     return _builder;
   }
   
-  public CharSequence _genPlainText(final Object o) {
+  protected CharSequence _genPlainText(final Object o) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }

@@ -95,7 +95,7 @@ public class LatexGenerator implements IGenerator {
     return _operator_plus;
   }
   
-  public StringConcatenation _generate(final Document doc) {
+  protected StringConcatenation _generate(final Document doc) {
     StringConcatenation _builder = new StringConcatenation();
     StringConcatenation _preamble = this.preamble();
     _builder.append(_preamble, "");
@@ -238,7 +238,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final LangDef lang) {
+  protected StringConcatenation _generate(final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\lstdefinelanguage{");
     String _name = lang.getName();
@@ -323,7 +323,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final AbstractSection sec) {
+  protected StringConcatenation _generate(final AbstractSection sec) {
     StringConcatenation _builder = new StringConcatenation();
     StringConcatenation _switchResult = null;
     final AbstractSection sec_1 = sec;
@@ -433,7 +433,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genContent(final Chapter chap) {
+  protected StringConcatenation _genContent(final Chapter chap) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = chap.getContents();
@@ -454,7 +454,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genContent(final Section sec) {
+  protected StringConcatenation _genContent(final Section sec) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -475,7 +475,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genContent(final Section2 sec) {
+  protected StringConcatenation _genContent(final Section2 sec) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -496,7 +496,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genContent(final Section3 sec) {
+  protected StringConcatenation _genContent(final Section3 sec) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -517,7 +517,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genContent(final Section4 sec) {
+  protected StringConcatenation _genContent(final Section4 sec) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -530,7 +530,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genContent(final TextOrMarkup tom) {
+  protected StringConcatenation _genContent(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -555,7 +555,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genLabel(final ChapterRef cRef) {
+  protected StringConcatenation _genLabel(final ChapterRef cRef) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\label{");
     Chapter _chapter = cRef.getChapter();
@@ -566,7 +566,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genLabel(final Chapter chap) {
+  protected StringConcatenation _genLabel(final Chapter chap) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\label{");
     String _name = chap.getName();
@@ -576,7 +576,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genLabel(final SectionRef sRef) {
+  protected StringConcatenation _genLabel(final SectionRef sRef) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\label{");
     Section _section = sRef.getSection();
@@ -587,7 +587,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genLabel(final Section2Ref sRef) {
+  protected StringConcatenation _genLabel(final Section2Ref sRef) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\label{");
     Section2 _section2 = sRef.getSection2();
@@ -598,7 +598,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genLabel(final Section sec) {
+  protected StringConcatenation _genLabel(final Section sec) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\label{");
     String _name = sec.getName();
@@ -608,7 +608,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genLabel(final TextOrMarkup tom) {
+  protected StringConcatenation _genLabel(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }
@@ -621,7 +621,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Table tab) {
+  protected CharSequence _genText(final Table tab) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\noindent\\begin{tabular}{");
     EList<TableRow> _rows = tab.getRows();
@@ -647,7 +647,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final TableRow row) {
+  protected CharSequence _genText(final TableRow row) {
     EList<TableData> _data = row.getData();
     final Function1<TableData,CharSequence> _function = new Function1<TableData,CharSequence>() {
         public CharSequence apply(final TableData e) {
@@ -660,7 +660,7 @@ public class LatexGenerator implements IGenerator {
     return _join;
   }
   
-  public CharSequence _genText(final TableData tData) {
+  protected CharSequence _genText(final TableData tData) {
     EList<TextOrMarkup> _contents = tData.getContents();
     final Function1<TextOrMarkup,StringConcatenation> _function = new Function1<TextOrMarkup,StringConcatenation>() {
         public StringConcatenation apply(final TextOrMarkup e) {
@@ -673,14 +673,14 @@ public class LatexGenerator implements IGenerator {
     return _join;
   }
   
-  public CharSequence _genText(final TextPart part) {
+  protected CharSequence _genText(final TextPart part) {
     String _text = part.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
     String _escapeLatexChars = this.utils.escapeLatexChars(_unescapeXdocChars);
     return _escapeLatexChars;
   }
   
-  public CharSequence _genText(final OrderedList ol) {
+  protected CharSequence _genText(final OrderedList ol) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\setlength{\\itemindentlen}{\\textwidth}");
     _builder.newLine();
@@ -706,7 +706,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final UnorderedList ul) {
+  protected CharSequence _genText(final UnorderedList ul) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\setlength{\\itemindentlen}{\\textwidth}");
     _builder.newLine();
@@ -732,7 +732,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Item item) {
+  protected CharSequence _genText(final Item item) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\item \\begin{minipage}[t]{\\itemindentlen}");
     {
@@ -760,7 +760,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Emphasize em) {
+  protected CharSequence _genText(final Emphasize em) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\textit{");
     EList<TextOrMarkup> _contents = em.getContents();
@@ -777,7 +777,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Ref ref) {
+  protected CharSequence _genText(final Ref ref) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = ref.getContents();
@@ -813,7 +813,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Anchor anchor) {
+  protected CharSequence _genText(final Anchor anchor) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\phantomsection\\label{");
     String _name = anchor.getName();
@@ -822,7 +822,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Link link) {
+  protected CharSequence _genText(final Link link) {
     StringConcatenation _xblockexpression = null;
     {
       String _url = link.getUrl();
@@ -840,13 +840,13 @@ public class LatexGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence _genText(final CodeBlock block) {
+  protected CharSequence _genText(final CodeBlock block) {
     CodeBlock _removeIndent = StringUtils.removeIndent(block);
     StringConcatenation _specialGenCode = this.specialGenCode(_removeIndent);
     return _specialGenCode;
   }
   
-  public CharSequence _genText(final CodeRef codeRef) {
+  protected CharSequence _genText(final CodeRef codeRef) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\lstinline\u00B0");
     JvmDeclaredType _element = codeRef.getElement();
@@ -858,12 +858,12 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final ImageRef imgRef) {
+  protected CharSequence _genText(final ImageRef imgRef) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }
   
-  public CharSequence _genText(final Todo todo) {
+  protected CharSequence _genText(final Todo todo) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\todo[inline]{");
     String _text = todo.getText();
@@ -874,16 +874,16 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final MarkupInCode mic) {
+  protected CharSequence _genText(final MarkupInCode mic) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }
   
-  public CharSequence _genText(final String str) {
+  protected CharSequence _genText(final String str) {
     return str;
   }
   
-  public CharSequence _genText(final EObject o) {
+  protected CharSequence _genText(final EObject o) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }
@@ -965,14 +965,14 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genCode(final Code code) {
+  protected CharSequence _genCode(final Code code) {
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
     String _prepareListingsString = this.utils.prepareListingsString(_unescapeXdocChars);
     return _prepareListingsString;
   }
   
-  public CharSequence _genCode(final MarkupInCode mic) {
+  protected CharSequence _genCode(final MarkupInCode mic) {
     StringConcatenation _builder = new StringConcatenation();
     String _lstEscapeToTex = LatexUtils.lstEscapeToTex();
     _builder.append(_lstEscapeToTex, "");
@@ -983,7 +983,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genCode(final Object o) {
+  protected CharSequence _genCode(final Object o) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }

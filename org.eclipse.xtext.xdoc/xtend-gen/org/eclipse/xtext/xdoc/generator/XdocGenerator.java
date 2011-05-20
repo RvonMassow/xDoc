@@ -84,7 +84,7 @@ public class XdocGenerator implements IGenerator {
     }
   }
   
-  public void _generate(final Document document, final IFileSystemAccess access) throws UnsupportedEncodingException {
+  protected void _generate(final Document document, final IFileSystemAccess access) throws UnsupportedEncodingException {
     {
       StringConcatenation _generateToc = this.tocGenerator.generateToc(document);
       access.generateFile("toc.xml", _generateToc);
@@ -95,14 +95,14 @@ public class XdocGenerator implements IGenerator {
     }
   }
   
-  public void _generate(final Chapter chapter, final IFileSystemAccess access) {
+  protected void _generate(final Chapter chapter, final IFileSystemAccess access) {
     String _fileName = this.eclipseNamingExtensions.fileName(chapter);
     String _decode = URLDecoder.decode(_fileName);
     CharSequence _generate = this.generate(chapter);
     access.generateFile(_decode, _generate);
   }
   
-  public CharSequence _generate(final Chapter aS) {
+  protected CharSequence _generate(final Chapter aS) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -212,7 +212,7 @@ public class XdocGenerator implements IGenerator {
     return _switchResult;
   }
   
-  public CharSequence _generate(final AbstractSection aS) {
+  protected CharSequence _generate(final AbstractSection aS) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
     String _labelName = this.eclipseNamingExtensions.labelName(aS);
@@ -250,7 +250,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final Section4 aS) {
+  protected CharSequence _generate(final Section4 aS) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
     String _labelName = this.eclipseNamingExtensions.labelName(aS);
@@ -291,7 +291,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final Todo todo) {
+  protected CharSequence _generate(final Todo todo) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<div class=\"todo\" >");
     _builder.newLine();
@@ -303,7 +303,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final Ref ref) {
+  protected CharSequence _generate(final Ref ref) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = ref.getContents();
@@ -347,7 +347,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final TextOrMarkup tom) {
+  protected CharSequence _generate(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -360,7 +360,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final UnorderedList ul) {
+  protected CharSequence _generate(final UnorderedList ul) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
@@ -378,7 +378,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final OrderedList ul) {
+  protected CharSequence _generate(final OrderedList ul) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ol>");
     _builder.newLine();
@@ -396,7 +396,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final Item i) {
+  protected CharSequence _generate(final Item i) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li>");
     _builder.newLine();
@@ -414,7 +414,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final Anchor a) {
+  protected CharSequence _generate(final Anchor a) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
     String _name = a.getName();
@@ -423,7 +423,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final ImageRef img) {
+  protected CharSequence _generate(final ImageRef img) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<div class=\"image\" >");
     _builder.newLine();
@@ -503,14 +503,14 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final TextPart tp) {
+  protected CharSequence _generate(final TextPart tp) {
     String _text = tp.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
     String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
     return _escapeHTMLChars;
   }
   
-  public CharSequence _generate(final Table table) {
+  protected CharSequence _generate(final Table table) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<table>");
     _builder.newLine();
@@ -527,7 +527,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final TableRow tr) {
+  protected CharSequence _generate(final TableRow tr) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<tr>");
     _builder.newLine();
@@ -544,7 +544,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final TableData td) {
+  protected CharSequence _generate(final TableData td) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<td>");
     _builder.newLine();
@@ -561,7 +561,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final Emphasize em) {
+  protected CharSequence _generate(final Emphasize em) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     {
@@ -575,7 +575,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final Link link) {
+  protected CharSequence _generate(final Link link) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a href=\"");
     String _url = link.getUrl();
@@ -589,7 +589,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final CodeRef cRef) {
+  protected CharSequence _generate(final CodeRef cRef) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     JvmDeclaredType _element = cRef.getElement();
@@ -601,7 +601,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _generate(final CodeBlock cb) {
+  protected CharSequence _generate(final CodeBlock cb) {
     StringConcatenation _xifexpression = null;
     boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
@@ -648,7 +648,7 @@ public class XdocGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  public StringConcatenation _generateCode(final Code code, final LangDef lang) {
+  protected StringConcatenation _generateCode(final Code code, final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
@@ -657,14 +657,14 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang) {
+  protected StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generate = this.generate(code);
     _builder.append(_generate, "");
     return _builder;
   }
   
-  public StringConcatenation _generateCode(final Code code, final Void v) {
+  protected StringConcatenation _generateCode(final Code code, final Void v) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
