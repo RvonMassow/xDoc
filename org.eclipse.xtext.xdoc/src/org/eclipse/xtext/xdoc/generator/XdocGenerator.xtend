@@ -119,9 +119,7 @@ class XdocGenerator implements IGenerator {
 
 	def generatePar(TextOrMarkup tom) '''
 		<p>
-		«FOR c : tom.contents»
-			«c.generate»
-		«ENDFOR»
+		«FOR c : tom.contents»«c.generate»«ENDFOR»
 		</p>
 	'''
 
@@ -143,9 +141,7 @@ class XdocGenerator implements IGenerator {
 	'''
 
 	def dispatch generate(TextOrMarkup tom) '''
-		«FOR obj:tom.contents»
-			«obj.generate»
-		«ENDFOR»
+		«FOR obj:tom.contents»«obj.generate»«ENDFOR»
 	'''
 //		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.generate»'''])
 

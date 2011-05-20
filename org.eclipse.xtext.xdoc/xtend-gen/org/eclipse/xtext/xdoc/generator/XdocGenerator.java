@@ -3,6 +3,7 @@ package org.eclipse.xtext.xdoc.generator;
 import com.google.inject.Inject;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -152,7 +153,7 @@ public class XdocGenerator implements IGenerator {
       }
     }
     {
-      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
+      List<? extends AbstractSection> _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : _subSection) {
         CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
@@ -239,7 +240,7 @@ public class XdocGenerator implements IGenerator {
       }
     }
     {
-      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
+      List<? extends AbstractSection> _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : _subSection) {
         CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
@@ -282,9 +283,9 @@ public class XdocGenerator implements IGenerator {
       for(EObject c : _contents) {
         CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLineIfNotEmpty();
     _builder.append("</p>");
     _builder.newLine();
     return _builder;
@@ -353,9 +354,9 @@ public class XdocGenerator implements IGenerator {
       for(EObject obj : _contents) {
         CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
