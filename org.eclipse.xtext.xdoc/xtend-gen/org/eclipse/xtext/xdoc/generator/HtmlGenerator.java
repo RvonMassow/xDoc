@@ -87,7 +87,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  public StringConcatenation _generate(final Document doc) {
+  protected StringConcatenation _generate(final Document doc) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -134,7 +134,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final Chapter chap) {
+  protected StringConcatenation _generate(final Chapter chap) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<h2>");
     TextOrMarkup _title = chap.getTitle();
@@ -173,7 +173,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final Section sec) {
+  protected StringConcatenation _generate(final Section sec) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<h3>");
     TextOrMarkup _title = sec.getTitle();
@@ -212,7 +212,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final Section2 sec) {
+  protected StringConcatenation _generate(final Section2 sec) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<h4>");
     TextOrMarkup _title = sec.getTitle();
@@ -251,7 +251,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final Section3 sec) {
+  protected StringConcatenation _generate(final Section3 sec) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<h5>");
     TextOrMarkup _title = sec.getTitle();
@@ -290,7 +290,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final Section4 sec) {
+  protected StringConcatenation _generate(final Section4 sec) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -320,7 +320,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _generate(final TextOrMarkup tom) {
+  protected StringConcatenation _generate(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -347,12 +347,12 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Object o) {
+  protected CharSequence _genText(final Object o) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }
   
-  public CharSequence _genText(final Table tab) {
+  protected CharSequence _genText(final Table tab) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<table>");
     _builder.newLine();
@@ -374,7 +374,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final TableRow row) {
+  protected CharSequence _genText(final TableRow row) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TableData> _data = row.getData();
@@ -392,7 +392,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final TableData tData) {
+  protected CharSequence _genText(final TableData tData) {
     EList<TextOrMarkup> _contents = tData.getContents();
     final Function1<TextOrMarkup,StringConcatenation> _function = new Function1<TextOrMarkup,StringConcatenation>() {
         public StringConcatenation apply(final TextOrMarkup e) {
@@ -405,7 +405,7 @@ public class HtmlGenerator implements IGenerator {
     return _join;
   }
   
-  public CharSequence _genText(final TextPart tp) {
+  protected CharSequence _genText(final TextPart tp) {
     StringConcatenation _builder = new StringConcatenation();
     String _text = tp.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
@@ -415,7 +415,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final OrderedList ol) {
+  protected CharSequence _genText(final OrderedList ol) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ol>");
     _builder.newLine();
@@ -432,7 +432,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final UnorderedList ol) {
+  protected CharSequence _genText(final UnorderedList ol) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
@@ -449,7 +449,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Item item) {
+  protected CharSequence _genText(final Item item) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li>");
     _builder.newLine();
@@ -465,7 +465,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Emphasize em) {
+  protected CharSequence _genText(final Emphasize em) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     _builder.newLine();
@@ -481,7 +481,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Ref a) {
+  protected CharSequence _genText(final Ref a) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a href=\"#");
     Identifiable _ref = a.getRef();
@@ -511,7 +511,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Anchor a) {
+  protected CharSequence _genText(final Anchor a) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a href=\"#");
     String _name = a.getName();
@@ -520,7 +520,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final Link link) {
+  protected CharSequence _genText(final Link link) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a href=\"");
     String _url = link.getUrl();
@@ -534,7 +534,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final ImageRef img) {
+  protected CharSequence _genText(final ImageRef img) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<div class=\"image\" >");
     _builder.newLine();
@@ -574,7 +574,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final CodeBlock code) {
+  protected CharSequence _genText(final CodeBlock code) {
     StringConcatenation _builder = new StringConcatenation();
     {
       boolean _isInlineCode = this.utils.isInlineCode(code);
@@ -623,7 +623,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final CodeRef cref) {
+  protected CharSequence _genText(final CodeRef cref) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     JvmDeclaredType _element = cref.getElement();
@@ -635,16 +635,16 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence _genText(final MarkupInCode mic) {
+  protected CharSequence _genText(final MarkupInCode mic) {
     StringConcatenation _builder = new StringConcatenation();
     return _builder;
   }
   
-  public StringConcatenation _genCode(final Object o, final LangDef lang) {
+  protected StringConcatenation _genCode(final Object o, final LangDef lang) {
     return null;
   }
   
-  public StringConcatenation _genCode(final Code code, final LangDef lang) {
+  protected StringConcatenation _genCode(final Code code, final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
@@ -653,7 +653,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation _genCode(final MarkupInCode mic, final LangDef lang) {
+  protected StringConcatenation _genCode(final MarkupInCode mic, final LangDef lang) {
     return null;
   }
   

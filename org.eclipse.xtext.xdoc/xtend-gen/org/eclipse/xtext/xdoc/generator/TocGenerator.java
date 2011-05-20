@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xdoc.generator.PlainText;
@@ -97,7 +98,7 @@ public class TocGenerator {
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
     {
-      Iterable<? extends AbstractSection> _subSection = this.utils.subSection(aS);
+      List<? extends AbstractSection> _subSection = this.utils.subSection(aS);
       for(AbstractSection ss : ((Iterable<AbstractSection>) _subSection)) {
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(ss, container);

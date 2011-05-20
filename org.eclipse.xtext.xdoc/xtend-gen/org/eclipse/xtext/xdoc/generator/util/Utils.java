@@ -28,32 +28,32 @@ import org.eclipse.xtext.xdoc.xdoc.Section4;
 @SuppressWarnings("all")
 public class Utils {
   
-  public List<? extends AbstractSection> _subSection(final Document doc) {
+  protected List<? extends AbstractSection> _subSection(final Document doc) {
     EList<Chapter> _chapters = doc==null?(EList<Chapter>)null:doc.getChapters();
     return _chapters;
   }
   
-  public List<? extends AbstractSection> _subSection(final Chapter chapter) {
+  protected List<? extends AbstractSection> _subSection(final Chapter chapter) {
     EList<Section> _subSections = chapter==null?(EList<Section>)null:chapter.getSubSections();
     return _subSections;
   }
   
-  public List<? extends AbstractSection> _subSection(final Section section) {
+  protected List<? extends AbstractSection> _subSection(final Section section) {
     EList<Section2> _subSections = section==null?(EList<Section2>)null:section.getSubSections();
     return _subSections;
   }
   
-  public List<? extends AbstractSection> _subSection(final Section2 section) {
+  protected List<? extends AbstractSection> _subSection(final Section2 section) {
     EList<Section3> _subSections = section==null?(EList<Section3>)null:section.getSubSections();
     return _subSections;
   }
   
-  public List<? extends AbstractSection> _subSection(final Section3 section) {
+  protected List<? extends AbstractSection> _subSection(final Section3 section) {
     EList<Section4> _subSections = section==null?(EList<Section4>)null:section.getSubSections();
     return _subSections;
   }
   
-  public List<? extends AbstractSection> _subSection(final AbstractSection section) {
+  protected List<? extends AbstractSection> _subSection(final AbstractSection section) {
     ArrayList<AbstractSection> _newArrayList = CollectionLiterals.<AbstractSection>newArrayList();
     return _newArrayList;
   }
