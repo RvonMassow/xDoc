@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.xtext.xdoc.feature"
-      label="Xdoc"
+      label="%featureName"
       version="0.1.0.qualifier">
 
    <description url="https://github.com/RvonMassow/xDoc">
-      Xdoc is a domain specific language for documenting eclipse plugings. It is based on Xtext and is able to create eclipse help plugins as well as PDF files.
+      %description
    </description>
 
    <copyright url="http://www.example.com/copyright">
-      [Enter Copyright Description here.]
+      %copyright
    </copyright>
 
-   <license url="http://www.example.com/license">
-      [Enter License Description here.]
+   <license url="http://www.eclipse.org/legal/epl-v10.html">
+      %license
    </license>
 
    <requires>
