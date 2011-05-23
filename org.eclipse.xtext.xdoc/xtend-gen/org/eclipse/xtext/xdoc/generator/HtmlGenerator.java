@@ -21,6 +21,7 @@ import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.Emphasize;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
 import org.eclipse.xtext.xdoc.xdoc.Section;
@@ -294,6 +295,12 @@ public class HtmlGenerator implements IGenerator {
     _builder.append(_genPlainText, "  ");
     _builder.append("</title>");
     _builder.newLineIfNotEmpty();
+    _builder.append("  ");
+    _builder.append("<link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
     _builder.append("</head>");
     _builder.newLine();
     return _builder;
@@ -426,64 +433,104 @@ public class HtmlGenerator implements IGenerator {
   
   protected CharSequence _genText(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<p>");
+    _builder.newLine();
     {
       EList<EObject> _contents = tom.getContents();
       for(EObject c : _contents) {
-        _builder.append("<p>");
-        _builder.newLine();
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "");
         _builder.newLineIfNotEmpty();
-        _builder.append("</p>");
-        _builder.newLine();
       }
     }
+    _builder.append("</p>");
+    _builder.newLine();
     return _builder;
   }
   
   protected CharSequence _genText(final CodeBlock cb) {
     StringConcatenation _xifexpression = null;
-    boolean _isInlineCode = this.utils.isInlineCode(cb);
-    if (_isInlineCode) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<span class=\"inlinecode\">");
-      EList<EObject> _contents = cb.getContents();
-      EObject _head = IterableExtensions.<EObject>head(_contents);
-      LangDef _language = cb.getLanguage();
-      StringConcatenation _generateCode = this.generateCode(((Code) _head), _language);
-      _builder.append(_generateCode, "");
-      _builder.append("</span>");
-      _xifexpression = _builder;
-    } else {
-      StringConcatenation _xblockexpression = null;
-      {
-        CodeBlock _removeIndent = StringUtils.removeIndent(cb);
-        final CodeBlock block = _removeIndent;
-        StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("<div class=\"literallayout\">");
-        _builder_1.newLine();
-        _builder_1.append("<div class=\"incode\">");
-        _builder_1.newLine();
-        _builder_1.append("<p class=\"code\">");
-        _builder_1.newLine();
+    EList<EObject> _contents = cb.getContents();
+    boolean _isEmpty = _contents.isEmpty();
+    boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+    if (_operator_not) {
+      StringConcatenation _xifexpression_1 = null;
+      boolean _isInlineCode = this.utils.isInlineCode(cb);
+      if (_isInlineCode) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("<span class=\"inlinecode\">");
+        EList<EObject> _contents_1 = cb.getContents();
+        EObject _head = IterableExtensions.<EObject>head(_contents_1);
+        LangDef _language = cb.getLanguage();
+        StringConcatenation _generateCode = this.generateCode(((Code) _head), _language);
+        _builder.append(_generateCode, "");
+        _builder.append("</span>");
+        _xifexpression_1 = _builder;
+      } else {
+        StringConcatenation _xblockexpression = null;
         {
-          EList<EObject> _contents_1 = block.getContents();
-          for(EObject code : _contents_1) {
-            LangDef _language_1 = cb.getLanguage();
-            StringConcatenation _generateCode_1 = this.generateCode(code, _language_1);
-            _builder_1.append(_generateCode_1, "");
-            _builder_1.newLineIfNotEmpty();
+          CodeBlock _removeIndent = StringUtils.removeIndent(cb);
+          final CodeBlock block = _removeIndent;
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("<div class=\"literallayout\">");
+          _builder_1.newLine();
+          _builder_1.append("<div class=\"incode\">");
+          _builder_1.newLine();
+          _builder_1.append("<p class=\"code\">");
+          _builder_1.newLine();
+          {
+            EList<EObject> _contents_2 = block.getContents();
+            for(EObject code : _contents_2) {
+              LangDef _language_1 = cb.getLanguage();
+              StringConcatenation _generateCode_1 = this.generateCode(code, _language_1);
+              _builder_1.append(_generateCode_1, "");
+              _builder_1.newLineIfNotEmpty();
+            }
           }
+          _builder_1.append("</p>");
+          _builder_1.newLine();
+          _builder_1.append("</div>");
+          _builder_1.newLine();
+          _builder_1.append("</div>");
+          _builder_1.newLine();
+          _xblockexpression = (_builder_1);
         }
-        _builder_1.append("</p>");
-        _builder_1.newLine();
-        _builder_1.append("</div>");
-        _builder_1.newLine();
-        _builder_1.append("</div>");
-        _builder_1.newLine();
-        _xblockexpression = (_builder_1);
+        _xifexpression_1 = _xblockexpression;
       }
-      _xifexpression = _xblockexpression;
+      _xifexpression = _xifexpression_1;
+    }
+    return _xifexpression;
+  }
+  
+  protected CharSequence _genText(final Emphasize em) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<em>");
+    EList<TextOrMarkup> _contents = em.getContents();
+    StringConcatenation _generate = this.generate(_contents);
+    _builder.append(_generate, "");
+    _builder.append("</em>");
+    return _builder;
+  }
+  
+  protected StringConcatenation _generate(final List<TextOrMarkup> tomList) {
+    StringConcatenation _xifexpression = null;
+    int _size = tomList.size();
+    boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
+    if (_operator_equals) {
+      TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(tomList);
+      StringConcatenation _genNonParText = this.genNonParText(_head);
+      _xifexpression = _genNonParText;
+    } else {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.newLine();
+      {
+        for(TextOrMarkup tom : tomList) {
+          CharSequence _genText = this.genText(tom);
+          _builder.append(_genText, "");
+          _builder.newLineIfNotEmpty();
+        }
+      }
+      _xifexpression = _builder;
     }
     return _xifexpression;
   }
@@ -533,13 +580,15 @@ public class HtmlGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation generate(final AbstractSection sec) {
+  public StringConcatenation generate(final Object sec) {
     if ((sec instanceof Section2)) {
       return _generate((Section2)sec);
     } else if ((sec instanceof Section3)) {
       return _generate((Section3)sec);
     } else if ((sec instanceof Section4)) {
       return _generate((Section4)sec);
+    } else if ((sec instanceof List)) {
+      return _generate((List<TextOrMarkup>)sec);
     } else {
       throw new IllegalArgumentException();
     }
@@ -558,6 +607,8 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence genText(final EObject cb) {
     if ((cb instanceof CodeBlock)) {
       return _genText((CodeBlock)cb);
+    } else if ((cb instanceof Emphasize)) {
+      return _genText((Emphasize)cb);
     } else if ((cb instanceof TextOrMarkup)) {
       return _genText((TextOrMarkup)cb);
     } else if ((cb instanceof TextPart)) {

@@ -14,6 +14,7 @@ import com.google.inject.Inject
 import org.eclipse.xtext.xdoc.generator.util.Utils
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions
+import java.util.List
 
 class HtmlGenerator implements IGenerator {
 	
@@ -114,6 +115,8 @@ class HtmlGenerator implements IGenerator {
 	def header (TextOrMarkup title) '''
 		<head>
 		  <title>«title.genPlainText»</title>
+		  <link href="book.css" rel="stylesheet" type="text/css">
+		  <link href="code.css" rel="stylesheet" type="text/css">
 		</head>
 	'''
 
@@ -165,29 +168,47 @@ class HtmlGenerator implements IGenerator {
 
 	def dispatch genText(TextOrMarkup tom) {
 		'''
+		<p>
 		«FOR c: tom.contents»
-			<p>
 			«c.genText»
-			</p>
 		«ENDFOR»
+		</p>
 		'''
 	}
 
 	def dispatch genText(CodeBlock cb) {
-		if(cb.inlineCode)
-			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language)»</span>'''
-		else {
-			val block = cb.removeIndent
-			'''	
-				<div class="literallayout">
-				<div class="incode">
-				<p class="code">
-				«FOR code:block.contents»
-					«code.generateCode(cb.language)»
-				«ENDFOR»
-				</p>
-				</div>
-				</div>
+		if(!cb.contents.empty) {
+			if(cb.inlineCode)
+				'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language)»</span>'''
+			else {
+				val block = cb.removeIndent
+				'''	
+					<div class="literallayout">
+					<div class="incode">
+					<p class="code">
+					«FOR code:block.contents»
+						«code.generateCode(cb.language)»
+					«ENDFOR»
+					</p>
+					</div>
+					</div>
+				'''
+			}
+		}
+	}
+
+	def dispatch genText(Emphasize em)
+		'''<em>«em.contents.generate»</em>'''
+
+	def dispatch generate(List<TextOrMarkup> tomList) {
+		if (tomList.size == 1) {
+			tomList.head.genNonParText
+		} else {
+			'''
+			
+			«FOR tom: tomList»
+				«tom.genText»
+			«ENDFOR»
 			'''
 		}
 	}

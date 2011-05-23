@@ -12,6 +12,7 @@ import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.Emphasize;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
@@ -54,6 +55,8 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		Document doc = initDoc("foo");
 		String expected = "<head>\n" +
 				"  <title>foo</title>\n" +
+				"  <link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+				"  <link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
 				"</head>\n";
 		String actual = generator.header(doc.getTitle()).toString();
 		assertEquals(expected, actual);
@@ -83,6 +86,35 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		assertEquals(expected, actual);
 	}
 
+	public void testEm() throws Exception {
+		XdocFactory fac = XdocFactory.eINSTANCE;
+		Emphasize emphasize = fac.createEmphasize();
+		TextOrMarkup textOrMarkup = fac.createTextOrMarkup();
+		TextPart textPart = fac.createTextPart();
+		textPart.setText("Testtext_");
+		textOrMarkup.getContents().add(textPart);
+		emphasize.getContents().add(textOrMarkup);
+		String expected = "<em>Testtext_</em>";
+		String actual = generator.genText(emphasize).toString();
+		assertEquals(expected, actual);
+		// and for two paragraphs in one em
+		TextOrMarkup textOrMarkup2 = fac.createTextOrMarkup();
+		TextPart textPart2 = fac.createTextPart();
+		textPart2.setText("more test");
+		textOrMarkup2.getContents().add(textPart2);
+		emphasize.getContents().add(textOrMarkup2);
+		expected = "<em>\n" +
+				"<p>\n" +
+				"Testtext_\n" +
+				"</p>\n" +
+				"<p>\n" +
+				"more test\n" +
+				"</p>\n" +
+				"</em>";
+		actual = generator.genText(emphasize).toString();
+		assertEquals(expected, actual);
+	}
+
 	@Override
 	public void testGenCodeWithLanguage() throws Exception {
 		Document document = createDocumentFrom("codeWithLanguageTest.xdoc");
@@ -105,9 +137,11 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 
 	@Override
 	public void testARef() throws Exception {
+		Document doc = initDoc("testARef");
 		Chapter chapter = createChapterFrom("aRefTest.xdoc");
-		generate(chapter);
-		assertGenerated(chapter);
+		doc.getChapters().add(chapter);
+		generate(doc);
+		assertGenerated(doc);
 		validate("aRefTest.html", naming.fileName(chapter));
 	}
 
