@@ -356,7 +356,6 @@ public class XdocGenerator implements IGenerator {
         _builder.append(_generate, "");
       }
     }
-    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -497,9 +496,9 @@ public class XdocGenerator implements IGenerator {
         _builder.append("<a name=\"");
         _builder.append(name, "");
         _builder.append("\"></a>");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -680,7 +679,6 @@ public class XdocGenerator implements IGenerator {
       for(EObject obj : _contents) {
         CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
-        _builder.newLineIfNotEmpty();
       }
     }
     return _builder;
