@@ -562,7 +562,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final MarkupInCode mic) {
+  protected StringConcatenation _generateCode(final MarkupInCode mic, final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _genText = this.genText(mic);
     _builder.append(_genText, "");
