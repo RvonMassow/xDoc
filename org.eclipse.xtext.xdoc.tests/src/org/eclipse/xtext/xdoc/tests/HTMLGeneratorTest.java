@@ -17,6 +17,8 @@ import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
+import org.eclipse.xtext.xdoc.xdoc.XdocFile;
+
 import com.google.inject.Inject;
 
 public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
@@ -137,17 +139,18 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 
 	@Override
 	public void testARef() throws Exception {
-		Document doc = initDoc("testARef");
-		Chapter chapter = createChapterFrom("aRefTest.xdoc");
-		doc.getChapters().add(chapter);
-		generate(doc);
-		assertGenerated(doc);
-		validate("aRefTest.html", naming.fileName(chapter));
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "aRefTest.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("aRefTest.html", naming.fileName(file.getMainSection()));
 	}
 
 	@Override
 	public void testCodeRef() throws Exception {
-		assertTrue("Implement", false);
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeRef.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("codeRefTest.html", naming.fileName(file.getMainSection()));
 	}
 
 	@Override

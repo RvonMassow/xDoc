@@ -17,13 +17,17 @@ import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
+import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
+import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
+import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
@@ -440,9 +444,9 @@ public class HtmlGenerator implements IGenerator {
       for(EObject c : _contents) {
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLineIfNotEmpty();
     _builder.append("</p>");
     _builder.newLine();
     return _builder;
@@ -500,6 +504,11 @@ public class HtmlGenerator implements IGenerator {
       _xifexpression = _xifexpression_1;
     }
     return _xifexpression;
+  }
+  
+  protected CharSequence _genText(final CodeRef ref) {
+    CharSequence _generate = this.helpGen.generate(ref);
+    return _generate;
   }
   
   protected CharSequence _genText(final Emphasize em) {
@@ -565,6 +574,29 @@ public class HtmlGenerator implements IGenerator {
     return _text;
   }
   
+  protected CharSequence _genText(final Anchor a) {
+    CharSequence _generate = this.helpGen.generate(a);
+    return _generate;
+  }
+  
+  protected CharSequence _genText(final Ref ref) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<a href=");
+    Identifiable _ref = ref.getRef();
+    String _fileName = this.naming.fileName(_ref);
+    _builder.append(_fileName, "");
+    _builder.append("#");
+    Identifiable _ref_1 = ref.getRef();
+    String _name = _ref_1.getName();
+    _builder.append(_name, "");
+    _builder.append(">");
+    EList<TextOrMarkup> _contents = ref.getContents();
+    StringConcatenation _generate = this.generate(_contents);
+    _builder.append(_generate, "");
+    _builder.append("</a>");
+    return _builder;
+  }
+  
   public StringConcatenation generate(final AbstractSection chap, final IFileSystemAccess fsa) throws UnsupportedEncodingException {
     if ((chap instanceof Chapter)
          && (fsa instanceof IFileSystemAccess)) {
@@ -604,15 +636,21 @@ public class HtmlGenerator implements IGenerator {
     }
   }
   
-  public CharSequence genText(final EObject cb) {
-    if ((cb instanceof CodeBlock)) {
-      return _genText((CodeBlock)cb);
-    } else if ((cb instanceof Emphasize)) {
-      return _genText((Emphasize)cb);
-    } else if ((cb instanceof TextOrMarkup)) {
-      return _genText((TextOrMarkup)cb);
-    } else if ((cb instanceof TextPart)) {
-      return _genText((TextPart)cb);
+  public CharSequence genText(final EObject a) {
+    if ((a instanceof Anchor)) {
+      return _genText((Anchor)a);
+    } else if ((a instanceof CodeBlock)) {
+      return _genText((CodeBlock)a);
+    } else if ((a instanceof CodeRef)) {
+      return _genText((CodeRef)a);
+    } else if ((a instanceof Emphasize)) {
+      return _genText((Emphasize)a);
+    } else if ((a instanceof Ref)) {
+      return _genText((Ref)a);
+    } else if ((a instanceof TextOrMarkup)) {
+      return _genText((TextOrMarkup)a);
+    } else if ((a instanceof TextPart)) {
+      return _genText((TextPart)a);
     } else {
       throw new IllegalArgumentException();
     }

@@ -169,9 +169,7 @@ class HtmlGenerator implements IGenerator {
 	def dispatch genText(TextOrMarkup tom) {
 		'''
 		<p>
-		«FOR c: tom.contents»
-			«c.genText»
-		«ENDFOR»
+		«FOR c: tom.contents»«c.genText»«ENDFOR»
 		</p>
 		'''
 	}
@@ -195,6 +193,10 @@ class HtmlGenerator implements IGenerator {
 				'''
 			}
 		}
+	}
+
+	def dispatch genText(CodeRef ref) {
+		helpGen.generate(ref)
 	}
 
 	def dispatch genText(Emphasize em)
@@ -225,4 +227,11 @@ class HtmlGenerator implements IGenerator {
 	def dispatch genText(TextPart tp) {
 		tp.text
 	}
+
+	def dispatch genText(Anchor a) {
+		helpGen.generate(a)
+	}
+
+	def dispatch genText(Ref ref) 
+		'''<a href=«ref.ref.fileName»#«ref.ref.name»>«ref.contents.generate»</a>'''
 }

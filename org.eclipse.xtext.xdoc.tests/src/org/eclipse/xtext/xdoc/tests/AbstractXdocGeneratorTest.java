@@ -131,6 +131,7 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 		result.setTitle(tomTitle);
 		return result;
 	}
+
 	protected Document createDocumentFrom(String mainDocument, String... docs) {
 		XtextResourceSet set = get(XtextResourceSet.class);
 		Resource ret = set.getResource(URI.createURI(SRC_DIR + mainDocument), true);
