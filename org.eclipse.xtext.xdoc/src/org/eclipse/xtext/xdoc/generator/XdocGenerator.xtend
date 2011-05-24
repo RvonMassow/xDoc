@@ -140,9 +140,8 @@ class XdocGenerator implements IGenerator {
 		«ENDIF»
 	'''
 
-	def dispatch generate(TextOrMarkup tom) '''
-		«FOR obj:tom.contents»«obj.generate»«ENDFOR»
-	'''
+	def dispatch generate(TextOrMarkup tom) 
+		'''«FOR obj:tom.contents»«obj.generate»«ENDFOR»'''
 //		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.generate»'''])
 
 	def dispatch generate(UnorderedList ul) '''
@@ -186,9 +185,7 @@ class XdocGenerator implements IGenerator {
 	'''
 
 	def genLabel(String name) '''
-		«IF this != null »
-		<a name="«name»"></a>
-		«ENDIF»
+		«IF this != null »<a name="«name»"></a>«ENDIF»
 	'''
 
 	def dispatch generate(TextPart tp) {
@@ -225,9 +222,9 @@ class XdocGenerator implements IGenerator {
 	def dispatch generate(Link link) 
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
 	
-
 	def dispatch generate(CodeRef cRef) 
-		'''<em>«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars»</em>'''
+		'''<abbr title="«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars
+			»" >«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr>'''
 
 	def dispatch generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
@@ -249,7 +246,7 @@ class XdocGenerator implements IGenerator {
 	}
 
 	def dispatch generateCode (Code code, LangDef lang) 
-		'''«code.contents.unescapeXdocChars.formatCode(lang) »'''
+		'''«code.contents.unescapeXdocChars.formatCode(lang)»'''
 	
 	
 	def dispatch generateCode (MarkupInCode code, LangDef lang) 
@@ -258,10 +255,7 @@ class XdocGenerator implements IGenerator {
 	def dispatch generateCode (Code code, Void v) 
 		'''«code.contents.unescapeXdocChars.formatCode(null) »'''
 
-	def genNonParContent(TextOrMarkup tom) '''
-		«FOR obj:tom.contents»
-			«obj.generate»
-		«ENDFOR»
-	'''
+	def genNonParContent(TextOrMarkup tom) 
+		'''«FOR obj:tom.contents»«obj.generate»«ENDFOR»'''
 
 }

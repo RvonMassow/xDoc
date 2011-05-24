@@ -356,7 +356,6 @@ public class XdocGenerator implements IGenerator {
         _builder.append(_generate, "");
       }
     }
-    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -497,9 +496,9 @@ public class XdocGenerator implements IGenerator {
         _builder.append("<a name=\"");
         _builder.append(name, "");
         _builder.append("\"></a>");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -591,13 +590,19 @@ public class XdocGenerator implements IGenerator {
   
   protected CharSequence _generate(final CodeRef cRef) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<em>");
+    _builder.append("<abbr title=\"");
     JvmDeclaredType _element = cRef.getElement();
     String _qualifiedName = _element.getQualifiedName();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
     String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
     _builder.append(_escapeHTMLChars, "");
-    _builder.append("</em>");
+    _builder.append("\" >");
+    JvmDeclaredType _element_1 = cRef.getElement();
+    String _simpleName = _element_1.getSimpleName();
+    String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_simpleName);
+    String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
+    _builder.append(_escapeHTMLChars_1, "");
+    _builder.append("</abbr>");
     return _builder;
   }
   
@@ -680,7 +685,6 @@ public class XdocGenerator implements IGenerator {
       for(EObject obj : _contents) {
         CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
-        _builder.newLineIfNotEmpty();
       }
     }
     return _builder;

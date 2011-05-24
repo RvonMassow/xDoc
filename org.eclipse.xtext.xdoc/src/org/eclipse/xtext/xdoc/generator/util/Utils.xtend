@@ -85,7 +85,7 @@ class Utils {
 		else
 			""
 	}
-	
+
 	def getHighlightedHtmlCode(String code, LangDef language) {
 		val lexer = new Common()
 		lexer.setCharStream(new ANTLRStringStream(code))
@@ -126,9 +126,9 @@ class Utils {
 		}
 		return result.toString
 	}
-	
+
 	def String whitespace2Entities(String s) {
-		return s.replace(' ','&nbsp;').replace('\n','</br>\n').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
+		return s.escapeHTMLChars.replace(' ','&nbsp;').replace('\n','</br>\n').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
 	}
-	
+
 }

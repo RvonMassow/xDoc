@@ -42,3 +42,4 @@ Export-Package: org.eclipse.xtext.xdoc,
  org.eclipse.xtext.xdoc.xdoc,
  org.eclipse.xtext.xdoc.xdoc.impl,
  org.eclipse.xtext.xdoc.xdoc.util
+
