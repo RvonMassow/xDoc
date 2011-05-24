@@ -222,9 +222,9 @@ class XdocGenerator implements IGenerator {
 	def dispatch generate(Link link) 
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
 	
-
 	def dispatch generate(CodeRef cRef) 
-		'''<em>«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars»</em>'''
+		'''<abbr title="«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars
+			»" >«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr>'''
 
 	def dispatch generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
