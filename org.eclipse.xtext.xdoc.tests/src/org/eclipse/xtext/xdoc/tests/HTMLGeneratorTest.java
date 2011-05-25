@@ -4,8 +4,11 @@ import java.io.File;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractFileSystemAccess;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xdoc.generator.HtmlGenerator;
 import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
@@ -204,7 +207,21 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 
 	@Override
 	public void testTwoChapters() throws Exception {
-		assertTrue("Implement", false);
+		XtextResourceSet set = get(XtextResourceSet.class);
+		Resource res = set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "01-twoChapters.xdoc"), true);
+		Chapter chapter0 = (Chapter) ((XdocFile) getModel((XtextResource)res)).getMainSection();
+		res = set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "02-twoChapters.xdoc"), true);
+		Chapter chapter1 = (Chapter) ((XdocFile) getModel((XtextResource)res)).getMainSection();
+		XdocFile file = (XdocFile) getModel((XtextResource)set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "twoChaptersDoc.xdoc"), true));
+		Document doc = (Document) file.getMainSection();
+		for(int i = 0; i < doc.getChapters().size(); i++) {
+			Chapter chapter = doc.getChapters().get(i);
+			generate(chapter);
+		}
+		generate(doc);
+		validate("01-twoChapters.html", naming.fileName(chapter0));
+		validate("02-twoChapters.html", naming.fileName(chapter1));
+		validate("twoChaptersDoc.html", naming.fileName(doc));
 	}
 
 	@Override

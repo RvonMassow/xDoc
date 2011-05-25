@@ -113,7 +113,8 @@ public class Utils {
     if (_operator_notEquals) {
       String _replaceAll = s.replaceAll("\\\\\\[", "[");
       String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
-      _xifexpression = _replaceAll_1;
+      String _replaceAll_2 = _replaceAll_1.replaceAll("\\\\\\\\", "\\\\");
+      _xifexpression = _replaceAll_2;
     } else {
       _xifexpression = "";
     }

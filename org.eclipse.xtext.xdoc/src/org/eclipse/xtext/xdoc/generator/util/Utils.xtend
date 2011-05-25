@@ -62,7 +62,7 @@ class Utils {
 
 	def unescapeXdocChars(String s) {
 		if(s != null)
-			s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]")
+			s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]").replaceAll("\\\\\\\\", "\\\\")
 		else
 			""
 	}
