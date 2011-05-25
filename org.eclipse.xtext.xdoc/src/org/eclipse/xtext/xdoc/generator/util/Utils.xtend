@@ -46,7 +46,6 @@ class Utils {
 
 	def boolean isInlineCode (CodeBlock cb) {
 		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
-//		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
 	}
 
 	def escapeLatexChars(String s) {
@@ -62,7 +61,7 @@ class Utils {
 
 	def unescapeXdocChars(String s) {
 		if(s != null)
-			s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]")
+			s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]").replaceAll("\\\\\\\\", "\\\\")
 		else
 			""
 	}

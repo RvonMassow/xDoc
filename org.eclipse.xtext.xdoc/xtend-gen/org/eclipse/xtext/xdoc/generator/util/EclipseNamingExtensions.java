@@ -1,6 +1,7 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.inject.Inject;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -18,10 +19,12 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
+import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
@@ -40,6 +43,9 @@ public class EclipseNamingExtensions {
   
   @Inject
   private IQualifiedNameProvider nameProvider;
+  
+  @Inject
+  private Utils utils;
   
   public String urlSuffix(final AbstractSection aS) {
     String _xifexpression = null;
@@ -65,11 +71,29 @@ public class EclipseNamingExtensions {
   }
   
   protected String _fileName(final Chapter obj) {
-    Resource _eResource = obj.eResource();
-    URI _uRI = _eResource.getURI();
-    String _lastSegment = _uRI.lastSegment();
-    String _operator_plus = StringExtensions.operator_plus(_lastSegment, ".html");
-    return _operator_plus;
+    String _xblockexpression = null;
+    {
+      Resource _eResource = obj.eResource();
+      URI _uRI = _eResource.getURI();
+      String _lastSegment = _uRI.lastSegment();
+      final String name = _lastSegment;
+      String _xifexpression = null;
+      EObject _eContainer = obj.eContainer();
+      if ((_eContainer instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
+        String _operator_plus = StringExtensions.operator_plus(name, "-");
+        EObject _eContainer_1 = obj.eContainer();
+        List<? extends AbstractSection> _subSection = this.utils.subSection(((Document) _eContainer_1));
+        int _indexOf = _subSection.indexOf(obj);
+        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
+        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ".html");
+        _xifexpression = _operator_plus_2;
+      } else {
+        String _operator_plus_3 = StringExtensions.operator_plus(name, ".html");
+        _xifexpression = _operator_plus_3;
+      }
+      _xblockexpression = (_xifexpression);
+    }
+    return _xblockexpression;
   }
   
   protected String _fileName(final AbstractSection obj) {
@@ -96,7 +120,12 @@ public class EclipseNamingExtensions {
     } else {
       EObject _eContainer_1 = obj.eContainer();
       String _fileName_1 = this.fileName(_eContainer_1);
-      _xifexpression = _fileName_1;
+      String _operator_plus_1 = StringExtensions.operator_plus(_fileName_1, "-");
+      EObject _eContainer_2 = obj.eContainer();
+      List<? extends AbstractSection> _subSection = this.utils.subSection(((AbstractSection) _eContainer_2));
+      int _indexOf = _subSection.indexOf(obj);
+      String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ((Integer)_indexOf));
+      _xifexpression = _operator_plus_2;
     }
     return _xifexpression;
   }

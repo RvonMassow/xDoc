@@ -1,14 +1,21 @@
 package org.eclipse.xtext.xdoc.tests;
 
 
+import java.io.File;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xpand2.XpandFacade;
+import org.eclipse.xtext.generator.AbstractFileSystemAccess;
+import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.xdoc.generator.XdocGenerator;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
+
+import com.google.inject.Inject;
 
 public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 
@@ -89,13 +96,6 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 	}
 
 	@Override
-	public void testEscape() throws Exception {
-		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "testEscape.xdoc");
-		generate(file);
-		validate(EXPECTATION_DIR + "escapeTest.html", RESULT_FILE);
-	}
-
-	@Override
 	public void testTable() throws Exception {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "table.xdoc");
 		generate(file);
@@ -134,9 +134,24 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 	}
 
 	@Override
-	protected void generate(EObject eObject)  {
-		XpandFacade.create(getXpandCtx()).evaluate(
-				"templates::eclipsehelp::Main::main", eObject);
+	public void testEscape() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "testEscape.xdoc");
+		generate(file);
+		validate(EXPECTATION_DIR + "escapeTest.html", RESULT_FILE);
 	}
 
+	@Override
+	protected void generate(EObject eObject)  {
+//		XpandFacade.create(getXpandCtx()).evaluate(
+//				"templates::eclipsehelp::Main::main", eObject);
+	}
+
+	@Inject
+	private XdocGenerator generator;
+
+	protected void generate(AbstractSection obj) throws Exception {
+		AbstractFileSystemAccess fsa = new JavaIoFileSystemAccess();
+		fsa.setOutputPath(System.getProperty("user.dir") + File.separatorChar+"test-gen"+ File.separatorChar);
+		generator.generate(obj, fsa);
+	}
 }

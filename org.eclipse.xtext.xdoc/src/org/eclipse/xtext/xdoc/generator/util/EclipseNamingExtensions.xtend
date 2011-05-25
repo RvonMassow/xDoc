@@ -23,6 +23,8 @@ class EclipseNamingExtensions {
 
 	@Inject extension IQualifiedNameProvider nameProvider
 
+	@Inject extension Utils utils
+
 	def urlSuffix(AbstractSection aS) {
 		if(aS.eContainer instanceof XdocFile)
 			""
@@ -39,7 +41,12 @@ class EclipseNamingExtensions {
 	}
 
 	def dispatch String fileName(Chapter obj) {
-		obj.eResource.URI.lastSegment+".html"
+		val name = obj.eResource.URI.lastSegment
+		if(obj.eContainer instanceof Document) {
+			name +"-"+ (obj.eContainer as Document).subSection.indexOf(obj)+".html"
+		} else {
+			name+".html"
+		}
 	}
 
 	def dispatch String fileName(AbstractSection obj) {
@@ -51,7 +58,7 @@ class EclipseNamingExtensions {
 			else
 				"NullFileName for " + obj?.toString
 		} else {
-			fileName(obj.eContainer)
+			fileName(obj.eContainer) +"-"+ (obj.eContainer as AbstractSection).subSection.indexOf(obj)
 		}
 	}
 
