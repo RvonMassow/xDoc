@@ -1,12 +1,13 @@
-<toc topic="contents/mytestmodel.xdoc-0.html" label="foo">
-<topic href="contents/mytestmodel.xdoc-0.html#foo-1" label="bar" >
-<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1" label="fooß" >
-<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1-1" label="pilz" >
-<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1-1-1" label="sna" >
-<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1-1-1-1" label="fu" >
-</topic>
-</topic>
-</topic>
-</topic>
-</topic>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<toc topic="contents/mytestmodel.xdoc-0.html" label="foo" >
+	<topic href="contents/mytestmodel.xdoc-0.html#foo-1" label="bar" >
+		<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1" label="fooß" >
+			<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1-1" label="pilz" >
+				<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1-1-1" label="sna" >
+					<topic href="contents/mytestmodel.xdoc-0.html#foo-1-1-1-1-1" label="fu" >
+					</topic>
+				</topic>
+			</topic>
+		</topic>
+	</topic>
 </toc>

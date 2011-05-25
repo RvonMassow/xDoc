@@ -149,23 +149,58 @@ public class EclipseNamingExtensions {
   }
   
   protected String _labelName(final AbstractSection aS) {
-    String _xifexpression = null;
-    String _name = aS.getName();
-    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
-    if (_operator_notEquals) {
-      String _name_1 = aS.getName();
-      _xifexpression = _name_1;
-    } else {
-      EObject _eContainer = aS.eContainer();
-      String _labelName = this.labelName(_eContainer);
-      String _operator_plus = StringExtensions.operator_plus(_labelName, "-");
-      EObject _eContainer_1 = aS.eContainer();
-      EList<EObject> _eContents = _eContainer_1.eContents();
-      int _indexOf = _eContents.indexOf(aS);
-      String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
-      _xifexpression = _operator_plus_1;
+    String _xblockexpression = null;
+    {
+      AbstractSection _switchResult = null;
+      final AbstractSection aS_1 = aS;
+      boolean matched = false;
+      if (!matched) {
+        if (aS_1 instanceof ChapterRef) {
+          final ChapterRef aS_2 = (ChapterRef) aS_1;
+          matched=true;
+          Chapter _chapter = aS_2.getChapter();
+          _switchResult = _chapter;
+        }
+      }
+      if (!matched) {
+        if (aS_1 instanceof SectionRef) {
+          final SectionRef aS_3 = (SectionRef) aS_1;
+          matched=true;
+          Section _section = aS_3.getSection();
+          _switchResult = _section;
+        }
+      }
+      if (!matched) {
+        if (aS_1 instanceof Section2Ref) {
+          final Section2Ref aS_4 = (Section2Ref) aS_1;
+          matched=true;
+          Section2 _section2 = aS_4.getSection2();
+          _switchResult = _section2;
+        }
+      }
+      if (!matched) {
+        _switchResult = aS;
+      }
+      final AbstractSection as = _switchResult;
+      String _xifexpression = null;
+      String _name = as.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        String _name_1 = as.getName();
+        _xifexpression = _name_1;
+      } else {
+        EObject _eContainer = as.eContainer();
+        String _labelName = this.labelName(_eContainer);
+        String _operator_plus = StringExtensions.operator_plus(_labelName, "-");
+        EObject _eContainer_1 = as.eContainer();
+        EList<EObject> _eContents = _eContainer_1.eContents();
+        int _indexOf = _eContents.indexOf(as);
+        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
+        _xifexpression = _operator_plus_1;
+      }
+      _xblockexpression = (_xifexpression);
     }
-    return _xifexpression;
+    return _xblockexpression;
   }
   
   public AbstractSection virtualContainer(final AbstractSection obj) {

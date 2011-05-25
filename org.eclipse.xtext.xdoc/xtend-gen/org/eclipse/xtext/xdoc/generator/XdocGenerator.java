@@ -332,16 +332,15 @@ public class XdocGenerator implements IGenerator {
         String _name_2 = _ref_4.getName();
         _builder.append(_name_2, "");
         _builder.append("\">");
-        _builder.newLineIfNotEmpty();
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
           for(TextOrMarkup tom : _contents_1) {
             StringConcatenation _genNonParContent = this.genNonParContent(tom);
             _builder.append(_genNonParContent, "");
-            _builder.append("</a>");
-            _builder.newLineIfNotEmpty();
           }
         }
+        _builder.append("</a>");
+        _builder.newLineIfNotEmpty();
       }
     }
     return _builder;

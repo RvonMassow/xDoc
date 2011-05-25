@@ -133,10 +133,8 @@ class XdocGenerator implements IGenerator {
 		«IF ref.contents.isEmpty »
 		<a href="«ref.ref.fileName»#«ref.ref.name»">section «ref.ref.name»</a>
 		«ELSE»
-		<a href="«ref.ref.fileName»#«ref.ref.name»">
-		«FOR tom:ref.contents»
-			«tom.genNonParContent»</a>
-		«ENDFOR»
+		<a href="«ref.ref.fileName»#«ref.ref.name»">«FOR tom:ref.contents
+		»«tom.genNonParContent»«ENDFOR»</a>
 		«ENDIF»
 	'''
 

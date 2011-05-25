@@ -75,10 +75,20 @@ class EclipseNamingExtensions {
 	}
 
 	def dispatch String labelName(AbstractSection aS){
-		if(aS.name!=null)
-			aS.name
+		val ^as = switch (aS) {
+			ChapterRef:
+				aS.chapter
+			SectionRef:
+				aS.section
+			Section2Ref:
+				aS.section2
+			default:
+				aS
+		}
+		if(^as.name!=null)
+			^as.name
 		else {
-			labelName(aS.eContainer())+"-"+ aS.eContainer.eContents.indexOf(aS);
+			labelName(^as.eContainer())+"-"+ ^as.eContainer.eContents.indexOf(^as);
 		}
 	}
 
