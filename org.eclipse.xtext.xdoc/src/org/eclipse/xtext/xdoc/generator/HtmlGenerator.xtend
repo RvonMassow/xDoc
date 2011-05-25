@@ -55,7 +55,8 @@ class HtmlGenerator implements IGenerator {
 		
 		<body>
 		
-		<«chap.tag»>«chap.title.genNonParText»</«chap.tag»>
+		<«chap.tag»>«chap.title.genNonParText»</«chap.tag»>«IF chap.name != null»
+		<a name="«chap.name»"></a>«ENDIF»
 		«chap.toc»
 		
 		«FOR c : chap.contents »
@@ -114,6 +115,7 @@ class HtmlGenerator implements IGenerator {
 
 	def header (TextOrMarkup title) '''
 		<head>
+		  <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		  <title>«title.genPlainText»</title>
 		  <link href="book.css" rel="stylesheet" type="text/css">
 		  <link href="code.css" rel="stylesheet" type="text/css">
@@ -225,7 +227,7 @@ class HtmlGenerator implements IGenerator {
 		'''«mic.genText»'''
 
 	def dispatch genText(TextPart tp) {
-		tp.text
+		tp.text.unescapeXdocChars
 	}
 
 	def dispatch genText(Anchor a) {
@@ -233,5 +235,50 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def dispatch genText(Ref ref) 
-		'''<a href=«ref.ref.fileName»#«ref.ref.name»>«ref.contents.generate»</a>'''
+		'''<a href="«ref.ref.fileName»#«ref.ref.name»" >«ref.contents.generate»</a>'''
+	
+	def dispatch genText(Link link) 
+		'''<a href="«link.url»" >«IF link.text != null»«link.text»«ELSE»«link.url»«ENDIF»</a>'''
+
+	def dispatch genText(OrderedList ol)
+		'''
+		<ol>
+		  «FOR i:ol.items»
+		    «i.genText»
+		  «ENDFOR»
+		<ol>
+		'''
+
+	def dispatch genText(UnorderedList ol)
+		'''
+		<ul>
+		  «FOR i:ol.items»
+		    «i.genText»
+		  «ENDFOR»
+		</ul>
+		'''
+
+
+	def dispatch genText(Item item) '''
+		<li>«item.contents.generate»</li>
+	'''
+
+	def dispatch genText(Table table) '''
+		<table>
+		  «FOR tr: table.rows»
+		    «genRow(tr)»
+		  «ENDFOR»
+		</table>
+	'''
+
+	def genRow(TableRow tr) '''
+		<tr>
+		  «FOR td: tr.data»
+		    «genData(td)»
+		  «ENDFOR»
+		</tr>
+	'''
+
+	def genData(TableData td) 
+	'''<td>«td.contents.generate»</td>'''
 }

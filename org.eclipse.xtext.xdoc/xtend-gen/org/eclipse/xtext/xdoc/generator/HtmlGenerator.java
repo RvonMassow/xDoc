@@ -25,15 +25,22 @@ import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
+import org.eclipse.xtext.xdoc.xdoc.Item;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
+import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
+import org.eclipse.xtext.xdoc.xdoc.OrderedList;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.Section4;
+import org.eclipse.xtext.xdoc.xdoc.Table;
+import org.eclipse.xtext.xdoc.xdoc.TableData;
+import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
+import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 import org.eclipse.xtext.xtend2.lib.ResourceExtensions;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
@@ -121,6 +128,17 @@ public class HtmlGenerator implements IGenerator {
       String _tag_1 = this.tag(chap);
       _builder.append(_tag_1, "");
       _builder.append(">");
+      {
+        String _name = chap.getName();
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        if (_operator_notEquals) {
+          _builder.newLineIfNotEmpty();
+          _builder.append("<a name=\"");
+          String _name_1 = chap.getName();
+          _builder.append(_name_1, "");
+          _builder.append("\"></a>");
+        }
+      }
       _builder.newLineIfNotEmpty();
       StringConcatenation _c = this.toc(chap);
       _builder.append(_c, "");
@@ -292,6 +310,9 @@ public class HtmlGenerator implements IGenerator {
   public StringConcatenation header(final TextOrMarkup title) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<head>");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<META http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">");
     _builder.newLine();
     _builder.append("  ");
     _builder.append("<title>");
@@ -571,7 +592,8 @@ public class HtmlGenerator implements IGenerator {
   
   protected CharSequence _genText(final TextPart tp) {
     String _text = tp.getText();
-    return _text;
+    String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
+    return _unescapeXdocChars;
   }
   
   protected CharSequence _genText(final Anchor a) {
@@ -581,7 +603,7 @@ public class HtmlGenerator implements IGenerator {
   
   protected CharSequence _genText(final Ref ref) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<a href=");
+    _builder.append("<a href=\"");
     Identifiable _ref = ref.getRef();
     String _fileName = this.naming.fileName(_ref);
     _builder.append(_fileName, "");
@@ -589,11 +611,124 @@ public class HtmlGenerator implements IGenerator {
     Identifiable _ref_1 = ref.getRef();
     String _name = _ref_1.getName();
     _builder.append(_name, "");
-    _builder.append(">");
+    _builder.append("\" >");
     EList<TextOrMarkup> _contents = ref.getContents();
     StringConcatenation _generate = this.generate(_contents);
     _builder.append(_generate, "");
     _builder.append("</a>");
+    return _builder;
+  }
+  
+  protected CharSequence _genText(final Link link) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<a href=\"");
+    String _url = link.getUrl();
+    _builder.append(_url, "");
+    _builder.append("\" >");
+    {
+      String _text = link.getText();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_text, null);
+      if (_operator_notEquals) {
+        String _text_1 = link.getText();
+        _builder.append(_text_1, "");} else {
+        String _url_1 = link.getUrl();
+        _builder.append(_url_1, "");
+      }
+    }
+    _builder.append("</a>");
+    return _builder;
+  }
+  
+  protected CharSequence _genText(final OrderedList ol) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<ol>");
+    _builder.newLine();
+    {
+      EList<Item> _items = ol.getItems();
+      for(Item i : _items) {
+        _builder.append("  ");
+        CharSequence _genText = this.genText(i);
+        _builder.append(_genText, "  ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("<ol>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _genText(final UnorderedList ol) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<ul>");
+    _builder.newLine();
+    {
+      EList<Item> _items = ol.getItems();
+      for(Item i : _items) {
+        _builder.append("  ");
+        CharSequence _genText = this.genText(i);
+        _builder.append(_genText, "  ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("</ul>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _genText(final Item item) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<li>");
+    EList<TextOrMarkup> _contents = item.getContents();
+    StringConcatenation _generate = this.generate(_contents);
+    _builder.append(_generate, "");
+    _builder.append("</li>");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  protected CharSequence _genText(final Table table) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<table>");
+    _builder.newLine();
+    {
+      EList<TableRow> _rows = table.getRows();
+      for(TableRow tr : _rows) {
+        _builder.append("  ");
+        StringConcatenation _genRow = this.genRow(tr);
+        _builder.append(_genRow, "  ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("</table>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public StringConcatenation genRow(final TableRow tr) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<tr>");
+    _builder.newLine();
+    {
+      EList<TableData> _data = tr.getData();
+      for(TableData td : _data) {
+        _builder.append("  ");
+        StringConcatenation _genData = this.genData(td);
+        _builder.append(_genData, "  ");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("</tr>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public StringConcatenation genData(final TableData td) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<td>");
+    EList<TextOrMarkup> _contents = td.getContents();
+    StringConcatenation _generate = this.generate(_contents);
+    _builder.append(_generate, "");
+    _builder.append("</td>");
     return _builder;
   }
   
@@ -645,8 +780,18 @@ public class HtmlGenerator implements IGenerator {
       return _genText((CodeRef)a);
     } else if ((a instanceof Emphasize)) {
       return _genText((Emphasize)a);
+    } else if ((a instanceof Link)) {
+      return _genText((Link)a);
+    } else if ((a instanceof OrderedList)) {
+      return _genText((OrderedList)a);
     } else if ((a instanceof Ref)) {
       return _genText((Ref)a);
+    } else if ((a instanceof Table)) {
+      return _genText((Table)a);
+    } else if ((a instanceof UnorderedList)) {
+      return _genText((UnorderedList)a);
+    } else if ((a instanceof Item)) {
+      return _genText((Item)a);
     } else if ((a instanceof TextOrMarkup)) {
       return _genText((TextOrMarkup)a);
     } else if ((a instanceof TextPart)) {

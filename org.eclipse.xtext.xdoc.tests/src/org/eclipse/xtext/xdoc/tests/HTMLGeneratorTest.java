@@ -56,6 +56,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 	public void testHeader() throws Exception {
 		Document doc = initDoc("foo");
 		String expected = "<head>\n" +
+    			"  <META http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n" +
 				"  <title>foo</title>\n" +
 				"  <link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
 				"  <link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
@@ -155,6 +156,54 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 
 	@Override
 	public void testComment() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "commentTest.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("commentTest.html", naming.fileName(file.getMainSection()));
+	}
+
+	@Override
+	public void testLink() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "linkTest.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("linkTest.html", naming.fileName(file.getMainSection()));
+	}
+
+	@Override
+	public void testRefText() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "namedRefAndTextTest.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("namedRefAndTextTest.html", naming.fileName(file.getMainSection()));
+	}
+
+	@Override
+	public void testNestedList() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "nestedListTest.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("nestedListTest.html", naming.fileName(file.getMainSection()));
+	}
+
+	@Override
+	public void testSimpleRef() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "simpleRefTest.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("simpleRefTest.html", naming.fileName(file.getMainSection()));
+	}
+
+	@Override
+	public void testTable() throws Exception {
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "table.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("table.html", naming.fileName(file.getMainSection()));
+	}
+
+	@Override
+	public void testTwoChapters() throws Exception {
 		assertTrue("Implement", false);
 	}
 
@@ -164,38 +213,11 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 	}
 
 	@Override
-	public void testLink() throws Exception {
-		assertTrue("Implement", false);
-	}
-
-	@Override
-	public void testRefText() throws Exception {
-		assertTrue("Implement", false);
-	}
-
-	@Override
-	public void testNestedList() throws Exception {
-		assertTrue("Implement", false);
-	}
-
-	@Override
-	public void testSimpleRef() throws Exception {
-		assertTrue("Implement", false);
-	}
-
-	@Override
 	public void testEscape() throws Exception {
-		assertTrue("Implement", false);
-	}
-
-	@Override
-	public void testTable() throws Exception {
-		assertTrue("Implement", false);
-	}
-
-	@Override
-	public void testTwoChapters() throws Exception {
-		assertTrue("Implement", false);
+		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "testEscape.xdoc");
+		generate(file.getMainSection());
+		assertGenerated(file.getMainSection());
+		validate("testEscape.html", naming.fileName(file.getMainSection()));
 	}
 
 	@Override
