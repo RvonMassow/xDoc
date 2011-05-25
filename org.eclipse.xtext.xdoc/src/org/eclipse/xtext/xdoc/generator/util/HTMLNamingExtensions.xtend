@@ -24,15 +24,25 @@ class HTMLNamingExtensions {
 	}
 
 	def dispatch String internalFileName(AbstractSection section) {
-		switch container : section.eContainer {
+		val sec = switch section {
+			ChapterRef:
+				section.chapter
+			SectionRef:
+				section.section
+			Section2Ref:
+				section.section2
+			default:
+				section
+		}
+		switch container : sec.eContainer {
 			XdocFile :
-				section.eResource.internalFileName
+				sec.eResource.internalFileName
 			Section3 :
 				container.internalFileName
 			Section2 :
 				container.internalFileName
 			AbstractSection:
-				container.internalFileName + "-" + container.subSection.indexOf(section)
+				container.internalFileName + "-" + container.subSection.indexOf(sec)
 		}
 	}
 

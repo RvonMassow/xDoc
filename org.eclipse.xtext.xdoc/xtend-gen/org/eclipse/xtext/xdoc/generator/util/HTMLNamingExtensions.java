@@ -10,8 +10,13 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
+import org.eclipse.xtext.xdoc.xdoc.Chapter;
+import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
+import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
+import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
+import org.eclipse.xtext.xdoc.xdoc.SectionRef;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 @SuppressWarnings("all")
@@ -30,48 +35,83 @@ public class HTMLNamingExtensions {
   }
   
   protected String _internalFileName(final AbstractSection section) {
-    String _switchResult = null;
-    EObject _eContainer = section.eContainer();
-    final EObject container = _eContainer;
-    boolean matched = false;
-    if (!matched) {
-      if (container instanceof XdocFile) {
-        final XdocFile container_1 = (XdocFile) container;
-        matched=true;
-        Resource _eResource = section.eResource();
-        String _internalFileName = this.internalFileName(_eResource);
-        _switchResult = _internalFileName;
+    String _xblockexpression = null;
+    {
+      AbstractSection _switchResult = null;
+      final AbstractSection section_1 = section;
+      boolean matched = false;
+      if (!matched) {
+        if (section_1 instanceof ChapterRef) {
+          final ChapterRef section_2 = (ChapterRef) section_1;
+          matched=true;
+          Chapter _chapter = section_2.getChapter();
+          _switchResult = _chapter;
+        }
       }
-    }
-    if (!matched) {
-      if (container instanceof Section3) {
-        final Section3 container_2 = (Section3) container;
-        matched=true;
-        String _internalFileName_1 = this.internalFileName(container_2);
-        _switchResult = _internalFileName_1;
+      if (!matched) {
+        if (section_1 instanceof SectionRef) {
+          final SectionRef section_3 = (SectionRef) section_1;
+          matched=true;
+          Section _section = section_3.getSection();
+          _switchResult = _section;
+        }
       }
-    }
-    if (!matched) {
-      if (container instanceof Section2) {
-        final Section2 container_3 = (Section2) container;
-        matched=true;
-        String _internalFileName_2 = this.internalFileName(container_3);
-        _switchResult = _internalFileName_2;
+      if (!matched) {
+        if (section_1 instanceof Section2Ref) {
+          final Section2Ref section_4 = (Section2Ref) section_1;
+          matched=true;
+          Section2 _section2 = section_4.getSection2();
+          _switchResult = _section2;
+        }
       }
-    }
-    if (!matched) {
-      if (container instanceof AbstractSection) {
-        final AbstractSection container_4 = (AbstractSection) container;
-        matched=true;
-        String _internalFileName_3 = this.internalFileName(container_4);
-        String _operator_plus = StringExtensions.operator_plus(_internalFileName_3, "-");
-        List<? extends AbstractSection> _subSection = this.utils.subSection(container_4);
-        int _indexOf = _subSection.indexOf(section);
-        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
-        _switchResult = _operator_plus_1;
+      if (!matched) {
+        _switchResult = section;
       }
+      final AbstractSection sec = _switchResult;
+      String _switchResult_1 = null;
+      EObject _eContainer = sec.eContainer();
+      final EObject container = _eContainer;
+      boolean matched_1 = false;
+      if (!matched_1) {
+        if (container instanceof XdocFile) {
+          final XdocFile container_1 = (XdocFile) container;
+          matched_1=true;
+          Resource _eResource = sec.eResource();
+          String _internalFileName = this.internalFileName(_eResource);
+          _switchResult_1 = _internalFileName;
+        }
+      }
+      if (!matched_1) {
+        if (container instanceof Section3) {
+          final Section3 container_2 = (Section3) container;
+          matched_1=true;
+          String _internalFileName_1 = this.internalFileName(container_2);
+          _switchResult_1 = _internalFileName_1;
+        }
+      }
+      if (!matched_1) {
+        if (container instanceof Section2) {
+          final Section2 container_3 = (Section2) container;
+          matched_1=true;
+          String _internalFileName_2 = this.internalFileName(container_3);
+          _switchResult_1 = _internalFileName_2;
+        }
+      }
+      if (!matched_1) {
+        if (container instanceof AbstractSection) {
+          final AbstractSection container_4 = (AbstractSection) container;
+          matched_1=true;
+          String _internalFileName_3 = this.internalFileName(container_4);
+          String _operator_plus = StringExtensions.operator_plus(_internalFileName_3, "-");
+          List<? extends AbstractSection> _subSection = this.utils.subSection(container_4);
+          int _indexOf = _subSection.indexOf(sec);
+          String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
+          _switchResult_1 = _operator_plus_1;
+        }
+      }
+      _xblockexpression = (_switchResult_1);
     }
-    return _switchResult;
+    return _xblockexpression;
   }
   
   protected String _internalFileName(final EObject obj) {
