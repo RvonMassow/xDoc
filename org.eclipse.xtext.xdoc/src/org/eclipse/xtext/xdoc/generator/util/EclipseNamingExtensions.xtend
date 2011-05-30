@@ -4,11 +4,11 @@ import org.eclipse.xtext.xdoc.xdoc.*
 import org.eclipse.emf.ecore.EObject
 import com.google.inject.Inject
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager
-import org.eclipse.xtext.resource.IResourceDescriptions
 import org.eclipse.emf.ecore.resource.Resource
 import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.*
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.builder.builderState.IBuilderState
 
 class EclipseNamingExtensions {
 
@@ -19,7 +19,7 @@ class EclipseNamingExtensions {
 	// lets rocknroll the index!
 	@Inject XdocResourceDescriptionManager rdm
 
-	@Inject IResourceDescriptions index
+	@Inject IBuilderState index
 
 	@Inject extension IQualifiedNameProvider nameProvider
 
