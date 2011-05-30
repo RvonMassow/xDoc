@@ -12,30 +12,6 @@ import org.antlr.runtime.ANTLRStringStream
 
 class Utils {
 
-	def dispatch subSection(Document doc){
-		doc?.chapters
-	}
-
-	def dispatch subSection(Chapter chapter){
-		chapter?.subSections
-	}
-
-	def dispatch subSection(Section section){
-		section?.subSections
-	}
-
-	def dispatch subSection(Section2 section){
-		section?.subSections
-	}
-
-	def dispatch subSection(Section3 section){
-		section?.subSections
-	}
-
-	def dispatch List<? extends AbstractSection> subSection(AbstractSection section){
-		newArrayList
-	}
-
 	def urlDecode (String s){
 		s?.decode("ISO-8859-1")
 	}

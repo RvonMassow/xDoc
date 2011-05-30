@@ -673,7 +673,8 @@ public class HtmlGenerator implements IGenerator {
     } else if ((chap instanceof TextOrMarkup)) {
       return _generate((TextOrMarkup)chap);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chap).toString());
     }
   }
   
@@ -711,7 +712,8 @@ public class HtmlGenerator implements IGenerator {
     } else if ((a instanceof Object)) {
       return _genText((Object)a);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(a).toString());
     }
   }
   
@@ -726,7 +728,8 @@ public class HtmlGenerator implements IGenerator {
          && (lang instanceof LangDef)) {
       return _genCode((Object)code, (LangDef)lang);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(code, lang).toString());
     }
   }
 }

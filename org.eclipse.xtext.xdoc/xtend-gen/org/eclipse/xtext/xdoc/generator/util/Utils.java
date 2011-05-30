@@ -3,8 +3,6 @@ package org.eclipse.xtext.xdoc.generator.util;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Token;
@@ -15,48 +13,11 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
-import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
-import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
-import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
-import org.eclipse.xtext.xdoc.xdoc.Section;
-import org.eclipse.xtext.xdoc.xdoc.Section2;
-import org.eclipse.xtext.xdoc.xdoc.Section3;
-import org.eclipse.xtext.xdoc.xdoc.Section4;
 
 @SuppressWarnings("all")
 public class Utils {
-  
-  protected List<? extends AbstractSection> _subSection(final Document doc) {
-    EList<Chapter> _chapters = doc==null?(EList<Chapter>)null:doc.getChapters();
-    return _chapters;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Chapter chapter) {
-    EList<Section> _subSections = chapter==null?(EList<Section>)null:chapter.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Section section) {
-    EList<Section2> _subSections = section==null?(EList<Section2>)null:section.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Section2 section) {
-    EList<Section3> _subSections = section==null?(EList<Section3>)null:section.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Section3 section) {
-    EList<Section4> _subSections = section==null?(EList<Section4>)null:section.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final AbstractSection section) {
-    ArrayList<AbstractSection> _newArrayList = CollectionLiterals.<AbstractSection>newArrayList();
-    return _newArrayList;
-  }
   
   public String urlDecode(final String s) throws UnsupportedEncodingException {
     String _decode = URLDecoder.decode(s, "ISO-8859-1");
@@ -250,23 +211,5 @@ public class Utils {
     String _replace_1 = _replace.replace("\n", "</br>\n");
     String _replace_2 = _replace_1.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
     return _replace_2;
-  }
-  
-  public List<? extends AbstractSection> subSection(final AbstractSection chapter) {
-    if ((chapter instanceof Chapter)) {
-      return _subSection((Chapter)chapter);
-    } else if ((chapter instanceof Document)) {
-      return _subSection((Document)chapter);
-    } else if ((chapter instanceof Section)) {
-      return _subSection((Section)chapter);
-    } else if ((chapter instanceof Section2)) {
-      return _subSection((Section2)chapter);
-    } else if ((chapter instanceof Section3)) {
-      return _subSection((Section3)chapter);
-    } else if ((chapter instanceof AbstractSection)) {
-      return _subSection((AbstractSection)chapter);
-    } else {
-      throw new IllegalArgumentException();
-    }
   }
 }

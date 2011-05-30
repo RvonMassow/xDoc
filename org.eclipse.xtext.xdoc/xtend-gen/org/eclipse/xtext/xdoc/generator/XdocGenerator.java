@@ -1,18 +1,21 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.List;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.TocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
@@ -67,42 +70,38 @@ public class XdocGenerator implements IGenerator {
   @Inject
   private PlainText plainText;
   
-  public void doGenerate(final Resource res, final IFileSystemAccess access) throws RuntimeException {
-    try {
-      {
-        EList<EObject> _contents = res.getContents();
-        EObject _head = IterableExtensions.<EObject>head(_contents);
-        AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
-        final AbstractSection aS = _mainSection;
-        if ((aS instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
-          this.generate(aS, access);
-        }
+  @Inject
+  private AbstractSectionExtension sectionExtension;
+  
+  public void doGenerate(final Resource res, final IFileSystemAccess access) {
+    {
+      EList<EObject> _contents = res.getContents();
+      EObject _head = IterableExtensions.<EObject>head(_contents);
+      AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
+      final AbstractSection doc = _mainSection;
+      if ((doc instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
+        this.generate(((Document) doc), access);
       }
-    } catch (UnsupportedEncodingException e) { 
-      RuntimeException _runtimeException = new RuntimeException(e);
-      throw _runtimeException;
     }
   }
   
-  protected void _generate(final Document document, final IFileSystemAccess access) throws UnsupportedEncodingException {
+  public void generate(final Document document, final IFileSystemAccess access) {
     {
-      StringConcatenation _generateToc = this.tocGenerator.generateToc(document);
+      Map<AbstractSection,String> _computeURLs = this.eclipseNamingExtensions.computeURLs(document);
+      final Map<AbstractSection,String> fileNames = _computeURLs;
+      StringConcatenation _generateToc = this.tocGenerator.generateToc(document, fileNames);
       access.generateFile("toc.xml", _generateToc);
+      String _get = fileNames.get(document);
+      StringConcatenation _generateRootDocument = this.generateRootDocument(document, fileNames);
+      access.generateFile(_get, _generateRootDocument);
       EList<Chapter> _chapters = document.getChapters();
       for (Chapter c : _chapters) {
-        this.generate(c, access);
+        this.generate(c, fileNames, access);
       }
     }
   }
   
-  protected void _generate(final Chapter chapter, final IFileSystemAccess access) {
-    String _fileName = this.eclipseNamingExtensions.fileName(chapter);
-    String _decode = URLDecoder.decode(_fileName);
-    CharSequence _generate = this.generate(chapter);
-    access.generateFile(_decode, _generate);
-  }
-  
-  protected CharSequence _generate(final Chapter aS) {
+  public StringConcatenation generateRootDocument(final Document document, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -111,7 +110,111 @@ public class XdocGenerator implements IGenerator {
     _builder.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" >");
     _builder.newLine();
     _builder.append("<title>");
-    TextOrMarkup _title = aS.getTitle();
+    TextOrMarkup _title = document.getTitle();
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
+    _builder.append(_genPlainText, "");
+    _builder.append("</title>");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("<link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
+    _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
+    _builder.append("<link rel=\"home\" href=\"");
+    String _get = fileNames.get(document);
+    _builder.append(_get, "");
+    _builder.append("\" title=\"\">");
+    _builder.newLineIfNotEmpty();
+    _builder.append("</head>");
+    _builder.newLine();
+    _builder.append("<body>");
+    _builder.newLine();
+    _builder.append("<h1>");
+    TextOrMarkup _title_1 = document.getTitle();
+    CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
+    _builder.append(_genPlainText_1, "");
+    _builder.append("</h1>");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<TextOrMarkup> _contents = document.getContents();
+      for(TextOrMarkup content : _contents) {
+        StringConcatenation _generatePar = this.generatePar(content, fileNames);
+        _builder.append(_generatePar, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(document);
+      boolean hasAnyElements = false;
+      for(AbstractSection ss : _sections) {
+        if (!hasAnyElements) {
+          hasAnyElements = true;
+          _builder.append("<ol>", "");
+        }
+        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss, fileNames);
+        _builder.append(_generateEntryInRoot, "");
+        _builder.newLineIfNotEmpty();
+      }
+      if (hasAnyElements) {
+        _builder.append("</ol>", "");
+      }
+    }
+    _builder.append("</body>");
+    _builder.newLine();
+    _builder.append("</html>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public StringConcatenation generateEntryInRoot(final AbstractSection section, final Map<AbstractSection,String> fileNames) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<li><a href=\"");
+    String _get = fileNames.get(section);
+    _builder.append(_get, "");
+    _builder.append("\">");
+    TextOrMarkup _title = section.getTitle();
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
+    _builder.append(_genPlainText, "");
+    _builder.append("</a>");
+    _builder.newLineIfNotEmpty();
+    {
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
+      boolean hasAnyElements = false;
+      for(AbstractSection ss : _sections) {
+        if (!hasAnyElements) {
+          hasAnyElements = true;
+          _builder.append("<ol>", "	");
+        }
+        _builder.append("\t");
+        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss, fileNames);
+        _builder.append(_generateEntryInRoot, "	");
+        _builder.newLineIfNotEmpty();
+      }
+      if (hasAnyElements) {
+        _builder.append("</ol>", "	");
+      }
+    }
+    _builder.append("</li>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public void generate(final Chapter chapter, final Map<AbstractSection,String> fileNames, final IFileSystemAccess access) {
+    String _get = fileNames.get(chapter);
+    CharSequence _generate = this.generate(chapter, fileNames);
+    access.generateFile(_get, _generate);
+  }
+  
+  protected CharSequence _generate(final Chapter chapter, final Map<AbstractSection,String> fileNames) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<html>");
+    _builder.newLine();
+    _builder.append("<head>");
+    _builder.newLine();
+    _builder.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" >");
+    _builder.newLine();
+    _builder.append("<title>");
+    TextOrMarkup _title = chapter.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</title>");
@@ -127,35 +230,41 @@ public class XdocGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("<body>");
     _builder.newLine();
-    _builder.append("<a name=\"");
-    String _labelName = this.eclipseNamingExtensions.labelName(aS);
-    _builder.append(_labelName, "");
-    _builder.append("\"></a>");
+    {
+      String _labelName = this.eclipseNamingExtensions.labelName(chapter, fileNames);
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_labelName, null);
+      if (_operator_notEquals) {
+        _builder.append("<a name=\"");
+        String _labelName_1 = this.eclipseNamingExtensions.labelName(chapter, fileNames);
+        _builder.append(_labelName_1, "");
+        _builder.append("\"></a>");
+      }
+    }
     _builder.newLineIfNotEmpty();
     _builder.append("<");
-    String _headtag = this.headtag(aS);
+    String _headtag = this.headtag(chapter);
     _builder.append(_headtag, "");
     _builder.append(">");
-    TextOrMarkup _title_1 = aS.getTitle();
+    TextOrMarkup _title_1 = chapter.getTitle();
     CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
     _builder.append(_genPlainText_1, "");
     _builder.append("</");
-    String _headtag_1 = this.headtag(aS);
+    String _headtag_1 = this.headtag(chapter);
     _builder.append(_headtag_1, "");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
     {
-      EList<TextOrMarkup> _contents = aS.getContents();
+      EList<TextOrMarkup> _contents = chapter.getContents();
       for(TextOrMarkup content : _contents) {
-        StringConcatenation _generatePar = this.generatePar(content);
+        StringConcatenation _generatePar = this.generatePar(content, fileNames);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
     }
     {
-      List<? extends AbstractSection> _subSection = this.utils.subSection(aS);
-      for(AbstractSection ss : _subSection) {
-        CharSequence _generate = this.generate(ss);
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(chapter);
+      for(AbstractSection ss : _sections) {
+        CharSequence _generate = this.generate(ss, fileNames);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -212,10 +321,10 @@ public class XdocGenerator implements IGenerator {
     return _switchResult;
   }
   
-  protected CharSequence _generate(final AbstractSection aS) {
+  protected CharSequence _generate(final AbstractSection aS, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
-    String _labelName = this.eclipseNamingExtensions.labelName(aS);
+    String _labelName = this.eclipseNamingExtensions.labelName(aS, fileNames);
     _builder.append(_labelName, "");
     _builder.append("\"></a>");
     _builder.newLineIfNotEmpty();
@@ -234,15 +343,15 @@ public class XdocGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = aS.getContents();
       for(TextOrMarkup c : _contents) {
-        StringConcatenation _generatePar = this.generatePar(c);
+        StringConcatenation _generatePar = this.generatePar(c, fileNames);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
     }
     {
-      List<? extends AbstractSection> _subSection = this.utils.subSection(aS);
-      for(AbstractSection ss : _subSection) {
-        CharSequence _generate = this.generate(ss);
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(aS);
+      for(AbstractSection ss : _sections) {
+        CharSequence _generate = this.generate(ss, fileNames);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -250,23 +359,23 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section4 aS) {
+  protected CharSequence _generate(final Section4 aS, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
-    String _labelName = this.eclipseNamingExtensions.labelName(aS);
+    String _labelName = this.eclipseNamingExtensions.labelName(aS, fileNames);
     _builder.append(_labelName, "");
     _builder.append("\"></a>");
     _builder.newLineIfNotEmpty();
     _builder.append("<h5>");
     TextOrMarkup _title = aS.getTitle();
-    StringConcatenation _genNonParContent = this.genNonParContent(_title);
+    StringConcatenation _genNonParContent = this.genNonParContent(_title, fileNames);
     _builder.append(_genNonParContent, "");
     _builder.append("</h5>");
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = aS.getContents();
       for(TextOrMarkup tom : _contents) {
-        StringConcatenation _generatePar = this.generatePar(tom);
+        StringConcatenation _generatePar = this.generatePar(tom, fileNames);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -274,14 +383,14 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generatePar(final TextOrMarkup tom) {
+  public StringConcatenation generatePar(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<p>");
     _builder.newLine();
     {
       EList<EObject> _contents = tom.getContents();
       for(EObject c : _contents) {
-        CharSequence _generate = this.generate(c);
+        CharSequence _generate = this.generate(c, fileNames);
         _builder.append(_generate, "");
       }
     }
@@ -291,7 +400,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Todo todo) {
+  protected CharSequence _generate(final Todo todo, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<div class=\"todo\" >");
     _builder.newLine();
@@ -303,7 +412,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Ref ref) {
+  protected CharSequence _generate(final Ref ref, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = ref.getContents();
@@ -311,31 +420,23 @@ public class XdocGenerator implements IGenerator {
       if (_isEmpty) {
         _builder.append("<a href=\"");
         Identifiable _ref = ref.getRef();
-        String _fileName = this.eclipseNamingExtensions.fileName(_ref);
-        _builder.append(_fileName, "");
-        _builder.append("#");
+        Object _url = this.url(_ref, fileNames);
+        _builder.append(_url, "");
+        _builder.append("\">section ");
         Identifiable _ref_1 = ref.getRef();
         String _name = _ref_1.getName();
         _builder.append(_name, "");
-        _builder.append("\">section ");
-        Identifiable _ref_2 = ref.getRef();
-        String _name_1 = _ref_2.getName();
-        _builder.append(_name_1, "");
         _builder.append("</a>");
         _builder.newLineIfNotEmpty();} else {
         _builder.append("<a href=\"");
-        Identifiable _ref_3 = ref.getRef();
-        String _fileName_1 = this.eclipseNamingExtensions.fileName(_ref_3);
-        _builder.append(_fileName_1, "");
-        _builder.append("#");
-        Identifiable _ref_4 = ref.getRef();
-        String _name_2 = _ref_4.getName();
-        _builder.append(_name_2, "");
+        Identifiable _ref_2 = ref.getRef();
+        Object _url_1 = this.url(_ref_2, fileNames);
+        _builder.append(_url_1, "");
         _builder.append("\">");
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
           for(TextOrMarkup tom : _contents_1) {
-            StringConcatenation _genNonParContent = this.genNonParContent(tom);
+            StringConcatenation _genNonParContent = this.genNonParContent(tom, fileNames);
             _builder.append(_genNonParContent, "");
           }
         }
@@ -346,19 +447,47 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TextOrMarkup tom) {
+  protected Object _url(final Anchor anchor, final Map<AbstractSection,String> fileNames) {
+    URI _xblockexpression = null;
+    {
+      AbstractSection _containerOfType = EcoreUtil2.<AbstractSection>getContainerOfType(anchor, org.eclipse.xtext.xdoc.xdoc.AbstractSection.class);
+      final AbstractSection section = _containerOfType;
+      String _get = fileNames.get(section);
+      final String fileName = _get;
+      boolean _operator_equals = ObjectExtensions.operator_equals(fileName, null);
+      if (_operator_equals) {
+        return null;
+      }
+      URI _createURI = URI.createURI(fileName);
+      final URI uri = _createURI;
+      URI _trimFragment = uri.trimFragment();
+      String _name = anchor.getName();
+      String _operator_plus = StringExtensions.operator_plus("anchor-", _name);
+      URI _appendFragment = _trimFragment.appendFragment(_operator_plus);
+      final URI result = _appendFragment;
+      _xblockexpression = (result);
+    }
+    return _xblockexpression;
+  }
+  
+  protected Object _url(final AbstractSection section, final Map<AbstractSection,String> fileNames) {
+    String _get = fileNames.get(section);
+    return _get;
+  }
+  
+  protected CharSequence _generate(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
       for(EObject obj : _contents) {
-        CharSequence _generate = this.generate(obj);
+        CharSequence _generate = this.generate(obj, fileNames);
         _builder.append(_generate, "");
       }
     }
     return _builder;
   }
   
-  protected CharSequence _generate(final UnorderedList ul) {
+  protected CharSequence _generate(final UnorderedList ul, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
@@ -366,7 +495,7 @@ public class XdocGenerator implements IGenerator {
       EList<Item> _items = ul.getItems();
       for(Item i : _items) {
         _builder.append("\t");
-        CharSequence _generate = this.generate(i);
+        CharSequence _generate = this.generate(i, fileNames);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -376,7 +505,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final OrderedList ul) {
+  protected CharSequence _generate(final OrderedList ul, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ol>");
     _builder.newLine();
@@ -384,7 +513,7 @@ public class XdocGenerator implements IGenerator {
       EList<Item> _items = ul.getItems();
       for(Item i : _items) {
         _builder.append("\t");
-        CharSequence _generate = this.generate(i);
+        CharSequence _generate = this.generate(i, fileNames);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -394,7 +523,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Item i) {
+  protected CharSequence _generate(final Item i, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li>");
     _builder.newLine();
@@ -402,7 +531,7 @@ public class XdocGenerator implements IGenerator {
       EList<TextOrMarkup> _contents = i.getContents();
       for(TextOrMarkup tom : _contents) {
         _builder.append("\t");
-        CharSequence _generate = this.generate(tom);
+        CharSequence _generate = this.generate(tom, fileNames);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -412,16 +541,16 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Anchor a) {
+  protected CharSequence _generate(final Anchor a, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<a name=\"");
+    _builder.append("<a name=\"anchor-");
     String _name = a.getName();
     _builder.append(_name, "");
     _builder.append("\"></a>");
     return _builder;
   }
   
-  protected CharSequence _generate(final ImageRef img) {
+  protected CharSequence _generate(final ImageRef img, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<div class=\"image\" >");
     _builder.newLine();
@@ -501,21 +630,21 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TextPart tp) {
+  protected CharSequence _generate(final TextPart tp, final Map<AbstractSection,String> fileNames) {
     String _text = tp.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
     String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
     return _escapeHTMLChars;
   }
   
-  protected CharSequence _generate(final Table table) {
+  protected CharSequence _generate(final Table table, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<table>");
     _builder.newLine();
     {
       EList<TableRow> _rows = table.getRows();
       for(TableRow tr : _rows) {
-        CharSequence _generate = this.generate(tr);
+        CharSequence _generate = this.generate(tr, fileNames);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -525,14 +654,14 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TableRow tr) {
+  protected CharSequence _generate(final TableRow tr, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<tr>");
     _builder.newLine();
     {
       EList<TableData> _data = tr.getData();
       for(TableData td : _data) {
-        CharSequence _generate = this.generate(td);
+        CharSequence _generate = this.generate(td, fileNames);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -542,14 +671,14 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TableData td) {
+  protected CharSequence _generate(final TableData td, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<td>");
     _builder.newLine();
     {
       EList<TextOrMarkup> _contents = td.getContents();
       for(TextOrMarkup c : _contents) {
-        CharSequence _generate = this.generate(c);
+        CharSequence _generate = this.generate(c, fileNames);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -559,13 +688,13 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Emphasize em) {
+  protected CharSequence _generate(final Emphasize em, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     {
       EList<TextOrMarkup> _contents = em.getContents();
       for(TextOrMarkup c : _contents) {
-        CharSequence _generate = this.generate(c);
+        CharSequence _generate = this.generate(c, fileNames);
         _builder.append(_generate, "");
       }
     }
@@ -573,7 +702,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Link link) {
+  protected CharSequence _generate(final Link link, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a href=\"");
     String _url = link.getUrl();
@@ -587,7 +716,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final CodeRef cRef) {
+  protected CharSequence _generate(final CodeRef cRef, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<abbr title=\"");
     JvmDeclaredType _element = cRef.getElement();
@@ -605,7 +734,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final CodeBlock cb) {
+  protected CharSequence _generate(final CodeBlock cb, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _xifexpression = null;
     boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
@@ -614,7 +743,7 @@ public class XdocGenerator implements IGenerator {
       EList<EObject> _contents = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
       LangDef _language = cb.getLanguage();
-      StringConcatenation _generateCode = this.generateCode(((Code) _head), _language);
+      StringConcatenation _generateCode = this.generateCode(((Code) _head), _language, fileNames);
       _builder.append(_generateCode, "");
       _builder.append("</span>");
       _xifexpression = _builder;
@@ -634,7 +763,7 @@ public class XdocGenerator implements IGenerator {
           EList<EObject> _contents_1 = block.getContents();
           for(EObject code : _contents_1) {
             LangDef _language_1 = cb.getLanguage();
-            StringConcatenation _generateCode_1 = this.generateCode(code, _language_1);
+            StringConcatenation _generateCode_1 = this.generateCode(code, _language_1, fileNames);
             _builder_1.append(_generateCode_1, "");
             _builder_1.newLineIfNotEmpty();
           }
@@ -652,7 +781,7 @@ public class XdocGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected StringConcatenation _generateCode(final Code code, final LangDef lang) {
+  protected StringConcatenation _generateCode(final Code code, final LangDef lang, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
@@ -661,14 +790,14 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang) {
+  protected StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _generate = this.generate(code);
+    CharSequence _generate = this.generate(code, fileNames);
     _builder.append(_generate, "");
     return _builder;
   }
   
-  protected StringConcatenation _generateCode(final Code code, final Void v) {
+  protected StringConcatenation _generateCode(final Code code, final Void v, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
@@ -677,86 +806,111 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation genNonParContent(final TextOrMarkup tom) {
+  public StringConcatenation genNonParContent(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
       for(EObject obj : _contents) {
-        CharSequence _generate = this.generate(obj);
+        CharSequence _generate = this.generate(obj, fileNames);
         _builder.append(_generate, "");
       }
     }
     return _builder;
   }
   
-  public void generate(final AbstractSection chapter, final IFileSystemAccess access) throws UnsupportedEncodingException {
+  public CharSequence generate(final EObject chapter, final Map<AbstractSection,String> fileNames) {
     if ((chapter instanceof Chapter)
-         && (access instanceof IFileSystemAccess)) {
-      _generate((Chapter)chapter, (IFileSystemAccess)access);
-    } else if ((chapter instanceof Document)
-         && (access instanceof IFileSystemAccess)) {
-      _generate((Document)chapter, (IFileSystemAccess)access);
+         && (fileNames instanceof Map)) {
+      return _generate((Chapter)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Section4)
+         && (fileNames instanceof Map)) {
+      return _generate((Section4)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof AbstractSection)
+         && (fileNames instanceof Map)) {
+      return _generate((AbstractSection)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Anchor)
+         && (fileNames instanceof Map)) {
+      return _generate((Anchor)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof CodeBlock)
+         && (fileNames instanceof Map)) {
+      return _generate((CodeBlock)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof CodeRef)
+         && (fileNames instanceof Map)) {
+      return _generate((CodeRef)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Emphasize)
+         && (fileNames instanceof Map)) {
+      return _generate((Emphasize)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof ImageRef)
+         && (fileNames instanceof Map)) {
+      return _generate((ImageRef)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Link)
+         && (fileNames instanceof Map)) {
+      return _generate((Link)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof OrderedList)
+         && (fileNames instanceof Map)) {
+      return _generate((OrderedList)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Ref)
+         && (fileNames instanceof Map)) {
+      return _generate((Ref)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Table)
+         && (fileNames instanceof Map)) {
+      return _generate((Table)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Todo)
+         && (fileNames instanceof Map)) {
+      return _generate((Todo)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof UnorderedList)
+         && (fileNames instanceof Map)) {
+      return _generate((UnorderedList)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof Item)
+         && (fileNames instanceof Map)) {
+      return _generate((Item)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof TableData)
+         && (fileNames instanceof Map)) {
+      return _generate((TableData)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof TableRow)
+         && (fileNames instanceof Map)) {
+      return _generate((TableRow)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof TextOrMarkup)
+         && (fileNames instanceof Map)) {
+      return _generate((TextOrMarkup)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof TextPart)
+         && (fileNames instanceof Map)) {
+      return _generate((TextPart)chapter, (Map<AbstractSection,String>)fileNames);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chapter, fileNames).toString());
     }
   }
   
-  public CharSequence generate(final EObject aS) {
-    if ((aS instanceof Chapter)) {
-      return _generate((Chapter)aS);
-    } else if ((aS instanceof Section4)) {
-      return _generate((Section4)aS);
-    } else if ((aS instanceof AbstractSection)) {
-      return _generate((AbstractSection)aS);
-    } else if ((aS instanceof Anchor)) {
-      return _generate((Anchor)aS);
-    } else if ((aS instanceof CodeBlock)) {
-      return _generate((CodeBlock)aS);
-    } else if ((aS instanceof CodeRef)) {
-      return _generate((CodeRef)aS);
-    } else if ((aS instanceof Emphasize)) {
-      return _generate((Emphasize)aS);
-    } else if ((aS instanceof ImageRef)) {
-      return _generate((ImageRef)aS);
-    } else if ((aS instanceof Link)) {
-      return _generate((Link)aS);
-    } else if ((aS instanceof OrderedList)) {
-      return _generate((OrderedList)aS);
-    } else if ((aS instanceof Ref)) {
-      return _generate((Ref)aS);
-    } else if ((aS instanceof Table)) {
-      return _generate((Table)aS);
-    } else if ((aS instanceof Todo)) {
-      return _generate((Todo)aS);
-    } else if ((aS instanceof UnorderedList)) {
-      return _generate((UnorderedList)aS);
-    } else if ((aS instanceof Item)) {
-      return _generate((Item)aS);
-    } else if ((aS instanceof TableData)) {
-      return _generate((TableData)aS);
-    } else if ((aS instanceof TableRow)) {
-      return _generate((TableRow)aS);
-    } else if ((aS instanceof TextOrMarkup)) {
-      return _generate((TextOrMarkup)aS);
-    } else if ((aS instanceof TextPart)) {
-      return _generate((TextPart)aS);
+  public Object url(final Identifiable section, final Map<AbstractSection,String> fileNames) {
+    if ((section instanceof AbstractSection)
+         && (fileNames instanceof Map)) {
+      return _url((AbstractSection)section, (Map<AbstractSection,String>)fileNames);
+    } else if ((section instanceof Anchor)
+         && (fileNames instanceof Map)) {
+      return _url((Anchor)section, (Map<AbstractSection,String>)fileNames);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(section, fileNames).toString());
     }
   }
   
-  public StringConcatenation generateCode(final EObject code, final Object lang) {
+  public StringConcatenation generateCode(final EObject code, final Object lang, final Map<AbstractSection,String> fileNames) {
     if ((code instanceof Code)
-         && (lang instanceof LangDef)) {
-      return _generateCode((Code)code, (LangDef)lang);
+         && (lang instanceof LangDef)
+         && (fileNames instanceof Map)) {
+      return _generateCode((Code)code, (LangDef)lang, (Map<AbstractSection,String>)fileNames);
     } else if ((code instanceof MarkupInCode)
-         && (lang instanceof LangDef)) {
-      return _generateCode((MarkupInCode)code, (LangDef)lang);
+         && (lang instanceof LangDef)
+         && (fileNames instanceof Map)) {
+      return _generateCode((MarkupInCode)code, (LangDef)lang, (Map<AbstractSection,String>)fileNames);
     } else if ((code instanceof Code)
-         && (lang == null)) {
-      return _generateCode((Code)code, (Void)null);
+         && (lang == null)
+         && (fileNames instanceof Map)) {
+      return _generateCode((Code)code, (Void)null, (Map<AbstractSection,String>)fileNames);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(code, lang, fileNames).toString());
     }
   }
 }
