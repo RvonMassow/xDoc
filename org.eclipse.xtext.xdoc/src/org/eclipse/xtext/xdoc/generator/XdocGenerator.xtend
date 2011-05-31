@@ -33,6 +33,8 @@ class XdocGenerator implements IGenerator {
 
 //	@Inject ArrayList<GlossaryEntry> glossary
 
+	@Inject extension JavaDocExtension jdoc
+
 	@Inject extension Utils utils
 
 	@Inject extension GlossaryExtensions glossaryExtensions
@@ -268,8 +270,8 @@ class XdocGenerator implements IGenerator {
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
 	
 	def dispatch generate(CodeRef cRef, Map<AbstractSection, String> fileNames) 
-		'''<abbr title="«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars
-			»" >«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr>'''
+		'''<a href="«cRef.element.genJavaDocLink»" ><abbr title="«cRef.element.qualifiedName.unescapeXdocChars.escapeHTMLChars
+			»" >«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr></a>'''
 
 	def dispatch generate(CodeBlock cb, Map<AbstractSection, String> fileNames) {
 		if(cb.isInlineCode) {

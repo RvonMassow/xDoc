@@ -20,6 +20,7 @@ import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.TocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions;
+import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
@@ -54,6 +55,9 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class XdocGenerator implements IGenerator {
+  
+  @Inject
+  private JavaDocExtension jdoc;
   
   @Inject
   private Utils utils;
@@ -718,19 +722,23 @@ public class XdocGenerator implements IGenerator {
   
   protected CharSequence _generate(final CodeRef cRef, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<abbr title=\"");
+    _builder.append("<a href=\"");
     JvmDeclaredType _element = cRef.getElement();
-    String _qualifiedName = _element.getQualifiedName();
+    String _genJavaDocLink = this.jdoc.genJavaDocLink(_element);
+    _builder.append(_genJavaDocLink, "");
+    _builder.append("\" ><abbr title=\"");
+    JvmDeclaredType _element_1 = cRef.getElement();
+    String _qualifiedName = _element_1.getQualifiedName();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
     String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
     _builder.append(_escapeHTMLChars, "");
     _builder.append("\" >");
-    JvmDeclaredType _element_1 = cRef.getElement();
-    String _simpleName = _element_1.getSimpleName();
+    JvmDeclaredType _element_2 = cRef.getElement();
+    String _simpleName = _element_2.getSimpleName();
     String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_simpleName);
     String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
     _builder.append(_escapeHTMLChars_1, "");
-    _builder.append("</abbr>");
+    _builder.append("</abbr></a>");
     return _builder;
   }
   
