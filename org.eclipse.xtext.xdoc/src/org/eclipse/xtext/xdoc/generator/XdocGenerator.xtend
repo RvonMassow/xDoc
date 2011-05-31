@@ -28,6 +28,12 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.emf.common.util.URI
 
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.nio.channels.Channels
+import java.nio.ByteBuffer
+
 
 class XdocGenerator implements IGenerator {
 
@@ -60,6 +66,36 @@ class XdocGenerator implements IGenerator {
 		access.generateFile(fileNames.get(document), document.generateRootDocument(fileNames))
 		for(c:document.chapters){
 			c.generate(fileNames, access)
+		}
+	}
+
+
+
+	def copy(String fromRelativeFileName, Resource res) {
+		try{
+			val buffer = ByteBuffer::allocateDirect(16 * 1024);
+			val uri = res.URI
+			val sepChar = File::separator
+			var relOutDirRoot = ""
+			var inDir = ""
+			if(uri.platformResource) {
+				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName) //uri.segmentsList.subList(2, uri.segmentsList.size - 1)
+				val outPath = URI::createURI(uri.trimSegments(2).appendSegment("contents").toString + "/" + fromRelativeFileName) //segmentsList.subList(3, uri.segmentsList.size - 1)
+				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
+				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
+				while (inChannel.read(buffer) != -1) {
+					buffer.flip();
+					outChannel.write(buffer);
+					buffer.compact();
+				}
+				buffer.flip();
+				while (buffer.hasRemaining()) {
+					outChannel.write(buffer);
+				}
+				outChannel.close()
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e)
 		}
 	}
 	
@@ -182,7 +218,8 @@ class XdocGenerator implements IGenerator {
 		val result = uri.trimFragment.appendFragment("anchor-" + anchor.name)
 		result
 	}
-	
+
+
 	def dispatch url(AbstractSection section, Map<AbstractSection, String> fileNames) {
 		fileNames.get(section)
 	}
@@ -219,17 +256,20 @@ class XdocGenerator implements IGenerator {
 		'''<a name="anchor-«a.name»"></a>'''
 	
 
-	def dispatch generate(ImageRef img, Map<AbstractSection, String> fileNames) '''
-		<div class="image" >
-		«IF img.name != null»
-			«img.name.genLabel»
-		«ENDIF»
-		«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
-		<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
-		«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
-		«img.caption.unescapeXdocChars.escapeHTMLChars»
-		</div>
-	'''
+	def dispatch generate(ImageRef img, Map<AbstractSection, String> fileNames) {
+		copy(img.path, img.eResource)
+		'''
+			<div class="image" >
+			«IF img.name != null»
+				«img.name.genLabel»
+			«ENDIF»
+			«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
+			<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
+			«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
+			«img.caption.unescapeXdocChars.escapeHTMLChars»
+			</div>
+		'''
+	}
 
 	def genLabel(String name) '''
 		«IF this != null »<a name="«name»"></a>«ENDIF»

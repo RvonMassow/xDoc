@@ -1,17 +1,27 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
+import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
+import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
@@ -77,7 +87,7 @@ public class XdocGenerator implements IGenerator {
   @Inject
   private AbstractSectionExtension sectionExtension;
   
-  public void doGenerate(final Resource res, final IFileSystemAccess access) {
+  public void doGenerate(final Resource res, final IFileSystemAccess access) throws RuntimeException {
     {
       EList<EObject> _contents = res.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
@@ -89,7 +99,7 @@ public class XdocGenerator implements IGenerator {
     }
   }
   
-  public void generate(final Document document, final IFileSystemAccess access) {
+  public void generate(final Document document, final IFileSystemAccess access) throws RuntimeException {
     {
       Map<AbstractSection,String> _computeURLs = this.eclipseNamingExtensions.computeURLs(document);
       final Map<AbstractSection,String> fileNames = _computeURLs;
@@ -105,7 +115,83 @@ public class XdocGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation generateRootDocument(final Document document, final Map<AbstractSection,String> fileNames) {
+  public Object copy(final String fromRelativeFileName, final Resource res) throws RuntimeException {
+    Object _xtrycatchfinallyexpression = null;
+    try {
+      Object _xblockexpression = null;
+      {
+        int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)16), ((Integer)1024));
+        ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
+        final ByteBuffer buffer = _allocateDirect;
+        URI _uRI = res.getURI();
+        final URI uri = _uRI;
+        final String sepChar = File.separator;
+        String relOutDirRoot = "";
+        String inDir = "";
+        Object _xifexpression = null;
+        boolean _isPlatformResource = uri.isPlatformResource();
+        if (_isPlatformResource) {
+          {
+            URI _trimSegments = uri.trimSegments(1);
+            String _string = _trimSegments.toString();
+            String _operator_plus = StringExtensions.operator_plus(_string, "/");
+            String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, fromRelativeFileName);
+            URI _createURI = URI.createURI(_operator_plus_1);
+            final URI inPath = _createURI;
+            URI _trimSegments_1 = uri.trimSegments(2);
+            URI _appendSegment = _trimSegments_1.appendSegment("contents");
+            String _string_1 = _appendSegment.toString();
+            String _operator_plus_2 = StringExtensions.operator_plus(_string_1, "/");
+            String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, fromRelativeFileName);
+            URI _createURI_1 = URI.createURI(_operator_plus_3);
+            final URI outPath = _createURI_1;
+            ResourceSet _resourceSet = res.getResourceSet();
+            URIConverter _uRIConverter = _resourceSet.getURIConverter();
+            InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
+            ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
+            final ReadableByteChannel inChannel = _newChannel;
+            ResourceSet _resourceSet_1 = res.getResourceSet();
+            URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
+            OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
+            WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
+            final WritableByteChannel outChannel = _newChannel_1;
+            int _read = inChannel.read(buffer);
+            int _operator_minus = IntegerExtensions.operator_minus(1);
+            boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
+            Boolean _xwhileexpression = _operator_notEquals;
+            while (_xwhileexpression) {
+              {
+                buffer.flip();
+                outChannel.write(buffer);
+                buffer.compact();
+              }
+              int _read_1 = inChannel.read(buffer);
+              int _operator_minus_1 = IntegerExtensions.operator_minus(1);
+              boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
+              _xwhileexpression = _operator_notEquals_1;
+            }
+            buffer.flip();
+            boolean _hasRemaining = buffer.hasRemaining();
+            Boolean _xwhileexpression_1 = _hasRemaining;
+            while (_xwhileexpression_1) {
+              outChannel.write(buffer);
+              boolean _hasRemaining_1 = buffer.hasRemaining();
+              _xwhileexpression_1 = _hasRemaining_1;
+            }
+            outChannel.close();
+          }
+        }
+        _xblockexpression = (_xifexpression);
+      }
+      _xtrycatchfinallyexpression = _xblockexpression;
+    } catch (Exception e) { 
+      RuntimeException _runtimeException = new RuntimeException(e);
+      throw _runtimeException;
+    }
+    return _xtrycatchfinallyexpression;
+  }
+  
+  public StringConcatenation generateRootDocument(final Document document, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -203,13 +289,13 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public void generate(final Chapter chapter, final Map<AbstractSection,String> fileNames, final IFileSystemAccess access) {
+  public void generate(final Chapter chapter, final Map<AbstractSection,String> fileNames, final IFileSystemAccess access) throws RuntimeException {
     String _get = fileNames.get(chapter);
     CharSequence _generate = this.generate(chapter, fileNames);
     access.generateFile(_get, _generate);
   }
   
-  protected CharSequence _generate(final Chapter chapter, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Chapter chapter, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -325,7 +411,7 @@ public class XdocGenerator implements IGenerator {
     return _switchResult;
   }
   
-  protected CharSequence _generate(final AbstractSection aS, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final AbstractSection aS, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
     String _labelName = this.eclipseNamingExtensions.labelName(aS, fileNames);
@@ -363,7 +449,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section4 aS, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Section4 aS, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
     String _labelName = this.eclipseNamingExtensions.labelName(aS, fileNames);
@@ -387,7 +473,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generatePar(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) {
+  public StringConcatenation generatePar(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<p>");
     _builder.newLine();
@@ -416,7 +502,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Ref ref, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Ref ref, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = ref.getContents();
@@ -479,7 +565,7 @@ public class XdocGenerator implements IGenerator {
     return _get;
   }
   
-  protected CharSequence _generate(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -491,7 +577,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final UnorderedList ul, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final UnorderedList ul, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
@@ -509,7 +595,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final OrderedList ul, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final OrderedList ul, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ol>");
     _builder.newLine();
@@ -527,7 +613,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Item i, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Item i, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li>");
     _builder.newLine();
@@ -554,70 +640,77 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final ImageRef img, final Map<AbstractSection,String> fileNames) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<div class=\"image\" >");
-    _builder.newLine();
+  protected CharSequence _generate(final ImageRef img, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+    StringConcatenation _xblockexpression = null;
     {
-      String _name = img.getName();
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
-      if (_operator_notEquals) {
-        String _name_1 = img.getName();
-        StringConcatenation _genLabel = this.genLabel(_name_1);
-        _builder.append(_genLabel, "");
-        _builder.newLineIfNotEmpty();
+      String _path = img.getPath();
+      Resource _eResource = img.eResource();
+      this.copy(_path, _eResource);
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("<div class=\"image\" >");
+      _builder.newLine();
+      {
+        String _name = img.getName();
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        if (_operator_notEquals) {
+          String _name_1 = img.getName();
+          StringConcatenation _genLabel = this.genLabel(_name_1);
+          _builder.append(_genLabel, "");
+          _builder.newLineIfNotEmpty();
+        }
       }
+      _builder.append("", "");
+      _builder.newLineIfNotEmpty();
+      _builder.append("<img src=\"");
+      String _path_1 = img.getPath();
+      String _unescapeXdocChars = this.utils.unescapeXdocChars(_path_1);
+      _builder.append(_unescapeXdocChars, "");
+      _builder.append("\" ");
+      {
+        String _clazz = img.getClazz();
+        boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(_clazz, null);
+        if (_operator_notEquals_1) {
+          _builder.append("class=\"");
+          String _clazz_1 = img.getClazz();
+          String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_clazz_1);
+          _builder.append(_unescapeXdocChars_1, "");
+          _builder.append("\" ");
+        }
+      }
+      _builder.newLineIfNotEmpty();
+      {
+        boolean _operator_and = false;
+        String _style = img.getStyle();
+        boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(_style, null);
+        if (!_operator_notEquals_2) {
+          _operator_and = false;
+        } else {
+          String _style_1 = img.getStyle();
+          int _length = _style_1.length();
+          boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_length), ((Integer)0));
+          boolean _operator_not = BooleanExtensions.operator_not(_operator_equals);
+          _operator_and = BooleanExtensions.operator_and(_operator_notEquals_2, _operator_not);
+        }
+        if (_operator_and) {
+          _builder.append(" style=\"");
+          String _style_2 = img.getStyle();
+          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_style_2);
+          _builder.append(_unescapeXdocChars_2, "");
+          _builder.append("\" ");
+        }
+      }
+      _builder.append("/>");
+      _builder.newLineIfNotEmpty();
+      String _caption = img.getCaption();
+      String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_caption);
+      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
+      _builder.append(_escapeHTMLChars, "");
+      _builder.newLineIfNotEmpty();
+      _builder.append("</div>");
+      _builder.newLine();
+      _xblockexpression = (_builder);
     }
-    _builder.append("", "");
-    _builder.newLineIfNotEmpty();
-    _builder.append("<img src=\"");
-    String _path = img.getPath();
-    String _unescapeXdocChars = this.utils.unescapeXdocChars(_path);
-    _builder.append(_unescapeXdocChars, "");
-    _builder.append("\" ");
-    {
-      String _clazz = img.getClazz();
-      boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(_clazz, null);
-      if (_operator_notEquals_1) {
-        _builder.append("class=\"");
-        String _clazz_1 = img.getClazz();
-        String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_clazz_1);
-        _builder.append(_unescapeXdocChars_1, "");
-        _builder.append("\" ");
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    {
-      boolean _operator_and = false;
-      String _style = img.getStyle();
-      boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(_style, null);
-      if (!_operator_notEquals_2) {
-        _operator_and = false;
-      } else {
-        String _style_1 = img.getStyle();
-        int _length = _style_1.length();
-        boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_length), ((Integer)0));
-        boolean _operator_not = BooleanExtensions.operator_not(_operator_equals);
-        _operator_and = BooleanExtensions.operator_and(_operator_notEquals_2, _operator_not);
-      }
-      if (_operator_and) {
-        _builder.append(" style=\"");
-        String _style_2 = img.getStyle();
-        String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_style_2);
-        _builder.append(_unescapeXdocChars_2, "");
-        _builder.append("\" ");
-      }
-    }
-    _builder.append("/>");
-    _builder.newLineIfNotEmpty();
-    String _caption = img.getCaption();
-    String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_caption);
-    String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
-    _builder.append(_escapeHTMLChars, "");
-    _builder.newLineIfNotEmpty();
-    _builder.append("</div>");
-    _builder.newLine();
-    return _builder;
+    return _xblockexpression;
   }
   
   public StringConcatenation genLabel(final String name) {
@@ -641,7 +734,7 @@ public class XdocGenerator implements IGenerator {
     return _escapeHTMLChars;
   }
   
-  protected CharSequence _generate(final Table table, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Table table, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<table>");
     _builder.newLine();
@@ -658,7 +751,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TableRow tr, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final TableRow tr, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<tr>");
     _builder.newLine();
@@ -675,7 +768,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TableData td, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final TableData td, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<td>");
     _builder.newLine();
@@ -692,7 +785,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Emphasize em, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Emphasize em, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     {
@@ -742,7 +835,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final CodeBlock cb, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final CodeBlock cb, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _xifexpression = null;
     boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
@@ -798,7 +891,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang, final Map<AbstractSection,String> fileNames) {
+  protected StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generate = this.generate(code, fileNames);
     _builder.append(_generate, "");
@@ -814,7 +907,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation genNonParContent(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) {
+  public StringConcatenation genNonParContent(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -826,7 +919,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence generate(final EObject chapter, final Map<AbstractSection,String> fileNames) {
+  public CharSequence generate(final EObject chapter, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     if ((chapter instanceof Chapter)
          && (fileNames instanceof Map)) {
       return _generate((Chapter)chapter, (Map<AbstractSection,String>)fileNames);
@@ -903,7 +996,7 @@ public class XdocGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation generateCode(final EObject code, final Object lang, final Map<AbstractSection,String> fileNames) {
+  public StringConcatenation generateCode(final EObject code, final Object lang, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     if ((code instanceof Code)
          && (lang instanceof LangDef)
          && (fileNames instanceof Map)) {
