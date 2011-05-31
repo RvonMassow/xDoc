@@ -1,39 +1,50 @@
 package org.eclipse.xtext.xdoc.generator
 
+
+
 import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.xbase.compiler.*
-import org.eclipse.xtext.xbase.*
-import org.eclipse.xtext.common.types.*
-import java.util.*
-import static extension java.net.URLDecoder.*
-import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
-import static extension lib.IterableExtensions.*
-import static extension Collections2.*
-import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
-
-
-import org.eclipse.xtext.xdoc.xdoc.*
-import org.eclipse.xtext.xdoc.generator.util.*
-import org.eclipse.xtext.xdoc.generator.*
-
-import org.eclipse.emf.ecore.EObject
-import java.io.UnsupportedEncodingException
+import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
 import com.google.inject.Inject
-import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager
-import org.eclipse.xtext.resource.IResourceDescriptions
-import com.google.inject.internal.Iterables
-import org.eclipse.xtext.xbase.lib.IterableExtensions
-import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.emf.common.util.URI
-
-import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.nio.channels.Channels
+import org.eclipse.xtext.xdoc.generator.util.Utils
+import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions
+import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.xdoc.xdoc.XdocFile
+import org.eclipse.xtext.xdoc.xdoc.Document
 import java.nio.ByteBuffer
-
+import java.io.File
+import org.eclipse.emf.common.util.URI
+import java.nio.channels.Channels
+import java.util.Map
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection
+import org.eclipse.xtext.xdoc.xdoc.Chapter
+import org.eclipse.xtext.xdoc.xdoc.Section
+import org.eclipse.xtext.xdoc.xdoc.Section2
+import org.eclipse.xtext.xdoc.xdoc.Section3
+import org.eclipse.xtext.xdoc.xdoc.Section4
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
+import org.eclipse.xtext.xdoc.xdoc.Todo
+import org.eclipse.xtext.xdoc.xdoc.Ref
+import org.eclipse.xtext.xdoc.xdoc.Anchor
+import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.xtext.xdoc.xdoc.UnorderedList
+import org.eclipse.xtext.xdoc.xdoc.OrderedList
+import org.eclipse.xtext.xdoc.xdoc.Item
+import org.eclipse.xtext.xdoc.xdoc.ImageRef
+import org.eclipse.xtext.xdoc.xdoc.TextPart
+import org.eclipse.xtext.xdoc.xdoc.Table
+import org.eclipse.xtext.xdoc.xdoc.TableRow
+import org.eclipse.xtext.xdoc.xdoc.TableData
+import org.eclipse.xtext.xdoc.xdoc.Emphasize
+import org.eclipse.xtext.xdoc.xdoc.Link
+import org.eclipse.xtext.xdoc.xdoc.CodeRef
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock
+import org.eclipse.xtext.xdoc.xdoc.Code
+import org.eclipse.xtext.xdoc.xdoc.LangDef
+import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
+import static extension java.net.URLDecoder.*
+import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 
 class XdocGenerator implements IGenerator {
 
@@ -63,12 +74,11 @@ class XdocGenerator implements IGenerator {
 	def generate(Document document, IFileSystemAccess access) {
 		val fileNames = document.computeURLs
 		access.generateFile("toc.xml", document.generateToc(fileNames))
-		access.generateFile(fileNames.get(document), document.generateRootDocument(fileNames))
+		access.generateFile(fileNames.get(document).decode, document.generateRootDocument(fileNames))
 		for(c:document.chapters){
 			c.generate(fileNames, access)
 		}
 	}
-
 
 
 	def copy(String fromRelativeFileName, Resource res) {
@@ -132,7 +142,7 @@ class XdocGenerator implements IGenerator {
 	'''
 
 	def generate(Chapter chapter, Map<AbstractSection, String> fileNames, IFileSystemAccess access) {
-		access.generateFile(fileNames.get(chapter), chapter.generate(fileNames))
+		access.generateFile(fileNames.get(chapter).decode, chapter.generate(fileNames))
 	}
 
 	def dispatch generate(Chapter chapter, Map<AbstractSection, String> fileNames) '''
@@ -269,7 +279,7 @@ class XdocGenerator implements IGenerator {
 			«img.caption.unescapeXdocChars.escapeHTMLChars»
 			</div>
 		'''
-	}
+	} 
 
 	def genLabel(String name) '''
 		«IF this != null »<a name="«name»"></a>«ENDIF»

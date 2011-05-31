@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.URLDecoder;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
@@ -106,8 +107,9 @@ public class XdocGenerator implements IGenerator {
       StringConcatenation _generateToc = this.tocGenerator.generateToc(document, fileNames);
       access.generateFile("toc.xml", _generateToc);
       String _get = fileNames.get(document);
+      String _decode = URLDecoder.decode(_get);
       StringConcatenation _generateRootDocument = this.generateRootDocument(document, fileNames);
-      access.generateFile(_get, _generateRootDocument);
+      access.generateFile(_decode, _generateRootDocument);
       EList<Chapter> _chapters = document.getChapters();
       for (Chapter c : _chapters) {
         this.generate(c, fileNames, access);
@@ -291,8 +293,9 @@ public class XdocGenerator implements IGenerator {
   
   public void generate(final Chapter chapter, final Map<AbstractSection,String> fileNames, final IFileSystemAccess access) throws RuntimeException {
     String _get = fileNames.get(chapter);
+    String _decode = URLDecoder.decode(_get);
     CharSequence _generate = this.generate(chapter, fileNames);
-    access.generateFile(_get, _generate);
+    access.generateFile(_decode, _generate);
   }
   
   protected CharSequence _generate(final Chapter chapter, final Map<AbstractSection,String> fileNames) throws RuntimeException {
