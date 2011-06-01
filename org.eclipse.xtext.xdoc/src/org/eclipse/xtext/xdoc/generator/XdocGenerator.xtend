@@ -321,8 +321,13 @@ class XdocGenerator implements IGenerator {
 	
 	def dispatch generate(CodeRef cRef, Map<AbstractSection, String> fileNames) {
 		val prefix = if(cRef.element instanceof JvmAnnotationType) "@"
-		'''<a href="«cRef.element.genJavaDocLink»" ><abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
-			»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr></a>'''
+		val jDocLink = cRef.element.genJavaDocLink
+		if(jDocLink != null)
+			'''<a href="«cRef.element.genJavaDocLink»" ><abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
+				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr></a>'''
+		else
+			'''<abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
+				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr>'''
 	}
 
 	def dispatch generate(CodeBlock cb, Map<AbstractSection, String> fileNames) {
