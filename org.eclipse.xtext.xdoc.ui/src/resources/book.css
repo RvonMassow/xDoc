@@ -42,6 +42,10 @@ EM.UILabel {
 	text-transform: none;
 }
 
+.image {
+	text-align:center;
+}
+
 EM.CodeName {
 	font-weight: Bold;
 	font-style: Regular;
