@@ -55,9 +55,9 @@ class Utils {
 			""
 	}
 
-	def formatCode(String text, LangDef language) {
+	def formatCode(CharSequence text, LangDef language) {
 		if(text != null)
-			getHighlightedHtmlCode(text, language)
+			getHighlightedHtmlCode(text.toString, language)
 		else
 			""
 	}
@@ -107,32 +107,11 @@ class Utils {
 		return s.escapeHTMLChars.replace(' ','&nbsp;').replace('\n','</br>\n').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
 	}
 
-	def create codeBlock : XdocFactory::eINSTANCE.createCodeBlock removeIndent(CodeBlock cb) {
+	def calcIndent(CodeBlock cb) {
 		if(cb.getContents().size() > 0 && cb.getContents().get(0) instanceof Code){
 			val code0 = (cb.getContents().get(0) as Code).getContents()
 			var indent = code0.length()
 			indent = indent - code0.replaceAll("^(\n*)\\s*", "$1").length()
-			val string = "\n\\s{"+indent+"}"
-			var firstRun = true
-			for(code : cb.contents()) {
-				if (code instanceof Code) {
-					var codeString = (code as Code).contents()
-					if(code == cb.contents.head) {
-						codeString = codeString.replaceAll("^\n*", "").replaceAll("^\\s{"+indent+"}", "")
-					}
-					if(code == cb.contents.last){
-						codeString = codeString.replaceAll("(\\s|\n)*$", "")
-					}
-					codeString = codeString.replaceAll(string, "\n")
-					codeBlock.contents.add(correctedCode(codeString))
-				} else
-					codeBlock.contents.add(code)
-				firstRun = false
-			}
-			if(codeBlock.getContents().get(codeBlock.getContents().size()-1) instanceof Code) {
-				val lastLines =  (codeBlock.getContents().get(codeBlock.getContents().size() - 1) as Code)
-				lastLines.setContents(lastLines.getContents().replaceAll("\\s*$", ""))
-			}
 		}
 	}
 

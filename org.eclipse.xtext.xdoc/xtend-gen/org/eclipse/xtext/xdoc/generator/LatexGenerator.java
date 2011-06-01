@@ -17,6 +17,7 @@ import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
+import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.generator.util.XFloat;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
@@ -840,7 +841,7 @@ public class LatexGenerator implements IGenerator {
   }
   
   protected CharSequence _genText(final CodeBlock block) {
-    CodeBlock _removeIndent = this.utils.removeIndent(block);
+    CodeBlock _removeIndent = StringUtils.removeIndent(block);
     StringConcatenation _specialGenCode = this.specialGenCode(_removeIndent);
     return _specialGenCode;
   }

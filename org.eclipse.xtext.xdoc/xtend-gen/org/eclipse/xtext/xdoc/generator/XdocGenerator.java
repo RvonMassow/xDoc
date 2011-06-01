@@ -9,6 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.util.EList;
@@ -22,6 +23,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
+import org.eclipse.xtext.xbase.lib.ComparableExtensions;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -883,16 +885,61 @@ public class XdocGenerator implements IGenerator {
       _builder.append("<span class=\"inlinecode\">");
       EList<EObject> _contents = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
+      StringConcatenation _generateCode = this.generateCode(((Code) _head), fileNames);
       LangDef _language = cb.getLanguage();
-      StringConcatenation _generateCode = this.generateCode(((Code) _head), _language, fileNames);
-      _builder.append(_generateCode, "");
+      String _formatCode = this.utils.formatCode(_generateCode, _language);
+      _builder.append(_formatCode, "");
       _builder.append("</span>");
       _xifexpression = _builder;
     } else {
       StringConcatenation _xblockexpression = null;
       {
-        CodeBlock _removeIndent = this.utils.removeIndent(cb);
-        final CodeBlock block = _removeIndent;
+        Integer _calcIndent = this.utils.calcIndent(cb);
+        final Integer indentToRemove = _calcIndent;
+        Iterable<EObject> _xifexpression_1 = null;
+        EList<EObject> _contents_1 = cb.getContents();
+        int _size = _contents_1.size();
+        boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)_size), ((Integer)2));
+        if (_operator_greaterThan) {
+          EList<EObject> _contents_2 = cb.getContents();
+          Iterable<EObject> _tail = IterableExtensions.<EObject>tail(_contents_2);
+          EList<EObject> _contents_3 = cb.getContents();
+          int _size_1 = _contents_3.size();
+          int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)2));
+          Iterable<EObject> _take = IterableExtensions.<EObject>take(_tail, _operator_minus);
+          _xifexpression_1 = _take;
+        } else {
+          _xifexpression_1 = Collections.EMPTY_LIST;
+        }
+        final Iterable<EObject> list = _xifexpression_1;
+        EList<EObject> _contents_4 = cb.getContents();
+        EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
+        StringConcatenation _generateCode_1 = this.generateCode(_head_1, fileNames);
+        String _trimLines = this.trimLines(_generateCode_1, indentToRemove);
+        String _replaceAll = _trimLines.replaceAll("\\A(\\s*\n)*", "");
+        final String first = _replaceAll;
+        String _xifexpression_2 = null;
+        EList<EObject> _contents_5 = cb.getContents();
+        EObject _last = IterableExtensions.<EObject>last(_contents_5);
+        EList<EObject> _contents_6 = cb.getContents();
+        EObject _head_2 = IterableExtensions.<EObject>head(_contents_6);
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_last, _head_2);
+        if (_operator_notEquals) {
+          EList<EObject> _contents_7 = cb.getContents();
+          EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
+          StringConcatenation _generateCode_2 = this.generateCode(_last_1, fileNames);
+          String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
+          String _replaceAll_1 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
+          _xifexpression_2 = _replaceAll_1;
+        } else {
+          String _xblockexpression_1 = null;
+          {
+            first.replaceAll("(\\s*\n)*\\Z", "");
+            _xblockexpression_1 = ("");
+          }
+          _xifexpression_2 = _xblockexpression_1;
+        }
+        final String last = _xifexpression_2;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("<div class=\"literallayout\">");
         _builder_1.newLine();
@@ -900,15 +947,24 @@ public class XdocGenerator implements IGenerator {
         _builder_1.newLine();
         _builder_1.append("<p class=\"code\">");
         _builder_1.newLine();
+        LangDef _language_1 = cb.getLanguage();
+        String _formatCode_1 = this.utils.formatCode(first, _language_1);
+        _builder_1.append(_formatCode_1, "");
+        _builder_1.newLineIfNotEmpty();
         {
-          EList<EObject> _contents_1 = block.getContents();
-          for(EObject code : _contents_1) {
-            LangDef _language_1 = cb.getLanguage();
-            StringConcatenation _generateCode_1 = this.generateCode(code, _language_1, fileNames);
-            _builder_1.append(_generateCode_1, "");
+          for(EObject code : list) {
+            StringConcatenation _generateCode_3 = this.generateCode(code, fileNames);
+            String _trimLines_2 = this.trimLines(_generateCode_3, indentToRemove);
+            LangDef _language_2 = cb.getLanguage();
+            String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2);
+            _builder_1.append(_formatCode_2, "");
             _builder_1.newLineIfNotEmpty();
           }
         }
+        LangDef _language_3 = cb.getLanguage();
+        String _formatCode_3 = this.utils.formatCode(last, _language_3);
+        _builder_1.append(_formatCode_3, "");
+        _builder_1.newLineIfNotEmpty();
         _builder_1.append("</p>");
         _builder_1.newLine();
         _builder_1.append("</div>");
@@ -922,28 +978,26 @@ public class XdocGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected StringConcatenation _generateCode(final Code code, final LangDef lang, final Map<AbstractSection,String> fileNames) {
+  public String trimLines(final CharSequence cs, final int amount) {
+    String _string = cs.toString();
+    String _operator_plus = StringExtensions.operator_plus("\n\\s{", ((Integer)amount));
+    String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, "}");
+    String _replaceAll = _string.replaceAll(_operator_plus_1, "\n");
+    return _replaceAll;
+  }
+  
+  protected StringConcatenation _generateCode(final Code code, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
-    String _formatCode = this.utils.formatCode(_unescapeXdocChars, lang);
-    _builder.append(_formatCode, "");
+    _builder.append(_unescapeXdocChars, "");
     return _builder;
   }
   
-  protected StringConcatenation _generateCode(final MarkupInCode code, final LangDef lang, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected StringConcatenation _generateCode(final MarkupInCode code, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generate = this.generate(code, fileNames);
     _builder.append(_generate, "");
-    return _builder;
-  }
-  
-  protected StringConcatenation _generateCode(final Code code, final Void v, final Map<AbstractSection,String> fileNames) {
-    StringConcatenation _builder = new StringConcatenation();
-    String _contents = code.getContents();
-    String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
-    String _formatCode = this.utils.formatCode(_unescapeXdocChars, null);
-    _builder.append(_formatCode, "");
     return _builder;
   }
   
@@ -1036,22 +1090,16 @@ public class XdocGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation generateCode(final EObject code, final Object lang, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public StringConcatenation generateCode(final EObject code, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     if ((code instanceof Code)
-         && (lang instanceof LangDef)
          && (fileNames instanceof Map)) {
-      return _generateCode((Code)code, (LangDef)lang, (Map<AbstractSection,String>)fileNames);
+      return _generateCode((Code)code, (Map<AbstractSection,String>)fileNames);
     } else if ((code instanceof MarkupInCode)
-         && (lang instanceof LangDef)
          && (fileNames instanceof Map)) {
-      return _generateCode((MarkupInCode)code, (LangDef)lang, (Map<AbstractSection,String>)fileNames);
-    } else if ((code instanceof Code)
-         && (lang == null)
-         && (fileNames instanceof Map)) {
-      return _generateCode((Code)code, (Void)null, (Map<AbstractSection,String>)fileNames);
+      return _generateCode((MarkupInCode)code, (Map<AbstractSection,String>)fileNames);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(code, lang, fileNames).toString());
+        java.util.Arrays.<Object>asList(code, fileNames).toString());
     }
   }
 }

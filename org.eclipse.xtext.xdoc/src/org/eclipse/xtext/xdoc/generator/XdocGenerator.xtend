@@ -45,6 +45,7 @@ import org.eclipse.xtext.xdoc.xdoc.LangDef
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
 import static extension java.net.URLDecoder.*
 import org.eclipse.xtext.common.types.JvmAnnotationType
+import java.util.Collections
 
 class XdocGenerator implements IGenerator {
 
@@ -332,16 +333,30 @@ class XdocGenerator implements IGenerator {
 
 	def dispatch generate(CodeBlock cb, Map<AbstractSection, String> fileNames) {
 		if(cb.isInlineCode) {
-			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language, fileNames)»</span>'''
+			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(fileNames).formatCode(cb.language)»</span>'''
 		} else {
-			val block = cb.removeIndent
+			val indentToRemove = cb.calcIndent
+			val list = 
+				if(cb.contents.size > 2)
+					cb.contents.tail.take(cb.contents.size - 2)
+				else
+					Collections::EMPTY_LIST
+			val first = cb.contents.head.generateCode(fileNames).trimLines(indentToRemove).replaceAll("\\A(\\s*\n)*", "")
+			val last = if(cb.contents.last != cb.contents.head) {
+					cb.contents.last.generateCode(fileNames).trimLines(indentToRemove).replaceAll("(\\s*\n)*\\Z", "")
+				} else{
+					first.replaceAll("(\\s*\n)*\\Z", "")
+					""
+				}
 			'''	
 				<div class="literallayout">
 				<div class="incode">
 				<p class="code">
-				«FOR code:block.contents»
-					«code.generateCode(cb.language, fileNames)»
+				«first.formatCode(cb.language)»
+				«FOR code: list»
+					«code.generateCode(fileNames).trimLines(indentToRemove).formatCode(cb.language)»
 				«ENDFOR»
+				«last.formatCode(cb.language)»
 				</p>
 				</div>
 				</div>
@@ -349,15 +364,16 @@ class XdocGenerator implements IGenerator {
 		}
 	}
 
-	def dispatch generateCode (Code code, LangDef lang, Map<AbstractSection, String> fileNames) 
-		'''«code.contents.unescapeXdocChars.formatCode(lang)»'''
-	
-	
-	def dispatch generateCode (MarkupInCode code, LangDef lang, Map<AbstractSection, String> fileNames) 
-		'''«code.generate(fileNames)»'''
+	def trimLines(CharSequence cs, int amount) {
+		cs.toString.replaceAll("\n\\s{" + amount + "}", "\n")
+	}
 
-	def dispatch generateCode (Code code, Void v, Map<AbstractSection, String> fileNames) 
-		'''«code.contents.unescapeXdocChars.formatCode(null) »'''
+	def dispatch generateCode (Code code, Map<AbstractSection, String> fileNames) 
+		'''«code.contents.unescapeXdocChars»'''
+	
+	
+	def dispatch generateCode (MarkupInCode code, Map<AbstractSection, String> fileNames) 
+		'''«code.generate(fileNames)»'''
 
 	def genNonParContent(TextOrMarkup tom, Map<AbstractSection, String> fileNames) 
 		'''«FOR obj:tom.contents»«obj.generate(fileNames)»«ENDFOR»'''

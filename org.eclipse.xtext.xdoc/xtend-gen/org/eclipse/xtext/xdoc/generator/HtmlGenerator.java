@@ -14,6 +14,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
@@ -599,7 +600,7 @@ public class HtmlGenerator implements IGenerator {
         _builder.append("<p class=\"code\">");
         _builder.newLine();
         {
-          CodeBlock _removeIndent = this.utils.removeIndent(code);
+          CodeBlock _removeIndent = StringUtils.removeIndent(code);
           EList<EObject> _contents_2 = _removeIndent.getContents();
           for(EObject c_1 : _contents_2) {
             _builder.append("\t");
