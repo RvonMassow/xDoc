@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g 2011-05-18 20:16:26
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g 2011-06-01 11:58:05
 
 package org.eclipse.xtext.xdoc.generator.util.lexer;
 
@@ -31,17 +31,17 @@ public class Common extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "/Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g"; }
+    public String getGrammarFileName() { return "/home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g"; }
 
     // $ANTLR start "ID"
     public final void mID() throws RecognitionException {
         try {
             int _type = ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:4: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:6: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:4: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '-' )* )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:6: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '-' )*
             {
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:6: ( '^' )?
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:6: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -50,7 +50,7 @@ public class Common extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:6: '^'
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:6: '^'
                     {
                     match('^'); 
 
@@ -68,22 +68,22 @@ public class Common extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:9:35: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' | '-' )*
             loop2:
             do {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
 
-                if ( ((LA2_0>='0' && LA2_0<='9')||(LA2_0>='A' && LA2_0<='Z')||LA2_0=='_'||(LA2_0>='a' && LA2_0<='z')) ) {
+                if ( (LA2_0=='-'||(LA2_0>='0' && LA2_0<='9')||(LA2_0>='A' && LA2_0<='Z')||LA2_0=='_'||(LA2_0>='a' && LA2_0<='z')) ) {
                     alt2=1;
                 }
 
 
                 switch (alt2) {
             	case 1 :
-            	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:
+            	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:
             	    {
-            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            	    if ( input.LA(1)=='-'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
 
             	    }
@@ -117,10 +117,10 @@ public class Common extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:8: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) ) )
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:8: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) ) )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
             {
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:10: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF ) )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -138,10 +138,10 @@ public class Common extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:11: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:11: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:15: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:15: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop3:
                     do {
                         int alt3=3;
@@ -157,7 +157,7 @@ public class Common extends Lexer {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:16: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' )
+                    	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:16: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||(input.LA(1)>='[' && input.LA(1)<=']')||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -173,7 +173,7 @@ public class Common extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:65: ~ ( ( '\\\\' | '\"' ) )
+                    	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:65: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -198,10 +198,10 @@ public class Common extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:85: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF )
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:85: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )* ( '\\'' | EOF )
                     {
                     match('\''); 
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:90: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:90: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -217,7 +217,7 @@ public class Common extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:91: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' )
+                    	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:91: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | ']' | '[' | '\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||(input.LA(1)>='[' && input.LA(1)<=']')||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -233,7 +233,7 @@ public class Common extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:140: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:140: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -253,7 +253,7 @@ public class Common extends Lexer {
                         }
                     } while (true);
 
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:157: ( '\\'' | EOF )
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:157: ( '\\'' | EOF )
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -264,14 +264,14 @@ public class Common extends Lexer {
                         alt5=2;}
                     switch (alt5) {
                         case 1 :
-                            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:158: '\\''
+                            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:158: '\\''
                             {
                             match('\''); 
 
                             }
                             break;
                         case 2 :
-                            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:165: EOF
+                            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:11:165: EOF
                             {
                             match(EOF); 
 
@@ -302,7 +302,7 @@ public class Common extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:13:9: ( ML_COMMENT | SL_COMMENT )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:13:9: ( ML_COMMENT | SL_COMMENT )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -330,14 +330,14 @@ public class Common extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:13:11: ML_COMMENT
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:13:11: ML_COMMENT
                     {
                     mML_COMMENT(); 
 
                     }
                     break;
                 case 2 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:13:24: SL_COMMENT
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:13:24: SL_COMMENT
                     {
                     mSL_COMMENT(); 
 
@@ -356,12 +356,12 @@ public class Common extends Lexer {
     // $ANTLR start "ML_COMMENT"
     public final void mML_COMMENT() throws RecognitionException {
         try {
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:21: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:23: '/*' ( options {greedy=false; } : . )* '*/'
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:21: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:23: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:28: ( options {greedy=false; } : . )*
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:28: ( options {greedy=false; } : . )*
             loop8:
             do {
                 int alt8=2;
@@ -386,7 +386,7 @@ public class Common extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:56: .
+            	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:15:56: .
             	    {
             	    matchAny(); 
 
@@ -412,12 +412,12 @@ public class Common extends Lexer {
     // $ANTLR start "SL_COMMENT"
     public final void mSL_COMMENT() throws RecognitionException {
         try {
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:21: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' )? )
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:23: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' )?
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:21: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' )? )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:23: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:28: (~ ( '\\n' | '\\r' ) )*
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:28: (~ ( '\\n' | '\\r' ) )*
             loop9:
             do {
                 int alt9=2;
@@ -430,7 +430,7 @@ public class Common extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:28: ~ ( '\\n' | '\\r' )
+            	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:28: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -450,7 +450,7 @@ public class Common extends Lexer {
                 }
             } while (true);
 
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:42: ( ( '\\r' )? '\\n' )?
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:42: ( ( '\\r' )? '\\n' )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -459,9 +459,9 @@ public class Common extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:43: ( '\\r' )? '\\n'
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:43: ( '\\r' )? '\\n'
                     {
-                    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:43: ( '\\r' )?
+                    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:43: ( '\\r' )?
                     int alt10=2;
                     int LA10_0 = input.LA(1);
 
@@ -470,7 +470,7 @@ public class Common extends Lexer {
                     }
                     switch (alt10) {
                         case 1 :
-                            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:43: '\\r'
+                            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:17:43: '\\r'
                             {
                             match('\r'); 
 
@@ -500,10 +500,10 @@ public class Common extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:19:4: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:19:6: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:19:4: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:19:6: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:19:6: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:19:6: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt12=0;
             loop12:
             do {
@@ -517,7 +517,7 @@ public class Common extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:
+            	    // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -557,8 +557,8 @@ public class Common extends Lexer {
         try {
             int _type = ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:21:11: ( . )
-            // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:21:13: .
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:21:11: ( . )
+            // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:21:13: .
             {
             matchAny(); 
 
@@ -573,40 +573,40 @@ public class Common extends Lexer {
     // $ANTLR end "ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:8: ( ID | STRING | COMMENT | WS | ANY_OTHER )
+        // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:8: ( ID | STRING | COMMENT | WS | ANY_OTHER )
         int alt13=5;
         alt13 = dfa13.predict(input);
         switch (alt13) {
             case 1 :
-                // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:10: ID
+                // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:10: ID
                 {
                 mID(); 
 
                 }
                 break;
             case 2 :
-                // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:13: STRING
+                // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:13: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
             case 3 :
-                // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:20: COMMENT
+                // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:20: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 4 :
-                // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:28: WS
+                // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:28: WS
                 {
                 mWS(); 
 
                 }
                 break;
             case 5 :
-                // /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:31: ANY_OTHER
+                // /home/skomp/repos/git/xdoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g:1:31: ANY_OTHER
                 {
                 mANY_OTHER(); 
 
