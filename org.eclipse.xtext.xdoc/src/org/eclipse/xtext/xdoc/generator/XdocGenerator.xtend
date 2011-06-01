@@ -46,12 +46,15 @@ import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
 import static extension java.net.URLDecoder.*
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import java.util.Collections
+import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 
 class XdocGenerator implements IGenerator {
 
 //	@Inject ArrayList<GlossaryEntry> glossary
 
 	@Inject extension JavaDocExtension jdoc
+
+	@Inject extension GitExtensions git
 
 	@Inject extension Utils utils
 
@@ -323,12 +326,17 @@ class XdocGenerator implements IGenerator {
 	def dispatch generate(CodeRef cRef, Map<AbstractSection, String> fileNames) {
 		val prefix = if(cRef.element instanceof JvmAnnotationType) "@"
 		val jDocLink = cRef.element.genJavaDocLink
-		if(jDocLink != null)
+		val gitLink = cRef.element.gitLink
+		var ret = if(jDocLink != null)
 			'''<a href="«cRef.element.genJavaDocLink»" ><abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
 				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr></a>'''
 		else
 			'''<abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
 				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr>'''
+		if(gitLink != null) {
+			'''«ret» <a href="«gitLink»" ><img src="http://a.fsdn.com/con/icons/pr/progit@sf.net/git.logo.gif" /></a>'''
+		} else 
+			ret
 	}
 
 	def dispatch generate(CodeBlock cb, Map<AbstractSection, String> fileNames) {
