@@ -3,6 +3,8 @@ package org.eclipse.xtext.xdoc.generator.util;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Token;
@@ -10,11 +12,16 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.ComparableExtensions;
+import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
+import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
+import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 
 @SuppressWarnings("all")
 public class Utils {
@@ -74,8 +81,7 @@ public class Utils {
     if (_operator_notEquals) {
       String _replaceAll = s.replaceAll("\\\\\\[", "[");
       String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
-      String _replaceAll_2 = _replaceAll_1.replaceAll("\\\\\\\\", "\\\\");
-      _xifexpression = _replaceAll_2;
+      _xifexpression = _replaceAll_1;
     } else {
       _xifexpression = "";
     }
@@ -211,5 +217,122 @@ public class Utils {
     String _replace_1 = _replace.replace("\n", "</br>\n");
     String _replace_2 = _replace_1.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
     return _replace_2;
+  }
+  
+  private final HashMap<ArrayList<?>,CodeBlock> _createCache_removeIndent = new HashMap<ArrayList<?>,CodeBlock>();
+  
+  public CodeBlock removeIndent(final CodeBlock cb) {
+    final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList(cb);
+    CodeBlock codeBlock;
+    synchronized (_createCache_removeIndent) {
+      if (_createCache_removeIndent.containsKey(_cacheKey)) {
+        return _createCache_removeIndent.get(_cacheKey);
+      }
+      CodeBlock _createCodeBlock = XdocFactory.eINSTANCE.createCodeBlock();
+      codeBlock = _createCodeBlock;
+      _createCache_removeIndent.put(_cacheKey, codeBlock);
+    }
+    boolean _operator_and = false;
+    EList<EObject> _contents = cb.getContents();
+    int _size = _contents.size();
+    boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)_size), ((Integer)0));
+    if (!_operator_greaterThan) {
+      _operator_and = false;
+    } else {
+      EList<EObject> _contents_1 = cb.getContents();
+      EObject _get = _contents_1.get(0);
+      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (_get instanceof org.eclipse.xtext.xdoc.xdoc.Code));
+    }
+    if (_operator_and) {
+      {
+        EList<EObject> _contents_2 = cb.getContents();
+        EObject _get_1 = _contents_2.get(0);
+        String _contents_3 = ((Code) _get_1).getContents();
+        final String code0 = _contents_3;
+        int _length = code0.length();
+        int indent = _length;
+        String _replaceAll = code0.replaceAll("^(\n*)\\s*", "$1");
+        int _length_1 = _replaceAll.length();
+        int _operator_minus = IntegerExtensions.operator_minus(((Integer)indent), ((Integer)_length_1));
+        indent = _operator_minus;
+        String _operator_plus = StringExtensions.operator_plus("\n\\s{", ((Integer)indent));
+        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, "}");
+        final String string = _operator_plus_1;
+        boolean firstRun = true;
+        EList<EObject> _contents_4 = cb.getContents();
+        for (EObject code : _contents_4) {
+          {
+            if ((code instanceof org.eclipse.xtext.xdoc.xdoc.Code)) {
+              {
+                String _contents_5 = ((Code) code).getContents();
+                String codeString = _contents_5;
+                EList<EObject> _contents_6 = cb.getContents();
+                EObject _head = IterableExtensions.<EObject>head(_contents_6);
+                boolean _operator_equals = ObjectExtensions.operator_equals(code, _head);
+                if (_operator_equals) {
+                  String _replaceAll_1 = codeString.replaceAll("^\n*", "");
+                  String _operator_plus_2 = StringExtensions.operator_plus("^\\s{", ((Integer)indent));
+                  String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, "}");
+                  String _replaceAll_2 = _replaceAll_1.replaceAll(_operator_plus_3, "");
+                  codeString = _replaceAll_2;
+                }
+                EList<EObject> _contents_7 = cb.getContents();
+                EObject _last = IterableExtensions.<EObject>last(_contents_7);
+                boolean _operator_equals_1 = ObjectExtensions.operator_equals(code, _last);
+                if (_operator_equals_1) {
+                  String _replaceAll_3 = codeString.replaceAll("(\\s|\n)*$", "");
+                  codeString = _replaceAll_3;
+                }
+                String _replaceAll_4 = codeString.replaceAll(string, "\n");
+                codeString = _replaceAll_4;
+                EList<EObject> _contents_8 = codeBlock.getContents();
+                Code _correctedCode = this.correctedCode(codeString);
+                _contents_8.add(_correctedCode);
+              }
+            } else {
+              EList<EObject> _contents_9 = codeBlock.getContents();
+              _contents_9.add(code);
+            }
+            firstRun = false;
+          }
+        }
+        EList<EObject> _contents_10 = codeBlock.getContents();
+        EList<EObject> _contents_11 = codeBlock.getContents();
+        int _size_1 = _contents_11.size();
+        int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)1));
+        EObject _get_2 = _contents_10.get(_operator_minus_1);
+        if ((_get_2 instanceof org.eclipse.xtext.xdoc.xdoc.Code)) {
+          {
+            EList<EObject> _contents_12 = codeBlock.getContents();
+            EList<EObject> _contents_13 = codeBlock.getContents();
+            int _size_2 = _contents_13.size();
+            int _operator_minus_2 = IntegerExtensions.operator_minus(((Integer)_size_2), ((Integer)1));
+            EObject _get_3 = _contents_12.get(_operator_minus_2);
+            final Code lastLines = ((Code) _get_3);
+            String _contents_14 = lastLines.getContents();
+            String _replaceAll_5 = _contents_14.replaceAll("\\s*$", "");
+            lastLines.setContents(_replaceAll_5);
+          }
+        }
+      }
+    }
+    return codeBlock;
+  }
+  
+  private final HashMap<ArrayList<?>,Code> _createCache_correctedCode = new HashMap<ArrayList<?>,Code>();
+  
+  public Code correctedCode(final String s) {
+    final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList(s);
+    Code code;
+    synchronized (_createCache_correctedCode) {
+      if (_createCache_correctedCode.containsKey(_cacheKey)) {
+        return _createCache_correctedCode.get(_cacheKey);
+      }
+      Code _createCode = XdocFactory.eINSTANCE.createCode();
+      code = _createCode;
+      _createCache_correctedCode.put(_cacheKey, code);
+    }
+    code.setContents(s);
+    return code;
   }
 }

@@ -32,7 +32,6 @@ import org.eclipse.xtext.xdoc.generator.TocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions;
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension;
-import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
@@ -892,7 +891,7 @@ public class XdocGenerator implements IGenerator {
     } else {
       StringConcatenation _xblockexpression = null;
       {
-        CodeBlock _removeIndent = StringUtils.removeIndent(cb);
+        CodeBlock _removeIndent = this.utils.removeIndent(cb);
         final CodeBlock block = _removeIndent;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("<div class=\"literallayout\">");

@@ -44,7 +44,7 @@ import org.eclipse.xtext.xdoc.xdoc.Code
 import org.eclipse.xtext.xdoc.xdoc.LangDef
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
 import static extension java.net.URLDecoder.*
-import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
+import org.eclipse.xtext.common.types.JvmAnnotationType
 
 class XdocGenerator implements IGenerator {
 
