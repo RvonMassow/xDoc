@@ -817,25 +817,37 @@ public class XdocGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final CodeRef cRef, final Map<AbstractSection,String> fileNames) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<a href=\"");
-    JvmDeclaredType _element = cRef.getElement();
-    String _genJavaDocLink = this.jdoc.genJavaDocLink(_element);
-    _builder.append(_genJavaDocLink, "");
-    _builder.append("\" ><abbr title=\"");
-    JvmDeclaredType _element_1 = cRef.getElement();
-    String _qualifiedName = _element_1.getQualifiedName();
-    String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
-    String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
-    _builder.append(_escapeHTMLChars, "");
-    _builder.append("\" >");
-    JvmDeclaredType _element_2 = cRef.getElement();
-    String _simpleName = _element_2.getSimpleName();
-    String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_simpleName);
-    String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
-    _builder.append(_escapeHTMLChars_1, "");
-    _builder.append("</abbr></a>");
-    return _builder;
+    StringConcatenation _xblockexpression = null;
+    {
+      String _xifexpression = null;
+      JvmDeclaredType _element = cRef.getElement();
+      if ((_element instanceof org.eclipse.xtext.common.types.JvmAnnotationType)) {
+        _xifexpression = "@";
+      }
+      final String prefix = _xifexpression;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("<a href=\"");
+      JvmDeclaredType _element_1 = cRef.getElement();
+      String _genJavaDocLink = this.jdoc.genJavaDocLink(_element_1);
+      _builder.append(_genJavaDocLink, "");
+      _builder.append("\" ><abbr title=\"");
+      JvmDeclaredType _element_2 = cRef.getElement();
+      char _charAt = ".".charAt(0);
+      String _qualifiedName = _element_2.getQualifiedName(_charAt);
+      String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
+      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
+      _builder.append(_escapeHTMLChars, "");
+      _builder.append("\" >");
+      _builder.append(prefix, "");
+      JvmDeclaredType _element_3 = cRef.getElement();
+      String _simpleName = _element_3.getSimpleName();
+      String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_simpleName);
+      String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
+      _builder.append(_escapeHTMLChars_1, "");
+      _builder.append("</abbr></a>");
+      _xblockexpression = (_builder);
+    }
+    return _xblockexpression;
   }
   
   protected CharSequence _generate(final CodeBlock cb, final Map<AbstractSection,String> fileNames) throws RuntimeException {
