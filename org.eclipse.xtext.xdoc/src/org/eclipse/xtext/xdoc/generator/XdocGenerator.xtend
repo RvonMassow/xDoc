@@ -47,6 +47,7 @@ import static extension java.net.URLDecoder.*
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import java.util.Collections
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
+import org.eclipse.xtext.common.types.JvmDeclaredType
 
 class XdocGenerator implements IGenerator {
 
@@ -216,7 +217,7 @@ class XdocGenerator implements IGenerator {
 
 	def dispatch generate(Ref ref, Map<AbstractSection, String> fileNames) {
 		val title = if(ref.ref instanceof AbstractSection) {
-				'''title="go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
+				'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
 			}
 		'''«IF ref.contents.isEmpty »<a href="«ref.ref.url(fileNames)»" «title» >section «ref.ref.name»</a>«ELSE
 		»<a href="«ref.ref.url(fileNames)»" «title»>«FOR tom:ref.contents
@@ -325,25 +326,32 @@ class XdocGenerator implements IGenerator {
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
 	
 	def dispatch generate(CodeRef cRef, Map<AbstractSection, String> fileNames) {
-		val prefix = if(cRef.element instanceof JvmAnnotationType) "@"
+		val prefix = if(cRef.element instanceof JvmAnnotationType && cRef.altText == null) "@"
 		val jDocLink = cRef.element.genJavaDocLink
 		val gitLink = cRef.element.gitLink
 		val fqn = cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
 		val text = if(cRef.altText != null) {
 						cRef.altText.generate(fileNames)
 					} else {
-						cRef.element.qualifiedName.replaceAll(".*\\.([^\\.]*)$", "$1").replaceAll("\\$", ".")
+						cRef.element.dottedSimpleName
 					}
 		var ret = if(jDocLink != null)
-			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" ><abbr title="«fqn
+			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" title="View JavaDoc"><abbr title="«fqn
 				»" >«prefix»«text»</abbr></a>'''
 		else
 			'''<abbr title="«fqn
 				»" >«prefix»«text»</abbr>'''
 		if(gitLink != null) {
-			'''«ret» <a class="srcLink" href="«gitLink»" title="show source code" >(src)</a>'''
+			'''«ret» <a class="srcLink" href="«gitLink»" title="View Source Code" >(src)</a>'''
 		} else 
 			ret
+	}
+	
+	def String dottedSimpleName(JvmDeclaredType type) {
+		if (type.declaringType != null)
+			type.declaringType.dottedSimpleName + '.' + type.simpleName
+		else
+			type.simpleName
 	}
 
 	def dispatch generate(CodeBlock cb, Map<AbstractSection, String> fileNames) {

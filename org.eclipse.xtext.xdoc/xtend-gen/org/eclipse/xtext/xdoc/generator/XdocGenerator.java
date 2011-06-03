@@ -517,7 +517,7 @@ public class XdocGenerator implements IGenerator {
       Identifiable _ref = ref.getRef();
       if ((_ref instanceof org.eclipse.xtext.xdoc.xdoc.AbstractSection)) {
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("title=\"go to &quot;");
+        _builder.append("title=\"Go to &quot;");
         Identifiable _ref_1 = ref.getRef();
         TextOrMarkup _title = ((AbstractSection) _ref_1).getTitle();
         CharSequence _genPlainText = this.plainText.genPlainText(_title);
@@ -844,8 +844,16 @@ public class XdocGenerator implements IGenerator {
     StringConcatenation _xblockexpression = null;
     {
       String _xifexpression = null;
+      boolean _operator_and = false;
       JvmDeclaredType _element = cRef.getElement();
-      if ((_element instanceof org.eclipse.xtext.common.types.JvmAnnotationType)) {
+      if (!(_element instanceof org.eclipse.xtext.common.types.JvmAnnotationType)) {
+        _operator_and = false;
+      } else {
+        TextOrMarkup _altText = cRef.getAltText();
+        boolean _operator_equals = ObjectExtensions.operator_equals(_altText, null);
+        _operator_and = BooleanExtensions.operator_and((_element instanceof org.eclipse.xtext.common.types.JvmAnnotationType), _operator_equals);
+      }
+      if (_operator_and) {
         _xifexpression = "@";
       }
       final String prefix = _xifexpression;
@@ -862,18 +870,16 @@ public class XdocGenerator implements IGenerator {
       String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
       final String fqn = _escapeHTMLChars;
       CharSequence _xifexpression_1 = null;
-      TextOrMarkup _altText = cRef.getAltText();
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText, null);
+      TextOrMarkup _altText_1 = cRef.getAltText();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
       if (_operator_notEquals) {
-        TextOrMarkup _altText_1 = cRef.getAltText();
-        CharSequence _generate = this.generate(_altText_1, fileNames);
+        TextOrMarkup _altText_2 = cRef.getAltText();
+        CharSequence _generate = this.generate(_altText_2, fileNames);
         _xifexpression_1 = _generate;
       } else {
         JvmDeclaredType _element_4 = cRef.getElement();
-        String _qualifiedName_1 = _element_4.getQualifiedName();
-        String _replaceAll = _qualifiedName_1.replaceAll(".*\\.([^\\.]*)$", "$1");
-        String _replaceAll_1 = _replaceAll.replaceAll("\\$", ".");
-        _xifexpression_1 = _replaceAll_1;
+        String _dottedSimpleName = this.dottedSimpleName(_element_4);
+        _xifexpression_1 = _dottedSimpleName;
       }
       final CharSequence text = _xifexpression_1;
       StringConcatenation _xifexpression_2 = null;
@@ -884,7 +890,7 @@ public class XdocGenerator implements IGenerator {
         JvmDeclaredType _element_5 = cRef.getElement();
         String _genJavaDocLink_1 = this.jdoc.genJavaDocLink(_element_5);
         _builder.append(_genJavaDocLink_1, "");
-        _builder.append("\" ><abbr title=\"");
+        _builder.append("\" title=\"View JavaDoc\"><abbr title=\"");
         _builder.append(fqn, "");
         _builder.append("\" >");
         _builder.append(prefix, "");
@@ -909,7 +915,7 @@ public class XdocGenerator implements IGenerator {
         _builder_2.append(ret, "");
         _builder_2.append(" <a class=\"srcLink\" href=\"");
         _builder_2.append(gitLink, "");
-        _builder_2.append("\" title=\"show source code\" >(src)</a>");
+        _builder_2.append("\" title=\"View Source Code\" >(src)</a>");
         _xifexpression_3 = _builder_2;
       } else {
         _xifexpression_3 = ret;
@@ -917,6 +923,24 @@ public class XdocGenerator implements IGenerator {
       _xblockexpression = (_xifexpression_3);
     }
     return _xblockexpression;
+  }
+  
+  public String dottedSimpleName(final JvmDeclaredType type) {
+    String _xifexpression = null;
+    JvmDeclaredType _declaringType = type.getDeclaringType();
+    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
+    if (_operator_notEquals) {
+      JvmDeclaredType _declaringType_1 = type.getDeclaringType();
+      String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
+      String _operator_plus = StringExtensions.operator_plus(_dottedSimpleName, ".");
+      String _simpleName = type.getSimpleName();
+      String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _simpleName);
+      _xifexpression = _operator_plus_1;
+    } else {
+      String _simpleName_1 = type.getSimpleName();
+      _xifexpression = _simpleName_1;
+    }
+    return _xifexpression;
   }
   
   protected CharSequence _generate(final CodeBlock cb, final Map<AbstractSection,String> fileNames) throws RuntimeException {
