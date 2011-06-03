@@ -511,36 +511,57 @@ public class XdocGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final Ref ref, final Map<AbstractSection,String> fileNames) throws RuntimeException {
-    StringConcatenation _builder = new StringConcatenation();
+    StringConcatenation _xblockexpression = null;
     {
-      EList<TextOrMarkup> _contents = ref.getContents();
-      boolean _isEmpty = _contents.isEmpty();
-      if (_isEmpty) {
-        _builder.append("<a href=\"");
-        Identifiable _ref = ref.getRef();
-        Object _url = this.url(_ref, fileNames);
-        _builder.append(_url, "");
-        _builder.append("\">section ");
+      StringConcatenation _xifexpression = null;
+      Identifiable _ref = ref.getRef();
+      if ((_ref instanceof org.eclipse.xtext.xdoc.xdoc.AbstractSection)) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("title=\"go to &quot;");
         Identifiable _ref_1 = ref.getRef();
-        String _name = _ref_1.getName();
-        _builder.append(_name, "");
-        _builder.append("</a>");} else {
-        _builder.append("<a href=\"");
-        Identifiable _ref_2 = ref.getRef();
-        Object _url_1 = this.url(_ref_2, fileNames);
-        _builder.append(_url_1, "");
-        _builder.append("\" >");
-        {
-          EList<TextOrMarkup> _contents_1 = ref.getContents();
-          for(TextOrMarkup tom : _contents_1) {
-            StringConcatenation _genNonParContent = this.genNonParContent(tom, fileNames);
-            _builder.append(_genNonParContent, "");
-          }
-        }
-        _builder.append("</a>");
+        TextOrMarkup _title = ((AbstractSection) _ref_1).getTitle();
+        CharSequence _genPlainText = this.plainText.genPlainText(_title);
+        _builder.append(_genPlainText, "");
+        _builder.append("&quot;\"");
+        _xifexpression = _builder;
       }
+      final StringConcatenation title = _xifexpression;
+      StringConcatenation _builder_1 = new StringConcatenation();
+      {
+        EList<TextOrMarkup> _contents = ref.getContents();
+        boolean _isEmpty = _contents.isEmpty();
+        if (_isEmpty) {
+          _builder_1.append("<a href=\"");
+          Identifiable _ref_2 = ref.getRef();
+          Object _url = this.url(_ref_2, fileNames);
+          _builder_1.append(_url, "");
+          _builder_1.append("\" ");
+          _builder_1.append(title, "");
+          _builder_1.append(" >section ");
+          Identifiable _ref_3 = ref.getRef();
+          String _name = _ref_3.getName();
+          _builder_1.append(_name, "");
+          _builder_1.append("</a>");} else {
+          _builder_1.append("<a href=\"");
+          Identifiable _ref_4 = ref.getRef();
+          Object _url_1 = this.url(_ref_4, fileNames);
+          _builder_1.append(_url_1, "");
+          _builder_1.append("\" ");
+          _builder_1.append(title, "");
+          _builder_1.append(">");
+          {
+            EList<TextOrMarkup> _contents_1 = ref.getContents();
+            for(TextOrMarkup tom : _contents_1) {
+              StringConcatenation _genNonParContent = this.genNonParContent(tom, fileNames);
+              _builder_1.append(_genNonParContent, "");
+            }
+          }
+          _builder_1.append("</a>");
+        }
+      }
+      _xblockexpression = (_builder_1);
     }
-    return _builder;
+    return _xblockexpression;
   }
   
   protected Object _url(final Anchor anchor, final Map<AbstractSection,String> fileNames) {
