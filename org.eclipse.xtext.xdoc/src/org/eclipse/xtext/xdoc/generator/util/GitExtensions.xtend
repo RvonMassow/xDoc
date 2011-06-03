@@ -6,44 +6,45 @@ class GitExtensions {
 	
 	def gitLink (JvmIdentifiableElement ie){
 		val compilationUnitName = ie.compilationUnitName
+		val basedir = "https://github.com/svenefftinge/Xtext-2.0-released-source-code/tree/master/"
 		val prefix = 
 			switch name: ie.qualifiedName {
 				case name.startsWith("org.eclipse.xtext.common.types.xtext.ui"):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.common.types.ui/src/"
+					"plugins/org.eclipse.xtext.common.types.ui/src/"
 	//			case name.startsWith("org.eclipse.xtext.common.types"):
-	//				"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.common.types/src/"
+	//				"plugins/org.eclipse.xtext.common.types/src/"
 				case name.startsWith("org.eclipse.xtext.ui.shared."):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.ui.shared/src/"
+					"plugins/org.eclipse.xtext.ui.shared/src/"
 				case name.startsWith("org.eclipse.xtext.xtend2.lib."):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xtend2.lib/src/"
+					"plugins/org.eclipse.xtext.xtend2.lib/src/"
 				case name.startsWith("org.eclipse.xtext.xtend2.ui."):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xtend2.ui/src/"
+					"plugins/org.eclipse.xtext.xtend2.ui/src/"
 				case name.startsWith("org.eclipse.xtext.xtend2."):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xtend2/src/"
+					"plugins/org.eclipse.xtext.xtend2/src/"
 				case name.startsWith("org.eclipse.xtext.xbase.ui."):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xbase.ui/src/"
+					"plugins/org.eclipse.xtext.xbase.ui/src/"
 				case name.startsWith("org.eclipse.xtext.xbase.lib."):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xbase.lib/src/"
+					"plugins/org.eclipse.xtext.xbase.lib/src/"
 				case name.startsWith("org.eclipse.xtext.xbase."):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xbase/src/"
+					"plugins/org.eclipse.xtext.xbase/src/"
 				case name.startsWith("org.eclipse.xtext.generator") ||
 						name.startsWith("org.eclipse.xtext.ui.generator"):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.generator/src/"
+					"plugins/org.eclipse.xtext.generator/src/"
 				case name.startsWith("org.eclipse.xtext.ui"):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.ui/src/"			
+					"plugins/org.eclipse.xtext.ui/src/"			
 				case name.startsWith("org.eclipse.xtext.junit"):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.junit/src/"
+					"plugins/org.eclipse.xtext.junit/src/"
 				case name.startsWith("org.eclipse.xtext.xtext"):
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xtext/src/"
+					"plugins/org.eclipse.xtext.xtext/src/"
 				case name.startsWith("org.eclipse.xtext.ui"):// org.eclipse.xtext.common.services.DefaultTerminalConverters
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.ui/src/"
+					"plugins/org.eclipse.xtext.ui/src/"
 				case name.startsWith("org.eclipse.xtext"):// org.eclipse.xtext.common.services.DefaultTerminalConverters
-					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext/src/"
+					"plugins/org.eclipse.xtext/src/"
 				default:
 					""
 			}
 			if(prefix.length != 0)
-				prefix + ie.qualifiedName.replaceAll("\\.", "/").replaceAll("\\$.*$", "") + ".java"
+				basedir + prefix + ie.qualifiedName.replaceAll("\\.", "/").replaceAll("\\$.*$", "") + ".java"
 			else
 				null
 	}
