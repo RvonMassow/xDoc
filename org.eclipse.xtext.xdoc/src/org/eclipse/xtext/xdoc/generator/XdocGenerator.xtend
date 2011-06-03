@@ -332,7 +332,7 @@ class XdocGenerator implements IGenerator {
 		val text = if(cRef.altText != null) {
 						cRef.altText.generate(fileNames)
 					} else {
-						cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars
+						cRef.element.qualifiedName.replaceAll(".*\\.([^\\.]*)$", "$1").replaceAll("\\$", ".")
 					}
 		var ret = if(jDocLink != null)
 			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" ><abbr title="«fqn

@@ -870,10 +870,10 @@ public class XdocGenerator implements IGenerator {
         _xifexpression_1 = _generate;
       } else {
         JvmDeclaredType _element_4 = cRef.getElement();
-        String _simpleName = _element_4.getSimpleName();
-        String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_simpleName);
-        String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
-        _xifexpression_1 = _escapeHTMLChars_1;
+        String _qualifiedName_1 = _element_4.getQualifiedName();
+        String _replaceAll = _qualifiedName_1.replaceAll(".*\\.([^\\.]*)$", "$1");
+        String _replaceAll_1 = _replaceAll.replaceAll("\\$", ".");
+        _xifexpression_1 = _replaceAll_1;
       }
       final CharSequence text = _xifexpression_1;
       StringConcatenation _xifexpression_2 = null;
