@@ -334,7 +334,7 @@ class XdocGenerator implements IGenerator {
 			'''<abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
 				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr>'''
 		if(gitLink != null) {
-			'''«ret» <a href="«gitLink»" ><img src="http://a.fsdn.com/con/icons/pr/progit@sf.net/git.logo.gif" /></a>'''
+			'''«ret» (<a href="«gitLink»" >source code</a>)'''
 		} else 
 			ret
 	}

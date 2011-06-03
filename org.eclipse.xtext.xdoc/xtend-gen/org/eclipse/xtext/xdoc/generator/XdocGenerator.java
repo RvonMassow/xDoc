@@ -885,9 +885,9 @@ public class XdocGenerator implements IGenerator {
       if (_operator_notEquals_1) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
-        _builder_2.append(" <a href=\"");
+        _builder_2.append(" (<a href=\"");
         _builder_2.append(gitLink, "");
-        _builder_2.append("\" ><img src=\"http://a.fsdn.com/con/icons/pr/progit@sf.net/git.logo.gif\" /></a>");
+        _builder_2.append("\" >source code</a>)");
         _xifexpression_2 = _builder_2;
       } else {
         _xifexpression_2 = ret;
