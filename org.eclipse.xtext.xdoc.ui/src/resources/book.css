@@ -46,6 +46,11 @@ EM.UILabel {
 	text-align:center;
 }
 
+.jdoc {
+	text-decoration: none;
+	color: #000000 !important;
+}
+
 EM.CodeName {
 	font-weight: Bold;
 	font-style: Regular;

@@ -840,7 +840,7 @@ public class XdocGenerator implements IGenerator {
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(jDocLink, null);
       if (_operator_notEquals) {
         StringConcatenation _builder = new StringConcatenation();
-        _builder.append("<a href=\"");
+        _builder.append("<a class=\"jdoc\" href=\"");
         JvmDeclaredType _element_3 = cRef.getElement();
         String _genJavaDocLink_1 = this.jdoc.genJavaDocLink(_element_3);
         _builder.append(_genJavaDocLink_1, "");

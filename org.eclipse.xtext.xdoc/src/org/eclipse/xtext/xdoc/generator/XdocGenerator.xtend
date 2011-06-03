@@ -328,7 +328,7 @@ class XdocGenerator implements IGenerator {
 		val jDocLink = cRef.element.genJavaDocLink
 		val gitLink = cRef.element.gitLink
 		var ret = if(jDocLink != null)
-			'''<a href="«cRef.element.genJavaDocLink»" ><abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
+			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" ><abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
 				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr></a>'''
 		else
 			'''<abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
