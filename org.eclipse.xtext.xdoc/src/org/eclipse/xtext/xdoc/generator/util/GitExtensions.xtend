@@ -12,8 +12,20 @@ class GitExtensions {
 					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.common.types.ui/src/"
 	//			case name.startsWith("org.eclipse.xtext.common.types"):
 	//				"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.common.types/src/"
-				case name.startsWith("org.eclipse.xtext.ui.shared"):
+				case name.startsWith("org.eclipse.xtext.ui.shared."):
 					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.ui.shared/src/"
+				case name.startsWith("org.eclipse.xtext.xtend2.lib."):
+					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xtend2.lib/src/"
+				case name.startsWith("org.eclipse.xtext.xtend2.ui."):
+					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xtend2.ui/src/"
+				case name.startsWith("org.eclipse.xtext.xtend2."):
+					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xtend2/src/"
+				case name.startsWith("org.eclipse.xtext.xbase.ui."):
+					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xbase.ui/src/"
+				case name.startsWith("org.eclipse.xtext.xbase.lib."):
+					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xbase.lib/src/"
+				case name.startsWith("org.eclipse.xtext.xbase."):
+					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.xbase/src/"
 				case name.startsWith("org.eclipse.xtext.generator") ||
 						name.startsWith("org.eclipse.xtext.ui.generator"):
 					"http://git.eclipse.org/c/tmf/org.eclipse.xtext.git/tree/plugins/org.eclipse.xtext.generator/src/"
