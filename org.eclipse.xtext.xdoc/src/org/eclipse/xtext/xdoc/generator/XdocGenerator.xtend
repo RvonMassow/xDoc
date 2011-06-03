@@ -327,14 +327,20 @@ class XdocGenerator implements IGenerator {
 		val prefix = if(cRef.element instanceof JvmAnnotationType) "@"
 		val jDocLink = cRef.element.genJavaDocLink
 		val gitLink = cRef.element.gitLink
+		val fqn = cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
+		val text = if(cRef.altText != null) {
+						cRef.altText.generate(fileNames)
+					} else {
+						cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars
+					}
 		var ret = if(jDocLink != null)
-			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" ><abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
-				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr></a>'''
+			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" ><abbr title="«fqn
+				»" >«prefix»«text»</abbr></a>'''
 		else
-			'''<abbr title="«cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
-				»" >«prefix»«cRef.element.simpleName.unescapeXdocChars.escapeHTMLChars»</abbr>'''
+			'''<abbr title="«fqn
+				»" >«prefix»«text»</abbr>'''
 		if(gitLink != null) {
-			'''«ret» (<a href="«gitLink»" >source code</a>)'''
+			'''«ret» (<a class="srcLink" href="«gitLink»" >src</a>)'''
 		} else 
 			ret
 	}

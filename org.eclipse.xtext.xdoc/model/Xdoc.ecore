@@ -98,6 +98,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CodeRef" eSuperTypes="#//MarkUp">
     <eStructuralFeatures xsi:type="ecore:EReference" name="element" eType="ecore:EClass ../../org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmDeclaredType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="altText" eType="#//TextOrMarkup"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Link" eSuperTypes="#//MarkUp">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

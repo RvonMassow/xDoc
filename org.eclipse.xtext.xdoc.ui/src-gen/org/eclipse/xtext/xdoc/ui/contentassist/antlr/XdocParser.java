@@ -118,6 +118,7 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getItemAccess().getGroup_2(), "rule__Item__Group_2__0");
 					put(grammarAccess.getItemAccess().getGroup_2_2(), "rule__Item__Group_2_2__0");
 					put(grammarAccess.getCodeRefAccess().getGroup(), "rule__CodeRef__Group__0");
+					put(grammarAccess.getCodeRefAccess().getGroup_4(), "rule__CodeRef__Group_4__0");
 					put(grammarAccess.getLinkAccess().getGroup(), "rule__Link__Group__0");
 					put(grammarAccess.getImageRefAccess().getGroup(), "rule__ImageRef__Group__0");
 					put(grammarAccess.getImageRefAccess().getGroup_0_0(), "rule__ImageRef__Group_0_0__0");
@@ -186,6 +187,7 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getItemAccess().getContentsAssignment_2_1(), "rule__Item__ContentsAssignment_2_1");
 					put(grammarAccess.getItemAccess().getContentsAssignment_2_2_1(), "rule__Item__ContentsAssignment_2_2_1");
 					put(grammarAccess.getCodeRefAccess().getElementAssignment_2(), "rule__CodeRef__ElementAssignment_2");
+					put(grammarAccess.getCodeRefAccess().getAltTextAssignment_4_1(), "rule__CodeRef__AltTextAssignment_4_1");
 					put(grammarAccess.getLinkAccess().getUrlAssignment_2(), "rule__Link__UrlAssignment_2");
 					put(grammarAccess.getLinkAccess().getTextAssignment_6(), "rule__Link__TextAssignment_6");
 					put(grammarAccess.getImageRefAccess().getNameAssignment_0_0_2(), "rule__ImageRef__NameAssignment_0_0_2");

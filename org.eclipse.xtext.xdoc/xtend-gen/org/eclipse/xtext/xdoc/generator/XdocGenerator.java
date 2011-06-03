@@ -821,7 +821,7 @@ public class XdocGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final CodeRef cRef, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final CodeRef cRef, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       String _xifexpression = null;
@@ -836,63 +836,66 @@ public class XdocGenerator implements IGenerator {
       JvmDeclaredType _element_2 = cRef.getElement();
       String _gitLink = this.git.gitLink(_element_2);
       final String gitLink = _gitLink;
-      StringConcatenation _xifexpression_1 = null;
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(jDocLink, null);
+      JvmDeclaredType _element_3 = cRef.getElement();
+      char _charAt = ".".charAt(0);
+      String _qualifiedName = _element_3.getQualifiedName(_charAt);
+      String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
+      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
+      final String fqn = _escapeHTMLChars;
+      CharSequence _xifexpression_1 = null;
+      TextOrMarkup _altText = cRef.getAltText();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText, null);
       if (_operator_notEquals) {
-        StringConcatenation _builder = new StringConcatenation();
-        _builder.append("<a class=\"jdoc\" href=\"");
-        JvmDeclaredType _element_3 = cRef.getElement();
-        String _genJavaDocLink_1 = this.jdoc.genJavaDocLink(_element_3);
-        _builder.append(_genJavaDocLink_1, "");
-        _builder.append("\" ><abbr title=\"");
+        TextOrMarkup _altText_1 = cRef.getAltText();
+        CharSequence _generate = this.generate(_altText_1, fileNames);
+        _xifexpression_1 = _generate;
+      } else {
         JvmDeclaredType _element_4 = cRef.getElement();
-        char _charAt = ".".charAt(0);
-        String _qualifiedName = _element_4.getQualifiedName(_charAt);
-        String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
-        String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
-        _builder.append(_escapeHTMLChars, "");
-        _builder.append("\" >");
-        _builder.append(prefix, "");
-        JvmDeclaredType _element_5 = cRef.getElement();
-        String _simpleName = _element_5.getSimpleName();
+        String _simpleName = _element_4.getSimpleName();
         String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_simpleName);
         String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
-        _builder.append(_escapeHTMLChars_1, "");
+        _xifexpression_1 = _escapeHTMLChars_1;
+      }
+      final CharSequence text = _xifexpression_1;
+      StringConcatenation _xifexpression_2 = null;
+      boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
+      if (_operator_notEquals_1) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("<a class=\"jdoc\" href=\"");
+        JvmDeclaredType _element_5 = cRef.getElement();
+        String _genJavaDocLink_1 = this.jdoc.genJavaDocLink(_element_5);
+        _builder.append(_genJavaDocLink_1, "");
+        _builder.append("\" ><abbr title=\"");
+        _builder.append(fqn, "");
+        _builder.append("\" >");
+        _builder.append(prefix, "");
+        _builder.append(text, "");
         _builder.append("</abbr></a>");
-        _xifexpression_1 = _builder;
+        _xifexpression_2 = _builder;
       } else {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("<abbr title=\"");
-        JvmDeclaredType _element_6 = cRef.getElement();
-        char _charAt_1 = ".".charAt(0);
-        String _qualifiedName_1 = _element_6.getQualifiedName(_charAt_1);
-        String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_qualifiedName_1);
-        String _escapeHTMLChars_2 = this.utils.escapeHTMLChars(_unescapeXdocChars_2);
-        _builder_1.append(_escapeHTMLChars_2, "");
+        _builder_1.append(fqn, "");
         _builder_1.append("\" >");
         _builder_1.append(prefix, "");
-        JvmDeclaredType _element_7 = cRef.getElement();
-        String _simpleName_1 = _element_7.getSimpleName();
-        String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_simpleName_1);
-        String _escapeHTMLChars_3 = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
-        _builder_1.append(_escapeHTMLChars_3, "");
+        _builder_1.append(text, "");
         _builder_1.append("</abbr>");
-        _xifexpression_1 = _builder_1;
+        _xifexpression_2 = _builder_1;
       }
-      StringConcatenation ret = _xifexpression_1;
-      StringConcatenation _xifexpression_2 = null;
-      boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(gitLink, null);
-      if (_operator_notEquals_1) {
+      StringConcatenation ret = _xifexpression_2;
+      StringConcatenation _xifexpression_3 = null;
+      boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
+      if (_operator_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
-        _builder_2.append(" (<a href=\"");
+        _builder_2.append(" (<a class=\"srcLink\" href=\"");
         _builder_2.append(gitLink, "");
-        _builder_2.append("\" >source code</a>)");
-        _xifexpression_2 = _builder_2;
+        _builder_2.append("\" >src</a>)");
+        _xifexpression_3 = _builder_2;
       } else {
-        _xifexpression_2 = ret;
+        _xifexpression_3 = ret;
       }
-      _xblockexpression = (_xifexpression_2);
+      _xblockexpression = (_xifexpression_3);
     }
     return _xblockexpression;
   }
