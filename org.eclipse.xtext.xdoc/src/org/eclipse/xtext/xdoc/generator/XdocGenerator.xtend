@@ -215,13 +215,10 @@ class XdocGenerator implements IGenerator {
 	'''
 
 	def dispatch generate(Ref ref, Map<AbstractSection, String> fileNames) '''
-		«IF ref.contents.isEmpty »
-		<a href="«ref.ref.url(fileNames)»">section «ref.ref.name»</a>
-		«ELSE»
-		<a href="«ref.ref.url(fileNames)»">«FOR tom:ref.contents
-		»«tom.genNonParContent(fileNames)»«ENDFOR»</a>
-		«ENDIF»
-	'''
+		«IF ref.contents.isEmpty »<a href="«ref.ref.url(fileNames)»">section «ref.ref.name»</a>«ELSE
+		»<a href="«ref.ref.url(fileNames)»" >«FOR tom:ref.contents
+		»«tom.genNonParContent(fileNames)»«ENDFOR»</a>«
+		ENDIF»'''
 	
 	def dispatch url(Anchor anchor, Map<AbstractSection, String> fileNames) {
 		val section = EcoreUtil2::getContainerOfType(anchor, typeof(AbstractSection))
@@ -340,7 +337,7 @@ class XdocGenerator implements IGenerator {
 			'''<abbr title="«fqn
 				»" >«prefix»«text»</abbr>'''
 		if(gitLink != null) {
-			'''«ret» (<a class="srcLink" href="«gitLink»" >src</a>)'''
+			'''«ret» <a class="srcLink" href="«gitLink»" title="show source code" >(src)</a>'''
 		} else 
 			ret
 	}

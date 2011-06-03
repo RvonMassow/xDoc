@@ -524,13 +524,12 @@ public class XdocGenerator implements IGenerator {
         Identifiable _ref_1 = ref.getRef();
         String _name = _ref_1.getName();
         _builder.append(_name, "");
-        _builder.append("</a>");
-        _builder.newLineIfNotEmpty();} else {
+        _builder.append("</a>");} else {
         _builder.append("<a href=\"");
         Identifiable _ref_2 = ref.getRef();
         Object _url_1 = this.url(_ref_2, fileNames);
         _builder.append(_url_1, "");
-        _builder.append("\">");
+        _builder.append("\" >");
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
           for(TextOrMarkup tom : _contents_1) {
@@ -539,7 +538,6 @@ public class XdocGenerator implements IGenerator {
           }
         }
         _builder.append("</a>");
-        _builder.newLineIfNotEmpty();
       }
     }
     return _builder;
@@ -888,9 +886,9 @@ public class XdocGenerator implements IGenerator {
       if (_operator_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
-        _builder_2.append(" (<a class=\"srcLink\" href=\"");
+        _builder_2.append(" <a class=\"srcLink\" href=\"");
         _builder_2.append(gitLink, "");
-        _builder_2.append("\" >src</a>)");
+        _builder_2.append("\" title=\"show source code\" >(src)</a>");
         _xifexpression_3 = _builder_2;
       } else {
         _xifexpression_3 = ret;
