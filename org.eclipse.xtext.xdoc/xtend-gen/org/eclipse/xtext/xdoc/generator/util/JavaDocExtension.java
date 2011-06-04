@@ -11,12 +11,17 @@ public class JavaDocExtension {
     String _xblockexpression = null;
     {
       String _qualifiedName = ie.getQualifiedName();
-      String _replaceAll = _qualifiedName.replaceAll("\\.", "/");
+      boolean _operator_equals = ObjectExtensions.operator_equals(_qualifiedName, null);
+      if (_operator_equals) {
+        return null;
+      }
+      String _qualifiedName_1 = ie.getQualifiedName();
+      String _replaceAll = _qualifiedName_1.replaceAll("\\.", "/");
       String _replaceAll_1 = _replaceAll.replaceAll("\\$", ".");
       final String file = _replaceAll_1;
       String _switchResult = null;
-      String _qualifiedName_1 = ie.getQualifiedName();
-      final String name = _qualifiedName_1;
+      String _qualifiedName_2 = ie.getQualifiedName();
+      final String name = _qualifiedName_2;
       boolean matched = false;
       if (!matched) {
         boolean _startsWith = name.startsWith("org.eclipse.emf.mwe");

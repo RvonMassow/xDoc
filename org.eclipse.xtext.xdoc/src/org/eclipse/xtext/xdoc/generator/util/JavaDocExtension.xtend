@@ -7,6 +7,8 @@ class JavaDocExtension {
 	// http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.0.0/org/eclipse/xtext/ui/editor/contentassist/antlr/AbstractContentAssistParser.html
 	// http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.0.0/org/eclipse/xtext/resource/IResourceDescription.Manager.html
 	def genJavaDocLink(JvmIdentifiableElement ie) {
+		if (ie.qualifiedName == null)
+			return null
 		val file = ie.qualifiedName.replaceAll("\\.", "/").replaceAll("\\$", ".")
 		val prefix = switch name:ie.qualifiedName {
 			case name.startsWith("org.eclipse.emf.mwe"):
