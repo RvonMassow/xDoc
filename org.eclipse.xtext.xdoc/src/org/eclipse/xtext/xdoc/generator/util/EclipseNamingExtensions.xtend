@@ -4,88 +4,74 @@ import org.eclipse.xtext.xdoc.xdoc.*
 import org.eclipse.emf.ecore.EObject
 import com.google.inject.Inject
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager
-import org.eclipse.xtext.resource.IResourceDescriptions
 import org.eclipse.emf.ecore.resource.Resource
 import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.*
 import org.eclipse.xtext.naming.IQualifiedNameProvider
 import org.eclipse.xtext.naming.QualifiedName
+import org.eclipse.xtext.builder.builderState.IBuilderState
+import java.util.Map
+import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension
+import org.eclipse.emf.common.util.URI
 
 class EclipseNamingExtensions {
 
-//	dispatch urlSuffix(XdocFile aS){ 
-//		""
-//	}
+	@Inject extension AbstractSectionExtension sectionExtension
 
-	// lets rocknroll the index!
-	@Inject XdocResourceDescriptionManager rdm
+	def labelName(AbstractSection section, Map<AbstractSection, String> fileNames) {
+		val fileName = fileNames.get(section);
+		if (fileName == null)
+			return null
+		val result = URI::createURI(fileName).fragment
+		result
+	}
 
-	@Inject IResourceDescriptions index
-
-	@Inject extension IQualifiedNameProvider nameProvider
-
-	def urlSuffix(AbstractSection aS) {
-		if(aS.eContainer instanceof XdocFile)
-			""
+	def Map<AbstractSection, String> computeURLs(Document document) {
+		val Map<AbstractSection, String> result = newHashMap();
+		document.computeURLs("", "", -1, result)
+		result
+	}
+	
+	def dispatch void computeURLs(Document document, String fileName, String prefix, int index, Map<AbstractSection, String> result) {
+		var name = document.eResource.URI.trimFileExtension.lastSegment + ".html"
+		result.put(document, name);
+		val sections = document.sections
+		for(i: 0..(sections.size - 1))
+			sections.get(i).computeURLs(fileName, "", i, result)
+	}
+	
+	def dispatch void computeURLs(Chapter chapter, String fileName, String prefix, int index, Map<AbstractSection, String> result) {
+		var name = chapter.eResource.URI.trimFileExtension.lastSegment
+		if (index != -1)
+			name = name +"-"+ index + ".html"
 		else
-			"#" + labelName(aS)
+			name = name + ".html";
+		result.put(chapter, name);
+		val sections = chapter.sections
+		for(i: 0..(sections.size - 1))
+			sections.get(i).computeURLs(name, "", i, result)
 	}
-
-	def dispatch labelName(Object any){
-		""
+	
+	def dispatch void computeURLs(ChapterRef chapterRef, String fileName, String prefix, int index, Map<AbstractSection, String> result) {
+		chapterRef.chapter.computeURLs(fileName, prefix, -1, result)
+		result.put(chapterRef, result.get(chapterRef.chapter))
 	}
-
-	def dispatch String fileName(EObject obj) {
-		fileName(obj.eContainer)
+	
+	def dispatch void computeURLs(SectionRef sectionRef, String fileName, String prefix, int index, Map<AbstractSection, String> result) {
+		sectionRef.section.computeURLs(fileName, prefix, index, result)
+		result.put(sectionRef, result.get(sectionRef.section))
 	}
-
-	def dispatch String fileName(Chapter obj) {
-		obj.eResource.URI.lastSegment+".html"
+	
+	def dispatch void computeURLs(Section2Ref sectionRef, String fileName, String prefix, int index, Map<AbstractSection, String> result) {
+		sectionRef.section2.computeURLs(fileName, prefix, index, result)
+		result.put(sectionRef, result.get(sectionRef.section2))
 	}
-
-	def dispatch String fileName(AbstractSection obj) {
-		if(obj.eContainer instanceof XdocFile) {
-			// do look up here
-			val vCon = obj.virtualContainer
-			if (vCon != null)
-				fileName(vCon)
-			else
-				"NullFileName for " + obj?.toString
-		} else {
-			fileName(obj.eContainer)
-		}
+	
+	def dispatch void computeURLs(AbstractSection section, String fileName, String prefix, int index, Map<AbstractSection, String> result) {
+		result.put(section, fileName + "#" + if (prefix.nullOrEmpty) index else (prefix + "-" + index));
+		val newPrefix = if (prefix.nullOrEmpty) index.toString else (prefix + "-" + index)
+		val subSections = section.sections
+		for(i: 0..(subSections.size - 1))
+			subSections.get(i).computeURLs(fileName, newPrefix, i, result)
 	}
-
-	def dispatch String fileName(ChapterRef obj) {
-		fileName(obj.chapter)
-	}
-
-	def dispatch String fileName(SectionRef obj) {
-		fileName(obj.section)
-	}
-
-	def dispatch String fileName(Section2Ref obj) {
-		fileName(obj.section2)
-	}
-
-	def dispatch String labelName(AbstractSection aS){
-		if(aS.name!=null)
-			aS.name
-		else {
-			labelName(aS.eContainer())+"-"+ aS.eContainer.eContents.indexOf(aS);
-		}
-	}
-
-	def virtualContainer(AbstractSection obj) {
-		val resD = index.allResourceDescriptions.filter(r | r.importedNames.exists(e | e == QualifiedName::^create(obj.name.toLowerCase)))
-		//println(resD.map(r | r.importedNames.join(",")).join(";"))
-		// this is the IRD for the resource containing the (section[2]?)-ref referring to obj
-		val ird = resD.findFirst(r | r.referenceDescriptions.exists(
-			ref | (ref.EReference.EReferenceType == XdocPackage$Literals::SECTION2) || 
-					(ref.EReference.EReferenceType == XdocPackage$Literals::SECTION)
-				&& r.URI.lastSegment.endsWith("xdoc"))
-		)
-		// lets get the resource and return its mainsection
-		obj.eResource.resourceSet.getResource(ird.URI, true)?.contents?.filter(typeof(XdocFile))?.head?.mainSection
-		//null as EObject
-	}
+	
 }

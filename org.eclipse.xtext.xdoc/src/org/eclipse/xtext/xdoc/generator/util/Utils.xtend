@@ -8,33 +8,10 @@ import java.util.List
 import org.antlr.runtime.Token
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common
 import org.antlr.runtime.ANTLRStringStream
+import org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl
 
 
 class Utils {
-
-	def dispatch subSection(Document doc){
-		doc?.chapters
-	}
-
-	def dispatch subSection(Chapter chapter){
-		chapter?.subSections
-	}
-
-	def dispatch subSection(Section section){
-		section?.subSections
-	}
-
-	def dispatch subSection(Section2 section){
-		section?.subSections
-	}
-
-	def dispatch subSection(Section3 section){
-		section?.subSections
-	}
-
-	def dispatch List<? extends AbstractSection> subSection(AbstractSection section){
-		newArrayList
-	}
 
 	def urlDecode (String s){
 		s?.decode("ISO-8859-1")
@@ -46,7 +23,6 @@ class Utils {
 
 	def boolean isInlineCode (CodeBlock cb) {
 		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
-//		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
 	}
 
 	def escapeLatexChars(String s) {
@@ -79,9 +55,9 @@ class Utils {
 			""
 	}
 
-	def formatCode(String text, LangDef language) {
+	def formatCode(CharSequence text, LangDef language) {
 		if(text != null)
-			getHighlightedHtmlCode(text, language)
+			getHighlightedHtmlCode(text.toString, language)
 		else
 			""
 	}
@@ -131,4 +107,15 @@ class Utils {
 		return s.escapeHTMLChars.replace(' ','&nbsp;').replace('\n','</br>\n').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
 	}
 
+	def calcIndent(CodeBlock cb) {
+		if(cb.getContents().size() > 0 && cb.getContents().get(0) instanceof Code){
+			val code0 = (cb.getContents().get(0) as Code).getContents()
+			var indent = code0.length()
+			indent = indent - code0.replaceAll("^(\n*)\\s*", "$1").length()
+		}
+	}
+
+	def create code : XdocFactory::eINSTANCE.createCode correctedCode(String s) {
+		code.setContents(s)
+	}
 }

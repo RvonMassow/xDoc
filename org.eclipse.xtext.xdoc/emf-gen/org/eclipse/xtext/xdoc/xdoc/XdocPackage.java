@@ -1066,13 +1066,22 @@ public interface XdocPackage extends EPackage
 	int CODE_REF__ELEMENT = MARK_UP_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Alt Text</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CODE_REF__ALT_TEXT = MARK_UP_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Code Ref</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CODE_REF_FEATURE_COUNT = MARK_UP_FEATURE_COUNT + 1;
+	int CODE_REF_FEATURE_COUNT = MARK_UP_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.LinkImpl <em>Link</em>}' class.
@@ -1967,6 +1976,17 @@ public interface XdocPackage extends EPackage
 	EReference getCodeRef_Element();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.xtext.xdoc.xdoc.CodeRef#getAltText <em>Alt Text</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Alt Text</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.CodeRef#getAltText()
+	 * @see #getCodeRef()
+	 * @generated
+	 */
+	EReference getCodeRef_AltText();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Link <em>Link</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2750,6 +2770,14 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EReference CODE_REF__ELEMENT = eINSTANCE.getCodeRef_Element();
+
+		/**
+		 * The meta object literal for the '<em><b>Alt Text</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CODE_REF__ALT_TEXT = eINSTANCE.getCodeRef_AltText();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.LinkImpl <em>Link</em>}' class.

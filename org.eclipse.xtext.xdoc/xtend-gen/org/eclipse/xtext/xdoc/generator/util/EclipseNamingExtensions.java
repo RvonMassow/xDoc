@@ -1,239 +1,228 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.inject.Inject;
-import org.eclipse.emf.common.util.EList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
-import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.resource.IReferenceDescription;
-import org.eclipse.xtext.resource.IResourceDescription;
-import org.eclipse.xtext.resource.IResourceDescriptions;
-import org.eclipse.xtext.xbase.lib.BooleanExtensions;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
+import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
+import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
 import org.eclipse.xtext.xdoc.xdoc.SectionRef;
-import org.eclipse.xtext.xdoc.xdoc.XdocFile;
-import org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals;
 
 @SuppressWarnings("all")
 public class EclipseNamingExtensions {
   
   @Inject
-  private XdocResourceDescriptionManager rdm;
+  private AbstractSectionExtension sectionExtension;
   
-  @Inject
-  private IResourceDescriptions index;
-  
-  @Inject
-  private IQualifiedNameProvider nameProvider;
-  
-  public String urlSuffix(final AbstractSection aS) {
-    String _xifexpression = null;
-    EObject _eContainer = aS.eContainer();
-    if ((_eContainer instanceof org.eclipse.xtext.xdoc.xdoc.XdocFile)) {
-      _xifexpression = "";
-    } else {
-      String _labelName = this.labelName(aS);
-      String _operator_plus = StringExtensions.operator_plus("#", _labelName);
-      _xifexpression = _operator_plus;
-    }
-    return _xifexpression;
-  }
-  
-  protected String _labelName(final Object any) {
-    return "";
-  }
-  
-  protected String _fileName(final EObject obj) {
-    EObject _eContainer = obj.eContainer();
-    String _fileName = this.fileName(_eContainer);
-    return _fileName;
-  }
-  
-  protected String _fileName(final Chapter obj) {
-    Resource _eResource = obj.eResource();
-    URI _uRI = _eResource.getURI();
-    String _lastSegment = _uRI.lastSegment();
-    String _operator_plus = StringExtensions.operator_plus(_lastSegment, ".html");
-    return _operator_plus;
-  }
-  
-  protected String _fileName(final AbstractSection obj) {
-    String _xifexpression = null;
-    EObject _eContainer = obj.eContainer();
-    if ((_eContainer instanceof org.eclipse.xtext.xdoc.xdoc.XdocFile)) {
-      String _xblockexpression = null;
-      {
-        AbstractSection _virtualContainer = this.virtualContainer(obj);
-        final AbstractSection vCon = _virtualContainer;
-        String _xifexpression_1 = null;
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(vCon, null);
-        if (_operator_notEquals) {
-          String _fileName = this.fileName(vCon);
-          _xifexpression_1 = _fileName;
-        } else {
-          String _string = obj==null?(String)null:obj.toString();
-          String _operator_plus = StringExtensions.operator_plus("NullFileName for ", _string);
-          _xifexpression_1 = _operator_plus;
-        }
-        _xblockexpression = (_xifexpression_1);
-      }
-      _xifexpression = _xblockexpression;
-    } else {
-      EObject _eContainer_1 = obj.eContainer();
-      String _fileName_1 = this.fileName(_eContainer_1);
-      _xifexpression = _fileName_1;
-    }
-    return _xifexpression;
-  }
-  
-  protected String _fileName(final ChapterRef obj) {
-    Chapter _chapter = obj.getChapter();
-    String _fileName = this.fileName(_chapter);
-    return _fileName;
-  }
-  
-  protected String _fileName(final SectionRef obj) {
-    Section _section = obj.getSection();
-    String _fileName = this.fileName(_section);
-    return _fileName;
-  }
-  
-  protected String _fileName(final Section2Ref obj) {
-    Section2 _section2 = obj.getSection2();
-    String _fileName = this.fileName(_section2);
-    return _fileName;
-  }
-  
-  protected String _labelName(final AbstractSection aS) {
-    String _xifexpression = null;
-    String _name = aS.getName();
-    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
-    if (_operator_notEquals) {
-      String _name_1 = aS.getName();
-      _xifexpression = _name_1;
-    } else {
-      EObject _eContainer = aS.eContainer();
-      String _labelName = this.labelName(_eContainer);
-      String _operator_plus = StringExtensions.operator_plus(_labelName, "-");
-      EObject _eContainer_1 = aS.eContainer();
-      EList<EObject> _eContents = _eContainer_1.eContents();
-      int _indexOf = _eContents.indexOf(aS);
-      String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
-      _xifexpression = _operator_plus_1;
-    }
-    return _xifexpression;
-  }
-  
-  public AbstractSection virtualContainer(final AbstractSection obj) {
-    AbstractSection _xblockexpression = null;
+  public String labelName(final AbstractSection section, final Map<AbstractSection,String> fileNames) {
+    String _xblockexpression = null;
     {
-      Iterable<IResourceDescription> _allResourceDescriptions = this.index.getAllResourceDescriptions();
-      final Function1<IResourceDescription,Boolean> _function = new Function1<IResourceDescription,Boolean>() {
-          public Boolean apply(final IResourceDescription r) {
-            Iterable<QualifiedName> _importedNames = r.getImportedNames();
-            final Function1<QualifiedName,Boolean> _function_1 = new Function1<QualifiedName,Boolean>() {
-                public Boolean apply(final QualifiedName e) {
-                  String _name = obj.getName();
-                  String _lowerCase = _name.toLowerCase();
-                  QualifiedName _create = QualifiedName.create(_lowerCase);
-                  boolean _operator_equals = ObjectExtensions.operator_equals(e, _create);
-                  return ((Boolean)_operator_equals);
-                }
-              };
-            boolean _exists = IterableExtensions.<QualifiedName>exists(_importedNames, _function_1);
-            return ((Boolean)_exists);
-          }
-        };
-      Iterable<IResourceDescription> _filter = IterableExtensions.<IResourceDescription>filter(_allResourceDescriptions, _function);
-      final Iterable<IResourceDescription> resD = _filter;
-      final Function1<IResourceDescription,Boolean> _function_2 = new Function1<IResourceDescription,Boolean>() {
-          public Boolean apply(final IResourceDescription r_1) {
-            Iterable<IReferenceDescription> _referenceDescriptions = r_1.getReferenceDescriptions();
-            final Function1<IReferenceDescription,Boolean> _function_3 = new Function1<IReferenceDescription,Boolean>() {
-                public Boolean apply(final IReferenceDescription ref) {
-                  boolean _operator_or = false;
-                  EReference _eReference = ref.getEReference();
-                  EClass _eReferenceType = _eReference.getEReferenceType();
-                  boolean _operator_equals_1 = ObjectExtensions.operator_equals(_eReferenceType, Literals.SECTION2);
-                  if (_operator_equals_1) {
-                    _operator_or = true;
-                  } else {
-                    boolean _operator_and = false;
-                    EReference _eReference_1 = ref.getEReference();
-                    EClass _eReferenceType_1 = _eReference_1.getEReferenceType();
-                    boolean _operator_equals_2 = ObjectExtensions.operator_equals(_eReferenceType_1, Literals.SECTION);
-                    if (!_operator_equals_2) {
-                      _operator_and = false;
-                    } else {
-                      URI _uRI = r_1.getURI();
-                      String _lastSegment = _uRI.lastSegment();
-                      boolean _endsWith = _lastSegment.endsWith("xdoc");
-                      _operator_and = BooleanExtensions.operator_and(_operator_equals_2, _endsWith);
-                    }
-                    _operator_or = BooleanExtensions.operator_or(_operator_equals_1, _operator_and);
-                  }
-                  return ((Boolean)_operator_or);
-                }
-              };
-            boolean _exists_1 = IterableExtensions.<IReferenceDescription>exists(_referenceDescriptions, _function_3);
-            return ((Boolean)_exists_1);
-          }
-        };
-      IResourceDescription _findFirst = IterableExtensions.<IResourceDescription>findFirst(resD, _function_2);
-      final IResourceDescription ird = _findFirst;
-      Resource _eResource = obj.eResource();
-      ResourceSet _resourceSet = _eResource.getResourceSet();
-      URI _uRI_1 = ird.getURI();
-      Resource _resource = _resourceSet.getResource(_uRI_1, true);
-      EList<EObject> _contents = _resource==null?(EList<EObject>)null:_resource.getContents();
-      Iterable<XdocFile> _filter_1 = IterableExtensions.<XdocFile>filter(_contents, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
-      XdocFile _head = IterableExtensions.<XdocFile>head(_filter_1);
-      AbstractSection _mainSection = _head==null?(AbstractSection)null:_head.getMainSection();
-      _xblockexpression = (_mainSection);
+      String _get = fileNames.get(section);
+      final String fileName = _get;
+      boolean _operator_equals = ObjectExtensions.operator_equals(fileName, null);
+      if (_operator_equals) {
+        return null;
+      }
+      URI _createURI = URI.createURI(fileName);
+      String _fragment = _createURI.fragment();
+      final String result = _fragment;
+      _xblockexpression = (result);
     }
     return _xblockexpression;
   }
   
-  public String labelName(final Object aS) {
-    if ((aS instanceof AbstractSection)) {
-      return _labelName((AbstractSection)aS);
-    } else if ((aS instanceof Object)) {
-      return _labelName((Object)aS);
-    } else {
-      throw new IllegalArgumentException();
+  public Map<AbstractSection,String> computeURLs(final Document document) {
+    Map<AbstractSection,String> _xblockexpression = null;
+    {
+      HashMap<AbstractSection,String> _newHashMap = CollectionLiterals.<AbstractSection, String>newHashMap();
+      final Map<AbstractSection,String> result = _newHashMap;
+      int _operator_minus = IntegerExtensions.operator_minus(1);
+      this.computeURLs(document, "", "", ((Integer)_operator_minus), result);
+      _xblockexpression = (result);
+    }
+    return _xblockexpression;
+  }
+  
+  protected void _computeURLs(final Document document, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
+    {
+      Resource _eResource = document.eResource();
+      URI _uRI = _eResource.getURI();
+      URI _trimFileExtension = _uRI.trimFileExtension();
+      String _lastSegment = _trimFileExtension.lastSegment();
+      String _operator_plus = StringExtensions.operator_plus(_lastSegment, ".html");
+      String name = _operator_plus;
+      final Map<AbstractSection,String> typeConverted_result = (Map<AbstractSection,String>)result;
+      typeConverted_result.put(document, name);
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(document);
+      final List<? extends AbstractSection> sections = _sections;
+      int _size = sections.size();
+      int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
+      Iterable<Integer> _operator_upTo = IntegerExtensions.operator_upTo(((Integer)0), ((Integer)_operator_minus));
+      for (Integer i : _operator_upTo) {
+        final List<? extends AbstractSection> typeConverted_sections = (List<? extends AbstractSection>)sections;
+        AbstractSection _get = typeConverted_sections.get(i);
+        this.computeURLs(_get, fileName, "", i, result);
+      }
     }
   }
   
-  public String fileName(final EObject obj) {
-    if ((obj instanceof ChapterRef)) {
-      return _fileName((ChapterRef)obj);
-    } else if ((obj instanceof Section2Ref)) {
-      return _fileName((Section2Ref)obj);
-    } else if ((obj instanceof SectionRef)) {
-      return _fileName((SectionRef)obj);
-    } else if ((obj instanceof Chapter)) {
-      return _fileName((Chapter)obj);
-    } else if ((obj instanceof AbstractSection)) {
-      return _fileName((AbstractSection)obj);
-    } else if ((obj instanceof EObject)) {
-      return _fileName((EObject)obj);
+  protected void _computeURLs(final Chapter chapter, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
+    {
+      Resource _eResource = chapter.eResource();
+      URI _uRI = _eResource.getURI();
+      URI _trimFileExtension = _uRI.trimFileExtension();
+      String _lastSegment = _trimFileExtension.lastSegment();
+      String name = _lastSegment;
+      int _operator_minus = IntegerExtensions.operator_minus(1);
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)index), ((Integer)_operator_minus));
+      if (_operator_notEquals) {
+        String _operator_plus = StringExtensions.operator_plus(name, "-");
+        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)index));
+        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ".html");
+        name = _operator_plus_2;
+      } else {
+        String _operator_plus_3 = StringExtensions.operator_plus(name, ".html");
+        name = _operator_plus_3;
+      }
+      final Map<AbstractSection,String> typeConverted_result = (Map<AbstractSection,String>)result;
+      typeConverted_result.put(chapter, name);
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(chapter);
+      final List<? extends AbstractSection> sections = _sections;
+      int _size = sections.size();
+      int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
+      Iterable<Integer> _operator_upTo = IntegerExtensions.operator_upTo(((Integer)0), ((Integer)_operator_minus_1));
+      for (Integer i : _operator_upTo) {
+        final List<? extends AbstractSection> typeConverted_sections = (List<? extends AbstractSection>)sections;
+        AbstractSection _get = typeConverted_sections.get(i);
+        this.computeURLs(_get, name, "", i, result);
+      }
+    }
+  }
+  
+  protected void _computeURLs(final ChapterRef chapterRef, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
+    {
+      Chapter _chapter = chapterRef.getChapter();
+      int _operator_minus = IntegerExtensions.operator_minus(1);
+      this.computeURLs(_chapter, fileName, prefix, ((Integer)_operator_minus), result);
+      final Map<AbstractSection,String> typeConverted_result = (Map<AbstractSection,String>)result;
+      Chapter _chapter_1 = chapterRef.getChapter();
+      String _get = result.get(_chapter_1);
+      typeConverted_result.put(chapterRef, _get);
+    }
+  }
+  
+  protected void _computeURLs(final SectionRef sectionRef, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
+    {
+      Section _section = sectionRef.getSection();
+      this.computeURLs(_section, fileName, prefix, ((Integer)index), result);
+      final Map<AbstractSection,String> typeConverted_result = (Map<AbstractSection,String>)result;
+      Section _section_1 = sectionRef.getSection();
+      String _get = result.get(_section_1);
+      typeConverted_result.put(sectionRef, _get);
+    }
+  }
+  
+  protected void _computeURLs(final Section2Ref sectionRef, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
+    {
+      Section2 _section2 = sectionRef.getSection2();
+      this.computeURLs(_section2, fileName, prefix, ((Integer)index), result);
+      final Map<AbstractSection,String> typeConverted_result = (Map<AbstractSection,String>)result;
+      Section2 _section2_1 = sectionRef.getSection2();
+      String _get = result.get(_section2_1);
+      typeConverted_result.put(sectionRef, _get);
+    }
+  }
+  
+  protected void _computeURLs(final AbstractSection section, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
+    {
+      String _operator_plus = StringExtensions.operator_plus(fileName, "#");
+      Comparable<? extends Object> _xifexpression = null;
+      boolean _isNullOrEmpty = StringExtensions.isNullOrEmpty(prefix);
+      if (_isNullOrEmpty) {
+        _xifexpression = index;
+      } else {
+        String _operator_plus_1 = StringExtensions.operator_plus(prefix, "-");
+        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ((Integer)index));
+        _xifexpression = _operator_plus_2;
+      }
+      String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus, _xifexpression);
+      result.put(section, _operator_plus_3);
+      String _xifexpression_1 = null;
+      boolean _isNullOrEmpty_1 = StringExtensions.isNullOrEmpty(prefix);
+      if (_isNullOrEmpty_1) {
+        String _string = ((Integer)index).toString();
+        _xifexpression_1 = _string;
+      } else {
+        String _operator_plus_4 = StringExtensions.operator_plus(prefix, "-");
+        String _operator_plus_5 = StringExtensions.operator_plus(_operator_plus_4, ((Integer)index));
+        _xifexpression_1 = _operator_plus_5;
+      }
+      final String newPrefix = _xifexpression_1;
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
+      final List<? extends AbstractSection> subSections = _sections;
+      int _size = subSections.size();
+      int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
+      Iterable<Integer> _operator_upTo = IntegerExtensions.operator_upTo(((Integer)0), ((Integer)_operator_minus));
+      for (Integer i : _operator_upTo) {
+        final List<? extends AbstractSection> typeConverted_subSections = (List<? extends AbstractSection>)subSections;
+        AbstractSection _get = typeConverted_subSections.get(i);
+        this.computeURLs(_get, fileName, newPrefix, i, result);
+      }
+    }
+  }
+  
+  public void computeURLs(final AbstractSection chapterRef, final String fileName, final String prefix, final Integer index, final Map<AbstractSection,String> result) {
+    if ((chapterRef instanceof ChapterRef)
+         && (fileName instanceof String)
+         && (prefix instanceof String)
+         && (index instanceof Integer)
+         && (result instanceof Map)) {
+      _computeURLs((ChapterRef)chapterRef, (String)fileName, (String)prefix, (Integer)index, (Map<AbstractSection,String>)result);
+    } else if ((chapterRef instanceof Section2Ref)
+         && (fileName instanceof String)
+         && (prefix instanceof String)
+         && (index instanceof Integer)
+         && (result instanceof Map)) {
+      _computeURLs((Section2Ref)chapterRef, (String)fileName, (String)prefix, (Integer)index, (Map<AbstractSection,String>)result);
+    } else if ((chapterRef instanceof SectionRef)
+         && (fileName instanceof String)
+         && (prefix instanceof String)
+         && (index instanceof Integer)
+         && (result instanceof Map)) {
+      _computeURLs((SectionRef)chapterRef, (String)fileName, (String)prefix, (Integer)index, (Map<AbstractSection,String>)result);
+    } else if ((chapterRef instanceof Chapter)
+         && (fileName instanceof String)
+         && (prefix instanceof String)
+         && (index instanceof Integer)
+         && (result instanceof Map)) {
+      _computeURLs((Chapter)chapterRef, (String)fileName, (String)prefix, (Integer)index, (Map<AbstractSection,String>)result);
+    } else if ((chapterRef instanceof Document)
+         && (fileName instanceof String)
+         && (prefix instanceof String)
+         && (index instanceof Integer)
+         && (result instanceof Map)) {
+      _computeURLs((Document)chapterRef, (String)fileName, (String)prefix, (Integer)index, (Map<AbstractSection,String>)result);
+    } else if ((chapterRef instanceof AbstractSection)
+         && (fileName instanceof String)
+         && (prefix instanceof String)
+         && (index instanceof Integer)
+         && (result instanceof Map)) {
+      _computeURLs((AbstractSection)chapterRef, (String)fileName, (String)prefix, (Integer)index, (Map<AbstractSection,String>)result);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chapterRef, fileName, prefix, index, result).toString());
     }
   }
 }

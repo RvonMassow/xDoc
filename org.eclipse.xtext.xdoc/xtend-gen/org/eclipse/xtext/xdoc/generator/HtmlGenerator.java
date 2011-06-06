@@ -743,7 +743,8 @@ public class HtmlGenerator implements IGenerator {
          && (fsa instanceof IFileSystemAccess)) {
       return _generate((Section)chap, (IFileSystemAccess)fsa);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chap).toString());
     }
   }
   
@@ -797,7 +798,8 @@ public class HtmlGenerator implements IGenerator {
     } else if ((a instanceof TextPart)) {
       return _genText((TextPart)a);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(a).toString());
     }
   }
   
@@ -812,7 +814,8 @@ public class HtmlGenerator implements IGenerator {
          && (lang == null)) {
       return _generateCode((Code)code, (Void)null);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(code, lang).toString());
     }
   }
 }

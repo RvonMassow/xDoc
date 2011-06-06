@@ -16,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.CodeRef#getElement <em>Element</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.CodeRef#getAltText <em>Alt Text</em>}</li>
  * </ul>
  * </p>
  *
@@ -50,5 +51,31 @@ public interface CodeRef extends MarkUp
 	 * @generated
 	 */
 	void setElement(JvmDeclaredType value);
+
+	/**
+	 * Returns the value of the '<em><b>Alt Text</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Alt Text</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Alt Text</em>' containment reference.
+	 * @see #setAltText(TextOrMarkup)
+	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getCodeRef_AltText()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TextOrMarkup getAltText();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.CodeRef#getAltText <em>Alt Text</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Alt Text</em>' containment reference.
+	 * @see #getAltText()
+	 * @generated
+	 */
+	void setAltText(TextOrMarkup value);
 
 } // CodeRef

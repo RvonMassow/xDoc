@@ -2367,7 +2367,33 @@ ruleCodeRef returns [EObject current=null]
     {
     	newLeafNode(otherlv_3, grammarAccess.getCodeRefAccess().getRightSquareBracketKeyword_3());
     }
+(	otherlv_4='[' 
+    {
+    	newLeafNode(otherlv_4, grammarAccess.getCodeRefAccess().getLeftSquareBracketKeyword_4_0());
+    }
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getCodeRefAccess().getAltTextTextOrMarkupParserRuleCall_4_1_0()); 
+	    }
+		lv_altText_5_0=ruleTextOrMarkup		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getCodeRefRule());
+	        }
+       		set(
+       			$current, 
+       			"altText",
+        		lv_altText_5_0, 
+        		"TextOrMarkup");
+	        afterParserOrEnumRuleCall();
+	    }
+
 )
+)	otherlv_6=']' 
+    {
+    	newLeafNode(otherlv_6, grammarAccess.getCodeRefAccess().getRightSquareBracketKeyword_4_2());
+    }
+)?)
 ;
 
 

@@ -1524,12 +1524,17 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final CrossReference cElementJvmDeclaredTypeCrossReference_2_0 = (CrossReference)cElementAssignment_2.eContents().get(0);
 		private final RuleCall cElementJvmDeclaredTypeTextParserRuleCall_2_0_1 = (RuleCall)cElementJvmDeclaredTypeCrossReference_2_0.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cLeftSquareBracketKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cAltTextAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cAltTextTextOrMarkupParserRuleCall_4_1_0 = (RuleCall)cAltTextAssignment_4_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//CodeRef:
-		//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]";
+		//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]" ("[" altText=TextOrMarkup "]")?;
 		public ParserRule getRule() { return rule; }
 
-		//{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]"
+		//{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]" ("[" altText=TextOrMarkup "]")?
 		public Group getGroup() { return cGroup; }
 
 		//{CodeRef}
@@ -1549,6 +1554,21 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"]"
 		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
+
+		//("[" altText=TextOrMarkup "]")?
+		public Group getGroup_4() { return cGroup_4; }
+
+		//"["
+		public Keyword getLeftSquareBracketKeyword_4_0() { return cLeftSquareBracketKeyword_4_0; }
+
+		//altText=TextOrMarkup
+		public Assignment getAltTextAssignment_4_1() { return cAltTextAssignment_4_1; }
+
+		//TextOrMarkup
+		public RuleCall getAltTextTextOrMarkupParserRuleCall_4_1_0() { return cAltTextTextOrMarkupParserRuleCall_4_1_0; }
+
+		//"]"
+		public Keyword getRightSquareBracketKeyword_4_2() { return cRightSquareBracketKeyword_4_2; }
 	}
 
 	public class LinkElements extends AbstractParserRuleElementFinder {
@@ -2490,7 +2510,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeRef:
-	//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]";
+	//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]" ("[" altText=TextOrMarkup "]")?;
 	public CodeRefElements getCodeRefAccess() {
 		return (pCodeRef != null) ? pCodeRef : (pCodeRef = new CodeRefElements());
 	}

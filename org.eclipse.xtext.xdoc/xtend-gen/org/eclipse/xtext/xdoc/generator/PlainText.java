@@ -150,7 +150,8 @@ public class PlainText {
     } else if ((cb instanceof Object)) {
       return _genPlainText((Object)cb);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(cb).toString());
     }
   }
 }

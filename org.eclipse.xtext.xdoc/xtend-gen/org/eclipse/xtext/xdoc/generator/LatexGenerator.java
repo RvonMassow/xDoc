@@ -1004,7 +1004,8 @@ public class LatexGenerator implements IGenerator {
     } else if ((doc instanceof LangDef)) {
       return _generate((LangDef)doc);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(doc).toString());
     }
   }
   
@@ -1022,7 +1023,8 @@ public class LatexGenerator implements IGenerator {
     } else if ((chap instanceof TextOrMarkup)) {
       return _genContent((TextOrMarkup)chap);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chap).toString());
     }
   }
   
@@ -1040,7 +1042,8 @@ public class LatexGenerator implements IGenerator {
     } else if ((cRef instanceof TextOrMarkup)) {
       return _genLabel((TextOrMarkup)cRef);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(cRef).toString());
     }
   }
   
@@ -1082,7 +1085,8 @@ public class LatexGenerator implements IGenerator {
     } else if ((anchor instanceof EObject)) {
       return _genText((EObject)anchor);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(anchor).toString());
     }
   }
   
@@ -1094,7 +1098,8 @@ public class LatexGenerator implements IGenerator {
     } else if ((code instanceof Object)) {
       return _genCode((Object)code);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(code).toString());
     }
   }
 }

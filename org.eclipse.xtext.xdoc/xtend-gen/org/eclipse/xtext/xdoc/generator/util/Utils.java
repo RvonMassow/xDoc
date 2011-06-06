@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Set;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Token;
@@ -12,51 +12,18 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.ComparableExtensions;
+import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
-import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
-import org.eclipse.xtext.xdoc.xdoc.Chapter;
+import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
-import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
-import org.eclipse.xtext.xdoc.xdoc.Section;
-import org.eclipse.xtext.xdoc.xdoc.Section2;
-import org.eclipse.xtext.xdoc.xdoc.Section3;
-import org.eclipse.xtext.xdoc.xdoc.Section4;
+import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 
 @SuppressWarnings("all")
 public class Utils {
-  
-  protected List<? extends AbstractSection> _subSection(final Document doc) {
-    EList<Chapter> _chapters = doc==null?(EList<Chapter>)null:doc.getChapters();
-    return _chapters;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Chapter chapter) {
-    EList<Section> _subSections = chapter==null?(EList<Section>)null:chapter.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Section section) {
-    EList<Section2> _subSections = section==null?(EList<Section2>)null:section.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Section2 section) {
-    EList<Section3> _subSections = section==null?(EList<Section3>)null:section.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final Section3 section) {
-    EList<Section4> _subSections = section==null?(EList<Section4>)null:section.getSubSections();
-    return _subSections;
-  }
-  
-  protected List<? extends AbstractSection> _subSection(final AbstractSection section) {
-    ArrayList<AbstractSection> _newArrayList = CollectionLiterals.<AbstractSection>newArrayList();
-    return _newArrayList;
-  }
   
   public String urlDecode(final String s) throws UnsupportedEncodingException {
     String _decode = URLDecoder.decode(s, "ISO-8859-1");
@@ -141,11 +108,12 @@ public class Utils {
     return _xifexpression;
   }
   
-  public String formatCode(final String text, final LangDef language) {
+  public String formatCode(final CharSequence text, final LangDef language) {
     String _xifexpression = null;
     boolean _operator_notEquals = ObjectExtensions.operator_notEquals(text, null);
     if (_operator_notEquals) {
-      String _highlightedHtmlCode = this.getHighlightedHtmlCode(text, language);
+      String _string = text.toString();
+      String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language);
       _xifexpression = _highlightedHtmlCode;
     } else {
       _xifexpression = "";
@@ -252,21 +220,53 @@ public class Utils {
     return _replace_2;
   }
   
-  public List<? extends AbstractSection> subSection(final AbstractSection chapter) {
-    if ((chapter instanceof Chapter)) {
-      return _subSection((Chapter)chapter);
-    } else if ((chapter instanceof Document)) {
-      return _subSection((Document)chapter);
-    } else if ((chapter instanceof Section)) {
-      return _subSection((Section)chapter);
-    } else if ((chapter instanceof Section2)) {
-      return _subSection((Section2)chapter);
-    } else if ((chapter instanceof Section3)) {
-      return _subSection((Section3)chapter);
-    } else if ((chapter instanceof AbstractSection)) {
-      return _subSection((AbstractSection)chapter);
+  public Integer calcIndent(final CodeBlock cb) {
+    Integer _xifexpression = null;
+    boolean _operator_and = false;
+    EList<EObject> _contents = cb.getContents();
+    int _size = _contents.size();
+    boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)_size), ((Integer)0));
+    if (!_operator_greaterThan) {
+      _operator_and = false;
     } else {
-      throw new IllegalArgumentException();
+      EList<EObject> _contents_1 = cb.getContents();
+      EObject _get = _contents_1.get(0);
+      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (_get instanceof org.eclipse.xtext.xdoc.xdoc.Code));
     }
+    if (_operator_and) {
+      int _xblockexpression = (int) 0;
+      {
+        EList<EObject> _contents_2 = cb.getContents();
+        EObject _get_1 = _contents_2.get(0);
+        String _contents_3 = ((Code) _get_1).getContents();
+        final String code0 = _contents_3;
+        int _length = code0.length();
+        int indent = _length;
+        String _replaceAll = code0.replaceAll("^(\n*)\\s*", "$1");
+        int _length_1 = _replaceAll.length();
+        int _operator_minus = IntegerExtensions.operator_minus(((Integer)indent), ((Integer)_length_1));
+        int _indent = indent = _operator_minus;
+        _xblockexpression = (_indent);
+      }
+      _xifexpression = _xblockexpression;
+    }
+    return _xifexpression;
+  }
+  
+  private final HashMap<ArrayList<?>,Code> _createCache_correctedCode = new HashMap<ArrayList<?>,Code>();
+  
+  public Code correctedCode(final String s) {
+    final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList(s);
+    Code code;
+    synchronized (_createCache_correctedCode) {
+      if (_createCache_correctedCode.containsKey(_cacheKey)) {
+        return _createCache_correctedCode.get(_cacheKey);
+      }
+      Code _createCode = XdocFactory.eINSTANCE.createCode();
+      code = _createCode;
+      _createCache_correctedCode.put(_cacheKey, code);
+    }
+    code.setContents(s);
+    return code;
   }
 }

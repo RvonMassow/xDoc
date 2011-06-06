@@ -24,6 +24,10 @@ public class StringUtils {
 					((Code)cb.getContents().get(i)).setContents(code);
 				}
 			}
+			if(cb.getContents().get(cb.getContents().size()-1) instanceof Code) {
+				Code lastLines = (Code) cb.getContents().get(cb.getContents().size() - 1);
+				lastLines.setContents(lastLines.getContents().replaceAll("\\s*$", ""));
+			}
 		}
 		return cb;
 	}

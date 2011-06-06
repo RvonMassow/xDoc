@@ -233,7 +233,8 @@ public class XdocLatexGenerator implements IGenerator {
     } else if ((doc instanceof LangDef)) {
       return _generate((LangDef)doc);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(doc).toString());
     }
   }
 }

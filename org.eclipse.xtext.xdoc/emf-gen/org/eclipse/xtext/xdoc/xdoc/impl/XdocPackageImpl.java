@@ -907,6 +907,16 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getCodeRef_AltText()
+	{
+		return (EReference)codeRefEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getLink()
 	{
 		return linkEClass;
@@ -1279,6 +1289,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		codeRefEClass = createEClass(CODE_REF);
 		createEReference(codeRefEClass, CODE_REF__ELEMENT);
+		createEReference(codeRefEClass, CODE_REF__ALT_TEXT);
 
 		linkEClass = createEClass(LINK);
 		createEAttribute(linkEClass, LINK__URL);
@@ -1455,6 +1466,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		initEClass(codeRefEClass, CodeRef.class, "CodeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCodeRef_Element(), theTypesPackage.getJvmDeclaredType(), null, "element", null, 0, 1, CodeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCodeRef_AltText(), this.getTextOrMarkup(), null, "altText", null, 0, 1, CodeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(linkEClass, Link.class, "Link", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLink_Url(), ecorePackage.getEString(), "url", null, 0, 1, Link.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
