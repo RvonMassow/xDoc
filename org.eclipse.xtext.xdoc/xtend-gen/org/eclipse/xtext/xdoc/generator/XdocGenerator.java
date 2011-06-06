@@ -728,11 +728,15 @@ public class XdocGenerator implements IGenerator {
       }
       _builder.append("/>");
       _builder.newLineIfNotEmpty();
+      _builder.append("<div class=\"caption\">");
+      _builder.newLine();
       String _caption = img.getCaption();
       String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_caption);
       String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
       _builder.append(_escapeHTMLChars, "");
       _builder.newLineIfNotEmpty();
+      _builder.append("</div>");
+      _builder.newLine();
       _builder.append("</div>");
       _builder.newLine();
       _xblockexpression = (_builder);

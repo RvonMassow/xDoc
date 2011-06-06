@@ -282,7 +282,9 @@ class XdocGenerator implements IGenerator {
 			«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
 			<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
 			«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
+			<div class="caption">
 			«img.caption.unescapeXdocChars.escapeHTMLChars»
+			</div>
 			</div>
 		'''
 	} 
