@@ -11,6 +11,7 @@ import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
+import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.XdocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions;
@@ -56,6 +57,9 @@ public class HtmlGenerator implements IGenerator {
   
   @Inject
   private HTMLNamingExtensions naming;
+  
+  @Inject
+  private AbstractSectionExtension ase;
   
   @Inject
   private XdocGenerator helpGen;
@@ -348,8 +352,8 @@ public class HtmlGenerator implements IGenerator {
   
   public StringConcatenation toc(final AbstractSection as) throws UnsupportedEncodingException {
     StringConcatenation _xifexpression = null;
-    List<? extends AbstractSection> _subSection = this.utils.subSection(as);
-    boolean _isEmpty = _subSection.isEmpty();
+    List<? extends AbstractSection> _sections = this.ase.sections(as);
+    boolean _isEmpty = _sections.isEmpty();
     boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
     if (_operator_not) {
       StringConcatenation _builder = new StringConcatenation();
@@ -371,8 +375,8 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<ol>");
     _builder.newLine();
     {
-      List<? extends AbstractSection> _subSection = this.utils.subSection(as);
-      for(AbstractSection ss : _subSection) {
+      List<? extends AbstractSection> _sections = this.ase.sections(as);
+      for(AbstractSection ss : _sections) {
         _builder.append("  ");
         StringConcatenation _cEntry = this.tocEntry(ss);
         _builder.append(_cEntry, "  ");
@@ -396,8 +400,8 @@ public class HtmlGenerator implements IGenerator {
     _builder.append(_genNonParText, "");
     _builder.append("</a>");
     {
-      List<? extends AbstractSection> _subSection = this.utils.subSection(chapter);
-      boolean _isEmpty = _subSection.isEmpty();
+      List<? extends AbstractSection> _sections = this.ase.sections(chapter);
+      boolean _isEmpty = _sections.isEmpty();
       boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
       if (_operator_not) {
         _builder.newLineIfNotEmpty();
@@ -528,8 +532,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _genText(final CodeRef ref) {
-    CharSequence _generate = this.helpGen.generate(ref);
-    return _generate;
+    return null;
   }
   
   protected CharSequence _genText(final Emphasize em) {
@@ -597,8 +600,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _genText(final Anchor a) {
-    CharSequence _generate = this.helpGen.generate(a);
-    return _generate;
+    return null;
   }
   
   protected CharSequence _genText(final Ref ref) {
@@ -744,7 +746,7 @@ public class HtmlGenerator implements IGenerator {
       return _generate((Section)chap, (IFileSystemAccess)fsa);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chap).toString());
+        java.util.Arrays.<Object>asList(chap, fsa).toString());
     }
   }
   
@@ -758,7 +760,8 @@ public class HtmlGenerator implements IGenerator {
     } else if ((sec instanceof List)) {
       return _generate((List<TextOrMarkup>)sec);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(sec).toString());
     }
   }
   
@@ -768,7 +771,8 @@ public class HtmlGenerator implements IGenerator {
     } else if ((chapter instanceof Section)) {
       return _tocEntry((Section)chapter);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chapter).toString());
     }
   }
   

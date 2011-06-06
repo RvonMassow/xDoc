@@ -21,6 +21,7 @@ class HtmlGenerator implements IGenerator {
 	@Inject extension Utils utils
 	@Inject extension PlainText plaintext
 	@Inject extension HTMLNamingExtensions naming
+	@Inject extension AbstractSectionExtension ase
 	@Inject XdocGenerator helpGen
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
@@ -130,7 +131,7 @@ class HtmlGenerator implements IGenerator {
 	'''
 
 	def toc(AbstractSection ^as) {
-		if(!^as.subSection.empty)
+		if(!^as.sections.empty)
 		'''
 			<div class="toc" >
 			  «^as.subToc»
@@ -140,14 +141,14 @@ class HtmlGenerator implements IGenerator {
 
 	def subToc(AbstractSection ^as) '''
 		<ol>
-		  «FOR ss: ^as.subSection»
+		  «FOR ss: ^as.sections»
 		    «ss.tocEntry»
 		  «ENDFOR»
 		</ol>
 	'''
 
 	def dispatch tocEntry(Chapter chapter) 
-	'''<li><a href="«chapter.fileName.urlEncode»" >«chapter.title.genNonParText»</a>«IF !chapter.subSection.empty»
+	'''<li><a href="«chapter.fileName.urlEncode»" >«chapter.title.genNonParText»</a>«IF !chapter.sections.empty»
 	«chapter.subToc»«ENDIF»</li>
 	'''
 
@@ -198,7 +199,7 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def dispatch genText(CodeRef ref) {
-		helpGen.generate(ref)
+		// helpGen.generate(ref)
 	}
 
 	def dispatch genText(Emphasize em)
@@ -231,7 +232,7 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def dispatch genText(Anchor a) {
-		helpGen.generate(a)
+		// helpGen.generate(a)
 	}
 
 	def dispatch genText(Ref ref) 

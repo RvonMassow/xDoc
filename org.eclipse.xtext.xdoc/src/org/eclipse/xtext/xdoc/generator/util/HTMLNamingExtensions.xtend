@@ -42,7 +42,7 @@ class HTMLNamingExtensions {
 			Section2 :
 				container.internalFileName
 			AbstractSection:
-				container.internalFileName + "-" + container.subSection.indexOf(sec)
+				container.internalFileName + "-" //+ container.subSection.indexOf(sec)
 		}
 	}
 

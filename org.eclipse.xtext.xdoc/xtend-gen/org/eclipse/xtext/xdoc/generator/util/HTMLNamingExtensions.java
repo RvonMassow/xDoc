@@ -1,7 +1,6 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.inject.Inject;
-import java.util.List;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -103,10 +102,7 @@ public class HTMLNamingExtensions {
           matched_1=true;
           String _internalFileName_3 = this.internalFileName(container_4);
           String _operator_plus = StringExtensions.operator_plus(_internalFileName_3, "-");
-          List<? extends AbstractSection> _subSection = this.utils.subSection(container_4);
-          int _indexOf = _subSection.indexOf(sec);
-          String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
-          _switchResult_1 = _operator_plus_1;
+          _switchResult_1 = _operator_plus;
         }
       }
       _xblockexpression = (_switchResult_1);
@@ -135,7 +131,8 @@ public class HTMLNamingExtensions {
     } else if ((section instanceof Resource)) {
       return _internalFileName((Resource)section);
     } else {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(section).toString());
     }
   }
 }
