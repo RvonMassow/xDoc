@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.validation.Check;
@@ -64,7 +63,7 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 			}
 		}
 	}
-	
+
 //	@Check
 //	public void checkSuspiciousEmphasize(Emphasize e) {
 //		ICompositeNode node = NodeModelUtils.findActualNodeFor(e);
@@ -73,19 +72,17 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 //		nodeText = nodeText.substring(2, nodeText.length() - 1);
 //		if (nodeText.length() > 0) {
 //			if (nodeText.endsWith(")"))
-//				warning("Suspicious content in emphasize", null); 
+//				warning("Suspicious content in emphasize", null);
 //		}
 //	}
-	
+
 	@Check
 	public void checkImagePath(ImageRef image) {
-		ResourceSet resourceSet = image.eResource().getResourceSet();
-		URI resolvedURI = URI.createURI(image.getPath()).resolve(image.eResource().getURI());
-		if (!resourceSet.getURIConverter().exists(resolvedURI, null)) {
+		URI inPath = URI.createURI(image.eResource().getURI().trimSegments(1).toString() + "/" + image.getPath());
+		if(!image.eResource().getResourceSet().getURIConverter().exists(inPath, null))
 			error("Cannot find image", XdocPackage.Literals.IMAGE_REF__PATH);
-		}
 	}
-	
+
 	@Override
 	protected List<EPackage> getEPackages() {
 		return Collections.singletonList((EPackage)XdocPackage.eINSTANCE);
