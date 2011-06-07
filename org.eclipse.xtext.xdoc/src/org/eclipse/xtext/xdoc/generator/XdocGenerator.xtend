@@ -348,7 +348,7 @@ class XdocGenerator implements IGenerator {
 		} else 
 			ret
 	}
-	
+
 	def String dottedSimpleName(JvmDeclaredType type) {
 		if (type.declaringType != null)
 			type.declaringType.dottedSimpleName + '.' + type.simpleName
