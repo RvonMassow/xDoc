@@ -22,6 +22,8 @@ import org.eclipse.emf.common.util.URI
 import java.nio.ByteBuffer
 import java.io.File
 import java.nio.channels.Channels
+import org.eclipse.xtext.xdoc.generator.util.GitExtensions
+import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
 
 class HtmlGenerator implements IGenerator {
 	
@@ -29,6 +31,8 @@ class HtmlGenerator implements IGenerator {
 	@Inject extension PlainText plaintext
 	@Inject extension HTMLNamingExtensions naming
 	@Inject extension AbstractSectionExtension ase
+	@Inject extension GitExtensions git
+	@Inject extension JavaDocExtension jdoc
 	@Inject XdocGenerator helpGen
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
@@ -87,6 +91,7 @@ class HtmlGenerator implements IGenerator {
 		«buttons»
 		</div>
 		<div style="clear:both;"></div>
+		
 		<«chap.tag»>«chap.title.genNonParText(fileNames)»</«chap.tag»>«IF chap.name != null»
 		<a name="«chap.name»"></a>«ENDIF»
 		«chap.toc(fileNames)»
@@ -94,6 +99,10 @@ class HtmlGenerator implements IGenerator {
 		«FOR c : chap.contents »
 			«c.genText(fileNames)»
 		«ENDFOR»
+		<div class="buttonbar">
+		«buttons»
+		</div>
+		<div style="clear:both;"></div>
 		</body>
 		</html>
 		'''
@@ -110,18 +119,29 @@ class HtmlGenerator implements IGenerator {
 	def dispatch generate(Section sec, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames){
 		fsa.generateFile(fileNames.get(sec),
 		'''
+		<html>
 		«sec.title.header»
+		<body>
 		<div class="buttonbar">
 		«buttons»
 		</div>
 		<div style="clear:both;"></div>
+		
+		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
+		«sec.toc(fileNames)»
 		«FOR c : sec.contents»
 			«c.genText(fileNames)»
 		«ENDFOR»
 		«FOR sec2: sec.sections»
 			«sec2.generate(fileNames)»
 		«ENDFOR»
+		<div class="buttonbar">
+		«buttons»
+		</div>
+		<div style="clear:both;"></div>
+		</body>
+		</html>
 		'''
 		)
 		''''''
@@ -140,6 +160,7 @@ class HtmlGenerator implements IGenerator {
 
 	def dispatch generate(Section2 sec, Map<AbstractSection, String> fileNames){
 		'''
+		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
 		«FOR c : sec.contents»
 			«c.genText(fileNames)»
@@ -151,6 +172,7 @@ class HtmlGenerator implements IGenerator {
 	}
 	def dispatch generate(Section3 sec, Map<AbstractSection, String> fileNames){
 		'''
+		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
 		«FOR c : sec.contents»
 			«c.genText(fileNames)»
@@ -163,6 +185,7 @@ class HtmlGenerator implements IGenerator {
 
 	def dispatch generate(Section4 sec, Map<AbstractSection, String> fileNames){
 		'''
+		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genText(fileNames)»</«sec.tag»>
 		«FOR c : sec.contents»
 			«c.genText(fileNames)»
@@ -208,7 +231,7 @@ class HtmlGenerator implements IGenerator {
 	«chapter.subToc(fileNames)»«ENDIF»</li>
 	'''
 
-	def dispatch tocEntry(Section section, Map<AbstractSection, String> fileNames) '''
+	def dispatch tocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
 		<li><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
 	'''
 
@@ -254,8 +277,33 @@ class HtmlGenerator implements IGenerator {
 		}
 	}
 
-	def dispatch genText(CodeRef ref, Map<AbstractSection, String> fileNames) {
-		// helpGen.generate(ref)
+	def dispatch genText(CodeRef cRef, Map<AbstractSection, String> fileNames) {
+		val prefix = if(cRef.element instanceof JvmAnnotationType && cRef.altText == null) "@"
+		val jDocLink = cRef.element.genJavaDocLink
+		val gitLink = cRef.element.gitLink
+		val fqn = cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
+		val text = if(cRef.altText != null) {
+						cRef.altText.genText(fileNames)
+					} else {
+						cRef.element.dottedSimpleName
+					}
+		var ret = if(jDocLink != null)
+			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" title="View JavaDoc"><abbr title="«fqn
+				»" >«prefix»«text»</abbr></a>'''
+		else
+			'''<abbr title="«fqn
+				»" >«prefix»«text»</abbr>'''
+		if(gitLink != null) {
+			'''«ret» <a class="srcLink" href="«gitLink»" title="View Source Code" >(src)</a>'''
+		} else 
+			ret
+	}
+
+	def String dottedSimpleName(JvmDeclaredType type) {
+		if (type.declaringType != null)
+			type.declaringType.dottedSimpleName + '.' + type.simpleName
+		else
+			type.simpleName
 	}
 
 	def dispatch genText(Emphasize em, Map<AbstractSection, String> fileNames)
@@ -325,7 +373,7 @@ class HtmlGenerator implements IGenerator {
 		  «FOR i:ol.items»
 		    «i.genText(fileNames)»
 		  «ENDFOR»
-		<ol>
+		</ol>
 		'''
 
 	def dispatch genText(UnorderedList ol, Map<AbstractSection, String> fileNames)
@@ -405,4 +453,7 @@ class HtmlGenerator implements IGenerator {
 			throw new RuntimeException(e)
 		}
 	}
+
+	def anchor(String name)
+		'''<a name="«name»" ></a>'''
 }
