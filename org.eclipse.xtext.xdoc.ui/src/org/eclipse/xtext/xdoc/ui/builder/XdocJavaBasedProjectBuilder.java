@@ -15,12 +15,6 @@ public class XdocJavaBasedProjectBuilder extends JavaProjectBasedBuilderParticip
 	}
 
 	@Override
-	public void build(IBuildContext context, IProgressMonitor monitor)
-			throws CoreException {
-		super.build(context, monitor);
-	}
-
-	@Override
 	protected boolean isValidOutputFolder(IJavaProject javaProject,
 			IFolder srcGenFolder) {
 		return srcGenFolder.exists();
