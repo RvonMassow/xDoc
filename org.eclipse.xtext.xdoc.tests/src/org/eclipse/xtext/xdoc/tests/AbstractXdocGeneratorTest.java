@@ -6,7 +6,9 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderImpl;
 import org.eclipse.xpand2.XpandExecutionContext;
@@ -17,7 +19,16 @@ import org.eclipse.xpand2.output.OutputImpl;
 import org.eclipse.xtend.expression.Variable;
 import org.eclipse.xtend.type.impl.java.JavaBeansMetaModel;
 import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xdoc.XdocStandaloneSetup;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
+import org.eclipse.xtext.xdoc.xdoc.Chapter;
+import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
+import org.eclipse.xtext.xdoc.xdoc.TextPart;
+import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
+import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 
@@ -97,6 +108,45 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 		}
 	}
 
+
+	protected Document initDocFromFile(String string, String filename) throws Exception {
+		XdocFile file = pTest.getDocFromFile(SRC_DIR + filename);
+		AbstractSection mainSection = file.getMainSection();
+		if(mainSection instanceof Document) {
+			return (Document) mainSection;
+		} else if(mainSection instanceof Chapter) {
+			Document doc = initDoc(string);
+			doc.getChapters().add((Chapter) mainSection);
+			return doc;
+		}
+		return null;
+	}
+
+	protected Document initDoc(String name) {
+		Document result = XdocFactory.eINSTANCE.createDocument();
+		TextOrMarkup tomTitle = XdocFactory.eINSTANCE.createTextOrMarkup();
+		TextPart title = XdocFactory.eINSTANCE.createTextPart();
+		title.setText(name);
+		tomTitle.getContents().add(title);
+		result.setTitle(tomTitle);
+		return result;
+	}
+
+	protected Document createDocumentFrom(String mainDocument, String... docs) {
+		XtextResourceSet set = get(XtextResourceSet.class);
+		Resource ret = set.getResource(URI.createURI(SRC_DIR + mainDocument), true);
+		for(String doc: docs) {
+			set.getResource(URI.createURI(SRC_DIR + doc), true);
+		}
+		return (Document) ((XdocFile) getModel((XtextResource)ret)).getMainSection();
+	}
+
+	protected Chapter createChapterFrom(String file) {
+		XtextResourceSet set = get(XtextResourceSet.class);
+		Resource ret = set.getResource(URI.createURI(SRC_DIR + file), true);
+		return (Chapter) ((XdocFile) getModel((XtextResource)ret)).getMainSection();
+	}
+
 	public abstract void testGenCodeWithLanguage() throws Exception;
 
 	public abstract void testGenCode() throws Exception;
@@ -124,5 +174,4 @@ public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 	public abstract void testTwoChapters() throws Exception;
 
 	public abstract void testFullHirarchy() throws Exception;
-
 }

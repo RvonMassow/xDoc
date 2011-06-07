@@ -422,11 +422,6 @@ class LatexGenerator implements IGenerator{
 			'''
 	}
 
-	def test(CodeBlock foo) {
-		if(foo.inline)
-			'''foo«foo.language?.toString»bar'''
-	}
-
 	// see Bug 345934
 	def langSpec(LangDef lang) {
 		'''«IF lang != null»[language=«lang.name»]«ENDIF»'''

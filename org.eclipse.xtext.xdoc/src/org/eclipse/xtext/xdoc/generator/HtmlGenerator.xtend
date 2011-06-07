@@ -13,242 +13,396 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions
 import com.google.inject.Inject
 import org.eclipse.xtext.xdoc.generator.util.Utils
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
+import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions
+import java.util.List
+import static extension java.net.URLDecoder.*
+import java.util.Map
+import org.eclipse.xtext.EcoreUtil2
+import org.eclipse.emf.common.util.URI
+import java.nio.ByteBuffer
+import java.io.File
+import java.nio.channels.Channels
 
 class HtmlGenerator implements IGenerator {
 	
 	@Inject extension Utils utils
+	@Inject extension PlainText plaintext
+	@Inject extension HTMLNamingExtensions naming
+	@Inject extension AbstractSectionExtension ase
+	@Inject XdocGenerator helpGen
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for(element: resource.allContentsIterable) {
-			if(element instanceof Document) {
-				val doc = element as Document				
-				fsa.generateFile(doc.eResource.URI.lastSegment+".hmtl", doc.generate)
+		try{
+			for(file: resource.allContentsIterable.filter(typeof(XdocFile))) {
+				if(file.mainSection instanceof Document) {
+					val fileNames = (file.mainSection as Document).computeURLs;
+					(file.mainSection as Document).generate(fsa, fileNames)
+				}
+			}
+		} catch(Exception e) {
+			throw new RuntimeException(e)
+		}
+	}
+
+	def generate(Document doc, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames) {
+		fsa.generateFile(fileNames.get(doc).decode, 
+		'''
+		<html>
+		  «header(doc.title)»
+		«doc.body(fileNames)»
+		</html>
+		'''
+		)
+		// fsa.generateFile("toc.html", )
+		''''''
+		for(chapter : doc.sections) {
+			val index = doc.chapters.indexOf(chapter)
+			val prevS = if(index > 0) doc.chapters.get(index - 1) ?.genPrevButton(fileNames)
+			val nextS = if(index < doc.chapters.size - 1) doc.chapters.get(index + 1)?.genNextButton(fileNames)
+			chapter.generate(fsa, '''«prevS»«nextS»''', fileNames)
+		}
+		''''''
+	}
+
+	def genPrevButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+		<span class="prev_button">
+		<a href="«fileNames.get(^as)»" >Previous</a>
+		</span>
+	'''
+
+	def genNextButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+		<span class="next_button">
+		<a href="«fileNames.get(^as)»" >Next</a>
+		</span>
+	'''
+
+	def dispatch generate(Chapter chap, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames){
+		fsa.generateFile(fileNames.get(chap).decode,
+		'''
+		<html>
+		  «chap.title.header»
+		
+		<body>
+		<div class="buttonbar">
+		«buttons»
+		</div>
+		<div style="clear:both;"></div>
+		<«chap.tag»>«chap.title.genNonParText(fileNames)»</«chap.tag»>«IF chap.name != null»
+		<a name="«chap.name»"></a>«ENDIF»
+		«chap.toc(fileNames)»
+		
+		«FOR c : chap.contents »
+			«c.genText(fileNames)»
+		«ENDFOR»
+		</body>
+		</html>
+		'''
+		)
+		for(section: chap.sections) {
+			val index = chap.sections.indexOf(section)
+			val prevS = if(index > 0) chap.sections.get(index - 1)?.genPrevButton(fileNames)
+			val nextS = if(index < chap.sections.size - 1) chap.sections.get(index + 1)?.genNextButton(fileNames)
+			section.generate(fsa, '''«prevS»«nextS»''', fileNames)
+		}
+		''''''
+	}
+
+	def dispatch generate(Section sec, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames){
+		fsa.generateFile(fileNames.get(sec),
+		'''
+		«sec.title.header»
+		<div class="buttonbar">
+		«buttons»
+		</div>
+		<div style="clear:both;"></div>
+		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
+		«FOR c : sec.contents»
+			«c.genText(fileNames)»
+		«ENDFOR»
+		«FOR sec2: sec.sections»
+			«sec2.generate(fileNames)»
+		«ENDFOR»
+		'''
+		)
+		''''''
+	}
+
+	def tag(AbstractSection ^as) {
+		switch (^as) {
+			Document: "h1"
+			Chapter: "h1"
+			Section: "h1"
+			Section2: "h2"
+			Section3: "h3"
+			Section4: "h4"
+		}
+	}
+
+	def dispatch generate(Section2 sec, Map<AbstractSection, String> fileNames){
+		'''
+		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
+		«FOR c : sec.contents»
+			«c.genText(fileNames)»
+		«ENDFOR»
+		«FOR sec3: sec.sections»
+			«sec3.generate(fileNames)»
+		«ENDFOR»
+		'''
+	}
+	def dispatch generate(Section3 sec, Map<AbstractSection, String> fileNames){
+		'''
+		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
+		«FOR c : sec.contents»
+			«c.genText(fileNames)»
+		«ENDFOR»
+		«FOR c : sec.sections»
+			«c.generate(fileNames)»
+		«ENDFOR»
+		'''
+	}
+
+	def dispatch generate(Section4 sec, Map<AbstractSection, String> fileNames){
+		'''
+		<«sec.tag»>«sec.title.genText(fileNames)»</«sec.tag»>
+		«FOR c : sec.contents»
+			«c.genText(fileNames)»
+		«ENDFOR»
+		'''
+	}
+
+	def header (TextOrMarkup title) '''
+		<head>
+		  <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+		  <title>«title.genPlainText»</title>
+		  <link href="book.css" rel="stylesheet" type="text/css">
+		  <link href="code.css" rel="stylesheet" type="text/css">
+		</head>
+	'''
+
+	def body(Document doc, Map<AbstractSection, String> fileNames) '''
+		<body>
+		«doc.genAuthors(fileNames)»
+		«doc.toc(fileNames)»
+		</body>
+	'''
+
+	def toc(AbstractSection ^as, Map<AbstractSection, String> fileNames) {
+		if(!^as.sections.empty)
+		'''
+			<div class="toc" >
+			  «^as.subToc(fileNames)»
+			</div>
+		'''
+	}
+
+	def subToc(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+		<ol>
+		  «FOR ss: ^as.sections»
+		    «ss.tocEntry(fileNames)»
+		  «ENDFOR»
+		</ol>
+	'''
+
+	def dispatch tocEntry(Chapter chapter, Map<AbstractSection, String> fileNames) 
+	'''<li><a href="«fileNames.get(chapter)»" >«chapter.title.genNonParText(fileNames)»</a>«IF !chapter.sections.empty»
+	«chapter.subToc(fileNames)»«ENDIF»</li>
+	'''
+
+	def dispatch tocEntry(Section section, Map<AbstractSection, String> fileNames) '''
+		<li><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
+	'''
+
+	def genAuthors(Document doc, Map<AbstractSection, String> fileNames) {
+		if(doc.authors != null)
+			'''
+				<div class="authors">
+				«doc.authors.genText(fileNames)»
+				</div>
+			'''
+	}
+
+	def genNonParText(TextOrMarkup tom, Map<AbstractSection, String> fileNames) {
+		'''«FOR c: tom.contents»«c.genText(fileNames)»«ENDFOR»'''
+	}
+
+	def dispatch genText(TextOrMarkup tom, Map<AbstractSection, String> fileNames) {
+		'''
+		<p>
+		«FOR c: tom.contents»«c.genText(fileNames)»«ENDFOR»
+		</p>
+		'''
+	}
+
+	def dispatch genText(CodeBlock cb, Map<AbstractSection, String> fileNames) {
+		if(!cb.contents.empty) {
+			if(cb.inlineCode)
+				'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language, fileNames)»</span>'''
+			else {
+				val block = cb.removeIndent
+				'''	
+					<div class="literallayout">
+					<div class="incode">
+					<p class="code">
+					«FOR code:block.contents»
+						«code.generateCode(cb.language, fileNames)»
+					«ENDFOR»
+					</p>
+					</div>
+					</div>
+				'''
 			}
 		}
 	}
-	def doGenerate(EObject obj, IFileSystemAccess fsa) {
-		if (obj instanceof Document){
-			val doc = obj as Document; 
-			fsa.generateFile(doc.eResource.URI.lastSegment+".html", doc.generate)
+
+	def dispatch genText(CodeRef ref, Map<AbstractSection, String> fileNames) {
+		// helpGen.generate(ref)
+	}
+
+	def dispatch genText(Emphasize em, Map<AbstractSection, String> fileNames)
+		'''<em>«em.contents.generate(fileNames)»</em>'''
+
+	def dispatch generate(List<TextOrMarkup> tomList, Map<AbstractSection, String> fileNames) {
+		if (tomList.size == 1) {
+			tomList.head.genNonParText(fileNames)
+		} else {
+			'''
+			
+			«FOR tom: tomList»
+				«tom.genText(fileNames)»
+			«ENDFOR»
+			'''
 		}
-		''''''
 	}
+
+	def dispatch generateCode(Code code, LangDef lang, Map<AbstractSection, String> fileNames)
+		'''«code.contents.unescapeXdocChars.formatCode(lang)»'''
+
+	def dispatch generateCode(Code code, Void lang, Map<AbstractSection, String> fileNames)
+		'''«code.contents.unescapeXdocChars.formatCode(null)»'''
+
+	def dispatch generateCode(MarkupInCode mic, LangDef lang, Map<AbstractSection, String> fileNames)
+		'''«mic.genText(fileNames)»'''
+
+	def dispatch genText(TextPart tp, Map<AbstractSection, String> fileNames) {
+		tp.text.unescapeXdocChars
+	}
+
+	def dispatch genText(Anchor a, Map<AbstractSection, String> fileNames) {
+		// helpGen.generate(a)
+	}
+
+	def dispatch genText(Ref ref, Map<AbstractSection, String> fileNames) {
+		val title = if(ref.ref instanceof AbstractSection) {
+			'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
+		}
+		'''«IF ref.contents.isEmpty »<a href="«ref.ref.url(fileNames)»" «title» >section «ref.ref.name»</a>«ELSE
+		»<a href="«ref.ref.url(fileNames)»" «title»>«FOR tom:ref.contents
+		»«tom.genNonParText(fileNames)»«ENDFOR»</a>«
+		ENDIF»'''
+	}
+
 	
-	def dispatch generate(Document doc) {
-		'''
-		<html>
-			<head>
-			<title>«doc.title.generate»</title>
-			</head>
-			<body>
-				<h1>«doc.title.generate»</h1>
-				«doc.chapters.map([e|e.generate]).join»
-			</body>
-		</html>
-		'''
+	def dispatch url(Anchor anchor, Map<AbstractSection, String> fileNames) {
+		val section = EcoreUtil2::getContainerOfType(anchor, typeof(AbstractSection))
+		val fileName = fileNames.get(section)
+		if (fileName == null)
+			return null
+		val uri = URI::createURI(fileName)
+		val result = uri.trimFragment.appendFragment("anchor-" + anchor.name)
+		result
 	}
-	def dispatch generate(Chapter chap){
-		'''
-		<h2>«chap.title.generate»</h2>
-		«chap.name.genLabel»
-		«FOR c : chap.contents»
-		<p>
-			«c.generate»
-		</p>
-		«ENDFOR»
-		«chap.subSections.map([e|e.generate]).join»
-		'''
+
+	def dispatch url(AbstractSection section, Map<AbstractSection, String> fileNames) {
+		fileNames.get(section)
 	}
-	def dispatch generate(Section sec){
-		'''
-		<h3>«sec.title.generate»</h3>
-		«sec.name.genLabel»
-		«FOR c : sec.contents»
-		<p>
-			«c.generate»
-		</p>
-		«ENDFOR»
-		«sec.subSections.map([e|e.generate]).join»
-		'''
-	}
-	
-	def dispatch generate(Section2 sec){
-		'''
-		<h4>«sec.title.generate»</h4>
-		«sec.name.genLabel»
-		«FOR c : sec.contents»
-		<p>
-			«c.generate»
-		</p>
-		«ENDFOR»
-		«sec.subSections.map([e|e.generate]).join»
-		'''
-	}
-	def dispatch generate(Section3 sec){
-		'''
-		<h5>«sec.title.generate»</h5>
-		«sec.name.genLabel»
-		«FOR c : sec.contents»
-		<p>
-			«c.generate»
-		</p>
-		«ENDFOR»
-		«sec.subSections.map([e|e.generate]).join»
-		'''
-	}
-	def dispatch generate(Section4 sec){
-		'''
-		«FOR c : sec.contents»
-		<p>
-			<b>«sec.title.generate»<b> < br />
-			«sec.name.genLabel»
-			«c.generate»
-		</p>
-		«ENDFOR»
-		'''
-	}
-	def dispatch generate(TextOrMarkup tom){
-		'''
-		«FOR c : tom.contents»
-		«c.genText»
-		«ENDFOR»
-		'''
-	}
-	
-	def genLabel(String s){
-		'''
-		«IF s != null »
-		<a name="«s»""></a>
-		«ENDIF»
-		'''
-	}
-	def dispatch genText(Object o){
-		''''''
-	}
-	def dispatch genText(Table tab){
-		'''
-		<table>
-		«FOR row : tab.rows»
-			<tr>
-				«row.genText»
-			</tr>
-		«ENDFOR»
-		</table>
-		'''
-	}
-	
-	def dispatch genText(TableRow row){
-		'''
-		«FOR td : row.data»
-			<td>
-				«td.genText»
-			</td>
-		«ENDFOR»
-		'''
-	}
-	
-	def dispatch genText(TableData tData){
-		tData.contents.map([e|e.generate]).join
-	}
-	
-	def dispatch genText(TextPart tp){
-		'''
-		«tp.text.unescapeXdocChars.escapeHTMLChars»
-		'''
-	}
-	
-	def dispatch genText(OrderedList ol){
+
+	def dispatch genText(Link link, Map<AbstractSection, String> fileNames) 
+		'''<a href="«link.url»" >«IF link.text != null»«link.text»«ELSE»«link.url»«ENDIF»</a>'''
+
+	def dispatch genText(OrderedList ol, Map<AbstractSection, String> fileNames)
 		'''
 		<ol>
-			«FOR item:ol.items»
-				«item.genText»
-			«ENDFOR»
-		</ol>'''
-	}
-	def dispatch genText(UnorderedList ol){
+		  «FOR i:ol.items»
+		    «i.genText(fileNames)»
+		  «ENDFOR»
+		<ol>
+		'''
+
+	def dispatch genText(UnorderedList ol, Map<AbstractSection, String> fileNames)
 		'''
 		<ul>
-			«FOR item:ol.items»
-				«item.genText»
-			«ENDFOR»
-		</ul>'''
-	}
-	
-	def dispatch genText(Item item){
+		  «FOR i:ol.items»
+		    «i.genText(fileNames)»
+		  «ENDFOR»
+		</ul>
 		'''
-		<li>
-		«FOR c:item.contents»
-			«c.generate»
-		«ENDFOR»
-		</li>'''
-	}
-	def dispatch genText(Emphasize em){
+
+
+	def dispatch genText(Item item, Map<AbstractSection, String> fileNames) '''
+		<li>«item.contents.generate(fileNames)»</li>
+	'''
+
+	def dispatch genText(Table table, Map<AbstractSection, String> fileNames) '''
+		<table>
+		  «FOR tr: table.rows»
+		    «genRow(tr, fileNames)»
+		  «ENDFOR»
+		</table>
+	'''
+
+	def genRow(TableRow tr, Map<AbstractSection, String> fileNames) '''
+		<tr>
+		  «FOR td: tr.data»
+		    «genData(td, fileNames)»
+		  «ENDFOR»
+		</tr>
+	'''
+
+	def genData(TableData td, Map<AbstractSection, String> fileNames)
+	'''<td>«td.contents.generate(fileNames)»</td>'''
+
+	def dispatch genText(ImageRef img, Map<AbstractSection, String> fileNames) {
+		copy(img.path, img.eResource)
 		'''
-		<em>
-		«FOR c:em.contents»
-			«c.generate»
-		«ENDFOR»
-		</em>'''
-	}
-	def dispatch genText(Ref a){
-		'''
-		<a href="#«a.ref.name»">
-		«IF a.contents.isEmpty()»
-			«a.ref»
-		«ELSE»
-			«FOR c:a.contents»
-				«c.generate»
-			«ENDFOR»
-		«ENDIF»
-		</a>
-		'''
-	}
-	def dispatch genText(Anchor a){
-		'''<a href="#«a.name»"></a>'''
-	}
-	def dispatch genText(Link link){
-		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
-	}
-	def dispatch genText(ImageRef img){
-		//
-		'''
-		<div class="image" >
+			<div class="image" >
 			«IF img.name != null»
-			«img.name.genLabel»
+				<a>«img.name»</a>
 			«ENDIF»
-			<img src="«img.path.unescapeXdocChars»" class="«img.clazz.unescapeXdocChars»" style="«img.style.unescapeXdocChars»" />
+			«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
+			<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
+			«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
+			<div class="caption">
 			«img.caption.unescapeXdocChars.escapeHTMLChars»
-		</div>'''
-	}
-	def dispatch genText(CodeBlock code){
-		'''
-		«IF code.isInlineCode»
-		<span class="inlinecode">«FOR c:code.contents»«code.contents.genCode(code.language)»«ENDFOR»</span>
-		«ELSE»
-		<div class="literallayout">
-			<div class="incode">
-			<p class="code">
-			«FOR c:code.removeIndent.contents»
-				«c.genCode(code.language)»
-			«ENDFOR»
-			</p>
 			</div>
-		</div>
-		«ENDIF»
+			</div>
 		'''
 	}
-	def dispatch genText(CodeRef cref){
-		'''<em>«cref.element.qualifiedName.unescapeXdocChars.escapeHTMLChars»</em>'''
+
+	def copy(String fromRelativeFileName, Resource res) {
+		try{
+			val buffer = ByteBuffer::allocateDirect(16 * 1024);
+			val uri = res.URI
+			val sepChar = File::separator
+			var relOutDirRoot = ""
+			var inDir = ""
+			if(uri.platformResource) {
+				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName)
+				val outPath = URI::createURI(uri.trimSegments(2).appendSegment("contents").toString + "/" + fromRelativeFileName)
+				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
+				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
+				while (inChannel.read(buffer) != -1) {
+					buffer.flip();
+					outChannel.write(buffer);
+					buffer.compact();
+				}
+				buffer.flip();
+				while (buffer.hasRemaining()) {
+					outChannel.write(buffer);
+				}
+				outChannel.close()
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e)
+		}
 	}
-	def dispatch genText(MarkupInCode mic){''''''}
-	
-	
-	def dispatch genCode(Object o, LangDef lang){}
-	def dispatch genCode(Code code, LangDef lang){
-		'''«code.contents.unescapeXdocChars.formatCode(lang)»'''
-	}
-	def dispatch genCode(MarkupInCode mic, LangDef lang){}
-	
-	
-	
 }
