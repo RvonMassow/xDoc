@@ -3,10 +3,8 @@
  */
 package org.eclipse.xtext.xdoc;
 
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.IResourceDescription;
-import org.eclipse.xtext.xdoc.generator.HtmlGenerator;
 import org.eclipse.xtext.xdoc.naming.XdocDocumentNameProvider;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionStrategy;
@@ -34,9 +32,9 @@ public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntim
 		return XdocResourceDescriptionStrategy.class;
 	}
 
-	@Override
-	public Class<? extends IGenerator> bindIGenerator() {
-		return HtmlGenerator.class;
-	}
-
+/*
+ *	public Class<? extends IGenerator> bindIGenerator() {
+ *		return HtmlGenerator.class;
+ *	}
+ */
 }
