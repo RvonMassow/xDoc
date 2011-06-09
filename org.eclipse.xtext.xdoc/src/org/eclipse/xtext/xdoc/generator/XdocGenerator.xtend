@@ -358,7 +358,7 @@ class XdocGenerator implements IGenerator {
 
 	def dispatch generate(CodeBlock cb, Map<AbstractSection, String> fileNames) {
 		if(cb.isInlineCode) {
-			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(fileNames).formatCode(cb.language)»</span>'''
+			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(fileNames).formatCode(cb.language, fileNames)»</span>'''
 		} else {
 			val indentToRemove = cb.calcIndent
 			val list = 
@@ -377,11 +377,11 @@ class XdocGenerator implements IGenerator {
 				<div class="literallayout">
 				<div class="incode">
 				<p class="code">
-				«first.formatCode(cb.language)»
+				«first.formatCode(cb.language, fileNames)»
 				«FOR code: list»
-					«code.generateCode(fileNames).trimLines(indentToRemove).formatCode(cb.language)»
+					«code.generateCode(fileNames).trimLines(indentToRemove).formatCode(cb.language, fileNames)»
 				«ENDFOR»
-				«last.formatCode(cb.language)»
+				«last.formatCode(cb.language, fileNames)»
 				</p>
 				</div>
 				</div>

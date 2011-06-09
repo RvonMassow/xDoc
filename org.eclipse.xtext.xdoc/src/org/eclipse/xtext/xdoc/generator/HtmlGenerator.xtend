@@ -323,10 +323,10 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def dispatch generateCode(Code code, LangDef lang, Map<AbstractSection, String> fileNames)
-		'''«code.contents.unescapeXdocChars.formatCode(lang)»'''
+		'''«code.contents.unescapeXdocChars.formatCode(lang, fileNames)»'''
 
 	def dispatch generateCode(Code code, Void lang, Map<AbstractSection, String> fileNames)
-		'''«code.contents.unescapeXdocChars.formatCode(null)»'''
+		'''«code.contents.unescapeXdocChars.formatCode(null, fileNames)»'''
 
 	def dispatch generateCode(MarkupInCode mic, LangDef lang, Map<AbstractSection, String> fileNames)
 		'''«mic.genText(fileNames)»'''

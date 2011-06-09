@@ -4,7 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Token;
@@ -13,12 +15,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.ComparableExtensions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 
@@ -107,12 +112,12 @@ public class Utils {
     return _xifexpression;
   }
   
-  public String formatCode(final CharSequence text, final LangDef language) {
+  public String formatCode(final CharSequence text, final LangDef language, final Map<AbstractSection,String> fileNames) {
     String _xifexpression = null;
     boolean _operator_notEquals = ObjectExtensions.operator_notEquals(text, null);
     if (_operator_notEquals) {
       String _string = text.toString();
-      String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language);
+      String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language, fileNames);
       _xifexpression = _highlightedHtmlCode;
     } else {
       _xifexpression = "";
@@ -120,23 +125,54 @@ public class Utils {
     return _xifexpression;
   }
   
-  public String getHighlightedHtmlCode(final String code, final LangDef language) {
+  public Collection<String> defaultLangKeywords(final Set<AbstractSection> sections) {
+    Collection<String> _xblockexpression = null;
+    {
+      Iterable<Document> _filter = IterableExtensions.<Document>filter(sections, org.eclipse.xtext.xdoc.xdoc.Document.class);
+      Document _head = IterableExtensions.<Document>head(_filter);
+      final Document doc = _head;
+      EList<LangDef> _langDefs = doc.getLangDefs();
+      final Function1<LangDef,Boolean> _function = new Function1<LangDef,Boolean>() {
+          public Boolean apply(final LangDef e) {
+            String _name = e.getName();
+            boolean _operator_equals = ObjectExtensions.operator_equals(_name, "__XdocDefaultLanguage__");
+            return ((Boolean)_operator_equals);
+          }
+        };
+      LangDef _findFirst = IterableExtensions.<LangDef>findFirst(_langDefs, _function);
+      final LangDef lang = _findFirst;
+      Collection<String> _xifexpression = null;
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(lang, null);
+      if (_operator_notEquals) {
+        EList<String> _keywords = lang.getKeywords();
+        _xifexpression = _keywords;
+      } else {
+        Set<?> _emptySet = CollectionLiterals.emptySet();
+        _xifexpression = ((Set<String>) _emptySet);
+      }
+      _xblockexpression = (_xifexpression);
+    }
+    return _xblockexpression;
+  }
+  
+  public String getHighlightedHtmlCode(final String code, final LangDef language, final Map<AbstractSection,String> fileNames) {
     {
       Common _common = new Common();
       final Common lexer = _common;
       ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(code);
       lexer.setCharStream(_aNTLRStringStream);
-      Set<?> _xifexpression = null;
+      Collection<String> _xifexpression = null;
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(language, null);
       if (_operator_notEquals) {
         EList<String> _keywords = language.getKeywords();
         Set<String> _set = IterableExtensions.<String>toSet(_keywords);
         _xifexpression = _set;
       } else {
-        Set<?> _emptySet = CollectionLiterals.emptySet();
-        _xifexpression = _emptySet;
+        Set<AbstractSection> _keySet = fileNames.keySet();
+        Collection<String> _defaultLangKeywords = this.defaultLangKeywords(_keySet);
+        _xifexpression = _defaultLangKeywords;
       }
-      final Set<?> keywords = _xifexpression;
+      final Collection<String> keywords = _xifexpression;
       Token _nextToken = lexer.nextToken();
       Token token = _nextToken;
       StringBuilder _stringBuilder = new StringBuilder();

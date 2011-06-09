@@ -900,7 +900,7 @@ public class HtmlGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
-    String _formatCode = this.utils.formatCode(_unescapeXdocChars, lang);
+    String _formatCode = this.utils.formatCode(_unescapeXdocChars, lang, fileNames);
     _builder.append(_formatCode, "");
     return _builder;
   }
@@ -909,7 +909,7 @@ public class HtmlGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
-    String _formatCode = this.utils.formatCode(_unescapeXdocChars, null);
+    String _formatCode = this.utils.formatCode(_unescapeXdocChars, null, fileNames);
     _builder.append(_formatCode, "");
     return _builder;
   }

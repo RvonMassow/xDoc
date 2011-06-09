@@ -130,7 +130,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="keywords" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="XdocDefaultLanguage" iD="true"/>
+        defaultValueLiteral="__XdocDefaultLanguage__" iD="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GlossaryEntry">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

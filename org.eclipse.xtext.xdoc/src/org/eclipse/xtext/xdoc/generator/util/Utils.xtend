@@ -9,6 +9,8 @@ import org.antlr.runtime.Token
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common
 import org.antlr.runtime.ANTLRStringStream
 import org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl
+import java.util.Set
+import java.util.Map
 
 
 class Utils {
@@ -55,20 +57,29 @@ class Utils {
 			""
 	}
 
-	def formatCode(CharSequence text, LangDef language) {
+	def formatCode(CharSequence text, LangDef language, Map<AbstractSection, String> fileNames) {
 		if(text != null)
-			getHighlightedHtmlCode(text.toString, language)
+			getHighlightedHtmlCode(text.toString, language, fileNames)
 		else
 			""
 	}
 
-	def getHighlightedHtmlCode(String code, LangDef language) {
+	def defaultLangKeywords(Set<AbstractSection> sections) {
+		val doc = sections.filter(typeof(Document)).head
+		val lang = (doc.langDefs.findFirst(e | e.name == "__XdocDefaultLanguage__"));
+		if(lang != null)
+			lang.keywords
+		else
+			emptySet as Set<String>
+	}
+
+	def getHighlightedHtmlCode(String code, LangDef language, Map<AbstractSection, String> fileNames) {
 		val lexer = new Common()
 		lexer.setCharStream(new ANTLRStringStream(code))
 		val keywords = if (language !=null) 
 							language.keywords.toSet
 						else
-							emptySet
+							defaultLangKeywords(fileNames.keySet)
 		var token = lexer.nextToken
 		val result = new StringBuilder()
 		while (token.type != Token::EOF) {

@@ -957,7 +957,7 @@ public class XdocGenerator implements IGenerator {
       EObject _head = IterableExtensions.<EObject>head(_contents);
       StringConcatenation _generateCode = this.generateCode(((Code) _head), fileNames);
       LangDef _language = cb.getLanguage();
-      String _formatCode = this.utils.formatCode(_generateCode, _language);
+      String _formatCode = this.utils.formatCode(_generateCode, _language, fileNames);
       _builder.append(_formatCode, "");
       _builder.append("</span>");
       _xifexpression = _builder;
@@ -1018,7 +1018,7 @@ public class XdocGenerator implements IGenerator {
         _builder_1.append("<p class=\"code\">");
         _builder_1.newLine();
         LangDef _language_1 = cb.getLanguage();
-        String _formatCode_1 = this.utils.formatCode(first, _language_1);
+        String _formatCode_1 = this.utils.formatCode(first, _language_1, fileNames);
         _builder_1.append(_formatCode_1, "");
         _builder_1.newLineIfNotEmpty();
         {
@@ -1026,13 +1026,13 @@ public class XdocGenerator implements IGenerator {
             StringConcatenation _generateCode_3 = this.generateCode(code, fileNames);
             String _trimLines_2 = this.trimLines(_generateCode_3, indentToRemove);
             LangDef _language_2 = cb.getLanguage();
-            String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2);
+            String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2, fileNames);
             _builder_1.append(_formatCode_2, "");
             _builder_1.newLineIfNotEmpty();
           }
         }
         LangDef _language_3 = cb.getLanguage();
-        String _formatCode_3 = this.utils.formatCode(last, _language_3);
+        String _formatCode_3 = this.utils.formatCode(last, _language_3, fileNames);
         _builder_1.append(_formatCode_3, "");
         _builder_1.newLineIfNotEmpty();
         _builder_1.append("</p>");
