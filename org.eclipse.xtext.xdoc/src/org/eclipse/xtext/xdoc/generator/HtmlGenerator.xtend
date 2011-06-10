@@ -283,7 +283,7 @@ class HtmlGenerator implements IGenerator {
 		val gitLink = cRef.element.gitLink
 		val fqn = cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
 		val text = if(cRef.altText != null) {
-						cRef.altText.genText(fileNames)
+						cRef.altText.genNonParText(fileNames)
 					} else {
 						cRef.element.dottedSimpleName
 					}
