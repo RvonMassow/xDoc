@@ -968,8 +968,8 @@ public class HtmlGenerator implements IGenerator {
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
       if (_operator_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
-        CharSequence _genText = this.genText(_altText_2, fileNames);
-        _xifexpression_1 = _genText;
+        StringConcatenation _genNonParText = this.genNonParText(_altText_2, fileNames);
+        _xifexpression_1 = _genNonParText;
       } else {
         JvmDeclaredType _element_4 = cRef.getElement();
         String _dottedSimpleName = this.dottedSimpleName(_element_4);
