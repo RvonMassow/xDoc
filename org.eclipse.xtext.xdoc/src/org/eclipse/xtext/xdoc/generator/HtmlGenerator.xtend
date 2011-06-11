@@ -53,17 +53,18 @@ class HtmlGenerator implements IGenerator {
 		'''
 		<html>
 		  «header(doc.title)»
-		«doc.body(fileNames)»
+		  «doc.body(fileNames)»
 		</html>
 		'''
 		)
 		// fsa.generateFile("toc.html", )
+		val leftNav = doc.leftNavToc(fileNames)
 		''''''
 		for(chapter : doc.sections) {
 			val index = doc.chapters.indexOf(chapter)
 			val prevS = if(index > 0) doc.chapters.get(index - 1) ?.genPrevButton(fileNames)
 			val nextS = if(index < doc.chapters.size - 1) doc.chapters.get(index + 1)?.genNextButton(fileNames)
-			chapter.generate(fsa, '''«prevS»«nextS»''', fileNames)
+			chapter.generate(fsa, '''«prevS»«nextS»''', fileNames, leftNav, (chapter as Chapter).elementIdForSubToc(fileNames))
 		}
 		''''''
 	}
@@ -80,72 +81,70 @@ class HtmlGenerator implements IGenerator {
 		</span>
 	'''
 
-	def dispatch generate(Chapter chap, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames){
-		fsa.generateFile(fileNames.get(chap).decode,
+	def generate(AbstractSection ^as, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
+		fsa.generateFile(fileNames.get(^as).decode,
 		'''
 		<html>
-		  «chap.title.header»
+		  «^as.title.header»
 		
-		<body>
-		<div class="buttonbar">
-		«buttons»
+		<body onload="initTocMenu('«leftNavUnfoldSubTocId»');">
+		«_copiedPageLayoutTop»
+		<div id="novaContent" class="faux">
+			<br style="clear:both;height:1em;">
+			<div id="leftcol">
+				«leftNav»
+			</div>
+			<div id="midcolumn">
+				<div class="buttonbar">
+				«buttons»
+				</div>
+				<div style="clear:both;"></div>
+				
+				«^as.genContent(fsa, fileNames, leftNav)»
+				<div class="buttonbar">
+				«buttons»
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<br style="clear:both;height:1em;">
 		</div>
-		<div style="clear:both;"></div>
-		
-		<«chap.tag»>«chap.title.genNonParText(fileNames)»</«chap.tag»>«IF chap.name != null»
-		<a name="«chap.name»"></a>«ENDIF»
-		«chap.toc(fileNames)»
-		
-		«FOR c : chap.contents »
-			«c.genText(fileNames)»
-		«ENDFOR»
-		<div class="buttonbar">
-		«buttons»
-		</div>
-		<div style="clear:both;"></div>
+		«_copiedPageLayoutBottom»
 		</body>
 		</html>
-		'''
-		)
+	''')
+	''''''
+	}
+	
+	def dispatch genContent(Chapter chap, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) {
 		for(section: chap.sections) {
 			val index = chap.sections.indexOf(section)
 			val prevS = if(index > 0) chap.sections.get(index - 1)?.genPrevButton(fileNames)
 			val nextS = if(index < chap.sections.size - 1) chap.sections.get(index + 1)?.genNextButton(fileNames)
-			section.generate(fsa, '''«prevS»«nextS»''', fileNames)
+			section.generate(fsa, '''«prevS»«nextS»''', fileNames, leftNav, chap.elementIdForSubToc(fileNames))
 		}
-		''''''
-	}
-
-	def dispatch generate(Section sec, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames){
-		fsa.generateFile(fileNames.get(sec),
 		'''
-		<html>
-		«sec.title.header»
-		<body>
-		<div class="buttonbar">
-		«buttons»
-		</div>
-		<div style="clear:both;"></div>
-		
+		<«chap.tag»>«chap.title.genNonParText(fileNames)»</«chap.tag»>«IF chap.name != null»
+				<a name="«chap.name»"></a>«ENDIF»
+				«chap.toc(fileNames)»
+				
+				«FOR c : chap.contents »
+					«c.genText(fileNames)»
+				«ENDFOR»
+	'''
+	}
+	
+	
+	def dispatch genContent(Section sec, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) '''
 		«sec.labelName(fileNames).anchor»
-		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
-		«sec.toc(fileNames)»
-		«FOR c : sec.contents»
-			«c.genText(fileNames)»
-		«ENDFOR»
-		«FOR sec2: sec.sections»
-			«sec2.generate(fileNames)»
-		«ENDFOR»
-		<div class="buttonbar">
-		«buttons»
-		</div>
-		<div style="clear:both;"></div>
-		</body>
-		</html>
-		'''
-		)
-		''''''
-	}
+			<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
+			«sec.toc(fileNames)»
+			«FOR c : sec.contents»
+				«c.genText(fileNames)»
+			«ENDFOR»
+			«FOR sec2: sec.sections»
+				«sec2.generate(fileNames)»
+			«ENDFOR»
+	'''
 
 	def tag(AbstractSection ^as) {
 		switch (^as) {
@@ -197,41 +196,87 @@ class HtmlGenerator implements IGenerator {
 		<head>
 		  <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		  <title>«title.genPlainText»</title>
-		  <link href="book.css" rel="stylesheet" type="text/css">
-		  <link href="code.css" rel="stylesheet" type="text/css">
+		  <link href="http://www.eclipse.org/Xtext/documentation/1_0_1/book.css" rel="stylesheet" type="text/css">
+		  <link href="http://www.eclipse.org/Xtext/documentation/1_0_1/code.css" rel="stylesheet" type="text/css">
+		  <link href="http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css" media="screen">
+		  <link href="http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/menu/assets/skins/sam/menu.css" rel="stylesheet" type="text/css" media="screen">
+		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/reset.css" rel="stylesheet" type="text/css" media="screen">
+		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/layout.css" rel="stylesheet" type="text/css" media="screen">
+		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/header.css" rel="stylesheet" type="text/css" media="screen">
+		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/footer.css" rel="stylesheet" type="text/css" media="screen">
+		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/visual.css" rel="stylesheet" type="text/css" media="screen">
+		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/print.css" rel="stylesheet" type="text/css" media="print">
+		  «javaScriptForNavigation»
 		</head>
 	'''
 
 	def body(Document doc, Map<AbstractSection, String> fileNames) '''
 		<body>
-		«doc.genAuthors(fileNames)»
-		«doc.toc(fileNames)»
+			«_copiedPageLayoutTop()»
+			<div id="novaContent" class="faux">
+				<br style="clear:both;height:1em;">
+				<div id="leftcol">
+				«generateLogo»
+				</div>
+				<div id="midcolumn">
+					«doc.genAuthors(fileNames)»
+					«doc.toc(fileNames)»
+				</div>
+				<br style="clear:both;height:1em;">
+			</div>
+			«_copiedPageLayoutBottom()»
 		</body>
 	'''
 
 	def toc(AbstractSection ^as, Map<AbstractSection, String> fileNames) {
 		if(!^as.sections.empty)
 		'''
-			<div class="toc" >
+			<div class="toc">
 			  «^as.subToc(fileNames)»
 			</div>
 		'''
 	}
 
 	def subToc(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
-		<ol>
+		<ul>
 		  «FOR ss: ^as.sections»
 		    «ss.tocEntry(fileNames)»
 		  «ENDFOR»
-		</ol>
+		</ul>
 	'''
-
 	def dispatch tocEntry(Chapter chapter, Map<AbstractSection, String> fileNames) 
 	'''<li><a href="«fileNames.get(chapter)»" >«chapter.title.genNonParText(fileNames)»</a>«IF !chapter.sections.empty»
 	«chapter.subToc(fileNames)»«ENDIF»</li>
 	'''
 
 	def dispatch tocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
+		<li><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
+	'''
+		
+	
+	def leftNavToc(Document doc, Map<AbstractSection, String> fileNames) {
+		'''
+			«generateLogo»
+			<ul id="leftnav">
+			  «FOR c: doc.sections»
+		    	«c.leftNavTocEntry(fileNames)»
+		  	  «ENDFOR»
+			</ul>
+		'''
+	}
+	def leftNavSubToc(Chapter chap, Map<AbstractSection, String> fileNames) '''
+	<ul style="display: none;" id="«chap.elementIdForSubToc(fileNames)»">
+	«FOR ss: chap.sections»
+	    «ss.leftNavTocEntry(fileNames)»
+	«ENDFOR»
+	</ul>
+	'''
+	def dispatch leftNavTocEntry(Chapter chapter, Map<AbstractSection, String> fileNames) 
+	'''<li class="separator"><div class="separator">«chapter.title.genNonParText(fileNames)»</div>
+	«IF !chapter.sections.empty»«chapter.leftNavSubToc(fileNames)»«ENDIF»</li>
+	'''
+
+	def dispatch leftNavTocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
 		<li><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
 	'''
 
@@ -456,4 +501,113 @@ class HtmlGenerator implements IGenerator {
 
 	def anchor(String name)
 		'''<a name="«name»" ></a>'''
+
+	def elementIdForSubToc(Chapter chap,  Map<AbstractSection, String> fileNames)
+		'''subToc_«fileNames.get(chap)»'''
+	
+	def generateLogo() 
+		'''<img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="width: 185px;"/>'''
+	
+	def javaScriptForNavigation(){
+		'''
+		 <script type="text/javascript"> 
+			function initTocMenu(ActiveSubTocElementId){
+				var menu = document.getElementById("leftnav");
+				
+				var chapters = menu.children;
+				addHideSubsectionFunction(chapters);
+				
+				document.getElementById(ActiveSubTocElementId).style.display = "block";
+			}
+		
+			function addHideSubsectionFunction(items){
+				for (var i = 0; i < items.length; i++) {
+					if (items[i].firstElementChild ){
+						items[i].firstElementChild.onclick = function(){toc_toggle_subsections(this.parentNode);};
+						items[i].firstElementChild.style.cursor = "pointer";
+					}
+				}
+			}
+			function toc_toggle_subsections(chap){
+				if ( chap.children[1].style.display != "none" ) {
+					chap.children[1].style.display = "none"
+				} else {
+					chap.children[1].style.display = "block"
+					
+				}
+			}
+		</script>
+		'''
+	}
+		
+	def _copiedPageLayoutTop()
+	'''
+	<div id="novaWrapper">		<div id="clearHeader">
+			<div id="logo">
+					<div id="promotion"><a href="/indigo/friends.php">
+		<img src="/home/promotions/indigo/indigo.png" alt="Indigo Is Coming!"/>
+	</a>
+
+	</div>
+
+			</div>
+			<div id="otherSites">
+				<div id="sites">
+				<ul id="sitesUL">
+					<li><a href='http://marketplace.eclipse.org'><img alt="Eclipse Marketplace" src="http://dev.eclipse.org/custom_icons/marketplace.png"/>&nbsp;<div>Eclipse Marketplace</div></a></li>
+					<li><a href='http://live.eclipse.org'><img alt="Eclipse Live" src="http://dev.eclipse.org/custom_icons/audio-input-microphone-bw.png"/>&nbsp;<div>Eclipse Live</div></a></li>
+
+		    		<li><a href='https://bugs.eclipse.org/bugs/'><img alt="Bugzilla" src="http://dev.eclipse.org/custom_icons/system-search-bw.png"/>&nbsp;<div>Bugzilla</div></a></li>
+		    		<li><a href='http://www.eclipse.org/forums/'><img alt="Forums" src="http://dev.eclipse.org/large_icons/apps/internet-group-chat.png"/>&nbsp;<div>Eclipse Forums</div></a></li>
+		    		<li><a href='http://www.planeteclipse.org/'><img alt="Planet Eclipse" src="http://dev.eclipse.org/large_icons/devices/audio-card.png"/>&nbsp;<div>Planet Eclipse</div></a></li>
+		    		<li><a href='http://wiki.eclipse.org/'><img alt="Eclipse Wiki" src="http://dev.eclipse.org/custom_icons/accessories-text-editor-bw.png"/>&nbsp;<div>Eclipse Wiki</div></a></li>
+		    		<li><a href='http://portal.eclipse.org'><img alt="MyFoundation Portal" src="http://dev.eclipse.org/custom_icons/preferences-system-network-proxy-bw.png"/><div>My Foundation Portal</div></a></li>
+		    	</ul>
+
+		    	</div>
+			</div>		
+		</div>
+
+	<div id="header">			
+		<div id="menu">
+			<ul>
+			<li><a href="/Xtext" target="_self">Home</a></li> 
+			<li><a href="/Xtext/download" target="_self">Download</a></li> 
+			<li><a href="xtext.html" target="_self">Documentation</a></li> 
+			<li><a href="/Xtext/support" target="_self">Support</a></li> 
+			<li><a href="/Xtext/community" target="_self">Community</a></li> 
+			<li><a href="/Xtext/developers" target="_self">Developers</a></li> 
+				</ul>
+
+		</div>
+
+		<div id="search">
+				<form action="http://www.google.com/cse" id="searchbox_017941334893793413703:sqfrdtd112s">
+			 	<input type="hidden" name="cx" value="017941334893793413703:sqfrdtd112s" />
+		  		<input id="searchBox" type="text" name="q" size="25" />
+		  		<input id="searchButton" type="submit" name="sa" value="Search" />
+				</form>
+			<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbox_017941334893793413703%3Asqfrdtd112s&lang=en"></script>			
+		</div>
+
+	</div>
+	'''
+	
+	def _copiedPageLayoutBottom()
+	'''
+	<div id="clearFooter"></div>
+	<div id="footer">
+	<ul id="footernav">
+		<li><a href="/">Home</a></li>
+
+		<li><a href="/legal/privacy.php">Privacy Policy</a></li>
+		<li><a href="/legal/termsofuse.php">Terms of Use</a></li>
+		<li><a href="/legal/copyright.php">Copyright Agent</a></li>
+		<li><a href="/legal/">Legal</a></li>
+		<li><a href="/org/foundation/contact.php">Contact Us</a></li>
+	</ul>
+
+	<span id="copyright">Copyright &copy; 2011 The Eclipse Foundation. All Rights Reserved.</span>
+	</div>
+	'''
 }

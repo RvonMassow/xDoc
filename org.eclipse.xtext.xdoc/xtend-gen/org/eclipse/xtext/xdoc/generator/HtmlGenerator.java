@@ -124,12 +124,15 @@ public class HtmlGenerator implements IGenerator {
       StringConcatenation _header = this.header(_title);
       _builder.append(_header, "  ");
       _builder.newLineIfNotEmpty();
+      _builder.append("  ");
       StringConcatenation _body = this.body(doc, fileNames);
-      _builder.append(_body, "");
+      _builder.append(_body, "  ");
       _builder.newLineIfNotEmpty();
       _builder.append("</html>");
       _builder.newLine();
       fsa.generateFile(_decode, _builder);
+      StringConcatenation _leftNavToc = this.leftNavToc(doc, fileNames);
+      final StringConcatenation leftNav = _leftNavToc;
       StringConcatenation _builder_1 = new StringConcatenation();
       List<? extends AbstractSection> _sections = this.ase.sections(doc);
       for (AbstractSection chapter : _sections) {
@@ -163,7 +166,8 @@ public class HtmlGenerator implements IGenerator {
           StringConcatenation _builder_2 = new StringConcatenation();
           _builder_2.append(prevS, "");
           _builder_2.append(nextS, "");
-          this.generate(chapter, fsa, _builder_2, fileNames);
+          StringConcatenation _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter), fileNames);
+          this.generate(chapter, fsa, _builder_2, fileNames, leftNav, _elementIdForSubToc);
         }
       }
       StringConcatenation _builder_3 = new StringConcatenation();
@@ -200,79 +204,99 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _generate(final Chapter chap, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public StringConcatenation generate(final AbstractSection as, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
-      String _get = fileNames.get(chap);
+      String _get = fileNames.get(as);
       String _decode = URLDecoder.decode(_get);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<html>");
       _builder.newLine();
       _builder.append("  ");
-      TextOrMarkup _title = chap.getTitle();
+      TextOrMarkup _title = as.getTitle();
       StringConcatenation _header = this.header(_title);
       _builder.append(_header, "  ");
       _builder.newLineIfNotEmpty();
       _builder.newLine();
-      _builder.append("<body>");
-      _builder.newLine();
-      _builder.append("<div class=\"buttonbar\">");
-      _builder.newLine();
-      _builder.append(buttons, "");
+      _builder.append("<body onload=\"initTocMenu(\'");
+      _builder.append(leftNavUnfoldSubTocId, "");
+      _builder.append("\');\">");
       _builder.newLineIfNotEmpty();
+      StringConcatenation __copiedPageLayoutTop = this._copiedPageLayoutTop();
+      _builder.append(__copiedPageLayoutTop, "");
+      _builder.newLineIfNotEmpty();
+      _builder.append("<div id=\"novaContent\" class=\"faux\">");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("<br style=\"clear:both;height:1em;\">");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("<div id=\"leftcol\">");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append(leftNav, "		");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
       _builder.append("</div>");
       _builder.newLine();
-      _builder.append("<div style=\"clear:both;\"></div>");
+      _builder.append("\t");
+      _builder.append("<div id=\"midcolumn\">");
       _builder.newLine();
-      _builder.newLine();
-      _builder.append("<");
-      String _tag = this.tag(chap);
-      _builder.append(_tag, "");
-      _builder.append(">");
-      TextOrMarkup _title_1 = chap.getTitle();
-      StringConcatenation _genNonParText = this.genNonParText(_title_1, fileNames);
-      _builder.append(_genNonParText, "");
-      _builder.append("</");
-      String _tag_1 = this.tag(chap);
-      _builder.append(_tag_1, "");
-      _builder.append(">");
-      {
-        String _name = chap.getName();
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
-        if (_operator_notEquals) {
-          _builder.newLineIfNotEmpty();
-          _builder.append("<a name=\"");
-          String _name_1 = chap.getName();
-          _builder.append(_name_1, "");
-          _builder.append("\"></a>");
-        }
-      }
-      _builder.newLineIfNotEmpty();
-      StringConcatenation _c = this.toc(chap, fileNames);
-      _builder.append(_c, "");
-      _builder.newLineIfNotEmpty();
-      _builder.newLine();
-      {
-        EList<TextOrMarkup> _contents = chap.getContents();
-        for(TextOrMarkup c : _contents) {
-          CharSequence _genText = this.genText(c, fileNames);
-          _builder.append(_genText, "");
-          _builder.newLineIfNotEmpty();
-        }
-      }
+      _builder.append("\t\t");
       _builder.append("<div class=\"buttonbar\">");
       _builder.newLine();
-      _builder.append(buttons, "");
+      _builder.append("\t\t");
+      _builder.append(buttons, "		");
       _builder.newLineIfNotEmpty();
+      _builder.append("\t\t");
       _builder.append("</div>");
       _builder.newLine();
+      _builder.append("\t\t");
       _builder.append("<div style=\"clear:both;\"></div>");
       _builder.newLine();
+      _builder.append("\t\t");
+      _builder.newLine();
+      _builder.append("\t\t");
+      StringConcatenation _genContent = this.genContent(as, fsa, fileNames, leftNav);
+      _builder.append(_genContent, "		");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t");
+      _builder.append("<div class=\"buttonbar\">");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append(buttons, "		");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t");
+      _builder.append("</div>");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("<div style=\"clear:both;\"></div>");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("</div>");
+      _builder.newLine();
+      _builder.append("\t");
+      _builder.append("<br style=\"clear:both;height:1em;\">");
+      _builder.newLine();
+      _builder.append("</div>");
+      _builder.newLine();
+      StringConcatenation __copiedPageLayoutBottom = this._copiedPageLayoutBottom();
+      _builder.append(__copiedPageLayoutBottom, "");
+      _builder.newLineIfNotEmpty();
       _builder.append("</body>");
       _builder.newLine();
       _builder.append("</html>");
       _builder.newLine();
       fsa.generateFile(_decode, _builder);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _xblockexpression = (_builder_1);
+    }
+    return _xblockexpression;
+  }
+  
+  protected StringConcatenation _genContent(final Chapter chap, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
+    StringConcatenation _xblockexpression = null;
+    {
       List<? extends AbstractSection> _sections = this.ase.sections(chap);
       for (AbstractSection section : _sections) {
         {
@@ -284,8 +308,8 @@ public class HtmlGenerator implements IGenerator {
           if (_operator_greaterThan) {
             List<? extends AbstractSection> _sections_2 = this.ase.sections(chap);
             int _operator_minus = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
-            AbstractSection _get_1 = _sections_2.get(_operator_minus);
-            StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get_1, fileNames);
+            AbstractSection _get = _sections_2.get(_operator_minus);
+            StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get, fileNames);
             _xifexpression = _genPrevButton;
           }
           final StringConcatenation prevS = _xifexpression;
@@ -297,97 +321,104 @@ public class HtmlGenerator implements IGenerator {
           if (_operator_lessThan) {
             List<? extends AbstractSection> _sections_4 = this.ase.sections(chap);
             int _operator_plus = IntegerExtensions.operator_plus(((Integer)index), ((Integer)1));
-            AbstractSection _get_2 = _sections_4.get(_operator_plus);
-            StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_2, fileNames);
+            AbstractSection _get_1 = _sections_4.get(_operator_plus);
+            StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_1, fileNames);
             _xifexpression_1 = _genNextButton;
           }
           final StringConcatenation nextS = _xifexpression_1;
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append(prevS, "");
-          _builder_1.append(nextS, "");
-          this.generate(section, fsa, _builder_1, fileNames);
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append(prevS, "");
+          _builder.append(nextS, "");
+          StringConcatenation _elementIdForSubToc = this.elementIdForSubToc(chap, fileNames);
+          this.generate(section, fsa, _builder, fileNames, leftNav, _elementIdForSubToc);
         }
       }
-      StringConcatenation _builder_2 = new StringConcatenation();
-      _xblockexpression = (_builder_2);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("<");
+      String _tag = this.tag(chap);
+      _builder_1.append(_tag, "");
+      _builder_1.append(">");
+      TextOrMarkup _title = chap.getTitle();
+      StringConcatenation _genNonParText = this.genNonParText(_title, fileNames);
+      _builder_1.append(_genNonParText, "");
+      _builder_1.append("</");
+      String _tag_1 = this.tag(chap);
+      _builder_1.append(_tag_1, "");
+      _builder_1.append(">");
+      {
+        String _name = chap.getName();
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        if (_operator_notEquals) {
+          _builder_1.newLineIfNotEmpty();
+          _builder_1.append("<a name=\"");
+          String _name_1 = chap.getName();
+          _builder_1.append(_name_1, "");
+          _builder_1.append("\"></a>");
+        }
+      }
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("\t\t");
+      StringConcatenation _c = this.toc(chap, fileNames);
+      _builder_1.append(_c, "		");
+      _builder_1.newLineIfNotEmpty();
+      _builder_1.append("\t\t");
+      _builder_1.newLine();
+      {
+        EList<TextOrMarkup> _contents = chap.getContents();
+        for(TextOrMarkup c : _contents) {
+          _builder_1.append("\t\t");
+          CharSequence _genText = this.genText(c, fileNames);
+          _builder_1.append(_genText, "		");
+          _builder_1.newLineIfNotEmpty();
+        }
+      }
+      _xblockexpression = (_builder_1);
     }
     return _xblockexpression;
   }
   
-  protected StringConcatenation _generate(final Section sec, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames) throws RuntimeException {
-    StringConcatenation _xblockexpression = null;
+  protected StringConcatenation _genContent(final Section sec, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
+    StringConcatenation _builder = new StringConcatenation();
+    String _labelName = this.naming.labelName(sec, fileNames);
+    StringConcatenation _anchor = this.anchor(_labelName);
+    _builder.append(_anchor, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("<");
+    String _tag = this.tag(sec);
+    _builder.append(_tag, "	");
+    _builder.append(">");
+    TextOrMarkup _title = sec.getTitle();
+    StringConcatenation _genNonParText = this.genNonParText(_title, fileNames);
+    _builder.append(_genNonParText, "	");
+    _builder.append("</");
+    String _tag_1 = this.tag(sec);
+    _builder.append(_tag_1, "	");
+    _builder.append(">");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    StringConcatenation _c = this.toc(sec, fileNames);
+    _builder.append(_c, "	");
+    _builder.newLineIfNotEmpty();
     {
-      String _get = fileNames.get(sec);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<html>");
-      _builder.newLine();
-      TextOrMarkup _title = sec.getTitle();
-      StringConcatenation _header = this.header(_title);
-      _builder.append(_header, "");
-      _builder.newLineIfNotEmpty();
-      _builder.append("<body>");
-      _builder.newLine();
-      _builder.append("<div class=\"buttonbar\">");
-      _builder.newLine();
-      _builder.append(buttons, "");
-      _builder.newLineIfNotEmpty();
-      _builder.append("</div>");
-      _builder.newLine();
-      _builder.append("<div style=\"clear:both;\"></div>");
-      _builder.newLine();
-      _builder.newLine();
-      String _labelName = this.naming.labelName(sec, fileNames);
-      StringConcatenation _anchor = this.anchor(_labelName);
-      _builder.append(_anchor, "");
-      _builder.newLineIfNotEmpty();
-      _builder.append("<");
-      String _tag = this.tag(sec);
-      _builder.append(_tag, "");
-      _builder.append(">");
-      TextOrMarkup _title_1 = sec.getTitle();
-      StringConcatenation _genNonParText = this.genNonParText(_title_1, fileNames);
-      _builder.append(_genNonParText, "");
-      _builder.append("</");
-      String _tag_1 = this.tag(sec);
-      _builder.append(_tag_1, "");
-      _builder.append(">");
-      _builder.newLineIfNotEmpty();
-      StringConcatenation _c = this.toc(sec, fileNames);
-      _builder.append(_c, "");
-      _builder.newLineIfNotEmpty();
-      {
-        EList<TextOrMarkup> _contents = sec.getContents();
-        for(TextOrMarkup c : _contents) {
-          CharSequence _genText = this.genText(c, fileNames);
-          _builder.append(_genText, "");
-          _builder.newLineIfNotEmpty();
-        }
+      EList<TextOrMarkup> _contents = sec.getContents();
+      for(TextOrMarkup c : _contents) {
+        _builder.append("\t");
+        CharSequence _genText = this.genText(c, fileNames);
+        _builder.append(_genText, "	");
+        _builder.newLineIfNotEmpty();
       }
-      {
-        List<? extends AbstractSection> _sections = this.ase.sections(sec);
-        for(AbstractSection sec2 : _sections) {
-          StringConcatenation _generate = this.generate(sec2, fileNames);
-          _builder.append(_generate, "");
-          _builder.newLineIfNotEmpty();
-        }
-      }
-      _builder.append("<div class=\"buttonbar\">");
-      _builder.newLine();
-      _builder.append(buttons, "");
-      _builder.newLineIfNotEmpty();
-      _builder.append("</div>");
-      _builder.newLine();
-      _builder.append("<div style=\"clear:both;\"></div>");
-      _builder.newLine();
-      _builder.append("</body>");
-      _builder.newLine();
-      _builder.append("</html>");
-      _builder.newLine();
-      fsa.generateFile(_get, _builder);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _xblockexpression = (_builder_1);
     }
-    return _xblockexpression;
+    {
+      List<? extends AbstractSection> _sections = this.ase.sections(sec);
+      for(AbstractSection sec2 : _sections) {
+        _builder.append("\t");
+        StringConcatenation _generate = this.generate(sec2, fileNames);
+        _builder.append(_generate, "	");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
   }
   
   public String tag(final AbstractSection as) {
@@ -556,11 +587,39 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("</title>");
     _builder.newLineIfNotEmpty();
     _builder.append("  ");
-    _builder.append("<link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.append("<link href=\"http://www.eclipse.org/Xtext/documentation/1_0_1/book.css\" rel=\"stylesheet\" type=\"text/css\">");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.append("<link href=\"http://www.eclipse.org/Xtext/documentation/1_0_1/code.css\" rel=\"stylesheet\" type=\"text/css\">");
     _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/menu/assets/skins/sam/menu.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/themes/Nova/css/reset.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/themes/Nova/css/layout.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/themes/Nova/css/header.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/themes/Nova/css/footer.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/themes/Nova/css/visual.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/themes/Nova/css/print.css\" rel=\"stylesheet\" type=\"text/css\" media=\"print\">");
+    _builder.newLine();
+    _builder.append("  ");
+    StringConcatenation _javaScriptForNavigation = this.javaScriptForNavigation();
+    _builder.append(_javaScriptForNavigation, "  ");
+    _builder.newLineIfNotEmpty();
     _builder.append("</head>");
     _builder.newLine();
     return _builder;
@@ -570,11 +629,49 @@ public class HtmlGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<body>");
     _builder.newLine();
-    StringConcatenation _genAuthors = this.genAuthors(doc, fileNames);
-    _builder.append(_genAuthors, "");
+    _builder.append("\t");
+    StringConcatenation __copiedPageLayoutTop = this._copiedPageLayoutTop();
+    _builder.append(__copiedPageLayoutTop, "	");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("<div id=\"novaContent\" class=\"faux\">");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<br style=\"clear:both;height:1em;\">");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<div id=\"leftcol\">");
+    _builder.newLine();
+    _builder.append("\t\t");
+    StringConcatenation _generateLogo = this.generateLogo();
+    _builder.append(_generateLogo, "		");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<div id=\"midcolumn\">");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    StringConcatenation _genAuthors = this.genAuthors(doc, fileNames);
+    _builder.append(_genAuthors, "			");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t\t");
     StringConcatenation _c = this.toc(doc, fileNames);
-    _builder.append(_c, "");
+    _builder.append(_c, "			");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<br style=\"clear:both;height:1em;\">");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("\t");
+    StringConcatenation __copiedPageLayoutBottom = this._copiedPageLayoutBottom();
+    _builder.append(__copiedPageLayoutBottom, "	");
     _builder.newLineIfNotEmpty();
     _builder.append("</body>");
     _builder.newLine();
@@ -588,7 +685,7 @@ public class HtmlGenerator implements IGenerator {
     boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
     if (_operator_not) {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<div class=\"toc\" >");
+      _builder.append("<div class=\"toc\">");
       _builder.newLine();
       _builder.append("  ");
       StringConcatenation _subToc = this.subToc(as, fileNames);
@@ -603,7 +700,7 @@ public class HtmlGenerator implements IGenerator {
   
   public StringConcatenation subToc(final AbstractSection as, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<ol>");
+    _builder.append("<ul>");
     _builder.newLine();
     {
       List<? extends AbstractSection> _sections = this.ase.sections(as);
@@ -614,7 +711,7 @@ public class HtmlGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
-    _builder.append("</ol>");
+    _builder.append("</ul>");
     _builder.newLine();
     return _builder;
   }
@@ -645,6 +742,83 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected StringConcatenation _tocEntry(final AbstractSection section, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<li><a href=\"");
+    String _get = fileNames.get(section);
+    _builder.append(_get, "");
+    _builder.append("\" >");
+    TextOrMarkup _title = section.getTitle();
+    StringConcatenation _genNonParText = this.genNonParText(_title, fileNames);
+    _builder.append(_genNonParText, "");
+    _builder.append("</a></li>");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  public StringConcatenation leftNavToc(final Document doc, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+    StringConcatenation _builder = new StringConcatenation();
+    StringConcatenation _generateLogo = this.generateLogo();
+    _builder.append(_generateLogo, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("<ul id=\"leftnav\">");
+    _builder.newLine();
+    {
+      List<? extends AbstractSection> _sections = this.ase.sections(doc);
+      for(AbstractSection c : _sections) {
+        StringConcatenation _leftNavTocEntry = this.leftNavTocEntry(c, fileNames);
+        _builder.append(_leftNavTocEntry, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("</ul>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public StringConcatenation leftNavSubToc(final Chapter chap, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<ul style=\"display: none;\" id=\"");
+    StringConcatenation _elementIdForSubToc = this.elementIdForSubToc(chap, fileNames);
+    _builder.append(_elementIdForSubToc, "");
+    _builder.append("\">");
+    _builder.newLineIfNotEmpty();
+    {
+      List<? extends AbstractSection> _sections = this.ase.sections(chap);
+      for(AbstractSection ss : _sections) {
+        StringConcatenation _leftNavTocEntry = this.leftNavTocEntry(ss, fileNames);
+        _builder.append(_leftNavTocEntry, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("</ul>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  protected StringConcatenation _leftNavTocEntry(final Chapter chapter, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<li class=\"separator\"><div class=\"separator\">");
+    TextOrMarkup _title = chapter.getTitle();
+    StringConcatenation _genNonParText = this.genNonParText(_title, fileNames);
+    _builder.append(_genNonParText, "");
+    _builder.append("</div>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    {
+      List<? extends AbstractSection> _sections = this.ase.sections(chapter);
+      boolean _isEmpty = _sections.isEmpty();
+      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+      if (_operator_not) {
+        StringConcatenation _leftNavSubToc = this.leftNavSubToc(chapter, fileNames);
+        _builder.append(_leftNavSubToc, "	");
+      }
+    }
+    _builder.append("</li>");
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  protected StringConcatenation _leftNavTocEntry(final AbstractSection section, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li><a href=\"");
     String _get = fileNames.get(section);
@@ -1288,20 +1462,282 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generate(final AbstractSection chap, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public StringConcatenation elementIdForSubToc(final Chapter chap, final Map<AbstractSection,String> fileNames) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("subToc_");
+    String _get = fileNames.get(chap);
+    _builder.append(_get, "");
+    return _builder;
+  }
+  
+  public StringConcatenation generateLogo() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"width: 185px;\"/>");
+    return _builder;
+  }
+  
+  public StringConcatenation javaScriptForNavigation() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append(" ");
+    _builder.append("<script type=\"text/javascript\"> ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("function initTocMenu(ActiveSubTocElementId){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("var menu = document.getElementById(\"leftnav\");");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("var chapters = menu.children;");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("addHideSubsectionFunction(chapters);");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("document.getElementById(ActiveSubTocElementId).style.display = \"block\";");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("function addHideSubsectionFunction(items){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("for (var i = 0; i < items.length; i++) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("if (items[i].firstElementChild ){");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("items[i].firstElementChild.onclick = function(){toc_toggle_subsections(this.parentNode);};");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("items[i].firstElementChild.style.cursor = \"pointer\";");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("function toc_toggle_subsections(chap){");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("if ( chap.children[1].style.display != \"none\" ) {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("chap.children[1].style.display = \"none\"");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("} else {");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("chap.children[1].style.display = \"block\"");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("</script>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public StringConcatenation _copiedPageLayoutTop() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<div id=\"novaWrapper\">\t\t<div id=\"clearHeader\">");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<div id=\"logo\">");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("<div id=\"promotion\"><a href=\"/indigo/friends.php\">");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<img src=\"/home/promotions/indigo/indigo.png\" alt=\"Indigo Is Coming!\"/>");
+    _builder.newLine();
+    _builder.append("</a>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<div id=\"otherSites\">");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("<div id=\"sites\">");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("<ul id=\"sitesUL\">");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("<li><a href=\'http://marketplace.eclipse.org\'><img alt=\"Eclipse Marketplace\" src=\"http://dev.eclipse.org/custom_icons/marketplace.png\"/>&nbsp;<div>Eclipse Marketplace</div></a></li>");
+    _builder.newLine();
+    _builder.append("\t\t\t\t");
+    _builder.append("<li><a href=\'http://live.eclipse.org\'><img alt=\"Eclipse Live\" src=\"http://dev.eclipse.org/custom_icons/audio-input-microphone-bw.png\"/>&nbsp;<div>Eclipse Live</div></a></li>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t    \t\t");
+    _builder.append("<li><a href=\'https://bugs.eclipse.org/bugs/\'><img alt=\"Bugzilla\" src=\"http://dev.eclipse.org/custom_icons/system-search-bw.png\"/>&nbsp;<div>Bugzilla</div></a></li>");
+    _builder.newLine();
+    _builder.append("\t    \t\t");
+    _builder.append("<li><a href=\'http://www.eclipse.org/forums/\'><img alt=\"Forums\" src=\"http://dev.eclipse.org/large_icons/apps/internet-group-chat.png\"/>&nbsp;<div>Eclipse Forums</div></a></li>");
+    _builder.newLine();
+    _builder.append("\t    \t\t");
+    _builder.append("<li><a href=\'http://www.planeteclipse.org/\'><img alt=\"Planet Eclipse\" src=\"http://dev.eclipse.org/large_icons/devices/audio-card.png\"/>&nbsp;<div>Planet Eclipse</div></a></li>");
+    _builder.newLine();
+    _builder.append("\t    \t\t");
+    _builder.append("<li><a href=\'http://wiki.eclipse.org/\'><img alt=\"Eclipse Wiki\" src=\"http://dev.eclipse.org/custom_icons/accessories-text-editor-bw.png\"/>&nbsp;<div>Eclipse Wiki</div></a></li>");
+    _builder.newLine();
+    _builder.append("\t    \t\t");
+    _builder.append("<li><a href=\'http://portal.eclipse.org\'><img alt=\"MyFoundation Portal\" src=\"http://dev.eclipse.org/custom_icons/preferences-system-network-proxy-bw.png\"/><div>My Foundation Portal</div></a></li>");
+    _builder.newLine();
+    _builder.append("\t    \t");
+    _builder.append("</ul>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t    \t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("</div>\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("<div id=\"header\">\t\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<div id=\"menu\">");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<ul>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<li><a href=\"/Xtext\" target=\"_self\">Home</a></li> ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<li><a href=\"/Xtext/download\" target=\"_self\">Download</a></li> ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<li><a href=\"xtext.html\" target=\"_self\">Documentation</a></li> ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<li><a href=\"/Xtext/support\" target=\"_self\">Support</a></li> ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<li><a href=\"/Xtext/community\" target=\"_self\">Community</a></li> ");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<li><a href=\"/Xtext/developers\" target=\"_self\">Developers</a></li> ");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("</ul>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<div id=\"search\">");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("<form action=\"http://www.google.com/cse\" id=\"searchbox_017941334893793413703:sqfrdtd112s\">");
+    _builder.newLine();
+    _builder.append("\t\t \t");
+    _builder.append("<input type=\"hidden\" name=\"cx\" value=\"017941334893793413703:sqfrdtd112s\" />");
+    _builder.newLine();
+    _builder.append("\t  \t\t");
+    _builder.append("<input id=\"searchBox\" type=\"text\" name=\"q\" size=\"25\" />");
+    _builder.newLine();
+    _builder.append("\t  \t\t");
+    _builder.append("<input id=\"searchButton\" type=\"submit\" name=\"sa\" value=\"Search\" />");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("</form>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<script type=\"text/javascript\" src=\"http://www.google.com/coop/cse/brand?form=searchbox_017941334893793413703%3Asqfrdtd112s&lang=en\"></script>\t\t\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("</div>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public StringConcatenation _copiedPageLayoutBottom() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<div id=\"clearFooter\"></div>");
+    _builder.newLine();
+    _builder.append("<div id=\"footer\">");
+    _builder.newLine();
+    _builder.append("<ul id=\"footernav\">");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<li><a href=\"/\">Home</a></li>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<li><a href=\"/legal/privacy.php\">Privacy Policy</a></li>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<li><a href=\"/legal/termsofuse.php\">Terms of Use</a></li>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<li><a href=\"/legal/copyright.php\">Copyright Agent</a></li>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<li><a href=\"/legal/\">Legal</a></li>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<li><a href=\"/org/foundation/contact.php\">Contact Us</a></li>");
+    _builder.newLine();
+    _builder.append("</ul>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("<span id=\"copyright\">Copyright &copy; 2011 The Eclipse Foundation. All Rights Reserved.</span>");
+    _builder.newLine();
+    _builder.append("</div>");
+    _builder.newLine();
+    return _builder;
+  }
+  
+  public StringConcatenation genContent(final AbstractSection chap, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
     if ((chap instanceof Chapter)
          && (fsa instanceof IFileSystemAccess)
-         && (buttons instanceof CharSequence)
-         && (fileNames instanceof Map)) {
-      return _generate((Chapter)chap, (IFileSystemAccess)fsa, (CharSequence)buttons, (Map<AbstractSection,String>)fileNames);
+         && (fileNames instanceof Map)
+         && (leftNav instanceof CharSequence)) {
+      return _genContent((Chapter)chap, (IFileSystemAccess)fsa, (Map<AbstractSection,String>)fileNames, (CharSequence)leftNav);
     } else if ((chap instanceof Section)
          && (fsa instanceof IFileSystemAccess)
-         && (buttons instanceof CharSequence)
-         && (fileNames instanceof Map)) {
-      return _generate((Section)chap, (IFileSystemAccess)fsa, (CharSequence)buttons, (Map<AbstractSection,String>)fileNames);
+         && (fileNames instanceof Map)
+         && (leftNav instanceof CharSequence)) {
+      return _genContent((Section)chap, (IFileSystemAccess)fsa, (Map<AbstractSection,String>)fileNames, (CharSequence)leftNav);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chap, fsa, buttons, fileNames).toString());
+        java.util.Arrays.<Object>asList(chap, fsa, fileNames, leftNav).toString());
     }
   }
   
@@ -1331,6 +1767,19 @@ public class HtmlGenerator implements IGenerator {
     } else if ((chapter instanceof AbstractSection)
          && (fileNames instanceof Map)) {
       return _tocEntry((AbstractSection)chapter, (Map<AbstractSection,String>)fileNames);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chapter, fileNames).toString());
+    }
+  }
+  
+  public StringConcatenation leftNavTocEntry(final AbstractSection chapter, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+    if ((chapter instanceof Chapter)
+         && (fileNames instanceof Map)) {
+      return _leftNavTocEntry((Chapter)chapter, (Map<AbstractSection,String>)fileNames);
+    } else if ((chapter instanceof AbstractSection)
+         && (fileNames instanceof Map)) {
+      return _leftNavTocEntry((AbstractSection)chapter, (Map<AbstractSection,String>)fileNames);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         java.util.Arrays.<Object>asList(chapter, fileNames).toString());
