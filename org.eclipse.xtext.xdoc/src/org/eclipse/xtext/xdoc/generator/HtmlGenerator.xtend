@@ -49,7 +49,7 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def generate(Document doc, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames) {
-		fsa.generateFile(fileNames.get(doc).decode, 
+		fsa.generateFile("index.html", 
 		'''
 		<html>
 		  «header(doc.title)»
@@ -88,6 +88,7 @@ class HtmlGenerator implements IGenerator {
 		  «^as.title.header»
 		
 		<body onload="initTocMenu('«leftNavUnfoldSubTocId»');">
+		<body onload="highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf('/')+1));">
 		«_copiedPageLayoutTop»
 		<div id="novaContent" class="faux">
 			<br style="clear:both;height:1em;">
@@ -98,7 +99,7 @@ class HtmlGenerator implements IGenerator {
 				<div class="buttonbar">
 				«buttons»
 				</div>
-				<div style="clear:both;"></div>
+				<div style="clear:both;margin-bottom:1em"></div>
 				
 				«^as.genContent(fsa, fileNames, leftNav)»
 				<div class="buttonbar">
@@ -127,23 +128,23 @@ class HtmlGenerator implements IGenerator {
 				<a name="«chap.name»"></a>«ENDIF»
 				«chap.toc(fileNames)»
 				
-				«FOR c : chap.contents »
-					«c.genText(fileNames)»
-				«ENDFOR»
+		«FOR c : chap.contents »
+			«c.genText(fileNames)»
+		«ENDFOR»
 	'''
 	}
 	
 	
 	def dispatch genContent(Section sec, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) '''
 		«sec.labelName(fileNames).anchor»
-			<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
+		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
 			«sec.toc(fileNames)»
-			«FOR c : sec.contents»
-				«c.genText(fileNames)»
-			«ENDFOR»
-			«FOR sec2: sec.sections»
-				«sec2.generate(fileNames)»
-			«ENDFOR»
+		«FOR c : sec.contents»
+			«c.genText(fileNames)»
+		«ENDFOR»
+		«FOR sec2: sec.sections»
+			«sec2.generate(fileNames)»
+		«ENDFOR»
 	'''
 
 	def tag(AbstractSection ^as) {
@@ -196,8 +197,8 @@ class HtmlGenerator implements IGenerator {
 		<head>
 		  <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		  <title>«title.genPlainText»</title>
-		  <link href="http://www.eclipse.org/Xtext/documentation/1_0_1/book.css" rel="stylesheet" type="text/css">
-		  <link href="http://www.eclipse.org/Xtext/documentation/1_0_1/code.css" rel="stylesheet" type="text/css">
+		  <link href="book.css" rel="stylesheet" type="text/css">
+		  <link href="code.css" rel="stylesheet" type="text/css">
 		  <link href="http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css" media="screen">
 		  <link href="http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/menu/assets/skins/sam/menu.css" rel="stylesheet" type="text/css" media="screen">
 		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/reset.css" rel="stylesheet" type="text/css" media="screen">
@@ -206,6 +207,8 @@ class HtmlGenerator implements IGenerator {
 		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/footer.css" rel="stylesheet" type="text/css" media="screen">
 		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/visual.css" rel="stylesheet" type="text/css" media="screen">
 		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/print.css" rel="stylesheet" type="text/css" media="print">
+		  <link rel="stylesheet" type="text/css" href="http://www.eclipse.org/Xtext/style.css"/>
+		  <link rel="stylesheet" type="text/css" href="http://www.eclipse.org/style2.css"/>
 		  «javaScriptForNavigation»
 		</head>
 	'''
@@ -277,7 +280,7 @@ class HtmlGenerator implements IGenerator {
 	'''
 
 	def dispatch leftNavTocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
-		<li><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
+		<li id="«fileNames.get(section)»" ><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
 	'''
 
 	def genAuthors(Document doc, Map<AbstractSection, String> fileNames) {
@@ -505,8 +508,10 @@ class HtmlGenerator implements IGenerator {
 	def elementIdForSubToc(Chapter chap,  Map<AbstractSection, String> fileNames)
 		'''subToc_«fileNames.get(chap)»'''
 	
-	def generateLogo() 
-		'''<img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="width: 185px;"/>'''
+	def generateLogo() '''
+		<div class="nav-logo">
+			<img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin:5pt; width:175px"/>
+		</div>'''
 	
 	def javaScriptForNavigation(){
 		'''
@@ -535,6 +540,10 @@ class HtmlGenerator implements IGenerator {
 					chap.children[1].style.display = "block"
 					
 				}
+			}
+			
+			function highlightCurrentSection(sec) {
+				document.getElementById(sec).style.backgroundColor= "#D0D0D0"
 			}
 		</script>
 		'''

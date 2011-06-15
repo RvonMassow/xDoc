@@ -114,8 +114,6 @@ public class HtmlGenerator implements IGenerator {
   public StringConcatenation generate(final Document doc, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
-      String _get = fileNames.get(doc);
-      String _decode = URLDecoder.decode(_get);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<html>");
       _builder.newLine();
@@ -130,7 +128,7 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLineIfNotEmpty();
       _builder.append("</html>");
       _builder.newLine();
-      fsa.generateFile(_decode, _builder);
+      fsa.generateFile("index.html", _builder);
       StringConcatenation _leftNavToc = this.leftNavToc(doc, fileNames);
       final StringConcatenation leftNav = _leftNavToc;
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -145,8 +143,8 @@ public class HtmlGenerator implements IGenerator {
           if (_operator_greaterThan) {
             EList<Chapter> _chapters_1 = doc.getChapters();
             int _operator_minus = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
-            Chapter _get_1 = _chapters_1.get(_operator_minus);
-            StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get_1, fileNames);
+            Chapter _get = _chapters_1.get(_operator_minus);
+            StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get, fileNames);
             _xifexpression = _genPrevButton;
           }
           final StringConcatenation prevS = _xifexpression;
@@ -158,8 +156,8 @@ public class HtmlGenerator implements IGenerator {
           if (_operator_lessThan) {
             EList<Chapter> _chapters_3 = doc.getChapters();
             int _operator_plus = IntegerExtensions.operator_plus(((Integer)index), ((Integer)1));
-            Chapter _get_2 = _chapters_3.get(_operator_plus);
-            StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_2, fileNames);
+            Chapter _get_1 = _chapters_3.get(_operator_plus);
+            StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_1, fileNames);
             _xifexpression_1 = _genNextButton;
           }
           final StringConcatenation nextS = _xifexpression_1;
@@ -222,6 +220,8 @@ public class HtmlGenerator implements IGenerator {
       _builder.append(leftNavUnfoldSubTocId, "");
       _builder.append("\');\">");
       _builder.newLineIfNotEmpty();
+      _builder.append("<body onload=\"highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf(\'/\')+1));\">");
+      _builder.newLine();
       StringConcatenation __copiedPageLayoutTop = this._copiedPageLayoutTop();
       _builder.append(__copiedPageLayoutTop, "");
       _builder.newLineIfNotEmpty();
@@ -252,7 +252,7 @@ public class HtmlGenerator implements IGenerator {
       _builder.append("</div>");
       _builder.newLine();
       _builder.append("\t\t");
-      _builder.append("<div style=\"clear:both;\"></div>");
+      _builder.append("<div style=\"clear:both;margin-bottom:1em\"></div>");
       _builder.newLine();
       _builder.append("\t\t");
       _builder.newLine();
@@ -366,9 +366,8 @@ public class HtmlGenerator implements IGenerator {
       {
         EList<TextOrMarkup> _contents = chap.getContents();
         for(TextOrMarkup c : _contents) {
-          _builder_1.append("\t\t");
           CharSequence _genText = this.genText(c, fileNames);
-          _builder_1.append(_genText, "		");
+          _builder_1.append(_genText, "");
           _builder_1.newLineIfNotEmpty();
         }
       }
@@ -383,17 +382,16 @@ public class HtmlGenerator implements IGenerator {
     StringConcatenation _anchor = this.anchor(_labelName);
     _builder.append(_anchor, "");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
     _builder.append("<");
     String _tag = this.tag(sec);
-    _builder.append(_tag, "	");
+    _builder.append(_tag, "");
     _builder.append(">");
     TextOrMarkup _title = sec.getTitle();
     StringConcatenation _genNonParText = this.genNonParText(_title, fileNames);
-    _builder.append(_genNonParText, "	");
+    _builder.append(_genNonParText, "");
     _builder.append("</");
     String _tag_1 = this.tag(sec);
-    _builder.append(_tag_1, "	");
+    _builder.append(_tag_1, "");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -403,18 +401,16 @@ public class HtmlGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(TextOrMarkup c : _contents) {
-        _builder.append("\t");
         CharSequence _genText = this.genText(c, fileNames);
-        _builder.append(_genText, "	");
+        _builder.append(_genText, "");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       List<? extends AbstractSection> _sections = this.ase.sections(sec);
       for(AbstractSection sec2 : _sections) {
-        _builder.append("\t");
         StringConcatenation _generate = this.generate(sec2, fileNames);
-        _builder.append(_generate, "	");
+        _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -587,10 +583,10 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("</title>");
     _builder.newLineIfNotEmpty();
     _builder.append("  ");
-    _builder.append("<link href=\"http://www.eclipse.org/Xtext/documentation/1_0_1/book.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.append("<link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">");
     _builder.newLine();
     _builder.append("  ");
-    _builder.append("<link href=\"http://www.eclipse.org/Xtext/documentation/1_0_1/code.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
     _builder.newLine();
     _builder.append("  ");
     _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\">");
@@ -615,6 +611,12 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("  ");
     _builder.append("<link href=\"http://www.eclipse.org/eclipse.org-common/themes/Nova/css/print.css\" rel=\"stylesheet\" type=\"text/css\" media=\"print\">");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.eclipse.org/Xtext/style.css\"/>");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("<link rel=\"stylesheet\" type=\"text/css\" href=\"http://www.eclipse.org/style2.css\"/>");
     _builder.newLine();
     _builder.append("  ");
     StringConcatenation _javaScriptForNavigation = this.javaScriptForNavigation();
@@ -820,9 +822,12 @@ public class HtmlGenerator implements IGenerator {
   
   protected StringConcatenation _leftNavTocEntry(final AbstractSection section, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<li><a href=\"");
+    _builder.append("<li id=\"");
     String _get = fileNames.get(section);
     _builder.append(_get, "");
+    _builder.append("\" ><a href=\"");
+    String _get_1 = fileNames.get(section);
+    _builder.append(_get_1, "");
     _builder.append("\" >");
     TextOrMarkup _title = section.getTitle();
     StringConcatenation _genNonParText = this.genNonParText(_title, fileNames);
@@ -1472,7 +1477,12 @@ public class HtmlGenerator implements IGenerator {
   
   public StringConcatenation generateLogo() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"width: 185px;\"/>");
+    _builder.append("<div class=\"nav-logo\">");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"margin:5pt; width:175px\"/>");
+    _builder.newLine();
+    _builder.append("</div>");
     return _builder;
   }
   
@@ -1547,6 +1557,17 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("function highlightCurrentSection(sec) {");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("document.getElementById(sec).style.backgroundColor= \"#D0D0D0\"");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
