@@ -582,7 +582,7 @@ class HtmlGenerator implements IGenerator {
 			<ul>
 			<li><a href="/Xtext" target="_self">Home</a></li> 
 			<li><a href="/Xtext/download" target="_self">Download</a></li> 
-			<li><a href="xtext.html" target="_self">Documentation</a></li> 
+			<li><a href="index.html" target="_self">Documentation</a></li> 
 			<li><a href="/Xtext/support" target="_self">Support</a></li> 
 			<li><a href="/Xtext/community" target="_self">Community</a></li> 
 			<li><a href="/Xtext/developers" target="_self">Developers</a></li> 

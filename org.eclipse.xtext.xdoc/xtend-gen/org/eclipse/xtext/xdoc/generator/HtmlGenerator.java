@@ -1659,7 +1659,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<li><a href=\"/Xtext/download\" target=\"_self\">Download</a></li> ");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("<li><a href=\"xtext.html\" target=\"_self\">Documentation</a></li> ");
+    _builder.append("<li><a href=\"index.html\" target=\"_self\">Documentation</a></li> ");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("<li><a href=\"/Xtext/support\" target=\"_self\">Support</a></li> ");
