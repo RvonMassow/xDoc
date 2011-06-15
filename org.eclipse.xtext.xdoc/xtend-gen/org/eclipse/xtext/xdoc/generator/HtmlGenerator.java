@@ -1504,7 +1504,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<div class=\"nav-logo\">");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("<a href=\"index.html\"><img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"margin:30pt; width:125px\"/></a>");
+    _builder.append("<a href=\"index.html\"><img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"margin-left:30px; width:125px\"/></a>");
     _builder.newLine();
     _builder.append("</div>");
     return _builder;

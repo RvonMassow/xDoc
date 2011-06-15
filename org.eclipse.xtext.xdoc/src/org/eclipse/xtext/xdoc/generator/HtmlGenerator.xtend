@@ -518,7 +518,7 @@ class HtmlGenerator implements IGenerator {
 	
 	def generateLogo() '''
 		<div class="nav-logo">
-			<a href="index.html"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin:30pt; width:125px"/></a>
+			<a href="index.html"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin-left:30px; width:125px"/></a>
 		</div>'''
 	
 	def javaScriptForNavigation(){
