@@ -150,23 +150,16 @@ public class HtmlGenerator implements IGenerator {
             EList<Chapter> _chapters_1 = doc.getChapters();
             int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
             Chapter _get_1 = _chapters_1.get(_operator_minus_1);
-            StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get_1, fileNames);
+            List<? extends AbstractSection> _sections_2 = this.ase==null?(List<? extends AbstractSection>)null:this.ase.sections(_get_1);
+            AbstractSection _last = IterableExtensions.<AbstractSection>last(((List<AbstractSection>) _sections_2));
+            StringConcatenation _genPrevButton = this.genPrevButton(_last, fileNames);
             _xifexpression = _genPrevButton;
           }
           final StringConcatenation prevS = _xifexpression;
-          StringConcatenation _xifexpression_1 = null;
-          EList<Chapter> _chapters_2 = doc.getChapters();
-          int _size_1 = _chapters_2.size();
-          int _operator_minus_2 = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)1));
-          boolean _operator_lessThan = ComparableExtensions.<Integer>operator_lessThan(((Integer)index), ((Integer)_operator_minus_2));
-          if (_operator_lessThan) {
-            EList<Chapter> _chapters_3 = doc.getChapters();
-            int _operator_plus = IntegerExtensions.operator_plus(((Integer)index), ((Integer)1));
-            Chapter _get_2 = _chapters_3.get(_operator_plus);
-            StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_2, fileNames);
-            _xifexpression_1 = _genNextButton;
-          }
-          final StringConcatenation nextS = _xifexpression_1;
+          List<? extends AbstractSection> _sections_3 = this.ase.sections(chapter);
+          AbstractSection _head = IterableExtensions.<AbstractSection>head(((List<AbstractSection>) _sections_3));
+          StringConcatenation _genNextButton = this.genNextButton(_head, fileNames);
+          final StringConcatenation nextS = _genNextButton;
           StringConcatenation _builder_2 = new StringConcatenation();
           _builder_2.append(prevS, "");
           _builder_2.append(nextS, "");
@@ -314,6 +307,9 @@ public class HtmlGenerator implements IGenerator {
             AbstractSection _get = _sections_1.get(_operator_minus_1);
             StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get, fileNames);
             _xifexpression = _genPrevButton;
+          } else {
+            StringConcatenation _genPrevButton_1 = this.genPrevButton(chap, fileNames);
+            _xifexpression = _genPrevButton_1;
           }
           final StringConcatenation prevS = _xifexpression;
           StringConcatenation _xifexpression_1 = null;
@@ -327,19 +323,40 @@ public class HtmlGenerator implements IGenerator {
             AbstractSection _get_1 = _sections_3.get(_operator_plus);
             StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_1, fileNames);
             _xifexpression_1 = _genNextButton;
+          } else {
+            StringConcatenation _xblockexpression_1 = null;
+            {
+              List<? extends AbstractSection> _sections_4 = this.ase.sections(parent);
+              int _indexOf = _sections_4.indexOf(chap);
+              final int index2 = _indexOf;
+              StringConcatenation _xifexpression_2 = null;
+              List<? extends AbstractSection> _sections_5 = this.ase.sections(parent);
+              int _size_2 = _sections_5.size();
+              int _operator_minus_3 = IntegerExtensions.operator_minus(((Integer)_size_2), ((Integer)1));
+              boolean _operator_lessThan_1 = ComparableExtensions.<Integer>operator_lessThan(((Integer)index2), ((Integer)_operator_minus_3));
+              if (_operator_lessThan_1) {
+                List<? extends AbstractSection> _sections_6 = this.ase.sections(parent);
+                int _operator_plus_1 = IntegerExtensions.operator_plus(((Integer)index2), ((Integer)1));
+                AbstractSection _get_2 = _sections_6.get(_operator_plus_1);
+                StringConcatenation _genNextButton_1 = this==null?(StringConcatenation)null:this.genNextButton(_get_2, fileNames);
+                _xifexpression_2 = _genNextButton_1;
+              }
+              _xblockexpression_1 = (_xifexpression_2);
+            }
+            _xifexpression_1 = _xblockexpression_1;
           }
           final StringConcatenation nextS = _xifexpression_1;
-          List<? extends AbstractSection> _sections_4 = this.ase.sections(chap);
-          AbstractSection _get_2 = _sections_4.get(index);
+          List<? extends AbstractSection> _sections_7 = this.ase.sections(chap);
+          AbstractSection _get_3 = _sections_7.get(index);
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(prevS, "");
           _builder.append("<a href=\"");
-          String _get_3 = fileNames.get(chap);
-          _builder.append(_get_3, "");
+          String _get_4 = fileNames.get(chap);
+          _builder.append(_get_4, "");
           _builder.append("\" >Top</a>");
           _builder.append(nextS, "");
           StringConcatenation _elementIdForSubToc = this.elementIdForSubToc(chap, fileNames);
-          this.generate(_get_2, chap, fsa, _builder, fileNames, leftNav, _elementIdForSubToc);
+          this.generate(_get_3, chap, fsa, _builder, fileNames, leftNav, _elementIdForSubToc);
         }
       }
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -1487,7 +1504,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<div class=\"nav-logo\">");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("<a href=\"index.html\"><img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"margin:5pt; width:175px\"/></a>");
+    _builder.append("<a href=\"index.html\"><img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"margin:30pt; width:125px\"/></a>");
     _builder.newLine();
     _builder.append("</div>");
     return _builder;

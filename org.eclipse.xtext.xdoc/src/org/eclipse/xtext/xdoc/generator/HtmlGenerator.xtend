@@ -63,8 +63,8 @@ class HtmlGenerator implements IGenerator {
 		for(i : 0..doc.sections.size - 1) {
 			val chapter = doc.sections.get(i)
 			val index = doc.chapters.indexOf(chapter)
-			val prevS = if(index > 0) doc.chapters.get(index - 1) ?.genPrevButton(fileNames)
-			val nextS = if(index < doc.chapters.size - 1) doc.chapters.get(index + 1)?.genNextButton(fileNames)
+			val prevS = if(index > 0) (doc.chapters.get(index - 1)?.sections as List<AbstractSection>).last.genPrevButton(fileNames)
+			val nextS = (chapter.sections as List<AbstractSection>).head.genNextButton(fileNames)
 			chapter.generate(doc, fsa, '''«prevS»«nextS»''', fileNames, leftNav, (chapter as Chapter).elementIdForSubToc(fileNames))
 		}
 		''''''
@@ -118,8 +118,18 @@ class HtmlGenerator implements IGenerator {
 	
 	def dispatch genContent(Chapter chap, Document parent, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) {
 		for(index: 0..chap.sections.size - 1) {
-			val prevS = if(index > 0) chap.sections.get(index - 1)?.genPrevButton(fileNames)
-			val nextS = if(index < chap.sections.size - 1) chap.sections.get(index + 1)?.genNextButton(fileNames)
+			val prevS = if(index > 0) 
+							chap.sections.get(index - 1)?.genPrevButton(fileNames)
+						else {
+							chap.genPrevButton(fileNames)
+						}
+			val nextS = if(index < chap.sections.size - 1)
+							chap.sections.get(index + 1)?.genNextButton(fileNames)
+						else {
+							val index2 = parent.sections.indexOf(chap)
+							if(index2 < parent.sections.size -1 )
+								parent.sections.get(index2 + 1)?.genNextButton(fileNames)
+						}
 			chap.sections.get(index).generate(chap, fsa, '''«prevS»<a href="«fileNames.get(chap)»" >Top</a>«nextS»''', fileNames, leftNav, chap.elementIdForSubToc(fileNames))
 		}
 		'''
@@ -508,7 +518,7 @@ class HtmlGenerator implements IGenerator {
 	
 	def generateLogo() '''
 		<div class="nav-logo">
-			<a href="index.html"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin:5pt; width:175px"/></a>
+			<a href="index.html"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin:30pt; width:125px"/></a>
 		</div>'''
 	
 	def javaScriptForNavigation(){
