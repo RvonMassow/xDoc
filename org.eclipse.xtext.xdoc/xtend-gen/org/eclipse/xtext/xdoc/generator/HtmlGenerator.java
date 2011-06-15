@@ -133,8 +133,14 @@ public class HtmlGenerator implements IGenerator {
       final StringConcatenation leftNav = _leftNavToc;
       StringConcatenation _builder_1 = new StringConcatenation();
       List<? extends AbstractSection> _sections = this.ase.sections(doc);
-      for (AbstractSection chapter : _sections) {
+      int _size = _sections.size();
+      int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
+      Iterable<Integer> _operator_upTo = IntegerExtensions.operator_upTo(((Integer)0), ((Integer)_operator_minus));
+      for (Integer i : _operator_upTo) {
         {
+          List<? extends AbstractSection> _sections_1 = this.ase.sections(doc);
+          AbstractSection _get = _sections_1.get(i);
+          final AbstractSection chapter = _get;
           EList<Chapter> _chapters = doc.getChapters();
           int _indexOf = _chapters.indexOf(chapter);
           final int index = _indexOf;
@@ -142,22 +148,22 @@ public class HtmlGenerator implements IGenerator {
           boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)index), ((Integer)0));
           if (_operator_greaterThan) {
             EList<Chapter> _chapters_1 = doc.getChapters();
-            int _operator_minus = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
-            Chapter _get = _chapters_1.get(_operator_minus);
-            StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get, fileNames);
+            int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
+            Chapter _get_1 = _chapters_1.get(_operator_minus_1);
+            StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get_1, fileNames);
             _xifexpression = _genPrevButton;
           }
           final StringConcatenation prevS = _xifexpression;
           StringConcatenation _xifexpression_1 = null;
           EList<Chapter> _chapters_2 = doc.getChapters();
-          int _size = _chapters_2.size();
-          int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
-          boolean _operator_lessThan = ComparableExtensions.<Integer>operator_lessThan(((Integer)index), ((Integer)_operator_minus_1));
+          int _size_1 = _chapters_2.size();
+          int _operator_minus_2 = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)1));
+          boolean _operator_lessThan = ComparableExtensions.<Integer>operator_lessThan(((Integer)index), ((Integer)_operator_minus_2));
           if (_operator_lessThan) {
             EList<Chapter> _chapters_3 = doc.getChapters();
             int _operator_plus = IntegerExtensions.operator_plus(((Integer)index), ((Integer)1));
-            Chapter _get_1 = _chapters_3.get(_operator_plus);
-            StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_1, fileNames);
+            Chapter _get_2 = _chapters_3.get(_operator_plus);
+            StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_2, fileNames);
             _xifexpression_1 = _genNextButton;
           }
           final StringConcatenation nextS = _xifexpression_1;
@@ -165,7 +171,7 @@ public class HtmlGenerator implements IGenerator {
           _builder_2.append(prevS, "");
           _builder_2.append(nextS, "");
           StringConcatenation _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter), fileNames);
-          this.generate(chapter, fsa, _builder_2, fileNames, leftNav, _elementIdForSubToc);
+          this.generate(chapter, doc, fsa, _builder_2, fileNames, leftNav, _elementIdForSubToc);
         }
       }
       StringConcatenation _builder_3 = new StringConcatenation();
@@ -202,7 +208,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generate(final AbstractSection as, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  public StringConcatenation generate(final AbstractSection as, final AbstractSection parent, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       String _get = fileNames.get(as);
@@ -218,10 +224,8 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLine();
       _builder.append("<body onload=\"initTocMenu(\'");
       _builder.append(leftNavUnfoldSubTocId, "");
-      _builder.append("\');\">");
+      _builder.append("\');highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf(\'/\')+1));\">");
       _builder.newLineIfNotEmpty();
-      _builder.append("<body onload=\"highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf(\'/\')+1));\">");
-      _builder.newLine();
       StringConcatenation __copiedPageLayoutTop = this._copiedPageLayoutTop();
       _builder.append(__copiedPageLayoutTop, "");
       _builder.newLineIfNotEmpty();
@@ -256,9 +260,8 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLine();
       _builder.append("\t\t");
       _builder.newLine();
-      _builder.append("\t\t");
-      StringConcatenation _genContent = this.genContent(as, fsa, fileNames, leftNav);
-      _builder.append(_genContent, "		");
+      StringConcatenation _genContent = this.genContent(as, parent, fsa, fileNames, leftNav);
+      _builder.append(_genContent, "");
       _builder.newLineIfNotEmpty();
       _builder.append("\t\t");
       _builder.append("<div class=\"buttonbar\">");
@@ -294,43 +297,49 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected StringConcatenation _genContent(final Chapter chap, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
+  protected StringConcatenation _genContent(final Chapter chap, final Document parent, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       List<? extends AbstractSection> _sections = this.ase.sections(chap);
-      for (AbstractSection section : _sections) {
+      int _size = _sections.size();
+      int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
+      Iterable<Integer> _operator_upTo = IntegerExtensions.operator_upTo(((Integer)0), ((Integer)_operator_minus));
+      for (Integer index : _operator_upTo) {
         {
-          List<? extends AbstractSection> _sections_1 = this.ase.sections(chap);
-          int _indexOf = _sections_1.indexOf(section);
-          final int index = _indexOf;
           StringConcatenation _xifexpression = null;
-          boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)index), ((Integer)0));
+          boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(index, ((Integer)0));
           if (_operator_greaterThan) {
-            List<? extends AbstractSection> _sections_2 = this.ase.sections(chap);
-            int _operator_minus = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
-            AbstractSection _get = _sections_2.get(_operator_minus);
+            List<? extends AbstractSection> _sections_1 = this.ase.sections(chap);
+            int _operator_minus_1 = IntegerExtensions.operator_minus(index, ((Integer)1));
+            AbstractSection _get = _sections_1.get(_operator_minus_1);
             StringConcatenation _genPrevButton = this==null?(StringConcatenation)null:this.genPrevButton(_get, fileNames);
             _xifexpression = _genPrevButton;
           }
           final StringConcatenation prevS = _xifexpression;
           StringConcatenation _xifexpression_1 = null;
-          List<? extends AbstractSection> _sections_3 = this.ase.sections(chap);
-          int _size = _sections_3.size();
-          int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
-          boolean _operator_lessThan = ComparableExtensions.<Integer>operator_lessThan(((Integer)index), ((Integer)_operator_minus_1));
+          List<? extends AbstractSection> _sections_2 = this.ase.sections(chap);
+          int _size_1 = _sections_2.size();
+          int _operator_minus_2 = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)1));
+          boolean _operator_lessThan = ComparableExtensions.<Integer>operator_lessThan(index, ((Integer)_operator_minus_2));
           if (_operator_lessThan) {
-            List<? extends AbstractSection> _sections_4 = this.ase.sections(chap);
-            int _operator_plus = IntegerExtensions.operator_plus(((Integer)index), ((Integer)1));
-            AbstractSection _get_1 = _sections_4.get(_operator_plus);
+            List<? extends AbstractSection> _sections_3 = this.ase.sections(chap);
+            int _operator_plus = IntegerExtensions.operator_plus(index, ((Integer)1));
+            AbstractSection _get_1 = _sections_3.get(_operator_plus);
             StringConcatenation _genNextButton = this==null?(StringConcatenation)null:this.genNextButton(_get_1, fileNames);
             _xifexpression_1 = _genNextButton;
           }
           final StringConcatenation nextS = _xifexpression_1;
+          List<? extends AbstractSection> _sections_4 = this.ase.sections(chap);
+          AbstractSection _get_2 = _sections_4.get(index);
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(prevS, "");
+          _builder.append("<a href=\"");
+          String _get_3 = fileNames.get(chap);
+          _builder.append(_get_3, "");
+          _builder.append("\" >Top</a>");
           _builder.append(nextS, "");
           StringConcatenation _elementIdForSubToc = this.elementIdForSubToc(chap, fileNames);
-          this.generate(section, fsa, _builder, fileNames, leftNav, _elementIdForSubToc);
+          this.generate(_get_2, chap, fsa, _builder, fileNames, leftNav, _elementIdForSubToc);
         }
       }
       StringConcatenation _builder_1 = new StringConcatenation();
@@ -376,7 +385,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected StringConcatenation _genContent(final Section sec, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
+  protected StringConcatenation _genContent(final Section sec, final Chapter parent, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     String _labelName = this.naming.labelName(sec, fileNames);
     StringConcatenation _anchor = this.anchor(_labelName);
@@ -1325,8 +1334,6 @@ public class HtmlGenerator implements IGenerator {
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append("", "");
-      _builder.newLineIfNotEmpty();
       _builder.append("<img src=\"");
       String _path_1 = img.getPath();
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_path_1);
@@ -1480,7 +1487,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<div class=\"nav-logo\">");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("<img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"margin:5pt; width:175px\"/>");
+    _builder.append("<a href=\"index.html\"><img src=\"http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png\" style=\"margin:5pt; width:175px\"/></a>");
     _builder.newLine();
     _builder.append("</div>");
     return _builder;
@@ -1745,20 +1752,22 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation genContent(final AbstractSection chap, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
+  public StringConcatenation genContent(final AbstractSection chap, final AbstractSection parent, final IFileSystemAccess fsa, final Map<AbstractSection,String> fileNames, final CharSequence leftNav) throws RuntimeException {
     if ((chap instanceof Chapter)
+         && (parent instanceof Document)
          && (fsa instanceof IFileSystemAccess)
          && (fileNames instanceof Map)
          && (leftNav instanceof CharSequence)) {
-      return _genContent((Chapter)chap, (IFileSystemAccess)fsa, (Map<AbstractSection,String>)fileNames, (CharSequence)leftNav);
+      return _genContent((Chapter)chap, (Document)parent, (IFileSystemAccess)fsa, (Map<AbstractSection,String>)fileNames, (CharSequence)leftNav);
     } else if ((chap instanceof Section)
+         && (parent instanceof Chapter)
          && (fsa instanceof IFileSystemAccess)
          && (fileNames instanceof Map)
          && (leftNav instanceof CharSequence)) {
-      return _genContent((Section)chap, (IFileSystemAccess)fsa, (Map<AbstractSection,String>)fileNames, (CharSequence)leftNav);
+      return _genContent((Section)chap, (Chapter)parent, (IFileSystemAccess)fsa, (Map<AbstractSection,String>)fileNames, (CharSequence)leftNav);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chap, fsa, fileNames, leftNav).toString());
+        java.util.Arrays.<Object>asList(chap, parent, fsa, fileNames, leftNav).toString());
     }
   }
   

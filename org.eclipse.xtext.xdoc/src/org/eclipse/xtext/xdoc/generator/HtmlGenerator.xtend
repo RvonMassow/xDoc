@@ -60,11 +60,12 @@ class HtmlGenerator implements IGenerator {
 		// fsa.generateFile("toc.html", )
 		val leftNav = doc.leftNavToc(fileNames)
 		''''''
-		for(chapter : doc.sections) {
+		for(i : 0..doc.sections.size - 1) {
+			val chapter = doc.sections.get(i)
 			val index = doc.chapters.indexOf(chapter)
 			val prevS = if(index > 0) doc.chapters.get(index - 1) ?.genPrevButton(fileNames)
 			val nextS = if(index < doc.chapters.size - 1) doc.chapters.get(index + 1)?.genNextButton(fileNames)
-			chapter.generate(fsa, '''«prevS»«nextS»''', fileNames, leftNav, (chapter as Chapter).elementIdForSubToc(fileNames))
+			chapter.generate(doc, fsa, '''«prevS»«nextS»''', fileNames, leftNav, (chapter as Chapter).elementIdForSubToc(fileNames))
 		}
 		''''''
 	}
@@ -81,14 +82,13 @@ class HtmlGenerator implements IGenerator {
 		</span>
 	'''
 
-	def generate(AbstractSection ^as, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
+	def generate(AbstractSection ^as, AbstractSection parent, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
 		fsa.generateFile(fileNames.get(^as).decode,
 		'''
 		<html>
 		  «^as.title.header»
 		
-		<body onload="initTocMenu('«leftNavUnfoldSubTocId»');">
-		<body onload="highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf('/')+1));">
+		<body onload="initTocMenu('«leftNavUnfoldSubTocId»');highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf('/')+1));">
 		«_copiedPageLayoutTop»
 		<div id="novaContent" class="faux">
 			<br style="clear:both;height:1em;">
@@ -101,7 +101,7 @@ class HtmlGenerator implements IGenerator {
 				</div>
 				<div style="clear:both;margin-bottom:1em"></div>
 				
-				«^as.genContent(fsa, fileNames, leftNav)»
+		«^as.genContent(parent, fsa, fileNames, leftNav)»
 				<div class="buttonbar">
 				«buttons»
 				</div>
@@ -116,12 +116,11 @@ class HtmlGenerator implements IGenerator {
 	''''''
 	}
 	
-	def dispatch genContent(Chapter chap, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) {
-		for(section: chap.sections) {
-			val index = chap.sections.indexOf(section)
+	def dispatch genContent(Chapter chap, Document parent, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) {
+		for(index: 0..chap.sections.size - 1) {
 			val prevS = if(index > 0) chap.sections.get(index - 1)?.genPrevButton(fileNames)
 			val nextS = if(index < chap.sections.size - 1) chap.sections.get(index + 1)?.genNextButton(fileNames)
-			section.generate(fsa, '''«prevS»«nextS»''', fileNames, leftNav, chap.elementIdForSubToc(fileNames))
+			chap.sections.get(index).generate(chap, fsa, '''«prevS»<a href="«fileNames.get(chap)»" >Top</a>«nextS»''', fileNames, leftNav, chap.elementIdForSubToc(fileNames))
 		}
 		'''
 		<«chap.tag»>«chap.title.genNonParText(fileNames)»</«chap.tag»>«IF chap.name != null»
@@ -135,7 +134,7 @@ class HtmlGenerator implements IGenerator {
 	}
 	
 	
-	def dispatch genContent(Section sec, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) '''
+	def dispatch genContent(Section sec, Chapter parent, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) '''
 		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
 			«sec.toc(fileNames)»
@@ -464,7 +463,6 @@ class HtmlGenerator implements IGenerator {
 			«IF img.name != null»
 				<a>«img.name»</a>
 			«ENDIF»
-			«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
 			<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
 			«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
 			<div class="caption">
@@ -510,7 +508,7 @@ class HtmlGenerator implements IGenerator {
 	
 	def generateLogo() '''
 		<div class="nav-logo">
-			<img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin:5pt; width:175px"/>
+			<a href="index.html"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin:5pt; width:175px"/></a>
 		</div>'''
 	
 	def javaScriptForNavigation(){
