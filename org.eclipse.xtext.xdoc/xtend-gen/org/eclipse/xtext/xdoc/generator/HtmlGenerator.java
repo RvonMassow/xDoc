@@ -141,21 +141,56 @@ public class HtmlGenerator implements IGenerator {
           EList<Chapter> _chapters = doc.getChapters();
           int _indexOf = _chapters.indexOf(chapter);
           final int index = _indexOf;
-          CharSequence _xifexpression = null;
+          AbstractSection _xifexpression = null;
           boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)index), ((Integer)0));
           if (_operator_greaterThan) {
-            EList<Chapter> _chapters_1 = doc.getChapters();
-            int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
-            Chapter _get_1 = _chapters_1.get(_operator_minus_1);
-            List<? extends AbstractSection> _sections_2 = this.ase==null?(List<? extends AbstractSection>)null:this.ase.sections(_get_1);
-            AbstractSection _last = IterableExtensions.<AbstractSection>last(((List<AbstractSection>) _sections_2));
-            CharSequence _genPrevButton = this.genPrevButton(_last, fileNames);
-            _xifexpression = _genPrevButton;
+            AbstractSection _xblockexpression_1 = null;
+            {
+              EList<Chapter> _chapters_1 = doc.getChapters();
+              int _operator_minus_1 = IntegerExtensions.operator_minus(((Integer)index), ((Integer)1));
+              Chapter _get_1 = _chapters_1.get(_operator_minus_1);
+              final Chapter prevChap = _get_1;
+              AbstractSection _xifexpression_1 = null;
+              List<? extends AbstractSection> _sections_2 = this.ase.sections(prevChap);
+              boolean _isEmpty = _sections_2.isEmpty();
+              boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+              if (_operator_not) {
+                List<? extends AbstractSection> _sections_3 = this.ase.sections(prevChap);
+                AbstractSection _last = IterableExtensions.<AbstractSection>last(((List<AbstractSection>) _sections_3));
+                _xifexpression_1 = _last;
+              } else {
+                _xifexpression_1 = prevChap;
+              }
+              _xblockexpression_1 = (_xifexpression_1);
+            }
+            _xifexpression = _xblockexpression_1;
           }
-          final CharSequence prevS = _xifexpression;
-          List<? extends AbstractSection> _sections_3 = this.ase.sections(chapter);
-          AbstractSection _head = IterableExtensions.<AbstractSection>head(((List<AbstractSection>) _sections_3));
-          CharSequence _genNextButton = this.genNextButton(_head, fileNames);
+          final AbstractSection prev = _xifexpression;
+          CharSequence _genPrevButton = this.genPrevButton(prev, fileNames);
+          final CharSequence prevS = _genPrevButton;
+          AbstractSection _xifexpression_2 = null;
+          List<? extends AbstractSection> _sections_4 = this.ase.sections(chapter);
+          boolean _isEmpty_1 = _sections_4.isEmpty();
+          if (_isEmpty_1) {
+            AbstractSection _xifexpression_3 = null;
+            List<? extends AbstractSection> _sections_5 = this.ase.sections(doc);
+            int _size_1 = _sections_5.size();
+            int _operator_plus = IntegerExtensions.operator_plus(((Integer)index), ((Integer)1));
+            boolean _operator_greaterThan_1 = ComparableExtensions.<Integer>operator_greaterThan(((Integer)_size_1), ((Integer)_operator_plus));
+            if (_operator_greaterThan_1) {
+              List<? extends AbstractSection> _sections_6 = this.ase.sections(doc);
+              int _operator_plus_1 = IntegerExtensions.operator_plus(((Integer)index), ((Integer)1));
+              AbstractSection _get_2 = _sections_6.get(_operator_plus_1);
+              _xifexpression_3 = _get_2;
+            }
+            _xifexpression_2 = _xifexpression_3;
+          } else {
+            List<? extends AbstractSection> _sections_7 = this.ase.sections(chapter);
+            AbstractSection _head = IterableExtensions.<AbstractSection>head(((List<AbstractSection>) _sections_7));
+            _xifexpression_2 = _head;
+          }
+          final AbstractSection next = _xifexpression_2;
+          CharSequence _genNextButton = this.genNextButton(next, fileNames);
           final CharSequence nextS = _genNextButton;
           StringConcatenation _builder_2 = new StringConcatenation();
           _builder_2.append(prevS, "");

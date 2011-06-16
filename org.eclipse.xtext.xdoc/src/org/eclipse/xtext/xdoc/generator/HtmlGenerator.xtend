@@ -63,8 +63,20 @@ class HtmlGenerator implements IGenerator {
 		for(i : 0..doc.sections.size - 1) {
 			val chapter = doc.sections.get(i)
 			val index = doc.chapters.indexOf(chapter)
-			val prevS = if(index > 0) (doc.chapters.get(index - 1)?.sections as List<AbstractSection>).last.genPrevButton(fileNames)
-			val nextS = (chapter.sections as List<AbstractSection>).head.genNextButton(fileNames)
+			val prev = if(index > 0) {
+							val prevChap = doc.chapters.get(index - 1)
+							if(!prevChap.sections.empty) 
+								(prevChap.sections as List<AbstractSection>).last
+							else
+								prevChap
+						}
+			val prevS = prev.genPrevButton(fileNames)
+			val next = if(chapter.sections.empty) {
+							if(doc.sections.size > index +1)
+								 doc.sections.get(index + 1)
+						} else
+							(chapter.sections as List<AbstractSection>).head
+			val nextS = next.genNextButton(fileNames)
 			chapter.generate(doc, fsa, '''«prevS»«nextS»''', fileNames, leftNav, (chapter as Chapter).elementIdForSubToc(fileNames))
 		}
 		''''''
