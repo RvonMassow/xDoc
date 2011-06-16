@@ -82,23 +82,23 @@ class HtmlGenerator implements IGenerator {
 		''''''
 	}
 
-	def CharSequence genPrevButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+	def CharSequence genPrevButton(AbstractSection section, Map<AbstractSection, String> fileNames) '''
 		<span class="prev_button">
-		<a href="«fileNames.get(^as)»" >Previous</a>
+		<a href="«fileNames.get(section)»" >Previous</a>
 		</span>
 	'''
 
-	def CharSequence genNextButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+	def CharSequence genNextButton(AbstractSection section, Map<AbstractSection, String> fileNames) '''
 		<span class="next_button">
-		<a href="«fileNames.get(^as)»" >Next</a>
+		<a href="«fileNames.get(section)»" >Next</a>
 		</span>
 	'''
 
-	def CharSequence generate(AbstractSection ^as, AbstractSection parent, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
-		fsa.generateFile(fileNames.get(^as).decode, Outlets::WEB_SITE,
+	def CharSequence generate(AbstractSection section, AbstractSection parent, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
+		fsa.generateFile(fileNames.get(section).decode, Outlets::WEB_SITE,
 		'''
 		<html>
-		  «^as.title.header»
+		  «section.title.header»
 		
 		<body onload="initTocMenu('«leftNavUnfoldSubTocId»');highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf('/')+1));">
 		«_copiedPageLayoutTop»
@@ -113,7 +113,7 @@ class HtmlGenerator implements IGenerator {
 				</div>
 				<div style="clear:both;margin-bottom:1em"></div>
 				
-		«^as.genContent(parent, fsa, fileNames, leftNav)»
+		«section.genContent(parent, fsa, fileNames, leftNav)»
 				<div class="buttonbar">
 				«buttons»
 				</div>
@@ -168,8 +168,8 @@ class HtmlGenerator implements IGenerator {
 		«ENDFOR»
 	'''
 
-	def String tag(AbstractSection ^as) {
-		switch (^as) {
+	def String tag(AbstractSection section) {
+		switch (section) {
 			Document: "h1"
 			Chapter: "h1"
 			Section: "h1"
@@ -252,18 +252,18 @@ class HtmlGenerator implements IGenerator {
 		</body>
 	'''
 
-	def CharSequence toc(AbstractSection ^as, Map<AbstractSection, String> fileNames) {
-		if(!^as.sections.empty)
+	def CharSequence toc(AbstractSection section, Map<AbstractSection, String> fileNames) {
+		if(!section.sections.empty)
 		'''
 			<div class="toc">
-			  «^as.subToc(fileNames)»
+			  «section.subToc(fileNames)»
 			</div>
 		'''
 	}
 
-	def CharSequence subToc(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+	def CharSequence subToc(AbstractSection section, Map<AbstractSection, String> fileNames) '''
 		<ul>
-		  «FOR ss: ^as.sections»
+		  «FOR ss: section.sections»
 		    «ss.tocEntry(fileNames)»
 		  «ENDFOR»
 		</ul>

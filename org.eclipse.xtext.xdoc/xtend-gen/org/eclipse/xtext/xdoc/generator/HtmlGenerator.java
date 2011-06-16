@@ -205,12 +205,12 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  public CharSequence genPrevButton(final AbstractSection as, final Map<AbstractSection,String> fileNames) {
+  public CharSequence genPrevButton(final AbstractSection section, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<span class=\"prev_button\">");
     _builder.newLine();
     _builder.append("<a href=\"");
-    String _get = fileNames.get(as);
+    String _get = fileNames.get(section);
     _builder.append(_get, "");
     _builder.append("\" >Previous</a>");
     _builder.newLineIfNotEmpty();
@@ -219,12 +219,12 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence genNextButton(final AbstractSection as, final Map<AbstractSection,String> fileNames) {
+  public CharSequence genNextButton(final AbstractSection section, final Map<AbstractSection,String> fileNames) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<span class=\"next_button\">");
     _builder.newLine();
     _builder.append("<a href=\"");
-    String _get = fileNames.get(as);
+    String _get = fileNames.get(section);
     _builder.append(_get, "");
     _builder.append("\" >Next</a>");
     _builder.newLineIfNotEmpty();
@@ -233,16 +233,16 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence generate(final AbstractSection as, final AbstractSection parent, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  public CharSequence generate(final AbstractSection section, final AbstractSection parent, final IFileSystemAccess fsa, final CharSequence buttons, final Map<AbstractSection,String> fileNames, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
-      String _get = fileNames.get(as);
+      String _get = fileNames.get(section);
       String _decode = URLDecoder.decode(_get);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<html>");
       _builder.newLine();
       _builder.append("  ");
-      TextOrMarkup _title = as.getTitle();
+      TextOrMarkup _title = section.getTitle();
       CharSequence _header = this.header(_title);
       _builder.append(_header, "  ");
       _builder.newLineIfNotEmpty();
@@ -285,7 +285,7 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLine();
       _builder.append("\t\t");
       _builder.newLine();
-      CharSequence _genContent = this.genContent(as, parent, fsa, fileNames, leftNav);
+      CharSequence _genContent = this.genContent(section, parent, fsa, fileNames, leftNav);
       _builder.append(_genContent, "");
       _builder.newLineIfNotEmpty();
       _builder.append("\t\t");
@@ -475,48 +475,48 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public String tag(final AbstractSection as) {
+  public String tag(final AbstractSection section) {
     String _switchResult = null;
-    final AbstractSection as_1 = as;
+    final AbstractSection section_1 = section;
     boolean matched = false;
     if (!matched) {
-      if (as_1 instanceof Document) {
-        final Document as_2 = (Document) as_1;
+      if (section_1 instanceof Document) {
+        final Document section_2 = (Document) section_1;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (as_1 instanceof Chapter) {
-        final Chapter as_3 = (Chapter) as_1;
+      if (section_1 instanceof Chapter) {
+        final Chapter section_3 = (Chapter) section_1;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (as_1 instanceof Section) {
-        final Section as_4 = (Section) as_1;
+      if (section_1 instanceof Section) {
+        final Section section_4 = (Section) section_1;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (as_1 instanceof Section2) {
-        final Section2 as_5 = (Section2) as_1;
+      if (section_1 instanceof Section2) {
+        final Section2 section_5 = (Section2) section_1;
         matched=true;
         _switchResult = "h2";
       }
     }
     if (!matched) {
-      if (as_1 instanceof Section3) {
-        final Section3 as_6 = (Section3) as_1;
+      if (section_1 instanceof Section3) {
+        final Section3 section_6 = (Section3) section_1;
         matched=true;
         _switchResult = "h3";
       }
     }
     if (!matched) {
-      if (as_1 instanceof Section4) {
-        final Section4 as_7 = (Section4) as_1;
+      if (section_1 instanceof Section4) {
+        final Section4 section_7 = (Section4) section_1;
         matched=true;
         _switchResult = "h4";
       }
@@ -738,9 +738,9 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence toc(final AbstractSection as, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public CharSequence toc(final AbstractSection section, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _xifexpression = null;
-    List<? extends AbstractSection> _sections = this.ase.sections(as);
+    List<? extends AbstractSection> _sections = this.ase.sections(section);
     boolean _isEmpty = _sections.isEmpty();
     boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
     if (_operator_not) {
@@ -748,7 +748,7 @@ public class HtmlGenerator implements IGenerator {
       _builder.append("<div class=\"toc\">");
       _builder.newLine();
       _builder.append("  ");
-      CharSequence _subToc = this.subToc(as, fileNames);
+      CharSequence _subToc = this.subToc(section, fileNames);
       _builder.append(_subToc, "  ");
       _builder.newLineIfNotEmpty();
       _builder.append("</div>");
@@ -758,12 +758,12 @@ public class HtmlGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  public CharSequence subToc(final AbstractSection as, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public CharSequence subToc(final AbstractSection section, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
     {
-      List<? extends AbstractSection> _sections = this.ase.sections(as);
+      List<? extends AbstractSection> _sections = this.ase.sections(section);
       for(AbstractSection ss : _sections) {
         _builder.append("  ");
         CharSequence _cEntry = this.tocEntry(ss, fileNames);
