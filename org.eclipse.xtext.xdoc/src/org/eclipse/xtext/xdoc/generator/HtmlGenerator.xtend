@@ -33,7 +33,6 @@ class HtmlGenerator implements IGenerator {
 	@Inject extension AbstractSectionExtension ase
 	@Inject extension GitExtensions git
 	@Inject extension JavaDocExtension jdoc
-	@Inject XdocGenerator helpGen
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		try{
@@ -48,8 +47,8 @@ class HtmlGenerator implements IGenerator {
 		}
 	}
 
-	def generate(Document doc, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames) {
-		fsa.generateFile("index.html", 
+	def CharSequence generate(Document doc, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames) {
+		fsa.generateFile("index.html", Outlets::WEB_SITE,
 		'''
 		<html>
 		  «header(doc.title)»
@@ -70,20 +69,20 @@ class HtmlGenerator implements IGenerator {
 		''''''
 	}
 
-	def genPrevButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+	def CharSequence genPrevButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
 		<span class="prev_button">
 		<a href="«fileNames.get(^as)»" >Previous</a>
 		</span>
 	'''
 
-	def genNextButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+	def CharSequence genNextButton(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
 		<span class="next_button">
 		<a href="«fileNames.get(^as)»" >Next</a>
 		</span>
 	'''
 
-	def generate(AbstractSection ^as, AbstractSection parent, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
-		fsa.generateFile(fileNames.get(^as).decode,
+	def CharSequence generate(AbstractSection ^as, AbstractSection parent, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
+		fsa.generateFile(fileNames.get(^as).decode, Outlets::WEB_SITE,
 		'''
 		<html>
 		  «^as.title.header»
@@ -116,7 +115,7 @@ class HtmlGenerator implements IGenerator {
 	''''''
 	}
 	
-	def dispatch genContent(Chapter chap, Document parent, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) {
+	def dispatch CharSequence genContent(Chapter chap, Document parent, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) {
 		for(index: 0..chap.sections.size - 1) {
 			val prevS = if(index > 0) 
 							chap.sections.get(index - 1)?.genPrevButton(fileNames)
@@ -144,7 +143,7 @@ class HtmlGenerator implements IGenerator {
 	}
 	
 	
-	def dispatch genContent(Section sec, Chapter parent, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) '''
+	def dispatch CharSequence genContent(Section sec, Chapter parent, IFileSystemAccess fsa, Map<AbstractSection, String> fileNames, CharSequence leftNav) '''
 		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
 			«sec.toc(fileNames)»
@@ -156,7 +155,7 @@ class HtmlGenerator implements IGenerator {
 		«ENDFOR»
 	'''
 
-	def tag(AbstractSection ^as) {
+	def String tag(AbstractSection ^as) {
 		switch (^as) {
 			Document: "h1"
 			Chapter: "h1"
@@ -167,7 +166,7 @@ class HtmlGenerator implements IGenerator {
 		}
 	}
 
-	def dispatch generate(Section2 sec, Map<AbstractSection, String> fileNames){
+	def dispatch CharSequence generate(Section2 sec, Map<AbstractSection, String> fileNames){
 		'''
 		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
@@ -179,7 +178,7 @@ class HtmlGenerator implements IGenerator {
 		«ENDFOR»
 		'''
 	}
-	def dispatch generate(Section3 sec, Map<AbstractSection, String> fileNames){
+	def dispatch CharSequence generate(Section3 sec, Map<AbstractSection, String> fileNames){
 		'''
 		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genNonParText(fileNames)»</«sec.tag»>
@@ -192,7 +191,7 @@ class HtmlGenerator implements IGenerator {
 		'''
 	}
 
-	def dispatch generate(Section4 sec, Map<AbstractSection, String> fileNames){
+	def dispatch CharSequence generate(Section4 sec, Map<AbstractSection, String> fileNames){
 		'''
 		«sec.labelName(fileNames).anchor»
 		<«sec.tag»>«sec.title.genText(fileNames)»</«sec.tag»>
@@ -202,7 +201,7 @@ class HtmlGenerator implements IGenerator {
 		'''
 	}
 
-	def header (TextOrMarkup title) '''
+	def CharSequence header (TextOrMarkup title) '''
 		<head>
 		  <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		  <title>«title.genPlainText»</title>
@@ -222,7 +221,7 @@ class HtmlGenerator implements IGenerator {
 		</head>
 	'''
 
-	def body(Document doc, Map<AbstractSection, String> fileNames) '''
+	def CharSequence body(Document doc, Map<AbstractSection, String> fileNames) '''
 		<body>
 			«_copiedPageLayoutTop()»
 			<div id="novaContent" class="faux">
@@ -240,7 +239,7 @@ class HtmlGenerator implements IGenerator {
 		</body>
 	'''
 
-	def toc(AbstractSection ^as, Map<AbstractSection, String> fileNames) {
+	def CharSequence toc(AbstractSection ^as, Map<AbstractSection, String> fileNames) {
 		if(!^as.sections.empty)
 		'''
 			<div class="toc">
@@ -249,24 +248,24 @@ class HtmlGenerator implements IGenerator {
 		'''
 	}
 
-	def subToc(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
+	def CharSequence subToc(AbstractSection ^as, Map<AbstractSection, String> fileNames) '''
 		<ul>
 		  «FOR ss: ^as.sections»
 		    «ss.tocEntry(fileNames)»
 		  «ENDFOR»
 		</ul>
 	'''
-	def dispatch tocEntry(Chapter chapter, Map<AbstractSection, String> fileNames) 
+	def dispatch CharSequence tocEntry(Chapter chapter, Map<AbstractSection, String> fileNames) 
 	'''<li><a href="«fileNames.get(chapter)»" >«chapter.title.genNonParText(fileNames)»</a>«IF !chapter.sections.empty»
 	«chapter.subToc(fileNames)»«ENDIF»</li>
 	'''
 
-	def dispatch tocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
+	def dispatch CharSequence tocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
 		<li><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
 	'''
 		
 	
-	def leftNavToc(Document doc, Map<AbstractSection, String> fileNames) {
+	def CharSequence leftNavToc(Document doc, Map<AbstractSection, String> fileNames) {
 		'''
 			«generateLogo»
 			<ul id="leftnav">
@@ -276,23 +275,23 @@ class HtmlGenerator implements IGenerator {
 			</ul>
 		'''
 	}
-	def leftNavSubToc(Chapter chap, Map<AbstractSection, String> fileNames) '''
+	def CharSequence leftNavSubToc(Chapter chap, Map<AbstractSection, String> fileNames) '''
 	<ul style="display: none;" id="«chap.elementIdForSubToc(fileNames)»">
 	«FOR ss: chap.sections»
 	    «ss.leftNavTocEntry(fileNames)»
 	«ENDFOR»
 	</ul>
 	'''
-	def dispatch leftNavTocEntry(Chapter chapter, Map<AbstractSection, String> fileNames) 
+	def dispatch CharSequence leftNavTocEntry(Chapter chapter, Map<AbstractSection, String> fileNames) 
 	'''<li class="separator"><div class="separator">«chapter.title.genNonParText(fileNames)»</div>
 	«IF !chapter.sections.empty»«chapter.leftNavSubToc(fileNames)»«ENDIF»</li>
 	'''
 
-	def dispatch leftNavTocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
+	def dispatch CharSequence leftNavTocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
 		<li id="«fileNames.get(section)»" ><a href="«fileNames.get(section)»" >«section.title.genNonParText(fileNames) »</a></li>
 	'''
 
-	def genAuthors(Document doc, Map<AbstractSection, String> fileNames) {
+	def CharSequence genAuthors(Document doc, Map<AbstractSection, String> fileNames) {
 		if(doc.authors != null)
 			'''
 				<div class="authors">
@@ -301,11 +300,11 @@ class HtmlGenerator implements IGenerator {
 			'''
 	}
 
-	def genNonParText(TextOrMarkup tom, Map<AbstractSection, String> fileNames) {
+	def CharSequence genNonParText(TextOrMarkup tom, Map<AbstractSection, String> fileNames) {
 		'''«FOR c: tom.contents»«c.genText(fileNames)»«ENDFOR»'''
 	}
 
-	def dispatch genText(TextOrMarkup tom, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence genText(TextOrMarkup tom, Map<AbstractSection, String> fileNames) {
 		'''
 		<p>
 		«FOR c: tom.contents»«c.genText(fileNames)»«ENDFOR»
@@ -313,7 +312,7 @@ class HtmlGenerator implements IGenerator {
 		'''
 	}
 
-	def dispatch genText(CodeBlock cb, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence genText(CodeBlock cb, Map<AbstractSection, String> fileNames) {
 		if(!cb.contents.empty) {
 			if(cb.inlineCode)
 				'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language, fileNames)»</span>'''
@@ -334,7 +333,7 @@ class HtmlGenerator implements IGenerator {
 		}
 	}
 
-	def dispatch genText(CodeRef cRef, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence genText(CodeRef cRef, Map<AbstractSection, String> fileNames) {
 		val prefix = if(cRef.element instanceof JvmAnnotationType && cRef.altText == null) "@"
 		val jDocLink = cRef.element.genJavaDocLink
 		val gitLink = cRef.element.gitLink
@@ -363,10 +362,10 @@ class HtmlGenerator implements IGenerator {
 			type.simpleName
 	}
 
-	def dispatch genText(Emphasize em, Map<AbstractSection, String> fileNames)
+	def dispatch CharSequence genText(Emphasize em, Map<AbstractSection, String> fileNames)
 		'''<em>«em.contents.generate(fileNames)»</em>'''
 
-	def dispatch generate(List<TextOrMarkup> tomList, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence generate(List<TextOrMarkup> tomList, Map<AbstractSection, String> fileNames) {
 		if (tomList.size == 1) {
 			tomList.head.genNonParText(fileNames)
 		} else {
@@ -379,24 +378,24 @@ class HtmlGenerator implements IGenerator {
 		}
 	}
 
-	def dispatch generateCode(Code code, LangDef lang, Map<AbstractSection, String> fileNames)
+	def dispatch CharSequence generateCode(Code code, LangDef lang, Map<AbstractSection, String> fileNames)
 		'''«code.contents.unescapeXdocChars.formatCode(lang, fileNames)»'''
 
-	def dispatch generateCode(Code code, Void lang, Map<AbstractSection, String> fileNames)
+	def dispatch CharSequence generateCode(Code code, Void lang, Map<AbstractSection, String> fileNames)
 		'''«code.contents.unescapeXdocChars.formatCode(null, fileNames)»'''
 
-	def dispatch generateCode(MarkupInCode mic, LangDef lang, Map<AbstractSection, String> fileNames)
+	def dispatch CharSequence generateCode(MarkupInCode mic, LangDef lang, Map<AbstractSection, String> fileNames)
 		'''«mic.genText(fileNames)»'''
 
-	def dispatch genText(TextPart tp, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence genText(TextPart tp, Map<AbstractSection, String> fileNames) {
 		tp.text.unescapeXdocChars
 	}
 
-	def dispatch genText(Anchor a, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence genText(Anchor a, Map<AbstractSection, String> fileNames) {
 		// helpGen.generate(a)
 	}
 
-	def dispatch genText(Ref ref, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence genText(Ref ref, Map<AbstractSection, String> fileNames) {
 		val title = if(ref.ref instanceof AbstractSection) {
 			'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
 		}
@@ -421,10 +420,10 @@ class HtmlGenerator implements IGenerator {
 		fileNames.get(section)
 	}
 
-	def dispatch genText(Link link, Map<AbstractSection, String> fileNames) 
+	def dispatch CharSequence genText(Link link, Map<AbstractSection, String> fileNames) 
 		'''<a href="«link.url»" >«IF link.text != null»«link.text»«ELSE»«link.url»«ENDIF»</a>'''
 
-	def dispatch genText(OrderedList ol, Map<AbstractSection, String> fileNames)
+	def dispatch CharSequence genText(OrderedList ol, Map<AbstractSection, String> fileNames)
 		'''
 		<ol>
 		  «FOR i:ol.items»
@@ -433,7 +432,7 @@ class HtmlGenerator implements IGenerator {
 		</ol>
 		'''
 
-	def dispatch genText(UnorderedList ol, Map<AbstractSection, String> fileNames)
+	def dispatch CharSequence genText(UnorderedList ol, Map<AbstractSection, String> fileNames)
 		'''
 		<ul>
 		  «FOR i:ol.items»
@@ -443,11 +442,11 @@ class HtmlGenerator implements IGenerator {
 		'''
 
 
-	def dispatch genText(Item item, Map<AbstractSection, String> fileNames) '''
+	def dispatch CharSequence genText(Item item, Map<AbstractSection, String> fileNames) '''
 		<li>«item.contents.generate(fileNames)»</li>
 	'''
 
-	def dispatch genText(Table table, Map<AbstractSection, String> fileNames) '''
+	def dispatch CharSequence genText(Table table, Map<AbstractSection, String> fileNames) '''
 		<table>
 		  «FOR tr: table.rows»
 		    «genRow(tr, fileNames)»
@@ -455,7 +454,7 @@ class HtmlGenerator implements IGenerator {
 		</table>
 	'''
 
-	def genRow(TableRow tr, Map<AbstractSection, String> fileNames) '''
+	def CharSequence genRow(TableRow tr, Map<AbstractSection, String> fileNames) '''
 		<tr>
 		  «FOR td: tr.data»
 		    «genData(td, fileNames)»
@@ -463,10 +462,10 @@ class HtmlGenerator implements IGenerator {
 		</tr>
 	'''
 
-	def genData(TableData td, Map<AbstractSection, String> fileNames)
+	def CharSequence genData(TableData td, Map<AbstractSection, String> fileNames)
 	'''<td>«td.contents.generate(fileNames)»</td>'''
 
-	def dispatch genText(ImageRef img, Map<AbstractSection, String> fileNames) {
+	def dispatch CharSequence genText(ImageRef img, Map<AbstractSection, String> fileNames) {
 		copy(img.path, img.eResource)
 		'''
 			<div class="image" >
@@ -482,7 +481,7 @@ class HtmlGenerator implements IGenerator {
 		'''
 	}
 
-	def copy(String fromRelativeFileName, Resource res) {
+	def void copy(String fromRelativeFileName, Resource res) {
 		try{
 			val buffer = ByteBuffer::allocateDirect(16 * 1024);
 			val uri = res.URI
@@ -510,18 +509,18 @@ class HtmlGenerator implements IGenerator {
 		}
 	}
 
-	def anchor(String name)
+	def CharSequence anchor(String name)
 		'''<a name="«name»" ></a>'''
 
-	def elementIdForSubToc(Chapter chap,  Map<AbstractSection, String> fileNames)
+	def CharSequence elementIdForSubToc(Chapter chap,  Map<AbstractSection, String> fileNames)
 		'''subToc_«fileNames.get(chap)»'''
 	
-	def generateLogo() '''
+	def CharSequence generateLogo() '''
 		<div class="nav-logo">
 			<a href="index.html"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin-left:30px; width:125px"/></a>
 		</div>'''
 	
-	def javaScriptForNavigation(){
+	def CharSequence javaScriptForNavigation(){
 		'''
 		 <script type="text/javascript"> 
 			function initTocMenu(ActiveSubTocElementId){
@@ -557,7 +556,7 @@ class HtmlGenerator implements IGenerator {
 		'''
 	}
 		
-	def _copiedPageLayoutTop()
+	def CharSequence _copiedPageLayoutTop()
 	'''
 	<div id="novaWrapper">		<div id="clearHeader">
 			<div id="logo">
@@ -610,7 +609,7 @@ class HtmlGenerator implements IGenerator {
 	</div>
 	'''
 	
-	def _copiedPageLayoutBottom()
+	def CharSequence _copiedPageLayoutBottom()
 	'''
 	<div id="clearFooter"></div>
 	<div id="footer">

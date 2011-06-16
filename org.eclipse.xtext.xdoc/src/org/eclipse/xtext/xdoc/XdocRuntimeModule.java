@@ -32,9 +32,4 @@ public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntim
 		return XdocResourceDescriptionStrategy.class;
 	}
 
-/*
- *	public Class<? extends IGenerator> bindIGenerator() {
- *		return HtmlGenerator.class;
- *	}
- */
 }
