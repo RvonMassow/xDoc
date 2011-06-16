@@ -1,7 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
-import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
@@ -1425,7 +1424,6 @@ public class HtmlGenerator implements IGenerator {
         final ByteBuffer buffer = _allocateDirect;
         URI _uRI = res.getURI();
         final URI uri = _uRI;
-        final String sepChar = File.separator;
         String relOutDirRoot = "";
         String inDir = "";
         boolean _isPlatformResource = uri.isPlatformResource();
@@ -1437,8 +1435,10 @@ public class HtmlGenerator implements IGenerator {
             String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, fromRelativeFileName);
             URI _createURI = URI.createURI(_operator_plus_1);
             final URI inPath = _createURI;
-            URI _trimSegments_1 = uri.trimSegments(2);
-            URI _appendSegment = _trimSegments_1.appendSegment("contents");
+            int _segmentCount = uri.segmentCount();
+            int _operator_minus = IntegerExtensions.operator_minus(((Integer)_segmentCount), ((Integer)2));
+            URI _trimSegments_1 = uri.trimSegments(_operator_minus);
+            URI _appendSegment = _trimSegments_1.appendSegment(Outlets.WEB_SITE_PATH_NAME);
             String _string_1 = _appendSegment.toString();
             String _operator_plus_2 = StringExtensions.operator_plus(_string_1, "/");
             String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, fromRelativeFileName);
@@ -1455,8 +1455,8 @@ public class HtmlGenerator implements IGenerator {
             WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
             final WritableByteChannel outChannel = _newChannel_1;
             int _read = inChannel.read(buffer);
-            int _operator_minus = IntegerExtensions.operator_minus(1);
-            boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
+            int _operator_minus_1 = IntegerExtensions.operator_minus(1);
+            boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus_1));
             Boolean _xwhileexpression = _operator_notEquals;
             while (_xwhileexpression) {
               {
@@ -1465,8 +1465,8 @@ public class HtmlGenerator implements IGenerator {
                 buffer.compact();
               }
               int _read_1 = inChannel.read(buffer);
-              int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-              boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
+              int _operator_minus_2 = IntegerExtensions.operator_minus(1);
+              boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_2));
               _xwhileexpression = _operator_notEquals_1;
             }
             buffer.flip();

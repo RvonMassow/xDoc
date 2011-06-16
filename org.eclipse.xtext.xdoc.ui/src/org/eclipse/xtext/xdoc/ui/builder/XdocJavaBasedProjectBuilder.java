@@ -25,7 +25,7 @@ public class XdocJavaBasedProjectBuilder extends JavaProjectBasedBuilderParticip
 	
 	protected IFileSystemAccess getConfiguredFileSystemAccess(IFolder srcGenFolder, IAcceptor<String> newFileAcceptor) {
 		EclipseResourceFileSystemAccess access = (EclipseResourceFileSystemAccess) super.getConfiguredFileSystemAccess(srcGenFolder, newFileAcceptor);
-		access.setOutputPath(Outlets.WEB_SITE, srcGenFolder.getParent().getFile(new Path("website")).getFullPath().toString());
+		access.setOutputPath(Outlets.WEB_SITE, srcGenFolder.getParent().getFile(new Path(Outlets.WEB_SITE_PATH_NAME)).getFullPath().toString());
 		return access;
 	}
 }
