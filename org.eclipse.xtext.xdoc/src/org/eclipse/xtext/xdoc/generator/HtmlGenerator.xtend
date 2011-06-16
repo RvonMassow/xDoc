@@ -3,19 +3,12 @@ package org.eclipse.xtext.xdoc.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.xbase.compiler.*
-import org.eclipse.xtext.xbase.*
-import org.eclipse.xtext.xdoc.xdoc.*
-import org.eclipse.xtext.common.types.*
-import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.xtext.xbase.lib.IterableExtensions
 import com.google.inject.Inject
 import org.eclipse.xtext.xdoc.generator.util.Utils
-import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions
 import java.util.List
-import static extension java.net.URLDecoder.*
 import java.util.Map
 import org.eclipse.xtext.EcoreUtil2
 import org.eclipse.emf.common.util.URI
@@ -25,6 +18,38 @@ import java.nio.channels.Channels
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
 import org.omg.CORBA.CharSeqHelper
+import org.eclipse.xtext.common.types.JvmAnnotationType
+import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.xdoc.xdoc.XdocFile
+import org.eclipse.xtext.xdoc.xdoc.Document
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection
+import org.eclipse.xtext.xdoc.xdoc.Chapter
+import org.eclipse.xtext.xdoc.xdoc.Section
+import org.eclipse.xtext.xdoc.xdoc.Section2
+import org.eclipse.xtext.xdoc.xdoc.Section3
+import org.eclipse.xtext.xdoc.xdoc.Section4
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock
+import org.eclipse.xtext.xdoc.xdoc.CodeRef
+import org.eclipse.xtext.xdoc.xdoc.Emphasize
+import org.eclipse.xtext.xdoc.xdoc.Code
+import org.eclipse.xtext.xdoc.xdoc.LangDef
+import org.eclipse.xtext.xdoc.xdoc.TextPart
+import org.eclipse.xtext.xdoc.xdoc.Anchor
+import org.eclipse.xtext.xdoc.xdoc.Ref
+import org.eclipse.xtext.xdoc.xdoc.Link
+import org.eclipse.xtext.xdoc.xdoc.OrderedList
+import org.eclipse.xtext.xdoc.xdoc.UnorderedList
+import org.eclipse.xtext.xdoc.xdoc.Item
+import org.eclipse.xtext.xdoc.xdoc.Table
+import org.eclipse.xtext.xdoc.xdoc.TableRow
+import org.eclipse.xtext.xdoc.xdoc.TableData
+import org.eclipse.xtext.xdoc.xdoc.ImageRef
+import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
+import org.eclipse.xtext.xdoc.xdoc.Todo
+import org.eclipse.xtext.xtend2.lib.ResourceExtensions
+import java.net.URLDecoder
+import org.eclipse.xtext.xdoc.generator.util.StringUtils
 
 class HtmlGenerator implements IGenerator {
 	
@@ -37,7 +62,7 @@ class HtmlGenerator implements IGenerator {
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		try{
-			for(file: resource.allContentsIterable.filter(typeof(XdocFile))) {
+			for(file: ResourceExtensions::allContentsIterable(resource).filter(typeof(XdocFile))) {
 				if(file.mainSection instanceof Document) {
 					val fileNames = (file.mainSection as Document).computeURLs;
 					(file.mainSection as Document).generate(fsa, fileNames)
@@ -95,7 +120,7 @@ class HtmlGenerator implements IGenerator {
 	'''
 
 	def CharSequence generate(AbstractSection section, AbstractSection parent, IFileSystemAccess fsa, CharSequence buttons, Map<AbstractSection, String> fileNames, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
-		fsa.generateFile(fileNames.get(section).decode, Outlets::WEB_SITE,
+		fsa.generateFile(URLDecoder::decode(fileNames.get(section)), Outlets::WEB_SITE,
 		'''
 		<html>
 		  «section.title.header»
@@ -330,7 +355,7 @@ class HtmlGenerator implements IGenerator {
 			if(cb.inlineCode)
 				'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(cb.language, fileNames)»</span>'''
 			else {
-				val block = cb.removeIndent
+				val block = StringUtils::removeIndent(cb)
 				'''	
 					<div class="literallayout">
 					<div class="incode">
