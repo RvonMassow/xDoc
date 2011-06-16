@@ -32,6 +32,24 @@ public class HTMLNamingExtensions extends EclipseNamingExtensions {
   @Inject
   private AbstractSectionExtension ase;
   
+  protected void _computeURLs(final Document document, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
+    {
+      String name = "index.html";
+      final Map<AbstractSection,String> typeConverted_result = (Map<AbstractSection,String>)result;
+      typeConverted_result.put(document, name);
+      List<? extends AbstractSection> _sections = this.ase.sections(document);
+      final List<? extends AbstractSection> sections = _sections;
+      int _size = sections.size();
+      int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size), ((Integer)1));
+      Iterable<Integer> _operator_upTo = IntegerExtensions.operator_upTo(((Integer)0), ((Integer)_operator_minus));
+      for (Integer i : _operator_upTo) {
+        final List<? extends AbstractSection> typeConverted_sections = (List<? extends AbstractSection>)sections;
+        AbstractSection _get = typeConverted_sections.get(i);
+        this.computeURLs(_get, fileName, "", i, result);
+      }
+    }
+  }
+  
   protected void _computeURLs(final Section section, final String fileName, final String prefix, final int index, final Map<AbstractSection,String> result) {
     {
       Resource _eResource = section.eResource();

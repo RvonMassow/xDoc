@@ -60,6 +60,7 @@ import org.eclipse.xtext.xdoc.xdoc.TableData;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
+import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 import org.eclipse.xtext.xtend2.lib.ResourceExtensions;
@@ -1075,6 +1076,18 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
+  protected CharSequence _genText(final Todo todo, final Map<AbstractSection,String> fileNames) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<div class=\"todo\" >");
+    _builder.newLine();
+    String _text = todo.getText();
+    _builder.append(_text, "");
+    _builder.newLineIfNotEmpty();
+    _builder.append("</div>");
+    _builder.newLine();
+    return _builder;
+  }
+  
   protected CharSequence _generate(final List<TextOrMarkup> tomList, final Map<AbstractSection,String> fileNames) throws RuntimeException {
     CharSequence _xifexpression = null;
     int _size = tomList.size();
@@ -1603,7 +1616,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<div id=\"promotion\"><a href=\"/indigo/friends.php\">");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("<img src=\"/home/promotions/indigo/indigo.png\" alt=\"Indigo Is Coming!\"/>");
+    _builder.append("<img src=\"http://www.eclipse.org/home/promotions/indigo/indigo.png\" alt=\"Indigo Is Coming!\"/>");
     _builder.newLine();
     _builder.append("</a>");
     _builder.newLine();
@@ -1852,6 +1865,9 @@ public class HtmlGenerator implements IGenerator {
     } else if ((a instanceof Table)
          && (fileNames instanceof Map)) {
       return _genText((Table)a, (Map<AbstractSection,String>)fileNames);
+    } else if ((a instanceof Todo)
+         && (fileNames instanceof Map)) {
+      return _genText((Todo)a, (Map<AbstractSection,String>)fileNames);
     } else if ((a instanceof UnorderedList)
          && (fileNames instanceof Map)) {
       return _genText((UnorderedList)a, (Map<AbstractSection,String>)fileNames);

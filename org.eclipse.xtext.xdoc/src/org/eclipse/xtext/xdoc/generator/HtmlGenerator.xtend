@@ -24,6 +24,7 @@ import java.io.File
 import java.nio.channels.Channels
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
+import org.omg.CORBA.CharSeqHelper
 
 class HtmlGenerator implements IGenerator {
 	
@@ -365,6 +366,12 @@ class HtmlGenerator implements IGenerator {
 	def dispatch CharSequence genText(Emphasize em, Map<AbstractSection, String> fileNames)
 		'''<em>«em.contents.generate(fileNames)»</em>'''
 
+	def dispatch CharSequence genText(Todo todo, Map<AbstractSection, String> fileNames) '''
+			<div class="todo" >
+			«todo.text»
+			</div>
+		'''
+
 	def dispatch CharSequence generate(List<TextOrMarkup> tomList, Map<AbstractSection, String> fileNames) {
 		if (tomList.size == 1) {
 			tomList.head.genNonParText(fileNames)
@@ -561,7 +568,7 @@ class HtmlGenerator implements IGenerator {
 	<div id="novaWrapper">		<div id="clearHeader">
 			<div id="logo">
 					<div id="promotion"><a href="/indigo/friends.php">
-		<img src="/home/promotions/indigo/indigo.png" alt="Indigo Is Coming!"/>
+		<img src="http://www.eclipse.org/home/promotions/indigo/indigo.png" alt="Indigo Is Coming!"/>
 	</a>
 
 	</div>
