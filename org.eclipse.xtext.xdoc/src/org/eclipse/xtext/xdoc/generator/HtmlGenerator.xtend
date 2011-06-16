@@ -479,8 +479,16 @@ class HtmlGenerator implements IGenerator {
 			«IF img.name != null»
 				<a>«img.name»</a>
 			«ENDIF»
-			<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
-			«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
+			<img src="«img.path.unescapeXdocChars()»" 
+				«IF !img.clazz.nullOrEmpty»
+					class="«img.clazz.unescapeXdocChars»" 
+				«ELSE»
+					width="600px"
+				«ENDIF»
+				«IF !img.style.nullOrEmpty»
+					 style="«img.style.unescapeXdocChars»" 
+				«ENDIF»
+			/>
 			<div class="caption">
 			«img.caption.unescapeXdocChars.escapeHTMLChars»
 			</div>

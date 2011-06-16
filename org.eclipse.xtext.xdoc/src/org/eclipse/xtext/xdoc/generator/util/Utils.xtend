@@ -129,4 +129,8 @@ class Utils {
 	def create code : XdocFactory::eINSTANCE.createCode correctedCode(String s) {
 		code.setContents(s)
 	}
+	
+	def boolean nullOrEmpty(String s) {
+		return s == null || s.trim.length==0
+	}
 }

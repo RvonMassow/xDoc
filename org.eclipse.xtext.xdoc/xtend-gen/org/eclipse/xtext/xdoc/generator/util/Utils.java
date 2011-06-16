@@ -304,4 +304,18 @@ public class Utils {
     code.setContents(s);
     return code;
   }
+  
+  public boolean nullOrEmpty(final String s) {
+    boolean _operator_or = false;
+    boolean _operator_equals = ObjectExtensions.operator_equals(s, null);
+    if (_operator_equals) {
+      _operator_or = true;
+    } else {
+      String _trim = s.trim();
+      int _length = _trim.length();
+      boolean _operator_equals_1 = ObjectExtensions.operator_equals(((Integer)_length), ((Integer)0));
+      _operator_or = BooleanExtensions.operator_or(_operator_equals, _operator_equals_1);
+    }
+    return _operator_or;
+  }
 }

@@ -1365,41 +1365,40 @@ public class HtmlGenerator implements IGenerator {
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_path_1);
       _builder.append(_unescapeXdocChars, "");
       _builder.append("\" ");
+      _builder.newLineIfNotEmpty();
       {
         String _clazz = img.getClazz();
-        boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(_clazz, null);
-        if (_operator_notEquals_1) {
+        boolean _nullOrEmpty = this.utils.nullOrEmpty(_clazz);
+        boolean _operator_not = BooleanExtensions.operator_not(_nullOrEmpty);
+        if (_operator_not) {
+          _builder.append("\t");
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
           String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_clazz_1);
-          _builder.append(_unescapeXdocChars_1, "");
+          _builder.append(_unescapeXdocChars_1, "	");
           _builder.append("\" ");
+          _builder.newLineIfNotEmpty();} else {
+          _builder.append("\t");
+          _builder.append("width=\"600px\"");
+          _builder.newLine();
         }
       }
-      _builder.newLineIfNotEmpty();
       {
-        boolean _operator_and = false;
         String _style = img.getStyle();
-        boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(_style, null);
-        if (!_operator_notEquals_2) {
-          _operator_and = false;
-        } else {
+        boolean _nullOrEmpty_1 = this.utils.nullOrEmpty(_style);
+        boolean _operator_not_1 = BooleanExtensions.operator_not(_nullOrEmpty_1);
+        if (_operator_not_1) {
+          _builder.append("\t");
+          _builder.append("style=\"");
           String _style_1 = img.getStyle();
-          int _length = _style_1.length();
-          boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_length), ((Integer)0));
-          boolean _operator_not = BooleanExtensions.operator_not(_operator_equals);
-          _operator_and = BooleanExtensions.operator_and(_operator_notEquals_2, _operator_not);
-        }
-        if (_operator_and) {
-          _builder.append(" style=\"");
-          String _style_2 = img.getStyle();
-          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_style_2);
-          _builder.append(_unescapeXdocChars_2, "");
+          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_style_1);
+          _builder.append(_unescapeXdocChars_2, "	");
           _builder.append("\" ");
+          _builder.newLineIfNotEmpty();
         }
       }
       _builder.append("/>");
-      _builder.newLineIfNotEmpty();
+      _builder.newLine();
       _builder.append("<div class=\"caption\">");
       _builder.newLine();
       String _caption = img.getCaption();
