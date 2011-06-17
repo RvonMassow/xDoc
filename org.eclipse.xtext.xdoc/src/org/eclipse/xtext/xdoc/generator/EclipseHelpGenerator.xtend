@@ -75,11 +75,10 @@ class EclipseHelpGenerator implements IGenerator {
 	}
 
 	def generate(Document document, IFileSystemAccess access) {
-		val fileNames = document.computeURLs
-		access.generateFile("toc.xml", document.generateToc(fileNames))
-		access.generateFile(fileNames.get(document).decode, document.generateRootDocument(fileNames))
+		access.generateFile("toc.xml", document.generateToc)
+		access.generateFile(document.fullURL.decode, document.generateRootDocument)
 		for(c:document.chapters){
-			c.generate(fileNames, access)
+			c.generate(access)
 		}
 	}
 
@@ -114,7 +113,7 @@ class EclipseHelpGenerator implements IGenerator {
 	
 	// TODO format root page
 	// TODO decide about nesting in toc
-	def generateRootDocument(Document document, Map<AbstractSection, String> fileNames) '''
+	def generateRootDocument(Document document) '''
 		<html>
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
@@ -122,33 +121,33 @@ class EclipseHelpGenerator implements IGenerator {
 		
 		<link href="book.css" rel="stylesheet" type="text/css">
 		<link href="code.css" rel="stylesheet" type="text/css">
-		<link rel="home" href="«fileNames.get(document)»" title="">
+		<link rel="home" href="«document.fullURL»" title="">
 		</head>
 		<body>
 		<h1>«document.title.genPlainText»</h1>
 		«FOR content:document.contents»
-			«content.generatePar(fileNames)»
+			«content.generatePar»
 		«ENDFOR»
 		«FOR ss: document.sections BEFORE "<ol>" AFTER "</ol>"»
-			«ss.generateEntryInRoot(fileNames)»
+			«ss.generateEntryInRoot»
 		«ENDFOR»
 		</body>
 		</html>
 	'''
 	
-	def generateEntryInRoot(AbstractSection section, Map<AbstractSection, String> fileNames) '''
-		<li><a href="«fileNames.get(section)»">«section.title.genPlainText»</a>
+	def generateEntryInRoot(AbstractSection section) '''
+		<li><a href="«section.fullURL»">«section.title.genPlainText»</a>
 			«FOR ss: section.sections BEFORE "<ol>" AFTER "</ol>"»
-				«ss.generateEntryInRoot(fileNames)»
+				«ss.generateEntryInRoot»
 			«ENDFOR»
 		</li>
 	'''
 
-	def generate(Chapter chapter, Map<AbstractSection, String> fileNames, IFileSystemAccess access) {
-		access.generateFile(fileNames.get(chapter).decode, chapter.generate(fileNames))
+	def generate(Chapter chapter, IFileSystemAccess access) {
+		access.generateFile(chapter.fullURL.decode, chapter.generate)
 	}
 
-	def dispatch generate(Chapter chapter, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(Chapter chapter) '''
 		<html>
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
@@ -159,13 +158,13 @@ class EclipseHelpGenerator implements IGenerator {
 		<link rel="home" href="index.html" title="">
 		</head>
 		<body>
-		«IF chapter.labelName(fileNames) != null»<a name="«chapter.labelName(fileNames)»"></a>«ENDIF»
+		<a name="«chapter.localId»"></a>
 		<«chapter.headtag»>«chapter.title.genPlainText»</«chapter.headtag»>
 		«FOR content:chapter.contents»
-			«content.generatePar(fileNames)»
+			«content.generatePar»
 		«ENDFOR»
 		«FOR ss: chapter.sections»
-			«ss.generate(fileNames)»
+			«ss.generate»
 		«ENDFOR»
 		</body>
 		</html>
@@ -182,95 +181,80 @@ class EclipseHelpGenerator implements IGenerator {
 		}
 	}
 
-	def dispatch generate(AbstractSection aS, Map<AbstractSection, String> fileNames) '''
-		<a name="«aS.labelName(fileNames)»"></a>
-		<«aS.headtag»>«aS.title.genPlainText»</«aS.headtag»>
-		«FOR c : aS.contents »
-			«c.generatePar(fileNames)»
+	def dispatch generate(AbstractSection section) '''
+		<a name="«section.localId»"></a>
+		<«section.headtag»>«section.title.genPlainText»</«section.headtag»>
+		«FOR c : section.contents »
+			«c.generatePar»
 		«ENDFOR»
-		«FOR ss : aS.sections»
-			«ss.generate(fileNames)»
+		«FOR ss : section.sections»
+			«ss.generate»
 		«ENDFOR»
 	'''
 
-	def dispatch generate(Section4 aS, Map<AbstractSection, String> fileNames) '''
-		<a name="«aS.labelName(fileNames)»"></a>
-		<h5>«aS.title.genNonParContent(fileNames)»</h5>
+	def dispatch generate(Section4 aS) '''
+		<a name="«aS.localId»"></a>
+		<h5>«aS.title.genNonParContent»</h5>
 		«FOR tom : aS.contents»
-			«tom.generatePar(fileNames)»
+			«tom.generatePar»
 		«ENDFOR»
 	'''
 
-	def generatePar(TextOrMarkup tom, Map<AbstractSection, String> fileNames) '''
+	def generatePar(TextOrMarkup tom) '''
 		<p>
-		«FOR c : tom.contents»«c.generate(fileNames)»«ENDFOR»
+		«FOR c : tom.contents»«c.generate»«ENDFOR»
 		</p>
 	'''
 
-	def dispatch generate(Todo todo, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(Todo todo) '''
 		<div class="todo" >
 		«todo.text»
 		</div>
 	'''
 
-	def dispatch generate(Ref ref, Map<AbstractSection, String> fileNames) {
+	def dispatch generate(Ref ref) {
 		val title = if(ref.ref instanceof AbstractSection) {
 				'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
 			}
-		'''«IF ref.contents.isEmpty »<a href="«ref.ref.url(fileNames)»" «title» >section «ref.ref.name»</a>«ELSE
-		»<a href="«ref.ref.url(fileNames)»" «title»>«FOR tom:ref.contents
-		»«tom.genNonParContent(fileNames)»«ENDFOR»</a>«
+		'''«IF ref.contents.isEmpty »<a href="«ref.ref.fullURL»" «title» >section «ref.ref.name»</a>«ELSE
+		»<a href="«ref.ref.fullURL»" «title»>«FOR tom:ref.contents
+		»«tom.genNonParContent»«ENDFOR»</a>«
 		ENDIF»'''	
 	}
 	
-	def dispatch url(Anchor anchor, Map<AbstractSection, String> fileNames) {
-		val section = EcoreUtil2::getContainerOfType(anchor, typeof(AbstractSection))
-		val fileName = fileNames.get(section)
-		if (fileName == null)
-			return null
-		val uri = URI::createURI(fileName)
-		val result = uri.trimFragment.appendFragment("anchor-" + anchor.name)
-		result
-	}
-
-
-	def dispatch url(AbstractSection section, Map<AbstractSection, String> fileNames) {
-		fileNames.get(section)
-	}
-
-	def dispatch generate(TextOrMarkup tom, Map<AbstractSection, String> fileNames) 
-		'''«FOR obj:tom.contents»«obj.generate(fileNames)»«ENDFOR»'''
+	def dispatch generate(TextOrMarkup tom) 
+		'''«FOR obj:tom.contents»«obj.generate»«ENDFOR»'''
 //		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.generate»'''])
 
-	def dispatch generate(UnorderedList ul, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(UnorderedList ul) '''
 		<ul>
 			«FOR i:ul.items»
-			  	«i.generate(fileNames)»
+			  	«i.generate»
 			«ENDFOR»
 		</ul>
 	'''
 
-	def dispatch generate(OrderedList ul, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(OrderedList ul) '''
 		<ol>
 			«FOR i:ul.items»
-				«i.generate(fileNames)»
+				«i.generate»
 			«ENDFOR»
 		</ol>
 	'''
 
-	def dispatch generate(Item i, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(Item i) '''
 		<li>
 			«FOR tom:i.contents»
-				«tom.generate(fileNames)»
+				«tom.generate»
 			«ENDFOR»
 		</li>
 	'''
 
-	def dispatch generate(Anchor a, Map<AbstractSection, String> fileNames) 
+	def dispatch generate(Anchor a) 
 		'''<a name="anchor-«a.name»"></a>'''
 	
 
-	def dispatch generate(ImageRef img, Map<AbstractSection, String> fileNames) {
+	def dispatch generate(ImageRef img) {
 		copy(img.path, img.eResource)
 		'''
 			<div class="image" >
@@ -291,47 +275,47 @@ class EclipseHelpGenerator implements IGenerator {
 		«IF this != null »<a name="«name»"></a>«ENDIF»
 	'''
 
-	def dispatch generate(TextPart tp, Map<AbstractSection, String> fileNames) {
+	def dispatch generate(TextPart tp) {
 		tp.text.unescapeXdocChars.escapeHTMLChars
 	}
 
-	def dispatch generate(Table table, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(Table table) '''
 		<table>
 		«FOR tr:table.rows»
-			«tr.generate(fileNames)»
+			«tr.generate»
 		«ENDFOR»
 		</table>
 	'''
 
-	def dispatch generate(TableRow tr, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(TableRow tr) '''
 		<tr>
 		«FOR td:tr.data»
-			«td.generate(fileNames)»
+			«td.generate»
 		«ENDFOR»
 		</tr>
 	'''
 
-	def dispatch generate(TableData td, Map<AbstractSection, String> fileNames) '''
+	def dispatch generate(TableData td) '''
 		<td>
 		«FOR c:td.contents»
-			«c.generate(fileNames)»
+			«c.generate»
 		«ENDFOR»
 		</td>
 	'''
 
-	def dispatch generate(Emphasize em, Map<AbstractSection, String> fileNames) 
-		'''<em>«FOR c:em.contents»«c.generate(fileNames)»«ENDFOR»</em>'''
+	def dispatch generate(Emphasize em) 
+		'''<em>«FOR c:em.contents»«c.generate»«ENDFOR»</em>'''
 
-	def dispatch generate(Link link, Map<AbstractSection, String> fileNames) 
+	def dispatch generate(Link link) 
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
 	
-	def dispatch generate(CodeRef cRef, Map<AbstractSection, String> fileNames) {
+	def dispatch generate(CodeRef cRef) {
 		val prefix = if(cRef.element instanceof JvmAnnotationType && cRef.altText == null) "@"
 		val jDocLink = cRef.element.genJavaDocLink
 		val gitLink = cRef.element.gitLink
 		val fqn = cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
 		val text = if(cRef.altText != null) {
-						cRef.altText.generate(fileNames)
+						cRef.altText.generate
 					} else {
 						cRef.element.dottedSimpleName
 					}
@@ -354,9 +338,9 @@ class EclipseHelpGenerator implements IGenerator {
 			type.simpleName
 	}
 
-	def dispatch generate(CodeBlock cb, Map<AbstractSection, String> fileNames) {
+	def dispatch generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
-			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode(fileNames).formatCode(cb.language, fileNames)»</span>'''
+			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode.formatCode(cb.language)»</span>'''
 		} else {
 			val indentToRemove = cb.calcIndent
 			val list = 
@@ -364,9 +348,9 @@ class EclipseHelpGenerator implements IGenerator {
 					cb.contents.tail.take(cb.contents.size - 2)
 				else
 					Collections::EMPTY_LIST
-			val first = cb.contents.head.generateCode(fileNames).trimLines(indentToRemove).replaceAll("\\A(\\s*\n)*", "")
+			val first = cb.contents.head.generateCode.trimLines(indentToRemove).replaceAll("\\A(\\s*\n)*", "")
 			val last = if(cb.contents.last != cb.contents.head) {
-					cb.contents.last.generateCode(fileNames).trimLines(indentToRemove).replaceAll("(\\s*\n)*\\Z", "")
+					cb.contents.last.generateCode.trimLines(indentToRemove).replaceAll("(\\s*\n)*\\Z", "")
 				} else{
 					first.replaceAll("(\\s*\n)*\\Z", "")
 					""
@@ -375,11 +359,11 @@ class EclipseHelpGenerator implements IGenerator {
 				<div class="literallayout">
 				<div class="incode">
 				<p class="code">
-				«first.formatCode(cb.language, fileNames)»
+				«first.formatCode(cb.language)»
 				«FOR code: list»
-					«code.generateCode(fileNames).trimLines(indentToRemove).formatCode(cb.language, fileNames)»
+					«code.generateCode.trimLines(indentToRemove).formatCode(cb.language)»
 				«ENDFOR»
-				«last.formatCode(cb.language, fileNames)»
+				«last.formatCode(cb.language)»
 				</p>
 				</div>
 				</div>
@@ -391,14 +375,14 @@ class EclipseHelpGenerator implements IGenerator {
 		cs.toString.replaceAll("\n\\s{" + amount + "}", "\n")
 	}
 
-	def dispatch generateCode (Code code, Map<AbstractSection, String> fileNames) 
+	def dispatch generateCode (Code code) 
 		'''«code.contents.unescapeXdocChars»'''
 	
 	
-	def dispatch generateCode (MarkupInCode code, Map<AbstractSection, String> fileNames) 
-		'''«code.generate(fileNames)»'''
+	def dispatch generateCode (MarkupInCode code) 
+		'''«code.generate»'''
 
-	def genNonParContent(TextOrMarkup tom, Map<AbstractSection, String> fileNames) 
-		'''«FOR obj:tom.contents»«obj.generate(fileNames)»«ENDFOR»'''
+	def genNonParContent(TextOrMarkup tom) 
+		'''«FOR obj:tom.contents»«obj.generate»«ENDFOR»'''
 
 }

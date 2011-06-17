@@ -11,14 +11,12 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
@@ -107,17 +105,15 @@ public class EclipseHelpGenerator implements IGenerator {
   
   public void generate(final Document document, final IFileSystemAccess access) throws RuntimeException {
     {
-      Map<AbstractSection,String> _computeURLs = this.eclipseNamingExtensions.computeURLs(document);
-      final Map<AbstractSection,String> fileNames = _computeURLs;
-      StringConcatenation _generateToc = this.tocGenerator.generateToc(document, fileNames);
+      StringConcatenation _generateToc = this.tocGenerator.generateToc(document);
       access.generateFile("toc.xml", _generateToc);
-      String _get = fileNames.get(document);
-      String _decode = URLDecoder.decode(_get);
-      StringConcatenation _generateRootDocument = this.generateRootDocument(document, fileNames);
+      String _fullURL = this.eclipseNamingExtensions.getFullURL(document);
+      String _decode = URLDecoder.decode(_fullURL);
+      StringConcatenation _generateRootDocument = this.generateRootDocument(document);
       access.generateFile(_decode, _generateRootDocument);
       EList<Chapter> _chapters = document.getChapters();
       for (Chapter c : _chapters) {
-        this.generate(c, fileNames, access);
+        this.generate(c, access);
       }
     }
   }
@@ -198,7 +194,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _xtrycatchfinallyexpression;
   }
   
-  public StringConcatenation generateRootDocument(final Document document, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public StringConcatenation generateRootDocument(final Document document) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -218,8 +214,8 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
     _builder.newLine();
     _builder.append("<link rel=\"home\" href=\"");
-    String _get = fileNames.get(document);
-    _builder.append(_get, "");
+    String _fullURL = this.eclipseNamingExtensions.getFullURL(document);
+    _builder.append(_fullURL, "");
     _builder.append("\" title=\"\">");
     _builder.newLineIfNotEmpty();
     _builder.append("</head>");
@@ -235,7 +231,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = document.getContents();
       for(TextOrMarkup content : _contents) {
-        StringConcatenation _generatePar = this.generatePar(content, fileNames);
+        StringConcatenation _generatePar = this.generatePar(content);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -248,7 +244,7 @@ public class EclipseHelpGenerator implements IGenerator {
           hasAnyElements = true;
           _builder.append("<ol>", "");
         }
-        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss, fileNames);
+        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "");
         _builder.newLineIfNotEmpty();
       }
@@ -263,11 +259,11 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generateEntryInRoot(final AbstractSection section, final Map<AbstractSection,String> fileNames) {
+  public StringConcatenation generateEntryInRoot(final AbstractSection section) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li><a href=\"");
-    String _get = fileNames.get(section);
-    _builder.append(_get, "");
+    String _fullURL = this.eclipseNamingExtensions.getFullURL(section);
+    _builder.append(_fullURL, "");
     _builder.append("\">");
     TextOrMarkup _title = section.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
@@ -283,7 +279,7 @@ public class EclipseHelpGenerator implements IGenerator {
           _builder.append("<ol>", "	");
         }
         _builder.append("\t");
-        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss, fileNames);
+        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -296,14 +292,14 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  public void generate(final Chapter chapter, final Map<AbstractSection,String> fileNames, final IFileSystemAccess access) throws RuntimeException {
-    String _get = fileNames.get(chapter);
-    String _decode = URLDecoder.decode(_get);
-    CharSequence _generate = this.generate(chapter, fileNames);
+  public void generate(final Chapter chapter, final IFileSystemAccess access) throws RuntimeException {
+    String _fullURL = this.eclipseNamingExtensions.getFullURL(chapter);
+    String _decode = URLDecoder.decode(_fullURL);
+    CharSequence _generate = this.generate(chapter);
     access.generateFile(_decode, _generate);
   }
   
-  protected CharSequence _generate(final Chapter chapter, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final Chapter chapter) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -328,16 +324,10 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("<body>");
     _builder.newLine();
-    {
-      String _labelName = this.eclipseNamingExtensions.labelName(chapter, fileNames);
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_labelName, null);
-      if (_operator_notEquals) {
-        _builder.append("<a name=\"");
-        String _labelName_1 = this.eclipseNamingExtensions.labelName(chapter, fileNames);
-        _builder.append(_labelName_1, "");
-        _builder.append("\"></a>");
-      }
-    }
+    _builder.append("<a name=\"");
+    String _localId = this.eclipseNamingExtensions.getLocalId(chapter);
+    _builder.append(_localId, "");
+    _builder.append("\"></a>");
     _builder.newLineIfNotEmpty();
     _builder.append("<");
     String _headtag = this.headtag(chapter);
@@ -354,7 +344,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = chapter.getContents();
       for(TextOrMarkup content : _contents) {
-        StringConcatenation _generatePar = this.generatePar(content, fileNames);
+        StringConcatenation _generatePar = this.generatePar(content);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -362,7 +352,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(chapter);
       for(AbstractSection ss : _sections) {
-        CharSequence _generate = this.generate(ss, fileNames);
+        CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -419,37 +409,37 @@ public class EclipseHelpGenerator implements IGenerator {
     return _switchResult;
   }
   
-  protected CharSequence _generate(final AbstractSection aS, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final AbstractSection section) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
-    String _labelName = this.eclipseNamingExtensions.labelName(aS, fileNames);
-    _builder.append(_labelName, "");
+    String _localId = this.eclipseNamingExtensions.getLocalId(section);
+    _builder.append(_localId, "");
     _builder.append("\"></a>");
     _builder.newLineIfNotEmpty();
     _builder.append("<");
-    String _headtag = this.headtag(aS);
+    String _headtag = this.headtag(section);
     _builder.append(_headtag, "");
     _builder.append(">");
-    TextOrMarkup _title = aS.getTitle();
+    TextOrMarkup _title = section.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</");
-    String _headtag_1 = this.headtag(aS);
+    String _headtag_1 = this.headtag(section);
     _builder.append(_headtag_1, "");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
     {
-      EList<TextOrMarkup> _contents = aS.getContents();
+      EList<TextOrMarkup> _contents = section.getContents();
       for(TextOrMarkup c : _contents) {
-        StringConcatenation _generatePar = this.generatePar(c, fileNames);
+        StringConcatenation _generatePar = this.generatePar(c);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
     }
     {
-      List<? extends AbstractSection> _sections = this.sectionExtension.sections(aS);
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
       for(AbstractSection ss : _sections) {
-        CharSequence _generate = this.generate(ss, fileNames);
+        CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -457,23 +447,23 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section4 aS, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final Section4 aS) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
-    String _labelName = this.eclipseNamingExtensions.labelName(aS, fileNames);
-    _builder.append(_labelName, "");
+    String _localId = this.eclipseNamingExtensions.getLocalId(aS);
+    _builder.append(_localId, "");
     _builder.append("\"></a>");
     _builder.newLineIfNotEmpty();
     _builder.append("<h5>");
     TextOrMarkup _title = aS.getTitle();
-    StringConcatenation _genNonParContent = this.genNonParContent(_title, fileNames);
+    StringConcatenation _genNonParContent = this.genNonParContent(_title);
     _builder.append(_genNonParContent, "");
     _builder.append("</h5>");
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = aS.getContents();
       for(TextOrMarkup tom : _contents) {
-        StringConcatenation _generatePar = this.generatePar(tom, fileNames);
+        StringConcatenation _generatePar = this.generatePar(tom);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -481,14 +471,14 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generatePar(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public StringConcatenation generatePar(final TextOrMarkup tom) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<p>");
     _builder.newLine();
     {
       EList<EObject> _contents = tom.getContents();
       for(EObject c : _contents) {
-        CharSequence _generate = this.generate(c, fileNames);
+        CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
       }
     }
@@ -498,7 +488,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Todo todo, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Todo todo) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<div class=\"todo\" >");
     _builder.newLine();
@@ -510,7 +500,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Ref ref, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final Ref ref) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       StringConcatenation _xifexpression = null;
@@ -533,8 +523,8 @@ public class EclipseHelpGenerator implements IGenerator {
         if (_isEmpty) {
           _builder_1.append("<a href=\"");
           Identifiable _ref_2 = ref.getRef();
-          Object _url = this.url(_ref_2, fileNames);
-          _builder_1.append(_url, "");
+          String _fullURL = this.eclipseNamingExtensions.getFullURL(_ref_2);
+          _builder_1.append(_fullURL, "");
           _builder_1.append("\" ");
           _builder_1.append(title, "");
           _builder_1.append(" >section ");
@@ -544,15 +534,15 @@ public class EclipseHelpGenerator implements IGenerator {
           _builder_1.append("</a>");} else {
           _builder_1.append("<a href=\"");
           Identifiable _ref_4 = ref.getRef();
-          Object _url_1 = this.url(_ref_4, fileNames);
-          _builder_1.append(_url_1, "");
+          String _fullURL_1 = this.eclipseNamingExtensions.getFullURL(_ref_4);
+          _builder_1.append(_fullURL_1, "");
           _builder_1.append("\" ");
           _builder_1.append(title, "");
           _builder_1.append(">");
           {
             EList<TextOrMarkup> _contents_1 = ref.getContents();
             for(TextOrMarkup tom : _contents_1) {
-              StringConcatenation _genNonParContent = this.genNonParContent(tom, fileNames);
+              StringConcatenation _genNonParContent = this.genNonParContent(tom);
               _builder_1.append(_genNonParContent, "");
             }
           }
@@ -564,47 +554,19 @@ public class EclipseHelpGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected Object _url(final Anchor anchor, final Map<AbstractSection,String> fileNames) {
-    URI _xblockexpression = null;
-    {
-      AbstractSection _containerOfType = EcoreUtil2.<AbstractSection>getContainerOfType(anchor, org.eclipse.xtext.xdoc.xdoc.AbstractSection.class);
-      final AbstractSection section = _containerOfType;
-      String _get = fileNames.get(section);
-      final String fileName = _get;
-      boolean _operator_equals = ObjectExtensions.operator_equals(fileName, null);
-      if (_operator_equals) {
-        return null;
-      }
-      URI _createURI = URI.createURI(fileName);
-      final URI uri = _createURI;
-      URI _trimFragment = uri.trimFragment();
-      String _name = anchor.getName();
-      String _operator_plus = StringExtensions.operator_plus("anchor-", _name);
-      URI _appendFragment = _trimFragment.appendFragment(_operator_plus);
-      final URI result = _appendFragment;
-      _xblockexpression = (result);
-    }
-    return _xblockexpression;
-  }
-  
-  protected Object _url(final AbstractSection section, final Map<AbstractSection,String> fileNames) {
-    String _get = fileNames.get(section);
-    return _get;
-  }
-  
-  protected CharSequence _generate(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final TextOrMarkup tom) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
       for(EObject obj : _contents) {
-        CharSequence _generate = this.generate(obj, fileNames);
+        CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
       }
     }
     return _builder;
   }
   
-  protected CharSequence _generate(final UnorderedList ul, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final UnorderedList ul) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
@@ -612,7 +574,7 @@ public class EclipseHelpGenerator implements IGenerator {
       EList<Item> _items = ul.getItems();
       for(Item i : _items) {
         _builder.append("\t");
-        CharSequence _generate = this.generate(i, fileNames);
+        CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -622,7 +584,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final OrderedList ul, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final OrderedList ul) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ol>");
     _builder.newLine();
@@ -630,7 +592,7 @@ public class EclipseHelpGenerator implements IGenerator {
       EList<Item> _items = ul.getItems();
       for(Item i : _items) {
         _builder.append("\t");
-        CharSequence _generate = this.generate(i, fileNames);
+        CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -640,7 +602,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Item i, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final Item i) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li>");
     _builder.newLine();
@@ -648,7 +610,7 @@ public class EclipseHelpGenerator implements IGenerator {
       EList<TextOrMarkup> _contents = i.getContents();
       for(TextOrMarkup tom : _contents) {
         _builder.append("\t");
-        CharSequence _generate = this.generate(tom, fileNames);
+        CharSequence _generate = this.generate(tom);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -658,7 +620,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Anchor a, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Anchor a) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"anchor-");
     String _name = a.getName();
@@ -667,7 +629,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final ImageRef img, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final ImageRef img) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       String _path = img.getPath();
@@ -758,21 +720,21 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TextPart tp, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final TextPart tp) {
     String _text = tp.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
     String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
     return _escapeHTMLChars;
   }
   
-  protected CharSequence _generate(final Table table, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final Table table) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<table>");
     _builder.newLine();
     {
       EList<TableRow> _rows = table.getRows();
       for(TableRow tr : _rows) {
-        CharSequence _generate = this.generate(tr, fileNames);
+        CharSequence _generate = this.generate(tr);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -782,14 +744,14 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TableRow tr, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final TableRow tr) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<tr>");
     _builder.newLine();
     {
       EList<TableData> _data = tr.getData();
       for(TableData td : _data) {
-        CharSequence _generate = this.generate(td, fileNames);
+        CharSequence _generate = this.generate(td);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -799,14 +761,14 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final TableData td, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final TableData td) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<td>");
     _builder.newLine();
     {
       EList<TextOrMarkup> _contents = td.getContents();
       for(TextOrMarkup c : _contents) {
-        CharSequence _generate = this.generate(c, fileNames);
+        CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -816,13 +778,13 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Emphasize em, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final Emphasize em) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     {
       EList<TextOrMarkup> _contents = em.getContents();
       for(TextOrMarkup c : _contents) {
-        CharSequence _generate = this.generate(c, fileNames);
+        CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
       }
     }
@@ -830,7 +792,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Link link, final Map<AbstractSection,String> fileNames) {
+  protected CharSequence _generate(final Link link) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a href=\"");
     String _url = link.getUrl();
@@ -844,7 +806,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final CodeRef cRef, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final CodeRef cRef) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       String _xifexpression = null;
@@ -878,7 +840,7 @@ public class EclipseHelpGenerator implements IGenerator {
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
       if (_operator_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
-        CharSequence _generate = this.generate(_altText_2, fileNames);
+        CharSequence _generate = this.generate(_altText_2);
         _xifexpression_1 = _generate;
       } else {
         JvmDeclaredType _element_4 = cRef.getElement();
@@ -947,7 +909,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected CharSequence _generate(final CodeBlock cb, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected CharSequence _generate(final CodeBlock cb) throws RuntimeException {
     StringConcatenation _xifexpression = null;
     boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
@@ -955,9 +917,9 @@ public class EclipseHelpGenerator implements IGenerator {
       _builder.append("<span class=\"inlinecode\">");
       EList<EObject> _contents = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
-      StringConcatenation _generateCode = this.generateCode(((Code) _head), fileNames);
+      StringConcatenation _generateCode = this.generateCode(((Code) _head));
       LangDef _language = cb.getLanguage();
-      String _formatCode = this.utils.formatCode(_generateCode, _language, fileNames);
+      String _formatCode = this.utils.formatCode(_generateCode, _language);
       _builder.append(_formatCode, "");
       _builder.append("</span>");
       _xifexpression = _builder;
@@ -984,7 +946,7 @@ public class EclipseHelpGenerator implements IGenerator {
         final Iterable<EObject> list = _xifexpression_1;
         EList<EObject> _contents_4 = cb.getContents();
         EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
-        StringConcatenation _generateCode_1 = this.generateCode(_head_1, fileNames);
+        StringConcatenation _generateCode_1 = this.generateCode(_head_1);
         String _trimLines = this.trimLines(_generateCode_1, indentToRemove);
         String _replaceAll = _trimLines.replaceAll("\\A(\\s*\n)*", "");
         final String first = _replaceAll;
@@ -997,7 +959,7 @@ public class EclipseHelpGenerator implements IGenerator {
         if (_operator_notEquals) {
           EList<EObject> _contents_7 = cb.getContents();
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
-          StringConcatenation _generateCode_2 = this.generateCode(_last_1, fileNames);
+          StringConcatenation _generateCode_2 = this.generateCode(_last_1);
           String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
           String _replaceAll_1 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
           _xifexpression_2 = _replaceAll_1;
@@ -1018,21 +980,21 @@ public class EclipseHelpGenerator implements IGenerator {
         _builder_1.append("<p class=\"code\">");
         _builder_1.newLine();
         LangDef _language_1 = cb.getLanguage();
-        String _formatCode_1 = this.utils.formatCode(first, _language_1, fileNames);
+        String _formatCode_1 = this.utils.formatCode(first, _language_1);
         _builder_1.append(_formatCode_1, "");
         _builder_1.newLineIfNotEmpty();
         {
           for(EObject code : list) {
-            StringConcatenation _generateCode_3 = this.generateCode(code, fileNames);
+            StringConcatenation _generateCode_3 = this.generateCode(code);
             String _trimLines_2 = this.trimLines(_generateCode_3, indentToRemove);
             LangDef _language_2 = cb.getLanguage();
-            String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2, fileNames);
+            String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2);
             _builder_1.append(_formatCode_2, "");
             _builder_1.newLineIfNotEmpty();
           }
         }
         LangDef _language_3 = cb.getLanguage();
-        String _formatCode_3 = this.utils.formatCode(last, _language_3, fileNames);
+        String _formatCode_3 = this.utils.formatCode(last, _language_3);
         _builder_1.append(_formatCode_3, "");
         _builder_1.newLineIfNotEmpty();
         _builder_1.append("</p>");
@@ -1056,7 +1018,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _replaceAll;
   }
   
-  protected StringConcatenation _generateCode(final Code code, final Map<AbstractSection,String> fileNames) {
+  protected StringConcatenation _generateCode(final Code code) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
@@ -1064,112 +1026,78 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _generateCode(final MarkupInCode code, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  protected StringConcatenation _generateCode(final MarkupInCode code) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _generate = this.generate(code, fileNames);
+    CharSequence _generate = this.generate(code);
     _builder.append(_generate, "");
     return _builder;
   }
   
-  public StringConcatenation genNonParContent(final TextOrMarkup tom, final Map<AbstractSection,String> fileNames) throws RuntimeException {
+  public StringConcatenation genNonParContent(final TextOrMarkup tom) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
       for(EObject obj : _contents) {
-        CharSequence _generate = this.generate(obj, fileNames);
+        CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
       }
     }
     return _builder;
   }
   
-  public CharSequence generate(final EObject chapter, final Map<AbstractSection,String> fileNames) throws RuntimeException {
-    if ((chapter instanceof Chapter)
-         && (fileNames instanceof Map)) {
-      return _generate((Chapter)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Section4)
-         && (fileNames instanceof Map)) {
-      return _generate((Section4)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof AbstractSection)
-         && (fileNames instanceof Map)) {
-      return _generate((AbstractSection)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Anchor)
-         && (fileNames instanceof Map)) {
-      return _generate((Anchor)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof CodeBlock)
-         && (fileNames instanceof Map)) {
-      return _generate((CodeBlock)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof CodeRef)
-         && (fileNames instanceof Map)) {
-      return _generate((CodeRef)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Emphasize)
-         && (fileNames instanceof Map)) {
-      return _generate((Emphasize)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof ImageRef)
-         && (fileNames instanceof Map)) {
-      return _generate((ImageRef)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Link)
-         && (fileNames instanceof Map)) {
-      return _generate((Link)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof OrderedList)
-         && (fileNames instanceof Map)) {
-      return _generate((OrderedList)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Ref)
-         && (fileNames instanceof Map)) {
-      return _generate((Ref)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Table)
-         && (fileNames instanceof Map)) {
-      return _generate((Table)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Todo)
-         && (fileNames instanceof Map)) {
-      return _generate((Todo)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof UnorderedList)
-         && (fileNames instanceof Map)) {
-      return _generate((UnorderedList)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof Item)
-         && (fileNames instanceof Map)) {
-      return _generate((Item)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof TableData)
-         && (fileNames instanceof Map)) {
-      return _generate((TableData)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof TableRow)
-         && (fileNames instanceof Map)) {
-      return _generate((TableRow)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof TextOrMarkup)
-         && (fileNames instanceof Map)) {
-      return _generate((TextOrMarkup)chapter, (Map<AbstractSection,String>)fileNames);
-    } else if ((chapter instanceof TextPart)
-         && (fileNames instanceof Map)) {
-      return _generate((TextPart)chapter, (Map<AbstractSection,String>)fileNames);
+  public CharSequence generate(final EObject chapter) throws RuntimeException {
+    if ((chapter instanceof Chapter)) {
+      return _generate((Chapter)chapter);
+    } else if ((chapter instanceof Section4)) {
+      return _generate((Section4)chapter);
+    } else if ((chapter instanceof AbstractSection)) {
+      return _generate((AbstractSection)chapter);
+    } else if ((chapter instanceof Anchor)) {
+      return _generate((Anchor)chapter);
+    } else if ((chapter instanceof CodeBlock)) {
+      return _generate((CodeBlock)chapter);
+    } else if ((chapter instanceof CodeRef)) {
+      return _generate((CodeRef)chapter);
+    } else if ((chapter instanceof Emphasize)) {
+      return _generate((Emphasize)chapter);
+    } else if ((chapter instanceof ImageRef)) {
+      return _generate((ImageRef)chapter);
+    } else if ((chapter instanceof Link)) {
+      return _generate((Link)chapter);
+    } else if ((chapter instanceof OrderedList)) {
+      return _generate((OrderedList)chapter);
+    } else if ((chapter instanceof Ref)) {
+      return _generate((Ref)chapter);
+    } else if ((chapter instanceof Table)) {
+      return _generate((Table)chapter);
+    } else if ((chapter instanceof Todo)) {
+      return _generate((Todo)chapter);
+    } else if ((chapter instanceof UnorderedList)) {
+      return _generate((UnorderedList)chapter);
+    } else if ((chapter instanceof Item)) {
+      return _generate((Item)chapter);
+    } else if ((chapter instanceof TableData)) {
+      return _generate((TableData)chapter);
+    } else if ((chapter instanceof TableRow)) {
+      return _generate((TableRow)chapter);
+    } else if ((chapter instanceof TextOrMarkup)) {
+      return _generate((TextOrMarkup)chapter);
+    } else if ((chapter instanceof TextPart)) {
+      return _generate((TextPart)chapter);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chapter, fileNames).toString());
+        java.util.Arrays.<Object>asList(chapter).toString());
     }
   }
   
-  public Object url(final Identifiable section, final Map<AbstractSection,String> fileNames) {
-    if ((section instanceof AbstractSection)
-         && (fileNames instanceof Map)) {
-      return _url((AbstractSection)section, (Map<AbstractSection,String>)fileNames);
-    } else if ((section instanceof Anchor)
-         && (fileNames instanceof Map)) {
-      return _url((Anchor)section, (Map<AbstractSection,String>)fileNames);
+  public StringConcatenation generateCode(final EObject code) throws RuntimeException {
+    if ((code instanceof Code)) {
+      return _generateCode((Code)code);
+    } else if ((code instanceof MarkupInCode)) {
+      return _generateCode((MarkupInCode)code);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(section, fileNames).toString());
-    }
-  }
-  
-  public StringConcatenation generateCode(final EObject code, final Map<AbstractSection,String> fileNames) throws RuntimeException {
-    if ((code instanceof Code)
-         && (fileNames instanceof Map)) {
-      return _generateCode((Code)code, (Map<AbstractSection,String>)fileNames);
-    } else if ((code instanceof MarkupInCode)
-         && (fileNames instanceof Map)) {
-      return _generateCode((MarkupInCode)code, (Map<AbstractSection,String>)fileNames);
-    } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(code, fileNames).toString());
+        java.util.Arrays.<Object>asList(code).toString());
     }
   }
 }

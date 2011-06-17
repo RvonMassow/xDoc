@@ -1,9 +1,12 @@
 package org.eclipse.xtext.xdoc.generator
 
-import org.eclipse.xtext.xdoc.xdoc.*
-import org.eclipse.xtext.xdoc.generator.util.*
 import com.google.inject.Inject
 import java.util.Map
+import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
+import org.eclipse.xtext.xdoc.generator.util.Utils
+import org.eclipse.xtext.xdoc.xdoc.Document
+import org.eclipse.xtext.xdoc.xdoc.Chapter
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection
 
 class TocGenerator {
 
@@ -12,27 +15,27 @@ class TocGenerator {
 	@Inject extension PlainText plainText
 	@Inject extension Utils utils
 
-	def generateToc(Document doc, Map<AbstractSection, String> fileNames) '''
+	def generateToc(Document doc) '''
 		<?xml version="1.0" encoding="ISO-8859-1" ?>
-		<toc topic="contents/«fileNames.get(doc)»" label="«doc.title.genPlainText»" >
+		<toc topic="contents/«doc.fullURL»" label="«doc.title.genPlainText»" >
 			«FOR c: doc.chapters»
-				«c.genTocEntry(fileNames)»
+				«c.genTocEntry»
 			«ENDFOR»
 		</toc>
 	'''
 
-	def genTocEntry(Chapter c, Map<AbstractSection, String> fileNames) '''
-		<topic href="contents/«fileNames.get(c)»" label="«c.title.genPlainText»" >
+	def genTocEntry(Chapter c) '''
+		<topic href="contents/«c.fullURL»" label="«c.title.genPlainText»" >
 			«FOR ss: c.subSections»
-				«ss.genTocEntry(fileNames)»
+				«ss.genTocEntry»
 			«ENDFOR»
 		</topic>
 	'''
 
-	def genTocEntry(AbstractSection section, Map<AbstractSection, String> fileNames) '''
-		<topic href="contents/«fileNames.get(section)»" label="«section.title.genPlainText»" >
+	def genTocEntry(AbstractSection section) '''
+		<topic href="contents/«section.fullURL»" label="«section.title.genPlainText»" >
 			«FOR ss:section.sections»
-				«ss.genTocEntry(fileNames)»
+				«ss.genTocEntry»
 			«ENDFOR»
 		</topic>
 	'''

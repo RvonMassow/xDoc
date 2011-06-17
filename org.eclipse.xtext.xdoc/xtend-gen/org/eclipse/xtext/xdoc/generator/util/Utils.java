@@ -6,7 +6,6 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Token;
@@ -112,12 +111,12 @@ public class Utils {
     return _xifexpression;
   }
   
-  public String formatCode(final CharSequence text, final LangDef language, final Map<AbstractSection,String> fileNames) {
+  public String formatCode(final CharSequence text, final LangDef language) {
     String _xifexpression = null;
     boolean _operator_notEquals = ObjectExtensions.operator_notEquals(text, null);
     if (_operator_notEquals) {
       String _string = text.toString();
-      String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language, fileNames);
+      String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language);
       _xifexpression = _highlightedHtmlCode;
     } else {
       _xifexpression = "";
@@ -155,24 +154,23 @@ public class Utils {
     return _xblockexpression;
   }
   
-  public String getHighlightedHtmlCode(final String code, final LangDef language, final Map<AbstractSection,String> fileNames) {
+  public String getHighlightedHtmlCode(final String code, final LangDef language) {
     {
       Common _common = new Common();
       final Common lexer = _common;
       ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(code);
       lexer.setCharStream(_aNTLRStringStream);
-      Collection<String> _xifexpression = null;
+      Set<?> _xifexpression = null;
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(language, null);
       if (_operator_notEquals) {
         EList<String> _keywords = language.getKeywords();
         Set<String> _set = IterableExtensions.<String>toSet(_keywords);
         _xifexpression = _set;
       } else {
-        Set<AbstractSection> _keySet = fileNames.keySet();
-        Collection<String> _defaultLangKeywords = this.defaultLangKeywords(_keySet);
-        _xifexpression = _defaultLangKeywords;
+        Set<?> _emptySet = CollectionLiterals.emptySet();
+        _xifexpression = _emptySet;
       }
-      final Collection<String> keywords = _xifexpression;
+      final Set<?> keywords = _xifexpression;
       Token _nextToken = lexer.nextToken();
       Token token = _nextToken;
       StringBuilder _stringBuilder = new StringBuilder();

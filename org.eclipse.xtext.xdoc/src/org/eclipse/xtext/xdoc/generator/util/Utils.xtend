@@ -57,9 +57,9 @@ class Utils {
 			""
 	}
 
-	def formatCode(CharSequence text, LangDef language, Map<AbstractSection, String> fileNames) {
+	def formatCode(CharSequence text, LangDef language) {
 		if(text != null)
-			getHighlightedHtmlCode(text.toString, language, fileNames)
+			getHighlightedHtmlCode(text.toString, language)
 		else
 			""
 	}
@@ -73,13 +73,13 @@ class Utils {
 			emptySet as Set<String>
 	}
 
-	def getHighlightedHtmlCode(String code, LangDef language, Map<AbstractSection, String> fileNames) {
+	def getHighlightedHtmlCode(String code, LangDef language) {
 		val lexer = new Common()
 		lexer.setCharStream(new ANTLRStringStream(code))
 		val keywords = if (language !=null) 
 							language.keywords.toSet
 						else
-							defaultLangKeywords(fileNames.keySet)
+							emptySet
 		var token = lexer.nextToken
 		val result = new StringBuilder()
 		while (token.type != Token::EOF) {
