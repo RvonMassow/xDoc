@@ -164,6 +164,8 @@ public class ProjectUtils {
 			this.createFile(project, subMonitor, url.openStream(), "contents/code.css");
 			url = XdocActivator.getInstance().getBundle().getResource("resources/book.css");
 			this.createFile(project, subMonitor, url.openStream(), "contents/book.css");
+			url = XdocActivator.getInstance().getBundle().getResource("resources/novaAddon.css");
+			this.createFile(project, subMonitor, url.openStream(), "contents/novaAddon.css");
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 			throw new RuntimeException(e);

@@ -46,9 +46,13 @@ EM.UILabel {
 	text-align:center;
 }
 
-.jdoc {
+a.srcLink {
 	text-decoration: none;
-	color: #000000 !important;
+	color: #7f7f7f !important;
+}
+
+abbr {
+	border-bottom: 1px dotted;
 }
 
 EM.CodeName {
@@ -82,11 +86,6 @@ body,h1,h2,h3,h4,h5,h6,p,table,td,caption,th,ul,ol,dl,li,dd,dt {
 
 pre {
 	font-size: 10pt
-}
-
-/* end font size declarations */
-body {
-	background: #FFFFFF
 }
 
 h1 {
@@ -124,16 +123,32 @@ pre {
 	font-size: 9pt
 }
 
-a:link {
-	color: #0000FF
-}
-
 a:hover {
 	color: #000080
 }
 
 a:visited {
 	text-decoration: underline
+}
+
+.image {
+	text-align:center;
+}
+
+a.jdoc {
+	border-bottom: .1em dotted;
+	text-decoration: none;
+	font-weight: normal;
+	color: #000000 !important;
+}
+
+a.srcLink {
+	text-decoration: none;
+	color: #7f7f7f !important;
+}
+
+abbr {
+	border-bottom: 1px dotted;
 }
 
 ul {
