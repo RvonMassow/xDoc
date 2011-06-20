@@ -170,4 +170,67 @@ public class EclipseNamingExtensions {
     }
     return _switchResult;
   }
+  
+  public String getFullPHPURL(final Identifiable identifiable) {
+    String _xblockexpression = null;
+    {
+      String _resourceURL = this.getResourceURL(identifiable);
+      String _replaceAll = _resourceURL.replaceAll("\\.html$", ".php");
+      final String phpURL = _replaceAll;
+      String _switchResult = null;
+      final Identifiable identifiable_1 = identifiable;
+      boolean matched = false;
+      if (!matched) {
+        if (identifiable_1 instanceof ChapterRef) {
+          final ChapterRef identifiable_2 = (ChapterRef) identifiable_1;
+          matched=true;
+          Chapter _chapter = identifiable_2.getChapter();
+          String _fullPHPURL = this.getFullPHPURL(_chapter);
+          _switchResult = _fullPHPURL;
+        }
+      }
+      if (!matched) {
+        if (identifiable_1 instanceof SectionRef) {
+          final SectionRef identifiable_3 = (SectionRef) identifiable_1;
+          matched=true;
+          Section _section = identifiable_3.getSection();
+          String _fullPHPURL_1 = this.getFullPHPURL(_section);
+          _switchResult = _fullPHPURL_1;
+        }
+      }
+      if (!matched) {
+        if (identifiable_1 instanceof Section2Ref) {
+          final Section2Ref identifiable_4 = (Section2Ref) identifiable_1;
+          matched=true;
+          Section2 _section2 = identifiable_4.getSection2();
+          String _fullPHPURL_2 = this.getFullPHPURL(_section2);
+          _switchResult = _fullPHPURL_2;
+        }
+      }
+      if (!matched) {
+        EObject _eContainer = identifiable.eContainer();
+        if ((_eContainer instanceof org.eclipse.xtext.xdoc.xdoc.XdocFile)) {
+          matched=true;
+          Resource _eResource = identifiable.eResource();
+          URI _uRI = _eResource.getURI();
+          URI _trimFileExtension = _uRI.trimFileExtension();
+          String _lastSegment = _trimFileExtension.lastSegment();
+          String _operator_plus = StringExtensions.operator_plus(_lastSegment, ".php");
+          return _operator_plus;
+        }
+      }
+      if (!matched) {
+        Resource _eResource_1 = identifiable.eResource();
+        URI _uRI_1 = _eResource_1.getURI();
+        URI _trimFileExtension_1 = _uRI_1.trimFileExtension();
+        String _lastSegment_1 = _trimFileExtension_1.lastSegment();
+        String _operator_plus_1 = StringExtensions.operator_plus(_lastSegment_1, ".php#");
+        String _localId = this.getLocalId(identifiable);
+        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, _localId);
+        return _operator_plus_2;
+      }
+      _xblockexpression = (_switchResult);
+    }
+    return _xblockexpression;
+  }
 }

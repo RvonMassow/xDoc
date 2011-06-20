@@ -56,5 +56,17 @@ class EclipseNamingExtensions {
 			}
 		}
 	}
-	
+
+	def String getFullPHPURL(Identifiable identifiable) {
+		val phpURL = getResourceURL(identifiable).replaceAll("\\.html$", ".php")
+		switch(identifiable) {
+			ChapterRef : identifiable.chapter.fullPHPURL
+			SectionRef : identifiable.section.fullPHPURL
+			Section2Ref : identifiable.section2.fullPHPURL
+			case identifiable.eContainer instanceof XdocFile :
+				return identifiable.eResource.URI.trimFileExtension.lastSegment + ".php"
+			default :
+				return identifiable.eResource.URI.trimFileExtension.lastSegment + '.php#' + identifiable.localId
+		}
+	}
 }

@@ -62,6 +62,7 @@ class HtmlGenerator implements IGenerator {
 	@Inject extension AbstractSectionExtension ase
 	@Inject extension GitExtensions git
 	@Inject extension JavaDocExtension jdoc
+	@Inject extension PHPPhoenixGenerator ppg
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		try{
@@ -76,12 +77,10 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def void generate(Document doc, IFileSystemAccess fsa) {
-		fsa.generateFile("index.html", Outlets::WEB_SITE,
+		doc.generatePHP(fsa)
+		fsa.generateFile("_index.html", Outlets::WEB_SITE,
 		'''
-			<html>
-			  «header(doc.title)»
-			  «doc.body»
-			</html>
+			«doc.body»
 		'''
 		)
 		// fsa.generateFile("toc.html", )
@@ -104,14 +103,9 @@ class HtmlGenerator implements IGenerator {
 	'''
 
 	def void generateFile(AbstractSection section, IFileSystemAccess fsa, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId){
+		section.generatePHP(fsa)
 		fsa.generateFile(URLDecoder::decode(section.resourceURL), Outlets::WEB_SITE, '''
-			<html>
-			  «section.title.header»
-			
-			<body onload="initTocMenu('«leftNavUnfoldSubTocId»');highlightCurrentSection(document.URL.substring(document.URL.lastIndexOf('/')+1));">
-			«_copiedPageLayoutTop»
-			<div id="novaContent" class="faux">
-				<br style="clear:both;height:1em;">
+			<br style="clear:both;height:1em;">
 				<div id="leftcol">
 					«leftNav»
 				</div>
@@ -119,15 +113,12 @@ class HtmlGenerator implements IGenerator {
 					«section.generate(fsa, leftNav, leftNavUnfoldSubTocId)»
 				</div>
 				<br style="clear:both;height:1em;">
-			</div>
-			«_copiedPageLayoutBottom»
-			</body>
-			</html>
 		''')
 	}
 	
 	def dispatch CharSequence generate(ChapterRef chap, IFileSystemAccess fsa, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId) {
 		chap.chapter.generateFile(fsa, leftNav, chap.fullURL)
+		
 		'''<a href="«chap.fullURL»"><«chap.tag»>«chap.genPlainText»</«chap.tag»></a>'''
 	}
 	
@@ -206,43 +197,17 @@ class HtmlGenerator implements IGenerator {
 			Section4: "h4"
 		}
 	}
-	
-	def CharSequence header (TextOrMarkup title) '''
-		<head>
-		  <META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		  <title>«title.genPlainText»</title>
-		  <link href="book.css" rel="stylesheet" type="text/css">
-		  <link href="code.css" rel="stylesheet" type="text/css">
-		  <link href="http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/reset-fonts-grids/reset-fonts-grids.css" rel="stylesheet" type="text/css" media="screen">
-		  <link href="http://www.eclipse.org/eclipse.org-common/yui/2.6.0/build/menu/assets/skins/sam/menu.css" rel="stylesheet" type="text/css" media="screen">
-		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/reset.css" rel="stylesheet" type="text/css" media="screen">
-		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/layout.css" rel="stylesheet" type="text/css" media="screen">
-		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/header.css" rel="stylesheet" type="text/css" media="screen">
-		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/footer.css" rel="stylesheet" type="text/css" media="screen">
-		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/visual.css" rel="stylesheet" type="text/css" media="screen">
-		  <link href="http://www.eclipse.org/eclipse.org-common/themes/Nova/css/print.css" rel="stylesheet" type="text/css" media="print">
-		  <link rel="stylesheet" type="text/css" href="http://www.eclipse.org/Xtext/style.css"/>
-		  <link rel="stylesheet" type="text/css" href="http://www.eclipse.org/style2.css"/>
-		  «javaScriptForNavigation»
-		</head>
-	'''
 
 	def CharSequence body(Document doc) '''
-		<body>
-			«_copiedPageLayoutTop()»
-			<div id="novaContent" class="faux">
-				<br style="clear:both;height:1em;">
-				<div id="leftcol">
-				«generateLogo»
-				</div>
-				<div id="midcolumn">
-					«doc.genAuthors»
-					«doc.toc»
-				</div>
-				<br style="clear:both;height:1em;">
-			</div>
-			«_copiedPageLayoutBottom()»
-		</body>
+		<br style="clear:both;height:1em;">
+		<div id="leftcol">
+		«generateLogo»
+		</div>
+		<div id="midcolumn">
+			«doc.genAuthors»
+			«doc.toc»
+		</div>
+		<br style="clear:both;height:1em;">
 	'''
 
 	def CharSequence toc(AbstractSection section) {
@@ -262,12 +227,12 @@ class HtmlGenerator implements IGenerator {
 		</ul>
 	'''
 	def dispatch CharSequence tocEntry(Chapter chapter) 
-	'''<li><a href="«chapter.fullURL»" >«chapter.title.genNonParText»</a>«IF !chapter.sections.empty»
+	'''<li><a href="«chapter.fullPHPURL»" >«chapter.title.genNonParText»</a>«IF !chapter.sections.empty»
 	«chapter.subToc»«ENDIF»</li>
 	'''
 
 	def dispatch CharSequence tocEntry(AbstractSection section) '''
-		<li><a href="«section.fullURL»" >«section.title.genNonParText »</a></li>
+		<li><a href="«section.fullPHPURL»" >«section.title.genNonParText »</a></li>
 	'''
 		
 	
@@ -288,13 +253,15 @@ class HtmlGenerator implements IGenerator {
 	«ENDFOR»
 	</ul>
 	'''
-	def dispatch CharSequence leftNavTocEntry(Chapter chapter) 
-	'''<li class="separator"><div class="separator">«chapter.title.genNonParText»</div>
-	«IF !chapter.sections.empty»«chapter.leftNavSubToc»«ENDIF»</li>
+	def dispatch CharSequence leftNavTocEntry(Chapter chapter) '''
+		<li class="separator"><div class="separator">
+		<img src="triangle.gif" style="height:12px; margin-right: 2px; «IF chapter.sections.empty»display:none«ENDIF»"  /><img src="triangle-90.gif" style="display:none; margin-right: 2px" height="12px" />
+		<a href="«chapter.fullPHPURL»">«chapter.title.genNonParText»</a></div>
+		«IF !chapter.sections.empty»«chapter.leftNavSubToc»«ENDIF»</li>
 	'''
 
 	def dispatch CharSequence leftNavTocEntry(AbstractSection section) '''
-		<li id="«section.fullURL»" ><a href="«section.fullURL»" >«section.title.genNonParText »</a></li>
+		<li id="«section.fullURL»" ><a href="«section.fullPHPURL»" >«section.title.genNonParText »</a></li>
 	'''
 
 	def CharSequence genAuthors(Document doc) {
@@ -350,8 +317,8 @@ class HtmlGenerator implements IGenerator {
 						cRef.element.dottedSimpleName
 					}
 		var ret = if(jDocLink != null)
-			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" title="View JavaDoc"><abbr title="«fqn
-				»" >«prefix»«text»</abbr></a>'''
+			'''<a class="jdoc" href="«cRef.element.genJavaDocLink»" title="«fqn»">«
+			prefix»«text»</abbr></a>'''
 		else
 			'''<abbr title="«fqn
 				»" >«prefix»«text»</abbr>'''
@@ -408,8 +375,8 @@ class HtmlGenerator implements IGenerator {
 		val title = if(ref.ref instanceof AbstractSection) {
 			'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
 		}
-		'''«IF ref.contents.isEmpty »<a href="«ref.ref.fullURL»" «title» >section «ref.ref.name»</a>«ELSE
-		»<a href="«ref.ref.fullURL»" «title»>«FOR tom:ref.contents
+		'''«IF ref.contents.isEmpty »<a href="«ref.ref.fullPHPURL»" «title» >section «ref.ref.name»</a>«ELSE
+		»<a href="«ref.ref.fullPHPURL»" «title»>«FOR tom:ref.contents
 		»«tom.genNonParText»«ENDFOR»</a>«
 		ENDIF»'''
 	}
@@ -461,13 +428,13 @@ class HtmlGenerator implements IGenerator {
 	'''<td>«td.contents.generate»</td>'''
 
 	def dispatch CharSequence genText(ImageRef img) {
-		copy(img.path, img.eResource)
+		copy(img.path.unescapeXdocChars, img.eResource)
 		'''
 			<div class="image" >
 			«IF img.name != null»
 				<a>«img.name»</a>
 			«ENDIF»
-			<img src="«img.path.unescapeXdocChars()»" 
+			<img src="«img.path.unescapeXdocChars().replaceAll("\\.\\./","")»" 
 				«IF !img.clazz.nullOrEmpty»
 					class="«img.clazz.unescapeXdocChars»" 
 				«ELSE»
@@ -492,7 +459,7 @@ class HtmlGenerator implements IGenerator {
 			var inDir = ""
 			if(uri.platformResource) {
 				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName)
-				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::WEB_SITE_PATH_NAME).toString + "/" + fromRelativeFileName)
+				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::WEB_SITE_PATH_NAME).toString + "/" + fromRelativeFileName.replaceAll("\\.\\.",""))
 				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
 				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
 				while (inChannel.read(buffer) != -1) {
@@ -519,7 +486,7 @@ class HtmlGenerator implements IGenerator {
 	
 	def CharSequence generateLogo() '''
 		<div class="nav-logo">
-			<a href="index.html"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin-left:30px; width:125px"/></a>
+			<a href="index.php"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin-left:30px; width:125px"/></a>
 		</div>'''
 	
 	def CharSequence javaScriptForNavigation(){
@@ -557,75 +524,4 @@ class HtmlGenerator implements IGenerator {
 		</script>
 		'''
 	}
-		
-	def CharSequence _copiedPageLayoutTop()
-	'''
-	<div id="novaWrapper">		<div id="clearHeader">
-			<div id="logo">
-					<div id="promotion"><a href="/indigo/friends.php">
-		<img src="http://www.eclipse.org/home/promotions/indigo/indigo.png" alt="Indigo Is Coming!"/>
-	</a>
-
-	</div>
-
-			</div>
-			<div id="otherSites">
-				<div id="sites">
-				<ul id="sitesUL">
-					<li><a href='http://marketplace.eclipse.org'><img alt="Eclipse Marketplace" src="http://dev.eclipse.org/custom_icons/marketplace.png"/>&nbsp;<div>Eclipse Marketplace</div></a></li>
-					<li><a href='http://live.eclipse.org'><img alt="Eclipse Live" src="http://dev.eclipse.org/custom_icons/audio-input-microphone-bw.png"/>&nbsp;<div>Eclipse Live</div></a></li>
-
-		    		<li><a href='https://bugs.eclipse.org/bugs/'><img alt="Bugzilla" src="http://dev.eclipse.org/custom_icons/system-search-bw.png"/>&nbsp;<div>Bugzilla</div></a></li>
-		    		<li><a href='http://www.eclipse.org/forums/'><img alt="Forums" src="http://dev.eclipse.org/large_icons/apps/internet-group-chat.png"/>&nbsp;<div>Eclipse Forums</div></a></li>
-		    		<li><a href='http://www.planeteclipse.org/'><img alt="Planet Eclipse" src="http://dev.eclipse.org/large_icons/devices/audio-card.png"/>&nbsp;<div>Planet Eclipse</div></a></li>
-		    		<li><a href='http://wiki.eclipse.org/'><img alt="Eclipse Wiki" src="http://dev.eclipse.org/custom_icons/accessories-text-editor-bw.png"/>&nbsp;<div>Eclipse Wiki</div></a></li>
-		    		<li><a href='http://portal.eclipse.org'><img alt="MyFoundation Portal" src="http://dev.eclipse.org/custom_icons/preferences-system-network-proxy-bw.png"/><div>My Foundation Portal</div></a></li>
-		    	</ul>
-
-		    	</div>
-			</div>		
-		</div>
-
-	<div id="header">			
-		<div id="menu">
-			<ul>
-			<li><a href="/Xtext" target="_self">Home</a></li> 
-			<li><a href="/Xtext/download" target="_self">Download</a></li> 
-			<li><a href="index.html" target="_self">Documentation</a></li> 
-			<li><a href="/Xtext/support" target="_self">Support</a></li> 
-			<li><a href="/Xtext/community" target="_self">Community</a></li> 
-			<li><a href="/Xtext/developers" target="_self">Developers</a></li> 
-				</ul>
-
-		</div>
-
-		<div id="search">
-				<form action="http://www.google.com/cse" id="searchbox_017941334893793413703:sqfrdtd112s">
-			 	<input type="hidden" name="cx" value="017941334893793413703:sqfrdtd112s" />
-		  		<input id="searchBox" type="text" name="q" size="25" />
-		  		<input id="searchButton" type="submit" name="sa" value="Search" />
-				</form>
-			<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbox_017941334893793413703%3Asqfrdtd112s&lang=en"></script>			
-		</div>
-
-	</div>
-	'''
-	
-	def CharSequence _copiedPageLayoutBottom()
-	'''
-	<div id="clearFooter"></div>
-	<div id="footer">
-	<ul id="footernav">
-		<li><a href="/">Home</a></li>
-
-		<li><a href="/legal/privacy.php">Privacy Policy</a></li>
-		<li><a href="/legal/termsofuse.php">Terms of Use</a></li>
-		<li><a href="/legal/copyright.php">Copyright Agent</a></li>
-		<li><a href="/legal/">Legal</a></li>
-		<li><a href="/org/foundation/contact.php">Contact Us</a></li>
-	</ul>
-
-	<span id="copyright">Copyright &copy; 2011 The Eclipse Foundation. All Rights Reserved.</span>
-	</div>
-	'''
 }
