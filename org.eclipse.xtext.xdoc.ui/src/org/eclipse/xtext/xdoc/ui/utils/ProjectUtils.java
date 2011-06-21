@@ -28,7 +28,7 @@ public class ProjectUtils {
 	private URI location;
 	private Logger logger = Logger.getLogger(this.getClass());
 
-	private String[] folders = {"src", "contents", "META-INF" };
+	private String[] folders = {"src", "contents", "website", "META-INF" };
 
 	private String[] natures = { JavaCore.NATURE_ID,
 			XtextProjectHelper.NATURE_ID,
@@ -156,16 +156,31 @@ public class ProjectUtils {
 //		createWorkflow(project, subMonitor);
 		createPluginXML(project, subMonitor);
 		createCSSFiles(project, subMonitor);
+		createImages(project, subMonitor);
+	}
+
+	private void createImages(IProject project, SubMonitor subMonitor) {
+		try{
+			URL url = XdocActivator.getInstance().getBundle().getResource("resources/triangle.gif");
+			this.createFile(project, subMonitor, url.openStream(), "website/triangle.gif");
+			url = XdocActivator.getInstance().getBundle().getResource("resources/triangle-90.gif");
+			this.createFile(project, subMonitor, url.openStream(), "website/triangle-90.gif");
+		} catch (IOException e) {
+			logger.error(e.getMessage(), e);
+			throw new RuntimeException(e);
+		} 
 	}
 
 	private void createCSSFiles(IProject project, SubMonitor subMonitor) {
 		try {
 			URL url = XdocActivator.getInstance().getBundle().getResource("resources/code.css");
 			this.createFile(project, subMonitor, url.openStream(), "contents/code.css");
+			this.createFile(project, subMonitor, url.openStream(), "website/code.css");
 			url = XdocActivator.getInstance().getBundle().getResource("resources/book.css");
 			this.createFile(project, subMonitor, url.openStream(), "contents/book.css");
+			this.createFile(project, subMonitor, url.openStream(), "website/book.css");
 			url = XdocActivator.getInstance().getBundle().getResource("resources/novaAddon.css");
-			this.createFile(project, subMonitor, url.openStream(), "contents/novaAddon.css");
+			this.createFile(project, subMonitor, url.openStream(), "website/novaAddon.css");
 		} catch (IOException e) {
 			logger.error(e.getMessage(), e);
 			throw new RuntimeException(e);
@@ -180,12 +195,7 @@ public class ProjectUtils {
 		fileContents.append("Bundle-SymbolicName: " + project.getName().trim() + ";singleton:=true\n");
 		fileContents.append("Bundle-Version: 1.0.0.qualifier\n");
 		fileContents.append("Bundle-Vendor: My Company\n");
-//		fileContents.append("Bundle-RequiredExecutionEnvironment: J2SE-1.5\n");
 		fileContents.append("Require-Bundle: org.eclipse.help");
-//		fileContents.append(" org.eclipse.xtext.xdoc;bundle-version=\"1.0.0\";resolution:=optional,\n");
-//		fileContents.append(" org.eclipse.xtext.xdoc.generator;bundle-version=\"1.0.0\";resolution:=optional\n");
-//		fileContents.append("Import-Package: org.apache.log4j;version=\"1.2.15\",\n");
-//		fileContents.append(" org.apache.commons.logging;version=\"1.0.4\"\n");
 		this.createFile(project, monitor, fileContents.toString(), "META-INF/MANIFEST.MF");
 	}
 	
@@ -238,12 +248,6 @@ public class ProjectUtils {
 		fileContents.append("            primary=\"true\">\n");
 		fileContents.append("      </toc>\n");
 		fileContents.append("   </extension>\n\n");
-//		fileContents.append("   <extension\n");
-//		fileContents.append("         point=\"org.eclipse.help.index\">\n");
-//		fileContents.append("      <index\n");
-//		fileContents.append("            file=\"contents/index.xml\">\n");
-//		fileContents.append("      </index>\n");
-//		fileContents.append("   </extension>\n\n");
 		fileContents.append("</plugin>\n");
 		this.createFile(project, monitor, fileContents.toString(), "plugin.xml");
 	}
