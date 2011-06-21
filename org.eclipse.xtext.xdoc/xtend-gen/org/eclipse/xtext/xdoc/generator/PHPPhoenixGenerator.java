@@ -78,6 +78,10 @@ public class PHPPhoenixGenerator {
       _builder.append("include(\"include.php\");");
       _builder.newLine();
       _builder.append("\t");
+      CharSequence _genScriptsAndStyles = this.genScriptsAndStyles(doc);
+      _builder.append(_genScriptsAndStyles, "	");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
       _builder.append("$pageTitle \t\t= \"");
       TextOrMarkup _title = doc.getTitle();
       CharSequence _genPlainText = this.pt.genPlainText(_title);
@@ -120,7 +124,7 @@ public class PHPPhoenixGenerator {
       _builder_1.newLine();
       _builder_1.append("# these are optional");
       _builder_1.newLine();
-      _builder_1.append("$Nav->setLinkList(array());");
+      _builder_1.append("# $Nav->setLinkList(array());");
       _builder_1.newLine();
       _builder_1.newLine();
       _builder_1.append("$pageKeywords\t= \"xtext, dsl, modeling, domain specific language, textual\";");

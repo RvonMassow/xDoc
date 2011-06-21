@@ -36,6 +36,7 @@ class PHPPhoenixGenerator {
 		'''
 			<?php require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/app.class.php");	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/nav.class.php"); 	require_once($_SERVER['DOCUMENT_ROOT'] . "/eclipse.org-common/system/menu.class.php"); 	$App 	= new App();	$Nav	= new Nav();	$Menu 	= new Menu();		include($App->getProjectCommon());    # All on the same line to unclutter the user's desktop'
 				include("include.php");
+				«doc.genScriptsAndStyles»
 				$pageTitle 		= "«doc.title.genPlainText»";
 				
 				$html .=  iconv("latin1", "utf-8", file_get_contents('_index.html'));
@@ -58,7 +59,7 @@ class PHPPhoenixGenerator {
 			# Define your project-wide Nav bars here.
 			# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)
 			# these are optional
-			$Nav->setLinkList(array());
+			# $Nav->setLinkList(array());
 
 			$pageKeywords	= "xtext, dsl, modeling, domain specific language, textual";
 			«IF doc.authors != null»$pageAuthor		= "«doc.authors.genPlainText»";«ENDIF»

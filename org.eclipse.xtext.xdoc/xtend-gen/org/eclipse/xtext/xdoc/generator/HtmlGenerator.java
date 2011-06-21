@@ -109,14 +109,14 @@ public class HtmlGenerator implements IGenerator {
   
   public void generate(final Document doc, final IFileSystemAccess fsa) throws RuntimeException {
     {
+      CharSequence _leftNavToc = this.leftNavToc(doc);
+      final CharSequence leftNav = _leftNavToc;
       this.ppg.generatePHP(doc, fsa);
       StringConcatenation _builder = new StringConcatenation();
-      CharSequence _body = this.body(doc);
+      CharSequence _body = this.body(doc, leftNav);
       _builder.append(_body, "");
       _builder.newLineIfNotEmpty();
       fsa.generateFile("_index.html", Outlets.WEB_SITE, _builder);
-      CharSequence _leftNavToc = this.leftNavToc(doc);
-      final CharSequence leftNav = _leftNavToc;
       EList<Chapter> _chapters = doc.getChapters();
       for (Chapter chapter : _chapters) {
         CharSequence _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter));
@@ -500,26 +500,15 @@ public class HtmlGenerator implements IGenerator {
     return _switchResult;
   }
   
-  public CharSequence body(final Document doc) throws RuntimeException {
+  public CharSequence body(final Document doc, final CharSequence leftNav) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<br style=\"clear:both;height:1em;\">");
     _builder.newLine();
     _builder.append("<div id=\"leftcol\">");
     _builder.newLine();
-    CharSequence _generateLogo = this.generateLogo();
-    _builder.append(_generateLogo, "");
+    _builder.append("", "");
     _builder.newLineIfNotEmpty();
-    _builder.append("</div>");
-    _builder.newLine();
-    _builder.append("<div id=\"midcolumn\">");
-    _builder.newLine();
-    _builder.append("\t");
-    CharSequence _genAuthors = this.genAuthors(doc);
-    _builder.append(_genAuthors, "	");
-    _builder.newLineIfNotEmpty();
-    _builder.append("\t");
-    CharSequence _c = this.toc(doc);
-    _builder.append(_c, "	");
+    _builder.append(leftNav, "");
     _builder.newLineIfNotEmpty();
     _builder.append("</div>");
     _builder.newLine();

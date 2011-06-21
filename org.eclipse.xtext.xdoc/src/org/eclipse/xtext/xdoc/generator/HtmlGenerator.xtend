@@ -77,14 +77,14 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def void generate(Document doc, IFileSystemAccess fsa) {
+		val leftNav = doc.leftNavToc
 		doc.generatePHP(fsa)
 		fsa.generateFile("_index.html", Outlets::WEB_SITE,
 		'''
-			«doc.body»
+			«doc.body(leftNav)»
 		'''
 		)
 		// fsa.generateFile("toc.html", )
-		val leftNav = doc.leftNavToc
 		for(chapter : doc.chapters) {
 			chapter.generate(fsa, leftNav, (chapter as Chapter).elementIdForSubToc)
 		}
@@ -198,14 +198,11 @@ class HtmlGenerator implements IGenerator {
 		}
 	}
 
-	def CharSequence body(Document doc) '''
+	def CharSequence body(Document doc, CharSequence leftNav) '''
 		<br style="clear:both;height:1em;">
 		<div id="leftcol">
-		«generateLogo»
-		</div>
-		<div id="midcolumn">
-			«doc.genAuthors»
-			«doc.toc»
+		«/*generateLogo*/""»
+		«leftNav»
 		</div>
 		<br style="clear:both;height:1em;">
 	'''
