@@ -100,11 +100,13 @@ public class Utils {
     String _xifexpression = null;
     boolean _operator_notEquals = ObjectExtensions.operator_notEquals(s, null);
     if (_operator_notEquals) {
-      String _replaceAll = s.replaceAll("&", "&amp;");
-      String _replaceAll_1 = _replaceAll.replaceAll("\'", "&apos;");
-      String _replaceAll_2 = _replaceAll_1.replaceAll("<", "&lt;");
-      String _replaceAll_3 = _replaceAll_2.replaceAll(">", "&gt;");
-      _xifexpression = _replaceAll_3;
+      String _replace = s.replace("&", "&amp;");
+      String _replace_1 = _replace.replace("\'", "&apos;");
+      String _replace_2 = _replace_1.replace("<", "&lt;");
+      String _replace_3 = _replace_2.replace(">", "&gt;");
+      String _replace_4 = _replace_3.replace("\u00AB", "&laquo;");
+      String _replace_5 = _replace_4.replace("\u00BB", "&raquo;");
+      _xifexpression = _replace_5;
     } else {
       _xifexpression = "";
     }

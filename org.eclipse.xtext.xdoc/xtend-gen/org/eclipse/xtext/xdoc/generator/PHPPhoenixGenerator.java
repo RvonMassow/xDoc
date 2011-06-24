@@ -45,10 +45,10 @@ public class PHPPhoenixGenerator {
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("$html .= iconv(\"latin1\", \"utf-8\", file_get_contents(\'");
+    _builder.append("$html = file_get_contents(\'");
     String _fullURL = this.ene.getFullURL(as);
     _builder.append(_fullURL, "	");
-    _builder.append("\'));");
+    _builder.append("\');");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\t");
