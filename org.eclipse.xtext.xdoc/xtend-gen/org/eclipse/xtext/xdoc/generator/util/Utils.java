@@ -248,7 +248,7 @@ public class Utils {
   public String whitespace2Entities(final String s) {
     String _escapeHTMLChars = this.escapeHTMLChars(s);
     String _replace = _escapeHTMLChars.replace(" ", "&nbsp;");
-    String _replace_1 = _replace.replace("\n", "</br>\n");
+    String _replace_1 = _replace.replace("\n", "<br/>\n");
     String _replace_2 = _replace_1.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
     return _replace_2;
   }
