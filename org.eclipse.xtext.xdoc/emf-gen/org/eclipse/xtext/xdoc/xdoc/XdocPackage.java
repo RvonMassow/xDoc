@@ -244,13 +244,22 @@ public interface XdocPackage extends EPackage
 	int DOCUMENT__GLOSSARY = ABSTRACT_SECTION_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOCUMENT__PARTS = ABSTRACT_SECTION_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Document</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 5;
+	int DOCUMENT_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -1416,6 +1425,125 @@ public interface XdocPackage extends EPackage
 	 */
 	int GLOSSARY_FEATURE_COUNT = 1;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.PartImpl <em>Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.PartImpl
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getPart()
+	 * @generated
+	 */
+	int PART = 34;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART__NAME = ABSTRACT_SECTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART__TITLE = ABSTRACT_SECTION__TITLE;
+
+	/**
+	 * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART__CONTENTS = ABSTRACT_SECTION__CONTENTS;
+
+	/**
+	 * The feature id for the '<em><b>Chapters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART__CHAPTERS = ABSTRACT_SECTION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_FEATURE_COUNT = ABSTRACT_SECTION_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.PartRefImpl <em>Part Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.PartRefImpl
+	 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getPartRef()
+	 * @generated
+	 */
+	int PART_REF = 35;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_REF__NAME = PART__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Title</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_REF__TITLE = PART__TITLE;
+
+	/**
+	 * The feature id for the '<em><b>Contents</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_REF__CONTENTS = PART__CONTENTS;
+
+	/**
+	 * The feature id for the '<em><b>Chapters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_REF__CHAPTERS = PART__CHAPTERS;
+
+	/**
+	 * The feature id for the '<em><b>Part</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_REF__PART = PART_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Part Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PART_REF_FEATURE_COUNT = PART_FEATURE_COUNT + 1;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.XdocFile <em>File</em>}'.
@@ -1502,6 +1630,17 @@ public interface XdocPackage extends EPackage
 	 * @generated
 	 */
 	EReference getDocument_Glossary();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Document#getParts <em>Parts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parts</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Document#getParts()
+	 * @see #getDocument()
+	 * @generated
+	 */
+	EReference getDocument_Parts();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Chapter <em>Chapter</em>}'.
@@ -2275,6 +2414,48 @@ public interface XdocPackage extends EPackage
 	EReference getGlossary_GlossaryEntry();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.Part <em>Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Part</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Part
+	 * @generated
+	 */
+	EClass getPart();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.xtext.xdoc.xdoc.Part#getChapters <em>Chapters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Chapters</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Part#getChapters()
+	 * @see #getPart()
+	 * @generated
+	 */
+	EReference getPart_Chapters();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.xtext.xdoc.xdoc.PartRef <em>Part Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Part Ref</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.PartRef
+	 * @generated
+	 */
+	EClass getPartRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.xtext.xdoc.xdoc.PartRef#getPart <em>Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Part</em>'.
+	 * @see org.eclipse.xtext.xdoc.xdoc.PartRef#getPart()
+	 * @see #getPartRef()
+	 * @generated
+	 */
+	EReference getPartRef_Part();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2364,6 +2545,14 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EReference DOCUMENT__GLOSSARY = eINSTANCE.getDocument_Glossary();
+
+		/**
+		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DOCUMENT__PARTS = eINSTANCE.getDocument_Parts();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.ChapterImpl <em>Chapter</em>}' class.
@@ -3012,6 +3201,42 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EReference GLOSSARY__GLOSSARY_ENTRY = eINSTANCE.getGlossary_GlossaryEntry();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.PartImpl <em>Part</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.PartImpl
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getPart()
+		 * @generated
+		 */
+		EClass PART = eINSTANCE.getPart();
+
+		/**
+		 * The meta object literal for the '<em><b>Chapters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PART__CHAPTERS = eINSTANCE.getPart_Chapters();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.xtext.xdoc.xdoc.impl.PartRefImpl <em>Part Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.PartRefImpl
+		 * @see org.eclipse.xtext.xdoc.xdoc.impl.XdocPackageImpl#getPartRef()
+		 * @generated
+		 */
+		EClass PART_REF = eINSTANCE.getPartRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Part</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PART_REF__PART = eINSTANCE.getPartRef_Part();
 
 	}
 

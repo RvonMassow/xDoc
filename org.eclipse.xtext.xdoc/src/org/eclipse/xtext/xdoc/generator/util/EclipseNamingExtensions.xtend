@@ -36,11 +36,14 @@ class EclipseNamingExtensions {
 
 	def String getFullURL(Identifiable identifiable) {
 		switch identifiable {
+			PartRef : identifiable.part.fullURL
 			ChapterRef : identifiable.chapter.fullURL
 			SectionRef : identifiable.section.fullURL
 			Section2Ref : identifiable.section2.fullURL
 			case identifiable.eContainer instanceof XdocFile :
 				identifiable.resourceURL
+			Part:
+				identifiable.eResource.URI.trimFileExtension.lastSegment + "_" + identifiable.eContainer.eContents.indexOf(identifiable) + ".html"
 			default :
 				identifiable.resourceURL + '#' + identifiable.localId
 		}
@@ -48,6 +51,7 @@ class EclipseNamingExtensions {
 	
 	def String getResourceURL(Identifiable identifiable) {
 		switch identifiable {
+			PartRef : identifiable.part.resourceURL
 			ChapterRef : identifiable.chapter.resourceURL			
 			SectionRef : identifiable.section.resourceURL			
 			Section2Ref : identifiable.section2.resourceURL			
@@ -60,6 +64,7 @@ class EclipseNamingExtensions {
 	def String getFullPHPURL(Identifiable identifiable) {
 		val phpURL = getResourceURL(identifiable).replaceAll("\\.html$", ".php")
 		switch(identifiable) {
+			PartRef : identifiable.part.fullPHPURL
 			ChapterRef : identifiable.chapter.fullPHPURL
 			SectionRef : identifiable.section.fullPHPURL
 			Section2Ref : identifiable.section2.fullPHPURL

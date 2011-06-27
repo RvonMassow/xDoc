@@ -248,6 +248,16 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
 				return createGlossaryAdapter();
 			}
 			@Override
+			public Adapter casePart(Part object)
+			{
+				return createPartAdapter();
+			}
+			@Override
+			public Adapter casePartRef(PartRef object)
+			{
+				return createPartRefAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object)
 			{
 				return createEObjectAdapter();
@@ -775,6 +785,36 @@ public class XdocAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createGlossaryAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.Part <em>Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xdoc.xdoc.Part
+	 * @generated
+	 */
+	public Adapter createPartAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.xdoc.xdoc.PartRef <em>Part Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.xtext.xdoc.xdoc.PartRef
+	 * @generated
+	 */
+	public Adapter createPartRefAdapter()
 	{
 		return null;
 	}

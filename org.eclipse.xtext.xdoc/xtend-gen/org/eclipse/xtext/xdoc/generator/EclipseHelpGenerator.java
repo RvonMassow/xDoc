@@ -49,6 +49,7 @@ import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
 import org.eclipse.xtext.xdoc.xdoc.OrderedList;
+import org.eclipse.xtext.xdoc.xdoc.Part;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
@@ -114,6 +115,10 @@ public class EclipseHelpGenerator implements IGenerator {
       EList<Chapter> _chapters = document.getChapters();
       for (Chapter c : _chapters) {
         this.generate(c, access);
+      }
+      EList<Part> _parts = document.getParts();
+      for (Part p : _parts) {
+        this.generate(p, access);
       }
     }
   }
@@ -292,11 +297,89 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  public void generate(final Chapter chapter, final IFileSystemAccess access) throws RuntimeException {
+  protected void _generate(final Chapter chapter, final IFileSystemAccess access) throws RuntimeException {
     String _fullURL = this.eclipseNamingExtensions.getFullURL(chapter);
     String _decode = URLDecoder.decode(_fullURL);
     CharSequence _generate = this.generate(chapter);
     access.generateFile(_decode, _generate);
+  }
+  
+  protected void _generate(final Part part, final IFileSystemAccess fsa) throws RuntimeException {
+    {
+      String _fullURL = this.eclipseNamingExtensions.getFullURL(part);
+      String _decode = URLDecoder.decode(_fullURL);
+      CharSequence _generate = this.generate(part);
+      fsa.generateFile(_decode, _generate);
+      EList<Chapter> _chapters = part.getChapters();
+      for (Chapter c : _chapters) {
+        this.generate(c, fsa);
+      }
+    }
+  }
+  
+  protected CharSequence _generate(final Part part) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<html>");
+    _builder.newLine();
+    _builder.append("<head>");
+    _builder.newLine();
+    _builder.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\" >");
+    _builder.newLine();
+    _builder.append("<title>");
+    TextOrMarkup _title = part.getTitle();
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
+    _builder.append(_genPlainText, "");
+    _builder.append("</title>");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("<link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
+    _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
+    _builder.newLine();
+    _builder.append("<link rel=\"home\" href=\"index.html\" title=\"\">");
+    _builder.newLine();
+    _builder.append("</head>");
+    _builder.newLine();
+    _builder.append("<body>");
+    _builder.newLine();
+    _builder.append("<a name=\"");
+    String _localId = this.eclipseNamingExtensions.getLocalId(part);
+    _builder.append(_localId, "");
+    _builder.append("\"></a>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("<");
+    String _headtag = this.headtag(part);
+    _builder.append(_headtag, "");
+    _builder.append(">");
+    TextOrMarkup _title_1 = part.getTitle();
+    CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
+    _builder.append(_genPlainText_1, "");
+    _builder.append("</");
+    String _headtag_1 = this.headtag(part);
+    _builder.append(_headtag_1, "");
+    _builder.append(">");
+    _builder.newLineIfNotEmpty();
+    {
+      List<? extends AbstractSection> _sections = this.sectionExtension.sections(part);
+      boolean hasAnyElements = false;
+      for(AbstractSection ss : _sections) {
+        if (!hasAnyElements) {
+          hasAnyElements = true;
+          _builder.append("<ol>", "");
+        }
+        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss);
+        _builder.append(_generateEntryInRoot, "");
+        _builder.newLineIfNotEmpty();
+      }
+      if (hasAnyElements) {
+        _builder.append("</ol>", "");
+      }
+    }
+    _builder.append("</body>");
+    _builder.newLine();
+    _builder.append("</html>");
+    _builder.newLine();
+    return _builder;
   }
   
   protected CharSequence _generate(final Chapter chapter) throws RuntimeException {
@@ -369,36 +452,43 @@ public class EclipseHelpGenerator implements IGenerator {
     final AbstractSection section_1 = section;
     boolean matched = false;
     if (!matched) {
+      if (section_1 instanceof Part) {
+        final Part section_2 = (Part) section_1;
+        matched=true;
+        _switchResult = "h1";
+      }
+    }
+    if (!matched) {
       if (section_1 instanceof Chapter) {
-        final Chapter section_2 = (Chapter) section_1;
+        final Chapter section_3 = (Chapter) section_1;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
       if (section_1 instanceof Section) {
-        final Section section_3 = (Section) section_1;
+        final Section section_4 = (Section) section_1;
         matched=true;
         _switchResult = "h2";
       }
     }
     if (!matched) {
       if (section_1 instanceof Section2) {
-        final Section2 section_4 = (Section2) section_1;
+        final Section2 section_5 = (Section2) section_1;
         matched=true;
         _switchResult = "h3";
       }
     }
     if (!matched) {
       if (section_1 instanceof Section3) {
-        final Section3 section_5 = (Section3) section_1;
+        final Section3 section_6 = (Section3) section_1;
         matched=true;
         _switchResult = "h4";
       }
     }
     if (!matched) {
       if (section_1 instanceof Section4) {
-        final Section4 section_6 = (Section4) section_1;
+        final Section4 section_7 = (Section4) section_1;
         matched=true;
         _switchResult = "h5";
       }
@@ -1045,9 +1135,24 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
+  public void generate(final AbstractSection chapter, final IFileSystemAccess access) throws RuntimeException {
+    if ((chapter instanceof Chapter)
+         && (access instanceof IFileSystemAccess)) {
+      _generate((Chapter)chapter, (IFileSystemAccess)access);
+    } else if ((chapter instanceof Part)
+         && (access instanceof IFileSystemAccess)) {
+      _generate((Part)chapter, (IFileSystemAccess)access);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        java.util.Arrays.<Object>asList(chapter, access).toString());
+    }
+  }
+  
   public CharSequence generate(final EObject chapter) throws RuntimeException {
     if ((chapter instanceof Chapter)) {
       return _generate((Chapter)chapter);
+    } else if ((chapter instanceof Part)) {
+      return _generate((Part)chapter);
     } else if ((chapter instanceof Section4)) {
       return _generate((Section4)chapter);
     } else if ((chapter instanceof AbstractSection)) {

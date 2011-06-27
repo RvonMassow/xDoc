@@ -10,6 +10,7 @@ import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.Part;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
@@ -48,6 +49,15 @@ public class TocGenerator {
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(c);
         _builder.append(_genTocEntry, "	");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Part> _parts = doc.getParts();
+      for(Part p : _parts) {
+        _builder.append("\t");
+        StringConcatenation _genTocEntry_1 = this.genTocEntry(p);
+        _builder.append(_genTocEntry_1, "	");
         _builder.newLineIfNotEmpty();
       }
     }

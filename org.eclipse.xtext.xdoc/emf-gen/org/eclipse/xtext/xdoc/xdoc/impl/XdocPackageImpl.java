@@ -37,6 +37,8 @@ import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.MarkUp;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
 import org.eclipse.xtext.xdoc.xdoc.OrderedList;
+import org.eclipse.xtext.xdoc.xdoc.Part;
+import org.eclipse.xtext.xdoc.xdoc.PartRef;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
@@ -302,6 +304,20 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	private EClass glossaryEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass partEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass partRefEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -450,6 +466,16 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	public EReference getDocument_Glossary()
 	{
 		return (EReference)documentEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getDocument_Parts()
+	{
+		return (EReference)documentEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -1187,6 +1213,46 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getPart()
+	{
+		return partEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPart_Chapters()
+	{
+		return (EReference)partEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getPartRef()
+	{
+		return partRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getPartRef_Part()
+	{
+		return (EReference)partRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public XdocFactory getXdocFactory()
 	{
 		return (XdocFactory)getEFactoryInstance();
@@ -1221,6 +1287,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		createEReference(documentEClass, DOCUMENT__CHAPTERS);
 		createEReference(documentEClass, DOCUMENT__LANG_DEFS);
 		createEReference(documentEClass, DOCUMENT__GLOSSARY);
+		createEReference(documentEClass, DOCUMENT__PARTS);
 
 		chapterEClass = createEClass(CHAPTER);
 		createEReference(chapterEClass, CHAPTER__SUB_SECTIONS);
@@ -1326,6 +1393,12 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		glossaryEClass = createEClass(GLOSSARY);
 		createEReference(glossaryEClass, GLOSSARY__GLOSSARY_ENTRY);
+
+		partEClass = createEClass(PART);
+		createEReference(partEClass, PART__CHAPTERS);
+
+		partRefEClass = createEClass(PART_REF);
+		createEReference(partRefEClass, PART_REF__PART);
 	}
 
 	/**
@@ -1387,6 +1460,8 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		codeBlockEClass.getESuperTypes().add(this.getMarkUp());
 		todoEClass.getESuperTypes().add(this.getMarkUp());
 		todoEClass.getESuperTypes().add(this.getMarkupInCode());
+		partEClass.getESuperTypes().add(this.getAbstractSection());
+		partRefEClass.getESuperTypes().add(this.getPart());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(xdocFileEClass, XdocFile.class, "XdocFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1398,6 +1473,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEReference(getDocument_Chapters(), this.getChapter(), null, "chapters", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_LangDefs(), this.getLangDef(), null, "langDefs", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDocument_Glossary(), this.getGlossary(), null, "glossary", null, 0, 1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDocument_Parts(), this.getPart(), null, "parts", null, 0, -1, Document.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(chapterEClass, Chapter.class, "Chapter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChapter_SubSections(), this.getSection(), null, "subSections", null, 0, -1, Chapter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1503,6 +1579,12 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 
 		initEClass(glossaryEClass, Glossary.class, "Glossary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getGlossary_GlossaryEntry(), this.getGlossaryEntry(), null, "glossaryEntry", null, 1, -1, Glossary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(partEClass, Part.class, "Part", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPart_Chapters(), this.getChapter(), null, "chapters", null, 0, -1, Part.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(partRefEClass, PartRef.class, "PartRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPartRef_Part(), this.getPart(), null, "part", null, 0, 1, PartRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

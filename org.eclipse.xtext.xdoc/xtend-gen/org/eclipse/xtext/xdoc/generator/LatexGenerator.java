@@ -881,13 +881,20 @@ public class LatexGenerator implements IGenerator {
     _builder.append("}");
     _builder.newLineIfNotEmpty();
     {
+      boolean _operator_and = false;
       String _caption = imgRef.getCaption();
-      boolean _matches = _caption==null?(boolean)null:_caption.matches("^\\s*$");
-      boolean _operator_not = BooleanExtensions.operator_not(_matches);
-      if (_operator_not) {
-        _builder.append("\\caption{");
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_caption, null);
+      if (!_operator_notEquals) {
+        _operator_and = false;
+      } else {
         String _caption_1 = imgRef.getCaption();
-        _builder.append(_caption_1, "");
+        boolean _matches = _caption_1.matches("^\\s*$");
+        _operator_and = BooleanExtensions.operator_and(_operator_notEquals, _matches);
+      }
+      if (_operator_and) {
+        _builder.append("\\caption{");
+        String _caption_2 = imgRef.getCaption();
+        _builder.append(_caption_2, "");
         _builder.append("}");
         _builder.newLineIfNotEmpty();
       }

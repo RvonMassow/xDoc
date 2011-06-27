@@ -371,6 +371,25 @@ public class XdocSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case XdocPackage.PART:
+			{
+				Part part = (Part)theEObject;
+				T result = casePart(part);
+				if (result == null) result = caseAbstractSection(part);
+				if (result == null) result = caseIdentifiable(part);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case XdocPackage.PART_REF:
+			{
+				PartRef partRef = (PartRef)theEObject;
+				T result = casePartRef(partRef);
+				if (result == null) result = casePart(partRef);
+				if (result == null) result = caseAbstractSection(partRef);
+				if (result == null) result = caseIdentifiable(partRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -915,6 +934,38 @@ public class XdocSwitch<T>
 	 * @generated
 	 */
 	public T caseGlossary(Glossary object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePart(Part object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Part Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Part Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePartRef(PartRef object)
 	{
 		return null;
 	}

@@ -386,7 +386,7 @@ class LatexGenerator implements IGenerator{
 		\begin{figure}[!h]
 		\centering
 		\includegraphics{«copy(imgRef)»}
-		«IF !imgRef.caption?.matches("^\\s*$")»
+		«IF imgRef.caption != null && imgRef.caption.matches("^\\s*$")»
 		\caption{«imgRef.caption»}
 		«ENDIF»
 		\end{figure}

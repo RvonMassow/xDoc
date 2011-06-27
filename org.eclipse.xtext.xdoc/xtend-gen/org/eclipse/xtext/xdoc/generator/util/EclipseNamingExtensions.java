@@ -12,6 +12,8 @@ import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
+import org.eclipse.xtext.xdoc.xdoc.Part;
+import org.eclipse.xtext.xdoc.xdoc.PartRef;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
@@ -85,30 +87,39 @@ public class EclipseNamingExtensions {
     final Identifiable identifiable_1 = identifiable;
     boolean matched = false;
     if (!matched) {
-      if (identifiable_1 instanceof ChapterRef) {
-        final ChapterRef identifiable_2 = (ChapterRef) identifiable_1;
+      if (identifiable_1 instanceof PartRef) {
+        final PartRef identifiable_2 = (PartRef) identifiable_1;
         matched=true;
-        Chapter _chapter = identifiable_2.getChapter();
-        String _fullURL = this.getFullURL(_chapter);
+        Part _part = identifiable_2.getPart();
+        String _fullURL = this.getFullURL(_part);
         _switchResult = _fullURL;
       }
     }
     if (!matched) {
-      if (identifiable_1 instanceof SectionRef) {
-        final SectionRef identifiable_3 = (SectionRef) identifiable_1;
+      if (identifiable_1 instanceof ChapterRef) {
+        final ChapterRef identifiable_3 = (ChapterRef) identifiable_1;
         matched=true;
-        Section _section = identifiable_3.getSection();
-        String _fullURL_1 = this.getFullURL(_section);
+        Chapter _chapter = identifiable_3.getChapter();
+        String _fullURL_1 = this.getFullURL(_chapter);
         _switchResult = _fullURL_1;
       }
     }
     if (!matched) {
-      if (identifiable_1 instanceof Section2Ref) {
-        final Section2Ref identifiable_4 = (Section2Ref) identifiable_1;
+      if (identifiable_1 instanceof SectionRef) {
+        final SectionRef identifiable_4 = (SectionRef) identifiable_1;
         matched=true;
-        Section2 _section2 = identifiable_4.getSection2();
-        String _fullURL_2 = this.getFullURL(_section2);
+        Section _section = identifiable_4.getSection();
+        String _fullURL_2 = this.getFullURL(_section);
         _switchResult = _fullURL_2;
+      }
+    }
+    if (!matched) {
+      if (identifiable_1 instanceof Section2Ref) {
+        final Section2Ref identifiable_5 = (Section2Ref) identifiable_1;
+        matched=true;
+        Section2 _section2 = identifiable_5.getSection2();
+        String _fullURL_3 = this.getFullURL(_section2);
+        _switchResult = _fullURL_3;
       }
     }
     if (!matched) {
@@ -120,11 +131,28 @@ public class EclipseNamingExtensions {
       }
     }
     if (!matched) {
+      if (identifiable_1 instanceof Part) {
+        final Part identifiable_6 = (Part) identifiable_1;
+        matched=true;
+        Resource _eResource = identifiable_6.eResource();
+        URI _uRI = _eResource.getURI();
+        URI _trimFileExtension = _uRI.trimFileExtension();
+        String _lastSegment = _trimFileExtension.lastSegment();
+        String _operator_plus = StringExtensions.operator_plus(_lastSegment, "_");
+        EObject _eContainer_1 = identifiable_6.eContainer();
+        EList<EObject> _eContents = _eContainer_1.eContents();
+        int _indexOf = _eContents.indexOf(identifiable_6);
+        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
+        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ".html");
+        _switchResult = _operator_plus_2;
+      }
+    }
+    if (!matched) {
       String _resourceURL_1 = this.getResourceURL(identifiable);
-      String _operator_plus = StringExtensions.operator_plus(_resourceURL_1, "#");
+      String _operator_plus_3 = StringExtensions.operator_plus(_resourceURL_1, "#");
       String _localId = this.getLocalId(identifiable);
-      String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _localId);
-      _switchResult = _operator_plus_1;
+      String _operator_plus_4 = StringExtensions.operator_plus(_operator_plus_3, _localId);
+      _switchResult = _operator_plus_4;
     }
     return _switchResult;
   }
@@ -134,30 +162,39 @@ public class EclipseNamingExtensions {
     final Identifiable identifiable_1 = identifiable;
     boolean matched = false;
     if (!matched) {
-      if (identifiable_1 instanceof ChapterRef) {
-        final ChapterRef identifiable_2 = (ChapterRef) identifiable_1;
+      if (identifiable_1 instanceof PartRef) {
+        final PartRef identifiable_2 = (PartRef) identifiable_1;
         matched=true;
-        Chapter _chapter = identifiable_2.getChapter();
-        String _resourceURL = this.getResourceURL(_chapter);
+        Part _part = identifiable_2.getPart();
+        String _resourceURL = this.getResourceURL(_part);
         _switchResult = _resourceURL;
       }
     }
     if (!matched) {
-      if (identifiable_1 instanceof SectionRef) {
-        final SectionRef identifiable_3 = (SectionRef) identifiable_1;
+      if (identifiable_1 instanceof ChapterRef) {
+        final ChapterRef identifiable_3 = (ChapterRef) identifiable_1;
         matched=true;
-        Section _section = identifiable_3.getSection();
-        String _resourceURL_1 = this.getResourceURL(_section);
+        Chapter _chapter = identifiable_3.getChapter();
+        String _resourceURL_1 = this.getResourceURL(_chapter);
         _switchResult = _resourceURL_1;
       }
     }
     if (!matched) {
-      if (identifiable_1 instanceof Section2Ref) {
-        final Section2Ref identifiable_4 = (Section2Ref) identifiable_1;
+      if (identifiable_1 instanceof SectionRef) {
+        final SectionRef identifiable_4 = (SectionRef) identifiable_1;
         matched=true;
-        Section2 _section2 = identifiable_4.getSection2();
-        String _resourceURL_2 = this.getResourceURL(_section2);
+        Section _section = identifiable_4.getSection();
+        String _resourceURL_2 = this.getResourceURL(_section);
         _switchResult = _resourceURL_2;
+      }
+    }
+    if (!matched) {
+      if (identifiable_1 instanceof Section2Ref) {
+        final Section2Ref identifiable_5 = (Section2Ref) identifiable_1;
+        matched=true;
+        Section2 _section2 = identifiable_5.getSection2();
+        String _resourceURL_3 = this.getResourceURL(_section2);
+        _switchResult = _resourceURL_3;
       }
     }
     if (!matched) {
@@ -181,30 +218,39 @@ public class EclipseNamingExtensions {
       final Identifiable identifiable_1 = identifiable;
       boolean matched = false;
       if (!matched) {
-        if (identifiable_1 instanceof ChapterRef) {
-          final ChapterRef identifiable_2 = (ChapterRef) identifiable_1;
+        if (identifiable_1 instanceof PartRef) {
+          final PartRef identifiable_2 = (PartRef) identifiable_1;
           matched=true;
-          Chapter _chapter = identifiable_2.getChapter();
-          String _fullPHPURL = this.getFullPHPURL(_chapter);
+          Part _part = identifiable_2.getPart();
+          String _fullPHPURL = this.getFullPHPURL(_part);
           _switchResult = _fullPHPURL;
         }
       }
       if (!matched) {
-        if (identifiable_1 instanceof SectionRef) {
-          final SectionRef identifiable_3 = (SectionRef) identifiable_1;
+        if (identifiable_1 instanceof ChapterRef) {
+          final ChapterRef identifiable_3 = (ChapterRef) identifiable_1;
           matched=true;
-          Section _section = identifiable_3.getSection();
-          String _fullPHPURL_1 = this.getFullPHPURL(_section);
+          Chapter _chapter = identifiable_3.getChapter();
+          String _fullPHPURL_1 = this.getFullPHPURL(_chapter);
           _switchResult = _fullPHPURL_1;
         }
       }
       if (!matched) {
-        if (identifiable_1 instanceof Section2Ref) {
-          final Section2Ref identifiable_4 = (Section2Ref) identifiable_1;
+        if (identifiable_1 instanceof SectionRef) {
+          final SectionRef identifiable_4 = (SectionRef) identifiable_1;
           matched=true;
-          Section2 _section2 = identifiable_4.getSection2();
-          String _fullPHPURL_2 = this.getFullPHPURL(_section2);
+          Section _section = identifiable_4.getSection();
+          String _fullPHPURL_2 = this.getFullPHPURL(_section);
           _switchResult = _fullPHPURL_2;
+        }
+      }
+      if (!matched) {
+        if (identifiable_1 instanceof Section2Ref) {
+          final Section2Ref identifiable_5 = (Section2Ref) identifiable_1;
+          matched=true;
+          Section2 _section2 = identifiable_5.getSection2();
+          String _fullPHPURL_3 = this.getFullPHPURL(_section2);
+          _switchResult = _fullPHPURL_3;
         }
       }
       if (!matched) {

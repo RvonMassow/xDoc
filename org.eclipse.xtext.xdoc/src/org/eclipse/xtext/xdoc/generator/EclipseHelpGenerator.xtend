@@ -48,6 +48,7 @@ import org.eclipse.xtext.common.types.JvmAnnotationType
 import java.util.Collections
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.xdoc.xdoc.Part
 
 class EclipseHelpGenerator implements IGenerator {
 
@@ -79,6 +80,9 @@ class EclipseHelpGenerator implements IGenerator {
 		access.generateFile(document.fullURL.decode, document.generateRootDocument)
 		for(c:document.chapters){
 			c.generate(access)
+		}
+		for(p:document.parts){
+			p.generate(access)
 		}
 	}
 
@@ -143,9 +147,36 @@ class EclipseHelpGenerator implements IGenerator {
 		</li>
 	'''
 
-	def generate(Chapter chapter, IFileSystemAccess access) {
+	def dispatch generate(Chapter chapter, IFileSystemAccess access) {
 		access.generateFile(chapter.fullURL.decode, chapter.generate)
 	}
+
+	def dispatch generate(Part part, IFileSystemAccess fsa) {
+		fsa.generateFile(part.fullURL.decode, part.generate)
+		for(c:part.chapters) {
+			c.generate(fsa)
+		}
+	}
+
+	def dispatch generate(Part part) '''
+		<html>
+		<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
+		<title>«part.title.genPlainText»</title>
+		
+		<link href="book.css" rel="stylesheet" type="text/css">
+		<link href="code.css" rel="stylesheet" type="text/css">
+		<link rel="home" href="index.html" title="">
+		</head>
+		<body>
+		<a name="«part.localId»"></a>
+		<«part.headtag»>«part.title.genPlainText»</«part.headtag»>
+		«FOR ss: part.sections BEFORE "<ol>" AFTER "</ol>"»
+			«ss.generateEntryInRoot»
+		«ENDFOR»
+		</body>
+		</html>
+	'''
 
 	def dispatch generate(Chapter chapter) '''
 		<html>
@@ -172,6 +203,7 @@ class EclipseHelpGenerator implements IGenerator {
 	
 	def headtag(AbstractSection section) {
 		switch section {
+			Part: "h1"
 			Chapter: "h1"
 			Section: "h2"
 			Section2: "h3"

@@ -38,6 +38,9 @@ public class XdocParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getXdocFileAccess().getMainSectionAlternatives_3_0_0(), "rule__XdocFile__MainSectionAlternatives_3_0_0");
+					put(grammarAccess.getDocumentAccess().getAlternatives_7_1(), "rule__Document__Alternatives_7_1");
+					put(grammarAccess.getPartAccess().getAlternatives(), "rule__Part__Alternatives");
+					put(grammarAccess.getPartAccess().getAlternatives_1_0(), "rule__Part__Alternatives_1_0");
 					put(grammarAccess.getChapterAccess().getAlternatives(), "rule__Chapter__Alternatives");
 					put(grammarAccess.getChapterAccess().getAlternatives_1_0(), "rule__Chapter__Alternatives_1_0");
 					put(grammarAccess.getSectionAccess().getAlternatives(), "rule__Section__Alternatives");
@@ -66,7 +69,15 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDocumentAccess().getGroup_5(), "rule__Document__Group_5__0");
 					put(grammarAccess.getDocumentAccess().getGroup_6(), "rule__Document__Group_6__0");
 					put(grammarAccess.getDocumentAccess().getGroup_7(), "rule__Document__Group_7__0");
+					put(grammarAccess.getDocumentAccess().getGroup_7_1_0(), "rule__Document__Group_7_1_0__0");
+					put(grammarAccess.getDocumentAccess().getGroup_7_1_0_1(), "rule__Document__Group_7_1_0_1__0");
+					put(grammarAccess.getDocumentAccess().getGroup_7_1_1(), "rule__Document__Group_7_1_1__0");
+					put(grammarAccess.getDocumentAccess().getGroup_7_1_1_1(), "rule__Document__Group_7_1_1_1__0");
 					put(grammarAccess.getGlossaryAccess().getGroup(), "rule__Glossary__Group__0");
+					put(grammarAccess.getPartAccess().getGroup_1(), "rule__Part__Group_1__0");
+					put(grammarAccess.getPartAccess().getGroup_1_0_0(), "rule__Part__Group_1_0_0__0");
+					put(grammarAccess.getPartAccess().getGroup_1_3(), "rule__Part__Group_1_3__0");
+					put(grammarAccess.getPartRefAccess().getGroup(), "rule__PartRef__Group__0");
 					put(grammarAccess.getGlossaryEntryAccess().getGroup(), "rule__GlossaryEntry__Group__0");
 					put(grammarAccess.getGlossaryEntryAccess().getGroup_2(), "rule__GlossaryEntry__Group_2__0");
 					put(grammarAccess.getGlossaryEntryAccess().getGroup_7(), "rule__GlossaryEntry__Group_7__0");
@@ -140,8 +151,15 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getDocumentAccess().getAuthorsAssignment_4_2(), "rule__Document__AuthorsAssignment_4_2");
 					put(grammarAccess.getDocumentAccess().getLangDefsAssignment_5_1(), "rule__Document__LangDefsAssignment_5_1");
 					put(grammarAccess.getDocumentAccess().getGlossaryAssignment_6_1(), "rule__Document__GlossaryAssignment_6_1");
-					put(grammarAccess.getDocumentAccess().getChaptersAssignment_7_1(), "rule__Document__ChaptersAssignment_7_1");
+					put(grammarAccess.getDocumentAccess().getChaptersAssignment_7_1_0_0(), "rule__Document__ChaptersAssignment_7_1_0_0");
+					put(grammarAccess.getDocumentAccess().getChaptersAssignment_7_1_0_1_1(), "rule__Document__ChaptersAssignment_7_1_0_1_1");
+					put(grammarAccess.getDocumentAccess().getPartsAssignment_7_1_1_0(), "rule__Document__PartsAssignment_7_1_1_0");
+					put(grammarAccess.getDocumentAccess().getPartsAssignment_7_1_1_1_1(), "rule__Document__PartsAssignment_7_1_1_1_1");
 					put(grammarAccess.getGlossaryAccess().getGlossaryEntryAssignment_1(), "rule__Glossary__GlossaryEntryAssignment_1");
+					put(grammarAccess.getPartAccess().getNameAssignment_1_0_0_1(), "rule__Part__NameAssignment_1_0_0_1");
+					put(grammarAccess.getPartAccess().getTitleAssignment_1_1(), "rule__Part__TitleAssignment_1_1");
+					put(grammarAccess.getPartAccess().getChaptersAssignment_1_3_1(), "rule__Part__ChaptersAssignment_1_3_1");
+					put(grammarAccess.getPartRefAccess().getPartAssignment_1(), "rule__PartRef__PartAssignment_1");
 					put(grammarAccess.getGlossaryEntryAccess().getNameAssignment_1(), "rule__GlossaryEntry__NameAssignment_1");
 					put(grammarAccess.getGlossaryEntryAccess().getAliasAssignment_2_2(), "rule__GlossaryEntry__AliasAssignment_2_2");
 					put(grammarAccess.getGlossaryEntryAccess().getDescriptionAssignment_6(), "rule__GlossaryEntry__DescriptionAssignment_6");

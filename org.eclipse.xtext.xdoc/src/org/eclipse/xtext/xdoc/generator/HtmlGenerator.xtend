@@ -52,6 +52,7 @@ import org.eclipse.xtext.xdoc.generator.util.StringUtils
 import org.eclipse.xtext.xdoc.xdoc.SectionRef
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref
+import org.eclipse.xtext.xdoc.xdoc.Part
 
 class HtmlGenerator implements IGenerator {
 	
@@ -83,9 +84,15 @@ class HtmlGenerator implements IGenerator {
 			«doc.body(leftNav)»
 		'''
 		)
-		for(chapter : doc.chapters) {
-			chapter.generate(fsa, leftNav, (chapter as Chapter).elementIdForSubToc)
-		}
+		if(!doc.chapters.empty)
+			for(chapter : doc.chapters) {
+				chapter.generate(fsa, leftNav, (chapter as Chapter).elementIdForSubToc)
+			}
+		else
+			for(part: doc.parts)
+				for(chapter : part.chapters) {
+					chapter.generate(fsa, leftNav, (chapter as Chapter).elementIdForSubToc)
+				}
 	}
 
 	def CharSequence genPrevButton(AbstractSection section) '''
@@ -245,13 +252,24 @@ class HtmlGenerator implements IGenerator {
 			</ul>
 		'''
 	}
-	def CharSequence leftNavSubToc(Chapter chap) '''
-	<ul style="display: none;" id="«chap.elementIdForSubToc»">
-	«FOR ss: chap.sections»
-	    «ss.leftNavTocEntry»
-	«ENDFOR»
-	</ul>
+
+	def dispatch CharSequence leftNavTocEntry(Part part) '''
+		<li class="partentry" ><div class="separator"><div class="separator">
+		«part.title.genPlainText»</div></div>
+		</li>
+		«FOR ss: part.sections»
+		    «ss.leftNavTocEntry»
+		«ENDFOR»
 	'''
+
+	def CharSequence leftNavSubToc(Chapter chap) '''
+		<ul style="display: none;" id="«chap.elementIdForSubToc»">
+		«FOR ss: chap.sections»
+		    «ss.leftNavTocEntry»
+		«ENDFOR»
+		</ul>
+	'''
+
 	def dispatch CharSequence leftNavTocEntry(Chapter chapter) '''
 		<li class="separator"><div class="separator">
 		<img src="triangle.gif" style="height:12px; margin-right: 2px; «IF chapter.sections.empty»display:none«ENDIF»"  /><img src="triangle-90.gif" style="display:none; margin-right: 2px" height="12px" />

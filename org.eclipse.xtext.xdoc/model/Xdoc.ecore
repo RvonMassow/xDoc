@@ -18,6 +18,8 @@
         eType="#//LangDef" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="glossary" eType="#//Glossary"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+        eType="#//Part" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Chapter" eSuperTypes="#//AbstractSection">
     <eStructuralFeatures xsi:type="ecore:EReference" name="subSections" upperBound="-1"
@@ -142,5 +144,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="Glossary">
     <eStructuralFeatures xsi:type="ecore:EReference" name="glossaryEntry" lowerBound="1"
         upperBound="-1" eType="#//GlossaryEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Part" eSuperTypes="#//AbstractSection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="chapters" upperBound="-1"
+        eType="#//Chapter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PartRef" eSuperTypes="#//Part">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="part" eType="#//Part"/>
   </eClassifiers>
 </ecore:EPackage>

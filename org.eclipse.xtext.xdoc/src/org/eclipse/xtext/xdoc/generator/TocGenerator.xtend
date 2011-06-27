@@ -20,6 +20,9 @@ class TocGenerator {
 		<toc topic="contents/«doc.fullURL»" label="«doc.title.genPlainText»" >
 			«FOR c: doc.chapters»
 				«c.genTocEntry»
+			«ENDFOR»			
+			«FOR p: doc.parts»
+				«p.genTocEntry»
 			«ENDFOR»
 		</toc>
 	'''

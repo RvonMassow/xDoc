@@ -48,6 +48,7 @@ import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
 import org.eclipse.xtext.xdoc.xdoc.OrderedList;
+import org.eclipse.xtext.xdoc.xdoc.Part;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
@@ -118,9 +119,23 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLineIfNotEmpty();
       fsa.generateFile("_index.html", Outlets.WEB_SITE, _builder);
       EList<Chapter> _chapters = doc.getChapters();
-      for (Chapter chapter : _chapters) {
-        CharSequence _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter));
-        this.generate(chapter, fsa, leftNav, _elementIdForSubToc);
+      boolean _isEmpty = _chapters.isEmpty();
+      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+      if (_operator_not) {
+        EList<Chapter> _chapters_1 = doc.getChapters();
+        for (Chapter chapter : _chapters_1) {
+          CharSequence _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter));
+          this.generate(chapter, fsa, leftNav, _elementIdForSubToc);
+        }
+      } else {
+        EList<Part> _parts = doc.getParts();
+        for (Part part : _parts) {
+          EList<Chapter> _chapters_2 = part.getChapters();
+          for (Chapter chapter_1 : _chapters_2) {
+            CharSequence _elementIdForSubToc_1 = this.elementIdForSubToc(((Chapter) chapter_1));
+            this.generate(chapter_1, fsa, leftNav, _elementIdForSubToc_1);
+          }
+        }
       }
     }
   }
@@ -624,6 +639,28 @@ public class HtmlGenerator implements IGenerator {
     }
     _builder.append("</ul>");
     _builder.newLine();
+    return _builder;
+  }
+  
+  protected CharSequence _leftNavTocEntry(final Part part) throws RuntimeException {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<li class=\"partentry\" ><div class=\"separator\"><div class=\"separator\">");
+    _builder.newLine();
+    TextOrMarkup _title = part.getTitle();
+    CharSequence _genPlainText = this.plaintext.genPlainText(_title);
+    _builder.append(_genPlainText, "");
+    _builder.append("</div></div>");
+    _builder.newLineIfNotEmpty();
+    _builder.append("</li>");
+    _builder.newLine();
+    {
+      List<? extends AbstractSection> _sections = this.ase.sections(part);
+      for(AbstractSection ss : _sections) {
+        CharSequence _leftNavTocEntry = this.leftNavTocEntry(ss);
+        _builder.append(_leftNavTocEntry, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
@@ -1480,6 +1517,8 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence leftNavTocEntry(final AbstractSection chapter) throws RuntimeException {
     if ((chapter instanceof Chapter)) {
       return _leftNavTocEntry((Chapter)chapter);
+    } else if ((chapter instanceof Part)) {
+      return _leftNavTocEntry((Part)chapter);
     } else if ((chapter instanceof AbstractSection)) {
       return _leftNavTocEntry((AbstractSection)chapter);
     } else {

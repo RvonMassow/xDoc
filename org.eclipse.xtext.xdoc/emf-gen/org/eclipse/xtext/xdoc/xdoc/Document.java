@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getChapters <em>Chapters</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getLangDefs <em>Lang Defs</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getGlossary <em>Glossary</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getParts <em>Parts</em>}</li>
  * </ul>
  * </p>
  *
@@ -138,5 +139,21 @@ public interface Document extends AbstractSection
 	 * @generated
 	 */
 	void setGlossary(Glossary value);
+
+	/**
+	 * Returns the value of the '<em><b>Parts</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.xtext.xdoc.xdoc.Part}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parts</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parts</em>' containment reference list.
+	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getDocument_Parts()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Part> getParts();
 
 } // Document

@@ -332,6 +332,24 @@ public interface XdocFactory extends EFactory
 	Glossary createGlossary();
 
 	/**
+	 * Returns a new object of class '<em>Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Part</em>'.
+	 * @generated
+	 */
+	Part createPart();
+
+	/**
+	 * Returns a new object of class '<em>Part Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Part Ref</em>'.
+	 * @generated
+	 */
+	PartRef createPartRef();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

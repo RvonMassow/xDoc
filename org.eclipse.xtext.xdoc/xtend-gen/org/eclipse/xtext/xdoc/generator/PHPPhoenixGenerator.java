@@ -265,7 +265,7 @@ public class PHPPhoenixGenerator {
     _builder.append("for (var i = 0; i < items.length; i++) {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("if (items[i].firstElementChild != null){");
+    _builder.append("if (items[i].firstElementChild != null && items[i].className == \"separator\"){");
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("if(items[i].firstElementChild.firstElementChild != null){");

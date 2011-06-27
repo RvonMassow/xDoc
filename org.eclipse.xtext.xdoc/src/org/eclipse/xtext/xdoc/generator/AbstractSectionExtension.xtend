@@ -10,15 +10,24 @@ import org.eclipse.xtext.xdoc.xdoc.AbstractSection
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef
 import org.eclipse.xtext.xdoc.xdoc.SectionRef
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref
+import org.eclipse.xtext.xdoc.xdoc.Part
+import org.eclipse.xtext.xdoc.xdoc.PartRef
 
 class AbstractSectionExtension {
 	
 	def dispatch List<? extends AbstractSection> sections(AbstractSection section) {
 		emptyList
 	}
-	
+
 	def dispatch sections(Document doc){
-		doc.chapters
+		if(!doc.chapters.empty)
+			doc.chapters
+		else
+			doc.parts
+	}
+
+	def dispatch sections(Part part){
+		part.chapters
 	}
 
 	def dispatch sections(Chapter chapter){
@@ -33,6 +42,10 @@ class AbstractSectionExtension {
 		section.subSections
 	}
 
+	def dispatch sections(PartRef part){
+		part.chapters
+	}
+
 	def dispatch sections(ChapterRef chapter){
 		chapter.chapter.subSections
 	}
@@ -44,9 +57,9 @@ class AbstractSectionExtension {
 	def dispatch sections(Section2Ref section){
 		section.section2.subSections
 	}
-	
+
 	def dispatch sections(Section3 section){
 		section.subSections
 	}
-	
+
 }
