@@ -503,42 +503,42 @@ class HtmlGenerator implements IGenerator {
 
 	def CharSequence generateLogo() '''
 		<div class="nav-logo">
-			<a href="index.php"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin-left:30px; width:125px"/></a>
+			<a href="index.php"><img src="logo.png" style="margin-left:10px; width:155px"/></a>
 		</div>'''
 
-	def CharSequence javaScriptForNavigation(){
-		'''
-		 <script type="text/javascript"> 
-			function initTocMenu(ActiveSubTocElementId){
-				var menu = document.getElementById("leftnav");
-				
-				var chapters = menu.children;
-				addHideSubsectionFunction(chapters);
-				
-				document.getElementById(ActiveSubTocElementId).style.display = "block";
-			}
-		
-			function addHideSubsectionFunction(items){
-				for (var i = 0; i < items.length; i++) {
-					if (items[i].firstElementChild ){
-						items[i].firstElementChild.onclick = function(){toc_toggle_subsections(this.parentNode);};
-						items[i].firstElementChild.style.cursor = "pointer";
-					}
-				}
-			}
-			function toc_toggle_subsections(chap){
-				if ( chap.children[1].style.display != "none" ) {
-					chap.children[1].style.display = "none"
-				} else {
-					chap.children[1].style.display = "block"
-					
-				}
-			}
-			
-			function highlightCurrentSection(sec) {
-				document.getElementById(sec).style.backgroundColor= "#D0D0D0"
-			}
-		</script>
-		'''
-	}
+//	def CharSequence javaScriptForNavigation(){
+//		'''
+//		 <script type="text/javascript"> 
+//			function initTocMenu(ActiveSubTocElementId){
+//				var menu = document.getElementById("leftnav");
+//				
+//				var chapters = menu.children;
+//				addHideSubsectionFunction(chapters);
+//				
+//				document.getElementById(ActiveSubTocElementId).style.display = "block";
+//			}
+//		
+//			function addHideSubsectionFunction(items){
+//				for (var i = 0; i < items.length; i++) {
+//					if (items[i].firstElementChild ){
+//						items[i].firstElementChild.onclick = function(){toc_toggle_subsections(this.parentNode);};
+//						items[i].firstElementChild.style.cursor = "pointer";
+//					}
+//				}
+//			}
+//			function toc_toggle_subsections(chap){
+//				if ( chap.children[1].style.display != "none" ) {
+//					chap.children[1].style.display = "none"
+//				} else {
+//					chap.children[1].style.display = "block"
+//					
+//				}
+//			}
+//			
+//			function highlightCurrentSection(sec) {
+//				document.getElementById(sec).style.backgroundColor= "#D0D0D0"
+//			}
+//		</script>
+//		'''
+//	}
 }
