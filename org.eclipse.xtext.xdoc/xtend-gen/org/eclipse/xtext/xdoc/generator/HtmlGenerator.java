@@ -309,39 +309,52 @@ public class HtmlGenerator implements IGenerator {
   
   protected CharSequence _generate(final Section sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
     String _localId = this.naming.getLocalId(sec);
     CharSequence _anchor = this.anchor(_localId);
-    _builder.append(_anchor, "");
+    _builder.append(_anchor, "	");
     _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("<span style=\"float:left; border-top: 1px dotted #d4d4dd; margin-left: 0; margin-top: 5px;");
+    _builder.newLine();
+    _builder.append("padding: 5px 0;");
+    _builder.newLine();
+    _builder.append("padding-top: 5px;\"></span><a style=\"float: right\" href=\"#\">Top</a>");
+    _builder.newLine();
+    _builder.append("<br style=\"clear:both\" />");
+    _builder.newLine();
+    _builder.append("\t");
     _builder.append("<");
     String _tag = this.tag(sec);
-    _builder.append(_tag, "");
+    _builder.append(_tag, "	");
     _builder.append(">");
     TextOrMarkup _title = sec.getTitle();
     CharSequence _genNonParText = this.genNonParText(_title);
-    _builder.append(_genNonParText, "");
+    _builder.append(_genNonParText, "	");
     _builder.append("</");
     String _tag_1 = this.tag(sec);
-    _builder.append(_tag_1, "");
+    _builder.append(_tag_1, "	");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
+    _builder.append("\t\t");
     CharSequence _c = this.toc(sec);
-    _builder.append(_c, "	");
+    _builder.append(_c, "		");
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(TextOrMarkup c : _contents) {
+        _builder.append("\t");
         CharSequence _genText = this.genText(c);
-        _builder.append(_genText, "");
+        _builder.append(_genText, "	");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       List<? extends AbstractSection> _sections = this.ase.sections(sec);
       for(AbstractSection sec2 : _sections) {
+        _builder.append("\t");
         CharSequence _generate = this.generate(sec2, fsa, leftNav, leftNavUnfoldSubTocId);
-        _builder.append(_generate, "");
+        _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
     }

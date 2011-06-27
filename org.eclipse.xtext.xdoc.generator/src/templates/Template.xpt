@@ -174,7 +174,15 @@ ENDDEFINE»
 
 «DEFINE genText FOR CodeRef»\lstinline°«escapeLatexChars(unescapeXdocChars(this.element.qualifiedName))»°«ENDDEFINE»
 
-«DEFINE genText FOR ImageRef»«copy((String) GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir)»\includegraphics{«this.path»}«ENDDEFINE»
+«DEFINE genText FOR ImageRef»
+\begin{figure}[!h]
+\centering
+\includegraphics{«copy((String) GLOBALVAR srcDir, this, (String) GLOBALVAR dir)»}
+«IF caption != null && !caption.matches("^\\s*$")»
+\caption{«caption»}
+«ENDIF»
+\end{figure}
+«ENDDEFINE»
 
 «DEFINE genCode FOR Object»«ENDDEFINE»
 

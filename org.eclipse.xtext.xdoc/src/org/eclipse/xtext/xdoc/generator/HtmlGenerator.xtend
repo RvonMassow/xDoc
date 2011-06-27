@@ -17,7 +17,6 @@ import java.io.File
 import java.nio.channels.Channels
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
-import org.omg.CORBA.CharSeqHelper
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
@@ -84,7 +83,6 @@ class HtmlGenerator implements IGenerator {
 			«doc.body(leftNav)»
 		'''
 		)
-		// fsa.generateFile("toc.html", )
 		for(chapter : doc.chapters) {
 			chapter.generate(fsa, leftNav, (chapter as Chapter).elementIdForSubToc)
 		}
@@ -147,6 +145,10 @@ class HtmlGenerator implements IGenerator {
 	
 	def dispatch CharSequence generate(Section sec, IFileSystemAccess fsa, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId) '''
 		«sec.localId.anchor»
+		<span style="float:left; border-top: 1px dotted #d4d4dd; margin-left: 0; margin-top: 5px;
+	padding: 5px 0;
+	padding-top: 5px;"></span><a style="float: right" href="#">Top</a>
+	<br style="clear:both" />
 		<«sec.tag»>«sec.title.genNonParText»</«sec.tag»>
 			«sec.toc»
 		«FOR c : sec.contents»
@@ -480,12 +482,12 @@ class HtmlGenerator implements IGenerator {
 
 	def CharSequence elementIdForSubToc(Chapter chap)
 		'''subToc_«chap.fullURL»'''
-	
+
 	def CharSequence generateLogo() '''
 		<div class="nav-logo">
 			<a href="index.php"><img src="http://wiki.eclipse.org/images/thumb/d/db/Xtext_logo.png/450px-Xtext_logo.png" style="margin-left:30px; width:125px"/></a>
 		</div>'''
-	
+
 	def CharSequence javaScriptForNavigation(){
 		'''
 		 <script type="text/javascript"> 

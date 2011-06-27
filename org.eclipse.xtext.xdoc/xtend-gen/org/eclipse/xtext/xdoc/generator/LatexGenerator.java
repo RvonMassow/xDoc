@@ -1,20 +1,31 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.channels.WritableByteChannel;
 import java.util.HashSet;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
@@ -65,7 +76,7 @@ public class LatexGenerator implements IGenerator {
   @Inject
   private HashSet<String> links;
   
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) throws RuntimeException {
     Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
     for (EObject element : _allContentsIterable) {
       if ((element instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
@@ -80,7 +91,7 @@ public class LatexGenerator implements IGenerator {
     }
   }
   
-  public void doGenerate(final EObject obj, final IFileSystemAccess fsa) {
+  public void doGenerate(final EObject obj, final IFileSystemAccess fsa) throws RuntimeException {
     {
       final Document doc = ((Document) obj);
       String _name = doc.getName();
@@ -95,7 +106,7 @@ public class LatexGenerator implements IGenerator {
     return _operator_plus;
   }
   
-  protected StringConcatenation _generate(final Document doc) {
+  protected StringConcatenation _generate(final Document doc) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     StringConcatenation _preamble = this.preamble();
     _builder.append(_preamble, "");
@@ -273,7 +284,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation authorAndTitle(final Document doc) {
+  public StringConcatenation authorAndTitle(final Document doc) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       boolean _operator_and = false;
@@ -323,7 +334,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _generate(final AbstractSection sec) {
+  protected StringConcatenation _generate(final AbstractSection sec) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     StringConcatenation _switchResult = null;
     final AbstractSection sec_1 = sec;
@@ -433,7 +444,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _genContent(final Chapter chap) {
+  protected StringConcatenation _genContent(final Chapter chap) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = chap.getContents();
@@ -454,7 +465,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _genContent(final Section sec) {
+  protected StringConcatenation _genContent(final Section sec) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -475,7 +486,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _genContent(final Section2 sec) {
+  protected StringConcatenation _genContent(final Section2 sec) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -496,7 +507,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _genContent(final Section3 sec) {
+  protected StringConcatenation _genContent(final Section3 sec) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -517,7 +528,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _genContent(final Section4 sec) {
+  protected StringConcatenation _genContent(final Section4 sec) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -530,7 +541,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _genContent(final TextOrMarkup tom) {
+  protected StringConcatenation _genContent(final TextOrMarkup tom) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -542,7 +553,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation genNonParContent(final TextOrMarkup tom) {
+  public StringConcatenation genNonParContent(final TextOrMarkup tom) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -858,9 +869,116 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final ImageRef imgRef) {
+  protected CharSequence _genText(final ImageRef imgRef) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\\begin{figure}[!h]");
+    _builder.newLine();
+    _builder.append("\\centering");
+    _builder.newLine();
+    _builder.append("\\includegraphics{");
+    String _copy = this.copy(imgRef);
+    _builder.append(_copy, "");
+    _builder.append("}");
+    _builder.newLineIfNotEmpty();
+    {
+      String _caption = imgRef.getCaption();
+      boolean _matches = _caption==null?(boolean)null:_caption.matches("^\\s*$");
+      boolean _operator_not = BooleanExtensions.operator_not(_matches);
+      if (_operator_not) {
+        _builder.append("\\caption{");
+        String _caption_1 = imgRef.getCaption();
+        _builder.append(_caption_1, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    _builder.append("\\end{figure}");
+    _builder.newLine();
     return _builder;
+  }
+  
+  public String copy(final ImageRef imgRef) throws RuntimeException {
+    String _xtrycatchfinallyexpression = null;
+    try {
+      String _xblockexpression = null;
+      {
+        Resource _eResource = imgRef.eResource();
+        final Resource res = _eResource;
+        int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)16), ((Integer)1024));
+        ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
+        final ByteBuffer buffer = _allocateDirect;
+        URI _uRI = res.getURI();
+        final URI uri = _uRI;
+        String relOutDirRoot = "";
+        String inDir = "";
+        String _xifexpression = null;
+        boolean _isPlatformResource = uri.isPlatformResource();
+        if (_isPlatformResource) {
+          {
+            URI _trimSegments = uri.trimSegments(1);
+            String _string = _trimSegments.toString();
+            String _operator_plus = StringExtensions.operator_plus(_string, "/");
+            String _path = imgRef.getPath();
+            String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _path);
+            URI _createURI = URI.createURI(_operator_plus_1);
+            final URI inPath = _createURI;
+            int _segmentCount = uri.segmentCount();
+            int _operator_minus = IntegerExtensions.operator_minus(((Integer)_segmentCount), ((Integer)2));
+            URI _trimSegments_1 = uri.trimSegments(_operator_minus);
+            URI _appendSegment = _trimSegments_1.appendSegment(Outlets.WEB_SITE_PATH_NAME);
+            String _string_1 = _appendSegment.toString();
+            String _operator_plus_2 = StringExtensions.operator_plus(_string_1, "/");
+            String _path_1 = imgRef.getPath();
+            String _replaceAll = _path_1.replaceAll("\\.\\.", "");
+            String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, _replaceAll);
+            URI _createURI_1 = URI.createURI(_operator_plus_3);
+            final URI outPath = _createURI_1;
+            ResourceSet _resourceSet = res.getResourceSet();
+            URIConverter _uRIConverter = _resourceSet.getURIConverter();
+            InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
+            ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
+            final ReadableByteChannel inChannel = _newChannel;
+            ResourceSet _resourceSet_1 = res.getResourceSet();
+            URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
+            OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
+            WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
+            final WritableByteChannel outChannel = _newChannel_1;
+            int _read = inChannel.read(buffer);
+            int _operator_minus_1 = IntegerExtensions.operator_minus(1);
+            boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus_1));
+            Boolean _xwhileexpression = _operator_notEquals;
+            while (_xwhileexpression) {
+              {
+                buffer.flip();
+                outChannel.write(buffer);
+                buffer.compact();
+              }
+              int _read_1 = inChannel.read(buffer);
+              int _operator_minus_2 = IntegerExtensions.operator_minus(1);
+              boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_2));
+              _xwhileexpression = _operator_notEquals_1;
+            }
+            buffer.flip();
+            boolean _hasRemaining = buffer.hasRemaining();
+            Boolean _xwhileexpression_1 = _hasRemaining;
+            while (_xwhileexpression_1) {
+              outChannel.write(buffer);
+              boolean _hasRemaining_1 = buffer.hasRemaining();
+              _xwhileexpression_1 = _hasRemaining_1;
+            }
+            outChannel.close();
+            String _fileString = outPath.toFileString();
+            return _fileString;
+          }
+        }
+        _xblockexpression = (_xifexpression);
+      }
+      _xtrycatchfinallyexpression = _xblockexpression;
+    } catch (Exception e) { 
+      RuntimeException _runtimeException = new RuntimeException(e);
+      throw _runtimeException;
+    }
+    return _xtrycatchfinallyexpression;
   }
   
   protected CharSequence _genText(final Todo todo) {
@@ -957,7 +1075,7 @@ public class LatexGenerator implements IGenerator {
     return _prepareListingsString;
   }
   
-  protected CharSequence _genCode(final MarkupInCode mic) {
+  protected CharSequence _genCode(final MarkupInCode mic) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     String _lstEscapeToTex = LatexUtils.lstEscapeToTex();
     _builder.append(_lstEscapeToTex, "");
@@ -996,7 +1114,7 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generate(final EObject doc) {
+  public StringConcatenation generate(final EObject doc) throws RuntimeException {
     if ((doc instanceof Document)) {
       return _generate((Document)doc);
     } else if ((doc instanceof AbstractSection)) {
@@ -1009,7 +1127,7 @@ public class LatexGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation genContent(final EObject chap) {
+  public StringConcatenation genContent(final EObject chap) throws RuntimeException {
     if ((chap instanceof Chapter)) {
       return _genContent((Chapter)chap);
     } else if ((chap instanceof Section)) {
@@ -1047,7 +1165,7 @@ public class LatexGenerator implements IGenerator {
     }
   }
   
-  public CharSequence genText(final Object anchor) {
+  public CharSequence genText(final Object anchor) throws RuntimeException {
     if ((anchor instanceof Anchor)) {
       return _genText((Anchor)anchor);
     } else if ((anchor instanceof CodeBlock)) {
@@ -1090,7 +1208,7 @@ public class LatexGenerator implements IGenerator {
     }
   }
   
-  public CharSequence genCode(final Object code) {
+  public CharSequence genCode(final Object code) throws RuntimeException {
     if ((code instanceof Code)) {
       return _genCode((Code)code);
     } else if ((code instanceof MarkupInCode)) {

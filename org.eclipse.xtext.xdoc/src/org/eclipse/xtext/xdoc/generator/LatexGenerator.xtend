@@ -51,6 +51,9 @@ import java.util.HashSet
 import java.io.File
 import java.util.Map
 import java.util.List
+import java.nio.channels.Channels
+import org.eclipse.emf.common.util.URI
+import java.nio.ByteBuffer
 
 class LatexGenerator implements IGenerator{
 
@@ -70,10 +73,8 @@ class LatexGenerator implements IGenerator{
 	}
 
 	def doGenerate(EObject obj, IFileSystemAccess fsa) {
-//		if (obj instanceof Document) {
 		val doc = obj as Document; 
 		fsa.generateFile(doc.name.fileName, doc.generate)
-//		}
 	}
 
 	def fileName(String name) {
@@ -381,11 +382,45 @@ class LatexGenerator implements IGenerator{
 	}
 
 	def dispatch genText(ImageRef imgRef){
-		/*
-		* TODO:
-		* '''«copy((String) GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir)»\includegraphics{«this.path»}'''
-		*/
-		''''''
+		'''
+		\begin{figure}[!h]
+		\centering
+		\includegraphics{«copy(imgRef)»}
+		«IF !imgRef.caption?.matches("^\\s*$")»
+		\caption{«imgRef.caption»}
+		«ENDIF»
+		\end{figure}
+		'''
+		
+	}
+
+	def String copy(ImageRef imgRef) {
+		try{
+			val res = imgRef.eResource
+			val buffer = ByteBuffer::allocateDirect(16 * 1024);
+			val uri = res.URI
+			var relOutDirRoot = ""
+			var inDir = ""
+			if(uri.platformResource) {
+				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + imgRef.path)
+				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::WEB_SITE_PATH_NAME).toString + "/" + imgRef.path.replaceAll("\\.\\.",""))
+				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
+				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
+				while (inChannel.read(buffer) != -1) {
+					buffer.flip();
+					outChannel.write(buffer);
+					buffer.compact();
+				}
+				buffer.flip();
+				while (buffer.hasRemaining()) {
+					outChannel.write(buffer);
+				}
+				outChannel.close()
+				return outPath.toFileString
+			}
+		} catch (Exception e) {
+			throw new RuntimeException(e)
+		}
 	}
 
 	def dispatch genText(Todo todo){
