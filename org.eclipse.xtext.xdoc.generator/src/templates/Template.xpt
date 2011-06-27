@@ -50,6 +50,7 @@ ENDIF»
 \begin{document}
 \maketitle
 \tableofcontents
+«EXPAND genContent FOREACH this.parts»
 «EXPAND genContent FOREACH this.chapters»
 «EXPAND genLol FOR this-»
 «IF ((String) (GLOBALVAR release)) == "false"»
@@ -68,6 +69,12 @@ ENDIF»
     morestring=[b]",
     morestring=[b]',
   }
+«ENDDEFINE»
+
+«DEFINE genContent FOR Part-»
+\part{«EXPAND genContent FOR this.title»}
+«EXPAND genLabel FOR this»
+«EXPAND genContent FOREACH chapters SEPARATOR "\n"-»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Chapter-»
@@ -200,6 +207,10 @@ ENDDEFINE»
 «IF this.chapter.name != null-»
 \label{«this.chapter.name»}«
 ENDIF-»
+«ENDDEFINE»
+
+«DEFINE genLabel FOR Part-»
+«IF this.name != null»\label{«this.name»}«ENDIF»
 «ENDDEFINE»
 
 «DEFINE genLabel FOR Chapter-»

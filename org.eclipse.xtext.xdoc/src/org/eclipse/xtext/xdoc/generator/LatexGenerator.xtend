@@ -54,6 +54,8 @@ import java.util.List
 import java.nio.channels.Channels
 import org.eclipse.emf.common.util.URI
 import java.nio.ByteBuffer
+import org.eclipse.xtext.xdoc.xdoc.Part
+import org.eclipse.xtext.xdoc.xdoc.PartRef
 
 class LatexGenerator implements IGenerator{
 
@@ -101,6 +103,10 @@ class LatexGenerator implements IGenerator{
 		«FOR chapter: doc.chapters»
 			
 			«chapter.generate»
+		«ENDFOR»
+		«FOR part: doc.parts»
+			
+			«part.generate»
 		«ENDFOR»
 		«genListOfLinks»
 		
@@ -186,6 +192,8 @@ class LatexGenerator implements IGenerator{
 	def dispatch generate(AbstractSection sec){
 		'''
 		«switch (sec){
+			Part :
+				'''\part{«sec.title.genContent»}'''
 			Chapter :			
 				'''\chapter{«sec.title.genContent»}'''
 			Section : 
@@ -199,6 +207,8 @@ class LatexGenerator implements IGenerator{
 		}»
 		«if(sec.name != null)
 			switch (sec) {
+				Part:
+					sec.genLabel
 				Chapter:
 					sec.genLabel
 				Section:
@@ -277,6 +287,14 @@ class LatexGenerator implements IGenerator{
 	 * genLabel
 	 * Generates a label
 	 */
+	def dispatch genLabel(Part part){
+		'''\label{«part.name?.toString»}'''
+	}
+
+	def dispatch genLabel(PartRef part){
+		'''\label{«part.part.name?.toString»}'''
+	}
+
 	def dispatch genLabel(ChapterRef cRef){
 		'''\label{«cRef.chapter.name?.toString»}'''
 	}

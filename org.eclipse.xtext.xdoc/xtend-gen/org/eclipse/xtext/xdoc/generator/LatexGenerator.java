@@ -47,6 +47,8 @@ import org.eclipse.xtext.xdoc.xdoc.LangDef;
 import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.MarkupInCode;
 import org.eclipse.xtext.xdoc.xdoc.OrderedList;
+import org.eclipse.xtext.xdoc.xdoc.Part;
+import org.eclipse.xtext.xdoc.xdoc.PartRef;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
@@ -144,6 +146,15 @@ public class LatexGenerator implements IGenerator {
         _builder.newLine();
         StringConcatenation _generate_1 = this.generate(chapter);
         _builder.append(_generate_1, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Part> _parts = doc.getParts();
+      for(Part part : _parts) {
+        _builder.newLine();
+        StringConcatenation _generate_2 = this.generate(part);
+        _builder.append(_generate_2, "");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -340,11 +351,11 @@ public class LatexGenerator implements IGenerator {
     final AbstractSection sec_1 = sec;
     boolean matched = false;
     if (!matched) {
-      if (sec_1 instanceof Chapter) {
-        final Chapter sec_2 = (Chapter) sec_1;
+      if (sec_1 instanceof Part) {
+        final Part sec_2 = (Part) sec_1;
         matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
-        _builder_1.append("\\chapter{");
+        _builder_1.append("\\part{");
         TextOrMarkup _title = sec_2.getTitle();
         StringConcatenation _genContent = this.genContent(_title);
         _builder_1.append(_genContent, "");
@@ -353,11 +364,11 @@ public class LatexGenerator implements IGenerator {
       }
     }
     if (!matched) {
-      if (sec_1 instanceof Section) {
-        final Section sec_3 = (Section) sec_1;
+      if (sec_1 instanceof Chapter) {
+        final Chapter sec_3 = (Chapter) sec_1;
         matched=true;
         StringConcatenation _builder_2 = new StringConcatenation();
-        _builder_2.append("\\section{");
+        _builder_2.append("\\chapter{");
         TextOrMarkup _title_1 = sec_3.getTitle();
         StringConcatenation _genContent_1 = this.genContent(_title_1);
         _builder_2.append(_genContent_1, "");
@@ -366,11 +377,11 @@ public class LatexGenerator implements IGenerator {
       }
     }
     if (!matched) {
-      if (sec_1 instanceof Section2) {
-        final Section2 sec_4 = (Section2) sec_1;
+      if (sec_1 instanceof Section) {
+        final Section sec_4 = (Section) sec_1;
         matched=true;
         StringConcatenation _builder_3 = new StringConcatenation();
-        _builder_3.append("\\subsection{");
+        _builder_3.append("\\section{");
         TextOrMarkup _title_2 = sec_4.getTitle();
         StringConcatenation _genContent_2 = this.genContent(_title_2);
         _builder_3.append(_genContent_2, "");
@@ -379,11 +390,11 @@ public class LatexGenerator implements IGenerator {
       }
     }
     if (!matched) {
-      if (sec_1 instanceof Section3) {
-        final Section3 sec_5 = (Section3) sec_1;
+      if (sec_1 instanceof Section2) {
+        final Section2 sec_5 = (Section2) sec_1;
         matched=true;
         StringConcatenation _builder_4 = new StringConcatenation();
-        _builder_4.append("\\subsubsection{");
+        _builder_4.append("\\subsection{");
         TextOrMarkup _title_3 = sec_5.getTitle();
         StringConcatenation _genContent_3 = this.genContent(_title_3);
         _builder_4.append(_genContent_3, "");
@@ -392,16 +403,29 @@ public class LatexGenerator implements IGenerator {
       }
     }
     if (!matched) {
-      if (sec_1 instanceof Section4) {
-        final Section4 sec_6 = (Section4) sec_1;
+      if (sec_1 instanceof Section3) {
+        final Section3 sec_6 = (Section3) sec_1;
         matched=true;
         StringConcatenation _builder_5 = new StringConcatenation();
-        _builder_5.append("\\paragraph{");
+        _builder_5.append("\\subsubsection{");
         TextOrMarkup _title_4 = sec_6.getTitle();
         StringConcatenation _genContent_4 = this.genContent(_title_4);
         _builder_5.append(_genContent_4, "");
         _builder_5.append("}");
         _switchResult = _builder_5;
+      }
+    }
+    if (!matched) {
+      if (sec_1 instanceof Section4) {
+        final Section4 sec_7 = (Section4) sec_1;
+        matched=true;
+        StringConcatenation _builder_6 = new StringConcatenation();
+        _builder_6.append("\\paragraph{");
+        TextOrMarkup _title_5 = sec_7.getTitle();
+        StringConcatenation _genContent_5 = this.genContent(_title_5);
+        _builder_6.append(_genContent_5, "");
+        _builder_6.append("}");
+        _switchResult = _builder_6;
       }
     }
     _builder.append(_switchResult, "");
@@ -411,35 +435,43 @@ public class LatexGenerator implements IGenerator {
     boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
     if (_operator_notEquals) {
       StringConcatenation _switchResult_1 = null;
-      final AbstractSection sec_7 = sec;
+      final AbstractSection sec_8 = sec;
       boolean matched_1 = false;
       if (!matched_1) {
-        if (sec_7 instanceof Chapter) {
-          final Chapter sec_8 = (Chapter) sec_7;
+        if (sec_8 instanceof Part) {
+          final Part sec_9 = (Part) sec_8;
           matched_1=true;
-          StringConcatenation _genLabel = this.genLabel(sec_8);
+          StringConcatenation _genLabel = this.genLabel(sec_9);
           _switchResult_1 = _genLabel;
         }
       }
       if (!matched_1) {
-        if (sec_7 instanceof Section) {
-          final Section sec_9 = (Section) sec_7;
+        if (sec_8 instanceof Chapter) {
+          final Chapter sec_10 = (Chapter) sec_8;
           matched_1=true;
-          StringConcatenation _genLabel_1 = this.genLabel(sec_9);
+          StringConcatenation _genLabel_1 = this.genLabel(sec_10);
           _switchResult_1 = _genLabel_1;
         }
       }
       if (!matched_1) {
-        TextOrMarkup _title_5 = sec.getTitle();
-        StringConcatenation _genLabel_2 = this.genLabel(_title_5);
-        _switchResult_1 = _genLabel_2;
+        if (sec_8 instanceof Section) {
+          final Section sec_11 = (Section) sec_8;
+          matched_1=true;
+          StringConcatenation _genLabel_2 = this.genLabel(sec_11);
+          _switchResult_1 = _genLabel_2;
+        }
+      }
+      if (!matched_1) {
+        TextOrMarkup _title_6 = sec.getTitle();
+        StringConcatenation _genLabel_3 = this.genLabel(_title_6);
+        _switchResult_1 = _genLabel_3;
       }
       _xifexpression = _switchResult_1;
     }
     _builder.append(_xifexpression, "");
     _builder.newLineIfNotEmpty();
-    StringConcatenation _genContent_5 = this.genContent(sec);
-    _builder.append(_genContent_5, "");
+    StringConcatenation _genContent_6 = this.genContent(sec);
+    _builder.append(_genContent_6, "");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -563,6 +595,27 @@ public class LatexGenerator implements IGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    return _builder;
+  }
+  
+  protected StringConcatenation _genLabel(final Part part) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\\label{");
+    String _name = part.getName();
+    String _string = _name==null?(String)null:_name.toString();
+    _builder.append(_string, "");
+    _builder.append("}");
+    return _builder;
+  }
+  
+  protected StringConcatenation _genLabel(final PartRef part) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\\label{");
+    Part _part = part.getPart();
+    String _name = _part.getName();
+    String _string = _name==null?(String)null:_name.toString();
+    _builder.append(_string, "");
+    _builder.append("}");
     return _builder;
   }
   
@@ -1156,12 +1209,16 @@ public class LatexGenerator implements IGenerator {
   public StringConcatenation genLabel(final EObject cRef) {
     if ((cRef instanceof ChapterRef)) {
       return _genLabel((ChapterRef)cRef);
+    } else if ((cRef instanceof PartRef)) {
+      return _genLabel((PartRef)cRef);
     } else if ((cRef instanceof Section2Ref)) {
       return _genLabel((Section2Ref)cRef);
     } else if ((cRef instanceof SectionRef)) {
       return _genLabel((SectionRef)cRef);
     } else if ((cRef instanceof Chapter)) {
       return _genLabel((Chapter)cRef);
+    } else if ((cRef instanceof Part)) {
+      return _genLabel((Part)cRef);
     } else if ((cRef instanceof Section)) {
       return _genLabel((Section)cRef);
     } else if ((cRef instanceof TextOrMarkup)) {
