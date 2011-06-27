@@ -20,7 +20,7 @@ class PHPPhoenixGenerator {
 				include("include.php");
 				$pageTitle 		= "«^as.title.genPlainText»";
 				
-				$html = file_get_contents('«^as.fullURL»');
+				$html = file_get_contents('«^as.resourceURL»');
 			
 				$Nav->setLinkList(array());
 				«genScriptsAndStyles(^as)»

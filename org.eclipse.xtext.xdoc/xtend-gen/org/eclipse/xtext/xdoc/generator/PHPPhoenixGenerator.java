@@ -46,8 +46,8 @@ public class PHPPhoenixGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("$html = file_get_contents(\'");
-    String _fullURL = this.ene.getFullURL(as);
-    _builder.append(_fullURL, "	");
+    String _resourceURL = this.ene.getResourceURL(as);
+    _builder.append(_resourceURL, "	");
     _builder.append("\');");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
