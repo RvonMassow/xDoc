@@ -644,12 +644,11 @@ public class HtmlGenerator implements IGenerator {
   
   protected CharSequence _leftNavTocEntry(final Part part) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("<li class=\"partentry\" ><div class=\"separator\"><div class=\"separator\">");
+    _builder.append("<li class=\"partentry\" >");
     _builder.newLine();
     TextOrMarkup _title = part.getTitle();
     CharSequence _genPlainText = this.plaintext.genPlainText(_title);
     _builder.append(_genPlainText, "");
-    _builder.append("</div></div>");
     _builder.newLineIfNotEmpty();
     _builder.append("</li>");
     _builder.newLine();

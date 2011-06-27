@@ -254,8 +254,8 @@ class HtmlGenerator implements IGenerator {
 	}
 
 	def dispatch CharSequence leftNavTocEntry(Part part) '''
-		<li class="partentry" ><div class="separator"><div class="separator">
-		«part.title.genPlainText»</div></div>
+		<li class="partentry" >
+		«part.title.genPlainText»
 		</li>
 		«FOR ss: part.sections»
 		    «ss.leftNavTocEntry»
