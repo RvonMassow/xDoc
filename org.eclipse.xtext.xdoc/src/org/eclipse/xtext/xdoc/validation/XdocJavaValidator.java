@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
@@ -15,6 +16,7 @@ import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
+import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 public class XdocJavaValidator extends AbstractXdocJavaValidator {
@@ -50,16 +52,21 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
 	@Check
 	public void checkSuspiciousCodeRef(CodeRef codeRef) {
-		ICompositeNode node = NodeModelUtils.findActualNodeFor(codeRef);
-		String completeText = node.getRootNode().getText();
-		if (node.getTotalEndOffset() < completeText.length() - 1) {
-			int endOffset = node.getOffset() + node.getLength();
-			char c = completeText.charAt(endOffset);
-			if (!Character.isWhitespace(c) && c != ',' && c != '.' && c != ']' && c != ':' && c != '-') {
-				error("Code Reference is followed by a suspicious character.", null);
-			}
-			if (c == '.' && endOffset + 1 < completeText.length() && Character.isJavaIdentifierStart(completeText.charAt(endOffset + 1))) {
-				error("Code Reference is followed by a suspicious character sequence.", null);
+		EList<EObject> contents = codeRef.eContainer().eContents();
+		int index = contents.indexOf(codeRef);
+		if(contents.size() > index + 1&& contents.get(index + 1) instanceof TextPart){
+			ICompositeNode node = NodeModelUtils.findActualNodeFor(codeRef);
+			//		if (node.getNextSibling() != null && NodeModelUtils.
+			String completeText = node.getRootNode().getText();
+			if (node.getTotalEndOffset() < completeText.length() - 1) {
+				int endOffset = node.getOffset() + node.getLength();
+				char c = completeText.charAt(endOffset);
+				if (!Character.isWhitespace(c) && c != ',' && c != '.' && c != ']' && c != ':' && c != '-') {
+					error("Code Reference is followed by a suspicious character.", null);
+				}
+				if (c == '.' && endOffset + 1 < completeText.length() && Character.isJavaIdentifierStart(completeText.charAt(endOffset + 1))) {
+					error("Code Reference is followed by a suspicious character sequence.", null);
+				}
 			}
 		}
 	}
