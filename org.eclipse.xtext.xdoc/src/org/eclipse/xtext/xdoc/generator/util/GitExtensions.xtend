@@ -9,6 +9,8 @@ class GitExtensions {
 		val basedir = "https://github.com/svenefftinge/Xtext-2.0-released-source-code/tree/master/"
 		val prefix = 
 			switch name: ie.qualifiedName {
+				case null :
+					return "broken-link in "+ie
 				case name.startsWith("org.eclipse.xtext.common.types.xtext.ui"):
 					"plugins/org.eclipse.xtext.common.types.ui/src/"
 	//			case name.startsWith("org.eclipse.xtext.common.types"):
@@ -43,10 +45,10 @@ class GitExtensions {
 				default:
 					""
 			}
-			if(prefix.length != 0)
-				basedir + prefix + ie.qualifiedName.replaceAll("\\.", "/").replaceAll("\\$.*$", "") + ".java"
-			else
-				null
+		if(prefix.length != 0)
+			basedir + prefix + ie.qualifiedName.replaceAll("\\.", "/").replaceAll("\\$.*$", "") + ".java"
+		else
+			null
 	}
 
 

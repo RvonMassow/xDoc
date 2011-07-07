@@ -194,6 +194,58 @@ public class HtmlGenerator implements IGenerator {
       CharSequence _generate = this.generate(section, fsa, leftNav, leftNavUnfoldSubTocId);
       _builder.append(_generate, "		");
       _builder.newLineIfNotEmpty();
+      _builder.append("\t\t");
+      _builder.append("<div id=\"disqus_thread\"></div>");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("<script type=\"text/javascript\">");
+      _builder.newLine();
+      _builder.append("\t\t    ");
+      _builder.append("/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */");
+      _builder.newLine();
+      _builder.append("\t\t    ");
+      _builder.append("var disqus_shortname = \'xtext\'; // required: replace example with your forum shortname");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.newLine();
+      _builder.append("\t\t    ");
+      _builder.append("// The following are highly recommended additional parameters. Remove the slashes in front to use.");
+      _builder.newLine();
+      _builder.append("\t\t    ");
+      _builder.append("var disqus_identifier = \'");
+      String _localId = this.naming.getLocalId(section);
+      _builder.append(_localId, "		    ");
+      _builder.append("\';");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t\t    ");
+      _builder.append("var disqus_url = \'http://www.xtext.org/\';");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.newLine();
+      _builder.append("\t\t    ");
+      _builder.append("/* * * DON\'T EDIT BELOW THIS LINE * * */");
+      _builder.newLine();
+      _builder.append("\t\t    ");
+      _builder.append("(function() {");
+      _builder.newLine();
+      _builder.append("\t\t        ");
+      _builder.append("var dsq = document.createElement(\'script\'); dsq.type = \'text/javascript\'; dsq.async = true;");
+      _builder.newLine();
+      _builder.append("\t\t        ");
+      _builder.append("dsq.src = \'http://\' + disqus_shortname + \'.disqus.com/embed.js\';");
+      _builder.newLine();
+      _builder.append("\t\t        ");
+      _builder.append("(document.getElementsByTagName(\'head\')[0] || document.getElementsByTagName(\'body\')[0]).appendChild(dsq);");
+      _builder.newLine();
+      _builder.append("\t\t    ");
+      _builder.append("})();");
+      _builder.newLine();
+      _builder.append("\t\t");
+      _builder.append("</script>");
+      _builder.newLine();
+      _builder.append(" \t\t");
+      _builder.append("<noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>");
+      _builder.newLine();
       _builder.append("\t");
       _builder.append("</div>");
       _builder.newLine();
@@ -324,19 +376,20 @@ public class HtmlGenerator implements IGenerator {
   
   protected CharSequence _generate(final Section sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\t");
     String _localId = this.naming.getLocalId(sec);
     CharSequence _anchor = this.anchor(_localId);
-    _builder.append(_anchor, "	");
+    _builder.append(_anchor, "");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
     _builder.append("<span style=\"float:left; border-top: 1px dotted #d4d4dd; margin-left: 0; margin-top: 5px;");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("padding: 5px 0;");
     _builder.newLine();
+    _builder.append("\t");
     _builder.append("padding-top: 5px;\"></span><a style=\"float: right\" href=\"#\">Top</a>");
     _builder.newLine();
-    _builder.append("<br style=\"clear:both\" />");
+    _builder.append("\t");
+    _builder.append("<br style=\"clear:both\"></br>");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("<");
@@ -351,9 +404,9 @@ public class HtmlGenerator implements IGenerator {
     _builder.append(_tag_1, "	");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t\t");
+    _builder.append("\t");
     CharSequence _c = this.toc(sec);
-    _builder.append(_c, "		");
+    _builder.append(_c, "	");
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
@@ -811,21 +864,26 @@ public class HtmlGenerator implements IGenerator {
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append("<div class=\"literallayout\">");
           _builder_1.newLine();
+          _builder_1.append("\t");
           _builder_1.append("<div class=\"incode\">");
           _builder_1.newLine();
+          _builder_1.append("\t\t");
           _builder_1.append("<p class=\"code\">");
           _builder_1.newLine();
           {
             EList<EObject> _contents_2 = block.getContents();
             for(EObject code : _contents_2) {
+              _builder_1.append("\t\t\t");
               LangDef _language_1 = cb.getLanguage();
               CharSequence _generateCode_1 = this.generateCode(code, _language_1);
-              _builder_1.append(_generateCode_1, "");
+              _builder_1.append(_generateCode_1, "			");
               _builder_1.newLineIfNotEmpty();
             }
           }
+          _builder_1.append("\t\t");
           _builder_1.append("</p>");
           _builder_1.newLine();
+          _builder_1.append("\t");
           _builder_1.append("</div>");
           _builder_1.newLine();
           _builder_1.append("</div>");
@@ -1209,11 +1267,24 @@ public class HtmlGenerator implements IGenerator {
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append("<img src=\"");
+      _builder.append("<a class=\"gallery\" rel=\"prettyPhoto[all]\" title=\"");
+      String _caption = img.getCaption();
+      String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_caption);
+      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
+      _builder.append(_escapeHTMLChars, "");
+      _builder.append("\" href=\"");
       String _path_1 = img.getPath();
-      String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_path_1);
-      String _replaceAll = _unescapeXdocChars_1.replaceAll("\\.\\./", "");
+      String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_path_1);
+      String _replaceAll = _unescapeXdocChars_2.replaceAll("\\.\\./", "");
       _builder.append(_replaceAll, "");
+      _builder.append("\">");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      _builder.append("<img src=\"");
+      String _path_2 = img.getPath();
+      String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_path_2);
+      String _replaceAll_1 = _unescapeXdocChars_3.replaceAll("\\.\\./", "");
+      _builder.append(_replaceAll_1, "	");
       _builder.append("\" ");
       _builder.newLineIfNotEmpty();
       {
@@ -1221,14 +1292,14 @@ public class HtmlGenerator implements IGenerator {
         boolean _nullOrEmpty = this.utils.nullOrEmpty(_clazz);
         boolean _operator_not = BooleanExtensions.operator_not(_nullOrEmpty);
         if (_operator_not) {
-          _builder.append("\t");
+          _builder.append("\t\t");
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
-          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_clazz_1);
-          _builder.append(_unescapeXdocChars_2, "	");
+          String _unescapeXdocChars_4 = this.utils.unescapeXdocChars(_clazz_1);
+          _builder.append(_unescapeXdocChars_4, "		");
           _builder.append("\" ");
           _builder.newLineIfNotEmpty();} else {
-          _builder.append("\t");
+          _builder.append("\t\t");
           _builder.append("width=\"600px\"");
           _builder.newLine();
         }
@@ -1238,23 +1309,27 @@ public class HtmlGenerator implements IGenerator {
         boolean _nullOrEmpty_1 = this.utils.nullOrEmpty(_style);
         boolean _operator_not_1 = BooleanExtensions.operator_not(_nullOrEmpty_1);
         if (_operator_not_1) {
-          _builder.append("\t");
+          _builder.append("\t\t");
           _builder.append("style=\"");
           String _style_1 = img.getStyle();
-          String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_style_1);
-          _builder.append(_unescapeXdocChars_3, "	");
+          String _unescapeXdocChars_5 = this.utils.unescapeXdocChars(_style_1);
+          _builder.append(_unescapeXdocChars_5, "		");
           _builder.append("\" ");
           _builder.newLineIfNotEmpty();
         }
       }
+      _builder.append("\t");
       _builder.append("/>");
+      _builder.newLine();
+      _builder.append("</a>");
       _builder.newLine();
       _builder.append("<div class=\"caption\">");
       _builder.newLine();
-      String _caption = img.getCaption();
-      String _unescapeXdocChars_4 = this.utils.unescapeXdocChars(_caption);
-      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_4);
-      _builder.append(_escapeHTMLChars, "");
+      _builder.append("\t");
+      String _caption_1 = img.getCaption();
+      String _unescapeXdocChars_6 = this.utils.unescapeXdocChars(_caption_1);
+      String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_6);
+      _builder.append(_escapeHTMLChars_1, "	");
       _builder.newLineIfNotEmpty();
       _builder.append("</div>");
       _builder.newLine();

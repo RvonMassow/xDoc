@@ -116,6 +116,23 @@ class HtmlGenerator implements IGenerator {
 				</div>
 				<div id="midcolumn">
 					«section.generate(fsa, leftNav, leftNavUnfoldSubTocId)»
+					<div id="disqus_thread"></div>
+					<script type="text/javascript">
+					    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+					    var disqus_shortname = 'xtext'; // required: replace example with your forum shortname
+					
+					    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+					    var disqus_identifier = '«section.localId»';
+					    var disqus_url = 'http://www.xtext.org/';
+					
+					    /* * * DON'T EDIT BELOW THIS LINE * * */
+					    (function() {
+					        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+					        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+					        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+					    })();
+					</script>
+			 		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 				</div>
 				<br style="clear:both;height:1em;">
 		''')
@@ -153,17 +170,17 @@ class HtmlGenerator implements IGenerator {
 	def dispatch CharSequence generate(Section sec, IFileSystemAccess fsa, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId) '''
 		«sec.localId.anchor»
 		<span style="float:left; border-top: 1px dotted #d4d4dd; margin-left: 0; margin-top: 5px;
-	padding: 5px 0;
-	padding-top: 5px;"></span><a style="float: right" href="#">Top</a>
-	<br style="clear:both" />
-		<«sec.tag»>«sec.title.genNonParText»</«sec.tag»>
+			padding: 5px 0;
+			padding-top: 5px;"></span><a style="float: right" href="#">Top</a>
+			<br style="clear:both"></br>
+			<«sec.tag»>«sec.title.genNonParText»</«sec.tag»>
 			«sec.toc»
-		«FOR c : sec.contents»
-			«c.genText»
-		«ENDFOR»
-		«FOR sec2: sec.sections»
-			«sec2.generate(fsa, leftNav, leftNavUnfoldSubTocId)»
-		«ENDFOR»
+			«FOR c : sec.contents»
+				«c.genText»
+			«ENDFOR»
+			«FOR sec2: sec.sections»
+				«sec2.generate(fsa, leftNav, leftNavUnfoldSubTocId)»
+			«ENDFOR»
 	'''
 
 	def dispatch CharSequence generate(Section2 sec, IFileSystemAccess fsa, CharSequence leftNav, CharSequence leftNavUnfoldSubTocId) '''
@@ -310,13 +327,13 @@ class HtmlGenerator implements IGenerator {
 				val block = StringUtils::removeIndent(cb)
 				'''	
 					<div class="literallayout">
-					<div class="incode">
-					<p class="code">
-					«FOR code:block.contents»
-						«code.generateCode(cb.language)»
-					«ENDFOR»
-					</p>
-					</div>
+						<div class="incode">
+							<p class="code">
+								«FOR code:block.contents»
+									«code.generateCode(cb.language)»
+								«ENDFOR»
+							</p>
+						</div>
 					</div>
 				'''
 			}
@@ -451,18 +468,20 @@ class HtmlGenerator implements IGenerator {
 			«IF img.name != null»
 				<a>«img.name»</a>
 			«ENDIF»
-			<img src="«img.path.unescapeXdocChars().replaceAll("\\.\\./","")»" 
-				«IF !img.clazz.nullOrEmpty»
-					class="«img.clazz.unescapeXdocChars»" 
-				«ELSE»
-					width="600px"
-				«ENDIF»
-				«IF !img.style.nullOrEmpty»
-					 style="«img.style.unescapeXdocChars»" 
-				«ENDIF»
-			/>
+			<a class="gallery" rel="prettyPhoto[all]" title="«img.caption.unescapeXdocChars.escapeHTMLChars»" href="«img.path.unescapeXdocChars().replaceAll("\\.\\./","")»">
+				<img src="«img.path.unescapeXdocChars().replaceAll("\\.\\./","")»" 
+					«IF !img.clazz.nullOrEmpty»
+						class="«img.clazz.unescapeXdocChars»" 
+					«ELSE»
+						width="600px"
+					«ENDIF»
+					«IF !img.style.nullOrEmpty»
+						 style="«img.style.unescapeXdocChars»" 
+					«ENDIF»
+				/>
+			</a>
 			<div class="caption">
-			«img.caption.unescapeXdocChars.escapeHTMLChars»
+				«img.caption.unescapeXdocChars.escapeHTMLChars»
 			</div>
 			</div>
 		'''

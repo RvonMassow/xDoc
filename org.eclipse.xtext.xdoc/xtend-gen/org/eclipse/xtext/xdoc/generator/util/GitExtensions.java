@@ -19,6 +19,13 @@ public class GitExtensions {
       final String name = _qualifiedName;
       boolean matched = false;
       if (!matched) {
+        if (org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_equals(name,null)) {
+          matched=true;
+          String _operator_plus = StringExtensions.operator_plus("broken-link in ", ie);
+          return _operator_plus;
+        }
+      }
+      if (!matched) {
         boolean _startsWith = name.startsWith("org.eclipse.xtext.common.types.xtext.ui");
         if (_startsWith) {
           matched=true;
@@ -131,13 +138,13 @@ public class GitExtensions {
       int _length = prefix.length();
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_length), ((Integer)0));
       if (_operator_notEquals) {
-        String _operator_plus = StringExtensions.operator_plus(basedir, prefix);
+        String _operator_plus_1 = StringExtensions.operator_plus(basedir, prefix);
         String _qualifiedName_1 = ie.getQualifiedName();
         String _replaceAll = _qualifiedName_1.replaceAll("\\.", "/");
         String _replaceAll_1 = _replaceAll.replaceAll("\\$.*$", "");
-        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _replaceAll_1);
-        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ".java");
-        _xifexpression = _operator_plus_2;
+        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, _replaceAll_1);
+        String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, ".java");
+        _xifexpression = _operator_plus_3;
       } else {
         _xifexpression = null;
       }
