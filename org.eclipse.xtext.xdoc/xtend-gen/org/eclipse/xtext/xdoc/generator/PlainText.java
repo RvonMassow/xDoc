@@ -132,6 +132,11 @@ public class PlainText {
     return _builder;
   }
   
+  protected CharSequence _genPlainText(final Void v) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder;
+  }
+  
   public CharSequence genPlainText(final Object cb) {
     if ((cb instanceof CodeBlock)) {
       return _genPlainText((CodeBlock)cb);
@@ -147,6 +152,8 @@ public class PlainText {
       return _genPlainText((TextOrMarkup)cb);
     } else if ((cb instanceof TextPart)) {
       return _genPlainText((TextPart)cb);
+    } else if ((cb == null)) {
+      return _genPlainText((Void)null);
     } else if ((cb instanceof Object)) {
       return _genPlainText((Object)cb);
     } else {

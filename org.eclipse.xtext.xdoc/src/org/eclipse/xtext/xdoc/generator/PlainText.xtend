@@ -51,4 +51,7 @@ class PlainText {
 
 	def dispatch genPlainText(Object o) '''
 	'''
+
+	def dispatch genPlainText(Void v) '''
+	'''
 }
