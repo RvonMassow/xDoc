@@ -600,75 +600,128 @@ public class LatexGenerator implements IGenerator {
   
   protected StringConcatenation _genLabel(final Part part) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\label{");
-    String _name = part.getName();
-    String _string = _name==null?(String)null:_name.toString();
-    _builder.append(_string, "");
-    _builder.append("}");
+    {
+      String _name = part.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        String _name_1 = part.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
   protected StringConcatenation _genLabel(final PartRef part) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\label{");
-    Part _part = part.getPart();
-    String _name = _part.getName();
-    String _string = _name==null?(String)null:_name.toString();
-    _builder.append(_string, "");
-    _builder.append("}");
+    {
+      Part _part = part.getPart();
+      String _name = _part.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        Part _part_1 = part.getPart();
+        String _name_1 = _part_1.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
   protected StringConcatenation _genLabel(final ChapterRef cRef) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\label{");
-    Chapter _chapter = cRef.getChapter();
-    String _name = _chapter.getName();
-    String _string = _name==null?(String)null:_name.toString();
-    _builder.append(_string, "");
-    _builder.append("}");
+    {
+      Chapter _chapter = cRef.getChapter();
+      String _name = _chapter.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        Chapter _chapter_1 = cRef.getChapter();
+        String _name_1 = _chapter_1.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
   protected StringConcatenation _genLabel(final Chapter chap) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\label{");
-    String _name = chap.getName();
-    String _string = _name==null?(String)null:_name.toString();
-    _builder.append(_string, "");
-    _builder.append("}");
+    {
+      String _name = chap.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        String _name_1 = chap.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
   protected StringConcatenation _genLabel(final SectionRef sRef) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\label{");
-    Section _section = sRef.getSection();
-    String _name = _section.getName();
-    String _string = _name==null?(String)null:_name.toString();
-    _builder.append(_string, "");
-    _builder.append("}");
+    {
+      Section _section = sRef.getSection();
+      String _name = _section.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        Section _section_1 = sRef.getSection();
+        String _name_1 = _section_1.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
   protected StringConcatenation _genLabel(final Section2Ref sRef) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\label{");
-    Section2 _section2 = sRef.getSection2();
-    String _name = _section2.getName();
-    String _string = _name==null?(String)null:_name.toString();
-    _builder.append(_string, "");
-    _builder.append("}");
+    {
+      Section2 _section2 = sRef.getSection2();
+      String _name = _section2.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        Section2 _section2_1 = sRef.getSection2();
+        String _name_1 = _section2_1.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
   protected StringConcatenation _genLabel(final Section sec) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\label{");
-    String _name = sec.getName();
-    String _string = _name==null?(String)null:_name.toString();
-    _builder.append(_string, "");
-    _builder.append("}");
+    {
+      String _name = sec.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        String _name_1 = sec.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   

@@ -287,33 +287,50 @@ class LatexGenerator implements IGenerator{
 	 * genLabel
 	 * Generates a label
 	 */
-	def dispatch genLabel(Part part){
-		'''\label{«part.name?.toString»}'''
-	}
+	def dispatch genLabel(Part part) '''
+		«IF part.name != null»
+			\label{«part.name?.toString»}
+		«ENDIF»
+	'''
+	
 
-	def dispatch genLabel(PartRef part){
-		'''\label{«part.part.name?.toString»}'''
-	}
+	def dispatch genLabel(PartRef part) '''
+		«IF part.part.name != null»
+			\label{«part.part.name?.toString»}
+		«ENDIF»
+	'''
 
-	def dispatch genLabel(ChapterRef cRef){
-		'''\label{«cRef.chapter.name?.toString»}'''
-	}
+	def dispatch genLabel(ChapterRef cRef) '''
+		«IF cRef.chapter.name != null»
+			\label{«cRef.chapter.name?.toString»}
+		«ENDIF»
+	'''
+	
 
-	def dispatch genLabel(Chapter chap){
-		'''\label{«chap.name?.toString»}'''
-	}
+	def dispatch genLabel(Chapter chap) '''
+		«IF chap.name != null»
+			\label{«chap.name?.toString»}
+		«ENDIF»
+	'''
 
-	def dispatch genLabel(SectionRef sRef){
-		'''\label{«sRef.section.name?.toString»}'''
-	}
+	def dispatch genLabel(SectionRef sRef) '''
+		«IF sRef.section.name != null»
+			\label{«sRef.section.name?.toString»}
+		«ENDIF»
+	'''
 
-	def dispatch genLabel(Section2Ref sRef){
-		'''\label{«sRef.section2.name?.toString»}'''
-	}
+	def dispatch genLabel(Section2Ref sRef) '''
+		«IF sRef.section2.name != null»
+			\label{«sRef.section2.name?.toString»}
+		«ENDIF»
+	'''
 
-	def dispatch genLabel(Section sec){
-		'''\label{«sec.name?.toString»}'''
-	}
+	def dispatch genLabel(Section sec) '''
+		«IF sec.name != null»
+			\label{«sec.name?.toString»}
+		«ENDIF»
+	'''
+
 	def dispatch genLabel(TextOrMarkup tom){
 		''''''
 	}
