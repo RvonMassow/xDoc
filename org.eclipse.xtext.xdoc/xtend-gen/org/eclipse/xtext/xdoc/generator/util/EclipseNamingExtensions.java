@@ -209,74 +209,8 @@ public class EclipseNamingExtensions {
   }
   
   public String getFullPHPURL(final Identifiable identifiable) {
-    String _xblockexpression = null;
-    {
-      String _resourceURL = this.getResourceURL(identifiable);
-      String _replaceAll = _resourceURL.replaceAll("\\.html$", ".php");
-      final String phpURL = _replaceAll;
-      String _switchResult = null;
-      final Identifiable identifiable_1 = identifiable;
-      boolean matched = false;
-      if (!matched) {
-        if (identifiable_1 instanceof PartRef) {
-          final PartRef identifiable_2 = (PartRef) identifiable_1;
-          matched=true;
-          Part _part = identifiable_2.getPart();
-          String _fullPHPURL = this.getFullPHPURL(_part);
-          _switchResult = _fullPHPURL;
-        }
-      }
-      if (!matched) {
-        if (identifiable_1 instanceof ChapterRef) {
-          final ChapterRef identifiable_3 = (ChapterRef) identifiable_1;
-          matched=true;
-          Chapter _chapter = identifiable_3.getChapter();
-          String _fullPHPURL_1 = this.getFullPHPURL(_chapter);
-          _switchResult = _fullPHPURL_1;
-        }
-      }
-      if (!matched) {
-        if (identifiable_1 instanceof SectionRef) {
-          final SectionRef identifiable_4 = (SectionRef) identifiable_1;
-          matched=true;
-          Section _section = identifiable_4.getSection();
-          String _fullPHPURL_2 = this.getFullPHPURL(_section);
-          _switchResult = _fullPHPURL_2;
-        }
-      }
-      if (!matched) {
-        if (identifiable_1 instanceof Section2Ref) {
-          final Section2Ref identifiable_5 = (Section2Ref) identifiable_1;
-          matched=true;
-          Section2 _section2 = identifiable_5.getSection2();
-          String _fullPHPURL_3 = this.getFullPHPURL(_section2);
-          _switchResult = _fullPHPURL_3;
-        }
-      }
-      if (!matched) {
-        EObject _eContainer = identifiable.eContainer();
-        if ((_eContainer instanceof org.eclipse.xtext.xdoc.xdoc.XdocFile)) {
-          matched=true;
-          Resource _eResource = identifiable.eResource();
-          URI _uRI = _eResource.getURI();
-          URI _trimFileExtension = _uRI.trimFileExtension();
-          String _lastSegment = _trimFileExtension.lastSegment();
-          String _operator_plus = StringExtensions.operator_plus(_lastSegment, ".php");
-          return _operator_plus;
-        }
-      }
-      if (!matched) {
-        Resource _eResource_1 = identifiable.eResource();
-        URI _uRI_1 = _eResource_1.getURI();
-        URI _trimFileExtension_1 = _uRI_1.trimFileExtension();
-        String _lastSegment_1 = _trimFileExtension_1.lastSegment();
-        String _operator_plus_1 = StringExtensions.operator_plus(_lastSegment_1, ".php#");
-        String _localId = this.getLocalId(identifiable);
-        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, _localId);
-        return _operator_plus_2;
-      }
-      _xblockexpression = (_switchResult);
-    }
-    return _xblockexpression;
+    String _fullURL = this.getFullURL(identifiable);
+    String _replace = _fullURL.replace(".html", ".php");
+    return _replace;
   }
 }

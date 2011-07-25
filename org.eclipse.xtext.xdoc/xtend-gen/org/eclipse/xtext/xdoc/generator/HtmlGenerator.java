@@ -198,6 +198,9 @@ public class HtmlGenerator implements IGenerator {
       _builder.append("<div id=\"disqus_thread\"></div>");
       _builder.newLine();
       _builder.append("\t\t");
+      _builder.append("<script type=\"text/javascript\" src=\"documentationRoot.js\"></script>");
+      _builder.newLine();
+      _builder.append("\t\t");
       _builder.append("<script type=\"text/javascript\">");
       _builder.newLine();
       _builder.append("\t\t    ");
@@ -218,8 +221,12 @@ public class HtmlGenerator implements IGenerator {
       _builder.append("\';");
       _builder.newLineIfNotEmpty();
       _builder.append("\t\t    ");
-      _builder.append("var disqus_url = \'http://www.xtext.org/\';");
-      _builder.newLine();
+      _builder.append("var disqus_url = documentationRoot+\'");
+      String _resourceURL_1 = this.naming.getResourceURL(section);
+      String _replace = _resourceURL_1.replace(".html", ".php");
+      _builder.append(_replace, "		    ");
+      _builder.append("\';");
+      _builder.newLineIfNotEmpty();
       _builder.append("\t\t");
       _builder.newLine();
       _builder.append("\t\t    ");
