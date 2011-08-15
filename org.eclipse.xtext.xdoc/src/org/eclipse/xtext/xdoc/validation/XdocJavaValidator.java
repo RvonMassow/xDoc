@@ -11,6 +11,7 @@ import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
@@ -69,6 +70,11 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 				}
 			}
 		}
+	}
+
+	public void checkAbstractSectionHasTitle(AbstractSection section) {
+		if(section.getTitle() == null)
+			warning("This element should have a title.", null);
 	}
 
 //	@Check
