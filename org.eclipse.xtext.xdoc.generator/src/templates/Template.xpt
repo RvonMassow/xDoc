@@ -11,6 +11,7 @@
 \usepackage[latin1]{inputenc}
 \usepackage{listings}
 \usepackage[american]{babel}
+\usepackage{graphicx}
 
 \usepackage{todonotes}
 
@@ -169,22 +170,22 @@ ENDDEFINE»
 
 «DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«storeLink(this)»«ENDDEFINE»
 
-«DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR removeIndent(this)»«ENDDEFINE»
+«DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR this»«ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline«IF language!=null»[language=«this.language.name»]«ENDIF»°«EXPAND genCode FOREACH this.contents»°«
+ IF inline(this)»\lstinline[breakatwhitespace=false,breaklines=true«IF language!=null»,language=«this.language.name»«ENDIF»]°«EXPAND genCode FOREACH removeIndent(this).contents»°«
  ELSE»\begin{lstlisting}«IF language!=null»[language=«this.language.name»]«
  ENDIF»
-«EXPAND genCode FOREACH this.contents SEPARATOR "\n"»
+«EXPAND genCode FOREACH removeIndent(this).contents SEPARATOR "\n"»
 \end{lstlisting}
-«ENDIF»«ENDDEFINE»
+\noindent«ENDIF»«ENDDEFINE»
 
-«DEFINE genText FOR CodeRef»\lstinline°«escapeLatexChars(unescapeXdocChars(this.element.qualifiedName))»°«ENDDEFINE»
+«DEFINE genText FOR CodeRef»\lstinline[breakatwhitespace=false,breaklines=true]°«escapeLatexChars(unescapeXdocChars(this.element.qualifiedName))»°«ENDDEFINE»
 
 «DEFINE genText FOR ImageRef»
-\begin{figure}[!h]
+\begin{figure}[!ht]
 \centering
-\includegraphics{«copy((String) GLOBALVAR srcDir, this, (String) GLOBALVAR dir)»}
+\includegraphics[«calcStyle(this)»]{«copy((String) GLOBALVAR srcDir, this, (String) GLOBALVAR dir)»}
 «IF caption != null && !caption.matches("^\\s*$")»
 \caption{«caption»}
 «ENDIF»
