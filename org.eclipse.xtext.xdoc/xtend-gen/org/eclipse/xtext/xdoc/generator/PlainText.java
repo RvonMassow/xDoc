@@ -91,7 +91,7 @@ public class PlainText {
       if (_operator_not) {
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
-          for(TextOrMarkup e : _contents_1) {
+          for(final TextOrMarkup e : _contents_1) {
             CharSequence _genPlainText = this.genPlainText(e);
             _builder.append(_genPlainText, "");
             _builder.newLineIfNotEmpty();
@@ -118,7 +118,7 @@ public class PlainText {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = cb.getContents();
-      for(EObject c : _contents) {
+      for(final EObject c : _contents) {
         CharSequence _genPlainText = this.genPlainText(c);
         _builder.append(_genPlainText, "");
         _builder.newLineIfNotEmpty();

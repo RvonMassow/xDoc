@@ -45,7 +45,7 @@ public class TocGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<Chapter> _chapters = doc.getChapters();
-      for(Chapter c : _chapters) {
+      for(final Chapter c : _chapters) {
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(c);
         _builder.append(_genTocEntry, "	");
@@ -54,7 +54,7 @@ public class TocGenerator {
     }
     {
       EList<Part> _parts = doc.getParts();
-      for(Part p : _parts) {
+      for(final Part p : _parts) {
         _builder.append("\t");
         StringConcatenation _genTocEntry_1 = this.genTocEntry(p);
         _builder.append(_genTocEntry_1, "	");
@@ -79,7 +79,7 @@ public class TocGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<Section> _subSections = c.getSubSections();
-      for(Section ss : _subSections) {
+      for(final Section ss : _subSections) {
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(ss);
         _builder.append(_genTocEntry, "	");
@@ -104,7 +104,7 @@ public class TocGenerator {
     _builder.newLineIfNotEmpty();
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         _builder.append("\t");
         StringConcatenation _genTocEntry = this.genTocEntry(ss);
         _builder.append(_genTocEntry, "	");

@@ -113,11 +113,11 @@ public class EclipseHelpGenerator implements IGenerator {
       StringConcatenation _generateRootDocument = this.generateRootDocument(document);
       access.generateFile(_decode, _generateRootDocument);
       EList<Chapter> _chapters = document.getChapters();
-      for (Chapter c : _chapters) {
+      for (final Chapter c : _chapters) {
         this.generate(c, access);
       }
       EList<Part> _parts = document.getParts();
-      for (Part p : _parts) {
+      for (final Part p : _parts) {
         this.generate(p, access);
       }
     }
@@ -192,7 +192,7 @@ public class EclipseHelpGenerator implements IGenerator {
         _xblockexpression = (_xifexpression);
       }
       _xtrycatchfinallyexpression = _xblockexpression;
-    } catch (Exception e) { 
+    } catch (final Exception e) { 
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }
@@ -235,7 +235,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = document.getContents();
-      for(TextOrMarkup content : _contents) {
+      for(final TextOrMarkup content : _contents) {
         StringConcatenation _generatePar = this.generatePar(content);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
@@ -244,7 +244,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(document);
       boolean hasAnyElements = false;
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         if (!hasAnyElements) {
           hasAnyElements = true;
           _builder.append("<ol>", "");
@@ -278,7 +278,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
       boolean hasAnyElements = false;
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         if (!hasAnyElements) {
           hasAnyElements = true;
           _builder.append("<ol>", "	");
@@ -311,7 +311,7 @@ public class EclipseHelpGenerator implements IGenerator {
       CharSequence _generate = this.generate(part);
       fsa.generateFile(_decode, _generate);
       EList<Chapter> _chapters = part.getChapters();
-      for (Chapter c : _chapters) {
+      for (final Chapter c : _chapters) {
         this.generate(c, fsa);
       }
     }
@@ -362,7 +362,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(part);
       boolean hasAnyElements = false;
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         if (!hasAnyElements) {
           hasAnyElements = true;
           _builder.append("<ol>", "");
@@ -426,7 +426,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = chapter.getContents();
-      for(TextOrMarkup content : _contents) {
+      for(final TextOrMarkup content : _contents) {
         StringConcatenation _generatePar = this.generatePar(content);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
@@ -434,7 +434,7 @@ public class EclipseHelpGenerator implements IGenerator {
     }
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(chapter);
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -520,7 +520,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = section.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         StringConcatenation _generatePar = this.generatePar(c);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
@@ -528,7 +528,7 @@ public class EclipseHelpGenerator implements IGenerator {
     }
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -552,7 +552,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = aS.getContents();
-      for(TextOrMarkup tom : _contents) {
+      for(final TextOrMarkup tom : _contents) {
         StringConcatenation _generatePar = this.generatePar(tom);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
@@ -567,7 +567,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<EObject> _contents = tom.getContents();
-      for(EObject c : _contents) {
+      for(final EObject c : _contents) {
         CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
       }
@@ -631,7 +631,7 @@ public class EclipseHelpGenerator implements IGenerator {
           _builder_1.append(">");
           {
             EList<TextOrMarkup> _contents_1 = ref.getContents();
-            for(TextOrMarkup tom : _contents_1) {
+            for(final TextOrMarkup tom : _contents_1) {
               StringConcatenation _genNonParContent = this.genNonParContent(tom);
               _builder_1.append(_genNonParContent, "");
             }
@@ -648,7 +648,7 @@ public class EclipseHelpGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
-      for(EObject obj : _contents) {
+      for(final EObject obj : _contents) {
         CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
       }
@@ -662,7 +662,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<Item> _items = ul.getItems();
-      for(Item i : _items) {
+      for(final Item i : _items) {
         _builder.append("\t");
         CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
@@ -680,7 +680,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<Item> _items = ul.getItems();
-      for(Item i : _items) {
+      for(final Item i : _items) {
         _builder.append("\t");
         CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
@@ -698,7 +698,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<TextOrMarkup> _contents = i.getContents();
-      for(TextOrMarkup tom : _contents) {
+      for(final TextOrMarkup tom : _contents) {
         _builder.append("\t");
         CharSequence _generate = this.generate(tom);
         _builder.append(_generate, "	");
@@ -823,7 +823,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<TableRow> _rows = table.getRows();
-      for(TableRow tr : _rows) {
+      for(final TableRow tr : _rows) {
         CharSequence _generate = this.generate(tr);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -840,7 +840,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<TableData> _data = tr.getData();
-      for(TableData td : _data) {
+      for(final TableData td : _data) {
         CharSequence _generate = this.generate(td);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -857,7 +857,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<TextOrMarkup> _contents = td.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -873,7 +873,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.append("<em>");
     {
       EList<TextOrMarkup> _contents = em.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
       }
@@ -1074,7 +1074,7 @@ public class EclipseHelpGenerator implements IGenerator {
         _builder_1.append(_formatCode_1, "");
         _builder_1.newLineIfNotEmpty();
         {
-          for(EObject code : list) {
+          for(final EObject code : list) {
             StringConcatenation _generateCode_3 = this.generateCode(code);
             String _trimLines_2 = this.trimLines(_generateCode_3, indentToRemove);
             LangDef _language_2 = cb.getLanguage();
@@ -1127,7 +1127,7 @@ public class EclipseHelpGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
-      for(EObject obj : _contents) {
+      for(final EObject obj : _contents) {
         CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
       }

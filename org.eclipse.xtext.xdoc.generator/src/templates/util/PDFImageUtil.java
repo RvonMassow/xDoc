@@ -29,7 +29,6 @@ public class PDFImageUtil {
 			if(cn.getNodeName().equals("Dimension")) {
 				for(Node ccn = cn.getFirstChild(); ccn != null; ccn = ccn.getNextSibling()){
 					if(ccn.getNodeName().equals("HorizontalPixelSize")){
-						// 6.3 is a good value here, but lets make it 6.0 - 6.6
 						ppmm = 1/ Float.parseFloat(ccn.getAttributes().item(0).getNodeValue());
 					}
 				}

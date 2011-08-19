@@ -80,7 +80,7 @@ public class LatexGenerator implements IGenerator {
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) throws RuntimeException {
     Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
-    for (EObject element : _allContentsIterable) {
+    for (final EObject element : _allContentsIterable) {
       if ((element instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
         {
           final Document doc = ((Document) element);
@@ -115,7 +115,7 @@ public class LatexGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<LangDef> _langDefs = doc.getLangDefs();
-      for(LangDef lang : _langDefs) {
+      for(final LangDef lang : _langDefs) {
         StringConcatenation _generate = this.generate(lang);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -142,7 +142,7 @@ public class LatexGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<Chapter> _chapters = doc.getChapters();
-      for(Chapter chapter : _chapters) {
+      for(final Chapter chapter : _chapters) {
         _builder.newLine();
         StringConcatenation _generate_1 = this.generate(chapter);
         _builder.append(_generate_1, "");
@@ -151,7 +151,7 @@ public class LatexGenerator implements IGenerator {
     }
     {
       EList<Part> _parts = doc.getParts();
-      for(Part part : _parts) {
+      for(final Part part : _parts) {
         _builder.newLine();
         StringConcatenation _generate_2 = this.generate(part);
         _builder.append(_generate_2, "");
@@ -184,7 +184,7 @@ public class LatexGenerator implements IGenerator {
       _builder.append("\\chapter{List of External Links}");
       _builder.newLine();
       {
-        for(String link : this.links) {
+        for(final String link : this.links) {
           _builder.append("\\noindent\\url{");
           _builder.append(link, "");
           _builder.append("}");
@@ -315,7 +315,7 @@ public class LatexGenerator implements IGenerator {
         {
           TextOrMarkup _authors_2 = doc.getAuthors();
           EList<EObject> _contents_1 = _authors_2.getContents();
-          for(EObject o : _contents_1) {
+          for(final EObject o : _contents_1) {
             CharSequence _genText = this.genText(o);
             _builder.append(_genText, "");
           }
@@ -333,7 +333,7 @@ public class LatexGenerator implements IGenerator {
         {
           TextOrMarkup _title_1 = doc.getTitle();
           EList<EObject> _contents_2 = _title_1==null?(EList<EObject>)null:_title_1.getContents();
-          for(EObject o_1 : _contents_2) {
+          for(final EObject o_1 : _contents_2) {
             CharSequence _genText_1 = this.genText(o_1);
             _builder.append(_genText_1, "");
           }
@@ -480,7 +480,7 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = chap.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         StringConcatenation _genContent = this.genContent(c);
         _builder.append(_genContent, "");
       }
@@ -488,7 +488,7 @@ public class LatexGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<Section> _subSections = chap.getSubSections();
-      for(Section sub : _subSections) {
+      for(final Section sub : _subSections) {
         StringConcatenation _generate = this.generate(sub);
         _builder.append(_generate, "");
       }
@@ -501,7 +501,7 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         StringConcatenation _genContent = this.genContent(c);
         _builder.append(_genContent, "");
         _builder.newLineIfNotEmpty();
@@ -509,7 +509,7 @@ public class LatexGenerator implements IGenerator {
     }
     {
       EList<Section2> _subSections = sec.getSubSections();
-      for(Section2 sub : _subSections) {
+      for(final Section2 sub : _subSections) {
         StringConcatenation _generate = this.generate(sub);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -522,7 +522,7 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         StringConcatenation _genContent = this.genContent(c);
         _builder.append(_genContent, "");
         _builder.newLineIfNotEmpty();
@@ -530,7 +530,7 @@ public class LatexGenerator implements IGenerator {
     }
     {
       EList<Section3> _subSections = sec.getSubSections();
-      for(Section3 sub : _subSections) {
+      for(final Section3 sub : _subSections) {
         StringConcatenation _generate = this.generate(sub);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -543,7 +543,7 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         StringConcatenation _generate = this.generate(c);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -551,7 +551,7 @@ public class LatexGenerator implements IGenerator {
     }
     {
       EList<Section4> _subSections = sec.getSubSections();
-      for(Section4 sub : _subSections) {
+      for(final Section4 sub : _subSections) {
         StringConcatenation _generate_1 = this.generate(sub);
         _builder.append(_generate_1, "");
         _builder.newLineIfNotEmpty();
@@ -564,7 +564,7 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         StringConcatenation _genContent = this.genContent(c);
         _builder.append(_genContent, "");
         _builder.newLineIfNotEmpty();
@@ -577,7 +577,7 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
-      for(EObject e : _contents) {
+      for(final EObject e : _contents) {
         CharSequence _genText = this.genText(e);
         _builder.append(_genText, "");
       }
@@ -589,7 +589,7 @@ public class LatexGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
-      for(EObject e : _contents) {
+      for(final EObject e : _contents) {
         CharSequence _genText = this.genText(e);
         _builder.append(_genText, "");
         _builder.newLineIfNotEmpty();
@@ -1087,7 +1087,7 @@ public class LatexGenerator implements IGenerator {
         _xblockexpression = (_xifexpression);
       }
       _xtrycatchfinallyexpression = _xblockexpression;
-    } catch (Exception e) { 
+    } catch (final Exception e) { 
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }
@@ -1212,7 +1212,7 @@ public class LatexGenerator implements IGenerator {
       if (_operator_not) {
         _builder.append("|");
         {
-          for(TableData td : tabData) {
+          for(final TableData td : tabData) {
             _builder.append("p{");
             XFloat _xFloat = new XFloat(1);
             int _size = tabData.size();

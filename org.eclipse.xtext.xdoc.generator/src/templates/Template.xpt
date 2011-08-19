@@ -12,6 +12,7 @@
 \usepackage{listings}
 \usepackage[american]{babel}
 \usepackage{graphicx}
+\usepackage{pdfcprot}
 
 \usepackage{todonotes}
 
@@ -35,8 +36,14 @@ ENDIF»
   }%
 }
 \makeatother
+\definecolor{listingsbg}{HTML}{E7E7E7}
+\definecolor{kwcolor}{HTML}{7F0055}
+\definecolor{strcolor}{HTML}{2A00FF}
+\definecolor{cocolor}{HTML}{3F7F5F}
 
-\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={«lstEscapeToTex()»}}
+\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries\color{kwcolor}, commentstyle=\color{cocolor},
+stringstyle=\color{strcolor}, columns=[r]fullflexible, escapechar={ß}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, 
+xleftmargin=5pt, xrightmargin=5pt, rulecolor=\color{lightgray}, showstringspaces=false, backgroundcolor=\color{listingsbg!70}}
 
 %%\usepackage[english]{babel}
 
@@ -121,7 +128,7 @@ ENDIF»
 «DEFINE genText FOR Object»«throwUnsupportedOperation("genText",this)»«ENDDEFINE»
 
 «DEFINE genText FOR Table»
-\noindent\begin{tabular}{«EXPAND genColumns FOR this.rows.first().data»}
+\noindent\begin{tabular}{«EXPAND genColumns FOR this.rows.first()»}
 «EXPAND genText FOREACH this.rows SEPARATOR "\\\\\n"»
 \end{tabular}
 «ENDDEFINE»
@@ -133,7 +140,7 @@ ENDIF»
 «REM»
 «DEFINE genColumns FOR List»«ENDDEFINE»
 «ENDREM»
-«DEFINE genColumns FOR List»«FOREACH ((List[TableData])this).contents AS content»|p{«1.0/this.size»\textwidth}«ENDFOREACH»|«ENDDEFINE»
+«DEFINE genColumns FOR TableRow»«FOREACH this.data AS content»|p{«1.0/this.data.size»\textwidth}«ENDFOREACH»|«ENDDEFINE»
 
 «DEFINE genText FOR TextPart»«escapeLatexChars(unescapeXdocChars(this.text))»«ENDDEFINE»
 
@@ -168,7 +175,7 @@ ENDDEFINE»
 \phantomsection\label{«this.name»}«
 ENDDEFINE»
 
-«DEFINE genText FOR Link»\href{«this.url»}{«this.text»}«storeLink(this)»«ENDDEFINE»
+«DEFINE genText FOR Link»\href{«this.url»}{«this.text.unescapeXdocChars().escapeLatexChars()»}«storeLink(this)»«ENDDEFINE»
 
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR this»«ENDDEFINE»
 
@@ -180,7 +187,7 @@ ENDDEFINE»
 \end{lstlisting}
 \noindent«ENDIF»«ENDDEFINE»
 
-«DEFINE genText FOR CodeRef»\lstinline[breakatwhitespace=false,breaklines=true]°«escapeLatexChars(unescapeXdocChars(this.element.qualifiedName))»°«ENDDEFINE»
+«DEFINE genText FOR CodeRef»\lstinline[breakatwhitespace=false,breaklines=true]°«escapeLatexChars(unescapeXdocChars(this.element.dottedSimpleName()))»°«ENDDEFINE»
 
 «DEFINE genText FOR ImageRef»
 \begin{figure}[!ht]

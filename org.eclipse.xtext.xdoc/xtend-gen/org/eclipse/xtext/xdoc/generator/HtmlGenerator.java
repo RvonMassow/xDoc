@@ -95,14 +95,14 @@ public class HtmlGenerator implements IGenerator {
     try {
       Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
       Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_allContentsIterable, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
-      for (XdocFile file : _filter) {
+      for (final XdocFile file : _filter) {
         AbstractSection _mainSection = file.getMainSection();
         if ((_mainSection instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
           AbstractSection _mainSection_1 = file.getMainSection();
           this.generate(((Document) _mainSection_1), fsa);
         }
       }
-    } catch (Exception e) { 
+    } catch (final Exception e) { 
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }
@@ -123,15 +123,15 @@ public class HtmlGenerator implements IGenerator {
       boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
       if (_operator_not) {
         EList<Chapter> _chapters_1 = doc.getChapters();
-        for (Chapter chapter : _chapters_1) {
+        for (final Chapter chapter : _chapters_1) {
           CharSequence _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter));
           this.generate(chapter, fsa, leftNav, _elementIdForSubToc);
         }
       } else {
         EList<Part> _parts = doc.getParts();
-        for (Part part : _parts) {
+        for (final Part part : _parts) {
           EList<Chapter> _chapters_2 = part.getChapters();
-          for (Chapter chapter_1 : _chapters_2) {
+          for (final Chapter chapter_1 : _chapters_2) {
             CharSequence _elementIdForSubToc_1 = this.elementIdForSubToc(((Chapter) chapter_1));
             this.generate(chapter_1, fsa, leftNav, _elementIdForSubToc_1);
           }
@@ -364,7 +364,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<TextOrMarkup> _contents = chap.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "");
         _builder.newLineIfNotEmpty();
@@ -372,7 +372,7 @@ public class HtmlGenerator implements IGenerator {
     }
     {
       List<? extends AbstractSection> _sections = this.ase.sections(chap);
-      for(AbstractSection sec : _sections) {
+      for(final AbstractSection sec : _sections) {
         CharSequence _generate = this.generate(sec, fsa, leftNav, leftNavUnfoldSubTocId);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -417,7 +417,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         _builder.append("\t");
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "	");
@@ -426,7 +426,7 @@ public class HtmlGenerator implements IGenerator {
     }
     {
       List<? extends AbstractSection> _sections = this.ase.sections(sec);
-      for(AbstractSection sec2 : _sections) {
+      for(final AbstractSection sec2 : _sections) {
         _builder.append("\t");
         CharSequence _generate = this.generate(sec2, fsa, leftNav, leftNavUnfoldSubTocId);
         _builder.append(_generate, "	");
@@ -456,7 +456,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "");
         _builder.newLineIfNotEmpty();
@@ -464,7 +464,7 @@ public class HtmlGenerator implements IGenerator {
     }
     {
       List<? extends AbstractSection> _sections = this.ase.sections(sec);
-      for(AbstractSection sec3 : _sections) {
+      for(final AbstractSection sec3 : _sections) {
         CharSequence _generate = this.generate(sec3, fsa, leftNav, leftNavUnfoldSubTocId);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -493,7 +493,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "");
         _builder.newLineIfNotEmpty();
@@ -501,7 +501,7 @@ public class HtmlGenerator implements IGenerator {
     }
     {
       List<? extends AbstractSection> _sections = this.ase.sections(sec);
-      for(AbstractSection c_1 : _sections) {
+      for(final AbstractSection c_1 : _sections) {
         CharSequence _generate = this.generate(c_1, fsa, leftNav, leftNavUnfoldSubTocId);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -530,7 +530,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
-      for(TextOrMarkup c : _contents) {
+      for(final TextOrMarkup c : _contents) {
         CharSequence _genText_1 = this.genText(c);
         _builder.append(_genText_1, "");
         _builder.newLineIfNotEmpty();
@@ -631,7 +631,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       List<? extends AbstractSection> _sections = this.ase.sections(section);
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         _builder.append("  ");
         CharSequence _cEntry = this.tocEntry(ss);
         _builder.append(_cEntry, "  ");
@@ -691,7 +691,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       List<? extends AbstractSection> _sections = this.ase.sections(doc);
-      for(AbstractSection c : _sections) {
+      for(final AbstractSection c : _sections) {
         CharSequence _leftNavTocEntry = this.leftNavTocEntry(c);
         _builder.append(_leftNavTocEntry, "");
         _builder.newLineIfNotEmpty();
@@ -714,7 +714,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       List<? extends AbstractSection> _sections = this.ase.sections(part);
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         CharSequence _leftNavTocEntry = this.leftNavTocEntry(ss);
         _builder.append(_leftNavTocEntry, "");
         _builder.newLineIfNotEmpty();
@@ -732,7 +732,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       List<? extends AbstractSection> _sections = this.ase.sections(chap);
-      for(AbstractSection ss : _sections) {
+      for(final AbstractSection ss : _sections) {
         CharSequence _leftNavTocEntry = this.leftNavTocEntry(ss);
         _builder.append(_leftNavTocEntry, "");
         _builder.newLineIfNotEmpty();
@@ -820,7 +820,7 @@ public class HtmlGenerator implements IGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
-      for(EObject c : _contents) {
+      for(final EObject c : _contents) {
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "");
       }
@@ -834,7 +834,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<EObject> _contents = tom.getContents();
-      for(EObject c : _contents) {
+      for(final EObject c : _contents) {
         CharSequence _genText = this.genText(c);
         _builder.append(_genText, "");
       }
@@ -879,7 +879,7 @@ public class HtmlGenerator implements IGenerator {
           _builder_1.newLine();
           {
             EList<EObject> _contents_2 = block.getContents();
-            for(EObject code : _contents_2) {
+            for(final EObject code : _contents_2) {
               _builder_1.append("\t\t\t");
               LangDef _language_1 = cb.getLanguage();
               CharSequence _generateCode_1 = this.generateCode(code, _language_1);
@@ -1040,7 +1040,7 @@ public class HtmlGenerator implements IGenerator {
     } else {
       StringConcatenation _builder = new StringConcatenation();
       {
-        for(TextOrMarkup tom : tomList) {
+        for(final TextOrMarkup tom : tomList) {
           CharSequence _genText = this.genText(tom);
           _builder.append(_genText, "");
           _builder.newLineIfNotEmpty();
@@ -1127,7 +1127,7 @@ public class HtmlGenerator implements IGenerator {
           _builder_1.append(">");
           {
             EList<TextOrMarkup> _contents_1 = ref.getContents();
-            for(TextOrMarkup tom : _contents_1) {
+            for(final TextOrMarkup tom : _contents_1) {
               CharSequence _genNonParText = this.genNonParText(tom);
               _builder_1.append(_genNonParText, "");
             }
@@ -1166,7 +1166,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<Item> _items = ol.getItems();
-      for(Item i : _items) {
+      for(final Item i : _items) {
         _builder.append("  ");
         CharSequence _genText = this.genText(i);
         _builder.append(_genText, "  ");
@@ -1184,7 +1184,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<Item> _items = ol.getItems();
-      for(Item i : _items) {
+      for(final Item i : _items) {
         _builder.append("  ");
         CharSequence _genText = this.genText(i);
         _builder.append(_genText, "  ");
@@ -1213,7 +1213,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<TableRow> _rows = table.getRows();
-      for(TableRow tr : _rows) {
+      for(final TableRow tr : _rows) {
         _builder.append("  ");
         CharSequence _genRow = this.genRow(tr);
         _builder.append(_genRow, "  ");
@@ -1231,7 +1231,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<TableData> _data = tr.getData();
-      for(TableData td : _data) {
+      for(final TableData td : _data) {
         _builder.append("  ");
         CharSequence _genData = this.genData(td);
         _builder.append(_genData, "  ");
@@ -1413,7 +1413,7 @@ public class HtmlGenerator implements IGenerator {
           }
         }
       }
-    } catch (Exception e) { 
+    } catch (final Exception e) { 
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }

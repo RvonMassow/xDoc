@@ -1,5 +1,6 @@
 import org::eclipse::xtext::xdoc::xdoc;
 import org::eclipse::emf::ecore;
+import org::eclipse::xtext::common::types;
 
 lstEscapeToTex():
 	"ß";
@@ -64,6 +65,12 @@ isLast(Chapter c):
 
 sibling(AbstractSection as, Integer i):
 	as;
+
+String dottedSimpleName(JvmDeclaredType type):
+		if (type.declaringType != null) then
+			type.declaringType.dottedSimpleName() + '.' + type.simpleName
+		else
+			type.simpleName;
 
 sibling(Chapter c, Integer i):
 	let d =((Document)c.eContainer()):

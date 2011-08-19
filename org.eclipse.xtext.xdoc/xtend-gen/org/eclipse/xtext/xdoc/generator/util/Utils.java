@@ -292,7 +292,7 @@ public class Utils {
   
   public Code correctedCode(final String s) {
     final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList(s);
-    Code code;
+    final Code code;
     synchronized (_createCache_correctedCode) {
       if (_createCache_correctedCode.containsKey(_cacheKey)) {
         return _createCache_correctedCode.get(_cacheKey);

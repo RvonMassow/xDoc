@@ -17,7 +17,7 @@ Workflow {
 		 useJavaClassPath = true
 
 		// or define search scope explicitly
-//		path = modelPath
+		path = modelPath
 		uriFilter = org.eclipse.xtext.mwe.NameBasedFilter {
 			extension = "xdoc"
 		}
@@ -27,6 +27,7 @@ Workflow {
 			slot = "doc"
 			type = "Document"
 			name = document
+			namespaceDelimiter = "disabled namespace delimiter"
 		}
 	}
 

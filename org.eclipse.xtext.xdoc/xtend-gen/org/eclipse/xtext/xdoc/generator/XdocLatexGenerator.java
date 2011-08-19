@@ -71,7 +71,7 @@ public class XdocLatexGenerator implements IGenerator {
     _builder.newLine();
     {
       EList<Chapter> _chapters = doc.getChapters();
-      for(Chapter chapter : _chapters) {
+      for(final Chapter chapter : _chapters) {
         StringConcatenation _generate = this.generate(chapter);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
@@ -89,7 +89,7 @@ public class XdocLatexGenerator implements IGenerator {
     _builder.append("\\chapter{List of Links}");
     _builder.newLine();
     {
-      for(String link : this.links) {
+      for(final String link : this.links) {
         _builder.append("\\url{");
         _builder.append(link, "");
         _builder.append("}");
@@ -205,7 +205,7 @@ public class XdocLatexGenerator implements IGenerator {
     {
       TextOrMarkup _authors = doc.getAuthors();
       EList<EObject> _contents = _authors.getContents();
-      for(EObject o : _contents) {
+      for(final EObject o : _contents) {
         StringConcatenation _generate = this.generate(o);
         _builder.append(_generate, "");
       }
@@ -217,7 +217,7 @@ public class XdocLatexGenerator implements IGenerator {
     {
       TextOrMarkup _title = doc.getTitle();
       EList<EObject> _contents_1 = _title.getContents();
-      for(EObject o_1 : _contents_1) {
+      for(final EObject o_1 : _contents_1) {
         StringConcatenation _generate_1 = this.generate(o_1);
         _builder.append(_generate_1, "");
       }
