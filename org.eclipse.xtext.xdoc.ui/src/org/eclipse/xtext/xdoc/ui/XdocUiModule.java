@@ -5,7 +5,9 @@ package org.eclipse.xtext.xdoc.ui;
 
 import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.builder.BuilderParticipant;
 import org.eclipse.xtext.builder.IXtextBuilderParticipant;
+import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.quickfix.XtextQuickAssistProcessor;
@@ -14,6 +16,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.autoedit.AutoEditProvider;
 import org.eclipse.xtext.xdoc.ui.builder.XdocJavaBasedProjectBuilder;
+import org.eclipse.xtext.xdoc.ui.builder.XdocOutputConfigurationProvider;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
 import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
@@ -60,6 +63,10 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 	}
 
 	public Class<? extends IXtextBuilderParticipant> bindIXtextBuilderParticipant() {
-		return XdocJavaBasedProjectBuilder.class;
+		return BuilderParticipant.class;
+	}
+
+	public Class<? extends OutputConfigurationProvider> bindOutputConfigurationProvider() {
+		return XdocOutputConfigurationProvider.class;
 	}
 }
