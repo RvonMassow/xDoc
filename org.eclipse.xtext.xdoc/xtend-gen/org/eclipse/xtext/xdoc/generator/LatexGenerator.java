@@ -1126,7 +1126,7 @@ public class LatexGenerator implements IGenerator {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("\\lstinline");
       LangDef _language = block.getLanguage();
-      StringConcatenation _langSpec = this==null?(StringConcatenation)null:this.langSpec(_language);
+      StringConcatenation _langSpec = _language==null?(StringConcatenation)null:this.langSpec(_language);
       _builder.append(_langSpec, "");
       _builder.append("\u00B0");
       EList<EObject> _contents = block.getContents();
@@ -1146,7 +1146,7 @@ public class LatexGenerator implements IGenerator {
       _builder_1.newLine();
       _builder_1.append("\\begin{lstlisting}");
       LangDef _language_1 = block.getLanguage();
-      StringConcatenation _langSpec_1 = this==null?(StringConcatenation)null:this.langSpec(_language_1);
+      StringConcatenation _langSpec_1 = _language_1==null?(StringConcatenation)null:this.langSpec(_language_1);
       _builder_1.append(_langSpec_1, "");
       _builder_1.newLineIfNotEmpty();
       EList<EObject> _contents_1 = block.getContents();

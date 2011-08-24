@@ -30,12 +30,12 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 public class Utils {
   
   public String urlDecode(final String s) throws UnsupportedEncodingException {
-    String _decode = URLDecoder.decode(s, "ISO-8859-1");
+    String _decode = s==null?(String)null:URLDecoder.decode(s, "ISO-8859-1");
     return _decode;
   }
   
   public String urlEncode(final String s) throws UnsupportedEncodingException {
-    String _encode = URLEncoder.encode(s, "UTF-8");
+    String _encode = s==null?(String)null:URLEncoder.encode(s, "UTF-8");
     return _encode;
   }
   

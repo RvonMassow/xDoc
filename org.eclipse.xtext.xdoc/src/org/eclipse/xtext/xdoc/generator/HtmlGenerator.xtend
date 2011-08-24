@@ -53,6 +53,7 @@ import org.eclipse.xtext.xdoc.xdoc.SectionRef
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref
 import org.eclipse.xtext.xdoc.xdoc.Part
+import static extension org.apache.commons.lang.StringEscapeUtils.*
 
 class HtmlGenerator implements IGenerator {
 	
@@ -291,12 +292,12 @@ class HtmlGenerator implements IGenerator {
 	def dispatch CharSequence leftNavTocEntry(Chapter chapter) '''
 		<li class="separator"><div class="separator">
 		<img src="triangle.gif" style="height:12px; margin-right: 2px; «IF chapter.sections.empty»display:none«ENDIF»"  /><img src="triangle-90.gif" style="display:none; margin-right: 2px" height="12px" />
-		<a href="«chapter.fullPHPURL»">«chapter.title.genNonParText»</a></div>
+		<a href="«chapter.fullPHPURL»">«chapter.title.genNonParText.toString.escapeHtml»</a></div>
 		«IF !chapter.sections.empty»«chapter.leftNavSubToc»«ENDIF»</li>
 	'''
 
 	def dispatch CharSequence leftNavTocEntry(AbstractSection section) '''
-		<li id="«section.fullURL»" ><a href="«section.fullPHPURL»" >«section.title.genNonParText »</a></li>
+		<li id="«section.fullURL»" ><a href="«section.fullPHPURL»" >«section.title.genNonParText.toString.escapeHtml»</a></li>
 	'''
 
 	def CharSequence genAuthors(Document doc) {
@@ -345,7 +346,7 @@ class HtmlGenerator implements IGenerator {
 		val prefix = if(cRef.element instanceof JvmAnnotationType && cRef.altText == null) "@"
 		val jDocLink = cRef.element.genJavaDocLink
 		val gitLink = cRef.element.gitLink
-		val fqn = cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHTMLChars
+		val fqn = cRef.element.getQualifiedName(".".charAt(0)).unescapeXdocChars.escapeHtml
 		val text = if(cRef.altText != null) {
 						cRef.altText.genNonParText
 					} else {
@@ -399,7 +400,7 @@ class HtmlGenerator implements IGenerator {
 		'''«mic.genText»'''
 
 	def dispatch CharSequence genText(TextPart tp) {
-		tp.text.unescapeXdocChars
+		tp.text.unescapeXdocChars.escapeHtml
 	}
 
 	def dispatch CharSequence genText(Anchor a) {
@@ -469,7 +470,7 @@ class HtmlGenerator implements IGenerator {
 			«IF img.name != null»
 				<a>«img.name»</a>
 			«ENDIF»
-			<a class="gallery" rel="prettyPhoto[all]" title="«img.caption.unescapeXdocChars.escapeHTMLChars»" href="«img.path.unescapeXdocChars().replaceAll("\\.\\./","")»">
+			<a class="gallery" rel="prettyPhoto[all]" title="«img.caption.unescapeXdocChars.escapeHtml»" href="«img.path.unescapeXdocChars().replaceAll("\\.\\./","")»">
 				<img src="«img.path.unescapeXdocChars().replaceAll("\\.\\./","")»" 
 					«IF !img.clazz.nullOrEmpty»
 						class="«img.clazz.unescapeXdocChars»" 
@@ -482,7 +483,7 @@ class HtmlGenerator implements IGenerator {
 				/>
 			</a>
 			<div class="caption">
-				«img.caption.unescapeXdocChars.escapeHTMLChars»
+				«img.caption.unescapeXdocChars.escapeHtml»
 			</div>
 			</div>
 		'''

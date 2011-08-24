@@ -9,6 +9,7 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.List;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -763,7 +764,9 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\">");
     TextOrMarkup _title = chapter.getTitle();
     CharSequence _genNonParText = this.genNonParText(_title);
-    _builder.append(_genNonParText, "");
+    String _string = _genNonParText.toString();
+    String _escapeHtml = StringEscapeUtils.escapeHtml(_string);
+    _builder.append(_escapeHtml, "");
     _builder.append("</a></div>");
     _builder.newLineIfNotEmpty();
     {
@@ -791,7 +794,9 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\" >");
     TextOrMarkup _title = section.getTitle();
     CharSequence _genNonParText = this.genNonParText(_title);
-    _builder.append(_genNonParText, "");
+    String _string = _genNonParText.toString();
+    String _escapeHtml = StringEscapeUtils.escapeHtml(_string);
+    _builder.append(_escapeHtml, "");
     _builder.append("</a></li>");
     _builder.newLineIfNotEmpty();
     return _builder;
@@ -931,8 +936,8 @@ public class HtmlGenerator implements IGenerator {
       char _charAt = ".".charAt(0);
       String _qualifiedName = _element_3.getQualifiedName(_charAt);
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
-      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
-      final String fqn = _escapeHTMLChars;
+      String _escapeHtml = StringEscapeUtils.escapeHtml(_unescapeXdocChars);
+      final String fqn = _escapeHtml;
       CharSequence _xifexpression_1 = null;
       TextOrMarkup _altText_1 = cRef.getAltText();
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
@@ -1079,7 +1084,8 @@ public class HtmlGenerator implements IGenerator {
   protected CharSequence _genText(final TextPart tp) {
     String _text = tp.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
-    return _unescapeXdocChars;
+    String _escapeHtml = StringEscapeUtils.escapeHtml(_unescapeXdocChars);
+    return _escapeHtml;
   }
   
   protected CharSequence _genText(final Anchor a) {
@@ -1277,8 +1283,8 @@ public class HtmlGenerator implements IGenerator {
       _builder.append("<a class=\"gallery\" rel=\"prettyPhoto[all]\" title=\"");
       String _caption = img.getCaption();
       String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_caption);
-      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_1);
-      _builder.append(_escapeHTMLChars, "");
+      String _escapeHtml = StringEscapeUtils.escapeHtml(_unescapeXdocChars_1);
+      _builder.append(_escapeHtml, "");
       _builder.append("\" href=\"");
       String _path_1 = img.getPath();
       String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_path_1);
@@ -1335,8 +1341,8 @@ public class HtmlGenerator implements IGenerator {
       _builder.append("\t");
       String _caption_1 = img.getCaption();
       String _unescapeXdocChars_6 = this.utils.unescapeXdocChars(_caption_1);
-      String _escapeHTMLChars_1 = this.utils.escapeHTMLChars(_unescapeXdocChars_6);
-      _builder.append(_escapeHTMLChars_1, "	");
+      String _escapeHtml_1 = StringEscapeUtils.escapeHtml(_unescapeXdocChars_6);
+      _builder.append(_escapeHtml_1, "	");
       _builder.newLineIfNotEmpty();
       _builder.append("</div>");
       _builder.newLine();

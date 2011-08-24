@@ -31,7 +31,7 @@ public class XdocLatexGenerator implements IGenerator {
     {
       Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(res);
       Iterable<Document> _filter = IterableExtensions.<Document>filter(_allContentsIterable, org.eclipse.xtext.xdoc.xdoc.Document.class);
-      Document _head = IterableExtensions.<Document>head(_filter);
+      Document _head = _filter==null?(Document)null:IterableExtensions.<Document>head(_filter);
       final Document doc = _head;
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(doc, null);
       if (_operator_notEquals) {
