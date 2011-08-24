@@ -171,7 +171,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public void generateFile(final AbstractSection section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  public void generateFile(final AbstractSection section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     {
       this.ppg.generatePHP(section, fsa);
       String _resourceURL = this.naming.getResourceURL(section);
@@ -264,7 +264,7 @@ public class HtmlGenerator implements IGenerator {
     }
   }
   
-  protected CharSequence _generate(final ChapterRef chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final ChapterRef chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _xblockexpression = null;
     {
       Chapter _chapter = chap.getChapter();
@@ -289,7 +289,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected CharSequence _generate(final SectionRef section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final SectionRef section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _xblockexpression = null;
     {
       Section _section = section.getSection();
@@ -314,7 +314,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected CharSequence _generate(final Section2Ref section2, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final Section2Ref section2, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _xblockexpression = null;
     {
       Section2 _section2 = section2.getSection2();
@@ -724,7 +724,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence leftNavSubToc(final Chapter chap) throws RuntimeException {
+  public CharSequence leftNavSubToc(final Chapter chap) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul style=\"display: none;\" id=\"");
     CharSequence _elementIdForSubToc = this.elementIdForSubToc(chap);
@@ -850,7 +850,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final CodeBlock cb) throws RuntimeException {
+  protected CharSequence _genText(final CodeBlock cb) {
     StringConcatenation _xifexpression = null;
     EList<EObject> _contents = cb.getContents();
     boolean _isEmpty = _contents.isEmpty();
@@ -909,7 +909,7 @@ public class HtmlGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected CharSequence _genText(final CodeRef cRef) throws RuntimeException {
+  protected CharSequence _genText(final CodeRef cRef) {
     StringConcatenation _xblockexpression = null;
     {
       String _xifexpression = null;
@@ -1012,7 +1012,7 @@ public class HtmlGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected CharSequence _genText(final Emphasize em) throws RuntimeException {
+  protected CharSequence _genText(final Emphasize em) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     EList<TextOrMarkup> _contents = em.getContents();
@@ -1034,7 +1034,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence generate(final List<TextOrMarkup> tomList) throws RuntimeException {
+  public CharSequence generate(final List<TextOrMarkup> tomList) {
     CharSequence _xifexpression = null;
     int _size = tomList.size();
     boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
@@ -1074,7 +1074,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generateCode(final MarkupInCode mic, final LangDef lang) throws RuntimeException {
+  protected CharSequence _generateCode(final MarkupInCode mic, final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _genText = this.genText(mic);
     _builder.append(_genText, "");
@@ -1092,7 +1092,7 @@ public class HtmlGenerator implements IGenerator {
     return null;
   }
   
-  protected CharSequence _genText(final Ref ref) throws RuntimeException {
+  protected CharSequence _genText(final Ref ref) {
     StringConcatenation _xblockexpression = null;
     {
       StringConcatenation _xifexpression = null;
@@ -1202,7 +1202,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final Item item) throws RuntimeException {
+  protected CharSequence _genText(final Item item) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li>");
     EList<TextOrMarkup> _contents = item.getContents();
@@ -1213,7 +1213,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final Table table) throws RuntimeException {
+  protected CharSequence _genText(final Table table) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<table>");
     _builder.newLine();
@@ -1231,7 +1231,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence genRow(final TableRow tr) throws RuntimeException {
+  public CharSequence genRow(final TableRow tr) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<tr>");
     _builder.newLine();
@@ -1249,7 +1249,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence genData(final TableData td) throws RuntimeException {
+  public CharSequence genData(final TableData td) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<td>");
     EList<TextOrMarkup> _contents = td.getContents();
@@ -1558,7 +1558,7 @@ public class HtmlGenerator implements IGenerator {
     }
   }
   
-  public CharSequence generateCode(final EObject code, final Object lang) throws RuntimeException {
+  public CharSequence generateCode(final EObject code, final Object lang) {
     if ((code instanceof Code)
          && (lang instanceof LangDef)) {
       return _generateCode((Code)code, (LangDef)lang);
