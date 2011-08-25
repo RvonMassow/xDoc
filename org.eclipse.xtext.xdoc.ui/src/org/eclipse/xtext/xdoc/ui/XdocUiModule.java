@@ -15,7 +15,6 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeId
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.autoedit.AutoEditProvider;
-import org.eclipse.xtext.xdoc.ui.builder.XdocJavaBasedProjectBuilder;
 import org.eclipse.xtext.xdoc.ui.builder.XdocOutputConfigurationProvider;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
