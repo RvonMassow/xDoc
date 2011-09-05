@@ -1,24 +1,15 @@
-package org.eclipse.xtext.xdoc.ui.builder;
+package org.eclipse.xtext.xdoc.generator;
 
 import java.util.Set;
 
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.OutputConfiguration;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
-import org.eclipse.xtext.ui.editor.preferences.IPreferenceStoreAccess;
-import org.eclipse.xtext.xdoc.generator.Outlets;
 
-import static com.google.common.collect.Sets.newHashSet;
-
-import com.google.inject.Inject;
+import static com.google.common.collect.Sets.*;
 
 public class XdocOutputConfigurationProvider extends
 		OutputConfigurationProvider {
-
-	
-	// TODO: use the preference store to get the folders.
-	@Inject
-	private IPreferenceStoreAccess preferenceStoreAccess;
 
 	@Override
 	public Set<OutputConfiguration> getOutputConfigurations() {

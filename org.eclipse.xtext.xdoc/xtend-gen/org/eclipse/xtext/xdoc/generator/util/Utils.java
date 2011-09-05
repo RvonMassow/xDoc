@@ -148,7 +148,7 @@ public class Utils {
         EList<String> _keywords = lang.getKeywords();
         _xifexpression = _keywords;
       } else {
-        Set<?> _emptySet = CollectionLiterals.emptySet();
+        Set<String> _emptySet = CollectionLiterals.<String>emptySet();
         _xifexpression = ((Set<String>) _emptySet);
       }
       _xblockexpression = (_xifexpression);

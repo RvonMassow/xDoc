@@ -3,8 +3,10 @@
  */
 package org.eclipse.xtext.xdoc;
 
+import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.xdoc.generator.XdocOutputConfigurationProvider;
 import org.eclipse.xtext.xdoc.naming.XdocDocumentNameProvider;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionStrategy;
@@ -31,5 +33,9 @@ public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntim
 	public Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
 		return XdocResourceDescriptionStrategy.class;
 	}
-
+	
+	public Class<? extends OutputConfigurationProvider> bindOutputConfigurationProvider() {
+		return XdocOutputConfigurationProvider.class;
+	}
+	
 }
