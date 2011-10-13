@@ -382,7 +382,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Chapter chapter) {
+  protected CharSequence _generate(final Chapter chapter) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -499,7 +499,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _switchResult;
   }
   
-  protected CharSequence _generate(final AbstractSection section) {
+  protected CharSequence _generate(final AbstractSection section) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
     String _localId = this.eclipseNamingExtensions.getLocalId(section);
@@ -537,7 +537,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section4 aS) {
+  protected CharSequence _generate(final Section4 aS) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<a name=\"");
     String _localId = this.eclipseNamingExtensions.getLocalId(aS);
@@ -590,7 +590,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Ref ref) {
+  protected CharSequence _generate(final Ref ref) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       StringConcatenation _xifexpression = null;
@@ -868,7 +868,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Emphasize em) {
+  protected CharSequence _generate(final Emphasize em) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     {
@@ -896,7 +896,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final CodeRef cRef) {
+  protected CharSequence _generate(final CodeRef cRef) throws RuntimeException {
     StringConcatenation _xblockexpression = null;
     {
       String _xifexpression = null;
@@ -999,7 +999,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected CharSequence _generate(final CodeBlock cb) {
+  protected CharSequence _generate(final CodeBlock cb) throws RuntimeException {
     StringConcatenation _xifexpression = null;
     boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
@@ -1116,14 +1116,14 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _generateCode(final MarkupInCode code) {
+  protected StringConcatenation _generateCode(final MarkupInCode code) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generate = this.generate(code);
     _builder.append(_generate, "");
     return _builder;
   }
   
-  public StringConcatenation genNonParContent(final TextOrMarkup tom) {
+  public StringConcatenation genNonParContent(final TextOrMarkup tom) throws RuntimeException {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -1195,7 +1195,7 @@ public class EclipseHelpGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation generateCode(final EObject code) {
+  public StringConcatenation generateCode(final EObject code) throws RuntimeException {
     if ((code instanceof Code)) {
       return _generateCode((Code)code);
     } else if ((code instanceof MarkupInCode)) {
