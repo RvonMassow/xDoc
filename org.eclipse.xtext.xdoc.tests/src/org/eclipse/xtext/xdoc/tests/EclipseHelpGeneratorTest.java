@@ -9,7 +9,7 @@ import org.eclipse.xtext.generator.AbstractFileSystemAccess;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
-import org.eclipse.xtext.xdoc.generator.XdocGenerator;
+import org.eclipse.xtext.xdoc.generator.EclipseHelpGenerator;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
@@ -147,7 +147,7 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 	}
 
 	@Inject
-	private XdocGenerator generator;
+	private EclipseHelpGenerator generator;
 
 	protected void generate(AbstractSection obj) throws Exception {
 		AbstractFileSystemAccess fsa = new JavaIoFileSystemAccess();
