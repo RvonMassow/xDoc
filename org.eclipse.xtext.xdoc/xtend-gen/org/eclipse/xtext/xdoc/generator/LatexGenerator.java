@@ -128,8 +128,6 @@ public class LatexGenerator implements IGenerator {
     _builder.append("\\usepackage{hyperref}");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("\\newlength{\\itemindentlen}");
-    _builder.newLine();
     StringConcatenation _authorAndTitle = this.authorAndTitle(doc);
     _builder.append(_authorAndTitle, "");
     _builder.newLineIfNotEmpty();
@@ -243,6 +241,11 @@ public class LatexGenerator implements IGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("\\lstset{tabsize=4, basicstyle=\\sffamily\\small, commentstyle=\\textsl, keywordstyle=\\bfseries, columns=[r]fullflexible, escapechar={\u00DF}}");
+    _builder.newLine();
+    _builder.append("\\newlength{\\XdocItemIndent}");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("\\newlength{\\XdocTEffectiveWidth}");
     _builder.newLine();
     _builder.newLine();
     return _builder;
@@ -740,22 +743,33 @@ public class LatexGenerator implements IGenerator {
   
   protected CharSequence _genText(final Table tab) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\noindent\\begin{tabular}{");
+    _builder.append("\\setlength{\\XdocTEffectiveWidth}{\\textwidth}");
+    _builder.newLine();
+    _builder.append("\\addtolength{\\XdocTEffectiveWidth}{-");
     EList<TableRow> _rows = tab.getRows();
     TableRow _head = IterableExtensions.<TableRow>head(_rows);
     EList<TableData> _data = _head.getData();
-    StringConcatenation _genColumns = this.genColumns(_data);
+    int _size = _data.size();
+    int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)_size), ((Integer)2));
+    _builder.append(_operator_multiply, "");
+    _builder.append(".0\\tabcolsep}");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\\noindent\\begin{tabular}{");
+    EList<TableRow> _rows_1 = tab.getRows();
+    TableRow _head_1 = IterableExtensions.<TableRow>head(_rows_1);
+    EList<TableData> _data_1 = _head_1.getData();
+    StringConcatenation _genColumns = this.genColumns(_data_1);
     _builder.append(_genColumns, "");
     _builder.append("}");
     _builder.newLineIfNotEmpty();
-    EList<TableRow> _rows_1 = tab.getRows();
+    EList<TableRow> _rows_2 = tab.getRows();
     final Function1<TableRow,CharSequence> _function = new Function1<TableRow,CharSequence>() {
         public CharSequence apply(final TableRow e) {
           CharSequence _genText = LatexGenerator.this.genText(e);
           return _genText;
         }
       };
-    List<CharSequence> _map = ListExtensions.<TableRow, CharSequence>map(_rows_1, _function);
+    List<CharSequence> _map = ListExtensions.<TableRow, CharSequence>map(_rows_2, _function);
     String _join = IterableExtensions.join(_map, "\\\\\n");
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -799,11 +813,11 @@ public class LatexGenerator implements IGenerator {
   
   protected CharSequence _genText(final OrderedList ol) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\setlength{\\itemindentlen}{\\textwidth}");
+    _builder.append("\\setlength{\\XdocItemIndent}{\\textwidth}");
     _builder.newLine();
     _builder.append("\\begin{enumerate}");
     _builder.newLine();
-    _builder.append("\\addtolength{\\itemindentlen}{-2.5em}");
+    _builder.append("\\addtolength{\\XdocItemIndent}{-2.5em}");
     _builder.newLine();
     EList<Item> _items = ol.getItems();
     final Function1<Item,CharSequence> _function = new Function1<Item,CharSequence>() {
@@ -818,18 +832,18 @@ public class LatexGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\\end{enumerate}");
     _builder.newLine();
-    _builder.append("\\addtolength{\\itemindentlen}{2.5em}");
+    _builder.append("\\addtolength{\\XdocItemIndent}{2.5em}");
     _builder.newLine();
     return _builder;
   }
   
   protected CharSequence _genText(final UnorderedList ul) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\setlength{\\itemindentlen}{\\textwidth}");
+    _builder.append("\\setlength{\\XdocItemIndent}{\\textwidth}");
     _builder.newLine();
     _builder.append("\\begin{itemize}");
     _builder.newLine();
-    _builder.append("\\addtolength{\\itemindentlen}{-2.5em}");
+    _builder.append("\\addtolength{\\XdocItemIndent}{-2.5em}");
     _builder.newLine();
     EList<Item> _items = ul.getItems();
     final Function1<Item,CharSequence> _function = new Function1<Item,CharSequence>() {
@@ -844,14 +858,14 @@ public class LatexGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\\end{itemize}");
     _builder.newLine();
-    _builder.append("\\addtolength{\\itemindentlen}{2.5em}");
+    _builder.append("\\addtolength{\\XdocItemIndent}{2.5em}");
     _builder.newLine();
     return _builder;
   }
   
   protected CharSequence _genText(final Item item) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\item \\begin{minipage}[t]{\\itemindentlen}");
+    _builder.append("\\item \\begin{minipage}[t]{\\XdocItemIndent}");
     {
       EList<TextOrMarkup> _contents = item.getContents();
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(_contents);
@@ -1126,7 +1140,7 @@ public class LatexGenerator implements IGenerator {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("\\lstinline");
       LangDef _language = block.getLanguage();
-      StringConcatenation _langSpec = _language==null?(StringConcatenation)null:this.langSpec(_language);
+      StringConcatenation _langSpec = this==null?(StringConcatenation)null:this.langSpec(_language);
       _builder.append(_langSpec, "");
       _builder.append("\u00B0");
       EList<EObject> _contents = block.getContents();
@@ -1146,7 +1160,7 @@ public class LatexGenerator implements IGenerator {
       _builder_1.newLine();
       _builder_1.append("\\begin{lstlisting}");
       LangDef _language_1 = block.getLanguage();
-      StringConcatenation _langSpec_1 = _language_1==null?(StringConcatenation)null:this.langSpec(_language_1);
+      StringConcatenation _langSpec_1 = this==null?(StringConcatenation)null:this.langSpec(_language_1);
       _builder_1.append(_langSpec_1, "");
       _builder_1.newLineIfNotEmpty();
       EList<EObject> _contents_1 = block.getContents();
@@ -1205,26 +1219,31 @@ public class LatexGenerator implements IGenerator {
   }
   
   public StringConcatenation genColumns(final List<TableData> tabData) {
-    StringConcatenation _builder = new StringConcatenation();
+    StringConcatenation _xblockexpression = null;
     {
-      boolean _isEmpty = tabData.isEmpty();
-      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
-      if (_operator_not) {
-        _builder.append("|");
-        {
-          for(final TableData td : tabData) {
-            _builder.append("p{");
-            XFloat _xFloat = new XFloat(1);
-            int _size = tabData.size();
-            XFloat _xFloat_1 = new XFloat(_size);
-            XFloat _operator_divide = _xFloat.operator_divide(_xFloat_1);
-            _builder.append(_operator_divide, "");
-            _builder.append("\\textwidth}|");
+      XFloat _xFloat = new XFloat(1);
+      int _size = tabData.size();
+      XFloat _xFloat_1 = new XFloat(_size);
+      XFloat _operator_divide = _xFloat.operator_divide(_xFloat_1);
+      final XFloat colFract = _operator_divide;
+      StringConcatenation _builder = new StringConcatenation();
+      {
+        boolean _isEmpty = tabData.isEmpty();
+        boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
+        if (_operator_not) {
+          _builder.append("|");
+          {
+            for(final TableData td : tabData) {
+              _builder.append("p{");
+              _builder.append(colFract, "");
+              _builder.append("\\XdocTEffectiveWidth}|");
+            }
           }
         }
       }
+      _xblockexpression = (_builder);
     }
-    return _builder;
+    return _xblockexpression;
   }
   
   public StringConcatenation generate(final EObject doc) throws RuntimeException {

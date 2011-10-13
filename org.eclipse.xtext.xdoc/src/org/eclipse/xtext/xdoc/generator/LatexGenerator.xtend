@@ -94,7 +94,6 @@ class LatexGenerator implements IGenerator{
 		
 		\usepackage{hyperref}
 		
-		\newlength{\itemindentlen}
 		«doc.authorAndTitle»
 		
 		\begin{document}
@@ -149,6 +148,8 @@ class LatexGenerator implements IGenerator{
 		\makeatother
 		
 		\lstset{tabsize=4, basicstyle=\sffamily\small, commentstyle=\textsl, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={ß}}
+		\newlength{\XdocItemIndent}
+	 	\newlength{\XdocTEffectiveWidth}
 		
 	'''
 
@@ -346,6 +347,8 @@ class LatexGenerator implements IGenerator{
 	 * genText
 	 */
 	def dispatch genText(Table tab) '''
+		\setlength{\XdocTEffectiveWidth}{\textwidth}
+		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
 		\noindent\begin{tabular}{«tab.rows.head.data.genColumns»}
 		«tab.rows.map([e | e.genText]).join("\\\\\n")»
 		\end{tabular}
@@ -364,28 +367,28 @@ class LatexGenerator implements IGenerator{
 	}
 
 	def dispatch genText(OrderedList ol) '''
-		\setlength{\itemindentlen}{\textwidth}
+		\setlength{\XdocItemIndent}{\textwidth}
 		\begin{enumerate}
-		\addtolength{\itemindentlen}{-2.5em}
+		\addtolength{\XdocItemIndent}{-2.5em}
 		«ol.items.map([e | e.genText]).join»
 		\end{enumerate}
-		\addtolength{\itemindentlen}{2.5em}
+		\addtolength{\XdocItemIndent}{2.5em}
 	'''
 
 	def dispatch genText(UnorderedList ul){
 		'''
-		\setlength{\itemindentlen}{\textwidth}
+		\setlength{\XdocItemIndent}{\textwidth}
 		\begin{itemize}
-		\addtolength{\itemindentlen}{-2.5em}
+		\addtolength{\XdocItemIndent}{-2.5em}
 		«ul.items.map([e | e.genText]).join»
 		\end{itemize}
-		\addtolength{\itemindentlen}{2.5em}
+		\addtolength{\XdocItemIndent}{2.5em}
 		'''
 	}
 
 	def dispatch genText(Item item){
 		'''
-		\item \begin{minipage}[t]{\itemindentlen}«IF item.contents.head.block»\vspace*{-\baselineskip}«ENDIF»
+		\item \begin{minipage}[t]{\XdocItemIndent}«IF item.contents.head.block»\vspace*{-\baselineskip}«ENDIF»
 		«item.contents.map([e|e.genContent]).join»
 		\end{minipage}
 		'''	
@@ -516,7 +519,9 @@ class LatexGenerator implements IGenerator{
 	 * genColumns
 	 */
 	 def genColumns(List<TableData> tabData){
-	 	'''«IF !tabData.empty»|«FOR td: tabData»p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}|«ENDFOR»«ENDIF»'''
+	 	val colFract = new XFloat(1)/new XFloat(tabData.size)
+	 	'''«IF !tabData.empty»|«FOR td: tabData»p{«colFract»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''
+	 	//«/*{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}|*/»
 //	 	tabData.join('''p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''', "|")
 	 }
 }
