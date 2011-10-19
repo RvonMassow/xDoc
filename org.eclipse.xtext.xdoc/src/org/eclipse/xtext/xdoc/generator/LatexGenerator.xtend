@@ -466,35 +466,36 @@ class LatexGenerator implements IConfigurableGenerator {
 			val uri = res.URI
 			var relOutDirRoot = ""
 			var inDir = ""
-//			if(uri.platformResource) {
-				val uriConverter = res.resourceSet.URIConverter
-				val absoluteLocalPath = URI::createFileURI(new File("").absolutePath+"/")
-				val relativeImageURI = URI::createFileURI(imgRef.path)
-				val inPath = relativeImageURI.resolve(uri).deresolve(absoluteLocalPath)
-				val inSegments = inPath.segmentsList.subList(1, inPath.segmentCount)
-				val pathInDocument = inSegments.join("/")
-				val outPath = URI::createFileURI(config.get(Config::outletPath).toString + "/" + pathInDocument)
-				val inChannel = Channels::newChannel(uriConverter.createInputStream(inPath))
-				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
-				while (inChannel.read(buffer) != -1) {
-					buffer.flip();
-					outChannel.write(buffer);
-					buffer.compact();
-				}
+			val uriConverter = res.resourceSet.URIConverter
+			val absoluteLocalPath = URI::createFileURI(new File("").absolutePath+"/")
+			val relativeImageURI = URI::createFileURI(imgRef.path)
+			val inPath = relativeImageURI.resolve(uri).deresolve(absoluteLocalPath)
+			val inSegments = inPath.segmentsList.subList(1, inPath.segmentCount)
+			val pathInDocument = inSegments.join("/")
+			val outPath = URI::createFileURI(config.get(Config::outletPath).toString + "/" + pathInDocument)
+			val inChannel = Channels::newChannel(uriConverter.createInputStream(inPath))
+			val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
+			while (inChannel.read(buffer) != -1) {
 				buffer.flip();
-				while (buffer.hasRemaining()) {
-					outChannel.write(buffer);
-				}
-				outChannel.close()
-				return pathInDocument
-//			}
+				outChannel.write(buffer);
+				buffer.compact();
+			}
+			buffer.flip();
+			while (buffer.hasRemaining()) {
+				outChannel.write(buffer);
+			}
+			outChannel.close()
+			return pathInDocument
 		} catch (Exception e) {
 			throw new RuntimeException(e)
 		}
 	}
 
 	def dispatch genText(Todo todo){
-		'''\todo[inline]{«todo.text.unescapeXdocChars.escapeLatexChars»}'''
+		if(!config.get(Config::release) as Boolean)
+			'''\todo[inline]{«todo.text.unescapeXdocChars.escapeLatexChars»}'''
+		else
+			''''''
 	}
 
 	def dispatch genText(MarkupInCode mic){

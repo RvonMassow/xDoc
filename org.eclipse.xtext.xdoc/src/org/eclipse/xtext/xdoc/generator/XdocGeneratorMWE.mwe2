@@ -4,7 +4,6 @@ import org.eclipse.emf.mwe.utils.*
 
 
 var targetDir = "src-gen"
-var fileEncoding = "ISO-8859-1"
 var modelPath = "src/"
 var pdfLatex = "pdflatex"
 var release = false
@@ -32,17 +31,10 @@ Workflow {
 		}
 	}
 
-//	component = org.eclipse.xtext.generator.GeneratorComponent {
-//		register = org.eclipse.xtext.xdoc.XdocStandaloneSetup {}
-//		slot = 'doc'
-//		outlet = {
-//			path = targetDir
-//		}
-//	}
-
 	component = org.eclipse.xtext.xdoc.generator.XdocGeneratorComponent {
 		register = org.eclipse.xtext.xdoc.XdocGeneratorSetup {}
 		slot = 'doc'
+		release = release
 		outlet = {
 			path = targetDir
 		}

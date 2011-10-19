@@ -1193,14 +1193,23 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   protected CharSequence _genText(final Todo todo) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\todo[inline]{");
-    String _text = todo.getText();
-    String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
-    String _escapeLatexChars = this.utils.escapeLatexChars(_unescapeXdocChars);
-    _builder.append(_escapeLatexChars, "");
-    _builder.append("}");
-    return _builder;
+    StringConcatenation _xifexpression = null;
+    Object _get = this.config.get(Config.release);
+    boolean _operator_not = BooleanExtensions.operator_not(((Boolean) _get));
+    if (_operator_not) {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\\todo[inline]{");
+      String _text = todo.getText();
+      String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
+      String _escapeLatexChars = this.utils.escapeLatexChars(_unescapeXdocChars);
+      _builder.append(_escapeLatexChars, "");
+      _builder.append("}");
+      _xifexpression = _builder;
+    } else {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _xifexpression = _builder_1;
+    }
+    return _xifexpression;
   }
   
   protected CharSequence _genText(final MarkupInCode mic) {
