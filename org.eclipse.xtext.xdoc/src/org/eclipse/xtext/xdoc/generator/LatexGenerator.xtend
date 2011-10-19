@@ -1,16 +1,17 @@
 package org.eclipse.xtext.xdoc.generator
 
 import com.google.inject.Inject
+import java.io.File
 import java.nio.ByteBuffer
 import java.nio.channels.Channels
 import java.util.HashSet
 import java.util.List
+import java.util.HashMap
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig
+import org.eclipse.xtext.xdoc.generator.config.Config
 import org.eclipse.xtext.xdoc.generator.util.Utils
 import org.eclipse.xtext.xdoc.generator.util.XFloat
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
@@ -49,11 +50,15 @@ import static extension org.eclipse.xtext.xdoc.generator.util.LatexUtils.*
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
 
-class LatexGenerator implements IGenerator{
+class LatexGenerator implements IConfigurableGenerator {
 
 	@Inject extension Utils utils
-	@Inject GeneratorConfig config
+	@Inject HashMap<String, Object> config
 	@Inject HashSet<String> links
+
+	override getConfiguration() {
+		config
+	}
 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(element: resource.allContentsIterable) {
@@ -101,7 +106,7 @@ class LatexGenerator implements IGenerator{
 		«ENDFOR»
 		«genListOfLinks»
 		
-		«IF !config.release»
+		«IF !(config.get(Config::release) as Boolean)»
 			\listoftodos
 		«ENDIF»
 		\end{document}
@@ -148,7 +153,7 @@ class LatexGenerator implements IGenerator{
 	// TODO: migrate to generate
 	def configureTodo() {
 		'''
-		«IF config.release»
+		«IF (config.get(Config::release) as Boolean)»
 			\renewcommand{\todo}[1]{}
 		«ENDIF»
 		'''
@@ -180,7 +185,9 @@ class LatexGenerator implements IGenerator{
 	/**
 	 * genContent
 	 * 
-	 * Generates the content for the single structures. 
+	 * Generates the content for the single structures.
+	 * 
+	 * FIXME: name for sectionrefs not correctly read
 	 */
 	def dispatch generate(AbstractSection sec){
 		'''
@@ -198,17 +205,16 @@ class LatexGenerator implements IGenerator{
 			Section4:
 				'''\paragraph{«sec.title.genContent»}'''	
 		}»
-		«if(sec.name != null)
-			switch (sec) {
-				Part:
-					sec.genLabel
-				Chapter:
-					sec.genLabel
-				Section:
-					sec.genLabel
-				default:
-					sec.title.genLabel				
-			}»
+		«switch (sec) {
+			Part:
+				sec.genLabel
+			Chapter:
+				sec.genLabel
+			Section:
+				sec.genLabel
+			default:
+				sec.title.genLabel				
+		}»
 		«sec.genContent»
 		'''
 	}
@@ -217,6 +223,16 @@ class LatexGenerator implements IGenerator{
 		'''
 		«FOR c : chap.contents»«c.genContent»«ENDFOR»
 		«FOR sub : chap.subSections»«sub.generate»«ENDFOR»
+		'''
+	}
+
+	def dispatch genContent(Part part){
+		'''
+		
+		«FOR c : part.contents»
+			«c.genContent»
+		«ENDFOR»
+		«FOR sub : part.chapters»«sub.generate»«ENDFOR»
 		'''
 	}
 
@@ -245,7 +261,7 @@ class LatexGenerator implements IGenerator{
 	def dispatch genContent(Section3 sec){
 		'''
 		«FOR c : sec.contents»
-			«c.generate»
+			«c.genContent»
 		«ENDFOR»
 		«FOR sub : sec.subSections»
 			«sub.generate»
@@ -306,9 +322,22 @@ class LatexGenerator implements IGenerator{
 		«ENDIF»
 	'''
 
+
+	def dispatch genLabel(Section sec) '''
+		«IF sec.name != null»
+			\label{«sec.name?.toString»}
+		«ENDIF»
+	'''
+
 	def dispatch genLabel(SectionRef sRef) '''
 		«IF sRef.section.name != null»
 			\label{«sRef.section.name?.toString»}
+		«ENDIF»
+	'''
+
+	def dispatch genLabel(Section2 sec) '''
+		«IF sec.name != null»
+			\label{«sec.name?.toString»}
 		«ENDIF»
 	'''
 
@@ -318,7 +347,13 @@ class LatexGenerator implements IGenerator{
 		«ENDIF»
 	'''
 
-	def dispatch genLabel(Section sec) '''
+	def dispatch genLabel(Section3 sec) '''
+		«IF sec.name != null»
+			\label{«sec.name?.toString»}
+		«ENDIF»
+	'''
+
+	def dispatch genLabel(Section4 sec) '''
 		«IF sec.name != null»
 			\label{«sec.name?.toString»}
 		«ENDIF»
@@ -431,10 +466,15 @@ class LatexGenerator implements IGenerator{
 			val uri = res.URI
 			var relOutDirRoot = ""
 			var inDir = ""
-			if(uri.platformResource) {
-				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + imgRef.path)
-				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::WEB_SITE_PATH_NAME).toString + "/" + imgRef.path.replaceAll("\\.\\.",""))
-				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
+//			if(uri.platformResource) {
+				val uriConverter = res.resourceSet.URIConverter
+				val absoluteLocalPath = URI::createFileURI(new File("").absolutePath+"/")
+				val relativeImageURI = URI::createFileURI(imgRef.path)
+				val inPath = relativeImageURI.resolve(uri).deresolve(absoluteLocalPath)
+				val inSegments = inPath.segmentsList.subList(1, inPath.segmentCount)
+				val pathInDocument = inSegments.join("/")
+				val outPath = URI::createFileURI(config.get(Config::outletPath).toString + "/" + pathInDocument)
+				val inChannel = Channels::newChannel(uriConverter.createInputStream(inPath))
 				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
 				while (inChannel.read(buffer) != -1) {
 					buffer.flip();
@@ -446,8 +486,8 @@ class LatexGenerator implements IGenerator{
 					outChannel.write(buffer);
 				}
 				outChannel.close()
-				return outPath.toFileString
-			}
+				return pathInDocument
+//			}
 		} catch (Exception e) {
 			throw new RuntimeException(e)
 		}

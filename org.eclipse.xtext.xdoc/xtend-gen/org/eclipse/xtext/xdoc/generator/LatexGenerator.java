@@ -1,6 +1,7 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
@@ -8,8 +9,10 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -18,7 +21,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
@@ -26,8 +28,8 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.eclipse.xtext.xdoc.generator.Outlets;
-import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig;
+import org.eclipse.xtext.xdoc.generator.IConfigurableGenerator;
+import org.eclipse.xtext.xdoc.generator.config.Config;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
@@ -68,15 +70,19 @@ import org.eclipse.xtext.xtend2.lib.ResourceExtensions;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
-public class LatexGenerator implements IGenerator {
+public class LatexGenerator implements IConfigurableGenerator {
   @Inject
   private Utils utils;
   
   @Inject
-  private GeneratorConfig config;
+  private HashMap<String,Object> config;
   
   @Inject
   private HashSet<String> links;
+  
+  public Map<String,Object> getConfiguration() {
+    return this.config;
+  }
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
@@ -159,8 +165,8 @@ public class LatexGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
-      boolean _release = this.config.release();
-      boolean _operator_not = BooleanExtensions.operator_not(_release);
+      Object _get = this.config.get(Config.release);
+      boolean _operator_not = BooleanExtensions.operator_not(((Boolean) _get));
       if (_operator_not) {
         _builder.append("\\listoftodos");
         _builder.newLine();
@@ -251,8 +257,8 @@ public class LatexGenerator implements IGenerator {
   public StringConcatenation configureTodo() {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _release = this.config.release();
-      if (_release) {
+      Object _get = this.config.get(Config.release);
+      if (((Boolean) _get)) {
         _builder.append("\\renewcommand{\\todo}[1]{}");
         _builder.newLine();
       }
@@ -349,6 +355,8 @@ public class LatexGenerator implements IGenerator {
    * genContent
    * 
    * Generates the content for the single structures.
+   * 
+   * FIXME: name for sectionrefs not correctly read
    */
   protected StringConcatenation _generate(final AbstractSection sec) {
     StringConcatenation _builder = new StringConcatenation();
@@ -435,45 +443,39 @@ public class LatexGenerator implements IGenerator {
     }
     _builder.append(_switchResult, "");
     _builder.newLineIfNotEmpty();
-    StringConcatenation _xifexpression = null;
-    String _name = sec.getName();
-    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
-    if (_operator_notEquals) {
-      StringConcatenation _switchResult_1 = null;
-      final AbstractSection sec_8 = sec;
-      boolean matched_1 = false;
-      if (!matched_1) {
-        if (sec_8 instanceof Part) {
-          final Part sec_9 = (Part) sec_8;
-          matched_1=true;
-          StringConcatenation _genLabel = this.genLabel(sec_9);
-          _switchResult_1 = _genLabel;
-        }
+    StringConcatenation _switchResult_1 = null;
+    final AbstractSection sec_8 = sec;
+    boolean matched_1 = false;
+    if (!matched_1) {
+      if (sec_8 instanceof Part) {
+        final Part sec_9 = (Part) sec_8;
+        matched_1=true;
+        StringConcatenation _genLabel = this.genLabel(sec_9);
+        _switchResult_1 = _genLabel;
       }
-      if (!matched_1) {
-        if (sec_8 instanceof Chapter) {
-          final Chapter sec_10 = (Chapter) sec_8;
-          matched_1=true;
-          StringConcatenation _genLabel_1 = this.genLabel(sec_10);
-          _switchResult_1 = _genLabel_1;
-        }
-      }
-      if (!matched_1) {
-        if (sec_8 instanceof Section) {
-          final Section sec_11 = (Section) sec_8;
-          matched_1=true;
-          StringConcatenation _genLabel_2 = this.genLabel(sec_11);
-          _switchResult_1 = _genLabel_2;
-        }
-      }
-      if (!matched_1) {
-        TextOrMarkup _title_6 = sec.getTitle();
-        StringConcatenation _genLabel_3 = this.genLabel(_title_6);
-        _switchResult_1 = _genLabel_3;
-      }
-      _xifexpression = _switchResult_1;
     }
-    _builder.append(_xifexpression, "");
+    if (!matched_1) {
+      if (sec_8 instanceof Chapter) {
+        final Chapter sec_10 = (Chapter) sec_8;
+        matched_1=true;
+        StringConcatenation _genLabel_1 = this.genLabel(sec_10);
+        _switchResult_1 = _genLabel_1;
+      }
+    }
+    if (!matched_1) {
+      if (sec_8 instanceof Section) {
+        final Section sec_11 = (Section) sec_8;
+        matched_1=true;
+        StringConcatenation _genLabel_2 = this.genLabel(sec_11);
+        _switchResult_1 = _genLabel_2;
+      }
+    }
+    if (!matched_1) {
+      TextOrMarkup _title_6 = sec.getTitle();
+      StringConcatenation _genLabel_3 = this.genLabel(_title_6);
+      _switchResult_1 = _genLabel_3;
+    }
+    _builder.append(_switchResult_1, "");
     _builder.newLineIfNotEmpty();
     StringConcatenation _genContent_6 = this.genContent(sec);
     _builder.append(_genContent_6, "");
@@ -494,6 +496,28 @@ public class LatexGenerator implements IGenerator {
     {
       EList<Section> _subSections = chap.getSubSections();
       for(final Section sub : _subSections) {
+        StringConcatenation _generate = this.generate(sub);
+        _builder.append(_generate, "");
+      }
+    }
+    _builder.newLineIfNotEmpty();
+    return _builder;
+  }
+  
+  protected StringConcatenation _genContent(final Part part) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    {
+      EList<TextOrMarkup> _contents = part.getContents();
+      for(final TextOrMarkup c : _contents) {
+        StringConcatenation _genContent = this.genContent(c);
+        _builder.append(_genContent, "");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    {
+      EList<Chapter> _chapters = part.getChapters();
+      for(final Chapter sub : _chapters) {
         StringConcatenation _generate = this.generate(sub);
         _builder.append(_generate, "");
       }
@@ -549,16 +573,16 @@ public class LatexGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(final TextOrMarkup c : _contents) {
-        StringConcatenation _generate = this.generate(c);
-        _builder.append(_generate, "");
+        StringConcatenation _genContent = this.genContent(c);
+        _builder.append(_genContent, "");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       EList<Section4> _subSections = sec.getSubSections();
       for(final Section4 sub : _subSections) {
-        StringConcatenation _generate_1 = this.generate(sub);
-        _builder.append(_generate_1, "");
+        StringConcatenation _generate = this.generate(sub);
+        _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -682,6 +706,23 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
+  protected StringConcatenation _genLabel(final Section sec) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      String _name = sec.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        String _name_1 = sec.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
   protected StringConcatenation _genLabel(final SectionRef sRef) {
     StringConcatenation _builder = new StringConcatenation();
     {
@@ -692,6 +733,23 @@ public class LatexGenerator implements IGenerator {
         _builder.append("\\label{");
         Section _section_1 = sRef.getSection();
         String _name_1 = _section_1.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  protected StringConcatenation _genLabel(final Section2 sec) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      String _name = sec.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        String _name_1 = sec.getName();
         String _string = _name_1==null?(String)null:_name_1.toString();
         _builder.append(_string, "");
         _builder.append("}");
@@ -720,7 +778,24 @@ public class LatexGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _genLabel(final Section sec) {
+  protected StringConcatenation _genLabel(final Section3 sec) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      String _name = sec.getName();
+      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      if (_operator_notEquals) {
+        _builder.append("\\label{");
+        String _name_1 = sec.getName();
+        String _string = _name_1==null?(String)null:_name_1.toString();
+        _builder.append(_string, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
+  }
+  
+  protected StringConcatenation _genLabel(final Section4 sec) {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = sec.getName();
@@ -1040,9 +1115,7 @@ public class LatexGenerator implements IGenerator {
   }
   
   public String copy(final ImageRef imgRef) {
-    String _xtrycatchfinallyexpression = null;
     try {
-      String _xblockexpression = null;
       {
         Resource _eResource = imgRef.eResource();
         final Resource res = _eResource;
@@ -1053,74 +1126,70 @@ public class LatexGenerator implements IGenerator {
         final URI uri = _uRI;
         String relOutDirRoot = "";
         String inDir = "";
-        String _xifexpression = null;
-        boolean _isPlatformResource = uri.isPlatformResource();
-        if (_isPlatformResource) {
+        ResourceSet _resourceSet = res.getResourceSet();
+        URIConverter _uRIConverter = _resourceSet.getURIConverter();
+        final URIConverter uriConverter = _uRIConverter;
+        File _file = new File("");
+        String _absolutePath = _file.getAbsolutePath();
+        String _operator_plus = StringExtensions.operator_plus(_absolutePath, "/");
+        URI _createFileURI = URI.createFileURI(_operator_plus);
+        final URI absoluteLocalPath = _createFileURI;
+        String _path = imgRef.getPath();
+        URI _createFileURI_1 = URI.createFileURI(_path);
+        final URI relativeImageURI = _createFileURI_1;
+        URI _resolve = relativeImageURI.resolve(uri);
+        URI _deresolve = _resolve.deresolve(absoluteLocalPath);
+        final URI inPath = _deresolve;
+        List<String> _segmentsList = inPath.segmentsList();
+        int _segmentCount = inPath.segmentCount();
+        List<String> _subList = _segmentsList.subList(1, _segmentCount);
+        final List<String> inSegments = _subList;
+        String _join = IterableExtensions.join(inSegments, "/");
+        final String pathInDocument = _join;
+        Object _get = this.config.get(Config.outletPath);
+        String _string = _get.toString();
+        String _operator_plus_1 = StringExtensions.operator_plus(_string, "/");
+        String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, pathInDocument);
+        URI _createFileURI_2 = URI.createFileURI(_operator_plus_2);
+        final URI outPath = _createFileURI_2;
+        InputStream _createInputStream = uriConverter.createInputStream(inPath);
+        ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
+        final ReadableByteChannel inChannel = _newChannel;
+        ResourceSet _resourceSet_1 = res.getResourceSet();
+        URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
+        OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
+        WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
+        final WritableByteChannel outChannel = _newChannel_1;
+        int _read = inChannel.read(buffer);
+        int _operator_minus = IntegerExtensions.operator_minus(1);
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
+        Boolean _xwhileexpression = _operator_notEquals;
+        while (_xwhileexpression) {
           {
-            URI _trimSegments = uri.trimSegments(1);
-            String _string = _trimSegments.toString();
-            String _operator_plus = StringExtensions.operator_plus(_string, "/");
-            String _path = imgRef.getPath();
-            String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _path);
-            URI _createURI = URI.createURI(_operator_plus_1);
-            final URI inPath = _createURI;
-            int _segmentCount = uri.segmentCount();
-            int _operator_minus = IntegerExtensions.operator_minus(((Integer)_segmentCount), ((Integer)2));
-            URI _trimSegments_1 = uri.trimSegments(_operator_minus);
-            URI _appendSegment = _trimSegments_1.appendSegment(Outlets.WEB_SITE_PATH_NAME);
-            String _string_1 = _appendSegment.toString();
-            String _operator_plus_2 = StringExtensions.operator_plus(_string_1, "/");
-            String _path_1 = imgRef.getPath();
-            String _replaceAll = _path_1.replaceAll("\\.\\.", "");
-            String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, _replaceAll);
-            URI _createURI_1 = URI.createURI(_operator_plus_3);
-            final URI outPath = _createURI_1;
-            ResourceSet _resourceSet = res.getResourceSet();
-            URIConverter _uRIConverter = _resourceSet.getURIConverter();
-            InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
-            ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
-            final ReadableByteChannel inChannel = _newChannel;
-            ResourceSet _resourceSet_1 = res.getResourceSet();
-            URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
-            OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
-            WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
-            final WritableByteChannel outChannel = _newChannel_1;
-            int _read = inChannel.read(buffer);
-            int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-            boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus_1));
-            Boolean _xwhileexpression = _operator_notEquals;
-            while (_xwhileexpression) {
-              {
-                buffer.flip();
-                outChannel.write(buffer);
-                buffer.compact();
-              }
-              int _read_1 = inChannel.read(buffer);
-              int _operator_minus_2 = IntegerExtensions.operator_minus(1);
-              boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_2));
-              _xwhileexpression = _operator_notEquals_1;
-            }
             buffer.flip();
-            boolean _hasRemaining = buffer.hasRemaining();
-            Boolean _xwhileexpression_1 = _hasRemaining;
-            while (_xwhileexpression_1) {
-              outChannel.write(buffer);
-              boolean _hasRemaining_1 = buffer.hasRemaining();
-              _xwhileexpression_1 = _hasRemaining_1;
-            }
-            outChannel.close();
-            String _fileString = outPath.toFileString();
-            return _fileString;
+            outChannel.write(buffer);
+            buffer.compact();
           }
+          int _read_1 = inChannel.read(buffer);
+          int _operator_minus_1 = IntegerExtensions.operator_minus(1);
+          boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
+          _xwhileexpression = _operator_notEquals_1;
         }
-        _xblockexpression = (_xifexpression);
+        buffer.flip();
+        boolean _hasRemaining = buffer.hasRemaining();
+        Boolean _xwhileexpression_1 = _hasRemaining;
+        while (_xwhileexpression_1) {
+          outChannel.write(buffer);
+          boolean _hasRemaining_1 = buffer.hasRemaining();
+          _xwhileexpression_1 = _hasRemaining_1;
+        }
+        outChannel.close();
+        return pathInDocument;
       }
-      _xtrycatchfinallyexpression = _xblockexpression;
     } catch (final Exception e) {
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }
-    return _xtrycatchfinallyexpression;
   }
   
   protected CharSequence _genText(final Todo todo) {
@@ -1288,6 +1357,8 @@ public class LatexGenerator implements IGenerator {
   public StringConcatenation genContent(final EObject chap) {
     if ((chap instanceof Chapter)) {
       return _genContent((Chapter)chap);
+    } else if ((chap instanceof Part)) {
+      return _genContent((Part)chap);
     } else if ((chap instanceof Section)) {
       return _genContent((Section)chap);
     } else if ((chap instanceof Section2)) {
@@ -1319,6 +1390,12 @@ public class LatexGenerator implements IGenerator {
       return _genLabel((Part)cRef);
     } else if ((cRef instanceof Section)) {
       return _genLabel((Section)cRef);
+    } else if ((cRef instanceof Section2)) {
+      return _genLabel((Section2)cRef);
+    } else if ((cRef instanceof Section3)) {
+      return _genLabel((Section3)cRef);
+    } else if ((cRef instanceof Section4)) {
+      return _genLabel((Section4)cRef);
     } else if ((cRef instanceof TextOrMarkup)) {
       return _genLabel((TextOrMarkup)cRef);
     } else {
