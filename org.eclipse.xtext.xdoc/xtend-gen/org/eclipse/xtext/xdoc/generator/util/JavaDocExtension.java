@@ -6,7 +6,6 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class JavaDocExtension {
-  
   public String genJavaDocLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
     {

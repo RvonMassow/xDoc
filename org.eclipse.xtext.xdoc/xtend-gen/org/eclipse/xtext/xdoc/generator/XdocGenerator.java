@@ -9,17 +9,14 @@ import org.eclipse.xtext.xdoc.generator.HtmlGenerator;
 
 @SuppressWarnings("all")
 public class XdocGenerator implements IGenerator {
-  
   @Inject
   private HtmlGenerator htmlGen;
   
   @Inject
   private EclipseHelpGenerator helpGen;
   
-  public void doGenerate(final Resource input, final IFileSystemAccess fsa) throws RuntimeException {
-    {
+  public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
       this.helpGen.doGenerate(input, fsa);
       this.htmlGen.doGenerate(input, fsa);
-    }
   }
 }

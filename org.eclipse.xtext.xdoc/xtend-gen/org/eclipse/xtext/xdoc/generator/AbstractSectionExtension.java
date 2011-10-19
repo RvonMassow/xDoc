@@ -19,7 +19,6 @@ import org.eclipse.xtext.xdoc.xdoc.SectionRef;
 
 @SuppressWarnings("all")
 public class AbstractSectionExtension {
-  
   protected List<? extends AbstractSection> _sections(final AbstractSection section) {
     List<AbstractSection> _emptyList = CollectionLiterals.<AbstractSection>emptyList();
     return _emptyList;
@@ -109,11 +108,8 @@ public class AbstractSectionExtension {
       return _sections((Section2)chapter);
     } else if ((chapter instanceof Section3)) {
       return _sections((Section3)chapter);
-    } else if ((chapter instanceof AbstractSection)) {
-      return _sections((AbstractSection)chapter);
     } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chapter).toString());
+      return _sections((AbstractSection)chapter);
     }
   }
 }

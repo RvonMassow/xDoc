@@ -1,54 +1,50 @@
 package org.eclipse.xtext.xdoc.generator
 
-
-
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
 import com.google.inject.Inject
-import org.eclipse.xtext.xdoc.generator.util.Utils
-import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions
-import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.xdoc.xdoc.XdocFile
-import org.eclipse.xtext.xdoc.xdoc.Document
-import java.nio.ByteBuffer
 import java.io.File
-import org.eclipse.emf.common.util.URI
+import java.nio.ByteBuffer
 import java.nio.channels.Channels
-import java.util.Map
+import java.util.Collections
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.common.types.JvmAnnotationType
+import org.eclipse.xtext.common.types.JvmDeclaredType
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
+import org.eclipse.xtext.xdoc.generator.util.GitExtensions
+import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions
+import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
+import org.eclipse.xtext.xdoc.generator.util.Utils
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
+import org.eclipse.xtext.xdoc.xdoc.Anchor
 import org.eclipse.xtext.xdoc.xdoc.Chapter
+import org.eclipse.xtext.xdoc.xdoc.Code
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock
+import org.eclipse.xtext.xdoc.xdoc.CodeRef
+import org.eclipse.xtext.xdoc.xdoc.Document
+import org.eclipse.xtext.xdoc.xdoc.Emphasize
+import org.eclipse.xtext.xdoc.xdoc.ImageRef
+import org.eclipse.xtext.xdoc.xdoc.Item
+import org.eclipse.xtext.xdoc.xdoc.Link
+import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
+import org.eclipse.xtext.xdoc.xdoc.OrderedList
+import org.eclipse.xtext.xdoc.xdoc.Part
+import org.eclipse.xtext.xdoc.xdoc.Ref
 import org.eclipse.xtext.xdoc.xdoc.Section
 import org.eclipse.xtext.xdoc.xdoc.Section2
 import org.eclipse.xtext.xdoc.xdoc.Section3
 import org.eclipse.xtext.xdoc.xdoc.Section4
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
-import org.eclipse.xtext.xdoc.xdoc.Todo
-import org.eclipse.xtext.xdoc.xdoc.Ref
-import org.eclipse.xtext.xdoc.xdoc.Anchor
-import org.eclipse.xtext.EcoreUtil2
-import org.eclipse.xtext.xdoc.xdoc.UnorderedList
-import org.eclipse.xtext.xdoc.xdoc.OrderedList
-import org.eclipse.xtext.xdoc.xdoc.Item
-import org.eclipse.xtext.xdoc.xdoc.ImageRef
-import org.eclipse.xtext.xdoc.xdoc.TextPart
 import org.eclipse.xtext.xdoc.xdoc.Table
-import org.eclipse.xtext.xdoc.xdoc.TableRow
 import org.eclipse.xtext.xdoc.xdoc.TableData
-import org.eclipse.xtext.xdoc.xdoc.Emphasize
-import org.eclipse.xtext.xdoc.xdoc.Link
-import org.eclipse.xtext.xdoc.xdoc.CodeRef
-import org.eclipse.xtext.xdoc.xdoc.CodeBlock
-import org.eclipse.xtext.xdoc.xdoc.Code
-import org.eclipse.xtext.xdoc.xdoc.LangDef
-import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
+import org.eclipse.xtext.xdoc.xdoc.TableRow
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
+import org.eclipse.xtext.xdoc.xdoc.TextPart
+import org.eclipse.xtext.xdoc.xdoc.Todo
+import org.eclipse.xtext.xdoc.xdoc.UnorderedList
+import org.eclipse.xtext.xdoc.xdoc.XdocFile
+
 import static extension java.net.URLDecoder.*
-import org.eclipse.xtext.common.types.JvmAnnotationType
-import java.util.Collections
-import org.eclipse.xtext.xdoc.generator.util.GitExtensions
-import org.eclipse.xtext.common.types.JvmDeclaredType
-import org.eclipse.xtext.xdoc.xdoc.Part
 
 class EclipseHelpGenerator implements IGenerator {
 

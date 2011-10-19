@@ -11,12 +11,12 @@ import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Document;
+import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class PHPPhoenixGenerator {
-  
   @Inject
   private EclipseNamingExtensions ene;
   
@@ -70,7 +70,6 @@ public class PHPPhoenixGenerator {
   }
   
   protected void _generatePHP(final Document doc, final IFileSystemAccess fsa) {
-    {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<?php require_once($_SERVER[\'DOCUMENT_ROOT\'] . \"/eclipse.org-common/system/app.class.php\");\trequire_once($_SERVER[\'DOCUMENT_ROOT\'] . \"/eclipse.org-common/system/nav.class.php\"); \trequire_once($_SERVER[\'DOCUMENT_ROOT\'] . \"/eclipse.org-common/system/menu.class.php\"); \t$App \t= new App();\t$Nav\t= new Nav();\t$Menu \t= new Menu();\t\tinclude($App->getProjectCommon());    # All on the same line to unclutter the user\'s desktop\'");
       _builder.newLine();
@@ -185,7 +184,6 @@ public class PHPPhoenixGenerator {
       _builder_1.append("?>");
       _builder_1.newLine();
       fsa.generateFile("include.php", Outlets.WEB_SITE, _builder_1);
-    }
   }
   
   public CharSequence genScriptsAndStyles(final AbstractSection as) {
@@ -225,7 +223,7 @@ public class PHPPhoenixGenerator {
     _builder.append("addHideSubsectionFunction(chapters);");
     _builder.newLine();
     {
-      if ((as instanceof org.eclipse.xtext.xdoc.xdoc.Section)) {
+      if ((as instanceof Section)) {
         _builder.append("\t");
         _builder.append("var subToc = document.getElementById(ActiveSubTocElementId).parentNode;");
         _builder.newLine();} else {
@@ -348,15 +346,10 @@ public class PHPPhoenixGenerator {
   }
   
   public void generatePHP(final AbstractSection doc, final IFileSystemAccess fsa) {
-    if ((doc instanceof Document)
-         && (fsa instanceof IFileSystemAccess)) {
+    if ((doc instanceof Document)) {
       _generatePHP((Document)doc, (IFileSystemAccess)fsa);
-    } else if ((doc instanceof AbstractSection)
-         && (fsa instanceof IFileSystemAccess)) {
-      _generatePHP((AbstractSection)doc, (IFileSystemAccess)fsa);
     } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(doc, fsa).toString());
+      _generatePHP((AbstractSection)doc, (IFileSystemAccess)fsa);
     }
   }
 }

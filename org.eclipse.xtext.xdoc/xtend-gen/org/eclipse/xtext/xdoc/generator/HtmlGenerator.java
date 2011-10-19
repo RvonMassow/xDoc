@@ -8,6 +8,7 @@ import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
+import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.eclipse.emf.common.util.EList;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.xtext.common.types.JvmAnnotationType;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
@@ -70,7 +72,6 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class HtmlGenerator implements IGenerator {
-  
   @Inject
   private Utils utils;
   
@@ -92,25 +93,24 @@ public class HtmlGenerator implements IGenerator {
   @Inject
   private PHPPhoenixGenerator ppg;
   
-  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) throws RuntimeException {
+  public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     try {
       Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
       Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_allContentsIterable, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
       for (final XdocFile file : _filter) {
         AbstractSection _mainSection = file.getMainSection();
-        if ((_mainSection instanceof org.eclipse.xtext.xdoc.xdoc.Document)) {
+        if ((_mainSection instanceof Document)) {
           AbstractSection _mainSection_1 = file.getMainSection();
           this.generate(((Document) _mainSection_1), fsa);
         }
       }
-    } catch (final Exception e) { 
+    } catch (final Exception e) {
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }
   }
   
-  public void generate(final Document doc, final IFileSystemAccess fsa) throws RuntimeException {
-    {
+  public void generate(final Document doc, final IFileSystemAccess fsa) {
       CharSequence _leftNavToc = this.leftNavToc(doc);
       final CharSequence leftNav = _leftNavToc;
       this.ppg.generatePHP(doc, fsa);
@@ -138,7 +138,6 @@ public class HtmlGenerator implements IGenerator {
           }
         }
       }
-    }
   }
   
   public CharSequence genPrevButton(final AbstractSection section) {
@@ -171,8 +170,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public void generateFile(final AbstractSection section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
-    {
+  public void generateFile(final AbstractSection section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
       this.ppg.generatePHP(section, fsa);
       String _resourceURL = this.naming.getResourceURL(section);
       String _decode = URLDecoder.decode(_resourceURL);
@@ -261,10 +259,9 @@ public class HtmlGenerator implements IGenerator {
       _builder.append("<br style=\"clear:both;height:1em;\">");
       _builder.newLine();
       fsa.generateFile(_decode, Outlets.WEB_SITE, _builder);
-    }
   }
   
-  protected CharSequence _generate(final ChapterRef chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final ChapterRef chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _xblockexpression = null;
     {
       Chapter _chapter = chap.getChapter();
@@ -289,7 +286,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected CharSequence _generate(final SectionRef section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final SectionRef section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _xblockexpression = null;
     {
       Section _section = section.getSection();
@@ -314,7 +311,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected CharSequence _generate(final Section2Ref section2, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final Section2Ref section2, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _xblockexpression = null;
     {
       Section2 _section2 = section2.getSection2();
@@ -339,7 +336,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  protected CharSequence _generate(final Chapter chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final Chapter chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _builder = new StringConcatenation();
     String _localId = this.naming.getLocalId(chap);
     CharSequence _anchor = this.anchor(_localId);
@@ -382,7 +379,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final Section sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _builder = new StringConcatenation();
     String _localId = this.naming.getLocalId(sec);
     CharSequence _anchor = this.anchor(_localId);
@@ -437,7 +434,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section2 sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final Section2 sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _builder = new StringConcatenation();
     String _localId = this.naming.getLocalId(sec);
     CharSequence _anchor = this.anchor(_localId);
@@ -474,7 +471,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section3 sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final Section3 sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _builder = new StringConcatenation();
     String _localId = this.naming.getLocalId(sec);
     CharSequence _anchor = this.anchor(_localId);
@@ -511,7 +508,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Section4 sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
+  protected CharSequence _generate(final Section4 sec, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
     StringConcatenation _builder = new StringConcatenation();
     String _localId = this.naming.getLocalId(sec);
     CharSequence _anchor = this.anchor(_localId);
@@ -606,7 +603,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence toc(final AbstractSection section) throws RuntimeException {
+  public CharSequence toc(final AbstractSection section) {
     StringConcatenation _xifexpression = null;
     List<? extends AbstractSection> _sections = this.ase.sections(section);
     boolean _isEmpty = _sections.isEmpty();
@@ -626,7 +623,7 @@ public class HtmlGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  public CharSequence subToc(final AbstractSection section) throws RuntimeException {
+  public CharSequence subToc(final AbstractSection section) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
@@ -644,7 +641,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _tocEntry(final Chapter chapter) throws RuntimeException {
+  protected CharSequence _tocEntry(final Chapter chapter) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li><a href=\"");
     String _fullPHPURL = this.naming.getFullPHPURL(chapter);
@@ -669,7 +666,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _tocEntry(final AbstractSection section) throws RuntimeException {
+  protected CharSequence _tocEntry(final AbstractSection section) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li><a href=\"");
     String _fullPHPURL = this.naming.getFullPHPURL(section);
@@ -683,7 +680,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence leftNavToc(final Document doc) throws RuntimeException {
+  public CharSequence leftNavToc(final Document doc) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generateLogo = this.generateLogo();
     _builder.append(_generateLogo, "");
@@ -703,7 +700,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _leftNavTocEntry(final Part part) throws RuntimeException {
+  protected CharSequence _leftNavTocEntry(final Part part) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li class=\"partentry\" >");
     _builder.newLine();
@@ -724,7 +721,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence leftNavSubToc(final Chapter chap) throws RuntimeException {
+  public CharSequence leftNavSubToc(final Chapter chap) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul style=\"display: none;\" id=\"");
     CharSequence _elementIdForSubToc = this.elementIdForSubToc(chap);
@@ -744,7 +741,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _leftNavTocEntry(final Chapter chapter) throws RuntimeException {
+  protected CharSequence _leftNavTocEntry(final Chapter chapter) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li class=\"separator\"><div class=\"separator\">");
     _builder.newLine();
@@ -783,7 +780,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _leftNavTocEntry(final AbstractSection section) throws RuntimeException {
+  protected CharSequence _leftNavTocEntry(final AbstractSection section) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li id=\"");
     String _fullURL = this.naming.getFullURL(section);
@@ -802,7 +799,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence genAuthors(final Document doc) throws RuntimeException {
+  public CharSequence genAuthors(final Document doc) {
     StringConcatenation _xifexpression = null;
     TextOrMarkup _authors = doc.getAuthors();
     boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_authors, null);
@@ -821,7 +818,7 @@ public class HtmlGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  public CharSequence genNonParText(final TextOrMarkup tom) throws RuntimeException {
+  public CharSequence genNonParText(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -833,7 +830,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final TextOrMarkup tom) throws RuntimeException {
+  protected CharSequence _genText(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<p>");
     _builder.newLine();
@@ -850,7 +847,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final CodeBlock cb) throws RuntimeException {
+  protected CharSequence _genText(final CodeBlock cb) {
     StringConcatenation _xifexpression = null;
     EList<EObject> _contents = cb.getContents();
     boolean _isEmpty = _contents.isEmpty();
@@ -909,18 +906,18 @@ public class HtmlGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected CharSequence _genText(final CodeRef cRef) throws RuntimeException {
+  protected CharSequence _genText(final CodeRef cRef) {
     StringConcatenation _xblockexpression = null;
     {
       String _xifexpression = null;
       boolean _operator_and = false;
       JvmDeclaredType _element = cRef.getElement();
-      if (!(_element instanceof org.eclipse.xtext.common.types.JvmAnnotationType)) {
+      if (!(_element instanceof JvmAnnotationType)) {
         _operator_and = false;
       } else {
         TextOrMarkup _altText = cRef.getAltText();
         boolean _operator_equals = ObjectExtensions.operator_equals(_altText, null);
-        _operator_and = BooleanExtensions.operator_and((_element instanceof org.eclipse.xtext.common.types.JvmAnnotationType), _operator_equals);
+        _operator_and = BooleanExtensions.operator_and((_element instanceof JvmAnnotationType), _operator_equals);
       }
       if (_operator_and) {
         _xifexpression = "@";
@@ -1012,7 +1009,7 @@ public class HtmlGenerator implements IGenerator {
     return _xifexpression;
   }
   
-  protected CharSequence _genText(final Emphasize em) throws RuntimeException {
+  protected CharSequence _genText(final Emphasize em) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<em>");
     EList<TextOrMarkup> _contents = em.getContents();
@@ -1034,7 +1031,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence generate(final List<TextOrMarkup> tomList) throws RuntimeException {
+  public CharSequence generate(final List<TextOrMarkup> tomList) {
     CharSequence _xifexpression = null;
     int _size = tomList.size();
     boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
@@ -1074,7 +1071,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generateCode(final MarkupInCode mic, final LangDef lang) throws RuntimeException {
+  protected CharSequence _generateCode(final MarkupInCode mic, final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _genText = this.genText(mic);
     _builder.append(_genText, "");
@@ -1092,12 +1089,12 @@ public class HtmlGenerator implements IGenerator {
     return null;
   }
   
-  protected CharSequence _genText(final Ref ref) throws RuntimeException {
+  protected CharSequence _genText(final Ref ref) {
     StringConcatenation _xblockexpression = null;
     {
       StringConcatenation _xifexpression = null;
       Identifiable _ref = ref.getRef();
-      if ((_ref instanceof org.eclipse.xtext.xdoc.xdoc.AbstractSection)) {
+      if ((_ref instanceof AbstractSection)) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("title=\"Go to &quot;");
         Identifiable _ref_1 = ref.getRef();
@@ -1166,7 +1163,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final OrderedList ol) throws RuntimeException {
+  protected CharSequence _genText(final OrderedList ol) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ol>");
     _builder.newLine();
@@ -1184,7 +1181,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final UnorderedList ol) throws RuntimeException {
+  protected CharSequence _genText(final UnorderedList ol) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<ul>");
     _builder.newLine();
@@ -1202,7 +1199,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final Item item) throws RuntimeException {
+  protected CharSequence _genText(final Item item) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li>");
     EList<TextOrMarkup> _contents = item.getContents();
@@ -1213,7 +1210,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final Table table) throws RuntimeException {
+  protected CharSequence _genText(final Table table) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<table>");
     _builder.newLine();
@@ -1231,7 +1228,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence genRow(final TableRow tr) throws RuntimeException {
+  public CharSequence genRow(final TableRow tr) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<tr>");
     _builder.newLine();
@@ -1249,7 +1246,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence genData(final TableData td) throws RuntimeException {
+  public CharSequence genData(final TableData td) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<td>");
     EList<TextOrMarkup> _contents = td.getContents();
@@ -1259,7 +1256,7 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _genText(final ImageRef img) throws RuntimeException {
+  protected CharSequence _genText(final ImageRef img) {
     StringConcatenation _xblockexpression = null;
     {
       String _path = img.getPath();
@@ -1353,7 +1350,7 @@ public class HtmlGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  public void copy(final String fromRelativeFileName, final Resource res) throws RuntimeException {
+  public void copy(final String fromRelativeFileName, final Resource res) {
     try {
       {
         int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)16), ((Integer)1024));
@@ -1419,7 +1416,7 @@ public class HtmlGenerator implements IGenerator {
           }
         }
       }
-    } catch (final Exception e) { 
+    } catch (final Exception e) {
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }
@@ -1452,78 +1449,48 @@ public class HtmlGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence generate(final AbstractSection chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) throws RuntimeException {
-    if ((chap instanceof ChapterRef)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+  public CharSequence generate(final AbstractSection chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
+    if ((chap instanceof ChapterRef)) {
       return _generate((ChapterRef)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section2Ref)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+    } else if ((chap instanceof Section2Ref)) {
       return _generate((Section2Ref)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof SectionRef)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+    } else if ((chap instanceof SectionRef)) {
       return _generate((SectionRef)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Chapter)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+    } else if ((chap instanceof Chapter)) {
       return _generate((Chapter)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+    } else if ((chap instanceof Section)) {
       return _generate((Section)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section2)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+    } else if ((chap instanceof Section2)) {
       return _generate((Section2)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section3)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+    } else if ((chap instanceof Section3)) {
       return _generate((Section3)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section4)
-         && (fsa instanceof IFileSystemAccess)
-         && (leftNav instanceof CharSequence)
-         && (leftNavUnfoldSubTocId instanceof CharSequence)) {
+    } else if ((chap instanceof Section4)) {
       return _generate((Section4)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chap, fsa, leftNav, leftNavUnfoldSubTocId).toString());
+        Arrays.<Object>asList(chap, fsa, leftNav, leftNavUnfoldSubTocId).toString());
     }
   }
   
-  public CharSequence tocEntry(final AbstractSection chapter) throws RuntimeException {
+  public CharSequence tocEntry(final AbstractSection chapter) {
     if ((chapter instanceof Chapter)) {
       return _tocEntry((Chapter)chapter);
-    } else if ((chapter instanceof AbstractSection)) {
-      return _tocEntry((AbstractSection)chapter);
     } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chapter).toString());
+      return _tocEntry((AbstractSection)chapter);
     }
   }
   
-  public CharSequence leftNavTocEntry(final AbstractSection chapter) throws RuntimeException {
+  public CharSequence leftNavTocEntry(final AbstractSection chapter) {
     if ((chapter instanceof Chapter)) {
       return _leftNavTocEntry((Chapter)chapter);
     } else if ((chapter instanceof Part)) {
       return _leftNavTocEntry((Part)chapter);
-    } else if ((chapter instanceof AbstractSection)) {
-      return _leftNavTocEntry((AbstractSection)chapter);
     } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(chapter).toString());
+      return _leftNavTocEntry((AbstractSection)chapter);
     }
   }
   
-  public CharSequence genText(final EObject a) throws RuntimeException {
+  public CharSequence genText(final EObject a) {
     if ((a instanceof Anchor)) {
       return _genText((Anchor)a);
     } else if ((a instanceof CodeBlock)) {
@@ -1554,11 +1521,11 @@ public class HtmlGenerator implements IGenerator {
       return _genText((TextPart)a);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(a).toString());
+        Arrays.<Object>asList(a).toString());
     }
   }
   
-  public CharSequence generateCode(final EObject code, final Object lang) throws RuntimeException {
+  public CharSequence generateCode(final EObject code, final Object lang) {
     if ((code instanceof Code)
          && (lang instanceof LangDef)) {
       return _generateCode((Code)code, (LangDef)lang);
@@ -1570,7 +1537,7 @@ public class HtmlGenerator implements IGenerator {
       return _generateCode((Code)code, (Void)null);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(code, lang).toString());
+        Arrays.<Object>asList(code, lang).toString());
     }
   }
 }

@@ -1,7 +1,12 @@
 package org.eclipse.xtext.xdoc.generator
 
-import org.eclipse.xtext.xdoc.xdoc.*
-import org.eclipse.xtext.xtend2.lib.StringConcatenation
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock
+import org.eclipse.xtext.xdoc.xdoc.CodeRef
+import org.eclipse.xtext.xdoc.xdoc.Emphasize
+import org.eclipse.xtext.xdoc.xdoc.Link
+import org.eclipse.xtext.xdoc.xdoc.Ref
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
+import org.eclipse.xtext.xdoc.xdoc.TextPart
 
 class PlainText {
 

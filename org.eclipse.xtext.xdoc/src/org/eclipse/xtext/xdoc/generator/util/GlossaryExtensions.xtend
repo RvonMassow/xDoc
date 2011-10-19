@@ -1,8 +1,6 @@
 package org.eclipse.xtext.xdoc.generator.util
 
 import org.eclipse.xtext.xdoc.xdoc.GlossaryEntry
-import java.util.List
-import java.util.ArrayList
 
 class GlossaryExtensions {
 	

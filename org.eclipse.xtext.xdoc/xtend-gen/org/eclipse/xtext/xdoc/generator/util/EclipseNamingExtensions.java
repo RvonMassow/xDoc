@@ -18,10 +18,10 @@ import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
 import org.eclipse.xtext.xdoc.xdoc.SectionRef;
+import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 @SuppressWarnings("all")
 public class EclipseNamingExtensions {
-  
   @Inject
   private AbstractSectionExtension sectionExtension;
   
@@ -124,7 +124,7 @@ public class EclipseNamingExtensions {
     }
     if (!matched) {
       EObject _eContainer = identifiable.eContainer();
-      if ((_eContainer instanceof org.eclipse.xtext.xdoc.xdoc.XdocFile)) {
+      if ((_eContainer instanceof XdocFile)) {
         matched=true;
         String _resourceURL = this.getResourceURL(identifiable);
         _switchResult = _resourceURL;

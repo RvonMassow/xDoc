@@ -5,7 +5,6 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class GeneratorConfig {
-  
   public boolean release() {
     return false;
   }

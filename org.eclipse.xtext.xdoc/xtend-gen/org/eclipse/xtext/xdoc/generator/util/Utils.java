@@ -28,14 +28,13 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 
 @SuppressWarnings("all")
 public class Utils {
-  
   public String urlDecode(final String s) throws UnsupportedEncodingException {
-    String _decode = URLDecoder.decode(s, "ISO-8859-1");
+    String _decode = s==null?(String)null:URLDecoder.decode(s, "ISO-8859-1");
     return _decode;
   }
   
   public String urlEncode(final String s) throws UnsupportedEncodingException {
-    String _encode = URLEncoder.encode(s, "UTF-8");
+    String _encode = s==null?(String)null:URLEncoder.encode(s, "UTF-8");
     return _encode;
   }
   
@@ -148,7 +147,7 @@ public class Utils {
         EList<String> _keywords = lang.getKeywords();
         _xifexpression = _keywords;
       } else {
-        Set<String> _emptySet = CollectionLiterals.<String>emptySet();
+        Set<?> _emptySet = CollectionLiterals.emptySet();
         _xifexpression = ((Set<String>) _emptySet);
       }
       _xblockexpression = (_xifexpression);
@@ -157,12 +156,11 @@ public class Utils {
   }
   
   public String getHighlightedHtmlCode(final String code, final LangDef language) {
-    {
       Common _common = new Common();
       final Common lexer = _common;
       ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(code);
       lexer.setCharStream(_aNTLRStringStream);
-      Set<?> _xifexpression = null;
+      Set<? extends Object> _xifexpression = null;
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(language, null);
       if (_operator_notEquals) {
         EList<String> _keywords = language.getKeywords();
@@ -172,7 +170,7 @@ public class Utils {
         Set<?> _emptySet = CollectionLiterals.emptySet();
         _xifexpression = _emptySet;
       }
-      final Set<?> keywords = _xifexpression;
+      final Set<? extends Object> keywords = _xifexpression;
       Token _nextToken = lexer.nextToken();
       Token token = _nextToken;
       StringBuilder _stringBuilder = new StringBuilder();
@@ -186,7 +184,7 @@ public class Utils {
           final int __valOfSwitchOver = _type_1;
           boolean matched = false;
           if (!matched) {
-            if (org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_equals(__valOfSwitchOver,Common.ID)) {
+            if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.ID)) {
               matched=true;
               String _text = token.getText();
               boolean _contains = keywords.contains(_text);
@@ -203,7 +201,7 @@ public class Utils {
             }
           }
           if (!matched) {
-            if (org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_equals(__valOfSwitchOver,Common.WS)) {
+            if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.WS)) {
               matched=true;
               String _text_3 = token.getText();
               String _whitespace2Entities_1 = this.whitespace2Entities(_text_3);
@@ -211,7 +209,7 @@ public class Utils {
             }
           }
           if (!matched) {
-            if (org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_equals(__valOfSwitchOver,Common.STRING)) {
+            if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.STRING)) {
               matched=true;
               StringBuilder _append_2 = result.append("<span class=\"string\">");
               String _text_4 = token.getText();
@@ -221,7 +219,7 @@ public class Utils {
             }
           }
           if (!matched) {
-            if (org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_equals(__valOfSwitchOver,Common.COMMENT)) {
+            if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.COMMENT)) {
               matched=true;
               StringBuilder _append_4 = result.append("<span class=\"comment\">");
               String _text_5 = token.getText();
@@ -244,7 +242,6 @@ public class Utils {
       }
       String _string = result.toString();
       return _string;
-    }
   }
   
   public String whitespace2Entities(final String s) {
@@ -266,7 +263,7 @@ public class Utils {
     } else {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _get = _contents_1.get(0);
-      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (_get instanceof org.eclipse.xtext.xdoc.xdoc.Code));
+      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (_get instanceof Code));
     }
     if (_operator_and) {
       int _xblockexpression = (int) 0;
@@ -288,21 +285,25 @@ public class Utils {
     return _xifexpression;
   }
   
-  private final HashMap<ArrayList<?>,Code> _createCache_correctedCode = new HashMap<ArrayList<?>,Code>();
-  
   public Code correctedCode(final String s) {
     final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList(s);
-    final Code code;
+    final Code _result;
     synchronized (_createCache_correctedCode) {
       if (_createCache_correctedCode.containsKey(_cacheKey)) {
         return _createCache_correctedCode.get(_cacheKey);
       }
       Code _createCode = XdocFactory.eINSTANCE.createCode();
-      code = _createCode;
-      _createCache_correctedCode.put(_cacheKey, code);
+      _result = _createCode;
+      _createCache_correctedCode.put(_cacheKey, _result);
     }
+    _init_correctedCode(_result, s);
+    return _result;
+  }
+  
+  private final HashMap<ArrayList<?>,Code> _createCache_correctedCode = CollectionLiterals.newHashMap();
+  
+  private void _init_correctedCode(final Code code, final String s) {
     code.setContents(s);
-    return code;
   }
   
   public boolean nullOrEmpty(final String s) {

@@ -8,7 +8,6 @@ import org.eclipse.xtext.xdoc.xdoc.GlossaryEntry;
 
 @SuppressWarnings("all")
 public class GlossaryExtensions {
-  
   public GlossaryEntry getEntry(final Iterable<GlossaryEntry> glossary, final String aliasOrName) {
     GlossaryEntry _xblockexpression = null;
     {
@@ -22,11 +21,11 @@ public class GlossaryExtensions {
       GlossaryEntry _findFirst = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function);
       GlossaryEntry matchedEntry = _findFirst;
       GlossaryEntry _xifexpression = null;
-      boolean _operator_equals_1 = ObjectExtensions.operator_equals(matchedEntry, null);
-      if (_operator_equals_1) {
+      boolean _operator_equals = ObjectExtensions.operator_equals(matchedEntry, null);
+      if (_operator_equals) {
         final Function1<GlossaryEntry,Boolean> _function_1 = new Function1<GlossaryEntry,Boolean>() {
-            public Boolean apply(final GlossaryEntry s_1) {
-              EList<String> _alias = s_1.getAlias();
+            public Boolean apply(final GlossaryEntry s) {
+              EList<String> _alias = s.getAlias();
               boolean _contains = _alias.contains(aliasOrName);
               return ((Boolean)_contains);
             }

@@ -17,7 +17,6 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class TocGenerator {
-  
   @Inject
   private AbstractSectionExtension sectionExtension;
   

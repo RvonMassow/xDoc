@@ -19,17 +19,16 @@ import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class PlainText {
-  
   protected CharSequence _genPlainText(final TextOrMarkup tom) {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
     final Function2<StringConcatenation,EObject,StringConcatenation> _function = new Function2<StringConcatenation,EObject,StringConcatenation>() {
         public StringConcatenation apply(final StringConcatenation e1 , final EObject e2) {
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append(e1, "");
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append(e1, "");
           CharSequence _genPlainText = PlainText.this.genPlainText(e2);
-          _builder_1.append(_genPlainText, "");
-          return _builder_1;
+          _builder.append(_genPlainText, "");
+          return _builder;
         }
       };
     StringConcatenation _fold = IterableExtensions.<EObject, StringConcatenation>fold(_contents, _builder, _function);
@@ -46,11 +45,11 @@ public class PlainText {
     StringConcatenation _builder = new StringConcatenation();
     final Function2<StringConcatenation,TextOrMarkup,StringConcatenation> _function = new Function2<StringConcatenation,TextOrMarkup,StringConcatenation>() {
         public StringConcatenation apply(final StringConcatenation e1 , final TextOrMarkup e2) {
-          StringConcatenation _builder_1 = new StringConcatenation();
-          _builder_1.append(e1, "");
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append(e1, "");
           CharSequence _genPlainText = PlainText.this.genPlainText(e2);
-          _builder_1.append(_genPlainText, "");
-          return _builder_1;
+          _builder.append(_genPlainText, "");
+          return _builder;
         }
       };
     StringConcatenation _fold = IterableExtensions.<TextOrMarkup, StringConcatenation>fold(_contents, _builder, _function);
@@ -154,11 +153,8 @@ public class PlainText {
       return _genPlainText((TextPart)cb);
     } else if ((cb == null)) {
       return _genPlainText((Void)null);
-    } else if ((cb instanceof Object)) {
-      return _genPlainText((Object)cb);
     } else {
-      throw new IllegalArgumentException("Unhandled parameter types: " +
-        java.util.Arrays.<Object>asList(cb).toString());
+      return _genPlainText((Object)cb);
     }
   }
 }

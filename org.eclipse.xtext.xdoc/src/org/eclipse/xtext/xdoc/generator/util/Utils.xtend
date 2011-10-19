@@ -1,16 +1,18 @@
 package org.eclipse.xtext.xdoc.generator.util
 
-import org.eclipse.xtext.xdoc.xdoc.*
-import static extension java.net.URLDecoder.*
-import static extension java.net.URLEncoder.*
-import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
-import java.util.List
+import java.util.Set
+import org.antlr.runtime.ANTLRStringStream
 import org.antlr.runtime.Token
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common
-import org.antlr.runtime.ANTLRStringStream
-import org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl
-import java.util.Set
-import java.util.Map
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection
+import org.eclipse.xtext.xdoc.xdoc.Code
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock
+import org.eclipse.xtext.xdoc.xdoc.Document
+import org.eclipse.xtext.xdoc.xdoc.LangDef
+import org.eclipse.xtext.xdoc.xdoc.XdocFactory
+
+import static extension java.net.URLDecoder.*
+import static extension java.net.URLEncoder.*
 
 
 class Utils {

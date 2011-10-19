@@ -1,9 +1,9 @@
 package org.eclipse.xtext.xdoc.generator
 
-import org.eclipse.xtext.generator.IGenerator
 import com.google.inject.Inject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
 
 class XdocGenerator implements IGenerator {
 	@Inject HtmlGenerator htmlGen

@@ -1,17 +1,15 @@
 package org.eclipse.xtext.xdoc.generator.util
 
-import org.eclipse.xtext.xdoc.xdoc.*
-import org.eclipse.emf.ecore.EObject
 import com.google.inject.Inject
-import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager
-import org.eclipse.emf.ecore.resource.Resource
-import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.*
-import org.eclipse.xtext.naming.IQualifiedNameProvider
-import org.eclipse.xtext.naming.QualifiedName
-import org.eclipse.xtext.builder.builderState.IBuilderState
-import java.util.Map
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension
-import org.eclipse.emf.common.util.URI
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection
+import org.eclipse.xtext.xdoc.xdoc.ChapterRef
+import org.eclipse.xtext.xdoc.xdoc.Identifiable
+import org.eclipse.xtext.xdoc.xdoc.Part
+import org.eclipse.xtext.xdoc.xdoc.PartRef
+import org.eclipse.xtext.xdoc.xdoc.Section2Ref
+import org.eclipse.xtext.xdoc.xdoc.SectionRef
+import org.eclipse.xtext.xdoc.xdoc.XdocFile
 
 class EclipseNamingExtensions {
 

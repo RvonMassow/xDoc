@@ -1,12 +1,11 @@
 package org.eclipse.xtext.xdoc.generator
 
 import com.google.inject.Inject
-import org.eclipse.xtext.xdoc.xdoc.AbstractSection
-import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
 import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
+import org.eclipse.xtext.xdoc.xdoc.AbstractSection
 import org.eclipse.xtext.xdoc.xdoc.Document
 import org.eclipse.xtext.xdoc.xdoc.Section
-import org.eclipse.xtext.xdoc.xdoc.SectionRef
 
 class PHPPhoenixGenerator {
 

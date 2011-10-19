@@ -1,6 +1,6 @@
 package org.eclipse.xtext.xdoc.generator.util
 
-import org.eclipse.xtext.common.types.*
+import org.eclipse.xtext.common.types.JvmIdentifiableElement
 
 class GitExtensions {
 	

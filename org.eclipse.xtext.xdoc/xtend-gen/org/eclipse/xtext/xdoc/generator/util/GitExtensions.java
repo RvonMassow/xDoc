@@ -7,7 +7,6 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 
 @SuppressWarnings("all")
 public class GitExtensions {
-  
   public String gitLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
     {
@@ -19,7 +18,7 @@ public class GitExtensions {
       final String name = _qualifiedName;
       boolean matched = false;
       if (!matched) {
-        if (org.eclipse.xtext.xbase.lib.ObjectExtensions.operator_equals(name,null)) {
+        if (ObjectExtensions.operator_equals(name,null)) {
           matched=true;
           String _operator_plus = StringExtensions.operator_plus("broken-link in ", ie);
           return _operator_plus;
@@ -153,6 +152,18 @@ public class GitExtensions {
     return _xblockexpression;
   }
   
+  /**
+   * org.eclipse.xtext.ui.label.AbstractLabelProvider
+   * org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider
+   * org.eclipse.xtext.ui.shared.internal.SharedModule
+   * org.eclipse.xtext.validation.AbstractDeclarativeValidator
+   * org.eclipse.xtext.validation.Check
+   * org.eclipse.xtext.validation.IConcreteSyntaxDiagnosticProvider
+   * org.eclipse.xtext.validation.IConcreteSyntaxValidator
+   * org.eclipse.xtext.validation.impl.ConcreteSyntaxDiagnosticProvider
+   * org.eclipse.xtext.validation.impl.ConcreteSyntaxEValidator
+   * org.eclipse.xtext.validation.impl.ConcreteSyntaxValidator
+   */
   public String compilationUnitName(final JvmIdentifiableElement ie) {
     String _simpleName = ie.getSimpleName();
     return _simpleName;

@@ -1,12 +1,11 @@
 package org.eclipse.xtext.xdoc.generator
 
 import com.google.inject.Inject
-import java.util.Map
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
 import org.eclipse.xtext.xdoc.generator.util.Utils
-import org.eclipse.xtext.xdoc.xdoc.Document
-import org.eclipse.xtext.xdoc.xdoc.Chapter
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
+import org.eclipse.xtext.xdoc.xdoc.Chapter
+import org.eclipse.xtext.xdoc.xdoc.Document
 
 class TocGenerator {
 

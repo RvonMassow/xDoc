@@ -1,61 +1,53 @@
 package org.eclipse.xtext.xdoc.generator
 
-import org.eclipse.xtext.generator.IGenerator
+import com.google.inject.Inject
+import java.nio.ByteBuffer
+import java.nio.channels.Channels
+import java.util.HashSet
+import java.util.List
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.common.types.*
-import org.eclipse.xtext.xdoc.xdoc.Document
-import org.eclipse.xtext.xdoc.xdoc.LangDef
-import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
-import org.eclipse.xtext.xdoc.xdoc.Chapter
-import org.eclipse.xtext.xdoc.xdoc.Section
+import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig
+import org.eclipse.xtext.xdoc.generator.util.Utils
+import org.eclipse.xtext.xdoc.generator.util.XFloat
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
+import org.eclipse.xtext.xdoc.xdoc.Anchor
+import org.eclipse.xtext.xdoc.xdoc.Chapter
+import org.eclipse.xtext.xdoc.xdoc.ChapterRef
+import org.eclipse.xtext.xdoc.xdoc.Code
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock
+import org.eclipse.xtext.xdoc.xdoc.CodeRef
+import org.eclipse.xtext.xdoc.xdoc.Document
+import org.eclipse.xtext.xdoc.xdoc.Emphasize
+import org.eclipse.xtext.xdoc.xdoc.ImageRef
+import org.eclipse.xtext.xdoc.xdoc.Item
+import org.eclipse.xtext.xdoc.xdoc.LangDef
+import org.eclipse.xtext.xdoc.xdoc.Link
+import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
+import org.eclipse.xtext.xdoc.xdoc.OrderedList
+import org.eclipse.xtext.xdoc.xdoc.Part
+import org.eclipse.xtext.xdoc.xdoc.PartRef
+import org.eclipse.xtext.xdoc.xdoc.Ref
+import org.eclipse.xtext.xdoc.xdoc.Section
 import org.eclipse.xtext.xdoc.xdoc.Section2
+import org.eclipse.xtext.xdoc.xdoc.Section2Ref
 import org.eclipse.xtext.xdoc.xdoc.Section3
 import org.eclipse.xtext.xdoc.xdoc.Section4
+import org.eclipse.xtext.xdoc.xdoc.SectionRef
 import org.eclipse.xtext.xdoc.xdoc.Table
 import org.eclipse.xtext.xdoc.xdoc.TableData
 import org.eclipse.xtext.xdoc.xdoc.TableRow
-import org.eclipse.xtext.xdoc.generator.testimpl.util.XFloat
+import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
 import org.eclipse.xtext.xdoc.xdoc.TextPart
-import org.eclipse.xtext.xdoc.xdoc.OrderedList
-import org.eclipse.xtext.xdoc.xdoc.UnorderedList
-import org.eclipse.xtext.xdoc.xdoc.Emphasize
-import org.eclipse.xtext.xdoc.xdoc.Item
-import org.eclipse.xtext.xdoc.xdoc.Ref
-import org.eclipse.xtext.xdoc.xdoc.Anchor
-import org.eclipse.xtext.xdoc.xdoc.Link
-import org.eclipse.xtext.xdoc.xdoc.CodeBlock
-import org.eclipse.xtext.xdoc.xdoc.CodeRef
-import org.eclipse.xtext.xdoc.xdoc.ImageRef
 import org.eclipse.xtext.xdoc.xdoc.Todo
-import org.eclipse.xtext.xdoc.xdoc.MarkupInCode
-import org.eclipse.xtext.xdoc.xdoc.Code
-import org.eclipse.xtext.xdoc.xdoc.ChapterRef
-import org.eclipse.xtext.xdoc.xdoc.SectionRef
-import org.eclipse.xtext.xdoc.xdoc.Section2Ref
-import com.google.inject.Inject
-import java.util.Set
-import org.eclipse.emf.ecore.EObject
-import org.eclipse.emf.common.util.EList
-import org.eclipse.xtext.xtend2.lib.StringConcatenation
-import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
+import org.eclipse.xtext.xdoc.xdoc.UnorderedList
+
 import static extension org.eclipse.xtext.xdoc.generator.util.LatexUtils.*
-import static extension org.eclipse.xtext.xdoc.generator.util.XFloat.*
-import org.eclipse.xtext.xdoc.generator.util.Utils
-import org.eclipse.xtext.xdoc.generator.config.GeneratorConfig
-import org.eclipse.xtext.xdoc.generator.util.LatexUtils
-import org.eclipse.xtext.xdoc.generator.util.XFloat
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
-import java.util.HashSet
-import java.io.File
-import java.util.Map
-import java.util.List
-import java.nio.channels.Channels
-import org.eclipse.emf.common.util.URI
-import java.nio.ByteBuffer
-import org.eclipse.xtext.xdoc.xdoc.Part
-import org.eclipse.xtext.xdoc.xdoc.PartRef
+import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
 
 class LatexGenerator implements IGenerator{
 
@@ -149,7 +141,7 @@ class LatexGenerator implements IGenerator{
 		
 		\lstset{tabsize=4, basicstyle=\sffamily\small, commentstyle=\textsl, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={ß}}
 		\newlength{\XdocItemIndent}
-	 	\newlength{\XdocTEffectiveWidth}
+		\newlength{\XdocTEffectiveWidth}
 		
 	'''
 
