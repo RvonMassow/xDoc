@@ -249,6 +249,7 @@ class LatexGenerator implements IConfigurableGenerator {
 
 	def dispatch genContent(Section2 sec){
 		'''
+		«sec.genLabel»
 		«FOR c : sec.contents»
 			«c.genContent»
 		«ENDFOR»
@@ -260,6 +261,7 @@ class LatexGenerator implements IConfigurableGenerator {
 
 	def dispatch genContent(Section3 sec){
 		'''
+		«sec.genLabel»
 		«FOR c : sec.contents»
 			«c.genContent»
 		«ENDFOR»
@@ -271,6 +273,7 @@ class LatexGenerator implements IConfigurableGenerator {
 
 	def dispatch genContent(Section4 sec){
 		'''
+		«sec.genLabel»
 		«FOR c : sec.contents»
 			«c.genContent»
 		«ENDFOR»

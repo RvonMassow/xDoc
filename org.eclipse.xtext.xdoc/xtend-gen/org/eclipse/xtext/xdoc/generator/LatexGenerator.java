@@ -549,6 +549,9 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   protected StringConcatenation _genContent(final Section2 sec) {
     StringConcatenation _builder = new StringConcatenation();
+    StringConcatenation _genLabel = this.genLabel(sec);
+    _builder.append(_genLabel, "");
+    _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(final TextOrMarkup c : _contents) {
@@ -570,6 +573,9 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   protected StringConcatenation _genContent(final Section3 sec) {
     StringConcatenation _builder = new StringConcatenation();
+    StringConcatenation _genLabel = this.genLabel(sec);
+    _builder.append(_genLabel, "");
+    _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(final TextOrMarkup c : _contents) {
@@ -591,6 +597,9 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   protected StringConcatenation _genContent(final Section4 sec) {
     StringConcatenation _builder = new StringConcatenation();
+    StringConcatenation _genLabel = this.genLabel(sec);
+    _builder.append(_genLabel, "");
+    _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(final TextOrMarkup c : _contents) {
