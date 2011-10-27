@@ -7,6 +7,7 @@ import java.nio.channels.Channels
 import java.util.Collections
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.resource.URIConverter
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.generator.IFileSystemAccess
@@ -63,10 +64,13 @@ class EclipseHelpGenerator implements IGenerator {
 	@Inject extension PlainText plainText
 	
 	@Inject extension AbstractSectionExtension sectionExtension
-
+	
+	@Inject EclipseHelpUriUtil uriUtil
+	
 	override doGenerate(Resource res, IFileSystemAccess access) {
 		val doc = (res.contents.head as XdocFile)?.mainSection
 		if(doc instanceof Document) {
+			uriUtil.initialize(doc as Document)
 			(doc as Document).generate(access)
 		}
 	}
@@ -82,19 +86,12 @@ class EclipseHelpGenerator implements IGenerator {
 		}
 	}
 
-
-	def copy(String fromRelativeFileName, Resource res) {
+	def copy(URI fromAbsoluteURI, URI toAbsoluteURI, URIConverter converter) {
 		try{
 			val buffer = ByteBuffer::allocateDirect(16 * 1024);
-			val uri = res.URI
 			val sepChar = File::separator
-			var relOutDirRoot = ""
-			var inDir = ""
-			if(uri.platformResource) {
-				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName)
-				val outPath = URI::createURI(uri.trimSegments(2).appendSegment("contents").toString + "/" + fromRelativeFileName)
-				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
-				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
+				val inChannel = Channels::newChannel(converter.createInputStream(fromAbsoluteURI))
+				val outChannel = Channels::newChannel(converter.createOutputStream(toAbsoluteURI))
 				while (inChannel.read(buffer) != -1) {
 					buffer.flip();
 					outChannel.write(buffer);
@@ -103,7 +100,6 @@ class EclipseHelpGenerator implements IGenerator {
 				buffer.flip();
 				while (buffer.hasRemaining()) {
 					outChannel.write(buffer);
-				}
 				outChannel.close()
 			}
 		} catch (Exception e) {
@@ -136,7 +132,7 @@ class EclipseHelpGenerator implements IGenerator {
 	'''
 	
 	def generateEntryInRoot(AbstractSection section) '''
-		<li><a href="«section.fullURL»">«section.title.genPlainText»</a>
+		<li><a href="«uriUtil.getTargetURI(section)»">«section.title.genPlainText»</a>
 			«FOR ss: section.sections BEFORE "<ol>" AFTER "</ol>"»
 				«ss.generateEntryInRoot»
 			«ENDFOR»
@@ -244,8 +240,8 @@ class EclipseHelpGenerator implements IGenerator {
 		val title = if(ref.ref instanceof AbstractSection) {
 				'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
 			}
-		'''«IF ref.contents.isEmpty »<a href="«ref.ref.fullURL»" «title» >section «ref.ref.name»</a>«ELSE
-		»<a href="«ref.ref.fullURL»" «title»>«FOR tom:ref.contents
+		'''«IF ref.contents.isEmpty »<a href="«uriUtil.getTargetURI(ref)»" «title» >section «ref.ref.name»</a>«ELSE
+		»<a href="«uriUtil.getTargetURI(ref)»" «title»>«FOR tom:ref.contents
 		»«tom.genNonParContent»«ENDFOR»</a>«
 		ENDIF»'''	
 	}
@@ -280,17 +276,19 @@ class EclipseHelpGenerator implements IGenerator {
 
 	def dispatch generate(Anchor a) 
 		'''<a name="anchor-«a.name»"></a>'''
-	
 
 	def dispatch generate(ImageRef img) {
-		copy(img.path, img.eResource)
+		val imageAbsoluteURI = URI::createURI(img.path).resolve(img.eResource.URI)
+		val imageChapterRelativeURI = uriUtil.getRelativeTargetURI(img)
+		val imageTargetURI = uriUtil.getAbsoluteTargetURI(img)
+		copy(imageAbsoluteURI, imageTargetURI, img.eResource.resourceSet.URIConverter)
 		'''
 			<div class="image" >
 			«IF img.name != null»
 				«img.name.genLabel»
 			«ENDIF»
 			«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
-			<img src="«img.path.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
+			<img src="«imageChapterRelativeURI.toString.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
 			«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
 			<div class="caption">
 			«img.caption.unescapeXdocChars.escapeHTMLChars»

@@ -29,6 +29,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
+import org.eclipse.xtext.xdoc.generator.EclipseHelpUriUtil;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.TocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
@@ -93,13 +94,19 @@ public class EclipseHelpGenerator implements IGenerator {
   @Inject
   private AbstractSectionExtension sectionExtension;
   
+  @Inject
+  private EclipseHelpUriUtil uriUtil;
+  
   public void doGenerate(final Resource res, final IFileSystemAccess access) {
       EList<EObject> _contents = res.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
       AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
       final AbstractSection doc = _mainSection;
       if ((doc instanceof Document)) {
-        this.generate(((Document) doc), access);
+        {
+          this.uriUtil.initialize(((Document) doc));
+          this.generate(((Document) doc), access);
+        }
       }
   }
   
@@ -120,80 +127,50 @@ public class EclipseHelpGenerator implements IGenerator {
       }
   }
   
-  public Object copy(final String fromRelativeFileName, final Resource res) {
-    Object _xtrycatchfinallyexpression = null;
+  public void copy(final URI fromAbsoluteURI, final URI toAbsoluteURI, final URIConverter converter) {
     try {
-      Object _xblockexpression = null;
       {
         int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)16), ((Integer)1024));
         ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
         final ByteBuffer buffer = _allocateDirect;
-        URI _uRI = res.getURI();
-        final URI uri = _uRI;
         final String sepChar = File.separator;
-        String relOutDirRoot = "";
-        String inDir = "";
-        Object _xifexpression = null;
-        boolean _isPlatformResource = uri.isPlatformResource();
-        if (_isPlatformResource) {
+        InputStream _createInputStream = converter.createInputStream(fromAbsoluteURI);
+        ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
+        final ReadableByteChannel inChannel = _newChannel;
+        OutputStream _createOutputStream = converter.createOutputStream(toAbsoluteURI);
+        WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
+        final WritableByteChannel outChannel = _newChannel_1;
+        int _read = inChannel.read(buffer);
+        int _operator_minus = IntegerExtensions.operator_minus(1);
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
+        Boolean _xwhileexpression = _operator_notEquals;
+        while (_xwhileexpression) {
           {
-            URI _trimSegments = uri.trimSegments(1);
-            String _string = _trimSegments.toString();
-            String _operator_plus = StringExtensions.operator_plus(_string, "/");
-            String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, fromRelativeFileName);
-            URI _createURI = URI.createURI(_operator_plus_1);
-            final URI inPath = _createURI;
-            URI _trimSegments_1 = uri.trimSegments(2);
-            URI _appendSegment = _trimSegments_1.appendSegment("contents");
-            String _string_1 = _appendSegment.toString();
-            String _operator_plus_2 = StringExtensions.operator_plus(_string_1, "/");
-            String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, fromRelativeFileName);
-            URI _createURI_1 = URI.createURI(_operator_plus_3);
-            final URI outPath = _createURI_1;
-            ResourceSet _resourceSet = res.getResourceSet();
-            URIConverter _uRIConverter = _resourceSet.getURIConverter();
-            InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
-            ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
-            final ReadableByteChannel inChannel = _newChannel;
-            ResourceSet _resourceSet_1 = res.getResourceSet();
-            URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
-            OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
-            WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
-            final WritableByteChannel outChannel = _newChannel_1;
-            int _read = inChannel.read(buffer);
-            int _operator_minus = IntegerExtensions.operator_minus(1);
-            boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
-            Boolean _xwhileexpression = _operator_notEquals;
-            while (_xwhileexpression) {
-              {
-                buffer.flip();
-                outChannel.write(buffer);
-                buffer.compact();
-              }
-              int _read_1 = inChannel.read(buffer);
-              int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-              boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
-              _xwhileexpression = _operator_notEquals_1;
-            }
             buffer.flip();
-            boolean _hasRemaining = buffer.hasRemaining();
-            Boolean _xwhileexpression_1 = _hasRemaining;
-            while (_xwhileexpression_1) {
-              outChannel.write(buffer);
-              boolean _hasRemaining_1 = buffer.hasRemaining();
-              _xwhileexpression_1 = _hasRemaining_1;
-            }
+            outChannel.write(buffer);
+            buffer.compact();
+          }
+          int _read_1 = inChannel.read(buffer);
+          int _operator_minus_1 = IntegerExtensions.operator_minus(1);
+          boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
+          _xwhileexpression = _operator_notEquals_1;
+        }
+        buffer.flip();
+        boolean _hasRemaining = buffer.hasRemaining();
+        Boolean _xwhileexpression_1 = _hasRemaining;
+        while (_xwhileexpression_1) {
+          {
+            outChannel.write(buffer);
             outChannel.close();
           }
+          boolean _hasRemaining_1 = buffer.hasRemaining();
+          _xwhileexpression_1 = _hasRemaining_1;
         }
-        _xblockexpression = (_xifexpression);
       }
-      _xtrycatchfinallyexpression = _xblockexpression;
     } catch (final Exception e) {
       RuntimeException _runtimeException = new RuntimeException(e);
       throw _runtimeException;
     }
-    return _xtrycatchfinallyexpression;
   }
   
   public StringConcatenation generateRootDocument(final Document document) {
@@ -264,8 +241,8 @@ public class EclipseHelpGenerator implements IGenerator {
   public StringConcatenation generateEntryInRoot(final AbstractSection section) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li><a href=\"");
-    String _fullURL = this.eclipseNamingExtensions.getFullURL(section);
-    _builder.append(_fullURL, "");
+    URI _targetURI = this.uriUtil.getTargetURI(section);
+    _builder.append(_targetURI, "");
     _builder.append("\">");
     TextOrMarkup _title = section.getTitle();
     CharSequence _genPlainText = this.plainText.genPlainText(_title);
@@ -607,20 +584,18 @@ public class EclipseHelpGenerator implements IGenerator {
         boolean _isEmpty = _contents.isEmpty();
         if (_isEmpty) {
           _builder_1.append("<a href=\"");
-          Identifiable _ref_2 = ref.getRef();
-          String _fullURL = this.eclipseNamingExtensions.getFullURL(_ref_2);
-          _builder_1.append(_fullURL, "");
+          URI _targetURI = this.uriUtil.getTargetURI(ref);
+          _builder_1.append(_targetURI, "");
           _builder_1.append("\" ");
           _builder_1.append(title, "");
           _builder_1.append(" >section ");
-          Identifiable _ref_3 = ref.getRef();
-          String _name = _ref_3.getName();
+          Identifiable _ref_2 = ref.getRef();
+          String _name = _ref_2.getName();
           _builder_1.append(_name, "");
           _builder_1.append("</a>");} else {
           _builder_1.append("<a href=\"");
-          Identifiable _ref_4 = ref.getRef();
-          String _fullURL_1 = this.eclipseNamingExtensions.getFullURL(_ref_4);
-          _builder_1.append(_fullURL_1, "");
+          URI _targetURI_1 = this.uriUtil.getTargetURI(ref);
+          _builder_1.append(_targetURI_1, "");
           _builder_1.append("\" ");
           _builder_1.append(title, "");
           _builder_1.append(">");
@@ -718,8 +693,19 @@ public class EclipseHelpGenerator implements IGenerator {
     StringConcatenation _xblockexpression = null;
     {
       String _path = img.getPath();
+      URI _createURI = URI.createURI(_path);
       Resource _eResource = img.eResource();
-      this.copy(_path, _eResource);
+      URI _uRI = _eResource.getURI();
+      URI _resolve = _createURI.resolve(_uRI);
+      final URI imageAbsoluteURI = _resolve;
+      URI _relativeTargetURI = this.uriUtil.getRelativeTargetURI(img);
+      final URI imageChapterRelativeURI = _relativeTargetURI;
+      URI _absoluteTargetURI = this.uriUtil.getAbsoluteTargetURI(img);
+      final URI imageTargetURI = _absoluteTargetURI;
+      Resource _eResource_1 = img.eResource();
+      ResourceSet _resourceSet = _eResource_1.getResourceSet();
+      URIConverter _uRIConverter = _resourceSet.getURIConverter();
+      this.copy(imageAbsoluteURI, imageTargetURI, _uRIConverter);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<div class=\"image\" >");
       _builder.newLine();
@@ -736,8 +722,8 @@ public class EclipseHelpGenerator implements IGenerator {
       _builder.append("", "");
       _builder.newLineIfNotEmpty();
       _builder.append("<img src=\"");
-      String _path_1 = img.getPath();
-      String _unescapeXdocChars = this.utils.unescapeXdocChars(_path_1);
+      String _string = imageChapterRelativeURI.toString();
+      String _unescapeXdocChars = this.utils.unescapeXdocChars(_string);
       _builder.append(_unescapeXdocChars, "");
       _builder.append("\" ");
       {
@@ -1131,10 +1117,10 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   public void generate(final AbstractSection chapter, final IFileSystemAccess access) {
-    if ((chapter instanceof Chapter)) {
-      _generate((Chapter)chapter, (IFileSystemAccess)access);
-    } else if ((chapter instanceof Part)) {
-      _generate((Part)chapter, (IFileSystemAccess)access);
+    if (chapter instanceof Chapter) {
+      _generate((Chapter)chapter, access);
+    } else if (chapter instanceof Part) {
+      _generate((Part)chapter, access);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(chapter, access).toString());
@@ -1142,45 +1128,45 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   public CharSequence generate(final EObject chapter) {
-    if ((chapter instanceof Chapter)) {
+    if (chapter instanceof Chapter) {
       return _generate((Chapter)chapter);
-    } else if ((chapter instanceof Part)) {
+    } else if (chapter instanceof Part) {
       return _generate((Part)chapter);
-    } else if ((chapter instanceof Section4)) {
+    } else if (chapter instanceof Section4) {
       return _generate((Section4)chapter);
-    } else if ((chapter instanceof AbstractSection)) {
+    } else if (chapter instanceof AbstractSection) {
       return _generate((AbstractSection)chapter);
-    } else if ((chapter instanceof Anchor)) {
+    } else if (chapter instanceof Anchor) {
       return _generate((Anchor)chapter);
-    } else if ((chapter instanceof CodeBlock)) {
+    } else if (chapter instanceof CodeBlock) {
       return _generate((CodeBlock)chapter);
-    } else if ((chapter instanceof CodeRef)) {
+    } else if (chapter instanceof CodeRef) {
       return _generate((CodeRef)chapter);
-    } else if ((chapter instanceof Emphasize)) {
+    } else if (chapter instanceof Emphasize) {
       return _generate((Emphasize)chapter);
-    } else if ((chapter instanceof ImageRef)) {
+    } else if (chapter instanceof ImageRef) {
       return _generate((ImageRef)chapter);
-    } else if ((chapter instanceof Link)) {
+    } else if (chapter instanceof Link) {
       return _generate((Link)chapter);
-    } else if ((chapter instanceof OrderedList)) {
+    } else if (chapter instanceof OrderedList) {
       return _generate((OrderedList)chapter);
-    } else if ((chapter instanceof Ref)) {
+    } else if (chapter instanceof Ref) {
       return _generate((Ref)chapter);
-    } else if ((chapter instanceof Table)) {
+    } else if (chapter instanceof Table) {
       return _generate((Table)chapter);
-    } else if ((chapter instanceof Todo)) {
+    } else if (chapter instanceof Todo) {
       return _generate((Todo)chapter);
-    } else if ((chapter instanceof UnorderedList)) {
+    } else if (chapter instanceof UnorderedList) {
       return _generate((UnorderedList)chapter);
-    } else if ((chapter instanceof Item)) {
+    } else if (chapter instanceof Item) {
       return _generate((Item)chapter);
-    } else if ((chapter instanceof TableData)) {
+    } else if (chapter instanceof TableData) {
       return _generate((TableData)chapter);
-    } else if ((chapter instanceof TableRow)) {
+    } else if (chapter instanceof TableRow) {
       return _generate((TableRow)chapter);
-    } else if ((chapter instanceof TextOrMarkup)) {
+    } else if (chapter instanceof TextOrMarkup) {
       return _generate((TextOrMarkup)chapter);
-    } else if ((chapter instanceof TextPart)) {
+    } else if (chapter instanceof TextPart) {
       return _generate((TextPart)chapter);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
@@ -1189,9 +1175,9 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   public StringConcatenation generateCode(final EObject code) {
-    if ((code instanceof Code)) {
+    if (code instanceof Code) {
       return _generateCode((Code)code);
-    } else if ((code instanceof MarkupInCode)) {
+    } else if (code instanceof MarkupInCode) {
       return _generateCode((MarkupInCode)code);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
