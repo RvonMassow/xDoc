@@ -64,16 +64,16 @@ class PHPPhoenixGenerator {
 			«IF doc.authors != null»$pageAuthor		= "«doc.authors.genPlainText»";«ENDIF»
 			«IF doc.title != null»$pageTitle 		= "«doc.title.genPlainText»";«ENDIF»
 
-			$Menu->setMenuItemList(array());
-			$Menu->addMenuItem("Home", "/Xtext", "_self");
-			$Menu->addMenuItem("Download", "/Xtext/download", "_self");
-			$Menu->addMenuItem("Documentation", "/Xtext/documentation", "_self");
-			$Menu->addMenuItem("Support", "/Xtext/support", "_self");
-			$Menu->addMenuItem("Community", "/Xtext/community", "_self");
-			$Menu->addMenuItem("Developers", "/Xtext/developers", "_self");
+«««			$Menu->setMenuItemList(array());
+«««			$Menu->addMenuItem("Home", "/Xtext", "_self");
+«««			$Menu->addMenuItem("Download", "/Xtext/download", "_self");
+«««			$Menu->addMenuItem("Documentation", "/Xtext/documentation", "_self");
+«««			$Menu->addMenuItem("Support", "/Xtext/support", "_self");
+«««			$Menu->addMenuItem("Community", "/Xtext/community", "_self");
+«««			$Menu->addMenuItem("Developers", "/Xtext/developers", "_self");
 
-			$App->AddExtraHtmlHeader('<link rel="stylesheet" type="text/css" href="/Xtext/style.css"/>' . "\n\t");
-			$App->AddExtraHtmlHeader('<link rel="stylesheet" type="text/css" href="/Xtext/style2.css"/>' . "\n\t");
+«««			$App->AddExtraHtmlHeader('<link rel="stylesheet" type="text/css" href="/Xtext/style.css"/>' . "\n\t");
+«««			$App->AddExtraHtmlHeader('<link rel="stylesheet" type="text/css" href="/Xtext/style2.css"/>' . "\n\t");
 			$App->AddExtraHtmlHeader('<link rel="stylesheet" type="text/css" href="code.css"/>' . "\n\t");
 			$App->AddExtraHtmlHeader('<link rel="stylesheet" type="text/css" href="book.css"/>' . "\n\t");
 			$App->AddExtraHtmlHeader('<link rel="stylesheet" type="text/css" href="novaAddon.css"/>' . "\n\t");

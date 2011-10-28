@@ -153,24 +153,6 @@ public class PHPPhoenixGenerator {
       }
       _builder_1.newLineIfNotEmpty();
       _builder_1.newLine();
-      _builder_1.append("$Menu->setMenuItemList(array());");
-      _builder_1.newLine();
-      _builder_1.append("$Menu->addMenuItem(\"Home\", \"/Xtext\", \"_self\");");
-      _builder_1.newLine();
-      _builder_1.append("$Menu->addMenuItem(\"Download\", \"/Xtext/download\", \"_self\");");
-      _builder_1.newLine();
-      _builder_1.append("$Menu->addMenuItem(\"Documentation\", \"/Xtext/documentation\", \"_self\");");
-      _builder_1.newLine();
-      _builder_1.append("$Menu->addMenuItem(\"Support\", \"/Xtext/support\", \"_self\");");
-      _builder_1.newLine();
-      _builder_1.append("$Menu->addMenuItem(\"Community\", \"/Xtext/community\", \"_self\");");
-      _builder_1.newLine();
-      _builder_1.append("$Menu->addMenuItem(\"Developers\", \"/Xtext/developers\", \"_self\");");
-      _builder_1.newLine();
-      _builder_1.newLine();
-      _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"/Xtext/style.css\"/>\' . \"\\n\\t\");");
-      _builder_1.newLine();
-      _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"/Xtext/style2.css\"/>\' . \"\\n\\t\");");
       _builder_1.newLine();
       _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"code.css\"/>\' . \"\\n\\t\");");
       _builder_1.newLine();
