@@ -1,6 +1,7 @@
 package org.eclipse.xtext.xdoc.tests;
 
 import java.io.File;
+import java.net.URLDecoder;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -9,13 +10,15 @@ import org.eclipse.xtext.generator.AbstractFileSystemAccess;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.HtmlGenerator;
+import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions;
-import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
+import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
@@ -33,10 +36,11 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 	@Inject
 	private HTMLNamingExtensions naming;
 	@Inject
-	private Utils utils;
+	private AbstractSectionExtension utils;
 
-	protected void generate(AbstractSection obj) throws Exception {
+	protected void generate(Document obj) throws Exception {
 		AbstractFileSystemAccess fsa = new JavaIoFileSystemAccess();
+		fsa.setOutputPath(Outlets.WEB_SITE, Outlets.WEB_SITE_PATH_NAME);
 		fsa.setOutputPath(System.getProperty("user.dir") + File.separatorChar+"test-gen"+ File.separatorChar+ "html" + File.separatorChar);
 		generator.generate(obj, fsa);
 	}
@@ -49,32 +53,32 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		for (AbstractSection as : doc.getChapters()) {
 			generate(as);
 			assertGenerated(as);
-			for(AbstractSection next: utils.subSection(as)){
+			for(AbstractSection next: utils.sections(as)){
 				generate(next);
 				assertGenerated(next);
 			}
 		}
 	}
 
-	public void testHeader() throws Exception {
-		Document doc = initDoc("foo");
-		String expected = "<head>\n" +
-    			"  <META http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n" +
-				"  <title>foo</title>\n" +
-				"  <link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
-				"  <link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
-				"</head>\n";
-		String actual = generator.header(doc.getTitle()).toString();
-		assertEquals(expected, actual);
-	}
+//	public void testHeader() throws Exception {
+//		Document doc = initDoc("foo");
+//		String expected = "<head>\n" +
+//    			"  <META http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n" +
+//				"  <title>foo</title>\n" +
+//				"  <link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+//				"  <link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+//				"</head>\n";
+//		String actual = generator.header(doc.getTitle()).toString();
+//		assertEquals(expected, actual);
+//	}
 
-	public void testEmptyBody() throws Exception {
-		Document doc = initDoc("foo");
-		String expected = "<body>\n" +
-				"</body>\n";
-		String actual = generator.body(doc).toString();
-		assertEquals(expected, actual);
-	}
+//	public void testEmptyBody() throws Exception {
+//		Document doc = initDoc("foo");
+//		String expected = "<body>\n" +
+//				"</body>\n";
+//		String actual = generator.body(doc).toString();
+//		assertEquals(expected, actual);
+//	}
 
 	public void testToc() throws Exception {
 		Document doc = createDocumentFrom(HTML_SRC+ "downToSection4Test.xdoc");
@@ -128,7 +132,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		assertGenerated(document);
 		generate(document.getChapters().get(0));
 		assertGenerated(document.getChapters().get(0));
-		validate("codeWithLanguageTest.html", naming.fileName(document.getChapters().get(0)));
+		validate("codeWithLanguageTest.html", name(document.getChapters().get(0)));
 	}
 
 	@Override
@@ -138,7 +142,12 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		assertGenerated(document);
 		generate(document.getChapters().get(0));
 		assertGenerated(document.getChapters().get(0));
-		validate("codeTest.html", naming.fileName(document.getChapters().get(0)));
+		validate("codeTest.html", name(document.getChapters().get(0)));
+	}
+
+	@SuppressWarnings("deprecation")
+	private String name(Identifiable id) {
+		return URLDecoder.decode(naming.getResourceURL(id));
 	}
 
 	@Override
@@ -146,7 +155,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "aRefTest.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("aRefTest.html", naming.fileName(file.getMainSection()));
+		validate("aRefTest.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -154,7 +163,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "codeRef.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("codeRefTest.html", naming.fileName(file.getMainSection()));
+		validate("codeRefTest.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -162,7 +171,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "commentTest.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("commentTest.html", naming.fileName(file.getMainSection()));
+		validate("commentTest.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -170,7 +179,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "linkTest.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("linkTest.html", naming.fileName(file.getMainSection()));
+		validate("linkTest.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -178,7 +187,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "namedRefAndTextTest.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("namedRefAndTextTest.html", naming.fileName(file.getMainSection()));
+		validate("namedRefAndTextTest.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -186,7 +195,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "nestedListTest.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("nestedListTest.html", naming.fileName(file.getMainSection()));
+		validate("nestedListTest.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -194,7 +203,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "simpleRefTest.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("simpleRefTest.html", naming.fileName(file.getMainSection()));
+		validate("simpleRefTest.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -202,7 +211,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "table.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("table.html", naming.fileName(file.getMainSection()));
+		validate("table.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -219,9 +228,9 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 			generate(chapter);
 		}
 		generate(doc);
-		validate("01-twoChapters.html", naming.fileName(chapter0));
-		validate("02-twoChapters.html", naming.fileName(chapter1));
-		validate("twoChaptersDoc.html", naming.fileName(doc));
+		validate("01-twoChapters.html", name(chapter0));
+		validate("02-twoChapters.html", name(chapter1));
+		validate("twoChaptersDoc.html", name(doc));
 	}
 
 	@Override
@@ -234,7 +243,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		XdocFile file = pTest.getDocFromFile(ParserTest.TEST_FILE_DIR + "testEscape.xdoc");
 		generate(file.getMainSection());
 		assertGenerated(file.getMainSection());
-		validate("testEscape.html", naming.fileName(file.getMainSection()));
+		validate("testEscape.html", name(file.getMainSection()));
 	}
 
 	@Override
@@ -280,9 +289,9 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 	}
 
 	public void assertGenerated(AbstractSection doc) {
-		File file = new File(RESULT_DIR + HTML_SRC + naming.fileName(doc));
+		File file = new File(RESULT_DIR + HTML_SRC + name(doc));
 		boolean fileGenerated = file.exists();
-		assertTrue(naming.fileName(doc) + " not generated", fileGenerated);
+		assertTrue(name(doc) + " not generated", fileGenerated);
 	}
 
 	@Override

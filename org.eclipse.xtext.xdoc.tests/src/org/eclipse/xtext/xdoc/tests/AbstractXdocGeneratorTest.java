@@ -22,6 +22,7 @@ import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xdoc.XdocStandaloneSetup;
+import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
@@ -33,7 +34,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 public abstract class AbstractXdocGeneratorTest extends AbstractXtextTests {
 
 	protected static final String RESULT_DIR = "test-gen/";
-	public static String EXPECTATION_DIR = "expectations/";
+	public static String EXPECTATION_DIR = Outlets.WEB_SITE_PATH_NAME + "/";
 	public static String SRC_DIR = "testfiles/";
 	protected ParserTest pTest;
 	private XpandExecutionContextImpl xpandCtx;
