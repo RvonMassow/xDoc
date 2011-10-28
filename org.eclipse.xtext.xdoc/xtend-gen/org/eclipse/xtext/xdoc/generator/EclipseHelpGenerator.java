@@ -111,7 +111,7 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   public void generate(final Document document, final IFileSystemAccess access) {
-      StringConcatenation _generateToc = this.tocGenerator.generateToc(document);
+      StringConcatenation _generateToc = this.tocGenerator.generateToc(document, this.uriUtil);
       access.generateFile("toc.xml", _generateToc);
       String _fullURL = this.eclipseNamingExtensions.getFullURL(document);
       String _decode = URLDecoder.decode(_fullURL);

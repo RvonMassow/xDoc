@@ -14,30 +14,30 @@ class TocGenerator {
 	@Inject extension PlainText plainText
 	@Inject extension Utils utils
 
-	def generateToc(Document doc) '''
+	def generateToc(Document doc, EclipseHelpUriUtil uriUtil) '''
 		<?xml version="1.0" encoding="ISO-8859-1" ?>
 		<toc topic="contents/«doc.fullURL»" label="«doc.title.genPlainText»" >
 			«FOR c: doc.chapters»
-				«c.genTocEntry»
+				«c.genTocEntry(uriUtil)»
 			«ENDFOR»			
 			«FOR p: doc.parts»
-				«p.genTocEntry»
+				«p.genTocEntry(uriUtil)»
 			«ENDFOR»
 		</toc>
 	'''
 
-	def genTocEntry(Chapter c) '''
-		<topic href="contents/«c.fullURL»" label="«c.title.genPlainText»" >
+	def genTocEntry(Chapter c, EclipseHelpUriUtil uriUtil) '''
+		<topic href="contents/«uriUtil.getTargetURI(c)»" label="«c.title.genPlainText»" >
 			«FOR ss: c.subSections»
-				«ss.genTocEntry»
+				«ss.genTocEntry(uriUtil)»
 			«ENDFOR»
 		</topic>
 	'''
 
-	def genTocEntry(AbstractSection section) '''
-		<topic href="contents/«section.fullURL»" label="«section.title.genPlainText»" >
+	def genTocEntry(AbstractSection section, EclipseHelpUriUtil uriUtil) '''
+		<topic href="contents/«uriUtil.getTargetURI(section)»" label="«section.title.genPlainText»" >
 			«FOR ss:section.sections»
-				«ss.genTocEntry»
+				«ss.genTocEntry(uriUtil)»
 			«ENDFOR»
 		</topic>
 	'''

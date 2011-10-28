@@ -76,7 +76,7 @@ class EclipseHelpGenerator implements IGenerator {
 	}
 
 	def generate(Document document, IFileSystemAccess access) {
-		access.generateFile("toc.xml", document.generateToc)
+		access.generateFile("toc.xml", document.generateToc(uriUtil))
 		access.generateFile(document.fullURL.decode, document.generateRootDocument)
 		for(c:document.chapters){
 			c.generate(access)
