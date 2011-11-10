@@ -113,10 +113,7 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
 	@Check()
 	public void checkReferencedLabelIncluded(Ref ref) {
-
 		IResourceDescription rd = rdm.getResourceDescription(ref.eResource());
-		Iterable<IResourceDescription> rds = index.getAllResourceDescriptions();
-
 		Set<QualifiedName> exportedNames = Sets.newHashSet(Iterables.transform(rd.getExportedObjects(),
 				new Function<IEObjectDescription, QualifiedName>(){
 			public QualifiedName apply(IEObjectDescription from) {

@@ -592,7 +592,8 @@ public class EclipseHelpGenerator implements IGenerator {
           Identifiable _ref_2 = ref.getRef();
           String _name = _ref_2.getName();
           _builder_1.append(_name, "");
-          _builder_1.append("</a>");} else {
+          _builder_1.append("</a>");
+        } else {
           _builder_1.append("<a href=\"");
           URI _targetURI_1 = this.uriUtil.getTargetURI(ref);
           _builder_1.append(_targetURI_1, "");

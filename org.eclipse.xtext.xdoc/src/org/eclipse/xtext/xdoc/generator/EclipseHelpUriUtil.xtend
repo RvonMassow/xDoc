@@ -50,7 +50,7 @@ class EclipseHelpUriUtil {
 			println("error: Cannot resolve reference to " + ref.name + " from " + ref.eResource.URI)
 			null as URI
 		} else {
-			fileSection.targetURI().appendFragment(ref.name).deresolve(doc.targetURI)
+			fileSection.targetURI().appendFragment(ref.localId).deresolve(doc.targetURI)
 		}
 	}
 	
@@ -63,7 +63,7 @@ class EclipseHelpUriUtil {
 			default: {
 				val container = it.getContainerOfType(typeof(AbstractSection))
 				val fileSection = section2fileSection.get(container)
-				fileSection.targetURI().appendFragment(it.name).deresolve(doc.targetURI)
+				fileSection.targetURI().appendFragment(it.localId).deresolve(doc.targetURI)
 			}
 		}
 	}

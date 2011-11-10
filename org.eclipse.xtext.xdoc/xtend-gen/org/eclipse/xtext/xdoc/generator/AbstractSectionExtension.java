@@ -88,28 +88,28 @@ public class AbstractSectionExtension {
   }
   
   public List<? extends AbstractSection> sections(final AbstractSection chapter) {
-    if ((chapter instanceof ChapterRef)) {
+    if (chapter instanceof ChapterRef) {
       return _sections((ChapterRef)chapter);
-    } else if ((chapter instanceof PartRef)) {
+    } else if (chapter instanceof PartRef) {
       return _sections((PartRef)chapter);
-    } else if ((chapter instanceof Section2Ref)) {
+    } else if (chapter instanceof Section2Ref) {
       return _sections((Section2Ref)chapter);
-    } else if ((chapter instanceof SectionRef)) {
+    } else if (chapter instanceof SectionRef) {
       return _sections((SectionRef)chapter);
-    } else if ((chapter instanceof Chapter)) {
+    } else if (chapter instanceof Chapter) {
       return _sections((Chapter)chapter);
-    } else if ((chapter instanceof Document)) {
+    } else if (chapter instanceof Document) {
       return _sections((Document)chapter);
-    } else if ((chapter instanceof Part)) {
+    } else if (chapter instanceof Part) {
       return _sections((Part)chapter);
-    } else if ((chapter instanceof Section)) {
+    } else if (chapter instanceof Section) {
       return _sections((Section)chapter);
-    } else if ((chapter instanceof Section2)) {
+    } else if (chapter instanceof Section2) {
       return _sections((Section2)chapter);
-    } else if ((chapter instanceof Section3)) {
+    } else if (chapter instanceof Section3) {
       return _sections((Section3)chapter);
     } else {
-      return _sections((AbstractSection)chapter);
+      return _sections(chapter);
     }
   }
 }

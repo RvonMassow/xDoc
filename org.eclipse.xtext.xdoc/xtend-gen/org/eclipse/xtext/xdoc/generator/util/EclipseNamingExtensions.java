@@ -62,7 +62,8 @@ public class EclipseNamingExtensions {
         boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
         if (_operator_notEquals) {
           String _name_1 = identifiable.getName();
-          return _name_1;
+          String _encodeFragment = URI.encodeFragment(_name_1, false);
+          return _encodeFragment;
         }
         EObject _eContainer = identifiable.eContainer();
         final AbstractSection parent = ((AbstractSection) _eContainer);

@@ -107,8 +107,8 @@ public class EclipseHelpUriUtil {
       } else {
         URI _targetURI = this.targetURI(fileSection);
         Identifiable _ref_3 = it.getRef();
-        String _name_1 = _ref_3.getName();
-        URI _appendFragment = _targetURI.appendFragment(_name_1);
+        String _localId = this.eclipseNamingExtensions.getLocalId(_ref_3);
+        URI _appendFragment = _targetURI.appendFragment(_localId);
         URI _targetURI_1 = this.targetURI(this.doc);
         URI _deresolve = _appendFragment.deresolve(_targetURI_1);
         _xifexpression = _deresolve;
@@ -166,8 +166,8 @@ public class EclipseHelpUriUtil {
         AbstractSection _get = this.section2fileSection.get(container);
         final AbstractSection fileSection = _get;
         URI _targetURI_4 = this.targetURI(fileSection);
-        String _name = it.getName();
-        URI _appendFragment = _targetURI_4.appendFragment(_name);
+        String _localId = this.eclipseNamingExtensions.getLocalId(it);
+        URI _appendFragment = _targetURI_4.appendFragment(_localId);
         URI _targetURI_5 = this.targetURI(this.doc);
         URI _deresolve = _appendFragment.deresolve(_targetURI_5);
         _xblockexpression = (_deresolve);

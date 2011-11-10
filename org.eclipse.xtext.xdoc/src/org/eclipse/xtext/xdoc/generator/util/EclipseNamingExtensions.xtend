@@ -10,6 +10,7 @@ import org.eclipse.xtext.xdoc.xdoc.PartRef
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref
 import org.eclipse.xtext.xdoc.xdoc.SectionRef
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
+import org.eclipse.emf.common.util.URI
 
 class EclipseNamingExtensions {
 
@@ -22,7 +23,7 @@ class EclipseNamingExtensions {
 			Section2Ref : identifiable.section2.localId			
 			default : {
 				if (identifiable.name != null)
-					return identifiable.name
+					return URI::encodeFragment(identifiable.name, false)
 				val parent = identifiable.eContainer as AbstractSection
 				if (parent == null)
 					return "0"

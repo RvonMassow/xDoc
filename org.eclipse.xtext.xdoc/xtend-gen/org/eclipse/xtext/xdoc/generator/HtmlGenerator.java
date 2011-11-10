@@ -1120,7 +1120,8 @@ public class HtmlGenerator implements IGenerator {
           Identifiable _ref_3 = ref.getRef();
           String _name = _ref_3.getName();
           _builder_1.append(_name, "");
-          _builder_1.append("</a>");} else {
+          _builder_1.append("</a>");
+        } else {
           _builder_1.append("<a href=\"");
           Identifiable _ref_4 = ref.getRef();
           String _fullPHPURL_1 = this.naming.getFullPHPURL(_ref_4);
@@ -1154,7 +1155,8 @@ public class HtmlGenerator implements IGenerator {
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_text, null);
       if (_operator_notEquals) {
         String _text_1 = link.getText();
-        _builder.append(_text_1, "");} else {
+        _builder.append(_text_1, "");
+      } else {
         String _url_1 = link.getUrl();
         _builder.append(_url_1, "");
       }
@@ -1308,7 +1310,8 @@ public class HtmlGenerator implements IGenerator {
           String _unescapeXdocChars_4 = this.utils.unescapeXdocChars(_clazz_1);
           _builder.append(_unescapeXdocChars_4, "		");
           _builder.append("\" ");
-          _builder.newLineIfNotEmpty();} else {
+          _builder.newLineIfNotEmpty();
+        } else {
           _builder.append("\t\t");
           _builder.append("width=\"600px\"");
           _builder.newLine();
@@ -1450,22 +1453,22 @@ public class HtmlGenerator implements IGenerator {
   }
   
   public CharSequence generate(final AbstractSection chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
-    if ((chap instanceof ChapterRef)) {
-      return _generate((ChapterRef)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section2Ref)) {
-      return _generate((Section2Ref)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof SectionRef)) {
-      return _generate((SectionRef)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Chapter)) {
-      return _generate((Chapter)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section)) {
-      return _generate((Section)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section2)) {
-      return _generate((Section2)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section3)) {
-      return _generate((Section3)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
-    } else if ((chap instanceof Section4)) {
-      return _generate((Section4)chap, (IFileSystemAccess)fsa, (CharSequence)leftNav, (CharSequence)leftNavUnfoldSubTocId);
+    if (chap instanceof ChapterRef) {
+      return _generate((ChapterRef)chap, fsa, leftNav, leftNavUnfoldSubTocId);
+    } else if (chap instanceof Section2Ref) {
+      return _generate((Section2Ref)chap, fsa, leftNav, leftNavUnfoldSubTocId);
+    } else if (chap instanceof SectionRef) {
+      return _generate((SectionRef)chap, fsa, leftNav, leftNavUnfoldSubTocId);
+    } else if (chap instanceof Chapter) {
+      return _generate((Chapter)chap, fsa, leftNav, leftNavUnfoldSubTocId);
+    } else if (chap instanceof Section) {
+      return _generate((Section)chap, fsa, leftNav, leftNavUnfoldSubTocId);
+    } else if (chap instanceof Section2) {
+      return _generate((Section2)chap, fsa, leftNav, leftNavUnfoldSubTocId);
+    } else if (chap instanceof Section3) {
+      return _generate((Section3)chap, fsa, leftNav, leftNavUnfoldSubTocId);
+    } else if (chap instanceof Section4) {
+      return _generate((Section4)chap, fsa, leftNav, leftNavUnfoldSubTocId);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(chap, fsa, leftNav, leftNavUnfoldSubTocId).toString());
@@ -1473,51 +1476,51 @@ public class HtmlGenerator implements IGenerator {
   }
   
   public CharSequence tocEntry(final AbstractSection chapter) {
-    if ((chapter instanceof Chapter)) {
+    if (chapter instanceof Chapter) {
       return _tocEntry((Chapter)chapter);
     } else {
-      return _tocEntry((AbstractSection)chapter);
+      return _tocEntry(chapter);
     }
   }
   
   public CharSequence leftNavTocEntry(final AbstractSection chapter) {
-    if ((chapter instanceof Chapter)) {
+    if (chapter instanceof Chapter) {
       return _leftNavTocEntry((Chapter)chapter);
-    } else if ((chapter instanceof Part)) {
+    } else if (chapter instanceof Part) {
       return _leftNavTocEntry((Part)chapter);
     } else {
-      return _leftNavTocEntry((AbstractSection)chapter);
+      return _leftNavTocEntry(chapter);
     }
   }
   
   public CharSequence genText(final EObject a) {
-    if ((a instanceof Anchor)) {
+    if (a instanceof Anchor) {
       return _genText((Anchor)a);
-    } else if ((a instanceof CodeBlock)) {
+    } else if (a instanceof CodeBlock) {
       return _genText((CodeBlock)a);
-    } else if ((a instanceof CodeRef)) {
+    } else if (a instanceof CodeRef) {
       return _genText((CodeRef)a);
-    } else if ((a instanceof Emphasize)) {
+    } else if (a instanceof Emphasize) {
       return _genText((Emphasize)a);
-    } else if ((a instanceof ImageRef)) {
+    } else if (a instanceof ImageRef) {
       return _genText((ImageRef)a);
-    } else if ((a instanceof Link)) {
+    } else if (a instanceof Link) {
       return _genText((Link)a);
-    } else if ((a instanceof OrderedList)) {
+    } else if (a instanceof OrderedList) {
       return _genText((OrderedList)a);
-    } else if ((a instanceof Ref)) {
+    } else if (a instanceof Ref) {
       return _genText((Ref)a);
-    } else if ((a instanceof Table)) {
+    } else if (a instanceof Table) {
       return _genText((Table)a);
-    } else if ((a instanceof Todo)) {
+    } else if (a instanceof Todo) {
       return _genText((Todo)a);
-    } else if ((a instanceof UnorderedList)) {
+    } else if (a instanceof UnorderedList) {
       return _genText((UnorderedList)a);
-    } else if ((a instanceof Item)) {
+    } else if (a instanceof Item) {
       return _genText((Item)a);
-    } else if ((a instanceof TextOrMarkup)) {
+    } else if (a instanceof TextOrMarkup) {
       return _genText((TextOrMarkup)a);
-    } else if ((a instanceof TextPart)) {
+    } else if (a instanceof TextPart) {
       return _genText((TextPart)a);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +

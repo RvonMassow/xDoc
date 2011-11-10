@@ -226,7 +226,8 @@ public class PHPPhoenixGenerator {
       if ((as instanceof Section)) {
         _builder.append("\t");
         _builder.append("var subToc = document.getElementById(ActiveSubTocElementId).parentNode;");
-        _builder.newLine();} else {
+        _builder.newLine();
+      } else {
         _builder.append("\t");
         _builder.append("var subToc = document.getElementById(\\\'subToc_\\\' + ActiveSubTocElementId);");
         _builder.newLine();
@@ -346,10 +347,10 @@ public class PHPPhoenixGenerator {
   }
   
   public void generatePHP(final AbstractSection doc, final IFileSystemAccess fsa) {
-    if ((doc instanceof Document)) {
-      _generatePHP((Document)doc, (IFileSystemAccess)fsa);
+    if (doc instanceof Document) {
+      _generatePHP((Document)doc, fsa);
     } else {
-      _generatePHP((AbstractSection)doc, (IFileSystemAccess)fsa);
+      _generatePHP(doc, fsa);
     }
   }
 }

@@ -1017,7 +1017,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         Identifiable _ref = ref.getRef();
         String _name = _ref.getName();
         _builder.append(_name, "");
-        _builder.append("}");} else {
+        _builder.append("}");
+      } else {
         _builder.append("\\hyperref[");
         Identifiable _ref_1 = ref.getRef();
         String _name_1 = _ref_1.getName();
@@ -1360,11 +1361,11 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   public StringConcatenation generate(final EObject doc) {
-    if ((doc instanceof Document)) {
+    if (doc instanceof Document) {
       return _generate((Document)doc);
-    } else if ((doc instanceof AbstractSection)) {
+    } else if (doc instanceof AbstractSection) {
       return _generate((AbstractSection)doc);
-    } else if ((doc instanceof LangDef)) {
+    } else if (doc instanceof LangDef) {
       return _generate((LangDef)doc);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
@@ -1373,19 +1374,19 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   public StringConcatenation genContent(final EObject chap) {
-    if ((chap instanceof Chapter)) {
+    if (chap instanceof Chapter) {
       return _genContent((Chapter)chap);
-    } else if ((chap instanceof Part)) {
+    } else if (chap instanceof Part) {
       return _genContent((Part)chap);
-    } else if ((chap instanceof Section)) {
+    } else if (chap instanceof Section) {
       return _genContent((Section)chap);
-    } else if ((chap instanceof Section2)) {
+    } else if (chap instanceof Section2) {
       return _genContent((Section2)chap);
-    } else if ((chap instanceof Section3)) {
+    } else if (chap instanceof Section3) {
       return _genContent((Section3)chap);
-    } else if ((chap instanceof Section4)) {
+    } else if (chap instanceof Section4) {
       return _genContent((Section4)chap);
-    } else if ((chap instanceof TextOrMarkup)) {
+    } else if (chap instanceof TextOrMarkup) {
       return _genContent((TextOrMarkup)chap);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
@@ -1394,27 +1395,27 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   public StringConcatenation genLabel(final EObject cRef) {
-    if ((cRef instanceof ChapterRef)) {
+    if (cRef instanceof ChapterRef) {
       return _genLabel((ChapterRef)cRef);
-    } else if ((cRef instanceof PartRef)) {
+    } else if (cRef instanceof PartRef) {
       return _genLabel((PartRef)cRef);
-    } else if ((cRef instanceof Section2Ref)) {
+    } else if (cRef instanceof Section2Ref) {
       return _genLabel((Section2Ref)cRef);
-    } else if ((cRef instanceof SectionRef)) {
+    } else if (cRef instanceof SectionRef) {
       return _genLabel((SectionRef)cRef);
-    } else if ((cRef instanceof Chapter)) {
+    } else if (cRef instanceof Chapter) {
       return _genLabel((Chapter)cRef);
-    } else if ((cRef instanceof Part)) {
+    } else if (cRef instanceof Part) {
       return _genLabel((Part)cRef);
-    } else if ((cRef instanceof Section)) {
+    } else if (cRef instanceof Section) {
       return _genLabel((Section)cRef);
-    } else if ((cRef instanceof Section2)) {
+    } else if (cRef instanceof Section2) {
       return _genLabel((Section2)cRef);
-    } else if ((cRef instanceof Section3)) {
+    } else if (cRef instanceof Section3) {
       return _genLabel((Section3)cRef);
-    } else if ((cRef instanceof Section4)) {
+    } else if (cRef instanceof Section4) {
       return _genLabel((Section4)cRef);
-    } else if ((cRef instanceof TextOrMarkup)) {
+    } else if (cRef instanceof TextOrMarkup) {
       return _genLabel((TextOrMarkup)cRef);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
@@ -1423,41 +1424,41 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   public CharSequence genText(final Object anchor) {
-    if ((anchor instanceof Anchor)) {
+    if (anchor instanceof Anchor) {
       return _genText((Anchor)anchor);
-    } else if ((anchor instanceof CodeBlock)) {
+    } else if (anchor instanceof CodeBlock) {
       return _genText((CodeBlock)anchor);
-    } else if ((anchor instanceof CodeRef)) {
+    } else if (anchor instanceof CodeRef) {
       return _genText((CodeRef)anchor);
-    } else if ((anchor instanceof Emphasize)) {
+    } else if (anchor instanceof Emphasize) {
       return _genText((Emphasize)anchor);
-    } else if ((anchor instanceof ImageRef)) {
+    } else if (anchor instanceof ImageRef) {
       return _genText((ImageRef)anchor);
-    } else if ((anchor instanceof Link)) {
+    } else if (anchor instanceof Link) {
       return _genText((Link)anchor);
-    } else if ((anchor instanceof OrderedList)) {
+    } else if (anchor instanceof OrderedList) {
       return _genText((OrderedList)anchor);
-    } else if ((anchor instanceof Ref)) {
+    } else if (anchor instanceof Ref) {
       return _genText((Ref)anchor);
-    } else if ((anchor instanceof Table)) {
+    } else if (anchor instanceof Table) {
       return _genText((Table)anchor);
-    } else if ((anchor instanceof Todo)) {
+    } else if (anchor instanceof Todo) {
       return _genText((Todo)anchor);
-    } else if ((anchor instanceof UnorderedList)) {
+    } else if (anchor instanceof UnorderedList) {
       return _genText((UnorderedList)anchor);
-    } else if ((anchor instanceof Item)) {
+    } else if (anchor instanceof Item) {
       return _genText((Item)anchor);
-    } else if ((anchor instanceof MarkupInCode)) {
+    } else if (anchor instanceof MarkupInCode) {
       return _genText((MarkupInCode)anchor);
-    } else if ((anchor instanceof TableData)) {
+    } else if (anchor instanceof TableData) {
       return _genText((TableData)anchor);
-    } else if ((anchor instanceof TableRow)) {
+    } else if (anchor instanceof TableRow) {
       return _genText((TableRow)anchor);
-    } else if ((anchor instanceof TextPart)) {
+    } else if (anchor instanceof TextPart) {
       return _genText((TextPart)anchor);
-    } else if ((anchor instanceof String)) {
+    } else if (anchor instanceof String) {
       return _genText((String)anchor);
-    } else if ((anchor instanceof EObject)) {
+    } else if (anchor instanceof EObject) {
       return _genText((EObject)anchor);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
@@ -1466,12 +1467,12 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   public CharSequence genCode(final Object code) {
-    if ((code instanceof Code)) {
+    if (code instanceof Code) {
       return _genCode((Code)code);
-    } else if ((code instanceof MarkupInCode)) {
+    } else if (code instanceof MarkupInCode) {
       return _genCode((MarkupInCode)code);
     } else {
-      return _genCode((Object)code);
+      return _genCode(code);
     }
   }
 }

@@ -95,7 +95,8 @@ public class PlainText {
             _builder.append(_genPlainText, "");
             _builder.newLineIfNotEmpty();
           }
-        }} else {
+        }
+      } else {
         Identifiable _ref = ref.getRef();
         String _name = _ref.getName();
         _builder.append(_name, "");
@@ -137,24 +138,24 @@ public class PlainText {
   }
   
   public CharSequence genPlainText(final Object cb) {
-    if ((cb instanceof CodeBlock)) {
+    if (cb instanceof CodeBlock) {
       return _genPlainText((CodeBlock)cb);
-    } else if ((cb instanceof CodeRef)) {
+    } else if (cb instanceof CodeRef) {
       return _genPlainText((CodeRef)cb);
-    } else if ((cb instanceof Emphasize)) {
+    } else if (cb instanceof Emphasize) {
       return _genPlainText((Emphasize)cb);
-    } else if ((cb instanceof Link)) {
+    } else if (cb instanceof Link) {
       return _genPlainText((Link)cb);
-    } else if ((cb instanceof Ref)) {
+    } else if (cb instanceof Ref) {
       return _genPlainText((Ref)cb);
-    } else if ((cb instanceof TextOrMarkup)) {
+    } else if (cb instanceof TextOrMarkup) {
       return _genPlainText((TextOrMarkup)cb);
-    } else if ((cb instanceof TextPart)) {
+    } else if (cb instanceof TextPart) {
       return _genPlainText((TextPart)cb);
-    } else if ((cb == null)) {
+    } else if (cb == null) {
       return _genPlainText((Void)null);
     } else {
-      return _genPlainText((Object)cb);
+      return _genPlainText(cb);
     }
   }
 }
