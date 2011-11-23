@@ -1,10 +1,12 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
+import java.io.File;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
+import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.Outlets;
@@ -102,70 +104,92 @@ public class PHPPhoenixGenerator {
       _builder.append("?>");
       _builder.newLine();
       fsa.generateFile("index.php", Outlets.WEB_SITE, _builder);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("<?php");
-      _builder_1.newLine();
-      _builder_1.newLine();
-      _builder_1.append("# Set the theme for your project\'s web pages.");
-      _builder_1.newLine();
-      _builder_1.append("# See the Committer Tools \"How Do I\" for list of themes");
-      _builder_1.newLine();
-      _builder_1.append("# https://dev.eclipse.org/committers/");
-      _builder_1.newLine();
-      _builder_1.append("# Optional: defaults to system theme ");
-      _builder_1.newLine();
-      _builder_1.append("$theme = \"Nova\";");
-      _builder_1.newLine();
-      _builder_1.newLine();
-      _builder_1.append("# Define your project-wide Nav bars here.");
-      _builder_1.newLine();
-      _builder_1.append("# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)");
-      _builder_1.newLine();
-      _builder_1.append("# these are optional");
-      _builder_1.newLine();
-      _builder_1.append("# $Nav->setLinkList(array());");
-      _builder_1.newLine();
-      _builder_1.newLine();
-      _builder_1.append("$pageKeywords\t= \"xtext, dsl, modeling, domain specific language, textual\";");
-      _builder_1.newLine();
-      {
-        TextOrMarkup _authors = doc.getAuthors();
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_authors, null);
-        if (_operator_notEquals) {
-          _builder_1.append("$pageAuthor\t\t= \"");
-          TextOrMarkup _authors_1 = doc.getAuthors();
-          CharSequence _genPlainText_1 = this.pt.genPlainText(_authors_1);
-          _builder_1.append(_genPlainText_1, "");
-          _builder_1.append("\";");
+      String _operator_plus = StringExtensions.operator_plus(Outlets.WEB_SITE_PATH_NAME, "/");
+      String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, "include.php");
+      File _file = new File(_operator_plus_1);
+      boolean _exists = _file.exists();
+      boolean _operator_not = BooleanExtensions.operator_not(_exists);
+      if (_operator_not) {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("<?php");
+        _builder_1.newLine();
+        _builder_1.newLine();
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# Set the theme for your project\'s web pages.");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# See the Committer Tools \"How Do I\" for list of themes");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# https://dev.eclipse.org/committers/");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# Optional: defaults to system theme ");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("$theme = \"Nova\";");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# Define your project-wide Nav bars here.");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# Format is Link text, link URL (can be http://www.someothersite.com/), target (_self, _blank), level (1, 2 or 3)");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# these are optional");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("# $Nav->setLinkList(array());");
+        _builder_1.newLine();
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        {
+          TextOrMarkup _authors = doc.getAuthors();
+          boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_authors, null);
+          if (_operator_notEquals) {
+            _builder_1.append("$pageAuthor\t\t= \"");
+            TextOrMarkup _authors_1 = doc.getAuthors();
+            CharSequence _genPlainText_1 = this.pt.genPlainText(_authors_1);
+            _builder_1.append(_genPlainText_1, "	");
+            _builder_1.append("\";");
+          }
         }
-      }
-      _builder_1.newLineIfNotEmpty();
-      {
-        TextOrMarkup _title_1 = doc.getTitle();
-        boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(_title_1, null);
-        if (_operator_notEquals_1) {
-          _builder_1.append("$pageTitle \t\t= \"");
-          TextOrMarkup _title_2 = doc.getTitle();
-          CharSequence _genPlainText_2 = this.pt.genPlainText(_title_2);
-          _builder_1.append(_genPlainText_2, "");
-          _builder_1.append("\";");
+        _builder_1.newLineIfNotEmpty();
+        _builder_1.append("\t");
+        {
+          TextOrMarkup _title_1 = doc.getTitle();
+          boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(_title_1, null);
+          if (_operator_notEquals_1) {
+            _builder_1.append("$pageTitle \t\t= \"");
+            TextOrMarkup _title_2 = doc.getTitle();
+            CharSequence _genPlainText_2 = this.pt.genPlainText(_title_2);
+            _builder_1.append(_genPlainText_2, "	");
+            _builder_1.append("\";");
+          }
         }
+        _builder_1.newLineIfNotEmpty();
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"code.css\"/>\' . \"\\n\\t\");");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"book.css\"/>\' . \"\\n\\t\");");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"novaAddon.css\"/>\' . \"\\n\\t\");");
+        _builder_1.newLine();
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("$App->Promotion = TRUE;");
+        _builder_1.newLine();
+        _builder_1.append("\t");
+        _builder_1.append("?>");
+        _builder_1.newLine();
+        fsa.generateFile("include.php", Outlets.WEB_SITE, _builder_1);
       }
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.newLine();
-      _builder_1.newLine();
-      _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"code.css\"/>\' . \"\\n\\t\");");
-      _builder_1.newLine();
-      _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"book.css\"/>\' . \"\\n\\t\");");
-      _builder_1.newLine();
-      _builder_1.append("$App->AddExtraHtmlHeader(\'<link rel=\"stylesheet\" type=\"text/css\" href=\"novaAddon.css\"/>\' . \"\\n\\t\");");
-      _builder_1.newLine();
-      _builder_1.newLine();
-      _builder_1.append("$App->Promotion = TRUE;");
-      _builder_1.newLine();
-      _builder_1.append("?>");
-      _builder_1.newLine();
-      fsa.generateFile("include.php", Outlets.WEB_SITE, _builder_1);
   }
   
   public CharSequence genScriptsAndStyles(final AbstractSection as) {

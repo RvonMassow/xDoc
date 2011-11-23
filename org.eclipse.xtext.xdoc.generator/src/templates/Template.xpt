@@ -35,6 +35,10 @@ ENDIF»
     \raggedsection\normalfont\sectfont\nobreak\size@subsection
   }%
 }
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\sffamily\normalsize\bfseries}}
 \makeatother
 \definecolor{listingsbg}{HTML}{E7E7E7}
 \definecolor{kwcolor}{HTML}{7F0055}
@@ -181,7 +185,8 @@ ENDDEFINE»
 
 «DEFINE specialGenCode FOR CodeBlock»«
  IF inline(this)»\lstinline[breakatwhitespace=false,breaklines=true«IF language!=null»,language=«this.language.name»«ENDIF»]°«EXPAND genCode FOREACH removeIndent(this).contents»°«
- ELSE»\begin{lstlisting}«IF language!=null»[language=«this.language.name»]«
+ ELSE»
+ \begin{lstlisting}«IF language!=null»[language=«this.language.name»]«
  ENDIF»
 «EXPAND genCode FOREACH removeIndent(this).contents SEPARATOR "\n"»
 \end{lstlisting}

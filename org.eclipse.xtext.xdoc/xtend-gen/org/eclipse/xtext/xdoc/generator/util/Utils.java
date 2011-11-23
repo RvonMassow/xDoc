@@ -143,7 +143,7 @@ public class Utils {
           public Boolean apply(final LangDef e) {
             String _name = e.getName();
             boolean _operator_equals = ObjectExtensions.operator_equals(_name, "__XdocDefaultLanguage__");
-            return ((Boolean)_operator_equals);
+            return Boolean.valueOf(_operator_equals);
           }
         };
       LangDef _findFirst = IterableExtensions.<LangDef>findFirst(_langDefs, _function);

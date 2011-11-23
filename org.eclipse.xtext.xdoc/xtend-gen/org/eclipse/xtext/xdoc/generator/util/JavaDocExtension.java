@@ -33,7 +33,7 @@ public class JavaDocExtension {
         boolean _startsWith_1 = name.startsWith("org.eclipse.xtext.");
         if (_startsWith_1) {
           matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.1.1/";
+          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.2.0/";
         }
       }
       if (!matched) {

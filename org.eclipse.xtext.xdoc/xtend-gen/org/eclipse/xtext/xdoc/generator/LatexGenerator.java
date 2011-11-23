@@ -23,6 +23,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -241,10 +242,35 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
+    _builder.append("\\renewcommand\\paragraph{\\@startsection{paragraph}{4}{\\z@}%");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("{-3.25ex\\@plus -1ex \\@minus -.2ex}%");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("{1.5ex \\@plus .2ex}%");
+    _builder.newLine();
+    _builder.append("  ");
+    _builder.append("{\\sffamily\\normalsize\\bfseries}}");
+    _builder.newLine();
     _builder.append("\\makeatother");
     _builder.newLine();
     _builder.newLine();
-    _builder.append("\\lstset{tabsize=4, basicstyle=\\sffamily\\small, commentstyle=\\textsl, keywordstyle=\\bfseries, columns=[r]fullflexible, escapechar={\u00DF}}");
+    _builder.append("\\definecolor{listingsbg}{HTML}{E7E7E7}");
+    _builder.newLine();
+    _builder.append("\\definecolor{kwcolor}{HTML}{7F0055}");
+    _builder.newLine();
+    _builder.append("\\definecolor{strcolor}{HTML}{2A00FF}");
+    _builder.newLine();
+    _builder.append("\\definecolor{cocolor}{HTML}{3F7F5F}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\\lstset{tabsize=4, basicstyle=\\sffamily\\small, keywordstyle=\\bfseries\\color{kwcolor}, commentstyle=\\color{cocolor},");
+    _builder.newLine();
+    _builder.append("stringstyle=\\color{strcolor}, columns=[r]fullflexible, escapechar={\u00DF}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, ");
+    _builder.newLine();
+    _builder.append("xleftmargin=5pt, xrightmargin=5pt, rulecolor=\\color{lightgray}, showstringspaces=false, backgroundcolor=\\color{listingsbg!70}}");
+    _builder.newLine();
     _builder.newLine();
     _builder.append("\\newlength{\\XdocItemIndent}");
     _builder.newLine();
@@ -258,7 +284,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       Object _get = this.config.get(Config.release);
-      if (((Boolean) _get)) {
+      if ((((Boolean) _get)).booleanValue()) {
         _builder.append("\\renewcommand{\\todo}[1]{}");
         _builder.newLine();
       }
@@ -840,6 +866,7 @@ public class LatexGenerator implements IConfigurableGenerator {
    */
   protected CharSequence _genText(final Table tab) {
     StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
     _builder.append("\\setlength{\\XdocTEffectiveWidth}{\\textwidth}");
     _builder.newLine();
     _builder.append("\\addtolength{\\XdocTEffectiveWidth}{-");
@@ -1089,7 +1116,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   protected CharSequence _genText(final ImageRef imgRef) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\begin{figure}[!h]");
+    _builder.append("\\begin{figure}[!ht]");
     _builder.newLine();
     _builder.append("\\centering");
     _builder.newLine();
@@ -1132,8 +1159,6 @@ public class LatexGenerator implements IConfigurableGenerator {
         final ByteBuffer buffer = _allocateDirect;
         URI _uRI = res.getURI();
         final URI uri = _uRI;
-        String relOutDirRoot = "";
-        String inDir = "";
         ResourceSet _resourceSet = res.getResourceSet();
         URIConverter _uRIConverter = _resourceSet.getURIConverter();
         final URIConverter uriConverter = _uRIConverter;
@@ -1194,9 +1219,14 @@ public class LatexGenerator implements IConfigurableGenerator {
         outChannel.close();
         return pathInDocument;
       }
-    } catch (final Exception e) {
-      RuntimeException _runtimeException = new RuntimeException(e);
-      throw _runtimeException;
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        RuntimeException _runtimeException = new RuntimeException(e);
+        throw _runtimeException;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
   

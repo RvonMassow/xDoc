@@ -23,6 +23,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -104,9 +105,14 @@ public class HtmlGenerator implements IGenerator {
           this.generate(((Document) _mainSection_1), fsa);
         }
       }
-    } catch (final Exception e) {
-      RuntimeException _runtimeException = new RuntimeException(e);
-      throw _runtimeException;
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        RuntimeException _runtimeException = new RuntimeException(e);
+        throw _runtimeException;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
   
@@ -1360,8 +1366,6 @@ public class HtmlGenerator implements IGenerator {
         final ByteBuffer buffer = _allocateDirect;
         URI _uRI = res.getURI();
         final URI uri = _uRI;
-        String relOutDirRoot = "";
-        String inDir = "";
         boolean _isPlatformResource = uri.isPlatformResource();
         if (_isPlatformResource) {
           {
@@ -1418,9 +1422,14 @@ public class HtmlGenerator implements IGenerator {
           }
         }
       }
-    } catch (final Exception e) {
-      RuntimeException _runtimeException = new RuntimeException(e);
-      throw _runtimeException;
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        RuntimeException _runtimeException = new RuntimeException(e);
+        throw _runtimeException;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
   

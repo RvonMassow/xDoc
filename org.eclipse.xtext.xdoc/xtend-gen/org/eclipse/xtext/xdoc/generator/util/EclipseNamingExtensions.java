@@ -74,7 +74,7 @@ public class EclipseNamingExtensions {
           String _operator_plus = StringExtensions.operator_plus(_localId, "_");
           EList<EObject> _eContents = parent.eContents();
           int _indexOf = _eContents.indexOf(identifiable);
-          String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
+          String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, Integer.valueOf(_indexOf));
           return _operator_plus_1;
         }
       }
@@ -141,7 +141,7 @@ public class EclipseNamingExtensions {
         EObject _eContainer_1 = _part.eContainer();
         EList<EObject> _eContents = _eContainer_1.eContents();
         int _indexOf = _eContents.indexOf(_part);
-        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, ((Integer)_indexOf));
+        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, Integer.valueOf(_indexOf));
         String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ".html");
         _switchResult = _operator_plus_2;
       }

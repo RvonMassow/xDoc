@@ -4,9 +4,9 @@ import com.google.inject.Inject
 import java.io.File
 import java.nio.ByteBuffer
 import java.nio.channels.Channels
+import java.util.HashMap
 import java.util.HashSet
 import java.util.List
-import java.util.HashMap
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
@@ -142,9 +142,21 @@ class LatexGenerator implements IConfigurableGenerator {
 		    \raggedsection\normalfont\sectfont\nobreak\size@subsection
 		  }%
 		}
+		\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+		  {-3.25ex\@plus -1ex \@minus -.2ex}%
+		  {1.5ex \@plus .2ex}%
+		  {\sffamily\normalsize\bfseries}}
 		\makeatother
 		
-		\lstset{tabsize=4, basicstyle=\sffamily\small, commentstyle=\textsl, keywordstyle=\bfseries, columns=[r]fullflexible, escapechar={ß}}
+		\definecolor{listingsbg}{HTML}{E7E7E7}
+		\definecolor{kwcolor}{HTML}{7F0055}
+		\definecolor{strcolor}{HTML}{2A00FF}
+		\definecolor{cocolor}{HTML}{3F7F5F}
+
+		\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries\color{kwcolor}, commentstyle=\color{cocolor},
+		stringstyle=\color{strcolor}, columns=[r]fullflexible, escapechar={ß}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, 
+		xleftmargin=5pt, xrightmargin=5pt, rulecolor=\color{lightgray}, showstringspaces=false, backgroundcolor=\color{listingsbg!70}}
+		
 		\newlength{\XdocItemIndent}
 		\newlength{\XdocTEffectiveWidth}
 		
@@ -377,6 +389,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	 * genText
 	 */
 	def dispatch genText(Table tab) '''
+		
 		\setlength{\XdocTEffectiveWidth}{\textwidth}
 		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
 		\noindent\begin{tabular}{«tab.rows.head.data.genColumns»}
@@ -451,7 +464,7 @@ class LatexGenerator implements IConfigurableGenerator {
 
 	def dispatch genText(ImageRef imgRef){
 		'''
-		\begin{figure}[!h]
+		\begin{figure}[!ht]
 		\centering
 		\includegraphics{«copy(imgRef)»}
 		«IF imgRef.caption != null && imgRef.caption.matches("^\\s*$")»
@@ -467,8 +480,6 @@ class LatexGenerator implements IConfigurableGenerator {
 			val res = imgRef.eResource
 			val buffer = ByteBuffer::allocateDirect(16 * 1024);
 			val uri = res.URI
-			var relOutDirRoot = ""
-			var inDir = ""
 			val uriConverter = res.resourceSet.URIConverter
 			val absoluteLocalPath = URI::createFileURI(new File("").absolutePath+"/")
 			val relativeImageURI = URI::createFileURI(imgRef.path)
@@ -554,10 +565,40 @@ class LatexGenerator implements IConfigurableGenerator {
 	/**
 	 * genColumns
 	 */
-	 def genColumns(List<TableData> tabData){
-	 	val colFract = new XFloat(1)/new XFloat(tabData.size)
-	 	'''«IF !tabData.empty»|«FOR td: tabData»p{«colFract»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''
-	 	//«/*{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}|*/»
-//	 	tabData.join('''p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''', "|")
-	 }
+	def genColumns(List<TableData> tabData){
+		val colFract = new XFloat(1)/new XFloat(tabData.size)
+		'''«IF !tabData.empty»|«FOR td: tabData»p{«colFract»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''
+		//«/*{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}|*/»
+//		tabData.join('''p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''', "|")
+	}
+
+//	def String calcStyle(ImageRef ref) {
+//		val uri = ref.eResource.getURI
+//		val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + ref.path)
+//		val img = ImageIO::createImageInputStream(new File(inPath.toFileString()));
+//		val imageReaders = ImageIO::getImageReaders(img);
+//		val ir = imageReaders.next()
+//		ir.setInput(img)
+//		val imageMetadata = ir.getImageMetadata(0)
+//		val n = imageMetadata.getAsTree("javax_imageio_1.0")
+//		n.childNodes.filter(cn | cn.nodeName == "Dimension")
+		// var ppmm = 2.835
+		
+//		for(Node cn = n.getFirstChild(); cn != null; cn = cn.getNextSibling()) {
+//			if(cn.getNodeName() == "Dimension") {
+//				for(Node ccn = cn.getFirstChild(); ccn != null; ccn = ccn.getNextSibling()){
+//					if(ccn.getNodeName().equals("HorizontalPixelSize")){
+//						ppmm = 1/ Float.parseFloat(ccn.getAttributes().item(0).getNodeValue());
+//					}
+//				}
+//			}
+//		}
+//		int width = ir.getWidth(0);
+//		float effectiveWidth = width/ppmm;
+//		if(effectiveWidth > 140){
+//			return "width=\\textwidth";
+//		} else
+//			return "";
+//		""
+//	}
 }

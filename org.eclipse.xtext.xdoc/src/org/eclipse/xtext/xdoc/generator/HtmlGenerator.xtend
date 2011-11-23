@@ -489,8 +489,6 @@ class HtmlGenerator implements IGenerator {
 		try{
 			val buffer = ByteBuffer::allocateDirect(16 * 1024);
 			val uri = res.URI
-			var relOutDirRoot = ""
-			var inDir = ""
 			if(uri.platformResource) {
 				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName)
 				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::WEB_SITE_PATH_NAME).toString + "/" + fromRelativeFileName.replaceAll("\\.\\.",""))

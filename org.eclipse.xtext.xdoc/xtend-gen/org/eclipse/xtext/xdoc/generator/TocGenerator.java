@@ -9,7 +9,6 @@ import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpUriUtil;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
-import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
@@ -27,9 +26,6 @@ public class TocGenerator {
   
   @Inject
   private PlainText plainText;
-  
-  @Inject
-  private Utils utils;
   
   public CharSequence generateToc(final Document doc, final EclipseHelpUriUtil uriUtil) {
     StringConcatenation _builder = new StringConcatenation();

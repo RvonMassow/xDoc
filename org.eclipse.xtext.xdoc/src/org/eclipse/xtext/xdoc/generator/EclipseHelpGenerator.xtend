@@ -1,7 +1,6 @@
 package org.eclipse.xtext.xdoc.generator
 
 import com.google.inject.Inject
-import java.io.File
 import java.nio.ByteBuffer
 import java.nio.channels.Channels
 import java.util.Collections
@@ -14,7 +13,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
-import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
 import org.eclipse.xtext.xdoc.generator.util.Utils
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
@@ -55,8 +53,6 @@ class EclipseHelpGenerator implements IGenerator {
 
 	@Inject extension Utils utils
 
-	@Inject extension GlossaryExtensions glossaryExtensions
-	
 	@Inject extension EclipseNamingExtensions eclipseNamingExtensions
 
 	@Inject extension TocGenerator tocGenerator
@@ -89,17 +85,16 @@ class EclipseHelpGenerator implements IGenerator {
 	def copy(URI fromAbsoluteURI, URI toAbsoluteURI, URIConverter converter) {
 		try{
 			val buffer = ByteBuffer::allocateDirect(16 * 1024);
-			val sepChar = File::separator
-				val inChannel = Channels::newChannel(converter.createInputStream(fromAbsoluteURI))
-				val outChannel = Channels::newChannel(converter.createOutputStream(toAbsoluteURI))
-				while (inChannel.read(buffer) != -1) {
-					buffer.flip();
-					outChannel.write(buffer);
-					buffer.compact();
-				}
+			val inChannel = Channels::newChannel(converter.createInputStream(fromAbsoluteURI))
+			val outChannel = Channels::newChannel(converter.createOutputStream(toAbsoluteURI))
+			while (inChannel.read(buffer) != -1) {
 				buffer.flip();
-				while (buffer.hasRemaining()) {
-					outChannel.write(buffer);
+				outChannel.write(buffer);
+				buffer.compact();
+			}
+			buffer.flip();
+			while (buffer.hasRemaining()) {
+				outChannel.write(buffer);
 				outChannel.close()
 			}
 		} catch (Exception e) {

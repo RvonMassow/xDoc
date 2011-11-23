@@ -1,7 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
-import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
@@ -24,6 +23,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -34,7 +34,6 @@ import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.TocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions;
-import org.eclipse.xtext.xdoc.generator.util.GlossaryExtensions;
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
@@ -77,9 +76,6 @@ public class EclipseHelpGenerator implements IGenerator {
   
   @Inject
   private Utils utils;
-  
-  @Inject
-  private GlossaryExtensions glossaryExtensions;
   
   @Inject
   private EclipseNamingExtensions eclipseNamingExtensions;
@@ -132,7 +128,6 @@ public class EclipseHelpGenerator implements IGenerator {
         int _operator_multiply = IntegerExtensions.operator_multiply(16, 1024);
         ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
         final ByteBuffer buffer = _allocateDirect;
-        final String sepChar = File.separator;
         InputStream _createInputStream = converter.createInputStream(fromAbsoluteURI);
         ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
         final ReadableByteChannel inChannel = _newChannel;
@@ -166,9 +161,14 @@ public class EclipseHelpGenerator implements IGenerator {
           _while_1 = _hasRemaining_1;
         }
       }
-    } catch (final Exception e) {
-      RuntimeException _runtimeException = new RuntimeException(e);
-      throw _runtimeException;
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        RuntimeException _runtimeException = new RuntimeException(e);
+        throw _runtimeException;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
     }
   }
   
@@ -1017,7 +1017,7 @@ public class EclipseHelpGenerator implements IGenerator {
         EList<EObject> _contents_4 = cb.getContents();
         EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
         CharSequence _generateCode_1 = this.generateCode(_head_1);
-        String _trimLines = this.trimLines(_generateCode_1, indentToRemove);
+        String _trimLines = this.trimLines(_generateCode_1, (indentToRemove).intValue());
         String _replaceAll = _trimLines.replaceAll("\\A(\\s*\n)*", "");
         final String first = _replaceAll;
         String _xifexpression_2 = null;
@@ -1030,7 +1030,7 @@ public class EclipseHelpGenerator implements IGenerator {
           EList<EObject> _contents_7 = cb.getContents();
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
           CharSequence _generateCode_2 = this.generateCode(_last_1);
-          String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
+          String _trimLines_1 = this.trimLines(_generateCode_2, (indentToRemove).intValue());
           String _replaceAll_1 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
           _xifexpression_2 = _replaceAll_1;
         } else {
@@ -1056,7 +1056,7 @@ public class EclipseHelpGenerator implements IGenerator {
         {
           for(final EObject code : list) {
             CharSequence _generateCode_3 = this.generateCode(code);
-            String _trimLines_2 = this.trimLines(_generateCode_3, indentToRemove);
+            String _trimLines_2 = this.trimLines(_generateCode_3, (indentToRemove).intValue());
             LangDef _language_2 = cb.getLanguage();
             String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2);
             _builder_1.append(_formatCode_2, "");
@@ -1082,7 +1082,7 @@ public class EclipseHelpGenerator implements IGenerator {
   
   public String trimLines(final CharSequence cs, final int amount) {
     String _string = cs.toString();
-    String _operator_plus = StringExtensions.operator_plus("\n\\s{", ((Integer)amount));
+    String _operator_plus = StringExtensions.operator_plus("\n\\s{", Integer.valueOf(amount));
     String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, "}");
     String _replaceAll = _string.replaceAll(_operator_plus_1, "\n");
     return _replaceAll;

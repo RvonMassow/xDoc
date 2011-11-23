@@ -15,7 +15,7 @@ public class GlossaryExtensions {
           public Boolean apply(final GlossaryEntry s) {
             String _name = s.getName();
             boolean _operator_equals = ObjectExtensions.operator_equals(_name, aliasOrName);
-            return ((Boolean)_operator_equals);
+            return Boolean.valueOf(_operator_equals);
           }
         };
       GlossaryEntry _findFirst = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function);
@@ -27,7 +27,7 @@ public class GlossaryExtensions {
             public Boolean apply(final GlossaryEntry s) {
               EList<String> _alias = s.getAlias();
               boolean _contains = _alias.contains(aliasOrName);
-              return ((Boolean)_contains);
+              return Boolean.valueOf(_contains);
             }
           };
         GlossaryEntry _findFirst_1 = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function_1);

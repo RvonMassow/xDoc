@@ -73,7 +73,7 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 		}
 	}
 
-	@Check
+//	@Check
 	public void checkSuspiciousCodeRef(CodeRef codeRef) {
 		EList<EObject> contents = codeRef.eContainer().eContents();
 		int index = contents.indexOf(codeRef);
