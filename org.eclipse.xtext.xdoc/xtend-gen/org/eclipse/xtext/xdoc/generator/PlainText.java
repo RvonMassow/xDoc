@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc.generator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
@@ -15,15 +16,14 @@ import org.eclipse.xtext.xdoc.xdoc.Link;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
-import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class PlainText {
   protected CharSequence _genPlainText(final TextOrMarkup tom) {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<StringConcatenation,EObject,StringConcatenation> _function = new Function2<StringConcatenation,EObject,StringConcatenation>() {
-        public StringConcatenation apply(final StringConcatenation e1 , final EObject e2) {
+    final Function2<CharSequence,EObject,CharSequence> _function = new Function2<CharSequence,EObject,CharSequence>() {
+        public CharSequence apply(final CharSequence e1, final EObject e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
           CharSequence _genPlainText = PlainText.this.genPlainText(e2);
@@ -31,8 +31,8 @@ public class PlainText {
           return _builder;
         }
       };
-    StringConcatenation _fold = IterableExtensions.<EObject, StringConcatenation>fold(_contents, _builder, _function);
-    return _fold;
+    CharSequence _fold = IterableExtensions.<EObject, CharSequence>fold(_contents, _builder, _function);
+    return ((CharSequence)_fold);
   }
   
   protected CharSequence _genPlainText(final TextPart tp) {
@@ -43,8 +43,8 @@ public class PlainText {
   protected CharSequence _genPlainText(final Emphasize em) {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<StringConcatenation,TextOrMarkup,StringConcatenation> _function = new Function2<StringConcatenation,TextOrMarkup,StringConcatenation>() {
-        public StringConcatenation apply(final StringConcatenation e1 , final TextOrMarkup e2) {
+    final Function2<CharSequence,TextOrMarkup,CharSequence> _function = new Function2<CharSequence,TextOrMarkup,CharSequence>() {
+        public CharSequence apply(final CharSequence e1, final TextOrMarkup e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
           CharSequence _genPlainText = PlainText.this.genPlainText(e2);
@@ -52,18 +52,18 @@ public class PlainText {
           return _builder;
         }
       };
-    StringConcatenation _fold = IterableExtensions.<TextOrMarkup, StringConcatenation>fold(_contents, _builder, _function);
-    return _fold;
+    CharSequence _fold = IterableExtensions.<TextOrMarkup, CharSequence>fold(_contents, _builder, _function);
+    return ((CharSequence)_fold);
   }
   
   protected CharSequence _genPlainText(final Link l) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       StringConcatenation _builder = new StringConcatenation();
       String _text = l.getText();
       _builder.append(_text, "");
-      final StringConcatenation text = _builder;
-      StringConcatenation _xifexpression = null;
+      final CharSequence text = _builder;
+      CharSequence _xifexpression = null;
       String _string = text.toString();
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_string, text);
       if (_operator_notEquals) {

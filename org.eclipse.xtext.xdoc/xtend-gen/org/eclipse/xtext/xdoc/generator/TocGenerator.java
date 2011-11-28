@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpUriUtil;
 import org.eclipse.xtext.xdoc.generator.PlainText;
@@ -15,7 +16,6 @@ import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Part;
 import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
-import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class TocGenerator {
@@ -31,7 +31,7 @@ public class TocGenerator {
   @Inject
   private Utils utils;
   
-  public StringConcatenation generateToc(final Document doc, final EclipseHelpUriUtil uriUtil) {
+  public CharSequence generateToc(final Document doc, final EclipseHelpUriUtil uriUtil) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?>");
     _builder.newLine();
@@ -48,7 +48,7 @@ public class TocGenerator {
       EList<Chapter> _chapters = doc.getChapters();
       for(final Chapter c : _chapters) {
         _builder.append("\t");
-        StringConcatenation _genTocEntry = this.genTocEntry(c, uriUtil);
+        CharSequence _genTocEntry = this.genTocEntry(c, uriUtil);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -57,7 +57,7 @@ public class TocGenerator {
       EList<Part> _parts = doc.getParts();
       for(final Part p : _parts) {
         _builder.append("\t");
-        StringConcatenation _genTocEntry_1 = this.genTocEntry(p, uriUtil);
+        CharSequence _genTocEntry_1 = this.genTocEntry(p, uriUtil);
         _builder.append(_genTocEntry_1, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -67,7 +67,7 @@ public class TocGenerator {
     return _builder;
   }
   
-  public StringConcatenation genTocEntry(final Chapter c, final EclipseHelpUriUtil uriUtil) {
+  public CharSequence genTocEntry(final Chapter c, final EclipseHelpUriUtil uriUtil) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<topic href=\"contents/");
     URI _targetURI = uriUtil.getTargetURI(c);
@@ -82,7 +82,7 @@ public class TocGenerator {
       EList<Section> _subSections = c.getSubSections();
       for(final Section ss : _subSections) {
         _builder.append("\t");
-        StringConcatenation _genTocEntry = this.genTocEntry(ss, uriUtil);
+        CharSequence _genTocEntry = this.genTocEntry(ss, uriUtil);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -92,7 +92,7 @@ public class TocGenerator {
     return _builder;
   }
   
-  public StringConcatenation genTocEntry(final AbstractSection section, final EclipseHelpUriUtil uriUtil) {
+  public CharSequence genTocEntry(final AbstractSection section, final EclipseHelpUriUtil uriUtil) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<topic href=\"contents/");
     URI _targetURI = uriUtil.getTargetURI(section);
@@ -107,7 +107,7 @@ public class TocGenerator {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
       for(final AbstractSection ss : _sections) {
         _builder.append("\t");
-        StringConcatenation _genTocEntry = this.genTocEntry(ss, uriUtil);
+        CharSequence _genTocEntry = this.genTocEntry(ss, uriUtil);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
       }

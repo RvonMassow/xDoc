@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmAnnotationType;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
@@ -66,7 +67,6 @@ import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
-import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class EclipseHelpGenerator implements IGenerator {
@@ -100,7 +100,7 @@ public class EclipseHelpGenerator implements IGenerator {
   public void doGenerate(final Resource res, final IFileSystemAccess access) {
       EList<EObject> _contents = res.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
-      AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
+      AbstractSection _mainSection = ((XdocFile) ((EObject)_head))==null?(AbstractSection)null:((XdocFile) ((EObject)_head)).getMainSection();
       final AbstractSection doc = _mainSection;
       if ((doc instanceof Document)) {
         {
@@ -111,11 +111,11 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   public void generate(final Document document, final IFileSystemAccess access) {
-      StringConcatenation _generateToc = this.tocGenerator.generateToc(document, this.uriUtil);
+      CharSequence _generateToc = this.tocGenerator.generateToc(document, this.uriUtil);
       access.generateFile("toc.xml", _generateToc);
       String _fullURL = this.eclipseNamingExtensions.getFullURL(document);
       String _decode = URLDecoder.decode(_fullURL);
-      StringConcatenation _generateRootDocument = this.generateRootDocument(document);
+      CharSequence _generateRootDocument = this.generateRootDocument(document);
       access.generateFile(_decode, _generateRootDocument);
       EList<Chapter> _chapters = document.getChapters();
       for (final Chapter c : _chapters) {
@@ -173,7 +173,7 @@ public class EclipseHelpGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation generateRootDocument(final Document document) {
+  public CharSequence generateRootDocument(final Document document) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -210,7 +210,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = document.getContents();
       for(final TextOrMarkup content : _contents) {
-        StringConcatenation _generatePar = this.generatePar(content);
+        CharSequence _generatePar = this.generatePar(content);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -223,7 +223,7 @@ public class EclipseHelpGenerator implements IGenerator {
           hasAnyElements = true;
           _builder.append("<ol>", "");
         }
-        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss);
+        CharSequence _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "");
         _builder.newLineIfNotEmpty();
       }
@@ -238,7 +238,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generateEntryInRoot(final AbstractSection section) {
+  public CharSequence generateEntryInRoot(final AbstractSection section) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<li><a href=\"");
     URI _targetURI = this.uriUtil.getTargetURI(section);
@@ -258,7 +258,7 @@ public class EclipseHelpGenerator implements IGenerator {
           _builder.append("<ol>", "	");
         }
         _builder.append("\t");
-        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss);
+        CharSequence _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -339,7 +339,7 @@ public class EclipseHelpGenerator implements IGenerator {
           hasAnyElements = true;
           _builder.append("<ol>", "");
         }
-        StringConcatenation _generateEntryInRoot = this.generateEntryInRoot(ss);
+        CharSequence _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "");
         _builder.newLineIfNotEmpty();
       }
@@ -399,7 +399,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = chapter.getContents();
       for(final TextOrMarkup content : _contents) {
-        StringConcatenation _generatePar = this.generatePar(content);
+        CharSequence _generatePar = this.generatePar(content);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -421,46 +421,39 @@ public class EclipseHelpGenerator implements IGenerator {
   
   public String headtag(final AbstractSection section) {
     String _switchResult = null;
-    final AbstractSection section_1 = section;
     boolean matched = false;
     if (!matched) {
-      if (section_1 instanceof Part) {
-        final Part section_2 = (Part) section_1;
+      if (section instanceof Part) {
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Chapter) {
-        final Chapter section_3 = (Chapter) section_1;
+      if (section instanceof Chapter) {
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section) {
-        final Section section_4 = (Section) section_1;
+      if (section instanceof Section) {
         matched=true;
         _switchResult = "h2";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section2) {
-        final Section2 section_5 = (Section2) section_1;
+      if (section instanceof Section2) {
         matched=true;
         _switchResult = "h3";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section3) {
-        final Section3 section_6 = (Section3) section_1;
+      if (section instanceof Section3) {
         matched=true;
         _switchResult = "h4";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section4) {
-        final Section4 section_7 = (Section4) section_1;
+      if (section instanceof Section4) {
         matched=true;
         _switchResult = "h5";
       }
@@ -493,7 +486,7 @@ public class EclipseHelpGenerator implements IGenerator {
     {
       EList<TextOrMarkup> _contents = section.getContents();
       for(final TextOrMarkup c : _contents) {
-        StringConcatenation _generatePar = this.generatePar(c);
+        CharSequence _generatePar = this.generatePar(c);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -518,14 +511,14 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("<h5>");
     TextOrMarkup _title = aS.getTitle();
-    StringConcatenation _genNonParContent = this.genNonParContent(_title);
+    CharSequence _genNonParContent = this.genNonParContent(_title);
     _builder.append(_genNonParContent, "");
     _builder.append("</h5>");
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = aS.getContents();
       for(final TextOrMarkup tom : _contents) {
-        StringConcatenation _generatePar = this.generatePar(tom);
+        CharSequence _generatePar = this.generatePar(tom);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -533,7 +526,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  public StringConcatenation generatePar(final TextOrMarkup tom) {
+  public CharSequence generatePar(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<p>");
     _builder.newLine();
@@ -563,9 +556,9 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final Ref ref) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
-      StringConcatenation _xifexpression = null;
+      CharSequence _xifexpression = null;
       Identifiable _ref = ref.getRef();
       if ((_ref instanceof AbstractSection)) {
         StringConcatenation _builder = new StringConcatenation();
@@ -577,7 +570,7 @@ public class EclipseHelpGenerator implements IGenerator {
         _builder.append("&quot;\"");
         _xifexpression = _builder;
       }
-      final StringConcatenation title = _xifexpression;
+      final CharSequence title = _xifexpression;
       StringConcatenation _builder_1 = new StringConcatenation();
       {
         EList<TextOrMarkup> _contents = ref.getContents();
@@ -603,7 +596,7 @@ public class EclipseHelpGenerator implements IGenerator {
           {
             EList<TextOrMarkup> _contents_1 = ref.getContents();
             for(final TextOrMarkup tom : _contents_1) {
-              StringConcatenation _genNonParContent = this.genNonParContent(tom);
+              CharSequence _genNonParContent = this.genNonParContent(tom);
               _builder_1.append(_genNonParContent, "");
             }
           }
@@ -691,7 +684,7 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final ImageRef img) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       String _path = img.getPath();
       URI _createURI = URI.createURI(_path);
@@ -715,7 +708,7 @@ public class EclipseHelpGenerator implements IGenerator {
         boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
         if (_operator_notEquals) {
           String _name_1 = img.getName();
-          StringConcatenation _genLabel = this.genLabel(_name_1);
+          CharSequence _genLabel = this.genLabel(_name_1);
           _builder.append(_genLabel, "");
           _builder.newLineIfNotEmpty();
         }
@@ -778,7 +771,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _xblockexpression;
   }
   
-  public StringConcatenation genLabel(final String name) {
+  public CharSequence genLabel(final String name) {
     StringConcatenation _builder = new StringConcatenation();
     {
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(this, null);
@@ -879,7 +872,7 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final CodeRef cRef) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       String _xifexpression = null;
       boolean _operator_and = false;
@@ -920,7 +913,7 @@ public class EclipseHelpGenerator implements IGenerator {
         _xifexpression_1 = _dottedSimpleName;
       }
       final CharSequence text = _xifexpression_1;
-      StringConcatenation _xifexpression_2 = null;
+      CharSequence _xifexpression_2 = null;
       boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
       if (_operator_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
@@ -945,8 +938,8 @@ public class EclipseHelpGenerator implements IGenerator {
         _builder_1.append("</abbr>");
         _xifexpression_2 = _builder_1;
       }
-      StringConcatenation ret = _xifexpression_2;
-      StringConcatenation _xifexpression_3 = null;
+      CharSequence ret = _xifexpression_2;
+      CharSequence _xifexpression_3 = null;
       boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
       if (_operator_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
@@ -982,21 +975,21 @@ public class EclipseHelpGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final CodeBlock cb) {
-    StringConcatenation _xifexpression = null;
+    CharSequence _xifexpression = null;
     boolean _isInlineCode = this.utils.isInlineCode(cb);
     if (_isInlineCode) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<span class=\"inlinecode\">");
       EList<EObject> _contents = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
-      StringConcatenation _generateCode = this.generateCode(((Code) _head));
+      CharSequence _generateCode = this.generateCode(((Code) ((EObject)_head)));
       LangDef _language = cb.getLanguage();
       String _formatCode = this.utils.formatCode(_generateCode, _language);
       _builder.append(_formatCode, "");
       _builder.append("</span>");
       _xifexpression = _builder;
     } else {
-      StringConcatenation _xblockexpression = null;
+      CharSequence _xblockexpression = null;
       {
         Integer _calcIndent = this.utils.calcIndent(cb);
         final Integer indentToRemove = _calcIndent;
@@ -1010,15 +1003,15 @@ public class EclipseHelpGenerator implements IGenerator {
           EList<EObject> _contents_3 = cb.getContents();
           int _size_1 = _contents_3.size();
           int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)2));
-          Iterable<EObject> _take = IterableExtensions.<EObject>take(_tail, _operator_minus);
-          _xifexpression_1 = _take;
+          Iterable<EObject> _take = IterableExtensions.<EObject>take(((Iterable<EObject>)_tail), _operator_minus);
+          _xifexpression_1 = ((Iterable<EObject>)_take);
         } else {
           _xifexpression_1 = Collections.EMPTY_LIST;
         }
         final Iterable<EObject> list = _xifexpression_1;
         EList<EObject> _contents_4 = cb.getContents();
         EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
-        StringConcatenation _generateCode_1 = this.generateCode(_head_1);
+        CharSequence _generateCode_1 = this.generateCode(((EObject)_head_1));
         String _trimLines = this.trimLines(_generateCode_1, indentToRemove);
         String _replaceAll = _trimLines.replaceAll("\\A(\\s*\n)*", "");
         final String first = _replaceAll;
@@ -1027,11 +1020,11 @@ public class EclipseHelpGenerator implements IGenerator {
         EObject _last = IterableExtensions.<EObject>last(_contents_5);
         EList<EObject> _contents_6 = cb.getContents();
         EObject _head_2 = IterableExtensions.<EObject>head(_contents_6);
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_last, _head_2);
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((EObject)_last), ((EObject)_head_2));
         if (_operator_notEquals) {
           EList<EObject> _contents_7 = cb.getContents();
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
-          StringConcatenation _generateCode_2 = this.generateCode(_last_1);
+          CharSequence _generateCode_2 = this.generateCode(((EObject)_last_1));
           String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
           String _replaceAll_1 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
           _xifexpression_2 = _replaceAll_1;
@@ -1057,7 +1050,7 @@ public class EclipseHelpGenerator implements IGenerator {
         _builder_1.newLineIfNotEmpty();
         {
           for(final EObject code : list) {
-            StringConcatenation _generateCode_3 = this.generateCode(code);
+            CharSequence _generateCode_3 = this.generateCode(code);
             String _trimLines_2 = this.trimLines(_generateCode_3, indentToRemove);
             LangDef _language_2 = cb.getLanguage();
             String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2);
@@ -1090,7 +1083,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _replaceAll;
   }
   
-  protected StringConcatenation _generateCode(final Code code) {
+  protected CharSequence _generateCode(final Code code) {
     StringConcatenation _builder = new StringConcatenation();
     String _contents = code.getContents();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_contents);
@@ -1098,14 +1091,14 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected StringConcatenation _generateCode(final MarkupInCode code) {
+  protected CharSequence _generateCode(final MarkupInCode code) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _generate = this.generate(code);
     _builder.append(_generate, "");
     return _builder;
   }
   
-  public StringConcatenation genNonParContent(final TextOrMarkup tom) {
+  public CharSequence genNonParContent(final TextOrMarkup tom) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<EObject> _contents = tom.getContents();
@@ -1175,7 +1168,7 @@ public class EclipseHelpGenerator implements IGenerator {
     }
   }
   
-  public StringConcatenation generateCode(final EObject code) {
+  public CharSequence generateCode(final EObject code) {
     if (code instanceof Code) {
       return _generateCode((Code)code);
     } else if (code instanceof MarkupInCode) {

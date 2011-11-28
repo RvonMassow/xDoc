@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmAnnotationType;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
@@ -68,7 +69,6 @@ import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 import org.eclipse.xtext.xtend2.lib.ResourceExtensions;
-import org.eclipse.xtext.xtend2.lib.StringConcatenation;
 
 @SuppressWarnings("all")
 public class HtmlGenerator implements IGenerator {
@@ -97,7 +97,7 @@ public class HtmlGenerator implements IGenerator {
     try {
       Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
       Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_allContentsIterable, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
-      for (final XdocFile file : _filter) {
+      for (final XdocFile file : ((Iterable<XdocFile>)_filter)) {
         AbstractSection _mainSection = file.getMainSection();
         if ((_mainSection instanceof Document)) {
           AbstractSection _mainSection_1 = file.getMainSection();
@@ -262,7 +262,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final ChapterRef chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       Chapter _chapter = chap.getChapter();
       String _fullURL = this.naming.getFullURL(chap);
@@ -287,7 +287,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final SectionRef section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       Section _section = section.getSection();
       String _fullURL = this.naming.getFullURL(section);
@@ -312,7 +312,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _generate(final Section2Ref section2, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       Section2 _section2 = section2.getSection2();
       String _fullURL = this.naming.getFullURL(section2);
@@ -539,46 +539,39 @@ public class HtmlGenerator implements IGenerator {
   
   public String tag(final AbstractSection section) {
     String _switchResult = null;
-    final AbstractSection section_1 = section;
     boolean matched = false;
     if (!matched) {
-      if (section_1 instanceof Document) {
-        final Document section_2 = (Document) section_1;
+      if (section instanceof Document) {
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Chapter) {
-        final Chapter section_3 = (Chapter) section_1;
+      if (section instanceof Chapter) {
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section) {
-        final Section section_4 = (Section) section_1;
+      if (section instanceof Section) {
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section2) {
-        final Section2 section_5 = (Section2) section_1;
+      if (section instanceof Section2) {
         matched=true;
         _switchResult = "h2";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section3) {
-        final Section3 section_6 = (Section3) section_1;
+      if (section instanceof Section3) {
         matched=true;
         _switchResult = "h3";
       }
     }
     if (!matched) {
-      if (section_1 instanceof Section4) {
-        final Section4 section_7 = (Section4) section_1;
+      if (section instanceof Section4) {
         matched=true;
         _switchResult = "h4";
       }
@@ -604,7 +597,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   public CharSequence toc(final AbstractSection section) {
-    StringConcatenation _xifexpression = null;
+    CharSequence _xifexpression = null;
     List<? extends AbstractSection> _sections = this.ase.sections(section);
     boolean _isEmpty = _sections.isEmpty();
     boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
@@ -800,7 +793,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   public CharSequence genAuthors(final Document doc) {
-    StringConcatenation _xifexpression = null;
+    CharSequence _xifexpression = null;
     TextOrMarkup _authors = doc.getAuthors();
     boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_authors, null);
     if (_operator_notEquals) {
@@ -848,12 +841,12 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _genText(final CodeBlock cb) {
-    StringConcatenation _xifexpression = null;
+    CharSequence _xifexpression = null;
     EList<EObject> _contents = cb.getContents();
     boolean _isEmpty = _contents.isEmpty();
     boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
     if (_operator_not) {
-      StringConcatenation _xifexpression_1 = null;
+      CharSequence _xifexpression_1 = null;
       boolean _isInlineCode = this.utils.isInlineCode(cb);
       if (_isInlineCode) {
         StringConcatenation _builder = new StringConcatenation();
@@ -861,12 +854,12 @@ public class HtmlGenerator implements IGenerator {
         EList<EObject> _contents_1 = cb.getContents();
         EObject _head = IterableExtensions.<EObject>head(_contents_1);
         LangDef _language = cb.getLanguage();
-        CharSequence _generateCode = this.generateCode(((Code) _head), _language);
+        CharSequence _generateCode = this.generateCode(((Code) ((EObject)_head)), _language);
         _builder.append(_generateCode, "");
         _builder.append("</span>");
         _xifexpression_1 = _builder;
       } else {
-        StringConcatenation _xblockexpression = null;
+        CharSequence _xblockexpression = null;
         {
           CodeBlock _removeIndent = StringUtils.removeIndent(cb);
           final CodeBlock block = _removeIndent;
@@ -907,7 +900,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _genText(final CodeRef cRef) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       String _xifexpression = null;
       boolean _operator_and = false;
@@ -948,7 +941,7 @@ public class HtmlGenerator implements IGenerator {
         _xifexpression_1 = _dottedSimpleName;
       }
       final CharSequence text = _xifexpression_1;
-      StringConcatenation _xifexpression_2 = null;
+      CharSequence _xifexpression_2 = null;
       boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
       if (_operator_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
@@ -973,8 +966,8 @@ public class HtmlGenerator implements IGenerator {
         _builder_1.append("</abbr>");
         _xifexpression_2 = _builder_1;
       }
-      StringConcatenation ret = _xifexpression_2;
-      StringConcatenation _xifexpression_3 = null;
+      CharSequence ret = _xifexpression_2;
+      CharSequence _xifexpression_3 = null;
       boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
       if (_operator_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
@@ -1037,7 +1030,7 @@ public class HtmlGenerator implements IGenerator {
     boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
     if (_operator_equals) {
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(tomList);
-      CharSequence _genNonParText = this.genNonParText(_head);
+      CharSequence _genNonParText = this.genNonParText(((TextOrMarkup)_head));
       _xifexpression = _genNonParText;
     } else {
       StringConcatenation _builder = new StringConcatenation();
@@ -1090,9 +1083,9 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _genText(final Ref ref) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
-      StringConcatenation _xifexpression = null;
+      CharSequence _xifexpression = null;
       Identifiable _ref = ref.getRef();
       if ((_ref instanceof AbstractSection)) {
         StringConcatenation _builder = new StringConcatenation();
@@ -1104,7 +1097,7 @@ public class HtmlGenerator implements IGenerator {
         _builder.append("&quot;\"");
         _xifexpression = _builder;
       }
-      final StringConcatenation title = _xifexpression;
+      final CharSequence title = _xifexpression;
       StringConcatenation _builder_1 = new StringConcatenation();
       {
         EList<TextOrMarkup> _contents = ref.getContents();
@@ -1259,7 +1252,7 @@ public class HtmlGenerator implements IGenerator {
   }
   
   protected CharSequence _genText(final ImageRef img) {
-    StringConcatenation _xblockexpression = null;
+    CharSequence _xblockexpression = null;
     {
       String _path = img.getPath();
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_path);

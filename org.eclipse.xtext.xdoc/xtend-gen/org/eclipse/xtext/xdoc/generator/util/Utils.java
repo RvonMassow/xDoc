@@ -1,6 +1,5 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.ComparableExtensions;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -28,14 +28,22 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 
 @SuppressWarnings("all")
 public class Utils {
-  public String urlDecode(final String s) throws UnsupportedEncodingException {
-    String _decode = s==null?(String)null:URLDecoder.decode(s, "ISO-8859-1");
-    return _decode;
+  public String urlDecode(final String s) {
+    try {
+      String _decode = s==null?(String)null:URLDecoder.decode(s, "ISO-8859-1");
+      return _decode;
+    } catch (Exception _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
-  public String urlEncode(final String s) throws UnsupportedEncodingException {
-    String _encode = s==null?(String)null:URLEncoder.encode(s, "UTF-8");
-    return _encode;
+  public String urlEncode(final String s) {
+    try {
+      String _encode = s==null?(String)null:URLEncoder.encode(s, "UTF-8");
+      return _encode;
+    } catch (Exception _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public boolean isInlineCode(final CodeBlock cb) {
@@ -48,7 +56,7 @@ public class Utils {
     } else {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
-      String _string = _head.toString();
+      String _string = ((EObject)_head).toString();
       boolean _contains = _string.contains("\n");
       boolean _operator_not = BooleanExtensions.operator_not(_contains);
       _operator_and = BooleanExtensions.operator_and(_operator_equals, _operator_not);
@@ -129,8 +137,8 @@ public class Utils {
     Collection<String> _xblockexpression = null;
     {
       Iterable<Document> _filter = IterableExtensions.<Document>filter(sections, org.eclipse.xtext.xdoc.xdoc.Document.class);
-      Document _head = IterableExtensions.<Document>head(_filter);
-      final Document doc = _head;
+      Document _head = IterableExtensions.<Document>head(((Iterable<Document>)_filter));
+      final Document doc = ((Document)_head);
       EList<LangDef> _langDefs = doc.getLangDefs();
       final Function1<LangDef,Boolean> _function = new Function1<LangDef,Boolean>() {
           public Boolean apply(final LangDef e) {
@@ -140,7 +148,7 @@ public class Utils {
           }
         };
       LangDef _findFirst = IterableExtensions.<LangDef>findFirst(_langDefs, _function);
-      final LangDef lang = _findFirst;
+      final LangDef lang = ((LangDef)_findFirst);
       Collection<String> _xifexpression = null;
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(lang, null);
       if (_operator_notEquals) {
@@ -165,7 +173,7 @@ public class Utils {
       if (_operator_notEquals) {
         EList<String> _keywords = language.getKeywords();
         Set<String> _set = IterableExtensions.<String>toSet(_keywords);
-        _xifexpression = _set;
+        _xifexpression = ((Set<String>)_set);
       } else {
         Set<?> _emptySet = CollectionLiterals.emptySet();
         _xifexpression = _emptySet;
@@ -263,14 +271,14 @@ public class Utils {
     } else {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _get = _contents_1.get(0);
-      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (_get instanceof Code));
+      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (((EObject)_get) instanceof Code));
     }
     if (_operator_and) {
       int _xblockexpression = (int) 0;
       {
         EList<EObject> _contents_2 = cb.getContents();
         EObject _get_1 = _contents_2.get(0);
-        String _contents_3 = ((Code) _get_1).getContents();
+        String _contents_3 = ((Code) ((EObject)_get_1)).getContents();
         final String code0 = _contents_3;
         int _length = code0.length();
         int indent = _length;

@@ -19,7 +19,7 @@ public class GlossaryExtensions {
           }
         };
       GlossaryEntry _findFirst = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function);
-      GlossaryEntry matchedEntry = _findFirst;
+      GlossaryEntry matchedEntry = ((GlossaryEntry)_findFirst);
       GlossaryEntry _xifexpression = null;
       boolean _operator_equals = ObjectExtensions.operator_equals(matchedEntry, null);
       if (_operator_equals) {
@@ -31,7 +31,7 @@ public class GlossaryExtensions {
             }
           };
         GlossaryEntry _findFirst_1 = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function_1);
-        _xifexpression = _findFirst_1;
+        _xifexpression = ((GlossaryEntry)_findFirst_1);
       }
       _xblockexpression = (_xifexpression);
     }
