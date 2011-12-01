@@ -48,7 +48,9 @@ import org.eclipse.xtext.xdoc.xdoc.UnorderedList
 
 import static extension org.eclipse.xtext.xdoc.generator.util.LatexUtils.*
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
-import static extension org.eclipse.xtext.xtend2.lib.ResourceExtensions.*
+import static extension org.eclipse.xtext.xbase.lib.IterableExtensions.*
+import static extension org.eclipse.xtext.xdoc.generator.util.numeric.XFloatExtensions.*
+import javax.imageio.ImageIO
 
 class LatexGenerator implements IConfigurableGenerator {
 
@@ -61,7 +63,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for(element: resource.allContentsIterable) {
+		for(element: resource.allContents.toIterable) {
 			if(element instanceof Document) {
 				val doc = element as Document				
 				fsa.generateFile(
@@ -572,33 +574,33 @@ class LatexGenerator implements IConfigurableGenerator {
 //		tabData.join('''p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''', "|")
 	}
 
-//	def String calcStyle(ImageRef ref) {
-//		val uri = ref.eResource.getURI
-//		val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + ref.path)
-//		val img = ImageIO::createImageInputStream(new File(inPath.toFileString()));
-//		val imageReaders = ImageIO::getImageReaders(img);
-//		val ir = imageReaders.next()
-//		ir.setInput(img)
-//		val imageMetadata = ir.getImageMetadata(0)
-//		val n = imageMetadata.getAsTree("javax_imageio_1.0")
-//		n.childNodes.filter(cn | cn.nodeName == "Dimension")
-		// var ppmm = 2.835
-		
-//		for(Node cn = n.getFirstChild(); cn != null; cn = cn.getNextSibling()) {
-//			if(cn.getNodeName() == "Dimension") {
-//				for(Node ccn = cn.getFirstChild(); ccn != null; ccn = ccn.getNextSibling()){
-//					if(ccn.getNodeName().equals("HorizontalPixelSize")){
-//						ppmm = 1/ Float.parseFloat(ccn.getAttributes().item(0).getNodeValue());
-//					}
-//				}
-//			}
-//		}
-//		int width = ir.getWidth(0);
-//		float effectiveWidth = width/ppmm;
-//		if(effectiveWidth > 140){
-//			return "width=\\textwidth";
-//		} else
-//			return "";
-//		""
-//	}
+	def String calcStyle(ImageRef ref) {
+		val uri = ref.eResource.getURI
+		val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + ref.path)
+		val img = ImageIO::createImageInputStream(new File(inPath.toFileString()));
+		val imageReaders = ImageIO::getImageReaders(img);
+		val ir = imageReaders.next()
+		ir.input = img
+
+		val imageMetadata = ir.getImageMetadata(0)
+		val n = imageMetadata.getAsTree("javax_imageio_1.0")
+		var ppmm = new XFloat(Float::parseFloat("2.835"))
+		var cn = n.getFirstChild
+		while(cn != null) {
+			if(cn.nodeName == "Dimension") {
+				var ccn = cn.getFirstChild
+				while(ccn != null){
+					if(ccn.getNodeName().equals("HorizontalPixelSize")){
+						ppmm = 1/ new XFloat(Float::parseFloat(ccn.getAttributes().item(0).getNodeValue()))
+					}
+					ccn = ccn.getNextSibling
+				}
+			}
+			cn = cn.getNextSibling()
+		}
+		if(ir.getWidth(0) / ppmm > 140){
+			"width=\\textwidth";
+		} else
+			"";
+	}
 }

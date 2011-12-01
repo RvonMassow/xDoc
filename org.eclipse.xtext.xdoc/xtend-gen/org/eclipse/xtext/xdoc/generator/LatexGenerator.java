@@ -11,9 +11,15 @@ import java.nio.channels.WritableByteChannel;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.metadata.IIOMetadata;
+import javax.imageio.stream.ImageInputStream;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -27,7 +33,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.IConfigurableGenerator;
@@ -36,6 +42,7 @@ import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.generator.util.XFloat;
+import org.eclipse.xtext.xdoc.generator.util.numeric.XFloatExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
@@ -68,7 +75,8 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
-import org.eclipse.xtext.xtend2.lib.ResourceExtensions;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
 
 @SuppressWarnings("all")
 public class LatexGenerator implements IConfigurableGenerator {
@@ -86,8 +94,9 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
-    Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
-    for (final EObject element : _allContentsIterable) {
+    TreeIterator<EObject> _allContents = resource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    for (final EObject element : _iterable) {
       if ((element instanceof Document)) {
         {
           final Document doc = ((Document) element);
@@ -893,7 +902,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    List<CharSequence> _map = ListExtensions.<TableRow, CharSequence>map(_rows_2, _function);
+    Iterable<CharSequence> _map = IterableExtensions.<TableRow, CharSequence>map(_rows_2, _function);
     String _join = IterableExtensions.join(_map, "\\\\\n");
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -910,7 +919,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    List<CharSequence> _map = ListExtensions.<TableData, CharSequence>map(_data, _function);
+    Iterable<CharSequence> _map = IterableExtensions.<TableData, CharSequence>map(_data, _function);
     String _join = IterableExtensions.join(_map, " & ");
     return _join;
   }
@@ -923,7 +932,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genContent;
         }
       };
-    List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
+    Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
     String _join = IterableExtensions.join(_map);
     return _join;
   }
@@ -950,7 +959,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
+    Iterable<CharSequence> _map = IterableExtensions.<Item, CharSequence>map(_items, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -976,7 +985,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
+    Iterable<CharSequence> _map = IterableExtensions.<Item, CharSequence>map(_items, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -1006,7 +1015,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genContent;
         }
       };
-    List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
+    Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -1025,7 +1034,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genContent;
         }
       };
-    List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
+    Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.append("}");
@@ -1056,7 +1065,7 @@ public class LatexGenerator implements IConfigurableGenerator {
               return _genContent;
             }
           };
-        List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
+        Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
         String _join = IterableExtensions.join(_map);
         _builder.append(_join, "");
         _builder.append("~(\u00A7\\ref*{");
@@ -1286,7 +1295,7 @@ public class LatexGenerator implements IConfigurableGenerator {
             return _genCode;
           }
         };
-      List<CharSequence> _map = ListExtensions.<EObject, CharSequence>map(_contents, _function);
+      Iterable<CharSequence> _map = IterableExtensions.<EObject, CharSequence>map(_contents, _function);
       String _join = IterableExtensions.join(_map);
       _builder.append(_join, "");
       _builder.append("\u00B0");
@@ -1306,7 +1315,7 @@ public class LatexGenerator implements IConfigurableGenerator {
             return _genCode;
           }
         };
-      List<CharSequence> _map_1 = ListExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
+      Iterable<CharSequence> _map_1 = IterableExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
       String _join_1 = IterableExtensions.join(_map_1);
       _builder_1.append(_join_1, "");
       _builder_1.newLineIfNotEmpty();
@@ -1386,6 +1395,94 @@ public class LatexGenerator implements IConfigurableGenerator {
       _xblockexpression = (_builder);
     }
     return _xblockexpression;
+  }
+  
+  public String calcStyle(final ImageRef ref) {
+    try {
+      String _xblockexpression = null;
+      {
+        Resource _eResource = ref.eResource();
+        URI _uRI = _eResource.getURI();
+        final URI uri = _uRI;
+        URI _trimSegments = uri.trimSegments(1);
+        String _string = _trimSegments.toString();
+        String _operator_plus = StringExtensions.operator_plus(_string, "/");
+        String _path = ref.getPath();
+        String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _path);
+        URI _createURI = URI.createURI(_operator_plus_1);
+        final URI inPath = _createURI;
+        String _fileString = inPath.toFileString();
+        File _file = new File(_fileString);
+        ImageInputStream _createImageInputStream = ImageIO.createImageInputStream(_file);
+        final ImageInputStream img = _createImageInputStream;
+        Iterator<ImageReader> _imageReaders = ImageIO.getImageReaders(img);
+        final Iterator<ImageReader> imageReaders = _imageReaders;
+        ImageReader _next = imageReaders.next();
+        final ImageReader ir = _next;
+        ir.setInput(img);
+        IIOMetadata _imageMetadata = ir.getImageMetadata(0);
+        final IIOMetadata imageMetadata = _imageMetadata;
+        Node _asTree = imageMetadata.getAsTree("javax_imageio_1.0");
+        final Node n = _asTree;
+        float _parseFloat = Float.parseFloat("2.835");
+        XFloat _xFloat = new XFloat(Float.valueOf(_parseFloat));
+        XFloat ppmm = _xFloat;
+        Node _firstChild = n.getFirstChild();
+        Node cn = _firstChild;
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(cn, null);
+        boolean _while = _operator_notEquals;
+        while (_while) {
+          {
+            String _nodeName = cn.getNodeName();
+            boolean _operator_equals = ObjectExtensions.operator_equals(_nodeName, "Dimension");
+            if (_operator_equals) {
+              {
+                Node _firstChild_1 = cn.getFirstChild();
+                Node ccn = _firstChild_1;
+                boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(ccn, null);
+                boolean _while_1 = _operator_notEquals_1;
+                while (_while_1) {
+                  {
+                    String _nodeName_1 = ccn.getNodeName();
+                    boolean _equals = _nodeName_1.equals("HorizontalPixelSize");
+                    if (_equals) {
+                      NamedNodeMap _attributes = ccn.getAttributes();
+                      Node _item = _attributes.item(0);
+                      String _nodeValue = _item.getNodeValue();
+                      float _parseFloat_1 = Float.parseFloat(_nodeValue);
+                      XFloat _xFloat_1 = new XFloat(Float.valueOf(_parseFloat_1));
+                      XFloat _operator_divide = XFloatExtensions.operator_divide(Integer.valueOf(1), _xFloat_1);
+                      ppmm = _operator_divide;
+                    }
+                    Node _nextSibling = ccn.getNextSibling();
+                    ccn = _nextSibling;
+                  }
+                  boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(ccn, null);
+                  _while_1 = _operator_notEquals_2;
+                }
+              }
+            }
+            Node _nextSibling = cn.getNextSibling();
+            cn = _nextSibling;
+          }
+          boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(cn, null);
+          _while = _operator_notEquals_2;
+        }
+        String _xifexpression = null;
+        int _width = ir.getWidth(0);
+        XFloat _operator_divide = XFloatExtensions.operator_divide(Integer.valueOf(_width), ppmm);
+        Boolean _operator_greaterThan = XFloatExtensions.operator_greaterThan(_operator_divide, Integer.valueOf(140));
+        if ((_operator_greaterThan).booleanValue()) {
+          _xifexpression = "width=\\textwidth";
+        } else {
+          _xifexpression = "";
+        }
+        _xblockexpression = (_xifexpression);
+      }
+      return _xblockexpression;
+    } catch (Exception _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public CharSequence generate(final EObject doc) {
