@@ -56,7 +56,7 @@ public class Utils {
     } else {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
-      String _string = ((EObject)_head).toString();
+      String _string = _head.toString();
       boolean _contains = _string.contains("\n");
       boolean _operator_not = BooleanExtensions.operator_not(_contains);
       _operator_and = BooleanExtensions.operator_and(_operator_equals, _operator_not);
@@ -137,8 +137,8 @@ public class Utils {
     Collection<String> _xblockexpression = null;
     {
       Iterable<Document> _filter = IterableExtensions.<Document>filter(sections, org.eclipse.xtext.xdoc.xdoc.Document.class);
-      Document _head = IterableExtensions.<Document>head(((Iterable<Document>)_filter));
-      final Document doc = ((Document)_head);
+      Document _head = IterableExtensions.<Document>head(_filter);
+      final Document doc = _head;
       EList<LangDef> _langDefs = doc.getLangDefs();
       final Function1<LangDef,Boolean> _function = new Function1<LangDef,Boolean>() {
           public Boolean apply(final LangDef e) {
@@ -148,7 +148,7 @@ public class Utils {
           }
         };
       LangDef _findFirst = IterableExtensions.<LangDef>findFirst(_langDefs, _function);
-      final LangDef lang = ((LangDef)_findFirst);
+      final LangDef lang = _findFirst;
       Collection<String> _xifexpression = null;
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(lang, null);
       if (_operator_notEquals) {
@@ -173,7 +173,7 @@ public class Utils {
       if (_operator_notEquals) {
         EList<String> _keywords = language.getKeywords();
         Set<String> _set = IterableExtensions.<String>toSet(_keywords);
-        _xifexpression = ((Set<String>)_set);
+        _xifexpression = _set;
       } else {
         Set<?> _emptySet = CollectionLiterals.emptySet();
         _xifexpression = _emptySet;
@@ -185,8 +185,8 @@ public class Utils {
       final StringBuilder result = _stringBuilder;
       int _type = token.getType();
       boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_type), ((Integer)Token.EOF));
-      Boolean _xwhileexpression = _operator_notEquals_1;
-      while (_xwhileexpression) {
+      boolean _while = _operator_notEquals_1;
+      while (_while) {
         {
           int _type_1 = token.getType();
           final int __valOfSwitchOver = _type_1;
@@ -246,7 +246,7 @@ public class Utils {
         }
         int _type_2 = token.getType();
         boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(((Integer)_type_2), ((Integer)Token.EOF));
-        _xwhileexpression = _operator_notEquals_2;
+        _while = _operator_notEquals_2;
       }
       String _string = result.toString();
       return _string;
@@ -271,14 +271,14 @@ public class Utils {
     } else {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _get = _contents_1.get(0);
-      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (((EObject)_get) instanceof Code));
+      _operator_and = BooleanExtensions.operator_and(_operator_greaterThan, (_get instanceof Code));
     }
     if (_operator_and) {
       int _xblockexpression = (int) 0;
       {
         EList<EObject> _contents_2 = cb.getContents();
         EObject _get_1 = _contents_2.get(0);
-        String _contents_3 = ((Code) ((EObject)_get_1)).getContents();
+        String _contents_3 = ((Code) _get_1).getContents();
         final String code0 = _contents_3;
         int _length = code0.length();
         int indent = _length;

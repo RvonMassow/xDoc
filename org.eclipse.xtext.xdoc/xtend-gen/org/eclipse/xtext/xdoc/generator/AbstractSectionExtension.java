@@ -21,7 +21,7 @@ import org.eclipse.xtext.xdoc.xdoc.SectionRef;
 public class AbstractSectionExtension {
   protected List<? extends AbstractSection> _sections(final AbstractSection section) {
     List<AbstractSection> _emptyList = CollectionLiterals.<AbstractSection>emptyList();
-    return ((List<AbstractSection>)_emptyList);
+    return _emptyList;
   }
   
   protected List<? extends AbstractSection> _sections(final Document doc) {

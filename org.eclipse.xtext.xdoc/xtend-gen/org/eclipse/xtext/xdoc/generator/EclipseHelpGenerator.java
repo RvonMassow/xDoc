@@ -100,7 +100,7 @@ public class EclipseHelpGenerator implements IGenerator {
   public void doGenerate(final Resource res, final IFileSystemAccess access) {
       EList<EObject> _contents = res.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
-      AbstractSection _mainSection = ((XdocFile) ((EObject)_head))==null?(AbstractSection)null:((XdocFile) ((EObject)_head)).getMainSection();
+      AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
       final AbstractSection doc = _mainSection;
       if ((doc instanceof Document)) {
         {
@@ -143,8 +143,8 @@ public class EclipseHelpGenerator implements IGenerator {
         int _read = inChannel.read(buffer);
         int _operator_minus = IntegerExtensions.operator_minus(1);
         boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
-        Boolean _xwhileexpression = _operator_notEquals;
-        while (_xwhileexpression) {
+        boolean _while = _operator_notEquals;
+        while (_while) {
           {
             buffer.flip();
             outChannel.write(buffer);
@@ -153,18 +153,18 @@ public class EclipseHelpGenerator implements IGenerator {
           int _read_1 = inChannel.read(buffer);
           int _operator_minus_1 = IntegerExtensions.operator_minus(1);
           boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
-          _xwhileexpression = _operator_notEquals_1;
+          _while = _operator_notEquals_1;
         }
         buffer.flip();
         boolean _hasRemaining = buffer.hasRemaining();
-        Boolean _xwhileexpression_1 = _hasRemaining;
-        while (_xwhileexpression_1) {
+        boolean _while_1 = _hasRemaining;
+        while (_while_1) {
           {
             outChannel.write(buffer);
             outChannel.close();
           }
           boolean _hasRemaining_1 = buffer.hasRemaining();
-          _xwhileexpression_1 = _hasRemaining_1;
+          _while_1 = _hasRemaining_1;
         }
       }
     } catch (final Exception e) {
@@ -217,17 +217,17 @@ public class EclipseHelpGenerator implements IGenerator {
     }
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(document);
-      boolean hasAnyElements = false;
+      boolean _hasElements = false;
       for(final AbstractSection ss : _sections) {
-        if (!hasAnyElements) {
-          hasAnyElements = true;
+        if (!_hasElements) {
+          _hasElements = true;
           _builder.append("<ol>", "");
         }
         CharSequence _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "");
         _builder.newLineIfNotEmpty();
       }
-      if (hasAnyElements) {
+      if (_hasElements) {
         _builder.append("</ol>", "");
       }
     }
@@ -251,10 +251,10 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
-      boolean hasAnyElements = false;
+      boolean _hasElements = false;
       for(final AbstractSection ss : _sections) {
-        if (!hasAnyElements) {
-          hasAnyElements = true;
+        if (!_hasElements) {
+          _hasElements = true;
           _builder.append("<ol>", "	");
         }
         _builder.append("\t");
@@ -262,7 +262,7 @@ public class EclipseHelpGenerator implements IGenerator {
         _builder.append(_generateEntryInRoot, "	");
         _builder.newLineIfNotEmpty();
       }
-      if (hasAnyElements) {
+      if (_hasElements) {
         _builder.append("</ol>", "	");
       }
     }
@@ -333,17 +333,17 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(part);
-      boolean hasAnyElements = false;
+      boolean _hasElements = false;
       for(final AbstractSection ss : _sections) {
-        if (!hasAnyElements) {
-          hasAnyElements = true;
+        if (!_hasElements) {
+          _hasElements = true;
           _builder.append("<ol>", "");
         }
         CharSequence _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "");
         _builder.newLineIfNotEmpty();
       }
-      if (hasAnyElements) {
+      if (_hasElements) {
         _builder.append("</ol>", "");
       }
     }
@@ -424,36 +424,42 @@ public class EclipseHelpGenerator implements IGenerator {
     boolean matched = false;
     if (!matched) {
       if (section instanceof Part) {
+        final Part _part = (Part)section;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
       if (section instanceof Chapter) {
+        final Chapter _chapter = (Chapter)section;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
       if (section instanceof Section) {
+        final Section _section = (Section)section;
         matched=true;
         _switchResult = "h2";
       }
     }
     if (!matched) {
       if (section instanceof Section2) {
+        final Section2 _section2 = (Section2)section;
         matched=true;
         _switchResult = "h3";
       }
     }
     if (!matched) {
       if (section instanceof Section3) {
+        final Section3 _section3 = (Section3)section;
         matched=true;
         _switchResult = "h4";
       }
     }
     if (!matched) {
       if (section instanceof Section4) {
+        final Section4 _section4 = (Section4)section;
         matched=true;
         _switchResult = "h5";
       }
@@ -982,7 +988,7 @@ public class EclipseHelpGenerator implements IGenerator {
       _builder.append("<span class=\"inlinecode\">");
       EList<EObject> _contents = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents);
-      CharSequence _generateCode = this.generateCode(((Code) ((EObject)_head)));
+      CharSequence _generateCode = this.generateCode(((Code) _head));
       LangDef _language = cb.getLanguage();
       String _formatCode = this.utils.formatCode(_generateCode, _language);
       _builder.append(_formatCode, "");
@@ -1003,15 +1009,15 @@ public class EclipseHelpGenerator implements IGenerator {
           EList<EObject> _contents_3 = cb.getContents();
           int _size_1 = _contents_3.size();
           int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)2));
-          Iterable<EObject> _take = IterableExtensions.<EObject>take(((Iterable<EObject>)_tail), _operator_minus);
-          _xifexpression_1 = ((Iterable<EObject>)_take);
+          Iterable<EObject> _take = IterableExtensions.<EObject>take(_tail, _operator_minus);
+          _xifexpression_1 = _take;
         } else {
           _xifexpression_1 = Collections.EMPTY_LIST;
         }
         final Iterable<EObject> list = _xifexpression_1;
         EList<EObject> _contents_4 = cb.getContents();
         EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
-        CharSequence _generateCode_1 = this.generateCode(((EObject)_head_1));
+        CharSequence _generateCode_1 = this.generateCode(_head_1);
         String _trimLines = this.trimLines(_generateCode_1, indentToRemove);
         String _replaceAll = _trimLines.replaceAll("\\A(\\s*\n)*", "");
         final String first = _replaceAll;
@@ -1020,11 +1026,11 @@ public class EclipseHelpGenerator implements IGenerator {
         EObject _last = IterableExtensions.<EObject>last(_contents_5);
         EList<EObject> _contents_6 = cb.getContents();
         EObject _head_2 = IterableExtensions.<EObject>head(_contents_6);
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((EObject)_last), ((EObject)_head_2));
+        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_last, _head_2);
         if (_operator_notEquals) {
           EList<EObject> _contents_7 = cb.getContents();
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
-          CharSequence _generateCode_2 = this.generateCode(((EObject)_last_1));
+          CharSequence _generateCode_2 = this.generateCode(_last_1);
           String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
           String _replaceAll_1 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
           _xifexpression_2 = _replaceAll_1;

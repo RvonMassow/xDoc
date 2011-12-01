@@ -97,7 +97,7 @@ public class HtmlGenerator implements IGenerator {
     try {
       Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
       Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_allContentsIterable, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
-      for (final XdocFile file : ((Iterable<XdocFile>)_filter)) {
+      for (final XdocFile file : _filter) {
         AbstractSection _mainSection = file.getMainSection();
         if ((_mainSection instanceof Document)) {
           AbstractSection _mainSection_1 = file.getMainSection();
@@ -542,36 +542,42 @@ public class HtmlGenerator implements IGenerator {
     boolean matched = false;
     if (!matched) {
       if (section instanceof Document) {
+        final Document _document = (Document)section;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
       if (section instanceof Chapter) {
+        final Chapter _chapter = (Chapter)section;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
       if (section instanceof Section) {
+        final Section _section = (Section)section;
         matched=true;
         _switchResult = "h1";
       }
     }
     if (!matched) {
       if (section instanceof Section2) {
+        final Section2 _section2 = (Section2)section;
         matched=true;
         _switchResult = "h2";
       }
     }
     if (!matched) {
       if (section instanceof Section3) {
+        final Section3 _section3 = (Section3)section;
         matched=true;
         _switchResult = "h3";
       }
     }
     if (!matched) {
       if (section instanceof Section4) {
+        final Section4 _section4 = (Section4)section;
         matched=true;
         _switchResult = "h4";
       }
@@ -854,7 +860,7 @@ public class HtmlGenerator implements IGenerator {
         EList<EObject> _contents_1 = cb.getContents();
         EObject _head = IterableExtensions.<EObject>head(_contents_1);
         LangDef _language = cb.getLanguage();
-        CharSequence _generateCode = this.generateCode(((Code) ((EObject)_head)), _language);
+        CharSequence _generateCode = this.generateCode(((Code) _head), _language);
         _builder.append(_generateCode, "");
         _builder.append("</span>");
         _xifexpression_1 = _builder;
@@ -1030,7 +1036,7 @@ public class HtmlGenerator implements IGenerator {
     boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
     if (_operator_equals) {
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(tomList);
-      CharSequence _genNonParText = this.genNonParText(((TextOrMarkup)_head));
+      CharSequence _genNonParText = this.genNonParText(_head);
       _xifexpression = _genNonParText;
     } else {
       StringConcatenation _builder = new StringConcatenation();
@@ -1388,8 +1394,8 @@ public class HtmlGenerator implements IGenerator {
             int _read = inChannel.read(buffer);
             int _operator_minus_1 = IntegerExtensions.operator_minus(1);
             boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus_1));
-            Boolean _xwhileexpression = _operator_notEquals;
-            while (_xwhileexpression) {
+            boolean _while = _operator_notEquals;
+            while (_while) {
               {
                 buffer.flip();
                 outChannel.write(buffer);
@@ -1398,15 +1404,15 @@ public class HtmlGenerator implements IGenerator {
               int _read_1 = inChannel.read(buffer);
               int _operator_minus_2 = IntegerExtensions.operator_minus(1);
               boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_2));
-              _xwhileexpression = _operator_notEquals_1;
+              _while = _operator_notEquals_1;
             }
             buffer.flip();
             boolean _hasRemaining = buffer.hasRemaining();
-            Boolean _xwhileexpression_1 = _hasRemaining;
-            while (_xwhileexpression_1) {
+            boolean _while_1 = _hasRemaining;
+            while (_while_1) {
               outChannel.write(buffer);
               boolean _hasRemaining_1 = buffer.hasRemaining();
-              _xwhileexpression_1 = _hasRemaining_1;
+              _while_1 = _hasRemaining_1;
             }
             outChannel.close();
           }

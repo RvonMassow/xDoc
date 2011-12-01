@@ -42,7 +42,7 @@ public class EclipseHelpUriUtil {
   
   public void initialize(final Document doc) {
       HashMap<AbstractSection,AbstractSection> _newHashMap = CollectionLiterals.<AbstractSection, AbstractSection>newHashMap();
-      this.section2fileSection = ((HashMap<AbstractSection,AbstractSection>)_newHashMap);
+      this.section2fileSection = _newHashMap;
       this.doc = doc;
       this.populateFileMap(doc);
   }
@@ -51,9 +51,9 @@ public class EclipseHelpUriUtil {
     URI _xblockexpression = null;
     {
       AbstractSection _containerOfType = EcoreUtil2.<AbstractSection>getContainerOfType(img, org.eclipse.xtext.xdoc.xdoc.AbstractSection.class);
-      final AbstractSection container = ((AbstractSection)_containerOfType);
+      final AbstractSection container = _containerOfType;
       AbstractSection _get = this.section2fileSection.get(container);
-      final AbstractSection fileSection = ((AbstractSection)_get);
+      final AbstractSection fileSection = _get;
       URI _relativeTargetURI = this.getRelativeTargetURI(img);
       URI _targetURI = this.targetURI(fileSection);
       URI _resolve = _relativeTargetURI.resolve(_targetURI);
@@ -84,9 +84,9 @@ public class EclipseHelpUriUtil {
     {
       Identifiable _ref = it.getRef();
       AbstractSection _containerOfType = EcoreUtil2.<AbstractSection>getContainerOfType(_ref, org.eclipse.xtext.xdoc.xdoc.AbstractSection.class);
-      final AbstractSection container = ((AbstractSection)_containerOfType);
+      final AbstractSection container = _containerOfType;
       AbstractSection _get = this.section2fileSection.get(container);
-      final AbstractSection fileSection = ((AbstractSection)_get);
+      final AbstractSection fileSection = _get;
       URI _xifexpression = null;
       boolean _operator_equals = ObjectExtensions.operator_equals(fileSection, null);
       if (_operator_equals) {
@@ -123,44 +123,52 @@ public class EclipseHelpUriUtil {
     boolean matched = false;
     if (!matched) {
       if (it instanceof PartRef) {
+        final PartRef _partRef = (PartRef)it;
         matched=true;
-        URI _targetURI = this.getTargetURI(((PartRef)it));
+        Part _part = _partRef.getPart();
+        URI _targetURI = this.getTargetURI(_part);
         _switchResult = _targetURI;
       }
     }
     if (!matched) {
       if (it instanceof ChapterRef) {
+        final ChapterRef _chapterRef = (ChapterRef)it;
         matched=true;
-        URI _targetURI_1 = this.getTargetURI(((ChapterRef)it));
-        _switchResult = _targetURI_1;
+        Chapter _chapter = _chapterRef.getChapter();
+        URI _targetURI = this.getTargetURI(_chapter);
+        _switchResult = _targetURI;
       }
     }
     if (!matched) {
       if (it instanceof SectionRef) {
+        final SectionRef _sectionRef = (SectionRef)it;
         matched=true;
-        URI _targetURI_2 = this.getTargetURI(((SectionRef)it));
-        _switchResult = _targetURI_2;
+        Section _section = _sectionRef.getSection();
+        URI _targetURI = this.getTargetURI(_section);
+        _switchResult = _targetURI;
       }
     }
     if (!matched) {
       if (it instanceof Section2Ref) {
+        final Section2Ref _section2Ref = (Section2Ref)it;
         matched=true;
-        URI _targetURI_3 = this.getTargetURI(((Section2Ref)it));
-        _switchResult = _targetURI_3;
+        Section2 _section2 = _section2Ref.getSection2();
+        URI _targetURI = this.getTargetURI(_section2);
+        _switchResult = _targetURI;
       }
     }
     if (!matched) {
       URI _xblockexpression = null;
       {
         AbstractSection _containerOfType = EcoreUtil2.<AbstractSection>getContainerOfType(it, org.eclipse.xtext.xdoc.xdoc.AbstractSection.class);
-        final AbstractSection container = ((AbstractSection)_containerOfType);
+        final AbstractSection container = _containerOfType;
         AbstractSection _get = this.section2fileSection.get(container);
-        final AbstractSection fileSection = ((AbstractSection)_get);
-        URI _targetURI_4 = this.targetURI(fileSection);
+        final AbstractSection fileSection = _get;
+        URI _targetURI = this.targetURI(fileSection);
         String _localId = this.eclipseNamingExtensions.getLocalId(it);
-        URI _appendFragment = _targetURI_4.appendFragment(_localId);
-        URI _targetURI_5 = this.targetURI(this.doc);
-        URI _deresolve = _appendFragment.deresolve(_targetURI_5);
+        URI _appendFragment = _targetURI.appendFragment(_localId);
+        URI _targetURI_1 = this.targetURI(this.doc);
+        URI _deresolve = _appendFragment.deresolve(_targetURI_1);
         _xblockexpression = (_deresolve);
       }
       _switchResult = _xblockexpression;
@@ -227,7 +235,7 @@ public class EclipseHelpUriUtil {
             EclipseHelpUriUtil.this.populateFileMap(section, fileSection);
           }
         };
-      IterableExtensions.<AbstractSection>forEach(((Iterable<AbstractSection>)_filter), _function);
+      IterableExtensions.<AbstractSection>forEach(_filter, _function);
   }
   
   protected void _populateFileMap(final Section2Ref it, final AbstractSection fileSection) {

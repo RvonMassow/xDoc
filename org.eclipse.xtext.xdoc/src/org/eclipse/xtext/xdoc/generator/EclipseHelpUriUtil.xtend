@@ -56,10 +56,10 @@ class EclipseHelpUriUtil {
 	
 	def URI getTargetURI(AbstractSection it) {
 		switch(it) {
-			PartRef: it.getTargetURI()
-			ChapterRef: it.getTargetURI()
-			SectionRef: it.getTargetURI()
-			Section2Ref: it.getTargetURI()
+			PartRef: it.part.getTargetURI()
+            ChapterRef: it.chapter.getTargetURI()
+            SectionRef: it.section.getTargetURI()
+            Section2Ref: it.section2.getTargetURI()
 			default: {
 				val container = it.getContainerOfType(typeof(AbstractSection))
 				val fileSection = section2fileSection.get(container)

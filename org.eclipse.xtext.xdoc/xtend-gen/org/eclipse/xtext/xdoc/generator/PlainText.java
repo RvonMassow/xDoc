@@ -32,7 +32,7 @@ public class PlainText {
         }
       };
     CharSequence _fold = IterableExtensions.<EObject, CharSequence>fold(_contents, _builder, _function);
-    return ((CharSequence)_fold);
+    return _fold;
   }
   
   protected CharSequence _genPlainText(final TextPart tp) {
@@ -53,7 +53,7 @@ public class PlainText {
         }
       };
     CharSequence _fold = IterableExtensions.<TextOrMarkup, CharSequence>fold(_contents, _builder, _function);
-    return ((CharSequence)_fold);
+    return _fold;
   }
   
   protected CharSequence _genPlainText(final Link l) {

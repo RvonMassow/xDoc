@@ -364,10 +364,11 @@ public class LatexGenerator implements IConfigurableGenerator {
     boolean matched = false;
     if (!matched) {
       if (sec instanceof Part) {
+        final Part _part = (Part)sec;
         matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\part{");
-        TextOrMarkup _title = ((Part)sec).getTitle();
+        TextOrMarkup _title = _part.getTitle();
         CharSequence _genContent = this.genContent(_title);
         _builder_1.append(_genContent, "");
         _builder_1.append("}");
@@ -376,62 +377,67 @@ public class LatexGenerator implements IConfigurableGenerator {
     }
     if (!matched) {
       if (sec instanceof Chapter) {
+        final Chapter _chapter = (Chapter)sec;
         matched=true;
-        StringConcatenation _builder_2 = new StringConcatenation();
-        _builder_2.append("\\chapter{");
-        TextOrMarkup _title_1 = ((Chapter)sec).getTitle();
-        CharSequence _genContent_1 = this.genContent(_title_1);
-        _builder_2.append(_genContent_1, "");
-        _builder_2.append("}");
-        _switchResult = _builder_2;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("\\chapter{");
+        TextOrMarkup _title = _chapter.getTitle();
+        CharSequence _genContent = this.genContent(_title);
+        _builder_1.append(_genContent, "");
+        _builder_1.append("}");
+        _switchResult = _builder_1;
       }
     }
     if (!matched) {
       if (sec instanceof Section) {
+        final Section _section = (Section)sec;
         matched=true;
-        StringConcatenation _builder_3 = new StringConcatenation();
-        _builder_3.append("\\section{");
-        TextOrMarkup _title_2 = ((Section)sec).getTitle();
-        CharSequence _genContent_2 = this.genContent(_title_2);
-        _builder_3.append(_genContent_2, "");
-        _builder_3.append("}");
-        _switchResult = _builder_3;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("\\section{");
+        TextOrMarkup _title = _section.getTitle();
+        CharSequence _genContent = this.genContent(_title);
+        _builder_1.append(_genContent, "");
+        _builder_1.append("}");
+        _switchResult = _builder_1;
       }
     }
     if (!matched) {
       if (sec instanceof Section2) {
+        final Section2 _section2 = (Section2)sec;
         matched=true;
-        StringConcatenation _builder_4 = new StringConcatenation();
-        _builder_4.append("\\subsection{");
-        TextOrMarkup _title_3 = ((Section2)sec).getTitle();
-        CharSequence _genContent_3 = this.genContent(_title_3);
-        _builder_4.append(_genContent_3, "");
-        _builder_4.append("}");
-        _switchResult = _builder_4;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("\\subsection{");
+        TextOrMarkup _title = _section2.getTitle();
+        CharSequence _genContent = this.genContent(_title);
+        _builder_1.append(_genContent, "");
+        _builder_1.append("}");
+        _switchResult = _builder_1;
       }
     }
     if (!matched) {
       if (sec instanceof Section3) {
+        final Section3 _section3 = (Section3)sec;
         matched=true;
-        StringConcatenation _builder_5 = new StringConcatenation();
-        _builder_5.append("\\subsubsection{");
-        TextOrMarkup _title_4 = ((Section3)sec).getTitle();
-        CharSequence _genContent_4 = this.genContent(_title_4);
-        _builder_5.append(_genContent_4, "");
-        _builder_5.append("}");
-        _switchResult = _builder_5;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("\\subsubsection{");
+        TextOrMarkup _title = _section3.getTitle();
+        CharSequence _genContent = this.genContent(_title);
+        _builder_1.append(_genContent, "");
+        _builder_1.append("}");
+        _switchResult = _builder_1;
       }
     }
     if (!matched) {
       if (sec instanceof Section4) {
+        final Section4 _section4 = (Section4)sec;
         matched=true;
-        StringConcatenation _builder_6 = new StringConcatenation();
-        _builder_6.append("\\paragraph{");
-        TextOrMarkup _title_5 = ((Section4)sec).getTitle();
-        CharSequence _genContent_5 = this.genContent(_title_5);
-        _builder_6.append(_genContent_5, "");
-        _builder_6.append("}");
-        _switchResult = _builder_6;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("\\paragraph{");
+        TextOrMarkup _title = _section4.getTitle();
+        CharSequence _genContent = this.genContent(_title);
+        _builder_1.append(_genContent, "");
+        _builder_1.append("}");
+        _switchResult = _builder_1;
       }
     }
     _builder.append(_switchResult, "");
@@ -440,34 +446,37 @@ public class LatexGenerator implements IConfigurableGenerator {
     boolean matched_1 = false;
     if (!matched_1) {
       if (sec instanceof Part) {
+        final Part _part = (Part)sec;
         matched_1=true;
-        CharSequence _genLabel = this.genLabel(((Part)sec));
+        CharSequence _genLabel = this.genLabel(_part);
         _switchResult_1 = _genLabel;
       }
     }
     if (!matched_1) {
       if (sec instanceof Chapter) {
+        final Chapter _chapter = (Chapter)sec;
         matched_1=true;
-        CharSequence _genLabel_1 = this.genLabel(((Chapter)sec));
-        _switchResult_1 = _genLabel_1;
+        CharSequence _genLabel = this.genLabel(_chapter);
+        _switchResult_1 = _genLabel;
       }
     }
     if (!matched_1) {
       if (sec instanceof Section) {
+        final Section _section = (Section)sec;
         matched_1=true;
-        CharSequence _genLabel_2 = this.genLabel(((Section)sec));
-        _switchResult_1 = _genLabel_2;
+        CharSequence _genLabel = this.genLabel(_section);
+        _switchResult_1 = _genLabel;
       }
     }
     if (!matched_1) {
-      TextOrMarkup _title_6 = sec.getTitle();
-      CharSequence _genLabel_3 = this.genLabel(_title_6);
-      _switchResult_1 = _genLabel_3;
+      TextOrMarkup _title = sec.getTitle();
+      CharSequence _genLabel = this.genLabel(_title);
+      _switchResult_1 = _genLabel;
     }
     _builder.append(_switchResult_1, "");
     _builder.newLineIfNotEmpty();
-    CharSequence _genContent_6 = this.genContent(sec);
-    _builder.append(_genContent_6, "");
+    CharSequence _genContent = this.genContent(sec);
+    _builder.append(_genContent, "");
     _builder.newLineIfNotEmpty();
     return _builder;
   }
@@ -836,7 +845,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.append("\\addtolength{\\XdocTEffectiveWidth}{-");
     EList<TableRow> _rows = tab.getRows();
     TableRow _head = IterableExtensions.<TableRow>head(_rows);
-    EList<TableData> _data = ((TableRow)_head).getData();
+    EList<TableData> _data = _head.getData();
     int _size = _data.size();
     int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)_size), ((Integer)2));
     _builder.append(_operator_multiply, "");
@@ -845,7 +854,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.append("\\noindent\\begin{tabular}{");
     EList<TableRow> _rows_1 = tab.getRows();
     TableRow _head_1 = IterableExtensions.<TableRow>head(_rows_1);
-    EList<TableData> _data_1 = ((TableRow)_head_1).getData();
+    EList<TableData> _data_1 = _head_1.getData();
     CharSequence _genColumns = this.genColumns(_data_1);
     _builder.append(_genColumns, "");
     _builder.append("}");
@@ -858,7 +867,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<TableRow, CharSequence>map(_rows_2, _function);
-    String _join = IterableExtensions.join(((List<CharSequence>)_map), "\\\\\n");
+    String _join = IterableExtensions.join(_map, "\\\\\n");
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
     _builder.append("\\end{tabular}");
@@ -875,7 +884,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<TableData, CharSequence>map(_data, _function);
-    String _join = IterableExtensions.join(((List<CharSequence>)_map), " & ");
+    String _join = IterableExtensions.join(_map, " & ");
     return _join;
   }
   
@@ -888,7 +897,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
-    String _join = IterableExtensions.join(((List<CharSequence>)_map));
+    String _join = IterableExtensions.join(_map);
     return _join;
   }
   
@@ -915,7 +924,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
-    String _join = IterableExtensions.join(((List<CharSequence>)_map));
+    String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
     _builder.append("\\end{enumerate}");
@@ -941,7 +950,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
-    String _join = IterableExtensions.join(((List<CharSequence>)_map));
+    String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
     _builder.append("\\end{itemize}");
@@ -957,7 +966,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     {
       EList<TextOrMarkup> _contents = item.getContents();
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(_contents);
-      boolean _block = LatexUtils.block(((TextOrMarkup)_head));
+      boolean _block = LatexUtils.block(_head);
       if (_block) {
         _builder.append("\\vspace*{-\\baselineskip}");
       }
@@ -971,7 +980,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
-    String _join = IterableExtensions.join(((List<CharSequence>)_map));
+    String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
     _builder.append("\\end{minipage}");
@@ -990,7 +999,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
-    String _join = IterableExtensions.join(((List<CharSequence>)_map));
+    String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.append("}");
     return _builder;
@@ -1021,7 +1030,7 @@ public class LatexGenerator implements IConfigurableGenerator {
             }
           };
         List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
-        String _join = IterableExtensions.join(((List<CharSequence>)_map));
+        String _join = IterableExtensions.join(_map);
         _builder.append(_join, "");
         _builder.append("~(\u00A7\\ref*{");
         Identifiable _ref_2 = ref.getRef();
@@ -1142,7 +1151,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         List<String> _segmentsList = inPath.segmentsList();
         int _segmentCount = inPath.segmentCount();
         List<String> _subList = _segmentsList.subList(1, _segmentCount);
-        final List<String> inSegments = ((List<String>)_subList);
+        final List<String> inSegments = _subList;
         String _join = IterableExtensions.join(inSegments, "/");
         final String pathInDocument = _join;
         Object _get = this.config.get(Config.outletPath);
@@ -1162,8 +1171,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         int _read = inChannel.read(buffer);
         int _operator_minus = IntegerExtensions.operator_minus(1);
         boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
-        Boolean _xwhileexpression = _operator_notEquals;
-        while (_xwhileexpression) {
+        boolean _while = _operator_notEquals;
+        while (_while) {
           {
             buffer.flip();
             outChannel.write(buffer);
@@ -1172,15 +1181,15 @@ public class LatexGenerator implements IConfigurableGenerator {
           int _read_1 = inChannel.read(buffer);
           int _operator_minus_1 = IntegerExtensions.operator_minus(1);
           boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
-          _xwhileexpression = _operator_notEquals_1;
+          _while = _operator_notEquals_1;
         }
         buffer.flip();
         boolean _hasRemaining = buffer.hasRemaining();
-        Boolean _xwhileexpression_1 = _hasRemaining;
-        while (_xwhileexpression_1) {
+        boolean _while_1 = _hasRemaining;
+        while (_while_1) {
           outChannel.write(buffer);
           boolean _hasRemaining_1 = buffer.hasRemaining();
-          _xwhileexpression_1 = _hasRemaining_1;
+          _while_1 = _hasRemaining_1;
         }
         outChannel.close();
         return pathInDocument;
@@ -1248,7 +1257,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           }
         };
       List<CharSequence> _map = ListExtensions.<EObject, CharSequence>map(_contents, _function);
-      String _join = IterableExtensions.join(((List<CharSequence>)_map));
+      String _join = IterableExtensions.join(_map);
       _builder.append(_join, "");
       _builder.append("\u00B0");
       _xifexpression = _builder;
@@ -1268,7 +1277,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           }
         };
       List<CharSequence> _map_1 = ListExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
-      String _join_1 = IterableExtensions.join(((List<CharSequence>)_map_1));
+      String _join_1 = IterableExtensions.join(_map_1);
       _builder_1.append(_join_1, "");
       _builder_1.newLineIfNotEmpty();
       _builder_1.append("\\end{lstlisting}");
