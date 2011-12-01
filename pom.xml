@@ -27,17 +27,17 @@
     <repository>
       <id>xpand</id>
       <layout>p2</layout>
-      <url>https://hudson.eclipse.org/hudson/job/Xpand-nightly-HEAD/lastSuccessfulBuild/artifact/xpand.p2.repository</url>
+      <url>https://hudson.eclipse.org/hudson/job/Xpand-nightly-HEAD/lastSuccessfulBuild/artifact/xpand.p2.repository/</url>
     </repository>
     <repository>
       <id>xtext</id>
       <layout>p2</layout>
-      <url>https://hudson.eclipse.org/hudson/job/Xtext-nightly-HEAD/lastSuccessfulBuild/artifact/xtext.p2.repository</url>
+      <url>https://hudson.eclipse.org/hudson/job/Xtext-nightly-HEAD/lastSuccessfulBuild/artifact/xtext.p2.repository/</url>
     </repository>
     <repository>
       <id>mwe2lang</id>
       <layout>p2</layout>
-      <url>https://hudson.eclipse.org/hudson/job/MWE-Language-nightly-HEAD/lastSuccessfulBuild/artifact/mwe2lang.p2.repository</url>
+      <url>https://hudson.eclipse.org/hudson/job/MWE-Language-nightly-HEAD/lastSuccessfulBuild/artifact/mwe2lang.p2.repository/</url>
     </repository>
     <repository>
       <id>mwe2</id>
