@@ -1033,7 +1033,7 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence generate(final List<TextOrMarkup> tomList) {
     CharSequence _xifexpression = null;
     int _size = tomList.size();
-    boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
+    boolean _operator_equals = IntegerExtensions.operator_equals(_size, 1);
     if (_operator_equals) {
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(tomList);
       CharSequence _genNonParText = this.genNonParText(_head);
@@ -1355,7 +1355,7 @@ public class HtmlGenerator implements IGenerator {
   public void copy(final String fromRelativeFileName, final Resource res) {
     try {
       {
-        int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)16), ((Integer)1024));
+        int _operator_multiply = IntegerExtensions.operator_multiply(16, 1024);
         ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
         final ByteBuffer buffer = _allocateDirect;
         URI _uRI = res.getURI();
@@ -1372,7 +1372,7 @@ public class HtmlGenerator implements IGenerator {
             URI _createURI = URI.createURI(_operator_plus_1);
             final URI inPath = _createURI;
             int _segmentCount = uri.segmentCount();
-            int _operator_minus = IntegerExtensions.operator_minus(((Integer)_segmentCount), ((Integer)2));
+            int _operator_minus = IntegerExtensions.operator_minus(_segmentCount, 2);
             URI _trimSegments_1 = uri.trimSegments(_operator_minus);
             URI _appendSegment = _trimSegments_1.appendSegment(Outlets.WEB_SITE_PATH_NAME);
             String _string_1 = _appendSegment.toString();
@@ -1393,7 +1393,7 @@ public class HtmlGenerator implements IGenerator {
             final WritableByteChannel outChannel = _newChannel_1;
             int _read = inChannel.read(buffer);
             int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-            boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus_1));
+            boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_read, _operator_minus_1);
             boolean _while = _operator_notEquals;
             while (_while) {
               {
@@ -1403,7 +1403,7 @@ public class HtmlGenerator implements IGenerator {
               }
               int _read_1 = inChannel.read(buffer);
               int _operator_minus_2 = IntegerExtensions.operator_minus(1);
-              boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_2));
+              boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _operator_minus_2);
               _while = _operator_notEquals_1;
             }
             buffer.flip();

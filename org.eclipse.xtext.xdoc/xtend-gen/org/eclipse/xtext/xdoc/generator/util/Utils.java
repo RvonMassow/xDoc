@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.ComparableExtensions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
@@ -50,7 +49,7 @@ public class Utils {
     boolean _operator_and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();
-    boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_size), ((Integer)1));
+    boolean _operator_equals = IntegerExtensions.operator_equals(_size, 1);
     if (!_operator_equals) {
       _operator_and = false;
     } else {
@@ -184,7 +183,7 @@ public class Utils {
       StringBuilder _stringBuilder = new StringBuilder();
       final StringBuilder result = _stringBuilder;
       int _type = token.getType();
-      boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_type), ((Integer)Token.EOF));
+      boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_type, Token.EOF);
       boolean _while = _operator_notEquals_1;
       while (_while) {
         {
@@ -245,7 +244,7 @@ public class Utils {
           token = _nextToken_1;
         }
         int _type_2 = token.getType();
-        boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(((Integer)_type_2), ((Integer)Token.EOF));
+        boolean _operator_notEquals_2 = IntegerExtensions.operator_notEquals(_type_2, Token.EOF);
         _while = _operator_notEquals_2;
       }
       String _string = result.toString();
@@ -265,7 +264,7 @@ public class Utils {
     boolean _operator_and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();
-    boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)_size), ((Integer)0));
+    boolean _operator_greaterThan = IntegerExtensions.operator_greaterThan(_size, 0);
     if (!_operator_greaterThan) {
       _operator_and = false;
     } else {
@@ -284,7 +283,7 @@ public class Utils {
         int indent = _length;
         String _replaceAll = code0.replaceAll("^(\n*)\\s*", "$1");
         int _length_1 = _replaceAll.length();
-        int _operator_minus = IntegerExtensions.operator_minus(((Integer)indent), ((Integer)_length_1));
+        int _operator_minus = IntegerExtensions.operator_minus(indent, _length_1);
         int _indent = indent = _operator_minus;
         _xblockexpression = (_indent);
       }
@@ -322,7 +321,7 @@ public class Utils {
     } else {
       String _trim = s.trim();
       int _length = _trim.length();
-      boolean _operator_equals_1 = ObjectExtensions.operator_equals(((Integer)_length), ((Integer)0));
+      boolean _operator_equals_1 = IntegerExtensions.operator_equals(_length, 0);
       _operator_or = BooleanExtensions.operator_or(_operator_equals, _operator_equals_1);
     }
     return _operator_or;

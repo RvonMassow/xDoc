@@ -258,7 +258,7 @@ public class EclipseHelpUriUtil {
       URI _createURI = URI.createURI(_fullURL);
       final URI fullURL = _createURI;
       int _segmentCount = resourceURI.segmentCount();
-      int _operator_minus = IntegerExtensions.operator_minus(((Integer)_segmentCount), ((Integer)2));
+      int _operator_minus = IntegerExtensions.operator_minus(_segmentCount, 2);
       URI _trimSegments = resourceURI.trimSegments(_operator_minus);
       URI _appendSegment = _trimSegments.appendSegment("contents");
       String[] _segments = fullURL.segments();

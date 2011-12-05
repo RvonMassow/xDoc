@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc.generator.util;
 
 import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
+import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 
@@ -135,7 +136,7 @@ public class GitExtensions {
       final String prefix = _switchResult;
       String _xifexpression = null;
       int _length = prefix.length();
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_length), ((Integer)0));
+      boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_length, 0);
       if (_operator_notEquals) {
         String _operator_plus_1 = StringExtensions.operator_plus(basedir, prefix);
         String _qualifiedName_1 = ie.getQualifiedName();

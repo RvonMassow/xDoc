@@ -19,5 +19,6 @@ Require-Bundle: org.eclipse.xtext.xdoc;visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.xtext.xdoc.ui.contentassist.antlr,
- resources
+ resources,
+ org.eclipse.xtext.xdoc.ui.contentassist
 Bundle-Activator: org.eclipse.xtext.xdoc.ui.internal.XdocActivator

@@ -24,7 +24,6 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
-import org.eclipse.xtext.xbase.lib.ComparableExtensions;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -130,7 +129,7 @@ public class EclipseHelpGenerator implements IGenerator {
   public void copy(final URI fromAbsoluteURI, final URI toAbsoluteURI, final URIConverter converter) {
     try {
       {
-        int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)16), ((Integer)1024));
+        int _operator_multiply = IntegerExtensions.operator_multiply(16, 1024);
         ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
         final ByteBuffer buffer = _allocateDirect;
         final String sepChar = File.separator;
@@ -142,7 +141,7 @@ public class EclipseHelpGenerator implements IGenerator {
         final WritableByteChannel outChannel = _newChannel_1;
         int _read = inChannel.read(buffer);
         int _operator_minus = IntegerExtensions.operator_minus(1);
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
+        boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_read, _operator_minus);
         boolean _while = _operator_notEquals;
         while (_while) {
           {
@@ -152,7 +151,7 @@ public class EclipseHelpGenerator implements IGenerator {
           }
           int _read_1 = inChannel.read(buffer);
           int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-          boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
+          boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _operator_minus_1);
           _while = _operator_notEquals_1;
         }
         buffer.flip();
@@ -747,7 +746,7 @@ public class EclipseHelpGenerator implements IGenerator {
         } else {
           String _style_1 = img.getStyle();
           int _length = _style_1.length();
-          boolean _operator_equals = ObjectExtensions.operator_equals(((Integer)_length), ((Integer)0));
+          boolean _operator_equals = IntegerExtensions.operator_equals(_length, 0);
           boolean _operator_not = BooleanExtensions.operator_not(_operator_equals);
           _operator_and = BooleanExtensions.operator_and(_operator_notEquals_2, _operator_not);
         }
@@ -1002,13 +1001,13 @@ public class EclipseHelpGenerator implements IGenerator {
         Iterable<EObject> _xifexpression_1 = null;
         EList<EObject> _contents_1 = cb.getContents();
         int _size = _contents_1.size();
-        boolean _operator_greaterThan = ComparableExtensions.<Integer>operator_greaterThan(((Integer)_size), ((Integer)2));
+        boolean _operator_greaterThan = IntegerExtensions.operator_greaterThan(_size, 2);
         if (_operator_greaterThan) {
           EList<EObject> _contents_2 = cb.getContents();
           Iterable<EObject> _tail = IterableExtensions.<EObject>tail(_contents_2);
           EList<EObject> _contents_3 = cb.getContents();
           int _size_1 = _contents_3.size();
-          int _operator_minus = IntegerExtensions.operator_minus(((Integer)_size_1), ((Integer)2));
+          int _operator_minus = IntegerExtensions.operator_minus(_size_1, 2);
           Iterable<EObject> _take = IterableExtensions.<EObject>take(_tail, _operator_minus);
           _xifexpression_1 = _take;
         } else {

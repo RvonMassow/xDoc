@@ -847,7 +847,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     TableRow _head = IterableExtensions.<TableRow>head(_rows);
     EList<TableData> _data = _head.getData();
     int _size = _data.size();
-    int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)_size), ((Integer)2));
+    int _operator_multiply = IntegerExtensions.operator_multiply(_size, 2);
     _builder.append(_operator_multiply, "");
     _builder.append(".0\\tabcolsep}");
     _builder.newLineIfNotEmpty();
@@ -1127,7 +1127,7 @@ public class LatexGenerator implements IConfigurableGenerator {
       {
         Resource _eResource = imgRef.eResource();
         final Resource res = _eResource;
-        int _operator_multiply = IntegerExtensions.operator_multiply(((Integer)16), ((Integer)1024));
+        int _operator_multiply = IntegerExtensions.operator_multiply(16, 1024);
         ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
         final ByteBuffer buffer = _allocateDirect;
         URI _uRI = res.getURI();
@@ -1170,7 +1170,7 @@ public class LatexGenerator implements IConfigurableGenerator {
         final WritableByteChannel outChannel = _newChannel_1;
         int _read = inChannel.read(buffer);
         int _operator_minus = IntegerExtensions.operator_minus(1);
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(((Integer)_read), ((Integer)_operator_minus));
+        boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_read, _operator_minus);
         boolean _while = _operator_notEquals;
         while (_while) {
           {
@@ -1180,7 +1180,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           }
           int _read_1 = inChannel.read(buffer);
           int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-          boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(((Integer)_read_1), ((Integer)_operator_minus_1));
+          boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _operator_minus_1);
           _while = _operator_notEquals_1;
         }
         buffer.flip();
