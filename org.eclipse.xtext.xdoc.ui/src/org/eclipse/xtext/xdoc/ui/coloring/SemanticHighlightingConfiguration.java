@@ -16,7 +16,10 @@ import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION2;
 import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION3;
 import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION4;
 
+import javax.swing.text.StyledEditorKit.BoldAction;
+
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcceptor;
@@ -34,11 +37,11 @@ public class SemanticHighlightingConfiguration extends DefaultHighlightingConfig
 	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
-		addDefault(acceptor,CHAPTER.getName(),defaultTextStyle());
-		addDefault(acceptor,SECTION.getName(),defaultTextStyle());
-		addDefault(acceptor,SECTION2.getName(),defaultTextStyle());
-		addDefault(acceptor,SECTION3.getName(),defaultTextStyle());
-		addDefault(acceptor,SECTION4.getName(),defaultTextStyle());
+		addDefault(acceptor,CHAPTER.getName(),getHeaderTextStyle(16));
+		addDefault(acceptor,SECTION.getName(),getHeaderTextStyle(14));
+		addDefault(acceptor,SECTION2.getName(),getHeaderTextStyle(12));
+		addDefault(acceptor,SECTION3.getName(),getHeaderTextStyle(11));
+		addDefault(acceptor,SECTION4.getName(),getHeaderTextStyle(10));
 		addDefault(acceptor,EMPHASIZE.getName(),emphasizedTextStyle());
 		addDefault(acceptor,CODE_BLOCK.getName(),codeBlockTextStyle());
 		addDefault(acceptor,CODE_COMMENT,codeCommentStyle());
@@ -48,6 +51,17 @@ public class SemanticHighlightingConfiguration extends DefaultHighlightingConfig
 	protected void addDefault(IHighlightingConfigurationAcceptor acceptor,
 			String name, TextStyle defaultTextStyle) {
 		acceptor.acceptDefaultHighlighting(name, name, defaultTextStyle);
+	}
+
+	public TextStyle getHeaderTextStyle(int height) {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setBackgroundColor(new RGB(255, 255, 255));
+		textStyle.setColor(new RGB(0, 0, 0));
+		FontData fd = new FontData();
+		fd.setHeight(height);
+		fd.setStyle(SWT.BOLD);
+		textStyle.setFontData(fd);
+		return textStyle;
 	}
 
 	@Override
