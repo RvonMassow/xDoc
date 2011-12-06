@@ -1,13 +1,11 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
-import com.google.inject.Inject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
@@ -22,9 +20,6 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 @SuppressWarnings("all")
 public class EclipseNamingExtensions {
-  @Inject
-  private AbstractSectionExtension sectionExtension;
-  
   public String getLocalId(final Identifiable identifiable) {
     String _switchResult = null;
     boolean matched = false;

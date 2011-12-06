@@ -1,7 +1,6 @@
 package org.eclipse.xtext.xdoc.generator.util
 
-import com.google.inject.Inject
-import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension
+import org.eclipse.emf.common.util.URI
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef
 import org.eclipse.xtext.xdoc.xdoc.Identifiable
@@ -10,11 +9,8 @@ import org.eclipse.xtext.xdoc.xdoc.PartRef
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref
 import org.eclipse.xtext.xdoc.xdoc.SectionRef
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
-import org.eclipse.emf.common.util.URI
 
 class EclipseNamingExtensions {
-
-	@Inject extension AbstractSectionExtension sectionExtension
 
 	def String getLocalId(Identifiable identifiable) {
 		switch identifiable {

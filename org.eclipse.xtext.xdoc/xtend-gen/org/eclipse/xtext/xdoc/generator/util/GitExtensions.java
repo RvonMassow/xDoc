@@ -11,8 +11,6 @@ public class GitExtensions {
   public String gitLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
     {
-      String _compilationUnitName = this.compilationUnitName(ie);
-      final String compilationUnitName = _compilationUnitName;
       final String basedir = "https://github.com/svenefftinge/Xtext-2.0-released-source-code/tree/master/";
       String _switchResult = null;
       String _qualifiedName = ie.getQualifiedName();
@@ -153,18 +151,6 @@ public class GitExtensions {
     return _xblockexpression;
   }
   
-  /**
-   * org.eclipse.xtext.ui.label.AbstractLabelProvider
-   * org.eclipse.xtext.ui.label.DefaultDescriptionLabelProvider
-   * org.eclipse.xtext.ui.shared.internal.SharedModule
-   * org.eclipse.xtext.validation.AbstractDeclarativeValidator
-   * org.eclipse.xtext.validation.Check
-   * org.eclipse.xtext.validation.IConcreteSyntaxDiagnosticProvider
-   * org.eclipse.xtext.validation.IConcreteSyntaxValidator
-   * org.eclipse.xtext.validation.impl.ConcreteSyntaxDiagnosticProvider
-   * org.eclipse.xtext.validation.impl.ConcreteSyntaxEValidator
-   * org.eclipse.xtext.validation.impl.ConcreteSyntaxValidator
-   */
   public String compilationUnitName(final JvmIdentifiableElement ie) {
     String _simpleName = ie.getSimpleName();
     return _simpleName;

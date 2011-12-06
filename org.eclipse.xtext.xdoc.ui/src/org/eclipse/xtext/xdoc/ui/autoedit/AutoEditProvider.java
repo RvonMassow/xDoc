@@ -11,8 +11,6 @@ import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategy;
 import org.eclipse.xtext.ui.editor.autoedit.DefaultAutoEditStrategyProvider;
-import org.eclipse.xtext.ui.editor.autoedit.MultiLineTerminalsEditStrategy;
-import org.eclipse.xtext.ui.editor.model.DocumentUtil;
 
 public class AutoEditProvider extends DefaultAutoEditStrategyProvider {
 

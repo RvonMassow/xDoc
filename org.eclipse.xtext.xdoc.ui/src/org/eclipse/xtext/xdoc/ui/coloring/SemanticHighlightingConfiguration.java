@@ -16,8 +16,6 @@ import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION2;
 import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION3;
 import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION4;
 
-import javax.swing.text.StyledEditorKit.BoldAction;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.RGB;
@@ -76,7 +74,6 @@ public class SemanticHighlightingConfiguration extends DefaultHighlightingConfig
 		TextStyle textStyle = new TextStyle();
 		textStyle.setBackgroundColor(new RGB(0xDE, 0xE5, 0xEF));
 		textStyle.setColor(new RGB(0, 0, 0));
-//		textStyle.setFontData(new FontData("Monaco"));
 		return textStyle;
 	}
 	
