@@ -460,7 +460,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def dispatch genText(CodeBlock block) {
-		block.removeIndent.specialGenCode
+		block.specialGenCode
 	}
 
 	def dispatch genText(CodeRef codeRef){
@@ -546,7 +546,7 @@ class LatexGenerator implements IConfigurableGenerator {
 			'''
 				
 				\begin{lstlisting}«block.language?.langSpec»
-				«block.contents.map([e|e.genCode]).join»
+				«block.removeIndent.contents.map([e|e.genCode]).join»
 				\end{lstlisting}
 			'''
 	}

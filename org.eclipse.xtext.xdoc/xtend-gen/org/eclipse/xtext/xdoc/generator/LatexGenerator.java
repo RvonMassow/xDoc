@@ -1108,8 +1108,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   protected CharSequence _genText(final CodeBlock block) {
-    CodeBlock _removeIndent = StringUtils.removeIndent(block);
-    CharSequence _specialGenCode = this.specialGenCode(_removeIndent);
+    CharSequence _specialGenCode = this.specialGenCode(block);
     return _specialGenCode;
   }
   
@@ -1334,7 +1333,8 @@ public class LatexGenerator implements IConfigurableGenerator {
       CharSequence _langSpec_2 = _language_2==null?(CharSequence)null:this.langSpec(_language_2);
       _builder_2.append(_langSpec_2, "");
       _builder_2.newLineIfNotEmpty();
-      EList<EObject> _contents_2 = block.getContents();
+      CodeBlock _removeIndent = StringUtils.removeIndent(block);
+      EList<EObject> _contents_2 = _removeIndent.getContents();
       final Function1<EObject,CharSequence> _function_2 = new Function1<EObject,CharSequence>() {
           public CharSequence apply(final EObject e) {
             CharSequence _genCode = LatexGenerator.this.genCode(e);
