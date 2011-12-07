@@ -24,6 +24,7 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Code;
+import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
@@ -94,9 +95,24 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 		}
 	}
 
+	@Check
 	public void checkAbstractSectionHasTitle(AbstractSection section) {
 		if(section.getTitle() == null)
-			warning("This element should have a title.", null);
+			warning("This element should have a title.", null,0);
+	}
+
+	@Check
+	public void checkNoCodeInTitle(CodeBlock code) {
+		EObject tom = code.eContainer();
+		while(!(tom.eContainer() instanceof AbstractSection)){
+			tom = tom.eContainer();
+		}
+		if(tom.eContainer() instanceof AbstractSection) {
+			AbstractSection section = (AbstractSection) tom.eContainer();
+			if(section.getTitle() == tom) {
+				error("Headings can not contain code blocks", null);
+			}
+		}
 	}
 
 //	@Check
@@ -129,7 +145,6 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
 		if(!included)
 			warning("Referenced target does not seem to be included in any document", null);
-
 	}
 
 	@Check

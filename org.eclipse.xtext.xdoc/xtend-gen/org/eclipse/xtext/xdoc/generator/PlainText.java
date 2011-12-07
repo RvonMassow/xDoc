@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -154,8 +155,11 @@ public class PlainText {
       return _genPlainText((TextPart)cb);
     } else if (cb == null) {
       return _genPlainText((Void)null);
-    } else {
+    } else if (cb != null) {
       return _genPlainText(cb);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(cb).toString());
     }
   }
 }

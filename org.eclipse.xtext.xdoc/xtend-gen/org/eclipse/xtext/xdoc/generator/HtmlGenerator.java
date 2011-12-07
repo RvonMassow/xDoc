@@ -1536,13 +1536,13 @@ public class HtmlGenerator implements IGenerator {
     }
   }
   
-  public CharSequence generateCode(final EObject code, final Object lang) {
+  public CharSequence generateCode(final EObject code, final LangDef lang) {
     if ((code instanceof Code)
-         && (lang instanceof LangDef)) {
-      return _generateCode((Code)code, (LangDef)lang);
+         && (lang != null)) {
+      return _generateCode((Code)code, lang);
     } else if ((code instanceof MarkupInCode)
-         && (lang instanceof LangDef)) {
-      return _generateCode((MarkupInCode)code, (LangDef)lang);
+         && (lang != null)) {
+      return _generateCode((MarkupInCode)code, lang);
     } else if ((code instanceof Code)
          && (lang == null)) {
       return _generateCode((Code)code, (Void)null);
