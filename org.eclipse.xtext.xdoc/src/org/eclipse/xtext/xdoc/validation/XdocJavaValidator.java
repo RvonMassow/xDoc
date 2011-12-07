@@ -13,8 +13,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.nodemodel.ICompositeNode;
-import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IReferenceDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
@@ -24,14 +22,11 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
-import org.eclipse.xtext.xdoc.xdoc.Code;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
-import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
-import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
 import com.google.common.base.Function;
@@ -41,23 +36,10 @@ import com.google.inject.Inject;
 
 public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
-	private static int MAX_CHARS_PER_LINE = 74;
-
 	@Inject
 	private IResourceDescriptions index;
 	@Inject
 	private XdocResourceDescriptionManager rdm;
-
-	@Check
-	public void checkLineLengthOfCodeSection(Code c) {
-		String[] lines = c.getContents().split("\n");
-		for (String string : lines) {
-			if (string.replaceAll("\t", "    ").length() >= MAX_CHARS_PER_LINE) {
-				warning("Longest Line exceeds "+MAX_CHARS_PER_LINE+". Line will be wrapped in PDF output",
-						XdocPackage.Literals.CODE__CONTENTS);
-			}
-		}
-	}
 
 	@Check
 	public void checkConsistentNumberOfColumns(Table t) {
@@ -71,27 +53,6 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 						tableRow,
 						XdocPackage.Literals.TABLE_ROW__DATA,
 						ValidationMessageAcceptor.INSIGNIFICANT_INDEX);
-			}
-		}
-	}
-
-//	@Check
-	public void checkSuspiciousCodeRef(CodeRef codeRef) {
-		EList<EObject> contents = codeRef.eContainer().eContents();
-		int index = contents.indexOf(codeRef);
-		if(contents.size() > index + 1&& contents.get(index + 1) instanceof TextPart){
-			ICompositeNode node = NodeModelUtils.findActualNodeFor(codeRef);
-			//		if (node.getNextSibling() != null && NodeModelUtils.
-			String completeText = node.getRootNode().getText();
-			if (node.getTotalEndOffset() < completeText.length() - 1) {
-				int endOffset = node.getOffset() + node.getLength();
-				char c = completeText.charAt(endOffset);
-				if (!Character.isWhitespace(c) && c != ',' && c != '.' && c != ']' && c != ':' && c != '-') {
-					warning("Code Reference is followed by a suspicious character.", null);
-				}
-				if (c == '.' && endOffset + 1 < completeText.length() && Character.isJavaIdentifierStart(completeText.charAt(endOffset + 1))) {
-					warning("Code Reference is followed by a suspicious character sequence.", null);
-				}
 			}
 		}
 	}
@@ -117,18 +78,6 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 			}
 		}
 	}
-
-//	@Check
-//	public void checkSuspiciousEmphasize(Emphasize e) {
-//		ICompositeNode node = NodeModelUtils.findActualNodeFor(e);
-//		String completeText = node.getRootNode().getText();
-//		String nodeText = completeText.substring(node.getOffset(), node.getOffset() + node.getLength());
-//		nodeText = nodeText.substring(2, nodeText.length() - 1);
-//		if (nodeText.length() > 0) {
-//			if (nodeText.endsWith(")"))
-//				warning("Suspicious content in emphasize", null);
-//		}
-//	}
 
 	@Check()
 	public void checkReferencedLabelIncluded(Ref ref) {

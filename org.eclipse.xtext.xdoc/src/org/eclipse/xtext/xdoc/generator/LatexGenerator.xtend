@@ -52,7 +52,6 @@ import static extension org.eclipse.xtext.xbase.lib.IterableExtensions.*
 import static extension org.eclipse.xtext.xdoc.generator.util.numeric.XFloatExtensions.*
 import javax.imageio.ImageIO
 import org.eclipse.emf.ecore.EClass
-import org.eclipse.emf.ecore.EcorePackage
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage
 
 class LatexGenerator implements IConfigurableGenerator {
