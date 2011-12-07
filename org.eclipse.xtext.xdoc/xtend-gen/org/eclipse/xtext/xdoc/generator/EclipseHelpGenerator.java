@@ -112,13 +112,18 @@ public class EclipseHelpGenerator implements IGenerator {
       String _decode = URLDecoder.decode(_fullURL);
       CharSequence _generateRootDocument = this.generateRootDocument(document);
       access.generateFile(_decode, _generateRootDocument);
+      Resource _eResource = document.eResource();
+      URI _uRI = _eResource.getURI();
+      String _lastSegment = _uRI.lastSegment();
+      String _replaceAll = _lastSegment.replaceAll(".xdoc$", ".html");
+      final String homeFileName = _replaceAll;
       EList<Chapter> _chapters = document.getChapters();
       for (final Chapter c : _chapters) {
-        this.generate(c, access);
+        this.generate(c, access, homeFileName);
       }
       EList<Part> _parts = document.getParts();
       for (final Part p : _parts) {
-        this.generate(p, access);
+        this.generate(p, access, homeFileName);
       }
   }
   
@@ -270,25 +275,25 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected void _generate(final Chapter chapter, final IFileSystemAccess access) {
+  protected void _generate(final Chapter chapter, final IFileSystemAccess access, final String homeFileName) {
     String _fullURL = this.eclipseNamingExtensions.getFullURL(chapter);
     String _decode = URLDecoder.decode(_fullURL);
-    CharSequence _generate = this.generate(chapter);
+    CharSequence _generate = this.generate(chapter, homeFileName);
     access.generateFile(_decode, _generate);
   }
   
-  protected void _generate(final Part part, final IFileSystemAccess fsa) {
+  protected void _generate(final Part part, final IFileSystemAccess fsa, final String homeFileName) {
       String _fullURL = this.eclipseNamingExtensions.getFullURL(part);
       String _decode = URLDecoder.decode(_fullURL);
-      CharSequence _generate = this.generate(part);
+      CharSequence _generate = this.generate(part, homeFileName);
       fsa.generateFile(_decode, _generate);
       EList<Chapter> _chapters = part.getChapters();
       for (final Chapter c : _chapters) {
-        this.generate(c, fsa);
+        this.generate(c, fsa, homeFileName);
       }
   }
   
-  protected CharSequence _generate(final Part part) {
+  protected CharSequence _generate(final Part part, final String homeFileName) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -307,8 +312,10 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
     _builder.newLine();
-    _builder.append("<link rel=\"home\" href=\"xtext.html\" title=\"\">");
-    _builder.newLine();
+    _builder.append("<link rel=\"home\" href=\"");
+    _builder.append(homeFileName, "");
+    _builder.append("\" title=\"\">");
+    _builder.newLineIfNotEmpty();
     _builder.append("</head>");
     _builder.newLine();
     _builder.append("<body>");
@@ -353,7 +360,7 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  protected CharSequence _generate(final Chapter chapter) {
+  protected CharSequence _generate(final Chapter chapter, final String homeFileName) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<html>");
     _builder.newLine();
@@ -1115,61 +1122,68 @@ public class EclipseHelpGenerator implements IGenerator {
     return _builder;
   }
   
-  public void generate(final AbstractSection chapter, final IFileSystemAccess access) {
+  public void generate(final AbstractSection chapter, final IFileSystemAccess access, final String homeFileName) {
     if (chapter instanceof Chapter) {
-      _generate((Chapter)chapter, access);
+      _generate((Chapter)chapter, access, homeFileName);
     } else if (chapter instanceof Part) {
-      _generate((Part)chapter, access);
+      _generate((Part)chapter, access, homeFileName);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(chapter, access).toString());
+        Arrays.<Object>asList(chapter, access, homeFileName).toString());
     }
   }
   
-  public CharSequence generate(final EObject chapter) {
+  public CharSequence generate(final AbstractSection chapter, final String homeFileName) {
     if (chapter instanceof Chapter) {
-      return _generate((Chapter)chapter);
+      return _generate((Chapter)chapter, homeFileName);
     } else if (chapter instanceof Part) {
-      return _generate((Part)chapter);
-    } else if (chapter instanceof Section4) {
-      return _generate((Section4)chapter);
-    } else if (chapter instanceof AbstractSection) {
-      return _generate((AbstractSection)chapter);
-    } else if (chapter instanceof Anchor) {
-      return _generate((Anchor)chapter);
-    } else if (chapter instanceof CodeBlock) {
-      return _generate((CodeBlock)chapter);
-    } else if (chapter instanceof CodeRef) {
-      return _generate((CodeRef)chapter);
-    } else if (chapter instanceof Emphasize) {
-      return _generate((Emphasize)chapter);
-    } else if (chapter instanceof ImageRef) {
-      return _generate((ImageRef)chapter);
-    } else if (chapter instanceof Link) {
-      return _generate((Link)chapter);
-    } else if (chapter instanceof OrderedList) {
-      return _generate((OrderedList)chapter);
-    } else if (chapter instanceof Ref) {
-      return _generate((Ref)chapter);
-    } else if (chapter instanceof Table) {
-      return _generate((Table)chapter);
-    } else if (chapter instanceof Todo) {
-      return _generate((Todo)chapter);
-    } else if (chapter instanceof UnorderedList) {
-      return _generate((UnorderedList)chapter);
-    } else if (chapter instanceof Item) {
-      return _generate((Item)chapter);
-    } else if (chapter instanceof TableData) {
-      return _generate((TableData)chapter);
-    } else if (chapter instanceof TableRow) {
-      return _generate((TableRow)chapter);
-    } else if (chapter instanceof TextOrMarkup) {
-      return _generate((TextOrMarkup)chapter);
-    } else if (chapter instanceof TextPart) {
-      return _generate((TextPart)chapter);
+      return _generate((Part)chapter, homeFileName);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(chapter).toString());
+        Arrays.<Object>asList(chapter, homeFileName).toString());
+    }
+  }
+  
+  public CharSequence generate(final EObject aS) {
+    if (aS instanceof Section4) {
+      return _generate((Section4)aS);
+    } else if (aS instanceof AbstractSection) {
+      return _generate((AbstractSection)aS);
+    } else if (aS instanceof Anchor) {
+      return _generate((Anchor)aS);
+    } else if (aS instanceof CodeBlock) {
+      return _generate((CodeBlock)aS);
+    } else if (aS instanceof CodeRef) {
+      return _generate((CodeRef)aS);
+    } else if (aS instanceof Emphasize) {
+      return _generate((Emphasize)aS);
+    } else if (aS instanceof ImageRef) {
+      return _generate((ImageRef)aS);
+    } else if (aS instanceof Link) {
+      return _generate((Link)aS);
+    } else if (aS instanceof OrderedList) {
+      return _generate((OrderedList)aS);
+    } else if (aS instanceof Ref) {
+      return _generate((Ref)aS);
+    } else if (aS instanceof Table) {
+      return _generate((Table)aS);
+    } else if (aS instanceof Todo) {
+      return _generate((Todo)aS);
+    } else if (aS instanceof UnorderedList) {
+      return _generate((UnorderedList)aS);
+    } else if (aS instanceof Item) {
+      return _generate((Item)aS);
+    } else if (aS instanceof TableData) {
+      return _generate((TableData)aS);
+    } else if (aS instanceof TableRow) {
+      return _generate((TableRow)aS);
+    } else if (aS instanceof TextOrMarkup) {
+      return _generate((TextOrMarkup)aS);
+    } else if (aS instanceof TextPart) {
+      return _generate((TextPart)aS);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(aS).toString());
     }
   }
   

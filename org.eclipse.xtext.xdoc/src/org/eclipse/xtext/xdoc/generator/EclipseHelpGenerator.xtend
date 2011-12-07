@@ -74,11 +74,12 @@ class EclipseHelpGenerator implements IGenerator {
 	def generate(Document document, IFileSystemAccess access) {
 		access.generateFile("toc.xml", document.generateToc(uriUtil))
 		access.generateFile(document.fullURL.decode, document.generateRootDocument)
+		val homeFileName = document.eResource.URI.lastSegment.replaceAll(".xdoc$", ".html")
 		for(c:document.chapters){
-			c.generate(access)
+			c.generate(access, homeFileName)
 		}
 		for(p:document.parts){
-			p.generate(access)
+			p.generate(access, homeFileName)
 		}
 	}
 
@@ -134,18 +135,18 @@ class EclipseHelpGenerator implements IGenerator {
 		</li>
 	'''
 
-	def dispatch generate(Chapter chapter, IFileSystemAccess access) {
-		access.generateFile(chapter.fullURL.decode, chapter.generate)
+	def dispatch generate(Chapter chapter, IFileSystemAccess access, String homeFileName) {
+		access.generateFile(chapter.fullURL.decode, chapter.generate(homeFileName))
 	}
 
-	def dispatch generate(Part part, IFileSystemAccess fsa) {
-		fsa.generateFile(part.fullURL.decode, part.generate)
+	def dispatch generate(Part part, IFileSystemAccess fsa, String homeFileName) {
+		fsa.generateFile(part.fullURL.decode, part.generate(homeFileName))
 		for(c:part.chapters) {
-			c.generate(fsa)
+			c.generate(fsa, homeFileName)
 		}
 	}
 
-	def dispatch generate(Part part) '''
+	def dispatch generate(Part part, String homeFileName) '''
 		<html>
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
@@ -153,7 +154,7 @@ class EclipseHelpGenerator implements IGenerator {
 		
 		<link href="book.css" rel="stylesheet" type="text/css">
 		<link href="code.css" rel="stylesheet" type="text/css">
-		<link rel="home" href="xtext.html" title="">
+		<link rel="home" href="«homeFileName»" title="">
 		</head>
 		<body>
 		<a name="«part.localId»"></a>
@@ -165,7 +166,7 @@ class EclipseHelpGenerator implements IGenerator {
 		</html>
 	'''
 
-	def dispatch generate(Chapter chapter) '''
+	def dispatch generate(Chapter chapter, String homeFileName) '''
 		<html>
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
