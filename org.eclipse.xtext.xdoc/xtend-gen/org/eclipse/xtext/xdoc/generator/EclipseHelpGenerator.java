@@ -307,7 +307,7 @@ public class EclipseHelpGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("<link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">");
     _builder.newLine();
-    _builder.append("<link rel=\"home\" href=\"index.html\" title=\"\">");
+    _builder.append("<link rel=\"home\" href=\"xtext.html\" title=\"\">");
     _builder.newLine();
     _builder.append("</head>");
     _builder.newLine();

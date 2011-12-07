@@ -153,7 +153,7 @@ class EclipseHelpGenerator implements IGenerator {
 		
 		<link href="book.css" rel="stylesheet" type="text/css">
 		<link href="code.css" rel="stylesheet" type="text/css">
-		<link rel="home" href="index.html" title="">
+		<link rel="home" href="xtext.html" title="">
 		</head>
 		<body>
 		<a name="«part.localId»"></a>
