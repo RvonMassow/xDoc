@@ -21,6 +21,7 @@ import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
+import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Code;
@@ -103,14 +104,16 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
 	@Check
 	public void checkNoCodeInTitle(CodeBlock code) {
-		EObject tom = code.eContainer();
-		while(!(tom.eContainer() instanceof AbstractSection)){
-			tom = tom.eContainer();
-		}
-		if(tom.eContainer() instanceof AbstractSection) {
-			AbstractSection section = (AbstractSection) tom.eContainer();
-			if(section.getTitle() == tom) {
-				error("Headings can not contain code blocks", null);
+		if(!LatexUtils.inline(code)) {
+			EObject tom = code.eContainer();
+			while(!(tom.eContainer() instanceof AbstractSection)){
+				tom = tom.eContainer();
+			}
+			if(tom.eContainer() instanceof AbstractSection) {
+				AbstractSection section = (AbstractSection) tom.eContainer();
+				if(section.getTitle() == tom) {
+					error("Headings can not contain code blocks", null);
+				}
 			}
 		}
 	}

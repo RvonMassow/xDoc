@@ -21,6 +21,7 @@ import javax.imageio.stream.ImageInputStream;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -75,6 +76,7 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
+import org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -1113,7 +1115,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   protected CharSequence _genText(final CodeRef codeRef) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\lstinline\u00B0");
+    _builder.append("\\protect\\lstinline\u00B0");
     JvmDeclaredType _element = codeRef.getElement();
     String _qualifiedName = _element.getQualifiedName();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
@@ -1282,46 +1284,93 @@ public class LatexGenerator implements IConfigurableGenerator {
     CharSequence _xifexpression = null;
     boolean _inline = LatexUtils.inline(block);
     if (_inline) {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\\lstinline");
-      LangDef _language = block.getLanguage();
-      CharSequence _langSpec = _language==null?(CharSequence)null:this.langSpec(_language);
-      _builder.append(_langSpec, "");
-      _builder.append("\u00B0");
-      EList<EObject> _contents = block.getContents();
-      final Function1<EObject,CharSequence> _function = new Function1<EObject,CharSequence>() {
-          public CharSequence apply(final EObject e) {
-            CharSequence _genCode = LatexGenerator.this.genCode(e);
-            return _genCode;
-          }
-        };
-      Iterable<CharSequence> _map = IterableExtensions.<EObject, CharSequence>map(_contents, _function);
-      String _join = IterableExtensions.join(_map);
-      _builder.append(_join, "");
-      _builder.append("\u00B0");
-      _xifexpression = _builder;
+      CharSequence _xifexpression_1 = null;
+      boolean _containerTypeOf = this.containerTypeOf(block, Literals.TABLE);
+      if (_containerTypeOf) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("\\protect\\lstinline");
+        LangDef _language = block.getLanguage();
+        CharSequence _langSpec = _language==null?(CharSequence)null:this.langSpec(_language);
+        _builder.append(_langSpec, "");
+        _builder.append("\u00B0");
+        EList<EObject> _contents = block.getContents();
+        final Function1<EObject,CharSequence> _function = new Function1<EObject,CharSequence>() {
+            public CharSequence apply(final EObject it) {
+              CharSequence _genCode = LatexGenerator.this.genCode(it);
+              return _genCode;
+            }
+          };
+        Iterable<CharSequence> _map = IterableExtensions.<EObject, CharSequence>map(_contents, _function);
+        String _join = IterableExtensions.join(_map);
+        _builder.append(_join, "");
+        _builder.append("\u00B0");
+        _xifexpression_1 = _builder;
+      } else {
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("\\protect\\lstinline");
+        LangDef _language_1 = block.getLanguage();
+        CharSequence _langSpec_1 = _language_1==null?(CharSequence)null:this.langSpec(_language_1);
+        _builder_1.append(_langSpec_1, "");
+        _builder_1.append("{");
+        EList<EObject> _contents_1 = block.getContents();
+        final Function1<EObject,CharSequence> _function_1 = new Function1<EObject,CharSequence>() {
+            public CharSequence apply(final EObject it) {
+              CharSequence _genCode = LatexGenerator.this.genCode(it);
+              return _genCode;
+            }
+          };
+        Iterable<CharSequence> _map_1 = IterableExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
+        String _join_1 = IterableExtensions.join(_map_1);
+        _builder_1.append(_join_1, "");
+        _builder_1.append("}");
+        _xifexpression_1 = _builder_1;
+      }
+      _xifexpression = _xifexpression_1;
     } else {
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.newLine();
-      _builder_1.append("\\begin{lstlisting}");
-      LangDef _language_1 = block.getLanguage();
-      CharSequence _langSpec_1 = _language_1==null?(CharSequence)null:this.langSpec(_language_1);
-      _builder_1.append(_langSpec_1, "");
-      _builder_1.newLineIfNotEmpty();
-      EList<EObject> _contents_1 = block.getContents();
-      final Function1<EObject,CharSequence> _function_1 = new Function1<EObject,CharSequence>() {
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.newLine();
+      _builder_2.append("\\begin{lstlisting}");
+      LangDef _language_2 = block.getLanguage();
+      CharSequence _langSpec_2 = _language_2==null?(CharSequence)null:this.langSpec(_language_2);
+      _builder_2.append(_langSpec_2, "");
+      _builder_2.newLineIfNotEmpty();
+      EList<EObject> _contents_2 = block.getContents();
+      final Function1<EObject,CharSequence> _function_2 = new Function1<EObject,CharSequence>() {
           public CharSequence apply(final EObject e) {
             CharSequence _genCode = LatexGenerator.this.genCode(e);
             return _genCode;
           }
         };
-      Iterable<CharSequence> _map_1 = IterableExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
-      String _join_1 = IterableExtensions.join(_map_1);
-      _builder_1.append(_join_1, "");
-      _builder_1.newLineIfNotEmpty();
-      _builder_1.append("\\end{lstlisting}");
-      _builder_1.newLine();
-      _xifexpression = _builder_1;
+      Iterable<CharSequence> _map_2 = IterableExtensions.<EObject, CharSequence>map(_contents_2, _function_2);
+      String _join_2 = IterableExtensions.join(_map_2);
+      _builder_2.append(_join_2, "");
+      _builder_2.newLineIfNotEmpty();
+      _builder_2.append("\\end{lstlisting}");
+      _builder_2.newLine();
+      _xifexpression = _builder_2;
+    }
+    return _xifexpression;
+  }
+  
+  public boolean containerTypeOf(final EObject obj, final EClass c) {
+    boolean _xifexpression = false;
+    EClass _eClass = obj.eClass();
+    boolean _operator_equals = ObjectExtensions.operator_equals(_eClass, c);
+    if (_operator_equals) {
+      _xifexpression = true;
+    } else {
+      boolean _xifexpression_1 = false;
+      EObject _eContainer = obj.eContainer();
+      EClass _eClass_1 = _eContainer.eClass();
+      boolean _operator_equals_1 = ObjectExtensions.operator_equals(_eClass_1, Literals.XDOC_FILE);
+      if (_operator_equals_1) {
+        _xifexpression_1 = false;
+      } else {
+        EObject _eContainer_1 = obj.eContainer();
+        boolean _containerTypeOf = this.containerTypeOf(_eContainer_1, c);
+        _xifexpression_1 = _containerTypeOf;
+      }
+      _xifexpression = _xifexpression_1;
     }
     return _xifexpression;
   }

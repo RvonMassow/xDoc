@@ -51,6 +51,9 @@ import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
 import static extension org.eclipse.xtext.xbase.lib.IterableExtensions.*
 import static extension org.eclipse.xtext.xdoc.generator.util.numeric.XFloatExtensions.*
 import javax.imageio.ImageIO
+import org.eclipse.emf.ecore.EClass
+import org.eclipse.emf.ecore.EcorePackage
+import org.eclipse.xtext.xdoc.xdoc.XdocPackage
 
 class LatexGenerator implements IConfigurableGenerator {
 
@@ -461,7 +464,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def dispatch genText(CodeRef codeRef){
-		'''\lstinline°«codeRef.element.qualifiedName.unescapeXdocChars.escapeLatexChars»°'''
+		'''\protect\lstinline°«codeRef.element.qualifiedName.unescapeXdocChars.escapeLatexChars»°'''
 	}
 
 	def dispatch genText(ImageRef imgRef){
@@ -534,7 +537,11 @@ class LatexGenerator implements IConfigurableGenerator {
 	 */
 	 def specialGenCode(CodeBlock block) {
 		if(block.inline)
-	 		'''\lstinline«block.language?.langSpec»°«block.contents.map([e|e.genCode]).join»°'''
+			if(block.containerTypeOf(XdocPackage$Literals::TABLE)) {
+	 			'''\protect\lstinline«block.language?.langSpec»°«block.contents.map[genCode].join»°'''
+	 		} else {
+	 			'''\protect\lstinline«block.language?.langSpec»{«block.contents.map[genCode].join»}'''
+	 		}
 	 	else
 			'''
 				
@@ -542,6 +549,16 @@ class LatexGenerator implements IConfigurableGenerator {
 				«block.contents.map([e|e.genCode]).join»
 				\end{lstlisting}
 			'''
+	}
+
+	def boolean containerTypeOf(EObject obj, EClass c) {
+		if(obj.eClass == c) {
+			true
+		} else if(obj.eContainer.eClass == XdocPackage$Literals::XDOC_FILE) {
+			false
+		} else {
+			obj.eContainer.containerTypeOf(c)
+		}
 	}
 
 	// see Bug 345934
