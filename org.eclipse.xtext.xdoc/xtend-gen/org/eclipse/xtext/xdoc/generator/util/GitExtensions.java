@@ -11,7 +11,7 @@ public class GitExtensions {
   public String gitLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
     {
-      final String basedir = "https://github.com/svenefftinge/Xtext-2.0-released-source-code/tree/master/";
+      final String basedir = "https://github.com/svenefftinge/Xtext-2.2-released-source-code/tree/master/";
       String _switchResult = null;
       String _qualifiedName = ie.getQualifiedName();
       final String name = _qualifiedName;

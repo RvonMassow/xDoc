@@ -5,7 +5,7 @@ import org.eclipse.xtext.common.types.JvmIdentifiableElement
 class GitExtensions {
 	
 	def gitLink (JvmIdentifiableElement ie){
-		val basedir = "https://github.com/svenefftinge/Xtext-2.0-released-source-code/tree/master/"
+		val basedir = "https://github.com/svenefftinge/Xtext-2.2-released-source-code/tree/master/"
 		val prefix = 
 			switch name: ie.qualifiedName {
 				case null :
