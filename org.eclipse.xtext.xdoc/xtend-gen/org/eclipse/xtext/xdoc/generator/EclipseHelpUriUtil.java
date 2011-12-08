@@ -290,8 +290,11 @@ public class EclipseHelpUriUtil {
       _populateFileMap((Section2Ref)it, fileSection);
     } else if (it instanceof SectionRef) {
       _populateFileMap((SectionRef)it, fileSection);
-    } else {
+    } else if (it != null) {
       _populateFileMap(it, fileSection);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(it, fileSection).toString());
     }
   }
 }

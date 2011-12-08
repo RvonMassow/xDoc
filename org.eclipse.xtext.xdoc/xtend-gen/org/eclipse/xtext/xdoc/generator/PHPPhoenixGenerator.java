@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc.generator;
 
 import com.google.inject.Inject;
 import java.io.File;
+import java.util.Arrays;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -355,8 +356,11 @@ public class PHPPhoenixGenerator {
   public void generatePHP(final AbstractSection doc, final IFileSystemAccess fsa) {
     if (doc instanceof Document) {
       _generatePHP((Document)doc, fsa);
-    } else {
+    } else if (doc != null) {
       _generatePHP(doc, fsa);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(doc, fsa).toString());
     }
   }
 }

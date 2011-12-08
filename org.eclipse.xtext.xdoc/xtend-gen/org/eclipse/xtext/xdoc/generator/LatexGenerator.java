@@ -212,7 +212,10 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   public CharSequence preamble() {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\documentclass[a4paper]{scrreprt}");
+    _builder.append("\\documentclass[a4paper,10pt]{scrreprt}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\\typearea{12}");
     _builder.newLine();
     _builder.newLine();
     _builder.append("\\usepackage[T1]{fontenc}");
@@ -1645,8 +1648,11 @@ public class LatexGenerator implements IConfigurableGenerator {
       return _genCode((Code)code);
     } else if (code instanceof MarkupInCode) {
       return _genCode((MarkupInCode)code);
-    } else {
+    } else if (code != null) {
       return _genCode(code);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(code).toString());
     }
   }
 }

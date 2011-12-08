@@ -127,7 +127,9 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def preamble() '''
-		\documentclass[a4paper]{scrreprt}
+		\documentclass[a4paper,10pt]{scrreprt}
+		
+		\typearea{12}
 		
 		\usepackage[T1]{fontenc}
 		\usepackage{ae,aecompl,aeguill} 

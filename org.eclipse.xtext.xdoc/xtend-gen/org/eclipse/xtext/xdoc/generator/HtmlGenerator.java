@@ -1486,8 +1486,11 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence tocEntry(final AbstractSection chapter) {
     if (chapter instanceof Chapter) {
       return _tocEntry((Chapter)chapter);
-    } else {
+    } else if (chapter != null) {
       return _tocEntry(chapter);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(chapter).toString());
     }
   }
   
@@ -1496,8 +1499,11 @@ public class HtmlGenerator implements IGenerator {
       return _leftNavTocEntry((Chapter)chapter);
     } else if (chapter instanceof Part) {
       return _leftNavTocEntry((Part)chapter);
-    } else {
+    } else if (chapter != null) {
       return _leftNavTocEntry(chapter);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(chapter).toString());
     }
   }
   
@@ -1537,14 +1543,14 @@ public class HtmlGenerator implements IGenerator {
   }
   
   public CharSequence generateCode(final EObject code, final LangDef lang) {
-    if ((code instanceof Code)
-         && (lang != null)) {
+    if (code instanceof Code
+         && lang != null) {
       return _generateCode((Code)code, lang);
-    } else if ((code instanceof MarkupInCode)
-         && (lang != null)) {
+    } else if (code instanceof MarkupInCode
+         && lang != null) {
       return _generateCode((MarkupInCode)code, lang);
-    } else if ((code instanceof Code)
-         && (lang == null)) {
+    } else if (code instanceof Code
+         && lang == null) {
       return _generateCode((Code)code, (Void)null);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
