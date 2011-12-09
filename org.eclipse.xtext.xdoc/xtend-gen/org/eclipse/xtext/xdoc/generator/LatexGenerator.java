@@ -409,8 +409,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\part{");
         TextOrMarkup _title = _part.getTitle();
-        CharSequence _genContent = this.genContent(_title);
-        _builder_1.append(_genContent, "");
+        CharSequence _genNonParContent = this.genNonParContent(_title);
+        _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
         _switchResult = _builder_1;
       }
@@ -422,8 +422,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\chapter{");
         TextOrMarkup _title = _chapter.getTitle();
-        CharSequence _genContent = this.genContent(_title);
-        _builder_1.append(_genContent, "");
+        CharSequence _genNonParContent = this.genNonParContent(_title);
+        _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
         _switchResult = _builder_1;
       }
@@ -435,8 +435,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\section{");
         TextOrMarkup _title = _section.getTitle();
-        CharSequence _genContent = this.genContent(_title);
-        _builder_1.append(_genContent, "");
+        CharSequence _genNonParContent = this.genNonParContent(_title);
+        _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
         _switchResult = _builder_1;
       }
@@ -448,8 +448,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\subsection{");
         TextOrMarkup _title = _section2.getTitle();
-        CharSequence _genContent = this.genContent(_title);
-        _builder_1.append(_genContent, "");
+        CharSequence _genNonParContent = this.genNonParContent(_title);
+        _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
         _switchResult = _builder_1;
       }
@@ -461,8 +461,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\subsubsection{");
         TextOrMarkup _title = _section3.getTitle();
-        CharSequence _genContent = this.genContent(_title);
-        _builder_1.append(_genContent, "");
+        CharSequence _genNonParContent = this.genNonParContent(_title);
+        _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
         _switchResult = _builder_1;
       }
@@ -474,8 +474,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\paragraph{");
         TextOrMarkup _title = _section4.getTitle();
-        CharSequence _genContent = this.genContent(_title);
-        _builder_1.append(_genContent, "");
+        CharSequence _genNonParContent = this.genNonParContent(_title);
+        _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
         _switchResult = _builder_1;
       }
@@ -658,6 +658,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         _builder.append(_genText, "");
       }
     }
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
     return _builder;
   }
   
@@ -671,9 +673,9 @@ public class LatexGenerator implements IConfigurableGenerator {
       for(final EObject e : _contents) {
         CharSequence _genText = this.genText(e);
         _builder.append(_genText, "");
-        _builder.newLineIfNotEmpty();
       }
     }
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -1035,8 +1037,8 @@ public class LatexGenerator implements IConfigurableGenerator {
     EList<TextOrMarkup> _contents = em.getContents();
     final Function1<TextOrMarkup,CharSequence> _function = new Function1<TextOrMarkup,CharSequence>() {
         public CharSequence apply(final TextOrMarkup e) {
-          CharSequence _genContent = LatexGenerator.this.genContent(e);
-          return _genContent;
+          CharSequence _genNonParContent = LatexGenerator.this.genNonParContent(e);
+          return _genNonParContent;
         }
       };
     Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);

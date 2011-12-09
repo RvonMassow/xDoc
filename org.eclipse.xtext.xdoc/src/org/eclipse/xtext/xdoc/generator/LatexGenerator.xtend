@@ -211,17 +211,17 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 		«switch (sec){
 			Part :
-				'''\part{«sec.title.genContent»}'''
+				'''\part{«sec.title.genNonParContent»}'''
 			Chapter :			
-				'''\chapter{«sec.title.genContent»}'''
+				'''\chapter{«sec.title.genNonParContent»}'''
 			Section : 
-				'''\section{«sec.title.genContent»}'''
+				'''\section{«sec.title.genNonParContent»}'''
 			Section2:
-				'''\subsection{«sec.title.genContent»}'''
+				'''\subsection{«sec.title.genNonParContent»}'''
 			Section3:
-				'''\subsubsection{«sec.title.genContent»}'''	
+				'''\subsubsection{«sec.title.genNonParContent»}'''	
 			Section4:
-				'''\paragraph{«sec.title.genContent»}'''	
+				'''\paragraph{«sec.title.genNonParContent»}'''	
 		}»
 		«switch (sec) {
 			Part:
@@ -299,17 +299,17 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def dispatch genContent(TextOrMarkup tom){
-		'''«FOR e : tom.contents»«e.genText»«ENDFOR»'''
+		'''
+			«FOR e : tom.contents»«e.genText»«ENDFOR»
+			
+		'''
 	}
 
 	/**
 	 * genNonParContent
 	 */
 	def genNonParContent(TextOrMarkup tom){
-		'''
-		«FOR e : tom.contents»
-			«e.genText»
-		«ENDFOR»
+		'''«FOR e : tom.contents»«e.genText»«ENDFOR»
 		'''
 	}
 
@@ -444,7 +444,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def dispatch genText(Emphasize em){
-		'''\textit{«em.contents.map([e|e.genContent]).join»}'''
+		'''\textit{«em.contents.map([e|e.genNonParContent]).join»}'''
 	}
 
 	def dispatch genText(Ref ref){
