@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import java.util.Arrays;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.xbase.lib.BooleanExtensions;
@@ -108,8 +109,11 @@ public class AbstractSectionExtension {
       return _sections((Section2)chapter);
     } else if (chapter instanceof Section3) {
       return _sections((Section3)chapter);
-    } else {
+    } else if (chapter != null) {
       return _sections(chapter);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(chapter).toString());
     }
   }
 }
