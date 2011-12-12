@@ -27,7 +27,7 @@
     <repository>
       <id>xpand</id>
       <layout>p2</layout>
-      <url>https://hudson.eclipse.org/hudson/job/Xpand-nightly-HEAD/lastSuccessfulBuild/artifact/xpand.p2.repository/</url>
+      <url>http://download.eclipse.org/modeling/m2t/updates/releases/</url>
     </repository>
     <repository>
       <id>xtext</id>
