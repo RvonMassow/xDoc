@@ -30,6 +30,7 @@ import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpUriUtil;
+import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.TocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
@@ -127,43 +128,68 @@ public class EclipseHelpGenerator implements IGenerator {
       }
   }
   
-  public void copy(final URI fromAbsoluteURI, final URI toAbsoluteURI, final URIConverter converter) {
+  public void copy(final String fromRelativeFileName, final Resource res) {
     try {
       {
         int _operator_multiply = IntegerExtensions.operator_multiply(16, 1024);
         ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
         final ByteBuffer buffer = _allocateDirect;
-        InputStream _createInputStream = converter.createInputStream(fromAbsoluteURI);
-        ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
-        final ReadableByteChannel inChannel = _newChannel;
-        OutputStream _createOutputStream = converter.createOutputStream(toAbsoluteURI);
-        WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
-        final WritableByteChannel outChannel = _newChannel_1;
-        int _read = inChannel.read(buffer);
-        int _operator_minus = IntegerExtensions.operator_minus(1);
-        boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_read, _operator_minus);
-        boolean _while = _operator_notEquals;
-        while (_while) {
+        URI _uRI = res.getURI();
+        final URI uri = _uRI;
+        boolean _isPlatformResource = uri.isPlatformResource();
+        if (_isPlatformResource) {
           {
+            URI _trimSegments = uri.trimSegments(1);
+            String _string = _trimSegments.toString();
+            String _operator_plus = StringExtensions.operator_plus(_string, "/");
+            String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, fromRelativeFileName);
+            URI _createURI = URI.createURI(_operator_plus_1);
+            final URI inPath = _createURI;
+            int _segmentCount = uri.segmentCount();
+            int _operator_minus = IntegerExtensions.operator_minus(_segmentCount, 2);
+            URI _trimSegments_1 = uri.trimSegments(_operator_minus);
+            URI _appendSegment = _trimSegments_1.appendSegment(Outlets.ECLIPSE_HELP_PATH_NAME);
+            String _string_1 = _appendSegment.toString();
+            String _operator_plus_2 = StringExtensions.operator_plus(_string_1, "/");
+            String _replaceAll = fromRelativeFileName.replaceAll("\\.\\.", "");
+            String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, _replaceAll);
+            URI _createURI_1 = URI.createURI(_operator_plus_3);
+            final URI outPath = _createURI_1;
+            ResourceSet _resourceSet = res.getResourceSet();
+            URIConverter _uRIConverter = _resourceSet.getURIConverter();
+            InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
+            ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
+            final ReadableByteChannel inChannel = _newChannel;
+            ResourceSet _resourceSet_1 = res.getResourceSet();
+            URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
+            OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
+            WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
+            final WritableByteChannel outChannel = _newChannel_1;
+            int _read = inChannel.read(buffer);
+            int _operator_minus_1 = IntegerExtensions.operator_minus(1);
+            boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_read, _operator_minus_1);
+            boolean _while = _operator_notEquals;
+            while (_while) {
+              {
+                buffer.flip();
+                outChannel.write(buffer);
+                buffer.compact();
+              }
+              int _read_1 = inChannel.read(buffer);
+              int _operator_minus_2 = IntegerExtensions.operator_minus(1);
+              boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _operator_minus_2);
+              _while = _operator_notEquals_1;
+            }
             buffer.flip();
-            outChannel.write(buffer);
-            buffer.compact();
-          }
-          int _read_1 = inChannel.read(buffer);
-          int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-          boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _operator_minus_1);
-          _while = _operator_notEquals_1;
-        }
-        buffer.flip();
-        boolean _hasRemaining = buffer.hasRemaining();
-        boolean _while_1 = _hasRemaining;
-        while (_while_1) {
-          {
-            outChannel.write(buffer);
+            boolean _hasRemaining = buffer.hasRemaining();
+            boolean _while_1 = _hasRemaining;
+            while (_while_1) {
+              outChannel.write(buffer);
+              boolean _hasRemaining_1 = buffer.hasRemaining();
+              _while_1 = _hasRemaining_1;
+            }
             outChannel.close();
           }
-          boolean _hasRemaining_1 = buffer.hasRemaining();
-          _while_1 = _hasRemaining_1;
         }
       }
     } catch (final Throwable _t) {
@@ -698,20 +724,12 @@ public class EclipseHelpGenerator implements IGenerator {
   protected CharSequence _generate(final ImageRef img) {
     CharSequence _xblockexpression = null;
     {
-      String _path = img.getPath();
-      URI _createURI = URI.createURI(_path);
-      Resource _eResource = img.eResource();
-      URI _uRI = _eResource.getURI();
-      URI _resolve = _createURI.resolve(_uRI);
-      final URI imageAbsoluteURI = _resolve;
       URI _relativeTargetURI = this.uriUtil.getRelativeTargetURI(img);
       final URI imageChapterRelativeURI = _relativeTargetURI;
-      URI _absoluteTargetURI = this.uriUtil.getAbsoluteTargetURI(img);
-      final URI imageTargetURI = _absoluteTargetURI;
-      Resource _eResource_1 = img.eResource();
-      ResourceSet _resourceSet = _eResource_1.getResourceSet();
-      URIConverter _uRIConverter = _resourceSet.getURIConverter();
-      this.copy(imageAbsoluteURI, imageTargetURI, _uRIConverter);
+      String _path = img.getPath();
+      String _unescapeXdocChars = this.utils.unescapeXdocChars(_path);
+      Resource _eResource = img.eResource();
+      this.copy(_unescapeXdocChars, _eResource);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<div class=\"image\" >");
       _builder.newLine();
@@ -729,8 +747,8 @@ public class EclipseHelpGenerator implements IGenerator {
       _builder.newLineIfNotEmpty();
       _builder.append("<img src=\"");
       String _string = imageChapterRelativeURI.toString();
-      String _unescapeXdocChars = this.utils.unescapeXdocChars(_string);
-      _builder.append(_unescapeXdocChars, "");
+      String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_string);
+      _builder.append(_unescapeXdocChars_1, "");
       _builder.append("\" ");
       {
         String _clazz = img.getClazz();
@@ -738,8 +756,8 @@ public class EclipseHelpGenerator implements IGenerator {
         if (_operator_notEquals_1) {
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
-          String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_clazz_1);
-          _builder.append(_unescapeXdocChars_1, "");
+          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_clazz_1);
+          _builder.append(_unescapeXdocChars_2, "");
           _builder.append("\" ");
         }
       }
@@ -760,8 +778,8 @@ public class EclipseHelpGenerator implements IGenerator {
         if (_operator_and) {
           _builder.append(" style=\"");
           String _style_2 = img.getStyle();
-          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_style_2);
-          _builder.append(_unescapeXdocChars_2, "");
+          String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_style_2);
+          _builder.append(_unescapeXdocChars_3, "");
           _builder.append("\" ");
         }
       }
@@ -770,8 +788,8 @@ public class EclipseHelpGenerator implements IGenerator {
       _builder.append("<div class=\"caption\">");
       _builder.newLine();
       String _caption = img.getCaption();
-      String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_caption);
-      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
+      String _unescapeXdocChars_4 = this.utils.unescapeXdocChars(_caption);
+      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_4);
       _builder.append(_escapeHTMLChars, "");
       _builder.newLineIfNotEmpty();
       _builder.append("</div>");

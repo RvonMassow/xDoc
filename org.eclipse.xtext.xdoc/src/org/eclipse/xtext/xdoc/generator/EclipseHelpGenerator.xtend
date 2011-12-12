@@ -6,7 +6,6 @@ import java.nio.channels.Channels
 import java.util.Collections
 import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.emf.ecore.resource.URIConverter
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.generator.IFileSystemAccess
@@ -83,19 +82,24 @@ class EclipseHelpGenerator implements IGenerator {
 		}
 	}
 
-	def copy(URI fromAbsoluteURI, URI toAbsoluteURI, URIConverter converter) {
+	def void copy(String fromRelativeFileName, Resource res) {
 		try{
 			val buffer = ByteBuffer::allocateDirect(16 * 1024);
-			val inChannel = Channels::newChannel(converter.createInputStream(fromAbsoluteURI))
-			val outChannel = Channels::newChannel(converter.createOutputStream(toAbsoluteURI))
-			while (inChannel.read(buffer) != -1) {
+			val uri = res.URI
+			if(uri.platformResource) {
+				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName)
+				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::ECLIPSE_HELP_PATH_NAME).toString + "/" + fromRelativeFileName.replaceAll("\\.\\.",""))
+				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
+				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
+				while (inChannel.read(buffer) != -1) {
+					buffer.flip();
+					outChannel.write(buffer);
+					buffer.compact();
+				}
 				buffer.flip();
-				outChannel.write(buffer);
-				buffer.compact();
-			}
-			buffer.flip();
-			while (buffer.hasRemaining()) {
-				outChannel.write(buffer);
+				while (buffer.hasRemaining()) {
+					outChannel.write(buffer);
+				}
 				outChannel.close()
 			}
 		} catch (Exception e) {
@@ -274,10 +278,8 @@ class EclipseHelpGenerator implements IGenerator {
 		'''<a name="anchor-«a.name»"></a>'''
 
 	def dispatch generate(ImageRef img) {
-		val imageAbsoluteURI = URI::createURI(img.path).resolve(img.eResource.URI)
 		val imageChapterRelativeURI = uriUtil.getRelativeTargetURI(img)
-		val imageTargetURI = uriUtil.getAbsoluteTargetURI(img)
-		copy(imageAbsoluteURI, imageTargetURI, img.eResource.resourceSet.URIConverter)
+		copy(img.path.unescapeXdocChars, img.eResource) //imageAbsoluteURI, imageTargetURI, img.eResource.resourceSet.URIConverter)
 		'''
 			<div class="image" >
 			«IF img.name != null»
