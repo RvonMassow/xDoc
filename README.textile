@@ -2,11 +2,11 @@ h1. Xdoc
 
 h2. What is Xdoc
 
-Xdoc is a simple documentation language for software projects. It focusses on, but is not limited to, Eclipse plugin projects, generating a fully functional Eclipse help plugin. We support code chunks and also code references to java classes in the class path. Error markers in the editor show the developers if any links to classes are broken.
+Xdoc is a simple documentation language for software projects. It focuses on, but is not limited to, Eclipse plugin projects, generating a fully functional Eclipse help plugin. We support code chunks and also code references to java classes in the class path. Error markers in the editor show the developers if any links to classes are broken.
 
 h2. Why Xdoc
 
-In various projects the documentation is a rather tedious task. Choosing a language like LaTeX, it is possible to generate neat PDF documents. But as Latex is a rather complicated language, you have to learn it before you can actually write your documentation. In addition LaTeX is optimized for printed docuements and does not feature HTML output. Of cause there exists tooling for generating HTML documents, the structure of those was simply not what we where looking for.
+In various projects the documentation is a rather tedious task. Choosing a language like LaTeX, it is possible to generate neat PDF documents. But as Latex is a rather complicated language, you have to learn it before you can actually write your documentation. In addition LaTeX is optimized for printed documents and does not feature HTML output. Of course there exists tooling for generating HTML documents, the structure of those was simply not what we where looking for.
 
 Another possibility would be to use a language like textile. HTML can be generated easily. It is also possible to generate PDF or docbook XML files.  It gives the writer of the documentation much freedom in formatting, like changing font color for paragraphs, changing the text alignment or even controlling the output HTML indirectly by setting spans' attributes like id or class. These freedoms can be nice, but for a concise documentation languages they are not needed. They can even have a negative influence as an inconsistent style in a documentation can distract the reader.
 
@@ -24,7 +24,7 @@ Xdoc files can contain different top level elements, allowing to split up docume
 <code>section:id[title]</code>   a section that can be referenced by <code>section-ref[id]</code>
 <code>section2:id[title]</code>  a section2 that can be referenced by <code>section2-ref[id]</code>
 
-Of cause you are not forced to use this concepts and can write all your chapters and sections in one file. The maximum depth for sections is <code>section4:id[title]</code>.
+Of course you are not forced to use this concepts and can write all your chapters and sections in one file. The maximum depth for sections is <code>section4:id[title]</code>.
 
 If you want to start a new paragraph use two newlines.
 
@@ -35,11 +35,11 @@ h3. Code
 
 Typically in the documentation of a software project you drop a line of code here and there. To support this we have the <code>code[language][some code]</code> concept. Like in textile the style is guessed from the input. If you write it it in one line it will be typeset as inline (i.e. span in HTML). If you have newlines in your code it will be typeset as a block. The <code>language</code> of a code element can be defined at the beginning of the document as a list of keywords. Keywords occurring in a code block will be highlit in the output.
 
-We also allow for code references to Java. These are real links and break when a referenced class name is changed. This behaviour enforces a consistent documentation and is of cause supported by the tooling.
+We also allow for code references to Java. These are real links and break when a referenced class name is changed. This behaviour enforces a consistent documentation and is of course supported by the tooling.
 
 h3. Lists and Tables
 
-Of cause we have lists and tables. Lists can be ordered (<code>ol[<items>]</code>) or unordered (<code>ul[<items>]). Both contain some items which can be enumerated with <code>item[some item text]</code>.
+Of course we have lists and tables. Lists can be ordered (<code>ol[<items>]</code>) or unordered (<code>ul[<items>]). Both contain some items which can be enumerated with <code>item[some item text]</code>.
 
 A table is defined by <code>table[<rows>]</code> and contains rows (<code>tr[<cells>]</code> which in turn contain the table data entries (<code>td[some text]</code>). Each row must contain the same number of data entries.
 
