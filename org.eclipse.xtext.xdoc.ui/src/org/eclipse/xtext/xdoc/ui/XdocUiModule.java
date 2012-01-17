@@ -3,14 +3,16 @@
  */
 package org.eclipse.xtext.xdoc.ui;
 
-import org.eclipse.jface.text.reconciler.IReconciler;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.builder.BuilderParticipant;
 import org.eclipse.xtext.builder.IXtextBuilderParticipant;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.ui.editor.autoedit.AbstractEditStrategyProvider;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
+import org.eclipse.xtext.ui.editor.model.PartitionTokenScanner;
+import org.eclipse.xtext.ui.editor.model.TerminalsTokenTypeToPartitionMapper;
 import org.eclipse.xtext.ui.editor.quickfix.XtextQuickAssistProcessor;
+import org.eclipse.xtext.ui.editor.reconciler.IReconcilingStrategyFactory;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
@@ -19,7 +21,9 @@ import org.eclipse.xtext.xdoc.ui.autoedit.AutoEditProvider;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingCalculator;
 import org.eclipse.xtext.xdoc.ui.coloring.SemanticHighlightingConfiguration;
 import org.eclipse.xtext.xdoc.ui.coloring.TokenToAttributeMapper;
-import org.eclipse.xtext.xdoc.ui.editor.spelling.XdocReconciler;
+import org.eclipse.xtext.xdoc.ui.editor.model.XdocPartitionTokenScanner;
+import org.eclipse.xtext.xdoc.ui.editor.model.XdocTerminalsTokenTypeToPartitionMapper;
+import org.eclipse.xtext.xdoc.ui.editor.spelling.XdocSpellingStrategyFactory;
 import org.eclipse.xtext.xdoc.ui.folding.FoldingRegionProvider;
 import org.eclipse.xtext.xdoc.ui.quickfix.XdocQuickAssistProcessor;
 
@@ -52,9 +56,16 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 		return FoldingRegionProvider.class;
 	}
 
-	@Override
-	public Class<? extends IReconciler> bindIReconciler() {
-		return XdocReconciler.class;
+	public Class<? extends IReconcilingStrategyFactory.Default> bindIReconcilingStrategyFactory$Default() {
+		return XdocSpellingStrategyFactory.class;
+	}
+
+	public Class<? extends TerminalsTokenTypeToPartitionMapper> bindTerminalsTokenTypeToPartitionMapper(){
+		return XdocTerminalsTokenTypeToPartitionMapper.class;
+	}
+
+	public Class<? extends PartitionTokenScanner> bindXdocPartitionTokenScanner() {
+		return XdocPartitionTokenScanner.class;
 	}
 
 	public Class<? extends XtextQuickAssistProcessor> bindXtextQuickAssistProcessor(){
