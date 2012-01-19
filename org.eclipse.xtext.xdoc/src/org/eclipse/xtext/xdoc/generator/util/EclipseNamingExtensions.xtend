@@ -38,17 +38,16 @@ class EclipseNamingExtensions {
 			SectionRef : identifiable.section.fullURL
 			Section2Ref : identifiable.section2.fullURL
 			Chapter: identifiable.eResource.URI.trimFileExtension.lastSegment + 
-							if(identifiable.eContainer instanceof Part) {
-								if(identifiable.eContainer.eContainer instanceof Document) {
-									"_" + identifiable.eContainer.eContainer.eContents.indexOf(identifiable)
-								}
-								"_" + identifiable.eContainer.eContents.indexOf(identifiable)
-							} else {
-								if(identifiable.eContainer instanceof Document) {
+							{
+								if(identifiable.eContainer instanceof Part) {
+									{
+										if(identifiable.eContainer.eContainer instanceof Document) {
+											"_" + identifiable.eContainer.eContainer.eContents.indexOf(identifiable.eContainer)
+										} else ""
+									} + "_" + identifiable.eContainer.eContents.indexOf(identifiable)
+								} else if(identifiable.eContainer instanceof Document) {
 									"_" + identifiable.eContainer.eContents.indexOf(identifiable)
-								} else {
-									""
-								}
+								} else ""
 							}
 							+ ".html"
 			case identifiable.eContainer instanceof XdocFile :
