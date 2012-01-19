@@ -9,6 +9,7 @@ import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
+import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.Part;
 import org.eclipse.xtext.xdoc.xdoc.PartRef;
@@ -117,6 +118,54 @@ public class EclipseNamingExtensions {
       }
     }
     if (!matched) {
+      if (identifiable instanceof Chapter) {
+        final Chapter _chapter = (Chapter)identifiable;
+        matched=true;
+        Resource _eResource = _chapter.eResource();
+        URI _uRI = _eResource.getURI();
+        URI _trimFileExtension = _uRI.trimFileExtension();
+        String _lastSegment = _trimFileExtension.lastSegment();
+        String _xifexpression = null;
+        EObject _eContainer = _chapter.eContainer();
+        if ((_eContainer instanceof Part)) {
+          String _xblockexpression = null;
+          {
+            EObject _eContainer_1 = _chapter.eContainer();
+            EObject _eContainer_2 = _eContainer_1.eContainer();
+            if ((_eContainer_2 instanceof Document)) {
+              EObject _eContainer_3 = _chapter.eContainer();
+              EObject _eContainer_4 = _eContainer_3.eContainer();
+              EList<EObject> _eContents = _eContainer_4.eContents();
+              int _indexOf = _eContents.indexOf(_chapter);
+              StringExtensions.operator_plus("_", Integer.valueOf(_indexOf));
+            }
+            EObject _eContainer_5 = _chapter.eContainer();
+            EList<EObject> _eContents_1 = _eContainer_5.eContents();
+            int _indexOf_1 = _eContents_1.indexOf(_chapter);
+            String _operator_plus = StringExtensions.operator_plus("_", Integer.valueOf(_indexOf_1));
+            _xblockexpression = (_operator_plus);
+          }
+          _xifexpression = _xblockexpression;
+        } else {
+          String _xifexpression_1 = null;
+          EObject _eContainer_6 = _chapter.eContainer();
+          if ((_eContainer_6 instanceof Document)) {
+            EObject _eContainer_7 = _chapter.eContainer();
+            EList<EObject> _eContents_2 = _eContainer_7.eContents();
+            int _indexOf_2 = _eContents_2.indexOf(_chapter);
+            String _operator_plus_1 = StringExtensions.operator_plus("_", Integer.valueOf(_indexOf_2));
+            _xifexpression_1 = _operator_plus_1;
+          } else {
+            _xifexpression_1 = "";
+          }
+          String _operator_plus_2 = StringExtensions.operator_plus(_xifexpression_1, ".html");
+          _xifexpression = _operator_plus_2;
+        }
+        String _operator_plus_3 = StringExtensions.operator_plus(_lastSegment, _xifexpression);
+        _switchResult = _operator_plus_3;
+      }
+    }
+    if (!matched) {
       EObject _eContainer = identifiable.eContainer();
       if ((_eContainer instanceof XdocFile)) {
         matched=true;
@@ -146,7 +195,8 @@ public class EclipseNamingExtensions {
       String _operator_plus = StringExtensions.operator_plus(_resourceURL_1, "#");
       String _localId = this.getLocalId(identifiable);
       String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _localId);
-      _switchResult = _operator_plus_1;
+      String _operator_plus_2 = StringExtensions.operator_plus(_operator_plus_1, ".html");
+      _switchResult = _operator_plus_2;
     }
     return _switchResult;
   }
