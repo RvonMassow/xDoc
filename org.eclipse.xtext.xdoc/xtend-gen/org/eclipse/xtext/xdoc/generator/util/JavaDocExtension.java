@@ -33,40 +33,47 @@ public class JavaDocExtension {
         boolean _startsWith_1 = name.startsWith("org.eclipse.xtext.");
         if (_startsWith_1) {
           matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.2.0/";
+          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/";
         }
       }
       if (!matched) {
-        boolean _startsWith_2 = name.startsWith("org.eclipse.emf.");
+        boolean _startsWith_2 = name.startsWith("org.eclipse.xtend.");
         if (_startsWith_2) {
+          matched=true;
+          _switchResult = "http://download.eclipse.org/xtend/javadoc/2.3/";
+        }
+      }
+      if (!matched) {
+        boolean _startsWith_3 = name.startsWith("org.eclipse.emf.");
+        if (_startsWith_3) {
           matched=true;
           _switchResult = "http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/";
         }
       }
       if (!matched) {
-        boolean _startsWith_3 = name.startsWith("com.google.inject.");
-        if (_startsWith_3) {
+        boolean _startsWith_4 = name.startsWith("com.google.inject.");
+        if (_startsWith_4) {
           matched=true;
           _switchResult = "http://google-guice.googlecode.com/svn/trunk/javadoc/";
         }
       }
       if (!matched) {
-        boolean _startsWith_4 = name.startsWith("org.eclipse.jdt.");
-        if (_startsWith_4) {
+        boolean _startsWith_5 = name.startsWith("org.eclipse.jdt.");
+        if (_startsWith_5) {
           matched=true;
           _switchResult = "http://help.eclipse.org/helios/topic/org.eclipse.jdt.doc.isv/reference/api/";
         }
       }
       if (!matched) {
-        boolean _startsWith_5 = name.startsWith("java.");
-        if (_startsWith_5) {
+        boolean _startsWith_6 = name.startsWith("java.");
+        if (_startsWith_6) {
           matched=true;
           _switchResult = "http://download.oracle.com/javase/1.5.0/docs/api/";
         }
       }
       if (!matched) {
-        boolean _startsWith_6 = name.startsWith("org.eclipse.");
-        if (_startsWith_6) {
+        boolean _startsWith_7 = name.startsWith("org.eclipse.");
+        if (_startsWith_7) {
           matched=true;
           _switchResult = "http://help.eclipse.org/helios/topic/org.eclipse.platform.doc.isv/reference/api/";
         }

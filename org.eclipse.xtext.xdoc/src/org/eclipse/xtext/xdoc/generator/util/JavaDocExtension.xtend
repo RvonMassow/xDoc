@@ -14,7 +14,9 @@ class JavaDocExtension {
 			case name.startsWith("org.eclipse.emf.mwe"):
 				""
 			case name.startsWith("org.eclipse.xtext."):
-				"http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.2.0/"
+				"http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/"
+			case name.startsWith("org.eclipse.xtend."):
+				"http://download.eclipse.org/xtend/javadoc/2.3/"
 			case name.startsWith("org.eclipse.emf."):
 				"http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/"
 			case name.startsWith("com.google.inject."):
