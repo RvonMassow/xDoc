@@ -13,19 +13,24 @@ public class XdocOutputConfigurationProvider extends
 
 	@Override
 	public Set<OutputConfiguration> getOutputConfigurations() {
-		String outputConfigurationID = IFileSystemAccess.DEFAULT_OUTPUT;
-		String description = "The output directory for the generated Eclipse Help files.";
+		// defaults
 		String outputDirectory = "./contents";
-		OutputConfiguration eclipseHelpOutput = createConfiguration(outputConfigurationID, description, outputDirectory);
+		String defaultWebsiteOutput = "./website";
+
+		String description = "The output directory for the generated Eclipse Help files.";
+		OutputConfiguration eclipseHelpOutput = createConfiguration(
+				Outlets.ECLIPSE_HELP, description, outputDirectory);
+
 		OutputConfiguration websiteOutput = createConfiguration(
 				Outlets.WEB_SITE,
 				"The output directory for the generated web site.",
-				Outlets.WEB_SITE_PATH_NAME);
+				defaultWebsiteOutput);
 		return newHashSet(eclipseHelpOutput, websiteOutput);
 	}
 
-	public OutputConfiguration createConfiguration(String outputConfigurationID,
-			String description, String outputDirectory) {
+	public OutputConfiguration createConfiguration(
+			String outputConfigurationID, String description,
+			String outputDirectory) {
 		OutputConfiguration oc = new OutputConfiguration(outputConfigurationID);
 		oc.setDescription(description);
 		oc.setOutputDirectory(outputDirectory);
@@ -35,5 +40,5 @@ public class XdocOutputConfigurationProvider extends
 		oc.setSetDerivedProperty(true);
 		return oc;
 	}
-	
+
 }

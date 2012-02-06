@@ -35,6 +35,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.IConfigurableGenerator;
@@ -909,7 +910,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    Iterable<CharSequence> _map = IterableExtensions.<TableRow, CharSequence>map(_rows_2, _function);
+    List<CharSequence> _map = ListExtensions.<TableRow, CharSequence>map(_rows_2, _function);
     String _join = IterableExtensions.join(_map, "\\\\\n");
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -926,7 +927,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    Iterable<CharSequence> _map = IterableExtensions.<TableData, CharSequence>map(_data, _function);
+    List<CharSequence> _map = ListExtensions.<TableData, CharSequence>map(_data, _function);
     String _join = IterableExtensions.join(_map, " & ");
     return _join;
   }
@@ -939,7 +940,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genContent;
         }
       };
-    Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
+    List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
     String _join = IterableExtensions.join(_map);
     return _join;
   }
@@ -966,7 +967,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    Iterable<CharSequence> _map = IterableExtensions.<Item, CharSequence>map(_items, _function);
+    List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -992,7 +993,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genText;
         }
       };
-    Iterable<CharSequence> _map = IterableExtensions.<Item, CharSequence>map(_items, _function);
+    List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -1022,7 +1023,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genContent;
         }
       };
-    Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
+    List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
@@ -1041,7 +1042,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           return _genNonParContent;
         }
       };
-    Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
+    List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
     _builder.append("}");
@@ -1072,7 +1073,7 @@ public class LatexGenerator implements IConfigurableGenerator {
               return _genContent;
             }
           };
-        Iterable<CharSequence> _map = IterableExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
+        List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
         String _join = IterableExtensions.join(_map);
         _builder.append(_join, "");
         _builder.append("~(\u00A7\\ref*{");
@@ -1304,7 +1305,7 @@ public class LatexGenerator implements IConfigurableGenerator {
               return _genCode;
             }
           };
-        Iterable<CharSequence> _map = IterableExtensions.<EObject, CharSequence>map(_contents, _function);
+        List<CharSequence> _map = ListExtensions.<EObject, CharSequence>map(_contents, _function);
         String _join = IterableExtensions.join(_map);
         _builder.append(_join, "");
         _builder.append("\u00B0");
@@ -1323,7 +1324,7 @@ public class LatexGenerator implements IConfigurableGenerator {
               return _genCode;
             }
           };
-        Iterable<CharSequence> _map_1 = IterableExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
+        List<CharSequence> _map_1 = ListExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
         String _join_1 = IterableExtensions.join(_map_1);
         _builder_1.append(_join_1, "");
         _builder_1.append("}");
@@ -1346,7 +1347,7 @@ public class LatexGenerator implements IConfigurableGenerator {
             return _genCode;
           }
         };
-      Iterable<CharSequence> _map_2 = IterableExtensions.<EObject, CharSequence>map(_contents_2, _function_2);
+      List<CharSequence> _map_2 = ListExtensions.<EObject, CharSequence>map(_contents_2, _function_2);
       String _join_2 = IterableExtensions.join(_map_2);
       _builder_2.append(_join_2, "");
       _builder_2.newLineIfNotEmpty();
