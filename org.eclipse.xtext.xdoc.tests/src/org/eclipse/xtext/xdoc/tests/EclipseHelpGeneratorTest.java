@@ -10,7 +10,6 @@ import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpGenerator;
-import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
@@ -142,14 +141,19 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 
 	@Override
 	protected void generate(EObject eObject)  {
-//		XpandFacade.create(getXpandCtx()).evaluate(
-//				"templates::eclipsehelp::Main::main", eObject);
+		if(eObject instanceof Document) {
+			try {
+				generate((Document) eObject);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Inject
 	private EclipseHelpGenerator generator;
 
-	protected void generate(AbstractSection obj) throws Exception {
+	protected void generate(Document obj) throws Exception {
 		AbstractFileSystemAccess fsa = new JavaIoFileSystemAccess();
 		fsa.setOutputPath(System.getProperty("user.dir") + File.separatorChar+"test-gen"+ File.separatorChar);
 		generator.generate(obj, fsa);

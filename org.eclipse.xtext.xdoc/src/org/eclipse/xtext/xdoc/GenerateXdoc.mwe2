@@ -30,10 +30,15 @@ Workflow {
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}.ui/src-gen"
 	}
+	
+	component = DirectoryCleaner {
+		directory = "${runtimeProject}.tests/src-gen"
+	}
 
 	component = Generator {
 		pathRtProject = runtimeProject
 		pathUiProject = "${runtimeProject}.ui"
+		pathTestProject = "${runtimeProject}.tests"
 		projectNameRt = projectName
 		projectNameUi = "${projectName}.ui"
 		language = {
@@ -75,6 +80,8 @@ Workflow {
 			fragment = exporting.QualifiedNamesFragment {}
 			fragment = builder.BuilderIntegrationFragment {}
 			
+			// testing API
+			fragment = junit.Junit4Fragment {}
 			fragment = types.TypesGeneratorFragment {}
 
 			// formatter API 

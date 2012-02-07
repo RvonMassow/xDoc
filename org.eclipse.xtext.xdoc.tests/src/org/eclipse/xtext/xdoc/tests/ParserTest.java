@@ -8,8 +8,10 @@ import java.net.URLConnection;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.xdoc.XdocStandaloneSetup;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
@@ -57,7 +59,7 @@ public class ParserTest extends AbstractXtextTests {
 		String text = "chapter[" + title + "]\r\n\r\n" + firstPart + "e["
 				+ emphasized + "]" + secondPart + "\n\n";
 		//System.out.println(text);
-		XdocFile model = (XdocFile) getModel(text);
+		XdocFile model = getDoc(text);
 		Chapter chapter = (Chapter) model.getMainSection();
 		assertEquals(title,
 				((TextPart) ((chapter.getTitle()).getContents()
@@ -332,11 +334,13 @@ public class ParserTest extends AbstractXtextTests {
 	}
 
 	protected XdocFile getDoc(String string) throws Exception {
-		return (XdocFile) getModel(string);
+		return (XdocFile) doGetResource(new StringInputStream(string),
+				URI.createFileURI("mytestmodel.xdoc")).getContents().get(0);
 	}
 
-	protected XdocFile getDocFromFile(String string)
+	protected XdocFile getDocFromFile(String fileName)
 			throws FileNotFoundException, Exception {
-		return (XdocFile) getModel(new FileInputStream(string));
+		return (XdocFile) doGetResource(new FileInputStream(fileName),
+				URI.createFileURI(fileName)).getContents().get(0);
 	}
 }
