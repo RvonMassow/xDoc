@@ -69,7 +69,6 @@ import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
-import org.eclipse.xtext.xtend2.lib.ResourceExtensions;
 
 @SuppressWarnings("all")
 public class HtmlGenerator implements IGenerator {
@@ -96,8 +95,8 @@ public class HtmlGenerator implements IGenerator {
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     try {
-      Iterable<EObject> _allContentsIterable = ResourceExtensions.allContentsIterable(resource);
-      Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_allContentsIterable, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
+      EList<EObject> _contents = resource.getContents();
+      Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_contents, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
       for (final XdocFile file : _filter) {
         AbstractSection _mainSection = file.getMainSection();
         if ((_mainSection instanceof Document)) {

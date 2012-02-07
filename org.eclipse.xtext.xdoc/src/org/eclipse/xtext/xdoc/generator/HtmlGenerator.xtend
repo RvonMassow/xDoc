@@ -47,7 +47,6 @@ import org.eclipse.xtext.xdoc.xdoc.TextPart
 import org.eclipse.xtext.xdoc.xdoc.Todo
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
-import org.eclipse.xtext.xtend2.lib.ResourceExtensions
 
 import static extension org.apache.commons.lang.StringEscapeUtils.*
 
@@ -63,7 +62,7 @@ class HtmlGenerator implements IGenerator {
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		try{
-			for(file: ResourceExtensions::allContentsIterable(resource).filter(typeof(XdocFile))) {
+			for(file: resource.contents.filter(typeof(XdocFile))) {
 				if(file.mainSection instanceof Document) {
 					(file.mainSection as Document).generate(fsa)
 				}

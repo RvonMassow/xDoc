@@ -1,3 +1,5 @@
+document[Foo]
+
 chapter[Dummy Title]
 
 a[refName] Jump ref:refName[to]
