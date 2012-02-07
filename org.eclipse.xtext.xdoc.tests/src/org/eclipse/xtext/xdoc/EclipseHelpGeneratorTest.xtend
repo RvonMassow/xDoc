@@ -17,6 +17,8 @@ import static org.eclipse.xtext.xdoc.util.ParserTestConstants.*
 import static extension junit.framework.Assert.*
 import org.eclipse.xtext.xdoc.xdoc.Document
 import com.google.common.collect.Maps
+import com.google.inject.Provider
+import org.eclipse.xtext.xdoc.generator.StatefulEclipseHelpGenerator
 
 @RunWith(typeof(XtextRunner))
 @InjectWith(typeof(XdocInjectorProvider))
@@ -24,6 +26,7 @@ class EclipseHelpGeneratorTest {
 
 	@Inject extension ParseHelperExtensions<XdocFile>
 	@Inject extension EclipseHelpGenerator
+	@Inject extension StatefulEclipseHelpGenerator
 	@Inject EclipseResourceFileSystemAccess2 fsa
 
 	@Test

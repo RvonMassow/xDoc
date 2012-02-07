@@ -13,6 +13,7 @@ import org.eclipse.xtext.xbase.lib.Pair;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.XdocInjectorProvider;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpGenerator;
+import org.eclipse.xtext.xdoc.generator.StatefulEclipseHelpGenerator;
 import org.eclipse.xtext.xdoc.util.GeneratorTestConstants;
 import org.eclipse.xtext.xdoc.util.ParseHelperExtensions;
 import org.eclipse.xtext.xdoc.util.ParserTestConstants;
@@ -33,6 +34,9 @@ public class EclipseHelpGeneratorTest {
   private EclipseHelpGenerator _eclipseHelpGenerator;
   
   @Inject
+  private StatefulEclipseHelpGenerator _statefulEclipseHelpGenerator;
+  
+  @Inject
   private EclipseResourceFileSystemAccess2 fsa;
   
   @Test
@@ -51,7 +55,7 @@ public class EclipseHelpGeneratorTest {
       final XdocFile file = _doc;
       AbstractSection _mainSection = file.getMainSection();
       final Document doc = ((Document) _mainSection);
-      this._eclipseHelpGenerator.generate(doc);
+      this._statefulEclipseHelpGenerator.generate(doc);
       Pair<String,Integer> _operator_mappedTo = ObjectExtensions.<String, Integer>operator_mappedTo("foo", Integer.valueOf(3));
       final Pair<String,Integer> v = _operator_mappedTo;
   }
