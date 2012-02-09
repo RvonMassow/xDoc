@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -26,6 +27,7 @@ import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
@@ -95,8 +97,9 @@ public class HtmlGenerator implements IGenerator {
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     try {
-      EList<EObject> _contents = resource.getContents();
-      Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_contents, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
+      TreeIterator<EObject> _allContents = resource.getAllContents();
+      Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+      Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_iterable, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
       for (final XdocFile file : _filter) {
         AbstractSection _mainSection = file.getMainSection();
         if ((_mainSection instanceof Document)) {

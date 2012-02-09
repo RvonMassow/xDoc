@@ -11,6 +11,7 @@ import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.xbase.lib.IteratorExtensions
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
@@ -62,7 +63,7 @@ class HtmlGenerator implements IGenerator {
 	 
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		try{
-			for(file: resource.contents.filter(typeof(XdocFile))) {
+			for(file: IteratorExtensions::toIterable(resource.allContents).filter(typeof(XdocFile))) {
 				if(file.mainSection instanceof Document) {
 					(file.mainSection as Document).generate(fsa)
 				}
