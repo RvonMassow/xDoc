@@ -43,6 +43,7 @@ class Utils {
 	def unescapeXdocChars(String s) {
 		if(s != null)
 			s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]")
+				.replaceAll("\\\\\\%", "%").replaceAll("\\\\\\:", ":")
 		else
 			""
 	}
@@ -78,14 +79,15 @@ class Utils {
 
 	def getHighlightedHtmlCode(String code, LangDef language) {
 		val lexer = new Common()
-		lexer.setCharStream(new ANTLRStringStream(code))
+		lexer.setCharStream(new ANTLRStringStream(code.unescapeXdocChars))
 		val keywords = if (language !=null) 
-							language.keywords.toSet
+							language.keywords.map[unescapeXdocChars].toSet
 						else
 							emptySet
 		var token = lexer.nextToken
 		val result = new StringBuilder()
 		while (token.type != Token::EOF) {
+			println(token.text)
 			switch (token.type) {
 				case Common::ID : {
 					if (keywords.contains(token.text)) {

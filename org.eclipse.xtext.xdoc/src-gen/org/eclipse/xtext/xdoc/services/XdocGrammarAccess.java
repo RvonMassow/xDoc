@@ -1104,12 +1104,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cCommaKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		private final Keyword cHyphenMinusKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cReverseSolidusColonKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final Keyword cReverseSolidusPercentSignKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
 		
 		//Text:
-		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
+		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+
+		//(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -1135,6 +1137,12 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"-"
 		public Keyword getHyphenMinusKeyword_7() { return cHyphenMinusKeyword_7; }
+
+		//"\\:"
+		public Keyword getReverseSolidusColonKeyword_8() { return cReverseSolidusColonKeyword_8; }
+
+		//"\\%"
+		public Keyword getReverseSolidusPercentSignKeyword_9() { return cReverseSolidusPercentSignKeyword_9; }
 	}
 
 	public class UnpunctTextElements extends AbstractParserRuleElementFinder {
@@ -1146,6 +1154,8 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_0_2 = (Keyword)cAlternatives_0.eContents().get(2);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_0_3 = (Keyword)cAlternatives_0.eContents().get(3);
 		private final Keyword cHyphenMinusKeyword_0_4 = (Keyword)cAlternatives_0.eContents().get(4);
+		private final Keyword cReverseSolidusColonKeyword_0_5 = (Keyword)cAlternatives_0.eContents().get(5);
+		private final Keyword cReverseSolidusPercentSignKeyword_0_6 = (Keyword)cAlternatives_0.eContents().get(6);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
@@ -1154,15 +1164,17 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusLeftSquareBracketKeyword_1_1_2 = (Keyword)cAlternatives_1_1.eContents().get(2);
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_1_1_3 = (Keyword)cAlternatives_1_1.eContents().get(3);
 		private final Keyword cHyphenMinusKeyword_1_1_4 = (Keyword)cAlternatives_1_1.eContents().get(4);
+		private final Keyword cReverseSolidusColonKeyword_1_1_5 = (Keyword)cAlternatives_1_1.eContents().get(5);
+		private final Keyword cReverseSolidusPercentSignKeyword_1_1_6 = (Keyword)cAlternatives_1_1.eContents().get(6);
 		
 		//UnpunctText:
-		//	(ID | ANY_OTHER | "\\[" | "\\]" | "-")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*;
+		//	(ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%"))*;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | ANY_OTHER | "\\[" | "\\]" | "-")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*
+		//(ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%"))*
 		public Group getGroup() { return cGroup; }
 
-		//(ID | ANY_OTHER | "\\[" | "\\]" | "-")+
+		//(ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%")+
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 
 		//ID
@@ -1180,13 +1192,19 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		//"-"
 		public Keyword getHyphenMinusKeyword_0_4() { return cHyphenMinusKeyword_0_4; }
 
-		//(WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*
+		//"\\:"
+		public Keyword getReverseSolidusColonKeyword_0_5() { return cReverseSolidusColonKeyword_0_5; }
+
+		//"\\%"
+		public Keyword getReverseSolidusPercentSignKeyword_0_6() { return cReverseSolidusPercentSignKeyword_0_6; }
+
+		//(WS (ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%"))*
 		public Group getGroup_1() { return cGroup_1; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 
-		//ID | ANY_OTHER | "\\[" | "\\]" | "-"
+		//ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%"
 		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 
 		//ID
@@ -1203,6 +1221,12 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"-"
 		public Keyword getHyphenMinusKeyword_1_1_4() { return cHyphenMinusKeyword_1_1_4; }
+
+		//"\\:"
+		public Keyword getReverseSolidusColonKeyword_1_1_5() { return cReverseSolidusColonKeyword_1_1_5; }
+
+		//"\\%"
+		public Keyword getReverseSolidusPercentSignKeyword_1_1_6() { return cReverseSolidusPercentSignKeyword_1_1_6; }
 	}
 
 	public class MarkUpElements extends AbstractParserRuleElementFinder {
@@ -2271,12 +2295,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusRightSquareBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		private final Keyword cCommaKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		private final Keyword cHyphenMinusKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final Keyword cReverseSolidusColonKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Keyword cReverseSolidusPercentSignKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
 		
 		//CodeText:
-		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
+		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+
+		//(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//ID
@@ -2305,6 +2331,12 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 		//"-"
 		public Keyword getHyphenMinusKeyword_8() { return cHyphenMinusKeyword_8; }
+
+		//"\\:"
+		public Keyword getReverseSolidusColonKeyword_9() { return cReverseSolidusColonKeyword_9; }
+
+		//"\\%"
+		public Keyword getReverseSolidusPercentSignKeyword_10() { return cReverseSolidusPercentSignKeyword_10; }
 	}
 
 	public class ANY_WSElements extends AbstractParserRuleElementFinder {
@@ -2333,22 +2365,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class KeyWordElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "KeyWord");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIDTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Keyword cHyphenMinusKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
+		private final RuleCall cUnpunctTextParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//KeyWord:
-		//	(ID | "-")+;
+		//	UnpunctText;
 		public ParserRule getRule() { return rule; }
 
-		//(ID | "-")+
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//ID
-		public RuleCall getIDTerminalRuleCall_0() { return cIDTerminalRuleCall_0; }
-
-		//"-"
-		public Keyword getHyphenMinusKeyword_1() { return cHyphenMinusKeyword_1; }
+		//UnpunctText
+		public RuleCall getUnpunctTextParserRuleCall() { return cUnpunctTextParserRuleCall; }
 	}
 	
 	
@@ -2579,7 +2603,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Text:
-	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
+	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 	public TextElements getTextAccess() {
 		return (pText != null) ? pText : (pText = new TextElements());
 	}
@@ -2589,7 +2613,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnpunctText:
-	//	(ID | ANY_OTHER | "\\[" | "\\]" | "-")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-"))*;
+	//	(ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%"))*;
 	public UnpunctTextElements getUnpunctTextAccess() {
 		return (pUnpunctText != null) ? pUnpunctText : (pUnpunctText = new UnpunctTextElements());
 	}
@@ -2784,7 +2808,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeText:
-	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-")+;
+	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 	public CodeTextElements getCodeTextAccess() {
 		return (pCodeText != null) ? pCodeText : (pCodeText = new CodeTextElements());
 	}
@@ -2804,7 +2828,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//KeyWord:
-	//	(ID | "-")+;
+	//	UnpunctText;
 	public KeyWordElements getKeyWordAccess() {
 		return (pKeyWord != null) ? pKeyWord : (pKeyWord = new KeyWordElements());
 	}
@@ -2813,6 +2837,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		return getKeyWordAccess().getRule();
 	}
 
+	////(ID | "-")+; 
 	//terminal ID:
 	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {

@@ -460,6 +460,8 @@
       <elements xsi:type="xtext:Keyword" value="\]"/>
       <elements xsi:type="xtext:Keyword" value=","/>
       <elements xsi:type="xtext:Keyword" value="-"/>
+      <elements xsi:type="xtext:Keyword" value="\:"/>
+      <elements xsi:type="xtext:Keyword" value="\%"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="UnpunctText">
@@ -473,6 +475,8 @@
         <elements xsi:type="xtext:Keyword" value="\["/>
         <elements xsi:type="xtext:Keyword" value="\]"/>
         <elements xsi:type="xtext:Keyword" value="-"/>
+        <elements xsi:type="xtext:Keyword" value="\:"/>
+        <elements xsi:type="xtext:Keyword" value="\%"/>
       </elements>
       <elements xsi:type="xtext:Group" cardinality="*">
         <elements xsi:type="xtext:RuleCall" rule="//@rules.43"/>
@@ -482,6 +486,8 @@
           <elements xsi:type="xtext:Keyword" value="\["/>
           <elements xsi:type="xtext:Keyword" value="\]"/>
           <elements xsi:type="xtext:Keyword" value="-"/>
+          <elements xsi:type="xtext:Keyword" value="\:"/>
+          <elements xsi:type="xtext:Keyword" value="\%"/>
         </elements>
       </elements>
     </alternatives>
@@ -951,6 +957,8 @@
       <elements xsi:type="xtext:Keyword" value="\]"/>
       <elements xsi:type="xtext:Keyword" value=","/>
       <elements xsi:type="xtext:Keyword" value="-"/>
+      <elements xsi:type="xtext:Keyword" value="\:"/>
+      <elements xsi:type="xtext:Keyword" value="\%"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ANY_WS">
@@ -967,10 +975,7 @@
     <type metamodel="//@metamodelDeclarations.0">
       <classifier xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </type>
-    <alternatives xsi:type="xtext:Alternatives" cardinality="+">
-      <elements xsi:type="xtext:RuleCall" rule="//@rules.39"/>
-      <elements xsi:type="xtext:Keyword" value="-"/>
-    </alternatives>
+    <alternatives xsi:type="xtext:RuleCall" rule="//@rules.17"/>
   </rules>
   <rules xsi:type="xtext:TerminalRule" name="ID">
     <type metamodel="//@metamodelDeclarations.0">

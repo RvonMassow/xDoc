@@ -60,7 +60,6 @@ public class XdocParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLangDefAccess().getAlternatives(), "rule__LangDef__Alternatives");
 					put(grammarAccess.getCodeTextAccess().getAlternatives(), "rule__CodeText__Alternatives");
 					put(grammarAccess.getANY_WSAccess().getAlternatives(), "rule__ANY_WS__Alternatives");
-					put(grammarAccess.getKeyWordAccess().getAlternatives(), "rule__KeyWord__Alternatives");
 					put(grammarAccess.getXdocFileAccess().getGroup(), "rule__XdocFile__Group__0");
 					put(grammarAccess.getXdocFileAccess().getGroup_3(), "rule__XdocFile__Group_3__0");
 					put(grammarAccess.getDocumentAccess().getGroup(), "rule__Document__Group__0");

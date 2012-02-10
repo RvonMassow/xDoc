@@ -1699,6 +1699,20 @@ ruleText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getTextAccess().getHyphenMinusKeyword_7()); 
     }
+
+    |
+	kw='\\:' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getTextAccess().getReverseSolidusColonKeyword_8()); 
+    }
+
+    |
+	kw='\\%' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getTextAccess().getReverseSolidusPercentSignKeyword_9()); 
+    }
 )+
     ;
 
@@ -1756,27 +1770,41 @@ ruleUnpunctText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getUnpunctTextAccess().getHyphenMinusKeyword_0_4()); 
     }
-)+(    this_WS_5=RULE_WS    {
-		$current.merge(this_WS_5);
+
+    |
+	kw='\\:' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUnpunctTextAccess().getReverseSolidusColonKeyword_0_5()); 
+    }
+
+    |
+	kw='\\%' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUnpunctTextAccess().getReverseSolidusPercentSignKeyword_0_6()); 
+    }
+)+(    this_WS_7=RULE_WS    {
+		$current.merge(this_WS_7);
     }
 
     { 
-    newLeafNode(this_WS_5, grammarAccess.getUnpunctTextAccess().getWSTerminalRuleCall_1_0()); 
+    newLeafNode(this_WS_7, grammarAccess.getUnpunctTextAccess().getWSTerminalRuleCall_1_0()); 
     }
-(    this_ID_6=RULE_ID    {
-		$current.merge(this_ID_6);
-    }
-
-    { 
-    newLeafNode(this_ID_6, grammarAccess.getUnpunctTextAccess().getIDTerminalRuleCall_1_1_0()); 
-    }
-
-    |    this_ANY_OTHER_7=RULE_ANY_OTHER    {
-		$current.merge(this_ANY_OTHER_7);
+(    this_ID_8=RULE_ID    {
+		$current.merge(this_ID_8);
     }
 
     { 
-    newLeafNode(this_ANY_OTHER_7, grammarAccess.getUnpunctTextAccess().getANY_OTHERTerminalRuleCall_1_1_1()); 
+    newLeafNode(this_ID_8, grammarAccess.getUnpunctTextAccess().getIDTerminalRuleCall_1_1_0()); 
+    }
+
+    |    this_ANY_OTHER_9=RULE_ANY_OTHER    {
+		$current.merge(this_ANY_OTHER_9);
+    }
+
+    { 
+    newLeafNode(this_ANY_OTHER_9, grammarAccess.getUnpunctTextAccess().getANY_OTHERTerminalRuleCall_1_1_1()); 
     }
 
     |
@@ -1798,6 +1826,20 @@ ruleUnpunctText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
     {
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getUnpunctTextAccess().getHyphenMinusKeyword_1_1_4()); 
+    }
+
+    |
+	kw='\\:' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUnpunctTextAccess().getReverseSolidusColonKeyword_1_1_5()); 
+    }
+
+    |
+	kw='\\%' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getUnpunctTextAccess().getReverseSolidusPercentSignKeyword_1_1_6()); 
     }
 ))*)
     ;
@@ -3531,6 +3573,20 @@ ruleCodeText returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken(
         $current.merge(kw);
         newLeafNode(kw, grammarAccess.getCodeTextAccess().getHyphenMinusKeyword_8()); 
     }
+
+    |
+	kw='\\:' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getCodeTextAccess().getReverseSolidusColonKeyword_9()); 
+    }
+
+    |
+	kw='\\%' 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getCodeTextAccess().getReverseSolidusPercentSignKeyword_10()); 
+    }
 )+
     ;
 
@@ -3596,21 +3652,18 @@ ruleKeyWord returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
     @init { enterRule(); 
     }
     @after { leaveRule(); }:
-(    this_ID_0=RULE_ID    {
-		$current.merge(this_ID_0);
+
+    { 
+        newCompositeNode(grammarAccess.getKeyWordAccess().getUnpunctTextParserRuleCall()); 
+    }
+    this_UnpunctText_0=ruleUnpunctText    {
+		$current.merge(this_UnpunctText_0);
     }
 
     { 
-    newLeafNode(this_ID_0, grammarAccess.getKeyWordAccess().getIDTerminalRuleCall_0()); 
+        afterParserOrEnumRuleCall();
     }
 
-    |
-	kw='-' 
-    {
-        $current.merge(kw);
-        newLeafNode(kw, grammarAccess.getKeyWordAccess().getHyphenMinusKeyword_1()); 
-    }
-)+
     ;
 
 

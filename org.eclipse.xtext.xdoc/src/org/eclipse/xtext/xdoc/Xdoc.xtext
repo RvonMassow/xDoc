@@ -88,10 +88,11 @@ TextPart:
 	text=Text;
 
 Text:
-	(ID | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',' | "-" )+;
+	(ID | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',' | "-" | '\\:' | '\\%')+;
 
 UnpunctText:
-	(ID | ANY_OTHER | '\\[' | '\\]' | "-")+ (WS (ID | ANY_OTHER | '\\[' | '\\]' | "-"))*
+	(ID | ANY_OTHER | '\\[' | '\\]' | "-" | '\\:' | '\\%')+
+		(WS (ID | ANY_OTHER | '\\[' | '\\]' | "-" | '\\:' | '\\%'))*
 ;
 
 MarkUp:
@@ -192,13 +193,14 @@ LangDef:
 	{LangDef} 'codelanguage-def['(ANY_WS* keywords+=KeyWord ANY_WS* (','ANY_WS* keywords+=KeyWord ANY_WS*)*)?']';
 
 CodeText:
-	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',' | "-")+;
+	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | '\\[' | '\\]' | ',' | "-" | '\\:' | '\\%')+;
 
 ANY_WS:
 	MULTI_NL | SINGLE_NL | WS;
 
 KeyWord: 
-	(ID | "-")+; 
+	UnpunctText;
+	//(ID | "-")+; 
 
 terminal ID:
 	('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;

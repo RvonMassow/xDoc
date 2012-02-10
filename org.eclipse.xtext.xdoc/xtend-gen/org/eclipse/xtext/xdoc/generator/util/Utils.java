@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Token;
@@ -14,8 +15,10 @@ import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
@@ -90,7 +93,9 @@ public class Utils {
     if (_operator_notEquals) {
       String _replaceAll = s.replaceAll("\\\\\\[", "[");
       String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
-      _xifexpression = _replaceAll_1;
+      String _replaceAll_2 = _replaceAll_1.replaceAll("\\\\\\%", "%");
+      String _replaceAll_3 = _replaceAll_2.replaceAll("\\\\\\:", ":");
+      _xifexpression = _replaceAll_3;
     } else {
       _xifexpression = "";
     }
@@ -165,13 +170,21 @@ public class Utils {
   public String getHighlightedHtmlCode(final String code, final LangDef language) {
       Common _common = new Common();
       final Common lexer = _common;
-      ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(code);
+      String _unescapeXdocChars = this.unescapeXdocChars(code);
+      ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(_unescapeXdocChars);
       lexer.setCharStream(_aNTLRStringStream);
       Set<? extends Object> _xifexpression = null;
       boolean _operator_notEquals = ObjectExtensions.operator_notEquals(language, null);
       if (_operator_notEquals) {
         EList<String> _keywords = language.getKeywords();
-        Set<String> _set = IterableExtensions.<String>toSet(_keywords);
+        final Function1<String,String> _function = new Function1<String,String>() {
+            public String apply(final String it) {
+              String _unescapeXdocChars = Utils.this.unescapeXdocChars(it);
+              return _unescapeXdocChars;
+            }
+          };
+        List<String> _map = ListExtensions.<String, String>map(_keywords, _function);
+        Set<String> _set = IterableExtensions.<String>toSet(_map);
         _xifexpression = _set;
       } else {
         Set<?> _emptySet = CollectionLiterals.emptySet();
@@ -187,31 +200,33 @@ public class Utils {
       boolean _while = _operator_notEquals_1;
       while (_while) {
         {
+          String _text = token.getText();
+          InputOutput.<String>println(_text);
           int _type_1 = token.getType();
           final int __valOfSwitchOver = _type_1;
           boolean matched = false;
           if (!matched) {
             if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.ID)) {
               matched=true;
-              String _text = token.getText();
-              boolean _contains = keywords.contains(_text);
+              String _text_1 = token.getText();
+              boolean _contains = keywords.contains(_text_1);
               if (_contains) {
                 StringBuilder _append = result.append("<span class=\"keyword\">");
-                String _text_1 = token.getText();
-                String _whitespace2Entities = this.whitespace2Entities(_text_1);
+                String _text_2 = token.getText();
+                String _whitespace2Entities = this.whitespace2Entities(_text_2);
                 StringBuilder _append_1 = _append.append(_whitespace2Entities);
                 _append_1.append("</span>");
               } else {
-                String _text_2 = token.getText();
-                result.append(_text_2);
+                String _text_3 = token.getText();
+                result.append(_text_3);
               }
             }
           }
           if (!matched) {
             if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.WS)) {
               matched=true;
-              String _text_3 = token.getText();
-              String _whitespace2Entities_1 = this.whitespace2Entities(_text_3);
+              String _text_4 = token.getText();
+              String _whitespace2Entities_1 = this.whitespace2Entities(_text_4);
               result.append(_whitespace2Entities_1);
             }
           }
@@ -219,8 +234,8 @@ public class Utils {
             if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.STRING)) {
               matched=true;
               StringBuilder _append_2 = result.append("<span class=\"string\">");
-              String _text_4 = token.getText();
-              String _whitespace2Entities_2 = this.whitespace2Entities(_text_4);
+              String _text_5 = token.getText();
+              String _whitespace2Entities_2 = this.whitespace2Entities(_text_5);
               StringBuilder _append_3 = _append_2.append(_whitespace2Entities_2);
               _append_3.append("</span>");
             }
@@ -229,15 +244,15 @@ public class Utils {
             if (ObjectExtensions.operator_equals(__valOfSwitchOver,Common.COMMENT)) {
               matched=true;
               StringBuilder _append_4 = result.append("<span class=\"comment\">");
-              String _text_5 = token.getText();
-              String _whitespace2Entities_3 = this.whitespace2Entities(_text_5);
+              String _text_6 = token.getText();
+              String _whitespace2Entities_3 = this.whitespace2Entities(_text_6);
               StringBuilder _append_5 = _append_4.append(_whitespace2Entities_3);
               _append_5.append("</span>");
             }
           }
           if (!matched) {
-            String _text_6 = token.getText();
-            String _whitespace2Entities_4 = this.whitespace2Entities(_text_6);
+            String _text_7 = token.getText();
+            String _whitespace2Entities_4 = this.whitespace2Entities(_text_7);
             result.append(_whitespace2Entities_4);
           }
           Token _nextToken_1 = lexer.nextToken();
