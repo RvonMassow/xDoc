@@ -1,18 +1,22 @@
 package org.eclipse.xtext.xdoc.ui.editor.spelling;
 
-import static org.eclipse.xtext.xdoc.ui.editor.model.XdocTerminalsTokenTypeToPartitionMapper.TEXT_PARTITION;
-
-import javax.inject.Inject;
-
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.xtext.ui.editor.reconciler.XtextSpellingReconcileStrategy;
 
+import static org.eclipse.xtext.xdoc.ui.editor.model.XdocTerminalsTokenTypeToPartitionMapper.TEXT_PARTITION;
+
 public class XdocSpellingReconcileStrategy extends
 		XtextSpellingReconcileStrategy {
 
-	@Inject
-	public XdocSpellingReconcileStrategy(ISourceViewer viewer) {
+	public static class factory extends XtextSpellingReconcileStrategy.Factory {
+		@Override
+		public XtextSpellingReconcileStrategy create(ISourceViewer sourceViewer) {
+			return new XdocSpellingReconcileStrategy(sourceViewer);
+		}
+	}
+	
+	protected XdocSpellingReconcileStrategy(ISourceViewer viewer) {
 		super(viewer);
 	}
 
