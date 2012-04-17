@@ -99,7 +99,7 @@ public class HtmlGenerator implements IGenerator {
     try {
       TreeIterator<EObject> _allContents = resource.getAllContents();
       Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
-      Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_iterable, org.eclipse.xtext.xdoc.xdoc.XdocFile.class);
+      Iterable<XdocFile> _filter = IterableExtensions.<XdocFile>filter(_iterable, XdocFile.class);
       for (final XdocFile file : _filter) {
         AbstractSection _mainSection = file.getMainSection();
         if ((_mainSection instanceof Document)) {
@@ -119,33 +119,32 @@ public class HtmlGenerator implements IGenerator {
   }
   
   public void generate(final Document doc, final IFileSystemAccess fsa) {
-      CharSequence _leftNavToc = this.leftNavToc(doc);
-      final CharSequence leftNav = _leftNavToc;
-      this.ppg.generatePHP(doc, fsa);
-      StringConcatenation _builder = new StringConcatenation();
-      CharSequence _body = this.body(doc, leftNav);
-      _builder.append(_body, "");
-      _builder.newLineIfNotEmpty();
-      fsa.generateFile("_index.html", Outlets.WEB_SITE, _builder);
-      EList<Chapter> _chapters = doc.getChapters();
-      boolean _isEmpty = _chapters.isEmpty();
-      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
-      if (_operator_not) {
-        EList<Chapter> _chapters_1 = doc.getChapters();
-        for (final Chapter chapter : _chapters_1) {
-          CharSequence _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter));
-          this.generate(chapter, fsa, leftNav, _elementIdForSubToc);
-        }
-      } else {
-        EList<Part> _parts = doc.getParts();
-        for (final Part part : _parts) {
-          EList<Chapter> _chapters_2 = part.getChapters();
-          for (final Chapter chapter_1 : _chapters_2) {
-            CharSequence _elementIdForSubToc_1 = this.elementIdForSubToc(((Chapter) chapter_1));
-            this.generate(chapter_1, fsa, leftNav, _elementIdForSubToc_1);
-          }
+    final CharSequence leftNav = this.leftNavToc(doc);
+    this.ppg.generatePHP(doc, fsa);
+    StringConcatenation _builder = new StringConcatenation();
+    CharSequence _body = this.body(doc, leftNav);
+    _builder.append(_body, "");
+    _builder.newLineIfNotEmpty();
+    fsa.generateFile("_index.html", Outlets.WEB_SITE, _builder);
+    EList<Chapter> _chapters = doc.getChapters();
+    boolean _isEmpty = _chapters.isEmpty();
+    boolean _not = BooleanExtensions.operator_not(_isEmpty);
+    if (_not) {
+      EList<Chapter> _chapters_1 = doc.getChapters();
+      for (final Chapter chapter : _chapters_1) {
+        CharSequence _elementIdForSubToc = this.elementIdForSubToc(((Chapter) chapter));
+        this.generate(chapter, fsa, leftNav, _elementIdForSubToc);
+      }
+    } else {
+      EList<Part> _parts = doc.getParts();
+      for (final Part part : _parts) {
+        EList<Chapter> _chapters_2 = part.getChapters();
+        for (final Chapter chapter_1 : _chapters_2) {
+          CharSequence _elementIdForSubToc_1 = this.elementIdForSubToc(((Chapter) chapter_1));
+          this.generate(chapter_1, fsa, leftNav, _elementIdForSubToc_1);
         }
       }
+    }
   }
   
   public CharSequence genPrevButton(final AbstractSection section) {
@@ -179,94 +178,94 @@ public class HtmlGenerator implements IGenerator {
   }
   
   public void generateFile(final AbstractSection section, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
-      this.ppg.generatePHP(section, fsa);
-      String _resourceURL = this.naming.getResourceURL(section);
-      String _decode = URLDecoder.decode(_resourceURL);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("<br style=\"clear:both;height:1em;\">");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("<div id=\"leftcol\">");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append(leftNav, "		");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t");
-      _builder.append("</div>");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("<div id=\"midcolumn\">");
-      _builder.newLine();
-      _builder.append("\t\t");
-      CharSequence _generate = this.generate(section, fsa, leftNav, leftNavUnfoldSubTocId);
-      _builder.append(_generate, "		");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
-      _builder.append("<div id=\"disqus_thread\"></div>");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("<script type=\"text/javascript\" src=\"documentationRoot.js\"></script>");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("<script type=\"text/javascript\">");
-      _builder.newLine();
-      _builder.append("\t\t    ");
-      _builder.append("/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */");
-      _builder.newLine();
-      _builder.append("\t\t    ");
-      _builder.append("var disqus_shortname = \'xtext\'; // required: replace example with your forum shortname");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.newLine();
-      _builder.append("\t\t    ");
-      _builder.append("// The following are highly recommended additional parameters. Remove the slashes in front to use.");
-      _builder.newLine();
-      _builder.append("\t\t    ");
-      _builder.append("var disqus_identifier = \'");
-      String _localId = this.naming.getLocalId(section);
-      _builder.append(_localId, "		    ");
-      _builder.append("\';");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t\t    ");
-      _builder.append("var disqus_url = documentationRoot+\'");
-      String _resourceURL_1 = this.naming.getResourceURL(section);
-      String _replace = _resourceURL_1.replace(".html", ".php");
-      _builder.append(_replace, "		    ");
-      _builder.append("\';");
-      _builder.newLineIfNotEmpty();
-      _builder.append("\t\t");
-      _builder.newLine();
-      _builder.append("\t\t    ");
-      _builder.append("/* * * DON\'T EDIT BELOW THIS LINE * * */");
-      _builder.newLine();
-      _builder.append("\t\t    ");
-      _builder.append("(function() {");
-      _builder.newLine();
-      _builder.append("\t\t        ");
-      _builder.append("var dsq = document.createElement(\'script\'); dsq.type = \'text/javascript\'; dsq.async = true;");
-      _builder.newLine();
-      _builder.append("\t\t        ");
-      _builder.append("dsq.src = \'http://\' + disqus_shortname + \'.disqus.com/embed.js\';");
-      _builder.newLine();
-      _builder.append("\t\t        ");
-      _builder.append("(document.getElementsByTagName(\'head\')[0] || document.getElementsByTagName(\'body\')[0]).appendChild(dsq);");
-      _builder.newLine();
-      _builder.append("\t\t    ");
-      _builder.append("})();");
-      _builder.newLine();
-      _builder.append("\t\t");
-      _builder.append("</script>");
-      _builder.newLine();
-      _builder.append(" \t\t");
-      _builder.append("<noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("</div>");
-      _builder.newLine();
-      _builder.append("\t");
-      _builder.append("<br style=\"clear:both;height:1em;\">");
-      _builder.newLine();
-      fsa.generateFile(_decode, Outlets.WEB_SITE, _builder);
+    this.ppg.generatePHP(section, fsa);
+    String _resourceURL = this.naming.getResourceURL(section);
+    String _decode = URLDecoder.decode(_resourceURL);
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<br style=\"clear:both;height:1em;\">");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<div id=\"leftcol\">");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append(leftNav, "		");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<div id=\"midcolumn\">");
+    _builder.newLine();
+    _builder.append("\t\t");
+    CharSequence _generate = this.generate(section, fsa, leftNav, leftNavUnfoldSubTocId);
+    _builder.append(_generate, "		");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.append("<div id=\"disqus_thread\"></div>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<script type=\"text/javascript\" src=\"documentationRoot.js\"></script>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<script type=\"text/javascript\">");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("var disqus_shortname = \'xtext\'; // required: replace example with your forum shortname");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("// The following are highly recommended additional parameters. Remove the slashes in front to use.");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("var disqus_identifier = \'");
+    String _localId = this.naming.getLocalId(section);
+    _builder.append(_localId, "		    ");
+    _builder.append("\';");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t    ");
+    _builder.append("var disqus_url = documentationRoot+\'");
+    String _resourceURL_1 = this.naming.getResourceURL(section);
+    String _replace = _resourceURL_1.replace(".html", ".php");
+    _builder.append(_replace, "		    ");
+    _builder.append("\';");
+    _builder.newLineIfNotEmpty();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("/* * * DON\'T EDIT BELOW THIS LINE * * */");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("(function() {");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("var dsq = document.createElement(\'script\'); dsq.type = \'text/javascript\'; dsq.async = true;");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("dsq.src = \'http://\' + disqus_shortname + \'.disqus.com/embed.js\';");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("(document.getElementsByTagName(\'head\')[0] || document.getElementsByTagName(\'body\')[0]).appendChild(dsq);");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("})();");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("</script>");
+    _builder.newLine();
+    _builder.append(" \t\t");
+    _builder.append("<noscript>Please enable JavaScript to view the <a href=\"http://disqus.com/?ref_noscript\">comments powered by Disqus.</a></noscript>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("</div>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<br style=\"clear:both;height:1em;\">");
+    _builder.newLine();
+    fsa.generateFile(_decode, Outlets.WEB_SITE, _builder);
   }
   
   protected CharSequence _generate(final ChapterRef chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
@@ -547,46 +546,46 @@ public class HtmlGenerator implements IGenerator {
   
   public String tag(final AbstractSection section) {
     String _switchResult = null;
-    boolean matched = false;
-    if (!matched) {
+    boolean _matched = false;
+    if (!_matched) {
       if (section instanceof Document) {
         final Document _document = (Document)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h1";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Chapter) {
         final Chapter _chapter = (Chapter)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h1";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section) {
         final Section _section = (Section)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h1";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section2) {
         final Section2 _section2 = (Section2)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h2";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section3) {
         final Section3 _section3 = (Section3)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h3";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section4) {
         final Section4 _section4 = (Section4)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h4";
       }
     }
@@ -614,8 +613,8 @@ public class HtmlGenerator implements IGenerator {
     CharSequence _xifexpression = null;
     List<? extends AbstractSection> _sections = this.ase.sections(section);
     boolean _isEmpty = _sections.isEmpty();
-    boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
-    if (_operator_not) {
+    boolean _not = BooleanExtensions.operator_not(_isEmpty);
+    if (_not) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<div class=\"toc\">");
       _builder.newLine();
@@ -661,8 +660,8 @@ public class HtmlGenerator implements IGenerator {
     {
       List<? extends AbstractSection> _sections = this.ase.sections(chapter);
       boolean _isEmpty = _sections.isEmpty();
-      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
-      if (_operator_not) {
+      boolean _not = BooleanExtensions.operator_not(_isEmpty);
+      if (_not) {
         _builder.newLineIfNotEmpty();
         CharSequence _subToc = this.subToc(chapter);
         _builder.append(_subToc, "");
@@ -776,8 +775,8 @@ public class HtmlGenerator implements IGenerator {
     {
       List<? extends AbstractSection> _sections_1 = this.ase.sections(chapter);
       boolean _isEmpty_1 = _sections_1.isEmpty();
-      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty_1);
-      if (_operator_not) {
+      boolean _not = BooleanExtensions.operator_not(_isEmpty_1);
+      if (_not) {
         CharSequence _leftNavSubToc = this.leftNavSubToc(chapter);
         _builder.append(_leftNavSubToc, "");
       }
@@ -809,8 +808,8 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence genAuthors(final Document doc) {
     CharSequence _xifexpression = null;
     TextOrMarkup _authors = doc.getAuthors();
-    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_authors, null);
-    if (_operator_notEquals) {
+    boolean _notEquals = ObjectExtensions.operator_notEquals(_authors, null);
+    if (_notEquals) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<div class=\"authors\">");
       _builder.newLine();
@@ -858,8 +857,8 @@ public class HtmlGenerator implements IGenerator {
     CharSequence _xifexpression = null;
     EList<EObject> _contents = cb.getContents();
     boolean _isEmpty = _contents.isEmpty();
-    boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
-    if (_operator_not) {
+    boolean _not = BooleanExtensions.operator_not(_isEmpty);
+    if (_not) {
       CharSequence _xifexpression_1 = null;
       boolean _isInlineCode = this.utils.isInlineCode(cb);
       if (_isInlineCode) {
@@ -875,8 +874,7 @@ public class HtmlGenerator implements IGenerator {
       } else {
         CharSequence _xblockexpression = null;
         {
-          CodeBlock _removeIndent = StringUtils.removeIndent(cb);
-          final CodeBlock block = _removeIndent;
+          final CodeBlock block = StringUtils.removeIndent(cb);
           StringConcatenation _builder_1 = new StringConcatenation();
           _builder_1.append("<div class=\"literallayout\">");
           _builder_1.newLine();
@@ -917,35 +915,32 @@ public class HtmlGenerator implements IGenerator {
     CharSequence _xblockexpression = null;
     {
       String _xifexpression = null;
-      boolean _operator_and = false;
+      boolean _and = false;
       JvmDeclaredType _element = cRef.getElement();
       if (!(_element instanceof JvmAnnotationType)) {
-        _operator_and = false;
+        _and = false;
       } else {
         TextOrMarkup _altText = cRef.getAltText();
-        boolean _operator_equals = ObjectExtensions.operator_equals(_altText, null);
-        _operator_and = BooleanExtensions.operator_and((_element instanceof JvmAnnotationType), _operator_equals);
+        boolean _equals = ObjectExtensions.operator_equals(_altText, null);
+        _and = BooleanExtensions.operator_and((_element instanceof JvmAnnotationType), _equals);
       }
-      if (_operator_and) {
+      if (_and) {
         _xifexpression = "@";
       }
       final String prefix = _xifexpression;
       JvmDeclaredType _element_1 = cRef.getElement();
-      String _genJavaDocLink = this.jdoc.genJavaDocLink(_element_1);
-      final String jDocLink = _genJavaDocLink;
+      final String jDocLink = this.jdoc.genJavaDocLink(_element_1);
       JvmDeclaredType _element_2 = cRef.getElement();
-      String _gitLink = this.git.gitLink(_element_2);
-      final String gitLink = _gitLink;
+      final String gitLink = this.git.gitLink(_element_2);
       JvmDeclaredType _element_3 = cRef.getElement();
       char _charAt = ".".charAt(0);
       String _qualifiedName = _element_3.getQualifiedName(_charAt);
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
-      String _escapeHtml = StringEscapeUtils.escapeHtml(_unescapeXdocChars);
-      final String fqn = _escapeHtml;
+      final String fqn = StringEscapeUtils.escapeHtml(_unescapeXdocChars);
       CharSequence _xifexpression_1 = null;
       TextOrMarkup _altText_1 = cRef.getAltText();
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
-      if (_operator_notEquals) {
+      boolean _notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
+      if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
         CharSequence _genNonParText = this.genNonParText(_altText_2);
         _xifexpression_1 = _genNonParText;
@@ -956,13 +951,13 @@ public class HtmlGenerator implements IGenerator {
       }
       final CharSequence text = _xifexpression_1;
       CharSequence _xifexpression_2 = null;
-      boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
-      if (_operator_notEquals_1) {
+      boolean _notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
+      if (_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("<a class=\"jdoc\" href=\"");
         JvmDeclaredType _element_5 = cRef.getElement();
-        String _genJavaDocLink_1 = this.jdoc.genJavaDocLink(_element_5);
-        _builder.append(_genJavaDocLink_1, "");
+        String _genJavaDocLink = this.jdoc.genJavaDocLink(_element_5);
+        _builder.append(_genJavaDocLink, "");
         _builder.append("\" title=\"");
         _builder.append(fqn, "");
         _builder.append("\">");
@@ -982,8 +977,8 @@ public class HtmlGenerator implements IGenerator {
       }
       CharSequence ret = _xifexpression_2;
       CharSequence _xifexpression_3 = null;
-      boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
-      if (_operator_notEquals_2) {
+      boolean _notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
+      if (_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
         _builder_2.append(" <a class=\"srcLink\" href=\"");
@@ -1001,14 +996,14 @@ public class HtmlGenerator implements IGenerator {
   public String dottedSimpleName(final JvmDeclaredType type) {
     String _xifexpression = null;
     JvmDeclaredType _declaringType = type.getDeclaringType();
-    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
-    if (_operator_notEquals) {
+    boolean _notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
+    if (_notEquals) {
       JvmDeclaredType _declaringType_1 = type.getDeclaringType();
       String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
-      String _operator_plus = StringExtensions.operator_plus(_dottedSimpleName, ".");
+      String _plus = StringExtensions.operator_plus(_dottedSimpleName, ".");
       String _simpleName = type.getSimpleName();
-      String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _simpleName);
-      _xifexpression = _operator_plus_1;
+      String _plus_1 = StringExtensions.operator_plus(_plus, _simpleName);
+      _xifexpression = _plus_1;
     } else {
       String _simpleName_1 = type.getSimpleName();
       _xifexpression = _simpleName_1;
@@ -1041,8 +1036,8 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence generate(final List<TextOrMarkup> tomList) {
     CharSequence _xifexpression = null;
     int _size = tomList.size();
-    boolean _operator_equals = IntegerExtensions.operator_equals(_size, 1);
-    if (_operator_equals) {
+    boolean _equals = IntegerExtensions.operator_equals(_size, 1);
+    if (_equals) {
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(tomList);
       CharSequence _genNonParText = this.genNonParText(_head);
       _xifexpression = _genNonParText;
@@ -1159,8 +1154,8 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\" >");
     {
       String _text = link.getText();
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_text, null);
-      if (_operator_notEquals) {
+      boolean _notEquals = ObjectExtensions.operator_notEquals(_text, null);
+      if (_notEquals) {
         String _text_1 = link.getText();
         _builder.append(_text_1, "");
       } else {
@@ -1277,8 +1272,8 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLine();
       {
         String _name = img.getName();
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
-        if (_operator_notEquals) {
+        boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        if (_notEquals) {
           _builder.append("<a>");
           String _name_1 = img.getName();
           _builder.append(_name_1, "");
@@ -1309,8 +1304,8 @@ public class HtmlGenerator implements IGenerator {
       {
         String _clazz = img.getClazz();
         boolean _nullOrEmpty = this.utils.nullOrEmpty(_clazz);
-        boolean _operator_not = BooleanExtensions.operator_not(_nullOrEmpty);
-        if (_operator_not) {
+        boolean _not = BooleanExtensions.operator_not(_nullOrEmpty);
+        if (_not) {
           _builder.append("\t\t");
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
@@ -1327,8 +1322,8 @@ public class HtmlGenerator implements IGenerator {
       {
         String _style = img.getStyle();
         boolean _nullOrEmpty_1 = this.utils.nullOrEmpty(_style);
-        boolean _operator_not_1 = BooleanExtensions.operator_not(_nullOrEmpty_1);
-        if (_operator_not_1) {
+        boolean _not_1 = BooleanExtensions.operator_not(_nullOrEmpty_1);
+        if (_not_1) {
           _builder.append("\t\t");
           _builder.append("style=\"");
           String _style_1 = img.getStyle();
@@ -1362,67 +1357,57 @@ public class HtmlGenerator implements IGenerator {
   
   public void copy(final String fromRelativeFileName, final Resource res) {
     try {
-      {
-        int _operator_multiply = IntegerExtensions.operator_multiply(16, 1024);
-        ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
-        final ByteBuffer buffer = _allocateDirect;
-        URI _uRI = res.getURI();
-        final URI uri = _uRI;
-        boolean _isPlatformResource = uri.isPlatformResource();
-        if (_isPlatformResource) {
+      int _multiply = IntegerExtensions.operator_multiply(16, 1024);
+      final ByteBuffer buffer = ByteBuffer.allocateDirect(_multiply);
+      final URI uri = res.getURI();
+      boolean _isPlatformResource = uri.isPlatformResource();
+      if (_isPlatformResource) {
+        URI _trimSegments = uri.trimSegments(1);
+        String _string = _trimSegments.toString();
+        String _plus = StringExtensions.operator_plus(_string, "/");
+        String _plus_1 = StringExtensions.operator_plus(_plus, fromRelativeFileName);
+        final URI inPath = URI.createURI(_plus_1);
+        int _segmentCount = uri.segmentCount();
+        int _minus = IntegerExtensions.operator_minus(_segmentCount, 2);
+        URI _trimSegments_1 = uri.trimSegments(_minus);
+        URI _appendSegment = _trimSegments_1.appendSegment(Outlets.WEB_SITE_PATH_NAME);
+        String _string_1 = _appendSegment.toString();
+        String _plus_2 = StringExtensions.operator_plus(_string_1, "/");
+        String _replaceAll = fromRelativeFileName.replaceAll("\\.\\.", "");
+        String _plus_3 = StringExtensions.operator_plus(_plus_2, _replaceAll);
+        final URI outPath = URI.createURI(_plus_3);
+        ResourceSet _resourceSet = res.getResourceSet();
+        URIConverter _uRIConverter = _resourceSet.getURIConverter();
+        InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
+        final ReadableByteChannel inChannel = Channels.newChannel(_createInputStream);
+        ResourceSet _resourceSet_1 = res.getResourceSet();
+        URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
+        OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
+        final WritableByteChannel outChannel = Channels.newChannel(_createOutputStream);
+        int _read = inChannel.read(buffer);
+        int _minus_1 = IntegerExtensions.operator_minus(1);
+        boolean _notEquals = IntegerExtensions.operator_notEquals(_read, _minus_1);
+        boolean _while = _notEquals;
+        while (_while) {
           {
-            URI _trimSegments = uri.trimSegments(1);
-            String _string = _trimSegments.toString();
-            String _operator_plus = StringExtensions.operator_plus(_string, "/");
-            String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, fromRelativeFileName);
-            URI _createURI = URI.createURI(_operator_plus_1);
-            final URI inPath = _createURI;
-            int _segmentCount = uri.segmentCount();
-            int _operator_minus = IntegerExtensions.operator_minus(_segmentCount, 2);
-            URI _trimSegments_1 = uri.trimSegments(_operator_minus);
-            URI _appendSegment = _trimSegments_1.appendSegment(Outlets.WEB_SITE_PATH_NAME);
-            String _string_1 = _appendSegment.toString();
-            String _operator_plus_2 = StringExtensions.operator_plus(_string_1, "/");
-            String _replaceAll = fromRelativeFileName.replaceAll("\\.\\.", "");
-            String _operator_plus_3 = StringExtensions.operator_plus(_operator_plus_2, _replaceAll);
-            URI _createURI_1 = URI.createURI(_operator_plus_3);
-            final URI outPath = _createURI_1;
-            ResourceSet _resourceSet = res.getResourceSet();
-            URIConverter _uRIConverter = _resourceSet.getURIConverter();
-            InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
-            ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
-            final ReadableByteChannel inChannel = _newChannel;
-            ResourceSet _resourceSet_1 = res.getResourceSet();
-            URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
-            OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
-            WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
-            final WritableByteChannel outChannel = _newChannel_1;
-            int _read = inChannel.read(buffer);
-            int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-            boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_read, _operator_minus_1);
-            boolean _while = _operator_notEquals;
-            while (_while) {
-              {
-                buffer.flip();
-                outChannel.write(buffer);
-                buffer.compact();
-              }
-              int _read_1 = inChannel.read(buffer);
-              int _operator_minus_2 = IntegerExtensions.operator_minus(1);
-              boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _operator_minus_2);
-              _while = _operator_notEquals_1;
-            }
             buffer.flip();
-            boolean _hasRemaining = buffer.hasRemaining();
-            boolean _while_1 = _hasRemaining;
-            while (_while_1) {
-              outChannel.write(buffer);
-              boolean _hasRemaining_1 = buffer.hasRemaining();
-              _while_1 = _hasRemaining_1;
-            }
-            outChannel.close();
+            outChannel.write(buffer);
+            buffer.compact();
           }
+          int _read_1 = inChannel.read(buffer);
+          int _minus_2 = IntegerExtensions.operator_minus(1);
+          boolean _notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _minus_2);
+          _while = _notEquals_1;
         }
+        buffer.flip();
+        boolean _hasRemaining = buffer.hasRemaining();
+        boolean _while_1 = _hasRemaining;
+        while (_while_1) {
+          outChannel.write(buffer);
+          boolean _hasRemaining_1 = buffer.hasRemaining();
+          _while_1 = _hasRemaining_1;
+        }
+        outChannel.close();
       }
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {

@@ -60,6 +60,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	@Inject HashMap<String, Object> config
 	@Inject HashSet<String> links
 
+
 	override getConfiguration() {
 		config
 	}
@@ -309,8 +310,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	 * genNonParContent
 	 */
 	def genNonParContent(TextOrMarkup tom){
-		'''«FOR e : tom.contents»«e.genText»«ENDFOR»
-		'''
+		'''«FOR e : tom.contents»«e.genText»«ENDFOR»'''
 	}
 
 	/**
@@ -448,7 +448,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 
 	def dispatch genText(Ref ref){
-		'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genContent]).join»~(§\ref*{«ref.ref.name»})}«ENDIF»'''
+		'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genNonParContent]).join»~(§\ref*{«ref.ref.name»})}«ENDIF»'''
 	}
 
 	def dispatch genText(Anchor anchor) {
