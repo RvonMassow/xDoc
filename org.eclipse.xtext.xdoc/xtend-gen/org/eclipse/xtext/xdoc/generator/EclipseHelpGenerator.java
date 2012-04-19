@@ -14,8 +14,7 @@ public class EclipseHelpGenerator implements IGenerator {
   private Provider<StatefulEclipseHelpGenerator> provider;
   
   public void doGenerate(final Resource res, final IFileSystemAccess access) {
-      StatefulEclipseHelpGenerator _get = this.provider.get();
-      final StatefulEclipseHelpGenerator generator = _get;
-      generator.doGenerate(res, ((IFileSystemAccessExtension2) access));
+    final StatefulEclipseHelpGenerator generator = this.provider.get();
+    generator.doGenerate(res, ((IFileSystemAccessExtension2) access));
   }
 }

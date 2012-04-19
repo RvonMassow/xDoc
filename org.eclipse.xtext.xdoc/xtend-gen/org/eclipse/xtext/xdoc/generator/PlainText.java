@@ -66,8 +66,8 @@ public class PlainText {
       final CharSequence text = _builder;
       CharSequence _xifexpression = null;
       String _string = text.toString();
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_string, text);
-      if (_operator_notEquals) {
+      boolean _notEquals = ObjectExtensions.operator_notEquals(_string, text);
+      if (_notEquals) {
         _xifexpression = text;
       } else {
         StringConcatenation _builder_1 = new StringConcatenation();
@@ -87,8 +87,8 @@ public class PlainText {
     {
       EList<TextOrMarkup> _contents = ref.getContents();
       boolean _isEmpty = _contents.isEmpty();
-      boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
-      if (_operator_not) {
+      boolean _not = BooleanExtensions.operator_not(_isEmpty);
+      if (_not) {
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
           for(final TextOrMarkup e : _contents_1) {

@@ -29,8 +29,8 @@ public class AbstractSectionExtension {
     EList<? extends AbstractSection> _xifexpression = null;
     EList<Chapter> _chapters = doc.getChapters();
     boolean _isEmpty = _chapters.isEmpty();
-    boolean _operator_not = BooleanExtensions.operator_not(_isEmpty);
-    if (_operator_not) {
+    boolean _not = BooleanExtensions.operator_not(_isEmpty);
+    if (_not) {
       EList<Chapter> _chapters_1 = doc.getChapters();
       _xifexpression = _chapters_1;
     } else {

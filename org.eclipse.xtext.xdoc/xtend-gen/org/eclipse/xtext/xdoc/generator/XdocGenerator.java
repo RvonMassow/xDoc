@@ -16,7 +16,7 @@ public class XdocGenerator implements IGenerator {
   private EclipseHelpGenerator helpGen;
   
   public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
-      this.helpGen.doGenerate(input, fsa);
-      this.htmlGen.doGenerate(input, fsa);
+    this.helpGen.doGenerate(input, fsa);
+    this.htmlGen.doGenerate(input, fsa);
   }
 }

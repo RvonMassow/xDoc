@@ -99,105 +99,85 @@ public class StatefulEclipseHelpGenerator {
   
   private IFileSystemAccess access;
   
-  public Object doGenerate(final Resource res, final IFileSystemAccessExtension2 accessExtension2) {
-    Object _xblockexpression = null;
-    {
-      this.res = res;
-      this.accessExtension2 = accessExtension2;
-      this.access = ((IFileSystemAccess) accessExtension2);
-      EList<EObject> _contents = res.getContents();
-      EObject _head = IterableExtensions.<EObject>head(_contents);
-      AbstractSection _mainSection = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
-      final AbstractSection doc = _mainSection;
-      Object _xifexpression = null;
-      if ((doc instanceof Document)) {
-        {
-          this.uriUtil.initialize(((Document) doc));
-          this.generate(((Document) doc), this.access);
-        }
-      }
-      _xblockexpression = (_xifexpression);
+  public void doGenerate(final Resource res, final IFileSystemAccessExtension2 accessExtension2) {
+    this.res = res;
+    this.accessExtension2 = accessExtension2;
+    this.access = ((IFileSystemAccess) accessExtension2);
+    EList<EObject> _contents = res.getContents();
+    EObject _head = IterableExtensions.<EObject>head(_contents);
+    final AbstractSection doc = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
+    if ((doc instanceof Document)) {
+      this.uriUtil.initialize(((Document) doc));
+      this.generate(((Document) doc), this.access);
     }
-    return _xblockexpression;
   }
   
   public void generate(final Document document, final IFileSystemAccess access) {
-      CharSequence _generateToc = this.tocGenerator.generateToc(document, this.uriUtil);
-      access.generateFile("toc.xml", _generateToc);
-      String _fullURL = this.eclipseNamingExtensions.getFullURL(document);
-      String _decode = URLDecoder.decode(_fullURL);
-      CharSequence _generateRootDocument = this.generateRootDocument(document);
-      access.generateFile(_decode, _generateRootDocument);
-      Resource _eResource = document.eResource();
-      URI _uRI = _eResource.getURI();
-      String _lastSegment = _uRI.lastSegment();
-      String _replaceAll = _lastSegment.replaceAll(".xdoc$", ".html");
-      final String homeFileName = _replaceAll;
-      EList<Chapter> _chapters = document.getChapters();
-      for (final Chapter c : _chapters) {
-        this.generate(c, access, homeFileName);
-      }
-      EList<Part> _parts = document.getParts();
-      for (final Part p : _parts) {
-        this.generate(p, access, homeFileName);
-      }
+    CharSequence _generateToc = this.tocGenerator.generateToc(document, this.uriUtil);
+    access.generateFile("toc.xml", _generateToc);
+    String _fullURL = this.eclipseNamingExtensions.getFullURL(document);
+    String _decode = URLDecoder.decode(_fullURL);
+    CharSequence _generateRootDocument = this.generateRootDocument(document);
+    access.generateFile(_decode, _generateRootDocument);
+    Resource _eResource = document.eResource();
+    URI _uRI = _eResource.getURI();
+    String _lastSegment = _uRI.lastSegment();
+    final String homeFileName = _lastSegment.replaceAll(".xdoc$", ".html");
+    EList<Chapter> _chapters = document.getChapters();
+    for (final Chapter c : _chapters) {
+      this.generate(c, access, homeFileName);
+    }
+    EList<Part> _parts = document.getParts();
+    for (final Part p : _parts) {
+      this.generate(p, access, homeFileName);
+    }
   }
   
   public void copy(final String fromRelativeFileName, final Resource res) {
     try {
-      {
-        int _operator_multiply = IntegerExtensions.operator_multiply(16, 1024);
-        ByteBuffer _allocateDirect = ByteBuffer.allocateDirect(_operator_multiply);
-        final ByteBuffer buffer = _allocateDirect;
-        URI _uRI = res.getURI();
-        final URI uri = _uRI;
-        boolean _isPlatformResource = uri.isPlatformResource();
-        if (_isPlatformResource) {
+      int _multiply = IntegerExtensions.operator_multiply(16, 1024);
+      final ByteBuffer buffer = ByteBuffer.allocateDirect(_multiply);
+      final URI uri = res.getURI();
+      boolean _isPlatformResource = uri.isPlatformResource();
+      if (_isPlatformResource) {
+        URI _trimSegments = uri.trimSegments(1);
+        String _string = _trimSegments.toString();
+        String _plus = StringExtensions.operator_plus(_string, "/");
+        String _plus_1 = StringExtensions.operator_plus(_plus, fromRelativeFileName);
+        final URI inPath = URI.createURI(_plus_1);
+        final URI outPath = this.accessExtension2.getURI(fromRelativeFileName, Outlets.ECLIPSE_HELP);
+        ResourceSet _resourceSet = res.getResourceSet();
+        URIConverter _uRIConverter = _resourceSet.getURIConverter();
+        InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
+        final ReadableByteChannel inChannel = Channels.newChannel(_createInputStream);
+        ResourceSet _resourceSet_1 = res.getResourceSet();
+        URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
+        OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
+        final WritableByteChannel outChannel = Channels.newChannel(_createOutputStream);
+        int _read = inChannel.read(buffer);
+        int _minus = IntegerExtensions.operator_minus(1);
+        boolean _notEquals = IntegerExtensions.operator_notEquals(_read, _minus);
+        boolean _while = _notEquals;
+        while (_while) {
           {
-            URI _trimSegments = uri.trimSegments(1);
-            String _string = _trimSegments.toString();
-            String _operator_plus = StringExtensions.operator_plus(_string, "/");
-            String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, fromRelativeFileName);
-            URI _createURI = URI.createURI(_operator_plus_1);
-            final URI inPath = _createURI;
-            URI _uRI_1 = this.accessExtension2.getURI(fromRelativeFileName, Outlets.ECLIPSE_HELP);
-            final URI outPath = _uRI_1;
-            ResourceSet _resourceSet = res.getResourceSet();
-            URIConverter _uRIConverter = _resourceSet.getURIConverter();
-            InputStream _createInputStream = _uRIConverter.createInputStream(inPath);
-            ReadableByteChannel _newChannel = Channels.newChannel(_createInputStream);
-            final ReadableByteChannel inChannel = _newChannel;
-            ResourceSet _resourceSet_1 = res.getResourceSet();
-            URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
-            OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
-            WritableByteChannel _newChannel_1 = Channels.newChannel(_createOutputStream);
-            final WritableByteChannel outChannel = _newChannel_1;
-            int _read = inChannel.read(buffer);
-            int _operator_minus = IntegerExtensions.operator_minus(1);
-            boolean _operator_notEquals = IntegerExtensions.operator_notEquals(_read, _operator_minus);
-            boolean _while = _operator_notEquals;
-            while (_while) {
-              {
-                buffer.flip();
-                outChannel.write(buffer);
-                buffer.compact();
-              }
-              int _read_1 = inChannel.read(buffer);
-              int _operator_minus_1 = IntegerExtensions.operator_minus(1);
-              boolean _operator_notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _operator_minus_1);
-              _while = _operator_notEquals_1;
-            }
             buffer.flip();
-            boolean _hasRemaining = buffer.hasRemaining();
-            boolean _while_1 = _hasRemaining;
-            while (_while_1) {
-              outChannel.write(buffer);
-              boolean _hasRemaining_1 = buffer.hasRemaining();
-              _while_1 = _hasRemaining_1;
-            }
-            outChannel.close();
+            outChannel.write(buffer);
+            buffer.compact();
           }
+          int _read_1 = inChannel.read(buffer);
+          int _minus_1 = IntegerExtensions.operator_minus(1);
+          boolean _notEquals_1 = IntegerExtensions.operator_notEquals(_read_1, _minus_1);
+          _while = _notEquals_1;
         }
+        buffer.flip();
+        boolean _hasRemaining = buffer.hasRemaining();
+        boolean _while_1 = _hasRemaining;
+        while (_while_1) {
+          outChannel.write(buffer);
+          boolean _hasRemaining_1 = buffer.hasRemaining();
+          _while_1 = _hasRemaining_1;
+        }
+        outChannel.close();
       }
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
@@ -316,14 +296,14 @@ public class StatefulEclipseHelpGenerator {
   }
   
   protected void _generate(final Part part, final IFileSystemAccess fsa, final String homeFileName) {
-      String _fullURL = this.eclipseNamingExtensions.getFullURL(part);
-      String _decode = URLDecoder.decode(_fullURL);
-      CharSequence _generate = this.generate(part, homeFileName);
-      fsa.generateFile(_decode, _generate);
-      EList<Chapter> _chapters = part.getChapters();
-      for (final Chapter c : _chapters) {
-        this.generate(c, fsa, homeFileName);
-      }
+    String _fullURL = this.eclipseNamingExtensions.getFullURL(part);
+    String _decode = URLDecoder.decode(_fullURL);
+    CharSequence _generate = this.generate(part, homeFileName);
+    fsa.generateFile(_decode, _generate);
+    EList<Chapter> _chapters = part.getChapters();
+    for (final Chapter c : _chapters) {
+      this.generate(c, fsa, homeFileName);
+    }
   }
   
   protected CharSequence _generate(final Part part, final String homeFileName) {
@@ -460,50 +440,50 @@ public class StatefulEclipseHelpGenerator {
   
   public String headtag(final AbstractSection section) {
     String _switchResult = null;
-    boolean matched = false;
-    if (!matched) {
+    boolean _matched = false;
+    if (!_matched) {
       if (section instanceof Part) {
         final Part _part = (Part)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h1";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Chapter) {
         final Chapter _chapter = (Chapter)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h1";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section) {
         final Section _section = (Section)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h2";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section2) {
         final Section2 _section2 = (Section2)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h3";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section3) {
         final Section3 _section3 = (Section3)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h4";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       if (section instanceof Section4) {
         final Section4 _section4 = (Section4)section;
-        matched=true;
+        _matched=true;
         _switchResult = "h5";
       }
     }
-    if (!matched) {
+    if (!_matched) {
       _switchResult = "h1";
     }
     return _switchResult;
@@ -731,8 +711,7 @@ public class StatefulEclipseHelpGenerator {
   protected CharSequence _generate(final ImageRef img) {
     CharSequence _xblockexpression = null;
     {
-      URI _relativeTargetURI = this.uriUtil.getRelativeTargetURI(img);
-      final URI imageChapterRelativeURI = _relativeTargetURI;
+      final URI imageChapterRelativeURI = this.uriUtil.getRelativeTargetURI(img);
       String _path = img.getPath();
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_path);
       Resource _eResource = img.eResource();
@@ -742,8 +721,8 @@ public class StatefulEclipseHelpGenerator {
       _builder.newLine();
       {
         String _name = img.getName();
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_name, null);
-        if (_operator_notEquals) {
+        boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        if (_notEquals) {
           String _name_1 = img.getName();
           CharSequence _genLabel = this.genLabel(_name_1);
           _builder.append(_genLabel, "");
@@ -759,8 +738,8 @@ public class StatefulEclipseHelpGenerator {
       _builder.append("\" ");
       {
         String _clazz = img.getClazz();
-        boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(_clazz, null);
-        if (_operator_notEquals_1) {
+        boolean _notEquals_1 = ObjectExtensions.operator_notEquals(_clazz, null);
+        if (_notEquals_1) {
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
           String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_clazz_1);
@@ -770,19 +749,19 @@ public class StatefulEclipseHelpGenerator {
       }
       _builder.newLineIfNotEmpty();
       {
-        boolean _operator_and = false;
+        boolean _and = false;
         String _style = img.getStyle();
-        boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(_style, null);
-        if (!_operator_notEquals_2) {
-          _operator_and = false;
+        boolean _notEquals_2 = ObjectExtensions.operator_notEquals(_style, null);
+        if (!_notEquals_2) {
+          _and = false;
         } else {
           String _style_1 = img.getStyle();
           int _length = _style_1.length();
-          boolean _operator_equals = IntegerExtensions.operator_equals(_length, 0);
-          boolean _operator_not = BooleanExtensions.operator_not(_operator_equals);
-          _operator_and = BooleanExtensions.operator_and(_operator_notEquals_2, _operator_not);
+          boolean _equals = IntegerExtensions.operator_equals(_length, 0);
+          boolean _not = BooleanExtensions.operator_not(_equals);
+          _and = BooleanExtensions.operator_and(_notEquals_2, _not);
         }
-        if (_operator_and) {
+        if (_and) {
           _builder.append(" style=\"");
           String _style_2 = img.getStyle();
           String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_style_2);
@@ -811,8 +790,8 @@ public class StatefulEclipseHelpGenerator {
   public CharSequence genLabel(final String name) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(this, null);
-      if (_operator_notEquals) {
+      boolean _notEquals = ObjectExtensions.operator_notEquals(this, null);
+      if (_notEquals) {
         _builder.append("<a name=\"");
         _builder.append(name, "");
         _builder.append("\"></a>");
@@ -912,35 +891,32 @@ public class StatefulEclipseHelpGenerator {
     CharSequence _xblockexpression = null;
     {
       String _xifexpression = null;
-      boolean _operator_and = false;
+      boolean _and = false;
       JvmDeclaredType _element = cRef.getElement();
       if (!(_element instanceof JvmAnnotationType)) {
-        _operator_and = false;
+        _and = false;
       } else {
         TextOrMarkup _altText = cRef.getAltText();
-        boolean _operator_equals = ObjectExtensions.operator_equals(_altText, null);
-        _operator_and = BooleanExtensions.operator_and((_element instanceof JvmAnnotationType), _operator_equals);
+        boolean _equals = ObjectExtensions.operator_equals(_altText, null);
+        _and = BooleanExtensions.operator_and((_element instanceof JvmAnnotationType), _equals);
       }
-      if (_operator_and) {
+      if (_and) {
         _xifexpression = "@";
       }
       final String prefix = _xifexpression;
       JvmDeclaredType _element_1 = cRef.getElement();
-      String _genJavaDocLink = this.jdoc.genJavaDocLink(_element_1);
-      final String jDocLink = _genJavaDocLink;
+      final String jDocLink = this.jdoc.genJavaDocLink(_element_1);
       JvmDeclaredType _element_2 = cRef.getElement();
-      String _gitLink = this.git.gitLink(_element_2);
-      final String gitLink = _gitLink;
+      final String gitLink = this.git.gitLink(_element_2);
       JvmDeclaredType _element_3 = cRef.getElement();
       char _charAt = ".".charAt(0);
       String _qualifiedName = _element_3.getQualifiedName(_charAt);
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
-      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
-      final String fqn = _escapeHTMLChars;
+      final String fqn = this.utils.escapeHTMLChars(_unescapeXdocChars);
       CharSequence _xifexpression_1 = null;
       TextOrMarkup _altText_1 = cRef.getAltText();
-      boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
-      if (_operator_notEquals) {
+      boolean _notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
+      if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
         CharSequence _generate = this.generate(_altText_2);
         _xifexpression_1 = _generate;
@@ -951,13 +927,13 @@ public class StatefulEclipseHelpGenerator {
       }
       final CharSequence text = _xifexpression_1;
       CharSequence _xifexpression_2 = null;
-      boolean _operator_notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
-      if (_operator_notEquals_1) {
+      boolean _notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
+      if (_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("<a class=\"jdoc\" href=\"");
         JvmDeclaredType _element_5 = cRef.getElement();
-        String _genJavaDocLink_1 = this.jdoc.genJavaDocLink(_element_5);
-        _builder.append(_genJavaDocLink_1, "");
+        String _genJavaDocLink = this.jdoc.genJavaDocLink(_element_5);
+        _builder.append(_genJavaDocLink, "");
         _builder.append("\" title=\"View JavaDoc\"><abbr title=\"");
         _builder.append(fqn, "");
         _builder.append("\" >");
@@ -977,8 +953,8 @@ public class StatefulEclipseHelpGenerator {
       }
       CharSequence ret = _xifexpression_2;
       CharSequence _xifexpression_3 = null;
-      boolean _operator_notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
-      if (_operator_notEquals_2) {
+      boolean _notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
+      if (_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
         _builder_2.append(" <a class=\"srcLink\" href=\"");
@@ -996,14 +972,14 @@ public class StatefulEclipseHelpGenerator {
   public String dottedSimpleName(final JvmDeclaredType type) {
     String _xifexpression = null;
     JvmDeclaredType _declaringType = type.getDeclaringType();
-    boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
-    if (_operator_notEquals) {
+    boolean _notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
+    if (_notEquals) {
       JvmDeclaredType _declaringType_1 = type.getDeclaringType();
       String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
-      String _operator_plus = StringExtensions.operator_plus(_dottedSimpleName, ".");
+      String _plus = StringExtensions.operator_plus(_dottedSimpleName, ".");
       String _simpleName = type.getSimpleName();
-      String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, _simpleName);
-      _xifexpression = _operator_plus_1;
+      String _plus_1 = StringExtensions.operator_plus(_plus, _simpleName);
+      _xifexpression = _plus_1;
     } else {
       String _simpleName_1 = type.getSimpleName();
       _xifexpression = _simpleName_1;
@@ -1028,19 +1004,18 @@ public class StatefulEclipseHelpGenerator {
     } else {
       CharSequence _xblockexpression = null;
       {
-        Integer _calcIndent = this.utils.calcIndent(cb);
-        final Integer indentToRemove = _calcIndent;
+        final int indentToRemove = this.utils.calcIndent(cb);
         Iterable<EObject> _xifexpression_1 = null;
         EList<EObject> _contents_1 = cb.getContents();
         int _size = _contents_1.size();
-        boolean _operator_greaterThan = IntegerExtensions.operator_greaterThan(_size, 2);
-        if (_operator_greaterThan) {
+        boolean _greaterThan = IntegerExtensions.operator_greaterThan(_size, 2);
+        if (_greaterThan) {
           EList<EObject> _contents_2 = cb.getContents();
           Iterable<EObject> _tail = IterableExtensions.<EObject>tail(_contents_2);
           EList<EObject> _contents_3 = cb.getContents();
           int _size_1 = _contents_3.size();
-          int _operator_minus = IntegerExtensions.operator_minus(_size_1, 2);
-          Iterable<EObject> _take = IterableExtensions.<EObject>take(_tail, _operator_minus);
+          int _minus = IntegerExtensions.operator_minus(_size_1, 2);
+          Iterable<EObject> _take = IterableExtensions.<EObject>take(_tail, _minus);
           _xifexpression_1 = _take;
         } else {
           _xifexpression_1 = Collections.EMPTY_LIST;
@@ -1049,22 +1024,21 @@ public class StatefulEclipseHelpGenerator {
         EList<EObject> _contents_4 = cb.getContents();
         EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
         CharSequence _generateCode_1 = this.generateCode(_head_1);
-        String _trimLines = this.trimLines(_generateCode_1, (indentToRemove).intValue());
-        String _replaceAll = _trimLines.replaceAll("\\A(\\s*\n)*", "");
-        final String first = _replaceAll;
+        String _trimLines = this.trimLines(_generateCode_1, indentToRemove);
+        final String first = _trimLines.replaceAll("\\A(\\s*\n)*", "");
         String _xifexpression_2 = null;
         EList<EObject> _contents_5 = cb.getContents();
         EObject _last = IterableExtensions.<EObject>last(_contents_5);
         EList<EObject> _contents_6 = cb.getContents();
         EObject _head_2 = IterableExtensions.<EObject>head(_contents_6);
-        boolean _operator_notEquals = ObjectExtensions.operator_notEquals(_last, _head_2);
-        if (_operator_notEquals) {
+        boolean _notEquals = ObjectExtensions.operator_notEquals(_last, _head_2);
+        if (_notEquals) {
           EList<EObject> _contents_7 = cb.getContents();
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
           CharSequence _generateCode_2 = this.generateCode(_last_1);
-          String _trimLines_1 = this.trimLines(_generateCode_2, (indentToRemove).intValue());
-          String _replaceAll_1 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
-          _xifexpression_2 = _replaceAll_1;
+          String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
+          String _replaceAll = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
+          _xifexpression_2 = _replaceAll;
         } else {
           String _xblockexpression_1 = null;
           {
@@ -1088,7 +1062,7 @@ public class StatefulEclipseHelpGenerator {
         {
           for(final EObject code : list) {
             CharSequence _generateCode_3 = this.generateCode(code);
-            String _trimLines_2 = this.trimLines(_generateCode_3, (indentToRemove).intValue());
+            String _trimLines_2 = this.trimLines(_generateCode_3, indentToRemove);
             LangDef _language_2 = cb.getLanguage();
             String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2);
             _builder_1.append(_formatCode_2, "");
@@ -1114,9 +1088,9 @@ public class StatefulEclipseHelpGenerator {
   
   public String trimLines(final CharSequence cs, final int amount) {
     String _string = cs.toString();
-    String _operator_plus = StringExtensions.operator_plus("\n\\s{", Integer.valueOf(amount));
-    String _operator_plus_1 = StringExtensions.operator_plus(_operator_plus, "}");
-    String _replaceAll = _string.replaceAll(_operator_plus_1, "\n");
+    String _plus = StringExtensions.operator_plus("\n\\s{", Integer.valueOf(amount));
+    String _plus_1 = StringExtensions.operator_plus(_plus, "}");
+    String _replaceAll = _string.replaceAll(_plus_1, "\n");
     return _replaceAll;
   }
   
@@ -1150,8 +1124,10 @@ public class StatefulEclipseHelpGenerator {
   public void generate(final AbstractSection chapter, final IFileSystemAccess access, final String homeFileName) {
     if (chapter instanceof Chapter) {
       _generate((Chapter)chapter, access, homeFileName);
+      return;
     } else if (chapter instanceof Part) {
       _generate((Part)chapter, access, homeFileName);
+      return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
         Arrays.<Object>asList(chapter, access, homeFileName).toString());
