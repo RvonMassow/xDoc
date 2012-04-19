@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.io.File;
 import java.util.Arrays;
@@ -7,9 +8,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.xbase.lib.BooleanExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
-import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
@@ -31,7 +29,7 @@ public class PHPPhoenixGenerator {
     URI _uRI = _eResource.getURI();
     URI _trimFileExtension = _uRI.trimFileExtension();
     String _lastSegment = _trimFileExtension.lastSegment();
-    String _plus = StringExtensions.operator_plus(_lastSegment, ".php");
+    String _plus = (_lastSegment + ".php");
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("<?php require_once($_SERVER[\'DOCUMENT_ROOT\'] . \"/eclipse.org-common/system/app.class.php\");\trequire_once($_SERVER[\'DOCUMENT_ROOT\'] . \"/eclipse.org-common/system/nav.class.php\"); \trequire_once($_SERVER[\'DOCUMENT_ROOT\'] . \"/eclipse.org-common/system/menu.class.php\"); \t$App \t= new App();\t$Nav\t= new Nav();\t$Menu \t= new Menu();\t\tinclude($App->getProjectCommon());    # All on the same line to unclutter the user\'s desktop\'");
     _builder.newLine();
@@ -105,11 +103,11 @@ public class PHPPhoenixGenerator {
     _builder.append("?>");
     _builder.newLine();
     fsa.generateFile("index.php", Outlets.WEB_SITE, _builder);
-    String _plus = StringExtensions.operator_plus(Outlets.WEB_SITE_PATH_NAME, "/");
-    String _plus_1 = StringExtensions.operator_plus(_plus, "include.php");
+    String _plus = (Outlets.WEB_SITE_PATH_NAME + "/");
+    String _plus_1 = (_plus + "include.php");
     File _file = new File(_plus_1);
     boolean _exists = _file.exists();
-    boolean _not = BooleanExtensions.operator_not(_exists);
+    boolean _not = (!_exists);
     if (_not) {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("<?php");
@@ -149,7 +147,7 @@ public class PHPPhoenixGenerator {
       _builder_1.append("\t");
       {
         TextOrMarkup _authors = doc.getAuthors();
-        boolean _notEquals = ObjectExtensions.operator_notEquals(_authors, null);
+        boolean _notEquals = (!Objects.equal(_authors, null));
         if (_notEquals) {
           _builder_1.append("$pageAuthor\t\t= \"");
           TextOrMarkup _authors_1 = doc.getAuthors();
@@ -162,7 +160,7 @@ public class PHPPhoenixGenerator {
       _builder_1.append("\t");
       {
         TextOrMarkup _title_1 = doc.getTitle();
-        boolean _notEquals_1 = ObjectExtensions.operator_notEquals(_title_1, null);
+        boolean _notEquals_1 = (!Objects.equal(_title_1, null));
         if (_notEquals_1) {
           _builder_1.append("$pageTitle \t\t= \"");
           TextOrMarkup _title_2 = doc.getTitle();

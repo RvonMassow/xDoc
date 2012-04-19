@@ -1,5 +1,7 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,11 +13,8 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
@@ -83,18 +82,18 @@ public class EclipseHelpUriUtil {
       final AbstractSection container = EcoreUtil2.<AbstractSection>getContainerOfType(_ref, AbstractSection.class);
       final AbstractSection fileSection = this.section2fileSection.get(container);
       URI _xifexpression = null;
-      boolean _equals = ObjectExtensions.operator_equals(fileSection, null);
+      boolean _equals = Objects.equal(fileSection, null);
       if (_equals) {
         URI _xblockexpression_1 = null;
         {
           Identifiable _ref_1 = it.getRef();
           String _name = _ref_1.getName();
-          String _plus = StringExtensions.operator_plus("error: Cannot resolve reference to ", _name);
-          String _plus_1 = StringExtensions.operator_plus(_plus, " from ");
+          String _plus = ("error: Cannot resolve reference to " + _name);
+          String _plus_1 = (_plus + " from ");
           Identifiable _ref_2 = it.getRef();
           Resource _eResource = _ref_2.eResource();
           URI _uRI = _eResource.getURI();
-          String _plus_2 = StringExtensions.operator_plus(_plus_1, _uRI);
+          String _plus_2 = (_plus_1 + _uRI);
           InputOutput.<String>println(_plus_2);
           _xblockexpression_1 = (((URI) null));
         }
@@ -222,7 +221,7 @@ public class EclipseHelpUriUtil {
   protected void _populateFileMap(final AbstractSection it, final AbstractSection fileSection) {
     this.section2fileSection.put(it, fileSection);
     EList<EObject> _eContents = it.eContents();
-    Iterable<AbstractSection> _filter = IterableExtensions.<AbstractSection>filter(_eContents, AbstractSection.class);
+    Iterable<AbstractSection> _filter = Iterables.<AbstractSection>filter(_eContents, AbstractSection.class);
     final Procedure1<AbstractSection> _function = new Procedure1<AbstractSection>() {
         public void apply(final AbstractSection section) {
           EclipseHelpUriUtil.this.populateFileMap(section, fileSection);
@@ -249,7 +248,7 @@ public class EclipseHelpUriUtil {
       String _fullURL = this.eclipseNamingExtensions.getFullURL(it);
       final URI fullURL = URI.createURI(_fullURL);
       int _segmentCount = resourceURI.segmentCount();
-      int _minus = IntegerExtensions.operator_minus(_segmentCount, 2);
+      int _minus = (_segmentCount - 2);
       URI _trimSegments = resourceURI.trimSegments(_minus);
       URI _appendSegment = _trimSegments.appendSegment("contents");
       String[] _segments = fullURL.segments();
