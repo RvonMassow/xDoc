@@ -1,6 +1,7 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -12,15 +13,12 @@ import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IntegerExtensions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Code;
@@ -53,7 +51,7 @@ public class Utils {
     boolean _and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();
-    boolean _equals = IntegerExtensions.operator_equals(_size, 1);
+    boolean _equals = (_size == 1);
     if (!_equals) {
       _and = false;
     } else {
@@ -61,15 +59,15 @@ public class Utils {
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
       String _string = _head.toString();
       boolean _contains = _string.contains("\n");
-      boolean _not = BooleanExtensions.operator_not(_contains);
-      _and = BooleanExtensions.operator_and(_equals, _not);
+      boolean _not = (!_contains);
+      _and = (_equals && _not);
     }
     return _and;
   }
   
   public String escapeLatexChars(final String s) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(s, null);
+    boolean _notEquals = (!Objects.equal(s, null));
     if (_notEquals) {
       String _replaceAll = s.replaceAll("\\$", "\\\\\\$");
       String _replaceAll_1 = _replaceAll.replaceAll("\\{", "\\\\{");
@@ -90,7 +88,7 @@ public class Utils {
   
   public String unescapeXdocChars(final String s) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(s, null);
+    boolean _notEquals = (!Objects.equal(s, null));
     if (_notEquals) {
       String _replaceAll = s.replaceAll("\\\\\\[", "[");
       String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
@@ -110,7 +108,7 @@ public class Utils {
   
   public String escapeHTMLChars(final String s) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(s, null);
+    boolean _notEquals = (!Objects.equal(s, null));
     if (_notEquals) {
       String _replace = s.replace("&", "&amp;");
       String _replace_1 = _replace.replace("\'", "&apos;");
@@ -127,7 +125,7 @@ public class Utils {
   
   public String formatCode(final CharSequence text, final LangDef language) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(text, null);
+    boolean _notEquals = (!Objects.equal(text, null));
     if (_notEquals) {
       String _string = text.toString();
       String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language);
@@ -141,19 +139,19 @@ public class Utils {
   public Collection<String> defaultLangKeywords(final Set<AbstractSection> sections) {
     Collection<String> _xblockexpression = null;
     {
-      Iterable<Document> _filter = IterableExtensions.<Document>filter(sections, Document.class);
+      Iterable<Document> _filter = Iterables.<Document>filter(sections, Document.class);
       final Document doc = IterableExtensions.<Document>head(_filter);
       EList<LangDef> _langDefs = doc.getLangDefs();
       final Function1<LangDef,Boolean> _function = new Function1<LangDef,Boolean>() {
           public Boolean apply(final LangDef e) {
             String _name = e.getName();
-            boolean _equals = ObjectExtensions.operator_equals(_name, "__XdocDefaultLanguage__");
+            boolean _equals = Objects.equal(_name, "__XdocDefaultLanguage__");
             return Boolean.valueOf(_equals);
           }
         };
       final LangDef lang = IterableExtensions.<LangDef>findFirst(_langDefs, _function);
       Collection<String> _xifexpression = null;
-      boolean _notEquals = ObjectExtensions.operator_notEquals(lang, null);
+      boolean _notEquals = (!Objects.equal(lang, null));
       if (_notEquals) {
         EList<String> _keywords = lang.getKeywords();
         _xifexpression = _keywords;
@@ -173,7 +171,7 @@ public class Utils {
     ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(_unescapeXdocChars);
     lexer.setCharStream(_aNTLRStringStream);
     Set<? extends Object> _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(language, null);
+    boolean _notEquals = (!Objects.equal(language, null));
     if (_notEquals) {
       EList<String> _keywords = language.getKeywords();
       final Function1<String,String> _function = new Function1<String,String>() {
@@ -194,7 +192,7 @@ public class Utils {
     StringBuilder _stringBuilder = new StringBuilder();
     final StringBuilder result = _stringBuilder;
     int _type = token.getType();
-    boolean _notEquals_1 = IntegerExtensions.operator_notEquals(_type, Token.EOF);
+    boolean _notEquals_1 = (_type != Token.EOF);
     boolean _while = _notEquals_1;
     while (_while) {
       {
@@ -257,7 +255,7 @@ public class Utils {
         token = _nextToken;
       }
       int _type_1 = token.getType();
-      boolean _notEquals_2 = IntegerExtensions.operator_notEquals(_type_1, Token.EOF);
+      boolean _notEquals_2 = (_type_1 != Token.EOF);
       _while = _notEquals_2;
     }
     return result.toString();
@@ -275,13 +273,13 @@ public class Utils {
     boolean _and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();
-    boolean _greaterThan = IntegerExtensions.operator_greaterThan(_size, 0);
+    boolean _greaterThan = (_size > 0);
     if (!_greaterThan) {
       _and = false;
     } else {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _get = _contents_1.get(0);
-      _and = BooleanExtensions.operator_and(_greaterThan, (_get instanceof Code));
+      _and = (_greaterThan && (_get instanceof Code));
     }
     if (_and) {
       int _xblockexpression = (int) 0;
@@ -292,7 +290,7 @@ public class Utils {
         int indent = code0.length();
         String _replaceAll = code0.replaceAll("^(\n*)\\s*", "$1");
         int _length = _replaceAll.length();
-        int _minus = IntegerExtensions.operator_minus(indent, _length);
+        int _minus = (indent - _length);
         int _indent = indent = _minus;
         _xblockexpression = (_indent);
       }
@@ -324,14 +322,14 @@ public class Utils {
   
   public boolean nullOrEmpty(final String s) {
     boolean _or = false;
-    boolean _equals = ObjectExtensions.operator_equals(s, null);
+    boolean _equals = Objects.equal(s, null);
     if (_equals) {
       _or = true;
     } else {
       String _trim = s.trim();
       int _length = _trim.length();
-      boolean _equals_1 = IntegerExtensions.operator_equals(_length, 0);
-      _or = BooleanExtensions.operator_or(_equals, _equals_1);
+      boolean _equals_1 = (_length == 0);
+      _or = (_equals || _equals_1);
     }
     return _or;
   }

@@ -1,14 +1,13 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
-import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
@@ -66,7 +65,7 @@ public class PlainText {
       final CharSequence text = _builder;
       CharSequence _xifexpression = null;
       String _string = text.toString();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_string, text);
+      boolean _notEquals = (!Objects.equal(_string, text));
       if (_notEquals) {
         _xifexpression = text;
       } else {
@@ -87,7 +86,7 @@ public class PlainText {
     {
       EList<TextOrMarkup> _contents = ref.getContents();
       boolean _isEmpty = _contents.isEmpty();
-      boolean _not = BooleanExtensions.operator_not(_isEmpty);
+      boolean _not = (!_isEmpty);
       if (_not) {
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();

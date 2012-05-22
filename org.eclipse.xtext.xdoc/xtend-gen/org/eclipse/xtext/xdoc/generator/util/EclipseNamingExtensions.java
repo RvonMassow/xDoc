@@ -1,12 +1,11 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
-import org.eclipse.xtext.xbase.lib.StringExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
@@ -55,22 +54,22 @@ public class EclipseNamingExtensions {
     if (!_matched) {
       {
         String _name = identifiable.getName();
-        boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        boolean _notEquals = (!Objects.equal(_name, null));
         if (_notEquals) {
           String _name_1 = identifiable.getName();
           return URI.encodeFragment(_name_1, false);
         }
         EObject _eContainer = identifiable.eContainer();
         final AbstractSection parent = ((AbstractSection) _eContainer);
-        boolean _equals = ObjectExtensions.operator_equals(parent, null);
+        boolean _equals = Objects.equal(parent, null);
         if (_equals) {
           return "0";
         } else {
           String _localId = this.getLocalId(parent);
-          String _plus = StringExtensions.operator_plus(_localId, "_");
+          String _plus = (_localId + "_");
           EList<EObject> _eContents = parent.eContents();
           int _indexOf = _eContents.indexOf(identifiable);
-          return StringExtensions.operator_plus(_plus, Integer.valueOf(_indexOf));
+          return (_plus + Integer.valueOf(_indexOf));
         }
       }
     }
@@ -136,37 +135,34 @@ public class EclipseNamingExtensions {
             EList<EObject> _eContents = _eContainer_4.eContents();
             EObject _eContainer_5 = _chapter.eContainer();
             int _indexOf = _eContents.indexOf(_eContainer_5);
-            String _plus = StringExtensions.operator_plus(
-              "_", Integer.valueOf(_indexOf));
+            String _plus = ("_" + Integer.valueOf(_indexOf));
             _xifexpression_1 = _plus;
           } else {
             _xifexpression_1 = "";
           }
-          String _plus_1 = StringExtensions.operator_plus(
-            new Function0<String>() {
-              public String apply() {
-                String _xifexpression = null;
-                EObject _eContainer = _chapter.eContainer();
-                EObject _eContainer_1 = _eContainer.eContainer();
-                if ((_eContainer_1 instanceof Document)) {
-                  EObject _eContainer_2 = _chapter.eContainer();
-                  EObject _eContainer_3 = _eContainer_2.eContainer();
-                  EList<EObject> _eContents = _eContainer_3.eContents();
-                  EObject _eContainer_4 = _chapter.eContainer();
-                  int _indexOf = _eContents.indexOf(_eContainer_4);
-                  String _plus = StringExtensions.operator_plus(
-                    "_", Integer.valueOf(_indexOf));
-                  _xifexpression = _plus;
-                } else {
-                  _xifexpression = "";
-                }
-                return _xifexpression;
+          String _plus_1 = (new Function0<String>() {
+            public String apply() {
+              String _xifexpression = null;
+              EObject _eContainer = _chapter.eContainer();
+              EObject _eContainer_1 = _eContainer.eContainer();
+              if ((_eContainer_1 instanceof Document)) {
+                EObject _eContainer_2 = _chapter.eContainer();
+                EObject _eContainer_3 = _eContainer_2.eContainer();
+                EList<EObject> _eContents = _eContainer_3.eContents();
+                EObject _eContainer_4 = _chapter.eContainer();
+                int _indexOf = _eContents.indexOf(_eContainer_4);
+                String _plus = ("_" + Integer.valueOf(_indexOf));
+                _xifexpression = _plus;
+              } else {
+                _xifexpression = "";
               }
-            }.apply(), "_");
+              return _xifexpression;
+            }
+          }.apply() + "_");
           EObject _eContainer_6 = _chapter.eContainer();
           EList<EObject> _eContents_1 = _eContainer_6.eContents();
           int _indexOf_1 = _eContents_1.indexOf(_chapter);
-          String _plus_2 = StringExtensions.operator_plus(_plus_1, Integer.valueOf(_indexOf_1));
+          String _plus_2 = (_plus_1 + Integer.valueOf(_indexOf_1));
           _xifexpression = _plus_2;
         } else {
           String _xifexpression_2 = null;
@@ -175,15 +171,14 @@ public class EclipseNamingExtensions {
             EObject _eContainer_8 = _chapter.eContainer();
             EList<EObject> _eContents_2 = _eContainer_8.eContents();
             int _indexOf_2 = _eContents_2.indexOf(_chapter);
-            String _plus_3 = StringExtensions.operator_plus(
-              "_", Integer.valueOf(_indexOf_2));
+            String _plus_3 = ("_" + Integer.valueOf(_indexOf_2));
             _xifexpression_2 = _plus_3;
           } else {
             _xifexpression_2 = "";
           }
           _xifexpression = _xifexpression_2;
         }
-        String _plus_4 = StringExtensions.operator_plus(_lastSegment, 
+        String _plus_4 = (_lastSegment + 
           new Function0<Object>() {
             public Object apply() {
               String _xifexpression = null;
@@ -198,37 +193,34 @@ public class EclipseNamingExtensions {
                   EList<EObject> _eContents = _eContainer_4.eContents();
                   EObject _eContainer_5 = _chapter.eContainer();
                   int _indexOf = _eContents.indexOf(_eContainer_5);
-                  String _plus = StringExtensions.operator_plus(
-                    "_", Integer.valueOf(_indexOf));
+                  String _plus = ("_" + Integer.valueOf(_indexOf));
                   _xifexpression_1 = _plus;
                 } else {
                   _xifexpression_1 = "";
                 }
-                String _plus_1 = StringExtensions.operator_plus(
-                  new Function0<String>() {
-                    public String apply() {
-                      String _xifexpression = null;
-                      EObject _eContainer = _chapter.eContainer();
-                      EObject _eContainer_1 = _eContainer.eContainer();
-                      if ((_eContainer_1 instanceof Document)) {
-                        EObject _eContainer_2 = _chapter.eContainer();
-                        EObject _eContainer_3 = _eContainer_2.eContainer();
-                        EList<EObject> _eContents = _eContainer_3.eContents();
-                        EObject _eContainer_4 = _chapter.eContainer();
-                        int _indexOf = _eContents.indexOf(_eContainer_4);
-                        String _plus = StringExtensions.operator_plus(
-                          "_", Integer.valueOf(_indexOf));
-                        _xifexpression = _plus;
-                      } else {
-                        _xifexpression = "";
-                      }
-                      return _xifexpression;
+                String _plus_1 = (new Function0<String>() {
+                  public String apply() {
+                    String _xifexpression = null;
+                    EObject _eContainer = _chapter.eContainer();
+                    EObject _eContainer_1 = _eContainer.eContainer();
+                    if ((_eContainer_1 instanceof Document)) {
+                      EObject _eContainer_2 = _chapter.eContainer();
+                      EObject _eContainer_3 = _eContainer_2.eContainer();
+                      EList<EObject> _eContents = _eContainer_3.eContents();
+                      EObject _eContainer_4 = _chapter.eContainer();
+                      int _indexOf = _eContents.indexOf(_eContainer_4);
+                      String _plus = ("_" + Integer.valueOf(_indexOf));
+                      _xifexpression = _plus;
+                    } else {
+                      _xifexpression = "";
                     }
-                  }.apply(), "_");
+                    return _xifexpression;
+                  }
+                }.apply() + "_");
                 EObject _eContainer_6 = _chapter.eContainer();
                 EList<EObject> _eContents_1 = _eContainer_6.eContents();
                 int _indexOf_1 = _eContents_1.indexOf(_chapter);
-                String _plus_2 = StringExtensions.operator_plus(_plus_1, Integer.valueOf(_indexOf_1));
+                String _plus_2 = (_plus_1 + Integer.valueOf(_indexOf_1));
                 _xifexpression = _plus_2;
               } else {
                 String _xifexpression_2 = null;
@@ -237,8 +229,7 @@ public class EclipseNamingExtensions {
                   EObject _eContainer_8 = _chapter.eContainer();
                   EList<EObject> _eContents_2 = _eContainer_8.eContents();
                   int _indexOf_2 = _eContents_2.indexOf(_chapter);
-                  String _plus_3 = StringExtensions.operator_plus(
-                    "_", Integer.valueOf(_indexOf_2));
+                  String _plus_3 = ("_" + Integer.valueOf(_indexOf_2));
                   _xifexpression_2 = _plus_3;
                 } else {
                   _xifexpression_2 = "";
@@ -248,7 +239,7 @@ public class EclipseNamingExtensions {
               return _xifexpression;
             }
           }.apply());
-        String _plus_5 = StringExtensions.operator_plus(_plus_4, ".html");
+        String _plus_5 = (_plus_4 + ".html");
         _switchResult = _plus_5;
       }
     }
@@ -268,21 +259,21 @@ public class EclipseNamingExtensions {
         URI _uRI = _eResource.getURI();
         URI _trimFileExtension = _uRI.trimFileExtension();
         String _lastSegment = _trimFileExtension.lastSegment();
-        String _plus = StringExtensions.operator_plus(_lastSegment, "_");
+        String _plus = (_lastSegment + "_");
         EObject _eContainer_1 = _part.eContainer();
         EList<EObject> _eContents = _eContainer_1.eContents();
         int _indexOf = _eContents.indexOf(_part);
-        String _plus_1 = StringExtensions.operator_plus(_plus, Integer.valueOf(_indexOf));
-        String _plus_2 = StringExtensions.operator_plus(_plus_1, ".html");
+        String _plus_1 = (_plus + Integer.valueOf(_indexOf));
+        String _plus_2 = (_plus_1 + ".html");
         _switchResult = _plus_2;
       }
     }
     if (!_matched) {
       String _resourceURL_1 = this.getResourceURL(identifiable);
-      String _plus = StringExtensions.operator_plus(_resourceURL_1, "#");
+      String _plus = (_resourceURL_1 + "#");
       String _localId = this.getLocalId(identifiable);
-      String _plus_1 = StringExtensions.operator_plus(_plus, _localId);
-      String _plus_2 = StringExtensions.operator_plus(_plus_1, ".html");
+      String _plus_1 = (_plus + _localId);
+      String _plus_2 = (_plus_1 + ".html");
       _switchResult = _plus_2;
     }
     return _switchResult;
@@ -332,7 +323,7 @@ public class EclipseNamingExtensions {
       URI _uRI = _eResource.getURI();
       URI _trimFileExtension = _uRI.trimFileExtension();
       String _lastSegment = _trimFileExtension.lastSegment();
-      return StringExtensions.operator_plus(_lastSegment, ".html");
+      return (_lastSegment + ".html");
     }
     return _switchResult;
   }

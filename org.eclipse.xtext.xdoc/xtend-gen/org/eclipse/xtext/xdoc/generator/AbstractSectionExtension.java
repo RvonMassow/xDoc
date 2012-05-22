@@ -3,7 +3,6 @@ package org.eclipse.xtext.xdoc.generator;
 import java.util.Arrays;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.xtext.xbase.lib.BooleanExtensions;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
@@ -29,7 +28,7 @@ public class AbstractSectionExtension {
     EList<? extends AbstractSection> _xifexpression = null;
     EList<Chapter> _chapters = doc.getChapters();
     boolean _isEmpty = _chapters.isEmpty();
-    boolean _not = BooleanExtensions.operator_not(_isEmpty);
+    boolean _not = (!_isEmpty);
     if (_not) {
       EList<Chapter> _chapters_1 = doc.getChapters();
       _xifexpression = _chapters_1;
