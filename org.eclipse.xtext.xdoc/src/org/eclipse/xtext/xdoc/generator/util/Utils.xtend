@@ -87,7 +87,7 @@ class Utils {
 		var token = lexer.nextToken
 		val result = new StringBuilder()
 		while (token.type != Token::EOF) {
-			println(token.text)
+			//println(token.text)
 			switch (token.type) {
 				case Common::ID : {
 					if (keywords.contains(token.text)) {

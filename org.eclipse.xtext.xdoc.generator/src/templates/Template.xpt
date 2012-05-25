@@ -105,21 +105,21 @@ ENDIF»
 
 «DEFINE genContent FOR Section2»
 \subsection{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»
+«EXPAND genLabel FOR this»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"-»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section3»
 \subsubsection{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»
+«EXPAND genLabel FOR this»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «EXPAND genContent FOREACH subSections SEPARATOR "\n"-»
 «ENDDEFINE»
 
 «DEFINE genContent FOR Section4»
 \paragraph{«EXPAND genContent FOR this.title»}
-«EXPAND genLabel FOR this.name»
+«EXPAND genLabel FOR this»
 «EXPAND genContent FOREACH contents SEPARATOR "\n\n"»
 «ENDDEFINE»
 
@@ -192,7 +192,7 @@ ENDDEFINE»
 \end{lstlisting}
 \noindent«ENDIF»«ENDDEFINE»
 
-«DEFINE genText FOR CodeRef»\lstinline[breakatwhitespace=false,breaklines=true]°«escapeLatexChars(unescapeXdocChars(this.element.dottedSimpleName()))»°«ENDDEFINE»
+«DEFINE genText FOR CodeRef»«IF this.altText != null»«EXPAND genContent FOR altText»«ELSE»\lstinline[breakatwhitespace=false,breaklines=true]°«escapeLatexChars(unescapeXdocChars(this.element.dottedSimpleName()))»°«ENDIF»«ENDDEFINE»
 
 «DEFINE genText FOR ImageRef»
 \begin{figure}[!ht]
@@ -216,23 +216,13 @@ ENDDEFINE»
 \todo[inline]{«escapeLatexChars(unescapeXdocChars(this.text))»}«
 ENDDEFINE»
 
+«DEFINE genLabel FOR AbstractSection-»
+«IF this.name != null»\label{«this.name»}«ENDIF»
+«ENDDEFINE»
+
 «DEFINE genLabel FOR ChapterRef-»
 «IF this.chapter.name != null-»
 \label{«this.chapter.name»}«
-ENDIF-»
-«ENDDEFINE»
-
-«DEFINE genLabel FOR Part-»
-«IF this.name != null»\label{«this.name»}«ENDIF»
-«ENDDEFINE»
-
-«DEFINE genLabel FOR Chapter-»
-«IF this.name != null»\label{«this.name»}«ENDIF»
-«ENDDEFINE»
-
-«DEFINE genLabel FOR Section-»
-«IF this.name != null-»
-\label{«this.name»}«
 ENDIF-»
 «ENDDEFINE»
 

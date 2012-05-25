@@ -140,8 +140,8 @@ public class EclipseNamingExtensions {
           } else {
             _xifexpression_1 = "";
           }
-          String _plus_1 = (new Function0<String>() {
-            public String apply() {
+          String _plus_1 = (new Function0<Object>() {
+            public Object apply() {
               String _xifexpression = null;
               EObject _eContainer = _chapter.eContainer();
               EObject _eContainer_1 = _eContainer.eContainer();
@@ -179,8 +179,8 @@ public class EclipseNamingExtensions {
           _xifexpression = _xifexpression_2;
         }
         String _plus_4 = (_lastSegment + 
-          new Function0<Object>() {
-            public Object apply() {
+          new Function0<String>() {
+            public String apply() {
               String _xifexpression = null;
               EObject _eContainer = _chapter.eContainer();
               if ((_eContainer instanceof Part)) {
@@ -198,8 +198,8 @@ public class EclipseNamingExtensions {
                 } else {
                   _xifexpression_1 = "";
                 }
-                String _plus_1 = (new Function0<String>() {
-                  public String apply() {
+                String _plus_1 = (new Function0<Object>() {
+                  public Object apply() {
                     String _xifexpression = null;
                     EObject _eContainer = _chapter.eContainer();
                     EObject _eContainer_1 = _eContainer.eContainer();

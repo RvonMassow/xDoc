@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
@@ -196,33 +195,31 @@ public class Utils {
     boolean _while = _notEquals_1;
     while (_while) {
       {
-        String _text = token.getText();
-        InputOutput.<String>println(_text);
         int _type_1 = token.getType();
         final int _switchValue = _type_1;
         boolean _matched = false;
         if (!_matched) {
           if (Objects.equal(_switchValue,Common.ID)) {
             _matched=true;
-            String _text_1 = token.getText();
-            boolean _contains = keywords.contains(_text_1);
+            String _text = token.getText();
+            boolean _contains = keywords.contains(_text);
             if (_contains) {
               StringBuilder _append = result.append("<span class=\"keyword\">");
-              String _text_2 = token.getText();
-              String _whitespace2Entities = this.whitespace2Entities(_text_2);
+              String _text_1 = token.getText();
+              String _whitespace2Entities = this.whitespace2Entities(_text_1);
               StringBuilder _append_1 = _append.append(_whitespace2Entities);
               _append_1.append("</span>");
             } else {
-              String _text_3 = token.getText();
-              result.append(_text_3);
+              String _text_2 = token.getText();
+              result.append(_text_2);
             }
           }
         }
         if (!_matched) {
           if (Objects.equal(_switchValue,Common.WS)) {
             _matched=true;
-            String _text_4 = token.getText();
-            String _whitespace2Entities_1 = this.whitespace2Entities(_text_4);
+            String _text_3 = token.getText();
+            String _whitespace2Entities_1 = this.whitespace2Entities(_text_3);
             result.append(_whitespace2Entities_1);
           }
         }
@@ -230,8 +227,8 @@ public class Utils {
           if (Objects.equal(_switchValue,Common.STRING)) {
             _matched=true;
             StringBuilder _append_2 = result.append("<span class=\"string\">");
-            String _text_5 = token.getText();
-            String _whitespace2Entities_2 = this.whitespace2Entities(_text_5);
+            String _text_4 = token.getText();
+            String _whitespace2Entities_2 = this.whitespace2Entities(_text_4);
             StringBuilder _append_3 = _append_2.append(_whitespace2Entities_2);
             _append_3.append("</span>");
           }
@@ -240,15 +237,15 @@ public class Utils {
           if (Objects.equal(_switchValue,Common.COMMENT)) {
             _matched=true;
             StringBuilder _append_4 = result.append("<span class=\"comment\">");
-            String _text_6 = token.getText();
-            String _whitespace2Entities_3 = this.whitespace2Entities(_text_6);
+            String _text_5 = token.getText();
+            String _whitespace2Entities_3 = this.whitespace2Entities(_text_5);
             StringBuilder _append_5 = _append_4.append(_whitespace2Entities_3);
             _append_5.append("</span>");
           }
         }
         if (!_matched) {
-          String _text_7 = token.getText();
-          String _whitespace2Entities_4 = this.whitespace2Entities(_text_7);
+          String _text_6 = token.getText();
+          String _whitespace2Entities_4 = this.whitespace2Entities(_text_6);
           result.append(_whitespace2Entities_4);
         }
         Token _nextToken = lexer.nextToken();
@@ -314,7 +311,7 @@ public class Utils {
     return _result;
   }
   
-  private final HashMap<ArrayList<?>,Code> _createCache_correctedCode = CollectionLiterals.newHashMap();
+  private final HashMap<ArrayList<? extends Object>,Code> _createCache_correctedCode = CollectionLiterals.newHashMap();
   
   private void _init_correctedCode(final Code code, final String s) {
     code.setContents(s);
