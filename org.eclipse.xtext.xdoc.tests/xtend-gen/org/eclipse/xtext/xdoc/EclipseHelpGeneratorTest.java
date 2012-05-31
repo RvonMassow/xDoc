@@ -21,9 +21,9 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+@RunWith(value = XtextRunner.class)
+@InjectWith(value = XdocInjectorProvider.class)
 @SuppressWarnings("all")
-@RunWith(XtextRunner.class)
-@InjectWith(XdocInjectorProvider.class)
 public class EclipseHelpGeneratorTest {
   @Inject
   private ParseHelperExtensions<XdocFile> _parseHelperExtensions;

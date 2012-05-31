@@ -12,7 +12,7 @@ import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.IntegerExtensions;
+import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xdoc.XdocInjectorProvider;
 import org.eclipse.xtext.xdoc.util.ParseHelperExtensions;
@@ -44,9 +44,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+@RunWith(value = XtextRunner.class)
+@InjectWith(value = XdocInjectorProvider.class)
 @SuppressWarnings("all")
-@RunWith(XtextRunner.class)
-@InjectWith(XdocInjectorProvider.class)
 public class ParserTest {
   @Inject
   private ParseHelperExtensions<XdocFile> _parseHelperExtensions;
@@ -62,11 +62,17 @@ public class ParserTest {
       final String emphasized = "manchmal fett";
       final String secondPart = " und manchmal nicht.\nNewlines und so gibt es auch.";
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("chapter[\uFFFD title \uFFFD]");
+      _builder.append("chapter[");
+      _builder.append(title, "");
+      _builder.append("]");
+      _builder.newLineIfNotEmpty();
       _builder.newLine();
-      _builder.newLine();
-      _builder.append("\uFFFDfirstPart \uFFFDe[\uFFFDemphasized\uFFFD]\uFFFDsecondPart\uFFFD");
-      _builder.newLine();
+      _builder.append(firstPart, "");
+      _builder.append("e[");
+      _builder.append(emphasized, "");
+      _builder.append("]");
+      _builder.append(secondPart, "");
+      _builder.newLineIfNotEmpty();
       _builder.newLine();
       final CharSequence text = _builder;
       String _string = text.toString();
@@ -144,10 +150,15 @@ public class ParserTest {
       final String refText = " to ";
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(" ");
-      _builder.append("ref:refName[\uFFFD refText \uFFFD]");
+      _builder.append("ref:refName[");
+      _builder.append(refText, " ");
+      _builder.append("]");
       final CharSequence ref = _builder;
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("\uFFFDCHAPTER_HEAD\uFFFD\uFFFDanchor\uFFFD\uFFFDfill\uFFFD\uFFFDref\uFFFD");
+      _builder_1.append(ParserTestConstants.CHAPTER_HEAD, "");
+      _builder_1.append(anchor, "");
+      _builder_1.append(fill, "");
+      _builder_1.append(ref, "");
       final XdocFile file = this._parseHelperExtensions.parse(_builder_1);
       AbstractSection _mainSection = file.getMainSection();
       EList<TextOrMarkup> _contents = _mainSection.getContents();
@@ -242,8 +253,9 @@ public class ParserTest {
       final CodeBlock cb = ((CodeBlock) _get_1);
       StringConcatenation _builder = new StringConcatenation();
       _builder.newLine();
-      _builder.append("\uFFFD\"\\t\"\uFFFD/* a testclass */");
-      _builder.newLine();
+      _builder.append("\t", "");
+      _builder.append("/* a testclass */");
+      _builder.newLineIfNotEmpty();
       _builder.append("\t");
       _builder.append("class Foo {");
       _builder.newLine();
@@ -583,14 +595,21 @@ public class ParserTest {
       final String dataString = "this is";
       final String dataString2 = "a two paragraph table entry";
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\uFFFDCHAPTER_HEAD\uFFFD");
+      _builder.append(ParserTestConstants.CHAPTER_HEAD, "");
+      _builder.newLineIfNotEmpty();
       _builder.newLine();
+      _builder.append(tableStart, "");
+      _builder.append(row, "");
+      _builder.append("td[");
+      _builder.append(dataString, "");
+      _builder.newLineIfNotEmpty();
       _builder.newLine();
-      _builder.append("\uFFFDtableStart\uFFFD\uFFFDrow\uFFFDtd[\uFFFDdataString\uFFFD");
-      _builder.newLine();
-      _builder.newLine();
-      _builder.append("\uFFFDdataString2\uFFFD\uFFFDCLOSE_BRACKET\uFFFDtd[]\uFFFDCLOSE_BRACKET\uFFFD\uFFFDCLOSE_BRACKET\uFFFD");
-      _builder.newLine();
+      _builder.append(dataString2, "");
+      _builder.append(ParserTestConstants.CLOSE_BRACKET, "");
+      _builder.append("td[]");
+      _builder.append(ParserTestConstants.CLOSE_BRACKET, "");
+      _builder.append(ParserTestConstants.CLOSE_BRACKET, "");
+      _builder.newLineIfNotEmpty();
       final XdocFile file = this._parseHelperExtensions.parse(_builder);
       AbstractSection _mainSection = file.getMainSection();
       final EList<TextOrMarkup> textOrMarkup = _mainSection.getContents();
@@ -642,8 +661,14 @@ public class ParserTest {
       final String name = "Java";
       final ArrayList<String> expectedKeywords = CollectionLiterals.<String>newArrayList("final", "const", "goto", "strictfp");
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\uFFFDDOC_HEAD\uFFFDcodelanguage-def[\uFFFDname\uFFFD][\uFFFDexpectedKeywords.join(\",\")\uFFFD]");
-      _builder.newLine();
+      _builder.append(ParserTestConstants.DOC_HEAD, "");
+      _builder.append("codelanguage-def[");
+      _builder.append(name, "");
+      _builder.append("][");
+      String _join = IterableExtensions.join(expectedKeywords, ",");
+      _builder.append(_join, "");
+      _builder.append("]");
+      _builder.newLineIfNotEmpty();
       _builder.append("chapter[foo]");
       _builder.newLine();
       _builder.newLine();
@@ -663,7 +688,7 @@ public class ParserTest {
       Assert.assertEquals(Integer.valueOf(_size_1), Integer.valueOf(_size_2));
       int _size_3 = keywords.size();
       int _minus = (_size_3 - 1);
-      Iterable<Integer> _upTo = IntegerExtensions.upTo(0, _minus);
+      IntegerRange _upTo = new IntegerRange(0, _minus);
       for (final Integer i : _upTo) {
         String _get = expectedKeywords.get((i).intValue());
         String _get_1 = keywords.get((i).intValue());
@@ -720,7 +745,7 @@ public class ParserTest {
       EObject _head_2 = IterableExtensions.<EObject>head(_contents_5);
       textPart = ((TextPart) _head_2);
       String _text_2 = textPart.getText();
-      Assert.assertEquals("foo\uFFFD", _text_2);
+      Assert.assertEquals("foo\u00DF", _text_2);
       EList<Section2> _subSections_2 = section.getSubSections();
       int _size_5 = _subSections_2.size();
       Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_5));

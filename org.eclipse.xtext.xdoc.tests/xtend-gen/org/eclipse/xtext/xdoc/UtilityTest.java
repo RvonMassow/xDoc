@@ -12,7 +12,7 @@ import org.eclipse.xtext.util.StopWatch;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
-import org.eclipse.xtext.xbase.lib.IntegerExtensions;
+import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xdoc.XdocInjectorProvider;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.Code;
@@ -24,9 +24,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+@RunWith(value = XtextRunner.class)
+@InjectWith(value = XdocInjectorProvider.class)
 @SuppressWarnings("all")
-@RunWith(XtextRunner.class)
-@InjectWith(XdocInjectorProvider.class)
 public class UtilityTest {
   private String testStringSplitting = new Function0<String>() {
     public String apply() {
@@ -131,7 +131,7 @@ public class UtilityTest {
     String code = "";
     StopWatch _stopWatch = new StopWatch();
     final StopWatch watch = _stopWatch;
-    Iterable<Integer> _upTo = IntegerExtensions.upTo(0, 1);
+    IntegerRange _upTo = new IntegerRange(0, 1);
     for (final Integer i : _upTo) {
       LangDef _langDef = this.langDef();
       String _formatCode = utils.formatCode("mein foo ist bar nicht baz.", _langDef);
@@ -198,13 +198,12 @@ public class UtilityTest {
     return _result;
   }
   
-  private final HashMap<ArrayList<?>,LangDef> _createCache_langDef = CollectionLiterals.newHashMap();
+  private final HashMap<ArrayList<? extends Object>,LangDef> _createCache_langDef = CollectionLiterals.newHashMap();
   
   private void _init_langDef(final LangDef it) {
     LangDef _langDef = this.langDef();
     EList<String> _keywords = _langDef.getKeywords();
     ArrayList<String> _newArrayList = CollectionLiterals.<String>newArrayList("foo", "bar", "baz", "dfsdf", "wweee", "dsfsd");
     Iterables.<String>addAll(_keywords, _newArrayList);
-    /*it;*/
   }
 }

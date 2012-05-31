@@ -4,7 +4,6 @@ import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.util.StopWatch
 import org.eclipse.xtext.xdoc.generator.util.Utils
-import org.eclipse.xtext.xdoc.xdoc.Code
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock
 import org.eclipse.xtext.xdoc.xdoc.LangDef
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory
@@ -129,6 +128,5 @@ public class UtilityTest {
 
 	def create XdocFactory::eINSTANCE.createLangDef langDef() {
 		langDef.keywords += newArrayList("foo", "bar", "baz", "dfsdf", "wweee", "dsfsd")
-		it
 	}
 }

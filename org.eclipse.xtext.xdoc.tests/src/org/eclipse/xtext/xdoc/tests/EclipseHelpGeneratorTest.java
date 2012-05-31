@@ -156,6 +156,6 @@ public class EclipseHelpGeneratorTest extends AbstractXdocGeneratorTest {
 	protected void generate(Document obj) throws Exception {
 		AbstractFileSystemAccess fsa = new JavaIoFileSystemAccess();
 		fsa.setOutputPath(System.getProperty("user.dir") + File.separatorChar+"test-gen"+ File.separatorChar);
-		generator.generate(obj, fsa);
+		generator.doGenerate(obj.eResource(), fsa);
 	}
 }
