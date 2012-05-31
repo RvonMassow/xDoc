@@ -2,7 +2,6 @@ package org.eclipse.xtext.xdoc.generator;
 
 import java.util.Set;
 
-import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.OutputConfiguration;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
 

@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.generator.IFileSystemAccessExtension2
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension
@@ -43,7 +43,6 @@ import org.eclipse.xtext.xdoc.xdoc.UnorderedList
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
 
 import static extension java.net.URLDecoder.*
-import org.eclipse.xtext.generator.IFileSystemAccessExtension2
 
 class StatefulEclipseHelpGenerator {
 	
@@ -76,11 +75,11 @@ class StatefulEclipseHelpGenerator {
 		val doc = (res.contents.head as XdocFile)?.mainSection
 		if(doc instanceof Document) {
 			uriUtil.initialize(doc as Document)
-			(doc as Document).generate(this.access)
+			(doc as Document).generateDoc(this.access)
 		}
 	}
 
-	def generate(Document document, IFileSystemAccess access) {
+	def generateDoc(Document document, IFileSystemAccess access) {
 		
 		access.generateFile("toc.xml", document.generateToc(uriUtil))
 		access.generateFile(document.fullURL.decode, document.generateRootDocument)

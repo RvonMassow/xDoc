@@ -105,11 +105,11 @@ public class StatefulEclipseHelpGenerator {
     final AbstractSection doc = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
     if ((doc instanceof Document)) {
       this.uriUtil.initialize(((Document) doc));
-      this.generate(((Document) doc), this.access);
+      this.generateDoc(((Document) doc), this.access);
     }
   }
   
-  public void generate(final Document document, final IFileSystemAccess access) {
+  public void generateDoc(final Document document, final IFileSystemAccess access) {
     CharSequence _generateToc = this.tocGenerator.generateToc(document, this.uriUtil);
     access.generateFile("toc.xml", _generateToc);
     String _fullURL = this.eclipseNamingExtensions.getFullURL(document);
