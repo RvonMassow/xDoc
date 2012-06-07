@@ -20,8 +20,6 @@ public class XdocResourceDescriptionStrategy extends
 	@Override
 	public boolean createEObjectDescriptions(EObject eObject,
 			IAcceptor<IEObjectDescription> acceptor) {
-		if (getQualifiedNameProvider() == null)
-			return false;
 		try {
 			QualifiedName qualifiedName = getQualifiedNameProvider().getFullyQualifiedName(eObject);
 			if (qualifiedName != null) {

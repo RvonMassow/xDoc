@@ -17,7 +17,7 @@ public class PDFImageUtil {
 
 	public static String calcStyle(ImageRef ref) throws IOException {
 		URI uri = ref.eResource().getURI();
-		URI inPath = URI.createURI(uri.trimSegments(1).toString() + "/" + ref.getPath());
+		URI inPath = URI.createURI(ref.getPath()).resolve(uri);
 		ImageInputStream img = ImageIO.createImageInputStream(new File(inPath.toFileString()));
 		Iterator<ImageReader> imageReaders = ImageIO.getImageReaders(img);
 		ImageReader ir = imageReaders.next();

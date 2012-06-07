@@ -1,5 +1,6 @@
 package templates.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
@@ -20,8 +21,8 @@ public class CopyUtil {
 			ByteBuffer buffer = ByteBuffer.allocate(16*1024);
 			Resource res = source.eResource();
 			URI uri = source.eResource().getURI();
-			URI inPath = URI.createURI(uri.trimSegments(1).toString() + "/" + source.getPath());
-			URI outPath = URI.createURI(uri.toString().replaceFirst(basePath, targetDirName)+ "/" + source.getPath().replaceAll("\\.\\.",""));
+			URI inPath = URI.createURI(source.getPath()).resolve(uri);
+			URI outPath = URI.createURI(source.getPath()).resolve(URI.createFileURI(new File(targetDirName).getAbsolutePath()));
 			ReadableByteChannel inChannel = Channels.newChannel(res.getResourceSet().getURIConverter().createInputStream(inPath));
 			WritableByteChannel outChannel = Channels.newChannel(res.getResourceSet().getURIConverter().createOutputStream(outPath));
 			while (inChannel.read(buffer) != -1) {
