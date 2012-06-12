@@ -12,9 +12,9 @@ class JavaDocExtension {
 		val file = ie.qualifiedName.replaceAll("\\.", "/").replaceAll("\\$", ".")
 		val prefix = switch name:ie.qualifiedName {
 			case name.startsWith("org.eclipse.emf.mwe"):
-				""
-			case name.startsWith("org.eclipse.xtext.xbase.lib")
-			   || name.startsWith("org.eclipse.xtend"):
+				"http://download.eclipse.org/modeling/emft/mwe/javadoc/2.3/"
+			case name.startsWith("org.eclipse.xtext.xbase.lib.")
+			   || name.startsWith("org.eclipse.xtend.lib."):
 				"http://xtend-lang.org/api/2.3.0/"
 			case name.startsWith("org.eclipse.xtext."):
 				"http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/"
@@ -24,6 +24,8 @@ class JavaDocExtension {
 				"http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/"
 			case name.startsWith("com.google.inject."):
 				"http://google-guice.googlecode.com/svn/trunk/javadoc/"
+			case name.startsWith("com.google.common."):
+				"http://guava-libraries.googlecode.com/svn/tags/release09/javadoc/"
 			case name.startsWith("org.eclipse.jdt."):
 				"http://help.eclipse.org/helios/topic/org.eclipse.jdt.doc.isv/reference/api/"
 			case name.startsWith("java."):
