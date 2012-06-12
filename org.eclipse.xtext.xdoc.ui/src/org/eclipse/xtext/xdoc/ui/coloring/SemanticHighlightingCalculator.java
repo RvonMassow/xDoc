@@ -101,7 +101,10 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		CommonToken t = (CommonToken) lexer.nextToken();
 		while (t.getType() != Token.EOF) {
 			switch (t.getType()) {
-			case Common.COMMENT:
+			case Common.SL_COMMENT:
+			case Common.ML_COMMENT:
+			case Common.COMMENT_RICH_TEXT_INBETWEEN:
+			case Common.COMMENT_RICH_TEXT_END:
 				acceptor.addPosition(offset+t.getStartIndex(), t.getText().length(), SemanticHighlightingConfiguration.CODE_COMMENT);
 				break;
 			case Common.ID:
@@ -109,6 +112,10 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 					acceptor.addPosition(offset+t.getStartIndex(), t.getText().length(), SemanticHighlightingConfiguration.CODE_KEYWORD);
 				break;
 			case Common.STRING:
+			case Common.RICH_TEXT:
+			case Common.RICH_TEXT_END:
+			case Common.RICH_TEXT_START:
+			case Common.RICH_TEXT_INBETWEEN:
 				acceptor.addPosition(offset+t.getStartIndex(), t.getText().length(), SemanticHighlightingConfiguration.STRING_ID);
 				break;
 			}

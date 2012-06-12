@@ -6,16 +6,217 @@ package org.eclipse.xtext.xdoc.generator.util.lexer;
 import org.eclipse.xtext.parser.antlr.Lexer;
 }
 
-ID : '^'? ('a'..'z'|'A'..'Z'|'_'|'-'|'\\['|'\\]'|'\\:'|'\\%') ('a'..'z'|'A'..'Z'|'_'|'0'..'9' |'-'|'\\['|'\\]'|'\\:'|'\\%')*;
 
-STRING : ('"' ('\\' ('b'|'t'|'n'|'f'|'r'|']'|'['|'"'|'\''|'\\')|~(('\\'|'"')))* '"'|'\'' ('\\' ('b'|'t'|'n'|'f'|'r'|']'|'['|'"'|'\''|'\\')|~(('\\'|'\'')))* ('\'' | EOF));
+RICH_TEXT :
+	'\'\'\'' IN_RICH_STRING* (
+		'\'\'\'' |
+		(
+			'\'' '\''?
+		)? EOF
+	)
+;
 
-COMMENT : ML_COMMENT | SL_COMMENT;
+RICH_TEXT_START :
+	'\'\'\'' IN_RICH_STRING* (
+		'\'' '\''?
+	)? '\u00AB'
+;
 
-fragment ML_COMMENT : '/*' ( options {greedy=false;} : . )* '*/';
+RICH_TEXT_END :
+	'\u00BB' IN_RICH_STRING* (
+		'\'\'\'' |
+		(
+			'\'' '\''?
+		)? EOF
+	)
+;
 
-fragment SL_COMMENT : '//' ~('\n'|'\r')* ('\r'? '\n')?;
+RICH_TEXT_INBETWEEN :
+	'\u00BB' IN_RICH_STRING* (
+		'\'' '\''?
+	)? '\u00AB'
+;
 
-WS : (' '|'\t'|'\r'|'\n')+;
+COMMENT_RICH_TEXT_INBETWEEN :
+	'\u00AB\u00AB' ~ (
+		'\n' |
+		'\r'
+	)* (
+		'\r'? '\n' IN_RICH_STRING* (
+			'\'' '\''?
+		)? '\u00AB'
+	)?
+;
 
-ANY_OTHER : .;
+COMMENT_RICH_TEXT_END :
+	'\u00AB\u00AB' ~ (
+		'\n' |
+		'\r'
+	)* (
+		'\r'? '\n' IN_RICH_STRING* (
+			'\'\'\'' |
+			(
+				'\'' '\''?
+			)? EOF
+		) |
+		EOF
+	)
+;
+
+fragment IN_RICH_STRING :
+	'\'\'' ~ (
+		'\u00AB' |
+		'\''
+	) |
+	'\'' ~ (
+		'\u00AB' |
+		'\''
+	) |
+	~ (
+		'\u00AB' |
+		'\''
+	)
+;
+
+HEX :
+	(
+		'0x' |
+		'0X'
+	) (
+		'0' .. '9' |
+		'a' .. 'f' |
+		'A' .. 'F' |
+		'_'
+	)+ (
+		'#' (
+			(
+				'b' |
+				'B'
+			) (
+				'i' |
+				'I'
+			) |
+			(
+				'l' |
+				'L'
+			)
+		)
+	)?
+;
+
+INT :
+	'0' .. '9' (
+		'0' .. '9' |
+		'_'
+	)*
+;
+
+DECIMAL :
+	INT (
+		(
+			'e' |
+			'E'
+		) (
+			'+' |
+			'-'
+		)? INT
+	)? (
+		(
+			'b' |
+			'B'
+		) (
+			'i' |
+			'I' |
+			'd' |
+			'D'
+		) |
+		(
+			'l' |
+			'L' |
+			'd' |
+			'D' |
+			'f' |
+			'F'
+		)
+	)?
+;
+
+ID :
+	'^'? (
+		'a' .. 'z' |
+		'A' .. 'Z' |
+		'$' |
+		'_'
+	) (
+		'a' .. 'z' |
+		'A' .. 'Z' |
+		'$' |
+		'_' |
+		'0' .. '9'
+	)*
+;
+
+STRING :
+	'"' (
+		'\\' (
+			'b' |
+			't' |
+			'n' |
+			'f' |
+			'r' |
+			'u' |
+			'"' |
+			'\'' |
+			'\\'
+		) |
+		~ (
+			'\\' |
+			'"'
+		)
+	)* '"' |
+	'\'' (
+		'\\' (
+			'b' |
+			't' |
+			'n' |
+			'f' |
+			'r' |
+			'u' |
+			'"' |
+			'\'' |
+			'\\'
+		) |
+		~ (
+			'\\' |
+			'\''
+		)
+	)* '\''
+;
+
+ML_COMMENT :
+	'/*' (
+		options { greedy = false ; } : .
+	)* '*/' {skip();}
+;
+
+SL_COMMENT :
+	'//' ~ (
+		'\n' |
+		'\r'
+	)* (
+		'\r'? '\n'
+	)? {skip();}
+;
+
+WS :
+	(
+		' ' |
+		'\t' |
+		'\r' |
+		'\n'
+	)+ {skip();}
+;
+
+ANY_OTHER :
+	.
+;

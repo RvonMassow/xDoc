@@ -88,7 +88,7 @@ class Utils {
 		val result = new StringBuilder()
 		while (token.type != Token::EOF) {
 			//println(token.text)
-			switch (token.type) {
+			switch (t : token.type) {
 				case Common::ID : {
 					if (keywords.contains(token.text)) {
 						result.append('<span class="keyword">')
@@ -101,12 +101,21 @@ class Utils {
 				case Common::WS : {
 					result.append(whitespace2Entities(token.text))
 				}
-				case Common::STRING : {
+				case t == Common::STRING 
+					||t== Common::RICH_TEXT
+					||t== Common::RICH_TEXT_END
+					||t== Common::RICH_TEXT_START
+					||t== Common::RICH_TEXT_INBETWEEN
+				: {
 					result.append('<span class="string">')
 						.append(whitespace2Entities(token.text))
 						.append('</span>')
 				} 
-				case Common::COMMENT : {
+				case t == Common::COMMENT_RICH_TEXT_END 
+				   ||t == Common::COMMENT_RICH_TEXT_INBETWEEN
+				   ||t == Common::ML_COMMENT
+				   ||t == Common::SL_COMMENT
+				   : {
 					result.append('<span class="comment">')
 						.append(whitespace2Entities(token.text))
 						.append('</span>')
