@@ -1,4 +1,4 @@
-// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g 2012-06-12 11:10:20
+// $ANTLR 3.2 Sep 23, 2009 12:02:23 /Users/efftinge/Workspaces/ws-xtext/xDoc/org.eclipse.xtext.xdoc/bin/org/eclipse/xtext/xdoc/generator/util/lexer/Common.g 2012-06-12 11:31:37
 
 package org.eclipse.xtext.xdoc.generator.util.lexer;
 
@@ -1638,7 +1638,6 @@ public class Common extends Lexer {
 
             match("*/"); 
 
-            skip();
 
             }
 
@@ -1729,7 +1728,6 @@ public class Common extends Lexer {
 
             }
 
-            skip();
 
             }
 
@@ -1787,7 +1785,6 @@ public class Common extends Lexer {
                 cnt46++;
             } while (true);
 
-            skip();
 
             }
 
@@ -1937,9 +1934,9 @@ public class Common extends Lexer {
 
     protected DFA47 dfa47 = new DFA47(this);
     static final String DFA47_eotS =
-        "\1\uffff\1\13\1\21\1\13\2\25\1\13\1\uffff\2\13\2\uffff\1\15\1\uffff"+
-        "\2\21\2\uffff\1\41\1\uffff\1\25\6\uffff\1\44\2\21\1\41\1\uffff\1"+
-        "\51\1\uffff\2\44\2\uffff\1\21\2\51\1\uffff\2\44\2\51\1\44\1\51";
+        "\1\uffff\1\13\1\20\1\13\2\25\1\13\1\uffff\2\13\2\uffff\1\15\1\uffff"+
+        "\2\20\2\uffff\1\41\1\uffff\1\25\6\uffff\1\45\2\20\1\41\1\uffff\1"+
+        "\51\1\uffff\2\45\2\uffff\1\20\2\51\1\uffff\2\45\2\51\1\45\1\51";
     static final String DFA47_eofS =
         "\60\uffff";
     static final String DFA47_minS =
@@ -1951,19 +1948,19 @@ public class Common extends Lexer {
         "\1\47\1\uffff\2\uffff\2\uffff\1\uffff\1\uffff\1\154\6\uffff\4\uffff"+
         "\1\12\1\uffff\1\uffff\2\uffff\2\uffff\3\uffff\1\uffff\6\uffff";
     static final String DFA47_acceptS =
-        "\7\uffff\1\12\2\uffff\1\16\1\17\1\uffff\1\13\2\uffff\1\4\1\3\1\uffff"+
+        "\7\uffff\1\12\2\uffff\1\16\1\17\1\uffff\1\13\2\uffff\1\3\1\4\1\uffff"+
         "\1\7\1\uffff\1\10\1\11\1\12\1\14\1\15\1\16\6\uffff\1\5\2\uffff\1"+
-        "\1\1\2\3\uffff\1\6\6\uffff";
+        "\2\1\1\3\uffff\1\6\6\uffff";
     static final String DFA47_specialS =
-        "\1\20\1\14\1\10\5\uffff\1\13\5\uffff\1\0\1\11\2\uffff\1\5\10\uffff"+
-        "\1\25\1\21\1\7\1\12\1\uffff\1\1\1\uffff\1\17\1\23\2\uffff\1\6\1"+
-        "\26\1\4\1\uffff\1\22\1\24\1\3\1\2\1\15\1\16}>";
+        "\1\17\1\21\1\14\5\uffff\1\6\5\uffff\1\2\1\7\2\uffff\1\25\10\uffff"+
+        "\1\24\1\22\1\5\1\13\1\uffff\1\3\1\uffff\1\20\1\16\2\uffff\1\1\1"+
+        "\26\1\0\1\uffff\1\23\1\12\1\4\1\15\1\10\1\11}>";
     static final String[] DFA47_transitionS = {
             "\11\13\2\12\2\13\1\12\22\13\1\12\1\13\1\10\1\13\1\7\2\13\1\1"+
             "\7\13\1\11\1\4\11\5\7\13\32\7\3\13\1\6\1\7\1\13\32\7\60\13\1"+
             "\3\17\13\1\2\uff44\13",
             "\47\15\1\14\uffd8\15",
-            "\47\17\1\16\u0083\17\1\20\uff54\17",
+            "\47\17\1\16\u0083\17\1\21\uff54\17",
             "\1\22",
             "\12\24\10\uffff\1\26\1\uffff\3\26\5\uffff\1\26\13\uffff\1\23"+
             "\6\uffff\1\24\2\uffff\1\26\1\uffff\3\26\5\uffff\1\26\13\uffff"+
@@ -1978,8 +1975,8 @@ public class Common extends Lexer {
             "",
             "\1\33",
             "",
-            "\47\35\1\34\u0083\35\1\20\uff54\35",
-            "\47\17\1\16\u0083\17\1\20\uff54\17",
+            "\47\35\1\34\u0083\35\1\21\uff54\35",
+            "\47\17\1\16\u0083\17\1\21\uff54\17",
             "",
             "",
             "\12\36\1\40\2\36\1\37\ufff2\36",
@@ -1992,26 +1989,26 @@ public class Common extends Lexer {
             "",
             "",
             "",
-            "\47\43\1\42\u0083\43\1\45\uff54\43",
-            "\47\46\1\uffff\u0083\46\1\20\uff54\46",
-            "\47\17\1\16\u0083\17\1\20\uff54\17",
+            "\47\43\1\42\u0083\43\1\44\uff54\43",
+            "\47\46\1\uffff\u0083\46\1\21\uff54\46",
+            "\47\17\1\16\u0083\17\1\21\uff54\17",
             "\12\36\1\40\2\36\1\37\ufff2\36",
             "\1\40",
             "\47\50\1\47\u0083\50\1\41\uff54\50",
             "",
-            "\47\53\1\52\u0083\53\1\45\uff54\53",
-            "\47\43\1\42\u0083\43\1\45\uff54\43",
+            "\47\53\1\52\u0083\53\1\44\uff54\53",
+            "\47\43\1\42\u0083\43\1\44\uff54\43",
             "",
             "",
-            "\47\17\1\16\u0083\17\1\20\uff54\17",
+            "\47\17\1\16\u0083\17\1\21\uff54\17",
             "\47\55\1\54\u0083\55\1\41\uff54\55",
             "\47\50\1\47\u0083\50\1\41\uff54\50",
             "",
-            "\47\56\1\uffff\u0083\56\1\45\uff54\56",
-            "\47\43\1\42\u0083\43\1\45\uff54\43",
+            "\47\56\1\uffff\u0083\56\1\44\uff54\56",
+            "\47\43\1\42\u0083\43\1\44\uff54\43",
             "\47\57\1\uffff\u0083\57\1\41\uff54\57",
             "\47\50\1\47\u0083\50\1\41\uff54\50",
-            "\47\43\1\42\u0083\43\1\45\uff54\43",
+            "\47\43\1\42\u0083\43\1\44\uff54\43",
             "\47\50\1\47\u0083\50\1\41\uff54\50"
     };
 
@@ -2052,60 +2049,6 @@ public class Common extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA47_14 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA47_14=='\'') ) {s = 28;}
-
-                        else if ( ((LA47_14>='\u0000' && LA47_14<='&')||(LA47_14>='(' && LA47_14<='\u00AA')||(LA47_14>='\u00AC' && LA47_14<='\uFFFF')) ) {s = 29;}
-
-                        else if ( (LA47_14=='\u00AB') ) {s = 16;}
-
-                        else s = 17;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA47_32 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA47_32=='\'') ) {s = 39;}
-
-                        else if ( ((LA47_32>='\u0000' && LA47_32<='&')||(LA47_32>='(' && LA47_32<='\u00AA')||(LA47_32>='\u00AC' && LA47_32<='\uFFFF')) ) {s = 40;}
-
-                        else if ( (LA47_32=='\u00AB') ) {s = 33;}
-
-                        else s = 41;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA47_45 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA47_45=='\'') ) {s = 39;}
-
-                        else if ( (LA47_45=='\u00AB') ) {s = 33;}
-
-                        else if ( ((LA47_45>='\u0000' && LA47_45<='&')||(LA47_45>='(' && LA47_45<='\u00AA')||(LA47_45>='\u00AC' && LA47_45<='\uFFFF')) ) {s = 40;}
-
-                        else s = 41;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA47_44 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA47_44>='\u0000' && LA47_44<='&')||(LA47_44>='(' && LA47_44<='\u00AA')||(LA47_44>='\u00AC' && LA47_44<='\uFFFF')) ) {s = 47;}
-
-                        else if ( (LA47_44=='\u00AB') ) {s = 33;}
-
-                        else s = 41;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
                         int LA47_40 = input.LA(1);
 
                         s = -1;
@@ -2119,77 +2062,141 @@ public class Common extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 5 : 
-                        int LA47_18 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA47_18>='\u0000' && LA47_18<='\t')||(LA47_18>='\u000B' && LA47_18<='\f')||(LA47_18>='\u000E' && LA47_18<='\uFFFF')) ) {s = 30;}
-
-                        else if ( (LA47_18=='\r') ) {s = 31;}
-
-                        else if ( (LA47_18=='\n') ) {s = 32;}
-
-                        else s = 33;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
+                    case 1 : 
                         int LA47_38 = input.LA(1);
 
                         s = -1;
                         if ( (LA47_38=='\'') ) {s = 14;}
 
-                        else if ( (LA47_38=='\u00AB') ) {s = 16;}
-
                         else if ( ((LA47_38>='\u0000' && LA47_38<='&')||(LA47_38>='(' && LA47_38<='\u00AA')||(LA47_38>='\u00AC' && LA47_38<='\uFFFF')) ) {s = 15;}
 
-                        else s = 17;
+                        else if ( (LA47_38=='\u00AB') ) {s = 17;}
+
+                        else s = 16;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 7 : 
+                    case 2 : 
+                        int LA47_14 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA47_14=='\'') ) {s = 28;}
+
+                        else if ( ((LA47_14>='\u0000' && LA47_14<='&')||(LA47_14>='(' && LA47_14<='\u00AA')||(LA47_14>='\u00AC' && LA47_14<='\uFFFF')) ) {s = 29;}
+
+                        else if ( (LA47_14=='\u00AB') ) {s = 17;}
+
+                        else s = 16;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA47_32 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA47_32=='\'') ) {s = 39;}
+
+                        else if ( ((LA47_32>='\u0000' && LA47_32<='&')||(LA47_32>='(' && LA47_32<='\u00AA')||(LA47_32>='\u00AC' && LA47_32<='\uFFFF')) ) {s = 40;}
+
+                        else if ( (LA47_32=='\u00AB') ) {s = 33;}
+
+                        else s = 41;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA47_44 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA47_44>='\u0000' && LA47_44<='&')||(LA47_44>='(' && LA47_44<='\u00AA')||(LA47_44>='\u00AC' && LA47_44<='\uFFFF')) ) {s = 47;}
+
+                        else if ( (LA47_44=='\u00AB') ) {s = 33;}
+
+                        else s = 41;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
                         int LA47_29 = input.LA(1);
 
                         s = -1;
                         if ( (LA47_29=='\'') ) {s = 14;}
 
-                        else if ( (LA47_29=='\u00AB') ) {s = 16;}
+                        else if ( (LA47_29=='\u00AB') ) {s = 17;}
 
                         else if ( ((LA47_29>='\u0000' && LA47_29<='&')||(LA47_29>='(' && LA47_29<='\u00AA')||(LA47_29>='\u00AC' && LA47_29<='\uFFFF')) ) {s = 15;}
 
-                        else s = 17;
+                        else s = 16;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 8 : 
-                        int LA47_2 = input.LA(1);
+                    case 6 : 
+                        int LA47_8 = input.LA(1);
 
                         s = -1;
-                        if ( (LA47_2=='\'') ) {s = 14;}
+                        if ( ((LA47_8>='\u0000' && LA47_8<='\uFFFF')) ) {s = 13;}
 
-                        else if ( ((LA47_2>='\u0000' && LA47_2<='&')||(LA47_2>='(' && LA47_2<='\u00AA')||(LA47_2>='\u00AC' && LA47_2<='\uFFFF')) ) {s = 15;}
-
-                        else if ( (LA47_2=='\u00AB') ) {s = 16;}
-
-                        else s = 17;
+                        else s = 11;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 9 : 
+                    case 7 : 
                         int LA47_15 = input.LA(1);
 
                         s = -1;
                         if ( (LA47_15=='\'') ) {s = 14;}
 
-                        else if ( (LA47_15=='\u00AB') ) {s = 16;}
-
                         else if ( ((LA47_15>='\u0000' && LA47_15<='&')||(LA47_15>='(' && LA47_15<='\u00AA')||(LA47_15>='\u00AC' && LA47_15<='\uFFFF')) ) {s = 15;}
 
-                        else s = 17;
+                        else if ( (LA47_15=='\u00AB') ) {s = 17;}
+
+                        else s = 16;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA47_46 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA47_46=='\'') ) {s = 34;}
+
+                        else if ( ((LA47_46>='\u0000' && LA47_46<='&')||(LA47_46>='(' && LA47_46<='\u00AA')||(LA47_46>='\u00AC' && LA47_46<='\uFFFF')) ) {s = 35;}
+
+                        else if ( (LA47_46=='\u00AB') ) {s = 36;}
+
+                        else s = 37;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA47_47 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA47_47=='\'') ) {s = 39;}
+
+                        else if ( (LA47_47=='\u00AB') ) {s = 33;}
+
+                        else if ( ((LA47_47>='\u0000' && LA47_47<='&')||(LA47_47>='(' && LA47_47<='\u00AA')||(LA47_47>='\u00AC' && LA47_47<='\uFFFF')) ) {s = 40;}
+
+                        else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
                     case 10 : 
+                        int LA47_43 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA47_43=='\'') ) {s = 34;}
+
+                        else if ( ((LA47_43>='\u0000' && LA47_43<='&')||(LA47_43>='(' && LA47_43<='\u00AA')||(LA47_43>='\u00AC' && LA47_43<='\uFFFF')) ) {s = 35;}
+
+                        else if ( (LA47_43=='\u00AB') ) {s = 36;}
+
+                        else s = 37;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 11 : 
                         int LA47_30 = input.LA(1);
 
                         s = -1;
@@ -2203,71 +2210,49 @@ public class Common extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 11 : 
-                        int LA47_8 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA47_8>='\u0000' && LA47_8<='\uFFFF')) ) {s = 13;}
-
-                        else s = 11;
-
-                        if ( s>=0 ) return s;
-                        break;
                     case 12 : 
-                        int LA47_1 = input.LA(1);
+                        int LA47_2 = input.LA(1);
 
                         s = -1;
-                        if ( (LA47_1=='\'') ) {s = 12;}
+                        if ( (LA47_2=='\'') ) {s = 14;}
 
-                        else if ( ((LA47_1>='\u0000' && LA47_1<='&')||(LA47_1>='(' && LA47_1<='\uFFFF')) ) {s = 13;}
+                        else if ( ((LA47_2>='\u0000' && LA47_2<='&')||(LA47_2>='(' && LA47_2<='\u00AA')||(LA47_2>='\u00AC' && LA47_2<='\uFFFF')) ) {s = 15;}
 
-                        else s = 11;
+                        else if ( (LA47_2=='\u00AB') ) {s = 17;}
+
+                        else s = 16;
 
                         if ( s>=0 ) return s;
                         break;
                     case 13 : 
-                        int LA47_46 = input.LA(1);
+                        int LA47_45 = input.LA(1);
 
                         s = -1;
-                        if ( (LA47_46=='\'') ) {s = 34;}
+                        if ( (LA47_45=='\'') ) {s = 39;}
 
-                        else if ( ((LA47_46>='\u0000' && LA47_46<='&')||(LA47_46>='(' && LA47_46<='\u00AA')||(LA47_46>='\u00AC' && LA47_46<='\uFFFF')) ) {s = 35;}
+                        else if ( ((LA47_45>='\u0000' && LA47_45<='&')||(LA47_45>='(' && LA47_45<='\u00AA')||(LA47_45>='\u00AC' && LA47_45<='\uFFFF')) ) {s = 40;}
 
-                        else if ( (LA47_46=='\u00AB') ) {s = 37;}
-
-                        else s = 36;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA47_47 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA47_47=='\'') ) {s = 39;}
-
-                        else if ( ((LA47_47>='\u0000' && LA47_47<='&')||(LA47_47>='(' && LA47_47<='\u00AA')||(LA47_47>='\u00AC' && LA47_47<='\uFFFF')) ) {s = 40;}
-
-                        else if ( (LA47_47=='\u00AB') ) {s = 33;}
+                        else if ( (LA47_45=='\u00AB') ) {s = 33;}
 
                         else s = 41;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 15 : 
-                        int LA47_34 = input.LA(1);
+                    case 14 : 
+                        int LA47_35 = input.LA(1);
 
                         s = -1;
-                        if ( (LA47_34=='\'') ) {s = 42;}
+                        if ( (LA47_35=='\'') ) {s = 34;}
 
-                        else if ( ((LA47_34>='\u0000' && LA47_34<='&')||(LA47_34>='(' && LA47_34<='\u00AA')||(LA47_34>='\u00AC' && LA47_34<='\uFFFF')) ) {s = 43;}
+                        else if ( (LA47_35=='\u00AB') ) {s = 36;}
 
-                        else if ( (LA47_34=='\u00AB') ) {s = 37;}
+                        else if ( ((LA47_35>='\u0000' && LA47_35<='&')||(LA47_35>='(' && LA47_35<='\u00AA')||(LA47_35>='\u00AC' && LA47_35<='\uFFFF')) ) {s = 35;}
 
-                        else s = 36;
+                        else s = 37;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 16 : 
+                    case 15 : 
                         int LA47_0 = input.LA(1);
 
                         s = -1;
@@ -2295,59 +2280,57 @@ public class Common extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
+                    case 16 : 
+                        int LA47_34 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA47_34=='\'') ) {s = 42;}
+
+                        else if ( ((LA47_34>='\u0000' && LA47_34<='&')||(LA47_34>='(' && LA47_34<='\u00AA')||(LA47_34>='\u00AC' && LA47_34<='\uFFFF')) ) {s = 43;}
+
+                        else if ( (LA47_34=='\u00AB') ) {s = 36;}
+
+                        else s = 37;
+
+                        if ( s>=0 ) return s;
+                        break;
                     case 17 : 
+                        int LA47_1 = input.LA(1);
+
+                        s = -1;
+                        if ( (LA47_1=='\'') ) {s = 12;}
+
+                        else if ( ((LA47_1>='\u0000' && LA47_1<='&')||(LA47_1>='(' && LA47_1<='\uFFFF')) ) {s = 13;}
+
+                        else s = 11;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
                         int LA47_28 = input.LA(1);
 
                         s = -1;
                         if ( ((LA47_28>='\u0000' && LA47_28<='&')||(LA47_28>='(' && LA47_28<='\u00AA')||(LA47_28>='\u00AC' && LA47_28<='\uFFFF')) ) {s = 38;}
 
-                        else if ( (LA47_28=='\u00AB') ) {s = 16;}
+                        else if ( (LA47_28=='\u00AB') ) {s = 17;}
 
-                        else s = 17;
+                        else s = 16;
 
                         if ( s>=0 ) return s;
                         break;
-                    case 18 : 
+                    case 19 : 
                         int LA47_42 = input.LA(1);
 
                         s = -1;
                         if ( ((LA47_42>='\u0000' && LA47_42<='&')||(LA47_42>='(' && LA47_42<='\u00AA')||(LA47_42>='\u00AC' && LA47_42<='\uFFFF')) ) {s = 46;}
 
-                        else if ( (LA47_42=='\u00AB') ) {s = 37;}
+                        else if ( (LA47_42=='\u00AB') ) {s = 36;}
 
-                        else s = 36;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 19 : 
-                        int LA47_35 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA47_35=='\'') ) {s = 34;}
-
-                        else if ( ((LA47_35>='\u0000' && LA47_35<='&')||(LA47_35>='(' && LA47_35<='\u00AA')||(LA47_35>='\u00AC' && LA47_35<='\uFFFF')) ) {s = 35;}
-
-                        else if ( (LA47_35=='\u00AB') ) {s = 37;}
-
-                        else s = 36;
+                        else s = 37;
 
                         if ( s>=0 ) return s;
                         break;
                     case 20 : 
-                        int LA47_43 = input.LA(1);
-
-                        s = -1;
-                        if ( (LA47_43=='\'') ) {s = 34;}
-
-                        else if ( (LA47_43=='\u00AB') ) {s = 37;}
-
-                        else if ( ((LA47_43>='\u0000' && LA47_43<='&')||(LA47_43>='(' && LA47_43<='\u00AA')||(LA47_43>='\u00AC' && LA47_43<='\uFFFF')) ) {s = 35;}
-
-                        else s = 36;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 21 : 
                         int LA47_27 = input.LA(1);
 
                         s = -1;
@@ -2355,9 +2338,23 @@ public class Common extends Lexer {
 
                         else if ( ((LA47_27>='\u0000' && LA47_27<='&')||(LA47_27>='(' && LA47_27<='\u00AA')||(LA47_27>='\u00AC' && LA47_27<='\uFFFF')) ) {s = 35;}
 
-                        else if ( (LA47_27=='\u00AB') ) {s = 37;}
+                        else if ( (LA47_27=='\u00AB') ) {s = 36;}
 
-                        else s = 36;
+                        else s = 37;
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 21 : 
+                        int LA47_18 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA47_18>='\u0000' && LA47_18<='\t')||(LA47_18>='\u000B' && LA47_18<='\f')||(LA47_18>='\u000E' && LA47_18<='\uFFFF')) ) {s = 30;}
+
+                        else if ( (LA47_18=='\r') ) {s = 31;}
+
+                        else if ( (LA47_18=='\n') ) {s = 32;}
+
+                        else s = 33;
 
                         if ( s>=0 ) return s;
                         break;

@@ -196,7 +196,7 @@ STRING :
 ML_COMMENT :
 	'/*' (
 		options { greedy = false ; } : .
-	)* '*/' {skip();}
+	)* '*/'
 ;
 
 SL_COMMENT :
@@ -205,7 +205,7 @@ SL_COMMENT :
 		'\r'
 	)* (
 		'\r'? '\n'
-	)? {skip();}
+	)?
 ;
 
 WS :
@@ -214,7 +214,7 @@ WS :
 		'\t' |
 		'\r' |
 		'\n'
-	)+ {skip();}
+	)+
 ;
 
 ANY_OTHER :
