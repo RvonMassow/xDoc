@@ -28,50 +28,64 @@ public class JavaDocExtension {
         }
       }
       if (!_matched) {
-        boolean _startsWith_1 = name.startsWith("org.eclipse.xtext.");
+        boolean _or = false;
+        boolean _startsWith_1 = name.startsWith("org.eclipse.xtext.xbase.lib");
         if (_startsWith_1) {
+          _or = true;
+        } else {
+          boolean _startsWith_2 = name.startsWith("org.eclipse.xtend");
+          _or = (_startsWith_1 || _startsWith_2);
+        }
+        if (_or) {
+          _matched=true;
+          _switchResult = "http://xtend-lang.org/api/2.3.0/";
+        }
+      }
+      if (!_matched) {
+        boolean _startsWith_3 = name.startsWith("org.eclipse.xtext.");
+        if (_startsWith_3) {
           _matched=true;
           _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/";
         }
       }
       if (!_matched) {
-        boolean _startsWith_2 = name.startsWith("org.eclipse.xtend.");
-        if (_startsWith_2) {
+        boolean _startsWith_4 = name.startsWith("org.eclipse.xtend.");
+        if (_startsWith_4) {
           _matched=true;
           _switchResult = "http://download.eclipse.org/xtend/javadoc/2.3/";
         }
       }
       if (!_matched) {
-        boolean _startsWith_3 = name.startsWith("org.eclipse.emf.");
-        if (_startsWith_3) {
+        boolean _startsWith_5 = name.startsWith("org.eclipse.emf.");
+        if (_startsWith_5) {
           _matched=true;
           _switchResult = "http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/";
         }
       }
       if (!_matched) {
-        boolean _startsWith_4 = name.startsWith("com.google.inject.");
-        if (_startsWith_4) {
+        boolean _startsWith_6 = name.startsWith("com.google.inject.");
+        if (_startsWith_6) {
           _matched=true;
           _switchResult = "http://google-guice.googlecode.com/svn/trunk/javadoc/";
         }
       }
       if (!_matched) {
-        boolean _startsWith_5 = name.startsWith("org.eclipse.jdt.");
-        if (_startsWith_5) {
+        boolean _startsWith_7 = name.startsWith("org.eclipse.jdt.");
+        if (_startsWith_7) {
           _matched=true;
           _switchResult = "http://help.eclipse.org/helios/topic/org.eclipse.jdt.doc.isv/reference/api/";
         }
       }
       if (!_matched) {
-        boolean _startsWith_6 = name.startsWith("java.");
-        if (_startsWith_6) {
+        boolean _startsWith_8 = name.startsWith("java.");
+        if (_startsWith_8) {
           _matched=true;
           _switchResult = "http://download.oracle.com/javase/1.5.0/docs/api/";
         }
       }
       if (!_matched) {
-        boolean _startsWith_7 = name.startsWith("org.eclipse.");
-        if (_startsWith_7) {
+        boolean _startsWith_9 = name.startsWith("org.eclipse.");
+        if (_startsWith_9) {
           _matched=true;
           _switchResult = "http://help.eclipse.org/helios/topic/org.eclipse.platform.doc.isv/reference/api/";
         }

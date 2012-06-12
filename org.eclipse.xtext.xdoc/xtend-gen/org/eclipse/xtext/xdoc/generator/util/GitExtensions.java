@@ -10,7 +10,7 @@ public class GitExtensions {
   public String gitLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
     {
-      final String basedir = "https://github.com/eclipse/xtext/blob/v2.3.0M6/";
+      final String basedir = "https://github.com/eclipse/xtext/blob/v2.3.0/";
       final HashSet<String> xtendFiles = CollectionLiterals.<String>newHashSet("org.eclipse.xtext.xbase.compiler.JvmModelGenerator");
       final HashSet<String> xtextEmfGen = CollectionLiterals.<String>newHashSet("AbstractElement", "Assignment", "EnumRule", "ParserRule", "UntilToken", "AbstractMetamodelDeclaration", "CharacterRange", "GeneratedMetamodel", "ReferencedMetamodel", "Wildcard", "AbstractNegatedToken", "CompoundElement", "Grammar", "RuleCall", "XtextFactory", "AbstractRule", "CrossReference", "Group", "TerminalRule", "XtextPackage", "Action", "EOF", "Keyword", "TypeRef", "Alternatives", "EnumLiteralDeclaration", "NegatedToken", "UnorderedGroup");
       final HashSet<String> ctEmfGen = CollectionLiterals.<String>newHashSet("JvmAnnotationAnnotationValue", "JvmConstraintOwner", "JvmFloatAnnotationValue", "JvmPrimitiveType", "JvmUpperBound", "JvmAnnotationReference", "JvmConstructor", "JvmFormalParameter", "JvmShortAnnotationValue", "JvmVisibility", "JvmAnnotationTarget", "JvmCustomAnnotationValue", "JvmGenericArrayTypeReference", "JvmSpecializedTypeReference", "JvmVoid", "JvmAnnotationType", "JvmDeclaredType", "JvmGenericType", "JvmStringAnnotationValue", "JvmWildcardTypeReference", "JvmAnnotationValue", "JvmDelegateTypeReference", "JvmIdentifiableElement", "JvmSynonymTypeReference", "TypesFactory", "JvmAnyTypeReference", "JvmDoubleAnnotationValue", "JvmIntAnnotationValue", "JvmType", "TypesPackage", "JvmArrayType", "JvmEnumAnnotationValue", "JvmLongAnnotationValue", "JvmTypeAnnotationValue", "JvmBooleanAnnotationValue", "JvmEnumerationLiteral", "JvmLowerBound", "JvmTypeConstraint", "JvmByteAnnotationValue", "JvmEnumerationType", "JvmMember", "JvmTypeParameter", "JvmCharAnnotationValue", "JvmExecutable", "JvmMultiTypeReference", "JvmTypeParameterDeclarator", "JvmComponentType", "JvmFeature", "JvmOperation", "JvmTypeReference", "JvmCompoundTypeReference", "JvmField", "JvmParameterizedTypeReference", "JvmUnknownTypeReference");
@@ -185,8 +185,8 @@ public class GitExtensions {
         {
           String _xifexpression_1 = null;
           String _qualifiedName_1 = ie.getQualifiedName();
-          boolean _contains = xtendFiles.contains(_qualifiedName_1);
-          if (_contains) {
+          boolean _contains_2 = xtendFiles.contains(_qualifiedName_1);
+          if (_contains_2) {
             _xifexpression_1 = ".xtend";
           } else {
             _xifexpression_1 = ".java";

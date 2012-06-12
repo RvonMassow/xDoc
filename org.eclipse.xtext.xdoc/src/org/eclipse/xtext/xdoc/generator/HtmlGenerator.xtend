@@ -60,7 +60,7 @@ class HtmlGenerator implements IGenerator {
 	@Inject extension GitExtensions git
 	@Inject extension JavaDocExtension jdoc
 	@Inject extension PHPPhoenixGenerator ppg
-	 
+	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		try{
 			for(file: IteratorExtensions::toIterable(resource.allContents).filter(typeof(XdocFile))) {
