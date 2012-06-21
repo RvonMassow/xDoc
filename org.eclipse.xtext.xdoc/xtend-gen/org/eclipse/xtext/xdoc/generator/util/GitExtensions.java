@@ -124,7 +124,7 @@ public class GitExtensions {
       }
       if (!_matched) {
         boolean _or = false;
-        boolean _startsWith_10 = name.startsWith("org.eclipse.xtext.generator-");
+        boolean _startsWith_10 = name.startsWith("org.eclipse.xtext.generator.");
         if (_startsWith_10) {
           _or = true;
         } else {
@@ -218,15 +218,63 @@ public class GitExtensions {
         }
       }
       if (!_matched) {
-        boolean _startsWith_21 = name.startsWith("com.google.inject.");
+        boolean _or_1 = false;
+        boolean _startsWith_21 = name.startsWith("org.eclipse.xtext.xbase.lib.");
         if (_startsWith_21) {
+          _or_1 = true;
+        } else {
+          boolean _startsWith_22 = name.startsWith("org.eclipse.xtend2.lib.");
+          _or_1 = (_startsWith_21 || _startsWith_22);
+        }
+        if (_or_1) {
           _matched=true;
-          _switchResult = "http://code.google.com/p/google-guice/source/browse/core/src";
+          String _plus_20 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.lib/src/");
+          _switchResult = _plus_20;
         }
       }
       if (!_matched) {
-        boolean _startsWith_22 = name.startsWith("org.xtext.");
-        if (_startsWith_22) {
+        boolean _startsWith_23 = name.startsWith("org.eclipse.xtext.xbase.ui.");
+        if (_startsWith_23) {
+          _matched=true;
+          String _plus_21 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.ui/src/");
+          _switchResult = _plus_21;
+        }
+      }
+      if (!_matched) {
+        boolean _startsWith_24 = name.startsWith("org.eclipse.xtext.xbase.");
+        if (_startsWith_24) {
+          _matched=true;
+          String _plus_22 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/");
+          _switchResult = _plus_22;
+        }
+      }
+      if (!_matched) {
+        boolean _startsWith_25 = name.startsWith("org.eclipse.xtend.lib.");
+        if (_startsWith_25) {
+          _matched=true;
+          String _plus_23 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.lib/src/");
+          _switchResult = _plus_23;
+        }
+      }
+      if (!_matched) {
+        boolean _startsWith_26 = name.startsWith("org.eclipse.xtend.ui.");
+        if (_startsWith_26) {
+          _matched=true;
+          String _plus_24 = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.ui/src/");
+          _switchResult = _plus_24;
+        }
+      }
+      if (!_matched) {
+        boolean _startsWith_27 = name.startsWith("org.eclipse.xtend.core.");
+        if (_startsWith_27) {
+          _matched=true;
+          String _plus_25 = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.core/src/");
+          _switchResult = _plus_25;
+        }
+      }
+      if (!_matched) {
+        boolean _startsWith_28 = name.startsWith("org.xtext.");
+        if (_startsWith_28) {
           _matched=true;
           CharSequence _xblockexpression_1 = null;
           {
@@ -269,9 +317,9 @@ public class GitExtensions {
           String _qualifiedName_2 = ie.getQualifiedName();
           String _replaceAll = _qualifiedName_2.replaceAll("\\.", "/");
           String _replaceAll_1 = _replaceAll.replaceAll("\\$.*$", "");
-          String _plus_20 = (prefix + _replaceAll_1);
-          String _plus_21 = (_plus_20 + ext);
-          _xblockexpression_2 = (_plus_21);
+          String _plus_26 = (prefix + _replaceAll_1);
+          String _plus_27 = (_plus_26 + ext);
+          _xblockexpression_2 = (_plus_27);
         }
         _xifexpression = _xblockexpression_2;
       } else {
