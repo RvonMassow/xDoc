@@ -6,6 +6,7 @@ class GitExtensions {
 	
 	static val XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.3.0/plugins/"
 	static val XTEND_BASE_DIR = "https://github.com/eclipse/xtend/blob/v2.3.0/plugins/"
+	static val MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.3.0/plugins/"
 	static val EMF_BASE_DIR = "https://github.com/eclipse/emf/blob/R2_8_0/plugins/"
 	static val SEVENLANGUAGES_BASEDIR = "https://github.com/xtext-dev/seven-languages-xtext/blob/master/"
 	
@@ -38,6 +39,9 @@ class GitExtensions {
 				case name.startsWith("org.eclipse.xtext.") 
 				     && xtextEmfGen.contains(ie.simpleName):                    XTEXT_BASE_DIR + "org.eclipse.xtext/emf-gen/"
 				case name.startsWith("org.eclipse.xtext."):                     XTEXT_BASE_DIR + "org.eclipse.xtext/src/"
+				case name.startsWith("org.eclipse.emf.mwe.utils."):			    MWE_BASE_DIR + "org.eclipse.emf.mwe.utils/src/"
+				case name.startsWith("org.eclipse.emf.mwe2.runtime."):			MWE_BASE_DIR + "org.eclipse.emf.mwe2.runtime/src/"
+				case name.startsWith("org.eclipse.emf.mwe2.launch."):			MWE_BASE_DIR + "org.eclipse.emf.mwe2.launch/src/"
 				case name.startsWith("org.eclipse.emf.common."):			    EMF_BASE_DIR + "org.eclipse.emf.common/src/"
 				case name.startsWith("org.eclipse.emf."):			     		EMF_BASE_DIR + "org.eclipse.emf.ecore/src/"
 				case name.startsWith("org.eclipse.xtext.xbase.lib.")
