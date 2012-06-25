@@ -12,7 +12,9 @@ import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
+import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
+import org.eclipse.xtext.xdoc.xdoc.Ref;
 import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
@@ -64,6 +66,27 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 			error("Cannot find image", XdocPackage.Literals.IMAGE_REF__PATH);
 	}
 
+	@Check 
+	public void checkNestedLinkElements(EObject linkElement) {
+		if(isLinkElement(linkElement)) {
+			EObject currentElement = linkElement.eContainer(); 
+			while(currentElement != null) {
+				if(isLinkElement(currentElement)) {
+					error("Cannot nest link element " 
+							+ linkElement.eClass().getName() 
+							+ " in " 
+							+ currentElement.eClass().getName(), 
+							null);
+				}
+				currentElement = currentElement.eContainer();
+			}
+		}
+	}
+	
+	private boolean isLinkElement(EObject element) {
+		return element instanceof Ref || element instanceof CodeRef;
+	}
+	
 	@Override
 	protected List<EPackage> getEPackages() {
 		return Collections.singletonList((EPackage)XdocPackage.eINSTANCE);
