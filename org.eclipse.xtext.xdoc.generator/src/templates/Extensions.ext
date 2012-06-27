@@ -12,9 +12,9 @@ escapeLatexChars(String s):
 		.replaceAll("_", "\\\\_").replaceAll("\\^", "\\\\textasciicircum{}")
 		.replaceAll("&", "\\\\&").replaceAll("~", "\\\\textasciitilde{}");
 
-unescapeXdocChars(String s):
-	s.replaceAll("\\\\\\[", "[").replaceAll("\\\\\\]", "]");
-
+String unescapeXdocChars(String s):
+	JAVA templates.util.StringFormatter.unescapeXdocChars(java.lang.String);
+	
 prepareListingsString(String s):
 	s.replaceAll("^\n", "");
 
@@ -95,6 +95,12 @@ String encode(String s):
 
 CodeBlock removeIndent(CodeBlock cb):
 	JAVA templates.util.StringFormatter.removeIndent(org.eclipse.xtext.xdoc.xdoc.CodeBlock);
+
+CodeBlock highlightCodeBlock(CodeBlock cb):
+	JAVA templates.util.StringFormatter.highlightCodeBlock(org.eclipse.xtext.xdoc.xdoc.CodeBlock);
+	
+CodeBlock removeXdocEscapeFromCode(CodeBlock cb):
+	JAVA templates.util.StringFormatter.removeXdocEscapeFromCode(org.eclipse.xtext.xdoc.xdoc.CodeBlock);
 
 String calcStyle(ImageRef img):
 	JAVA templates.util.PDFImageUtil.calcStyle(org.eclipse.xtext.xdoc.xdoc.ImageRef);
