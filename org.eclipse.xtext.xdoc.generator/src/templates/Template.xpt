@@ -12,18 +12,56 @@
 \usepackage{listings}
 \usepackage[american]{babel}
 \usepackage{graphicx}
+\usepackage{color}
 \usepackage{pdfcprot}
+\usepackage{fancyvrb}
 
 \usepackage{todonotes}
 
+\definecolor{framecolor}{HTML}{E7E7E7}
+\definecolor{commentcolor}{HTML}{3F5F7F}
+\definecolor{kwcolor}{HTML}{7F0055}
+\definecolor{strcolor}{HTML}{2A00FF}
+\definecolor{restcolor}{HTML}{000000}
+
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@kw\endcsname{\def\PY@tc##1{\color{kwcolor}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\def\PY@tc##1{\color{commentcolor}{##1}}}
+\expandafter\def\csname PY@tok@st\endcsname{\def\PY@tc##1{\color{strcolor}{##1}}}
+\expandafter\def\csname PY@tok@rs\endcsname{\def\PY@tc##1{\color{restcolor}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZti{\char`\~}
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
 
 «IF ((String) (GLOBALVAR release)) != "false"»
 \renewcommand{\todo}[1]{}«
 ENDIF»
 
 %%\usepackage{helvet}
-
-«EXPAND genLangDef FOREACH this.langDefs-»
 
 %% force more space between subsections!
 \makeatletter
@@ -40,14 +78,6 @@ ENDIF»
   {1.5ex \@plus .2ex}%
   {\sffamily\normalsize\bfseries}}
 \makeatother
-\definecolor{listingsbg}{HTML}{E7E7E7}
-\definecolor{kwcolor}{HTML}{7F0055}
-\definecolor{strcolor}{HTML}{2A00FF}
-\definecolor{cocolor}{HTML}{3F7F5F}
-
-\lstset{tabsize=4, basicstyle=\sffamily\small, keywordstyle=\bfseries\color{kwcolor}, commentstyle=\color{cocolor},
-stringstyle=\color{strcolor}, columns=[r]fullflexible, escapechar={ß}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, 
-xleftmargin=5pt, xrightmargin=5pt, rulecolor=\color{lightgray}, showstringspaces=false, backgroundcolor=\color{listingsbg!70}}
 
 %%\usepackage[english]{babel}
 
@@ -70,17 +100,6 @@ xleftmargin=5pt, xrightmargin=5pt, rulecolor=\color{lightgray}, showstringspaces
 ENDIF»
 \end{document}
 «ENDFILE-»
-«ENDDEFINE»
-
-«DEFINE genLangDef FOR LangDef»
-\lstdefinelanguage{«this.name»}
-  {morekeywords={«EXPAND genText FOREACH this.keywords SEPARATOR ', '»},
-    sensitive=true,
-    morecomment=[l]{//},
-    morecomment=[s]{/*}{*/},
-    morestring=[b]",
-    morestring=[b]',
-  }
 «ENDDEFINE»
 
 «DEFINE genContent FOR Part-»
@@ -183,14 +202,13 @@ ENDDEFINE»
 
 «DEFINE genText FOR CodeBlock»«EXPAND specialGenCode FOR this»«ENDDEFINE»
 
-«DEFINE specialGenCode FOR CodeBlock»«
- IF inline(this)»\lstinline[breakatwhitespace=false,breaklines=true«IF language!=null»,language=«this.language.name»«ENDIF»]°«EXPAND genCode FOREACH removeIndent(this).contents»°«
- ELSE»
- \begin{lstlisting}«IF language!=null»[language=«this.language.name»]«
- ENDIF»
-«EXPAND genCode FOREACH removeIndent(this).contents SEPARATOR "\n"»
-\end{lstlisting}
-\noindent«ENDIF»«ENDDEFINE»
+«DEFINE specialGenCode FOR CodeBlock»«IF inline()»«EXPAND genCode FOREACH removeIndent().removeXdocEscapeFromCode().highlightCodeBlock().contents»«ELSE»\begin{Verbatim}[commandchars=\\\{\},fontfamily=cmss, fontsize=\small, frame=single, rulecolor=\color{framecolor}]
+
+«EXPAND genCode FOREACH removeIndent().removeXdocEscapeFromCode().highlightCodeBlock().contents SEPARATOR "/n"»
+
+\end{Verbatim}
+«ENDIF-»
+«ENDDEFINE»
 
 «DEFINE genText FOR CodeRef»«IF this.altText != null»«EXPAND genContent FOR altText»«ELSE»\lstinline[breakatwhitespace=false,breaklines=true]°«escapeLatexChars(unescapeXdocChars(this.element.dottedSimpleName()))»°«ENDIF»«ENDDEFINE»
 
