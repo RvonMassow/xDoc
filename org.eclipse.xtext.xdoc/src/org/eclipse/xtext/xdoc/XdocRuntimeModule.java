@@ -6,6 +6,8 @@ package org.eclipse.xtext.xdoc;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.scoping.IGlobalScopeProvider;
+import org.eclipse.xtext.xbase.jvmmodel.JvmGlobalScopeProvider;
 import org.eclipse.xtext.xdoc.generator.XdocOutputConfigurationProvider;
 import org.eclipse.xtext.xdoc.naming.XdocDocumentNameProvider;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
@@ -14,6 +16,7 @@ import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionStrategy;
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
+@SuppressWarnings("restriction")
 public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntimeModule {
 
 	@Override
@@ -38,4 +41,7 @@ public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntim
 		return XdocOutputConfigurationProvider.class;
 	}
 	
+	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
+		return JvmGlobalScopeProvider.class;
+	}
 }
