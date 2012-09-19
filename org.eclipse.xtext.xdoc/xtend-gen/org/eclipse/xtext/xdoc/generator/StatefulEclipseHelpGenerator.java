@@ -33,6 +33,7 @@ import org.eclipse.xtext.xdoc.generator.TocGenerator;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions;
 import org.eclipse.xtext.xdoc.generator.util.JavaDocExtension;
+import org.eclipse.xtext.xdoc.generator.util.LineSeparator;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Anchor;
@@ -1022,7 +1023,10 @@ public class StatefulEclipseHelpGenerator {
         EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
         CharSequence _generateCode_1 = this.generateCode(_head_1);
         String _trimLines = this.trimLines(_generateCode_1, indentToRemove);
-        final String first = _trimLines.replaceAll("\\A(\\s*\n)*", "");
+        String _asRegEx = LineSeparator.asRegEx();
+        String _plus = ("\\A(\\s*" + _asRegEx);
+        String _plus_1 = (_plus + ")*");
+        final String first = _trimLines.replaceAll(_plus_1, "");
         String _xifexpression_2 = null;
         EList<EObject> _contents_5 = cb.getContents();
         EObject _last = IterableExtensions.<EObject>last(_contents_5);
@@ -1034,12 +1038,18 @@ public class StatefulEclipseHelpGenerator {
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
           CharSequence _generateCode_2 = this.generateCode(_last_1);
           String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
-          String _replaceAll = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
+          String _asRegEx_1 = LineSeparator.asRegEx();
+          String _plus_2 = ("(\\s*" + _asRegEx_1);
+          String _plus_3 = (_plus_2 + ")*\\Z");
+          String _replaceAll = _trimLines_1.replaceAll(_plus_3, "");
           _xifexpression_2 = _replaceAll;
         } else {
           String _xblockexpression_1 = null;
           {
-            first.replaceAll("(\\s*\n)*\\Z", "");
+            String _asRegEx_2 = LineSeparator.asRegEx();
+            String _plus_4 = ("(\\s*" + _asRegEx_2);
+            String _plus_5 = (_plus_4 + ")*\\Z");
+            first.replaceAll(_plus_5, "");
             _xblockexpression_1 = ("");
           }
           _xifexpression_2 = _xblockexpression_1;

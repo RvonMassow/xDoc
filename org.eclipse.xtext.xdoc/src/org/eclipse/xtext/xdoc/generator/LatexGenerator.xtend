@@ -45,6 +45,7 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
 import org.eclipse.xtext.xdoc.xdoc.TextPart
 import org.eclipse.xtext.xdoc.xdoc.Todo
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList
+import org.eclipse.xtext.xdoc.generator.util.LineSeparator
 
 import static extension org.eclipse.xtext.xdoc.generator.util.LatexUtils.*
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
@@ -403,7 +404,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\setlength{\XdocTEffectiveWidth}{\textwidth}
 		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
 		\noindent\begin{tabular}{«tab.rows.head.data.genColumns»}
-		«tab.rows.map([e | e.genText]).join("\\\\\n")»
+		«tab.rows.map([e | e.genText]).join("\\\\" + LineSeparator::LINE_SEPARATOR)»
 		\end{tabular}
 	'''
 

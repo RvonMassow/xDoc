@@ -9,18 +9,18 @@ public class StringUtils {
 		if(cb.getContents().size() > 0 && cb.getContents().get(0) instanceof Code){
 			String code = ((Code)cb.getContents().get(0)).getContents();
 			int indent = code.length();
-			indent -= code.replaceAll("^(\n*)\\s*", "$1").length();
+			indent -= code.replaceAll("^(" + LineSeparator.asRegEx() + ")*\\s*", "$1").length();
 			String string = "\n\\s{"+indent+"}";
 			for(int i = 0; i < cb.getContents().size(); i++) {
 				if (cb.getContents().get(i) instanceof Code) {
 					code = ((Code) cb.getContents().get(i)).getContents();
 					if(i == 0) {
-						code = code.replaceAll("^\n*", "").replaceAll("^\\s{"+indent+"}", "");
+						code = code.replaceAll("^(" + LineSeparator.asRegEx() + ")*", "").replaceAll("^\\s{"+indent+"}", "");
 					}
 					if(i == cb.getContents().size() - 1){
-						code = code.replaceAll("(\\s|\n)*$", "");
+						code = code.replaceAll("(\\s|("+ LineSeparator.asRegEx() + "))*$", "");
 					}
-					code = code.replaceAll(string, "\n");
+					code = code.replaceAll(string, LineSeparator.LINE_SEPARATOR);
 					((Code)cb.getContents().get(i)).setContents(code);
 				}
 			}

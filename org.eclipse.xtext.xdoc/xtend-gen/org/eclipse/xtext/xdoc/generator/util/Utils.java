@@ -18,6 +18,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xdoc.generator.util.LineSeparator;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Code;
@@ -57,7 +58,7 @@ public class Utils {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
       String _string = _head.toString();
-      boolean _contains = _string.contains("\n");
+      boolean _contains = _string.contains(LineSeparator.LINE_SEPARATOR);
       boolean _not = (!_contains);
       _and = (_equals && _not);
     }
@@ -101,7 +102,9 @@ public class Utils {
   }
   
   public String prepareListingsString(final String s) {
-    String _replaceAll = s==null?(String)null:s.replaceAll("^\n", "");
+    String _asRegEx = LineSeparator.asRegEx();
+    String _plus = ("^" + _asRegEx);
+    String _replaceAll = s==null?(String)null:s.replaceAll(_plus, "");
     return _replaceAll;
   }
   
@@ -311,7 +314,8 @@ public class Utils {
   public String whitespace2Entities(final String s) {
     String _escapeHTMLChars = this.escapeHTMLChars(s);
     String _replace = _escapeHTMLChars.replace(" ", "&nbsp;");
-    String _replace_1 = _replace.replace("\n", "<br/>\n");
+    String _plus = ("<br/>" + LineSeparator.LINE_SEPARATOR);
+    String _replace_1 = _replace.replace(LineSeparator.LINE_SEPARATOR, _plus);
     return _replace_1.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
   }
   
@@ -335,7 +339,9 @@ public class Utils {
         EObject _get_1 = _contents_2.get(0);
         final String code0 = ((Code) _get_1).getContents();
         int indent = code0.length();
-        String _replaceAll = code0.replaceAll("^(\n*)\\s*", "$1");
+        String _plus = ("^(" + LineSeparator.LINE_SEPARATOR);
+        String _plus_1 = (_plus + ")*\\s*");
+        String _replaceAll = code0.replaceAll(_plus_1, "$1");
         int _length = _replaceAll.length();
         int _minus = (indent - _length);
         int _indent = indent = _minus;

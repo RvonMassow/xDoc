@@ -38,6 +38,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xdoc.generator.IConfigurableGenerator;
 import org.eclipse.xtext.xdoc.generator.config.Config;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
+import org.eclipse.xtext.xdoc.generator.util.LineSeparator;
 import org.eclipse.xtext.xdoc.generator.util.StringUtils;
 import org.eclipse.xtext.xdoc.generator.util.Utils;
 import org.eclipse.xtext.xdoc.generator.util.XFloat;
@@ -917,7 +918,8 @@ public class LatexGenerator implements IConfigurableGenerator {
         }
       };
     List<CharSequence> _map = ListExtensions.<TableRow, CharSequence>map(_rows_2, _function);
-    String _join = IterableExtensions.join(_map, "\\\\\n");
+    String _plus = ("\\\\" + LineSeparator.LINE_SEPARATOR);
+    String _join = IterableExtensions.join(_map, _plus);
     _builder.append(_join, "");
     _builder.newLineIfNotEmpty();
     _builder.append("\\end{tabular}");
