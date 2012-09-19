@@ -88,19 +88,17 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 	
 	def dispatch generate(Document doc) '''
-		«preamble»
+		«preamble(doc)»
 		«FOR lang: doc.langDefs»
 			«lang.generate»
 		«ENDFOR»
 		«configureTodo»
 		
-		\usepackage{hyperref}
-		
 		«doc.authorAndTitle»
 		
 		\begin{document}
-		\maketitle
-		\tableofcontents
+		«makeTitle(doc)»
+		«tableOfContents(doc)»
 		«FOR chapter: doc.chapters»
 			
 			«chapter.generate»
@@ -117,6 +115,12 @@ class LatexGenerator implements IConfigurableGenerator {
 		\end{document}
 	'''
 
+	def makeTitle (Document doc)
+		'''\maketitle'''
+
+	def tableOfContents (Document doc)
+		'''\tableofcontents'''
+		
 	def genListOfLinks() {
 		if(!links.empty)
 			'''
@@ -127,7 +131,7 @@ class LatexGenerator implements IConfigurableGenerator {
 			'''
 	}
 
-	def preamble() '''
+	def preamble(Document doc) '''
 		\documentclass[a4paper,10pt]{scrreprt}
 		
 		\typearea{12}
@@ -137,7 +141,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\usepackage[latin1]{inputenc}
 		\usepackage{listings}
 		\usepackage[american]{babel}
-		
+		\usepackage{hyperref}
 		\usepackage{todonotes}
 		
 		\makeatletter
@@ -473,7 +477,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\begin{figure}[!ht]
 		\centering
 		\includegraphics{«copy(imgRef)»}
-		«IF imgRef.caption != null && imgRef.name.length > 0»
+		«IF imgRef.caption != null && imgRef.caption.length > 0»
 		\caption{«imgRef.caption»}
 		«ENDIF»
 		«IF imgRef.name != null && imgRef.name.length >0»

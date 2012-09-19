@@ -122,7 +122,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   protected CharSequence _generate(final Document doc) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _preamble = this.preamble();
+    CharSequence _preamble = this.preamble(doc);
     _builder.append(_preamble, "");
     _builder.newLineIfNotEmpty();
     {
@@ -137,19 +137,18 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.append(_configureTodo, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("\\usepackage{hyperref}");
-    _builder.newLine();
-    _builder.newLine();
     CharSequence _authorAndTitle = this.authorAndTitle(doc);
     _builder.append(_authorAndTitle, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\\begin{document}");
     _builder.newLine();
-    _builder.append("\\maketitle");
-    _builder.newLine();
-    _builder.append("\\tableofcontents");
-    _builder.newLine();
+    CharSequence _makeTitle = this.makeTitle(doc);
+    _builder.append(_makeTitle, "");
+    _builder.newLineIfNotEmpty();
+    CharSequence _tableOfContents = this.tableOfContents(doc);
+    _builder.append(_tableOfContents, "");
+    _builder.newLineIfNotEmpty();
     {
       EList<Chapter> _chapters = doc.getChapters();
       for(final Chapter chapter : _chapters) {
@@ -185,6 +184,18 @@ public class LatexGenerator implements IConfigurableGenerator {
     return _builder;
   }
   
+  public CharSequence makeTitle(final Document doc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\\maketitle");
+    return _builder;
+  }
+  
+  public CharSequence tableOfContents(final Document doc) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\\tableofcontents");
+    return _builder;
+  }
+  
   public CharSequence genListOfLinks() {
     CharSequence _xifexpression = null;
     boolean _isEmpty = this.links.isEmpty();
@@ -206,7 +217,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     return _xifexpression;
   }
   
-  public CharSequence preamble() {
+  public CharSequence preamble(final Document doc) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\\documentclass[a4paper,10pt]{scrreprt}");
     _builder.newLine();
@@ -224,6 +235,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     _builder.append("\\usepackage[american]{babel}");
     _builder.newLine();
+    _builder.append("\\usepackage{hyperref}");
     _builder.newLine();
     _builder.append("\\usepackage{todonotes}");
     _builder.newLine();
@@ -1142,35 +1154,35 @@ public class LatexGenerator implements IConfigurableGenerator {
       if (!_notEquals) {
         _and = false;
       } else {
-        String _name = imgRef.getName();
-        int _length = _name.length();
+        String _caption_1 = imgRef.getCaption();
+        int _length = _caption_1.length();
         boolean _greaterThan = (_length > 0);
         _and = (_notEquals && _greaterThan);
       }
       if (_and) {
         _builder.append("\\caption{");
-        String _caption_1 = imgRef.getCaption();
-        _builder.append(_caption_1, "");
+        String _caption_2 = imgRef.getCaption();
+        _builder.append(_caption_2, "");
         _builder.append("}");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       boolean _and_1 = false;
-      String _name_1 = imgRef.getName();
-      boolean _notEquals_1 = (!Objects.equal(_name_1, null));
+      String _name = imgRef.getName();
+      boolean _notEquals_1 = (!Objects.equal(_name, null));
       if (!_notEquals_1) {
         _and_1 = false;
       } else {
-        String _name_2 = imgRef.getName();
-        int _length_1 = _name_2.length();
+        String _name_1 = imgRef.getName();
+        int _length_1 = _name_1.length();
         boolean _greaterThan_1 = (_length_1 > 0);
         _and_1 = (_notEquals_1 && _greaterThan_1);
       }
       if (_and_1) {
         _builder.append("\\label{");
-        String _name_3 = imgRef.getName();
-        _builder.append(_name_3, "");
+        String _name_2 = imgRef.getName();
+        _builder.append(_name_2, "");
         _builder.append("}");
         _builder.newLineIfNotEmpty();
       }
