@@ -113,6 +113,11 @@ public abstract class AbstractXdocUiModule extends DefaultUiModule {
 		return org.eclipse.xtext.common.types.ui.refactoring.JvmRefactoringResourceSetProvider.class;
 	}
 
+	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
+	public Class<? extends org.eclipse.xtext.common.types.ui.query.IJavaSearchParticipation> bindIJavaSearchParticipation() {
+		return org.eclipse.xtext.common.types.ui.query.IJavaSearchParticipation.Yes.class;
+	}
+
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
 		return org.eclipse.xtext.xdoc.ui.labeling.XdocLabelProvider.class;

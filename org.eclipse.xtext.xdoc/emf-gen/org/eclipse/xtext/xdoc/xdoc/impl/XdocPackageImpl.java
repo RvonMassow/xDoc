@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
@@ -983,7 +980,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImageRef_Name()
+	public EAttribute getImageRef_Path()
 	{
 		return (EAttribute)imageRefEClass.getEStructuralFeatures().get(0);
 	}
@@ -993,7 +990,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImageRef_Path()
+	public EAttribute getImageRef_Clazz()
 	{
 		return (EAttribute)imageRefEClass.getEStructuralFeatures().get(1);
 	}
@@ -1003,7 +1000,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImageRef_Clazz()
+	public EAttribute getImageRef_Style()
 	{
 		return (EAttribute)imageRefEClass.getEStructuralFeatures().get(2);
 	}
@@ -1013,7 +1010,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImageRef_Style()
+	public EAttribute getImageRef_Caption()
 	{
 		return (EAttribute)imageRefEClass.getEStructuralFeatures().get(3);
 	}
@@ -1023,19 +1020,9 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImageRef_Caption()
-	{
-		return (EAttribute)imageRefEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getImageRef_Image()
 	{
-		return (EReference)imageRefEClass.getEStructuralFeatures().get(5);
+		return (EReference)imageRefEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -1363,7 +1350,6 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		createEAttribute(linkEClass, LINK__TEXT);
 
 		imageRefEClass = createEClass(IMAGE_REF);
-		createEAttribute(imageRefEClass, IMAGE_REF__NAME);
 		createEAttribute(imageRefEClass, IMAGE_REF__PATH);
 		createEAttribute(imageRefEClass, IMAGE_REF__CLAZZ);
 		createEAttribute(imageRefEClass, IMAGE_REF__STYLE);
@@ -1457,6 +1443,7 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		codeRefEClass.getESuperTypes().add(this.getMarkUp());
 		linkEClass.getESuperTypes().add(this.getMarkUp());
 		imageRefEClass.getESuperTypes().add(this.getMarkUp());
+		imageRefEClass.getESuperTypes().add(this.getIdentifiable());
 		codeBlockEClass.getESuperTypes().add(this.getMarkUp());
 		todoEClass.getESuperTypes().add(this.getMarkUp());
 		todoEClass.getESuperTypes().add(this.getMarkupInCode());
@@ -1549,7 +1536,6 @@ public class XdocPackageImpl extends EPackageImpl implements XdocPackage
 		initEAttribute(getLink_Text(), ecorePackage.getEString(), "text", null, 0, 1, Link.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(imageRefEClass, ImageRef.class, "ImageRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getImageRef_Name(), ecorePackage.getEString(), "name", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageRef_Path(), ecorePackage.getEString(), "path", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageRef_Clazz(), ecorePackage.getEString(), "clazz", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getImageRef_Style(), ecorePackage.getEString(), "style", null, 0, 1, ImageRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

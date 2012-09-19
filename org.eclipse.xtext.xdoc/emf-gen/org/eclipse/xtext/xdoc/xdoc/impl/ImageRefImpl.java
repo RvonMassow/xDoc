@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
@@ -14,6 +11,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.xtext.xdoc.images.ImageProxy;
 
+import org.eclipse.xtext.xdoc.xdoc.Identifiable;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 
@@ -441,6 +439,44 @@ public class ImageRefImpl extends MarkUpImpl implements ImageRef
 				return image != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == Identifiable.class)
+		{
+			switch (derivedFeatureID)
+			{
+				case XdocPackage.IMAGE_REF__NAME: return XdocPackage.IDENTIFIABLE__NAME;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+	{
+		if (baseClass == Identifiable.class)
+		{
+			switch (baseFeatureID)
+			{
+				case XdocPackage.IDENTIFIABLE__NAME: return XdocPackage.IMAGE_REF__NAME;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

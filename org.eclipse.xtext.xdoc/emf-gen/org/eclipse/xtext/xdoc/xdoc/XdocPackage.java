@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.xtext.xdoc.xdoc;
 
@@ -2168,17 +2165,6 @@ public interface XdocPackage extends EPackage
 	EClass getImageRef();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.ImageRef#getName <em>Name</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.eclipse.xtext.xdoc.xdoc.ImageRef#getName()
-	 * @see #getImageRef()
-	 * @generated
-	 */
-	EAttribute getImageRef_Name();
-
-	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.xtext.xdoc.xdoc.ImageRef#getPath <em>Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3003,14 +2989,6 @@ public interface XdocPackage extends EPackage
 		 * @generated
 		 */
 		EClass IMAGE_REF = eINSTANCE.getImageRef();
-
-		/**
-		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute IMAGE_REF__NAME = eINSTANCE.getImageRef_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Path</b></em>' attribute feature.

@@ -7,6 +7,8 @@ package org.eclipse.xtext.xdoc.services;
 import com.google.inject.Singleton;
 import com.google.inject.Inject;
 
+import java.util.List;
+
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.service.GrammarProvider;
 import org.eclipse.xtext.service.AbstractElementFinder.*;
@@ -33,6 +35,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cMULTI_NLTerminalRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
 		
 		//XdocFile:
+		//
 		//	{XdocFile} WS? MULTI_NL? (mainSection=(Document | Part | Chapter | Section | Section2) MULTI_NL?)?;
 		public ParserRule getRule() { return rule; }
 
@@ -122,13 +125,18 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPartsPartParserRuleCall_7_1_1_1_1_0 = (RuleCall)cPartsAssignment_7_1_1_1_1.eContents().get(0);
 		
 		//Document:
+		//
 		//	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
+		//
 		//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL (chapters+=Chapter
+		//
 		//	(MULTI_NL chapters+=Chapter)* | parts+=Part (MULTI_NL parts+=Part)*)?);
 		public ParserRule getRule() { return rule; }
 
 		//"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
+		//
 		//authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL (chapters+=Chapter
+		//
 		//(MULTI_NL chapters+=Chapter)* | parts+=Part (MULTI_NL parts+=Part)*)?)
 		public Group getGroup() { return cGroup; }
 
@@ -264,6 +272,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cGlossaryEntryGlossaryEntryParserRuleCall_1_0 = (RuleCall)cGlossaryEntryAssignment_1.eContents().get(0);
 		
 		//Glossary:
+		//
 		//	(MULTI_NL glossaryEntry+=GlossaryEntry)+;
 		public ParserRule getRule() { return rule; }
 
@@ -301,6 +310,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cChaptersChapterParserRuleCall_1_3_1_0 = (RuleCall)cChaptersAssignment_1_3_1.eContents().get(0);
 		
 		//Part:
+		//
 		//	PartRef | ("part:" name=ID "[" | "part[") title=TextOrMarkup "]" (MULTI_NL chapters+=Chapter)*;
 		public ParserRule getRule() { return rule; }
 
@@ -366,6 +376,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//PartRef:
+		//
 		//	"part-ref[" part=[Part] "]";
 		public ParserRule getRule() { return rule; }
 
@@ -412,11 +423,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		
 		//GlossaryEntry:
+		//
 		//	"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+		//
 		//	(MULTI_NL description+=TextOrMarkup)* "]";
 		public ParserRule getRule() { return rule; }
 
 		//"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+		//
 		//(MULTI_NL description+=TextOrMarkup)* "]"
 		public Group getGroup() { return cGroup; }
 
@@ -503,11 +517,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubSectionsSectionParserRuleCall_1_4_1_0 = (RuleCall)cSubSectionsAssignment_1_4_1.eContents().get(0);
 		
 		//Chapter:
-		//	ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//	subSections+=Section)*;
+		//
+		//	ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+		//
+		//	(MULTI_NL subSections+=Section)*;
 		public ParserRule getRule() { return rule; }
 
 		//ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//
 		//subSections+=Section)*
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -515,6 +532,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getChapterRefParserRuleCall_0() { return cChapterRefParserRuleCall_0; }
 
 		//("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//
 		//subSections+=Section)*
 		public Group getGroup_1() { return cGroup_1; }
 
@@ -583,6 +601,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//ChapterRef:
+		//
 		//	"chapter-ref[" chapter=[Chapter] "]";
 		public ParserRule getRule() { return rule; }
 
@@ -630,11 +649,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubSectionsSection2ParserRuleCall_1_4_1_0 = (RuleCall)cSubSectionsAssignment_1_4_1.eContents().get(0);
 		
 		//Section:
-		//	SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-		//	subSections+=Section2)*;
+		//
+		//	SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+		//
+		//	(MULTI_NL subSections+=Section2)*;
 		public ParserRule getRule() { return rule; }
 
 		//SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//
 		//subSections+=Section2)*
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -642,6 +664,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getSectionRefParserRuleCall_0() { return cSectionRefParserRuleCall_0; }
 
 		//("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//
 		//subSections+=Section2)*
 		public Group getGroup_1() { return cGroup_1; }
 
@@ -710,6 +733,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//SectionRef:
+		//
 		//	"section-ref[" section=[Section] "]";
 		public ParserRule getRule() { return rule; }
 
@@ -757,11 +781,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubSectionsSection3ParserRuleCall_1_4_1_0 = (RuleCall)cSubSectionsAssignment_1_4_1.eContents().get(0);
 		
 		//Section2:
+		//
 		//	Section2Ref | ("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+		//
 		//	(MULTI_NL subSections+=Section3)*;
 		public ParserRule getRule() { return rule; }
 
 		//Section2Ref | ("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+		//
 		//(MULTI_NL subSections+=Section3)*
 		public Alternatives getAlternatives() { return cAlternatives; }
 
@@ -769,6 +796,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getSection2RefParserRuleCall_0() { return cSection2RefParserRuleCall_0; }
 
 		//("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//
 		//subSections+=Section3)*
 		public Group getGroup_1() { return cGroup_1; }
 
@@ -837,6 +865,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Section2Ref:
+		//
 		//	"section2-ref[" section2=[Section2] "]";
 		public ParserRule getRule() { return rule; }
 
@@ -882,11 +911,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSubSectionsSection4ParserRuleCall_4_1_0 = (RuleCall)cSubSectionsAssignment_4_1.eContents().get(0);
 		
 		//Section3:
+		//
 		//	("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//
 		//	subSections+=Section4)*;
 		public ParserRule getRule() { return rule; }
 
 		//("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+		//
 		//subSections+=Section4)*
 		public Group getGroup() { return cGroup; }
 
@@ -964,6 +996,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContentsTextOrMarkupParserRuleCall_3_1_0 = (RuleCall)cContentsAssignment_3_1.eContents().get(0);
 		
 		//Section4:
+		//
 		//	("section4:" name=ID "[" | "section4[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*;
 		public ParserRule getRule() { return rule; }
 
@@ -1031,6 +1064,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContentsTextPartParserRuleCall_1_1_0 = (RuleCall)cContentsAssignment_1_1.eContents().get(0);
 		
 		//TextOrMarkup:
+		//
 		//	contents+=TextPart (contents+=MarkUp contents+=TextPart?)* | (contents+=MarkUp contents+=TextPart?)+;
 		public ParserRule getRule() { return rule; }
 
@@ -1083,6 +1117,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTextTextParserRuleCall_0 = (RuleCall)cTextAssignment.eContents().get(0);
 		
 		//TextPart:
+		//
 		//	text=Text;
 		public ParserRule getRule() { return rule; }
 
@@ -1108,6 +1143,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusPercentSignKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
 		
 		//Text:
+		//
 		//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 		public ParserRule getRule() { return rule; }
 
@@ -1168,6 +1204,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusPercentSignKeyword_1_1_6 = (Keyword)cAlternatives_1_1.eContents().get(6);
 		
 		//UnpunctText:
+		//
 		//	(ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%"))*;
 		public ParserRule getRule() { return rule; }
 
@@ -1245,6 +1282,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTodoParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
 		
 		//MarkUp:
+		//
 		//	Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef | Table | Todo;
 		public ParserRule getRule() { return rule; }
 
@@ -1298,6 +1336,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//Table:
+		//
 		//	{Table} "table[" (ANY_WS* rows+=TableRow)* ANY_WS* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1342,6 +1381,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//TableRow:
+		//
 		//	{TableRow} "tr[" (ANY_WS* data+=TableData)* ANY_WS* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1389,6 +1429,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//TableData:
+		//
 		//	{TableData} "td[" (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1442,6 +1483,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Emphasize:
+		//
 		//	{Emphasize} "e[" (MULTI_NL? contents+=TextOrMarkup MULTI_NL?)? "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1482,6 +1524,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//Anchor:
+		//
 		//	"a[" name=ID "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1518,6 +1561,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		
 		//Ref:
+		//
 		//	"ref:" ref=[Identifiable] ("[" MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? "]")?;
 		public ParserRule getRule() { return rule; }
 
@@ -1574,6 +1618,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//OrderedList:
+		//
 		//	{OrderedList} "ol[" (ANY_WS* items+=Item)* ANY_WS* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1618,6 +1663,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//UnorderedList:
+		//
 		//	{UnorderedList} "ul[" (ANY_WS* items+=Item)* ANY_WS* "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1665,6 +1711,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Item:
+		//
 		//	{Item} "item[" (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1721,6 +1768,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4_2 = (Keyword)cGroup_4.eContents().get(2);
 		
 		//CodeRef:
+		//
 		//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]" ("[" altText=TextOrMarkup "]")?;
 		public ParserRule getRule() { return rule; }
 
@@ -1776,6 +1824,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Link:
+		//
 		//	{Link} "link[" url=Text? "]" ANY_WS* "[" text=Text? "]";
 		public ParserRule getRule() { return rule; }
 
@@ -1845,12 +1894,15 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		
 		//// Don't think this was the discussed syntax
-		//ImageRef:
+		// ImageRef:
+		//
 		//	("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
+		//
 		//	caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]";
 		public ParserRule getRule() { return rule; }
 
 		//("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
+		//
 		//caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]"
 		public Group getGroup() { return cGroup; }
 
@@ -1967,11 +2019,14 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//CodeBlock:
+		//
 		//	{CodeBlock} "code[" (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")? (contents+=Code (contents+=MarkupInCode
+		//
 		//	contents+=Code?)* | (contents+=MarkupInCode contents+=Code?)+)? "]";
 		public ParserRule getRule() { return rule; }
 
 		//{CodeBlock} "code[" (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")? (contents+=Code (contents+=MarkupInCode
+		//
 		//contents+=Code?)* | (contents+=MarkupInCode contents+=Code?)+)? "]"
 		public Group getGroup() { return cGroup; }
 
@@ -2064,6 +2119,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
 		//Todo:
+		//
 		//	{Todo} "todo[" text=Text? "]";
 		public ParserRule getRule() { return rule; }
 
@@ -2092,6 +2148,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cContentsCodeTextParserRuleCall_0 = (RuleCall)cContentsAssignment.eContents().get(0);
 		
 		//Code:
+		//
 		//	contents=CodeText;
 		public ParserRule getRule() { return rule; }
 
@@ -2111,6 +2168,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cTodoParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//MarkupInCode:
+		//
 		//	Emphasize | Anchor | Ref | Todo;
 		public ParserRule getRule() { return rule; }
 
@@ -2169,17 +2227,23 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightSquareBracketKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		
 		//LangDef:
+		//
 		//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+		//
 		//	ANY_WS*)*)? "]" | {LangDef} "codelanguage-def[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+		//
 		//	ANY_WS*)*)? "]";
 		public ParserRule getRule() { return rule; }
 
 		//"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+		//
 		//ANY_WS*)*)? "]" | {LangDef} "codelanguage-def[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+		//
 		//ANY_WS*)*)? "]"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+		//
 		//ANY_WS*)*)? "]"
 		public Group getGroup_0() { return cGroup_0; }
 
@@ -2299,6 +2363,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusPercentSignKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
 		
 		//CodeText:
+		//
 		//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 		public ParserRule getRule() { return rule; }
 
@@ -2347,6 +2412,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cWSTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		
 		//ANY_WS:
+		//
 		//	MULTI_NL | SINGLE_NL | WS;
 		public ParserRule getRule() { return rule; }
 
@@ -2368,6 +2434,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cUnpunctTextParserRuleCall = (RuleCall)rule.eContents().get(1);
 		
 		//KeyWord:
+		//
 		//	UnpunctText;
 		public ParserRule getRule() { return rule; }
 
@@ -2422,20 +2489,38 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	private TerminalRule tWS;
 	private TerminalRule tANY_OTHER;
 	
-	private final GrammarProvider grammarProvider;
+	private final Grammar grammar;
 
 	@Inject
 	public XdocGrammarAccess(GrammarProvider grammarProvider) {
-		this.grammarProvider = grammarProvider;
+		this.grammar = internalFindGrammar(grammarProvider);
 	}
 	
-	public Grammar getGrammar() {	
-		return grammarProvider.getGrammar(this);
+	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
+		Grammar grammar = grammarProvider.getGrammar(this);
+		while (grammar != null) {
+			if ("org.eclipse.xtext.xdoc.Xdoc".equals(grammar.getName())) {
+				return grammar;
+			}
+			List<Grammar> grammars = grammar.getUsedGrammars();
+			if (!grammars.isEmpty()) {
+				grammar = grammars.iterator().next();
+			} else {
+				return null;
+			}
+		}
+		return grammar;
+	}
+	
+	
+	public Grammar getGrammar() {
+		return grammar;
 	}
 	
 
 	
 	//XdocFile:
+	//
 	//	{XdocFile} WS? MULTI_NL? (mainSection=(Document | Part | Chapter | Section | Section2) MULTI_NL?)?;
 	public XdocFileElements getXdocFileAccess() {
 		return (pXdocFile != null) ? pXdocFile : (pXdocFile = new XdocFileElements());
@@ -2446,8 +2531,11 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Document:
+	//
 	//	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
+	//
 	//	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL (chapters+=Chapter
+	//
 	//	(MULTI_NL chapters+=Chapter)* | parts+=Part (MULTI_NL parts+=Part)*)?);
 	public DocumentElements getDocumentAccess() {
 		return (pDocument != null) ? pDocument : (pDocument = new DocumentElements());
@@ -2458,6 +2546,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Glossary:
+	//
 	//	(MULTI_NL glossaryEntry+=GlossaryEntry)+;
 	public GlossaryElements getGlossaryAccess() {
 		return (pGlossary != null) ? pGlossary : (pGlossary = new GlossaryElements());
@@ -2468,6 +2557,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Part:
+	//
 	//	PartRef | ("part:" name=ID "[" | "part[") title=TextOrMarkup "]" (MULTI_NL chapters+=Chapter)*;
 	public PartElements getPartAccess() {
 		return (pPart != null) ? pPart : (pPart = new PartElements());
@@ -2478,6 +2568,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PartRef:
+	//
 	//	"part-ref[" part=[Part] "]";
 	public PartRefElements getPartRefAccess() {
 		return (pPartRef != null) ? pPartRef : (pPartRef = new PartRefElements());
@@ -2488,7 +2579,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//GlossaryEntry:
+	//
 	//	"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+	//
 	//	(MULTI_NL description+=TextOrMarkup)* "]";
 	public GlossaryEntryElements getGlossaryEntryAccess() {
 		return (pGlossaryEntry != null) ? pGlossaryEntry : (pGlossaryEntry = new GlossaryEntryElements());
@@ -2499,8 +2592,10 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Chapter:
-	//	ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-	//	subSections+=Section)*;
+	//
+	//	ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+	//
+	//	(MULTI_NL subSections+=Section)*;
 	public ChapterElements getChapterAccess() {
 		return (pChapter != null) ? pChapter : (pChapter = new ChapterElements());
 	}
@@ -2510,6 +2605,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ChapterRef:
+	//
 	//	"chapter-ref[" chapter=[Chapter] "]";
 	public ChapterRefElements getChapterRefAccess() {
 		return (pChapterRef != null) ? pChapterRef : (pChapterRef = new ChapterRefElements());
@@ -2520,8 +2616,10 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Section:
-	//	SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
-	//	subSections+=Section2)*;
+	//
+	//	SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+	//
+	//	(MULTI_NL subSections+=Section2)*;
 	public SectionElements getSectionAccess() {
 		return (pSection != null) ? pSection : (pSection = new SectionElements());
 	}
@@ -2531,6 +2629,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//SectionRef:
+	//
 	//	"section-ref[" section=[Section] "]";
 	public SectionRefElements getSectionRefAccess() {
 		return (pSectionRef != null) ? pSectionRef : (pSectionRef = new SectionRefElements());
@@ -2541,7 +2640,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Section2:
+	//
 	//	Section2Ref | ("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+	//
 	//	(MULTI_NL subSections+=Section3)*;
 	public Section2Elements getSection2Access() {
 		return (pSection2 != null) ? pSection2 : (pSection2 = new Section2Elements());
@@ -2552,6 +2653,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Section2Ref:
+	//
 	//	"section2-ref[" section2=[Section2] "]";
 	public Section2RefElements getSection2RefAccess() {
 		return (pSection2Ref != null) ? pSection2Ref : (pSection2Ref = new Section2RefElements());
@@ -2562,7 +2664,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Section3:
+	//
 	//	("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+	//
 	//	subSections+=Section4)*;
 	public Section3Elements getSection3Access() {
 		return (pSection3 != null) ? pSection3 : (pSection3 = new Section3Elements());
@@ -2573,6 +2677,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Section4:
+	//
 	//	("section4:" name=ID "[" | "section4[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*;
 	public Section4Elements getSection4Access() {
 		return (pSection4 != null) ? pSection4 : (pSection4 = new Section4Elements());
@@ -2583,6 +2688,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TextOrMarkup:
+	//
 	//	contents+=TextPart (contents+=MarkUp contents+=TextPart?)* | (contents+=MarkUp contents+=TextPart?)+;
 	public TextOrMarkupElements getTextOrMarkupAccess() {
 		return (pTextOrMarkup != null) ? pTextOrMarkup : (pTextOrMarkup = new TextOrMarkupElements());
@@ -2593,6 +2699,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TextPart:
+	//
 	//	text=Text;
 	public TextPartElements getTextPartAccess() {
 		return (pTextPart != null) ? pTextPart : (pTextPart = new TextPartElements());
@@ -2603,6 +2710,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Text:
+	//
 	//	(ID | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 	public TextElements getTextAccess() {
 		return (pText != null) ? pText : (pText = new TextElements());
@@ -2613,6 +2721,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnpunctText:
+	//
 	//	(ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%")+ (WS (ID | ANY_OTHER | "\\[" | "\\]" | "-" | "\\:" | "\\%"))*;
 	public UnpunctTextElements getUnpunctTextAccess() {
 		return (pUnpunctText != null) ? pUnpunctText : (pUnpunctText = new UnpunctTextElements());
@@ -2623,6 +2732,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MarkUp:
+	//
 	//	Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef | Table | Todo;
 	public MarkUpElements getMarkUpAccess() {
 		return (pMarkUp != null) ? pMarkUp : (pMarkUp = new MarkUpElements());
@@ -2633,6 +2743,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Table:
+	//
 	//	{Table} "table[" (ANY_WS* rows+=TableRow)* ANY_WS* "]";
 	public TableElements getTableAccess() {
 		return (pTable != null) ? pTable : (pTable = new TableElements());
@@ -2643,6 +2754,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TableRow:
+	//
 	//	{TableRow} "tr[" (ANY_WS* data+=TableData)* ANY_WS* "]";
 	public TableRowElements getTableRowAccess() {
 		return (pTableRow != null) ? pTableRow : (pTableRow = new TableRowElements());
@@ -2653,6 +2765,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//TableData:
+	//
 	//	{TableData} "td[" (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? "]";
 	public TableDataElements getTableDataAccess() {
 		return (pTableData != null) ? pTableData : (pTableData = new TableDataElements());
@@ -2663,6 +2776,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Emphasize:
+	//
 	//	{Emphasize} "e[" (MULTI_NL? contents+=TextOrMarkup MULTI_NL?)? "]";
 	public EmphasizeElements getEmphasizeAccess() {
 		return (pEmphasize != null) ? pEmphasize : (pEmphasize = new EmphasizeElements());
@@ -2673,6 +2787,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Anchor:
+	//
 	//	"a[" name=ID "]";
 	public AnchorElements getAnchorAccess() {
 		return (pAnchor != null) ? pAnchor : (pAnchor = new AnchorElements());
@@ -2683,6 +2798,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Ref:
+	//
 	//	"ref:" ref=[Identifiable] ("[" MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? "]")?;
 	public RefElements getRefAccess() {
 		return (pRef != null) ? pRef : (pRef = new RefElements());
@@ -2693,6 +2809,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//OrderedList:
+	//
 	//	{OrderedList} "ol[" (ANY_WS* items+=Item)* ANY_WS* "]";
 	public OrderedListElements getOrderedListAccess() {
 		return (pOrderedList != null) ? pOrderedList : (pOrderedList = new OrderedListElements());
@@ -2703,6 +2820,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//UnorderedList:
+	//
 	//	{UnorderedList} "ul[" (ANY_WS* items+=Item)* ANY_WS* "]";
 	public UnorderedListElements getUnorderedListAccess() {
 		return (pUnorderedList != null) ? pUnorderedList : (pUnorderedList = new UnorderedListElements());
@@ -2713,6 +2831,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Item:
+	//
 	//	{Item} "item[" (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? "]";
 	public ItemElements getItemAccess() {
 		return (pItem != null) ? pItem : (pItem = new ItemElements());
@@ -2723,6 +2842,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeRef:
+	//
 	//	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]" ("[" altText=TextOrMarkup "]")?;
 	public CodeRefElements getCodeRefAccess() {
 		return (pCodeRef != null) ? pCodeRef : (pCodeRef = new CodeRefElements());
@@ -2733,6 +2853,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Link:
+	//
 	//	{Link} "link[" url=Text? "]" ANY_WS* "[" text=Text? "]";
 	public LinkElements getLinkAccess() {
 		return (pLink != null) ? pLink : (pLink = new LinkElements());
@@ -2743,8 +2864,10 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//// Don't think this was the discussed syntax
-	//ImageRef:
+	// ImageRef:
+	//
 	//	("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
+	//
 	//	caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]";
 	public ImageRefElements getImageRefAccess() {
 		return (pImageRef != null) ? pImageRef : (pImageRef = new ImageRefElements());
@@ -2755,7 +2878,9 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeBlock:
+	//
 	//	{CodeBlock} "code[" (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")? (contents+=Code (contents+=MarkupInCode
+	//
 	//	contents+=Code?)* | (contents+=MarkupInCode contents+=Code?)+)? "]";
 	public CodeBlockElements getCodeBlockAccess() {
 		return (pCodeBlock != null) ? pCodeBlock : (pCodeBlock = new CodeBlockElements());
@@ -2766,6 +2891,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Todo:
+	//
 	//	{Todo} "todo[" text=Text? "]";
 	public TodoElements getTodoAccess() {
 		return (pTodo != null) ? pTodo : (pTodo = new TodoElements());
@@ -2776,6 +2902,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Code:
+	//
 	//	contents=CodeText;
 	public CodeElements getCodeAccess() {
 		return (pCode != null) ? pCode : (pCode = new CodeElements());
@@ -2786,6 +2913,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//MarkupInCode:
+	//
 	//	Emphasize | Anchor | Ref | Todo;
 	public MarkupInCodeElements getMarkupInCodeAccess() {
 		return (pMarkupInCode != null) ? pMarkupInCode : (pMarkupInCode = new MarkupInCodeElements());
@@ -2796,8 +2924,11 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//LangDef:
+	//
 	//	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+	//
 	//	ANY_WS*)*)? "]" | {LangDef} "codelanguage-def[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+	//
 	//	ANY_WS*)*)? "]";
 	public LangDefElements getLangDefAccess() {
 		return (pLangDef != null) ? pLangDef : (pLangDef = new LangDefElements());
@@ -2808,6 +2939,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//CodeText:
+	//
 	//	(ID | MULTI_NL | WS | SINGLE_NL | ANY_OTHER | "\\[" | "\\]" | "," | "-" | "\\:" | "\\%")+;
 	public CodeTextElements getCodeTextAccess() {
 		return (pCodeText != null) ? pCodeText : (pCodeText = new CodeTextElements());
@@ -2818,6 +2950,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ANY_WS:
+	//
 	//	MULTI_NL | SINGLE_NL | WS;
 	public ANY_WSElements getANY_WSAccess() {
 		return (pANY_WS != null) ? pANY_WS : (pANY_WS = new ANY_WSElements());
@@ -2828,6 +2961,7 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//KeyWord:
+	//
 	//	UnpunctText;
 	public KeyWordElements getKeyWordAccess() {
 		return (pKeyWord != null) ? pKeyWord : (pKeyWord = new KeyWordElements());
@@ -2838,37 +2972,43 @@ public class XdocGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	////(ID | "-")+; 
-	//terminal ID:
+	// terminal ID:
+	//
 	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
 	} 
 
 	//terminal SL_COMMENT:
+	//
 	//	"%%" !("\n" | "\r")* ("\r"? "\n");
 	public TerminalRule getSL_COMMENTRule() {
 		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
 	} 
 
 	//terminal MULTI_NL:
+	//
 	//	"\r"? "\n" / *(' ' | '\t')** / ("\r"? "\n")+;
 	public TerminalRule getMULTI_NLRule() {
 		return (tMULTI_NL != null) ? tMULTI_NL : (tMULTI_NL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "MULTI_NL"));
 	} 
 
 	//terminal SINGLE_NL:
+	//
 	//	"\r"? "\n";
 	public TerminalRule getSINGLE_NLRule() {
 		return (tSINGLE_NL != null) ? tSINGLE_NL : (tSINGLE_NL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SINGLE_NL"));
 	} 
 
 	//terminal WS:
+	//
 	//	" " | "\t";
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
 	} 
 
 	//terminal ANY_OTHER:
+	//
 	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
