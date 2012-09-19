@@ -476,7 +476,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 		\begin{figure}[!ht]
 		\centering
-		\includegraphics{«copy(imgRef)»}
+		\includegraphics«IF imgRef.style != null && imgRef.style.length > 0»[«imgRef.style»]«ENDIF»{«copy(imgRef)»}
 		«IF imgRef.caption != null && imgRef.caption.length > 0»
 		\caption{«imgRef.caption»}
 		«ENDIF»
@@ -485,7 +485,6 @@ class LatexGenerator implements IConfigurableGenerator {
 		«ENDIF»
 		\end{figure}
 		'''
-		
 	}
 
 	def String copy(ImageRef imgRef) {

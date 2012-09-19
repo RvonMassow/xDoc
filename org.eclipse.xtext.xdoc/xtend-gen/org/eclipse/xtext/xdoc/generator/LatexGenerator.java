@@ -1142,24 +1142,44 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     _builder.append("\\centering");
     _builder.newLine();
-    _builder.append("\\includegraphics{");
+    _builder.append("\\includegraphics");
+    {
+      boolean _and = false;
+      String _style = imgRef.getStyle();
+      boolean _notEquals = (!Objects.equal(_style, null));
+      if (!_notEquals) {
+        _and = false;
+      } else {
+        String _style_1 = imgRef.getStyle();
+        int _length = _style_1.length();
+        boolean _greaterThan = (_length > 0);
+        _and = (_notEquals && _greaterThan);
+      }
+      if (_and) {
+        _builder.append("[");
+        String _style_2 = imgRef.getStyle();
+        _builder.append(_style_2, "");
+        _builder.append("]");
+      }
+    }
+    _builder.append("{");
     String _copy = this.copy(imgRef);
     _builder.append(_copy, "");
     _builder.append("}");
     _builder.newLineIfNotEmpty();
     {
-      boolean _and = false;
+      boolean _and_1 = false;
       String _caption = imgRef.getCaption();
-      boolean _notEquals = (!Objects.equal(_caption, null));
-      if (!_notEquals) {
-        _and = false;
+      boolean _notEquals_1 = (!Objects.equal(_caption, null));
+      if (!_notEquals_1) {
+        _and_1 = false;
       } else {
         String _caption_1 = imgRef.getCaption();
-        int _length = _caption_1.length();
-        boolean _greaterThan = (_length > 0);
-        _and = (_notEquals && _greaterThan);
+        int _length_1 = _caption_1.length();
+        boolean _greaterThan_1 = (_length_1 > 0);
+        _and_1 = (_notEquals_1 && _greaterThan_1);
       }
-      if (_and) {
+      if (_and_1) {
         _builder.append("\\caption{");
         String _caption_2 = imgRef.getCaption();
         _builder.append(_caption_2, "");
@@ -1168,18 +1188,18 @@ public class LatexGenerator implements IConfigurableGenerator {
       }
     }
     {
-      boolean _and_1 = false;
+      boolean _and_2 = false;
       String _name = imgRef.getName();
-      boolean _notEquals_1 = (!Objects.equal(_name, null));
-      if (!_notEquals_1) {
-        _and_1 = false;
+      boolean _notEquals_2 = (!Objects.equal(_name, null));
+      if (!_notEquals_2) {
+        _and_2 = false;
       } else {
         String _name_1 = imgRef.getName();
-        int _length_1 = _name_1.length();
-        boolean _greaterThan_1 = (_length_1 > 0);
-        _and_1 = (_notEquals_1 && _greaterThan_1);
+        int _length_2 = _name_1.length();
+        boolean _greaterThan_2 = (_length_2 > 0);
+        _and_2 = (_notEquals_2 && _greaterThan_2);
       }
-      if (_and_1) {
+      if (_and_2) {
         _builder.append("\\label{");
         String _name_2 = imgRef.getName();
         _builder.append(_name_2, "");
