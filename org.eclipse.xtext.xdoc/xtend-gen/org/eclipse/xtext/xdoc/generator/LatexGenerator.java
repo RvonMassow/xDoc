@@ -1154,6 +1154,26 @@ public class LatexGenerator implements IConfigurableGenerator {
         _builder.newLineIfNotEmpty();
       }
     }
+    {
+      boolean _and_1 = false;
+      String _name = imgRef.getName();
+      boolean _notEquals_1 = (!Objects.equal(_name, null));
+      if (!_notEquals_1) {
+        _and_1 = false;
+      } else {
+        String _name_1 = imgRef.getName();
+        int _length = _name_1.length();
+        boolean _greaterThan = (_length > 0);
+        _and_1 = (_notEquals_1 && _greaterThan);
+      }
+      if (_and_1) {
+        _builder.append("\\label{");
+        String _name_2 = imgRef.getName();
+        _builder.append(_name_2, "");
+        _builder.append("}");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     _builder.append("\\end{figure}");
     _builder.newLine();
     return _builder;

@@ -476,6 +476,9 @@ class LatexGenerator implements IConfigurableGenerator {
 		«IF imgRef.caption != null && imgRef.caption.matches("^\\s*$")»
 		\caption{«imgRef.caption»}
 		«ENDIF»
+		«IF imgRef.name != null && imgRef.name.length >0»
+		\label{«imgRef.name»}
+		«ENDIF»
 		\end{figure}
 		'''
 		
