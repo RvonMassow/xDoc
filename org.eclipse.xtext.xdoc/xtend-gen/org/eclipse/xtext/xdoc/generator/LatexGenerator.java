@@ -1142,34 +1142,35 @@ public class LatexGenerator implements IConfigurableGenerator {
       if (!_notEquals) {
         _and = false;
       } else {
-        String _caption_1 = imgRef.getCaption();
-        boolean _matches = _caption_1.matches("^\\s*$");
-        _and = (_notEquals && _matches);
+        String _name = imgRef.getName();
+        int _length = _name.length();
+        boolean _greaterThan = (_length > 0);
+        _and = (_notEquals && _greaterThan);
       }
       if (_and) {
         _builder.append("\\caption{");
-        String _caption_2 = imgRef.getCaption();
-        _builder.append(_caption_2, "");
+        String _caption_1 = imgRef.getCaption();
+        _builder.append(_caption_1, "");
         _builder.append("}");
         _builder.newLineIfNotEmpty();
       }
     }
     {
       boolean _and_1 = false;
-      String _name = imgRef.getName();
-      boolean _notEquals_1 = (!Objects.equal(_name, null));
+      String _name_1 = imgRef.getName();
+      boolean _notEquals_1 = (!Objects.equal(_name_1, null));
       if (!_notEquals_1) {
         _and_1 = false;
       } else {
-        String _name_1 = imgRef.getName();
-        int _length = _name_1.length();
-        boolean _greaterThan = (_length > 0);
-        _and_1 = (_notEquals_1 && _greaterThan);
+        String _name_2 = imgRef.getName();
+        int _length_1 = _name_2.length();
+        boolean _greaterThan_1 = (_length_1 > 0);
+        _and_1 = (_notEquals_1 && _greaterThan_1);
       }
       if (_and_1) {
         _builder.append("\\label{");
-        String _name_2 = imgRef.getName();
-        _builder.append(_name_2, "");
+        String _name_3 = imgRef.getName();
+        _builder.append(_name_3, "");
         _builder.append("}");
         _builder.newLineIfNotEmpty();
       }
