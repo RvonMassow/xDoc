@@ -11,7 +11,9 @@ import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
@@ -24,11 +26,11 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmAnnotationType;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
-import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
+import org.eclipse.xtext.xdoc.generator.IConfigurableGenerator;
 import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.PHPPhoenixGenerator;
 import org.eclipse.xtext.xdoc.generator.PlainText;
@@ -71,7 +73,7 @@ import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 
 @SuppressWarnings("all")
-public class HtmlGenerator implements IGenerator {
+public class HtmlGenerator implements IConfigurableGenerator {
   @Inject
   private Utils utils;
   
@@ -92,6 +94,9 @@ public class HtmlGenerator implements IGenerator {
   
   @Inject
   private PHPPhoenixGenerator ppg;
+  
+  @Inject
+  private HashMap<String,Object> config;
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     try {
@@ -1443,6 +1448,10 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("</div>");
     return _builder;
+  }
+  
+  public Map<String,Object> getConfiguration() {
+    return this.config;
   }
   
   public CharSequence generate(final AbstractSection chap, final IFileSystemAccess fsa, final CharSequence leftNav, final CharSequence leftNavUnfoldSubTocId) {
