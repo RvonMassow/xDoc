@@ -11,10 +11,14 @@ import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
+import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.ImageRef;
+import org.eclipse.xtext.xdoc.xdoc.PartRef;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
+import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
+import org.eclipse.xtext.xdoc.xdoc.SectionRef;
 import org.eclipse.xtext.xdoc.xdoc.Table;
 import org.eclipse.xtext.xdoc.xdoc.TableRow;
 import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
@@ -39,8 +43,13 @@ public class XdocJavaValidator extends AbstractXdocJavaValidator {
 
 	@Check
 	public void checkAbstractSectionHasTitle(AbstractSection section) {
-		if(section.getTitle() == null)
-			warning("This element should have a title.", null,0);
+		if (!(section instanceof ChapterRef) 
+			&& !(section instanceof PartRef) 
+			&& !(section instanceof SectionRef)
+			&& !(section instanceof Section2Ref)) {
+			if(section.getTitle() == null)
+				warning("This element should have a title.", null,0);
+		}
 	}
 
 	@Check
