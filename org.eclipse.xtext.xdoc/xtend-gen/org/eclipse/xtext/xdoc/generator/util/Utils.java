@@ -110,12 +110,11 @@ public class Utils {
     boolean _notEquals = (!Objects.equal(s, null));
     if (_notEquals) {
       String _replace = s.replace("&", "&amp;");
-      String _replace_1 = _replace.replace("\'", "&apos;");
-      String _replace_2 = _replace_1.replace("<", "&lt;");
-      String _replace_3 = _replace_2.replace(">", "&gt;");
-      String _replace_4 = _replace_3.replace("\u00AB", "&laquo;");
-      String _replace_5 = _replace_4.replace("\u00BB", "&raquo;");
-      _xifexpression = _replace_5;
+      String _replace_1 = _replace.replace("<", "&lt;");
+      String _replace_2 = _replace_1.replace(">", "&gt;");
+      String _replace_3 = _replace_2.replace("\u00AB", "&laquo;");
+      String _replace_4 = _replace_3.replace("\u00BB", "&raquo;");
+      _xifexpression = _replace_4;
     } else {
       _xifexpression = "";
     }

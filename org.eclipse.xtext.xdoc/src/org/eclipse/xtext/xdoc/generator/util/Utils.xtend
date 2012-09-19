@@ -54,7 +54,7 @@ class Utils {
 
 	def escapeHTMLChars(String s) {
 		if(s != null)
-			s.replace("&", "&amp;").replace("'", "&apos;")
+			s.replace("&", "&amp;")/*.replace("'", "&apos;") */
 				.replace("<", "&lt;").replace(">", "&gt;")
 				.replace("«", "&laquo;").replace("»", "&raquo;")
 		else
