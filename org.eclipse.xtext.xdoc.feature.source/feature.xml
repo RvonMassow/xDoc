@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.xtext.xdoc.feature"
+      id="org.eclipse.xtext.xdoc.feature.source"
       label="%featureName"
       version="0.1.0.qualifier">
 
@@ -24,14 +24,14 @@
    </requires>
 
    <plugin
-         id="org.eclipse.xtext.xdoc"
+         id="org.eclipse.xtext.xdoc.source"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.xtext.xdoc.ui"
+         id="org.eclipse.xtext.xdoc.ui.source"
          download-size="0"
          install-size="0"
          version="0.0.0"
