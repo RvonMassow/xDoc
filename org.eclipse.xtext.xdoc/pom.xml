@@ -12,21 +12,85 @@
   <version>0.1.0-SNAPSHOT</version>
   <packaging>eclipse-plugin</packaging>
   <build>
+    <resources>
+      <resource>
+        <directory>${project.build.directory}/mwe2</directory>
+      </resource>
+    </resources> 
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-      </plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/mwe2</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>src</directory>
+                  <includes>
+                    <include>**/*.mwe2</include>
+                  </includes>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>        
       <plugin>
-        <groupId>org.sonatype.tycho</groupId>
-        <artifactId>maven-osgi-packaging-plugin</artifactId>
-        <version>${tycho.version}</version>
-        <configuration>
-          <archive>
-            <addMavenDescriptor>false</addMavenDescriptor>
-          </archive>
-        </configuration>
-      </plugin>
+        <groupId>org.fornax.toolsupport</groupId>
+        <artifactId>fornax-oaw-m2-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>run-workflow</goal>
+            </goals>
+            <configuration>
+              <workflowEngine>mwe2</workflowEngine>
+              <workflowDescriptor>org.eclipse.xtext.xdoc.Xdoc</workflowDescriptor>
+              <timestampFileName>generator.timestamp</timestampFileName>
+              <checkFilesets>
+                <checkFileset>
+                  <directory>${basedir}/model</directory>
+                  <includes>
+                    <include>*.*</include>
+                  </includes>
+                </checkFileset>
+                <checkFileset>
+                  <directory>${basedir}/src</directory>
+                  <includes>
+                    <include>**.xtext</include>
+                  </includes>
+                </checkFileset>
+              </checkFilesets>                               
+              <jvmSettings>
+                <fork>true</fork>
+                <jvmArgs>
+                  <jvmArg>-Xms100m</jvmArg>
+                  <jvmArg>-Xmx700m</jvmArg>
+                  <jvmArg>-XX:MaxPermSize=128m</jvmArg>
+                </jvmArgs>
+              </jvmSettings>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>              
+      <plugin>
+          <groupId>org.eclipse.xtend</groupId>
+          <artifactId>xtend-maven-plugin</artifactId>
+          <executions>
+              <execution>
+                  <goals>
+                      <goal>compile</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>    
     </plugins>
   </build>
 </project>
