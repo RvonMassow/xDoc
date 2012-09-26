@@ -25,6 +25,7 @@
 
   <modules>
     <module>org.eclipse.xtext.xdoc</module>
+    <module>org.eclipse.xtext.xdoc.ui</module>
   </modules>
 
   <repositories>

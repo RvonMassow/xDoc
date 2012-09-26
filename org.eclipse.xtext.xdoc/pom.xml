@@ -18,6 +18,27 @@
       </resource>
     </resources> 
     <plugins>
+      <!-- Clean the src-gen folders of the ui and test project. The Xtext generator 
+        will create files in those directories during generation. The ui and test 
+        project will *not* clean those directories later. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.4.1</version>
+        <configuration>
+          <filesets combine.children="append">
+            <fileset>
+              <directory>${basedir}/../org.eclipse.xtext.xdoc.ui/src-gen</directory>
+              <includes>
+                <include>**</include>
+              </includes>
+              <excludes>
+                <exclude>.gitignore</exclude>
+              </excludes>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>           
       <plugin>
         <artifactId>maven-resources-plugin</artifactId>
         <executions>
