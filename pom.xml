@@ -17,7 +17,7 @@
     <tycho-version>0.15.0</tycho-version>
     <junit-version>4.8.1</junit-version>
     <xtend-version>2.3.1</xtend-version>
-    <fornax-version>3.3.0</fornax-version>
+    <fornax-version>3.4.0</fornax-version>
     <eclipse-version>juno</eclipse-version>
     <orbit-version>R20110523182458</orbit-version>
     <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
