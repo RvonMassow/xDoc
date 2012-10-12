@@ -10,9 +10,13 @@ var projectName = "org.eclipse.xtext.xdoc"
 var runtimeProject = "../${projectName}"
 
 Workflow {
-    bean = StandaloneSetup {
-		platformUri = "${runtimeProject}/../.."
-	}
+ 
+   bean = StandaloneSetup {
+       scanClassPath = true
+       platformUri = "${runtimeProject}/.."
+
+       registerGenModelFile = "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel"
+   }
 
 	component = DirectoryCleaner {
 		directory = "${runtimeProject}/emf-gen"

@@ -92,9 +92,18 @@
                   </includes>
                 </checkFileset>
                 <checkFileset>
+                  <directory>${basedir}</directory>
+                  <includes>
+                    <include>pom.xml</include>
+                  </includes>
+                </checkFileset>
+                <checkFileset>
                   <directory>${basedir}/src</directory>
                   <includes>
-                    <include>**.xtext</include>
+                    <include>*.xtext</include>
+                  </includes>
+                  <includes>
+                    <include>*.mwe2</include>
                   </includes>
                 </checkFileset>
               </checkFilesets>                               
