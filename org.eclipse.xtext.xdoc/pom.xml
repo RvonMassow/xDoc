@@ -106,6 +106,12 @@
                     <include>*.mwe2</include>
                   </includes>
                 </checkFileset>
+				<checkFileset>
+                  <directory>${basedir}/META-INF</directory>
+                  <includes>
+                    <include>MANIFEST.MF</include>
+                  </includes>
+                </checkFileset>                
               </checkFilesets>                               
               <jvmSettings>
                 <fork>true</fork>
