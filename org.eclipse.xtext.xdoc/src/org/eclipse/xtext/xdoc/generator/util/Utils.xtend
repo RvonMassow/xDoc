@@ -24,11 +24,11 @@ class Utils {
 	def urlEncode (String s){
 		s?.encode("UTF-8")
 	}
-
+	
 	def boolean isInlineCode (CodeBlock cb) {
-		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")
+		cb.contents.size == 1 && !cb.contents.head.toString.contains(LineSeparator::LINE_SEPARATOR)
 	}
-
+		
 	def escapeLatexChars(String s) {
 		if(s != null)
 			s.replaceAll("\\$", "\\\\\\$").replaceAll("\\{", "\\\\{").replaceAll("\\}", "\\\\}")
@@ -49,12 +49,12 @@ class Utils {
 	}
 
 	def prepareListingsString(String s) {
-		s?.replaceAll("^\n", "")
+		s?.replaceAll("^" + LineSeparator::asRegEx(), "")
 	}
 
 	def escapeHTMLChars(String s) {
 		if(s != null)
-			s.replace("&", "&amp;").replace("'", "&apos;")
+			s.replace("&", "&amp;")/*.replace("'", "&apos;") */
 				.replace("<", "&lt;").replace(">", "&gt;")
 				.replace("«", "&laquo;").replace("»", "&raquo;")
 		else
@@ -129,14 +129,14 @@ class Utils {
 	}
 
 	def String whitespace2Entities(String s) {
-		return s.escapeHTMLChars.replace(' ','&nbsp;').replace('\n','<br/>\n').replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
+		return s.escapeHTMLChars.replace(' ','&nbsp;').replace(LineSeparator::LINE_SEPARATOR,'<br/>' + LineSeparator::LINE_SEPARATOR).replace('\t','&nbsp;&nbsp;&nbsp;&nbsp;')
 	}
 
 	def calcIndent(CodeBlock cb) {
 		if(cb.getContents().size() > 0 && cb.getContents().get(0) instanceof Code){
 			val code0 = (cb.getContents().get(0) as Code).getContents()
 			var indent = code0.length()
-			indent = indent - code0.replaceAll("^(\n*)\\s*", "$1").length()
+			indent = indent - code0.replaceAll("^("+ LineSeparator::LINE_SEPARATOR + ")*\\s*", "$1").length()
 		}
 	}
 

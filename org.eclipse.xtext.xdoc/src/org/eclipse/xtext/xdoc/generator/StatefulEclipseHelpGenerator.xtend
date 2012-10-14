@@ -41,6 +41,7 @@ import org.eclipse.xtext.xdoc.xdoc.TextPart
 import org.eclipse.xtext.xdoc.xdoc.Todo
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
+import org.eclipse.xtext.xdoc.generator.util.LineSeparator
 
 import static extension java.net.URLDecoder.*
 
@@ -383,11 +384,11 @@ class StatefulEclipseHelpGenerator {
 					cb.contents.tail.take(cb.contents.size - 2)
 				else
 					Collections::EMPTY_LIST
-			val first = cb.contents.head.generateCode.trimLines(indentToRemove).replaceAll("\\A(\\s*\n)*", "")
+			val first = cb.contents.head.generateCode.trimLines(indentToRemove).replaceAll("\\A(\\s*" + LineSeparator::asRegEx + ")*", "")
 			val last = if(cb.contents.last != cb.contents.head) {
-					cb.contents.last.generateCode.trimLines(indentToRemove).replaceAll("(\\s*\n)*\\Z", "")
+					cb.contents.last.generateCode.trimLines(indentToRemove).replaceAll("(\\s*" + LineSeparator::asRegEx + ")*\\Z", "")
 				} else{
-					first.replaceAll("(\\s*\n)*\\Z", "")
+					first.replaceAll("(\\s*" + LineSeparator::asRegEx + ")*\\Z", "")
 					""
 				}
 			'''	

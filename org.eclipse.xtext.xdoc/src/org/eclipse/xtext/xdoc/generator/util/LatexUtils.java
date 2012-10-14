@@ -5,7 +5,7 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 
 public class LatexUtils {
-
+	
 	public static String lstEscapeToTex() {
 		return "ß";
 	}
@@ -19,9 +19,8 @@ public class LatexUtils {
 						.getContents().get(0))));
 	}
 
-	// simple heuristic to determine if code is meant to be inline
 	public static boolean inline(CodeBlock c) {
 		return c.getContents().size() == 1
-				&& !c.getContents().get(0).toString().contains("\n");
+				&& !c.getContents().get(0).toString().contains(LineSeparator.LINE_SEPARATOR);
 	}
 }

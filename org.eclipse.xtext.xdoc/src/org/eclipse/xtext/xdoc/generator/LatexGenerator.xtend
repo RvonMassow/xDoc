@@ -45,6 +45,7 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
 import org.eclipse.xtext.xdoc.xdoc.TextPart
 import org.eclipse.xtext.xdoc.xdoc.Todo
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList
+import org.eclipse.xtext.xdoc.generator.util.LineSeparator
 
 import static extension org.eclipse.xtext.xdoc.generator.util.LatexUtils.*
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
@@ -88,19 +89,17 @@ class LatexGenerator implements IConfigurableGenerator {
 	}
 	
 	def dispatch generate(Document doc) '''
-		«preamble»
+		«preamble(doc)»
 		«FOR lang: doc.langDefs»
 			«lang.generate»
 		«ENDFOR»
 		«configureTodo»
 		
-		\usepackage{hyperref}
-		
 		«doc.authorAndTitle»
 		
 		\begin{document}
-		\maketitle
-		\tableofcontents
+		«makeTitle(doc)»
+		«tableOfContents(doc)»
 		«FOR chapter: doc.chapters»
 			
 			«chapter.generate»
@@ -117,6 +116,12 @@ class LatexGenerator implements IConfigurableGenerator {
 		\end{document}
 	'''
 
+	def makeTitle (Document doc)
+		'''\maketitle'''
+
+	def tableOfContents (Document doc)
+		'''\tableofcontents'''
+		
 	def genListOfLinks() {
 		if(!links.empty)
 			'''
@@ -127,7 +132,7 @@ class LatexGenerator implements IConfigurableGenerator {
 			'''
 	}
 
-	def preamble() '''
+	def preamble(Document doc) '''
 		\documentclass[a4paper,10pt]{scrreprt}
 		
 		\typearea{12}
@@ -137,7 +142,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\usepackage[latin1]{inputenc}
 		\usepackage{listings}
 		\usepackage[american]{babel}
-		
+		\usepackage{hyperref}
 		\usepackage{todonotes}
 		
 		\makeatletter
@@ -399,7 +404,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\setlength{\XdocTEffectiveWidth}{\textwidth}
 		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
 		\noindent\begin{tabular}{«tab.rows.head.data.genColumns»}
-		«tab.rows.map([e | e.genText]).join("\\\\\n")»
+		«tab.rows.map([e | e.genText]).join("\\\\" + LineSeparator::LINE_SEPARATOR)»
 		\end{tabular}
 	'''
 
@@ -472,13 +477,15 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 		\begin{figure}[!ht]
 		\centering
-		\includegraphics{«copy(imgRef)»}
-		«IF imgRef.caption != null && imgRef.caption.matches("^\\s*$")»
+		\includegraphics«IF imgRef.style != null && imgRef.style.length > 0»[«imgRef.style»]«ENDIF»{«copy(imgRef)»}
+		«IF imgRef.caption != null && imgRef.caption.length > 0»
 		\caption{«imgRef.caption»}
+		«ENDIF»
+		«IF imgRef.name != null && imgRef.name.length >0»
+		\label{«imgRef.name»}
 		«ENDIF»
 		\end{figure}
 		'''
-		
 	}
 
 	def String copy(ImageRef imgRef) {

@@ -57,7 +57,7 @@ public class XdocUiModule extends org.eclipse.xtext.xdoc.ui.AbstractXdocUiModule
 	}
 
 	public Class<? extends XtextSpellingReconcileStrategy.Factory> bindXtextSpellingReconcileStrategy$Factory() {
-		return XdocSpellingReconcileStrategy.Factory.class;
+		return XdocSpellingReconcileStrategy.factory.class;
 	}
 
 	public Class<? extends TerminalsTokenTypeToPartitionMapper> bindTerminalsTokenTypeToPartitionMapper(){

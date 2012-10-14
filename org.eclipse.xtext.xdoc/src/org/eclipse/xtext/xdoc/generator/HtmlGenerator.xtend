@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.common.types.JvmAnnotationType
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.xbase.lib.IteratorExtensions
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.eclipse.xtext.xdoc.generator.util.HTMLNamingExtensions
@@ -50,8 +49,9 @@ import org.eclipse.xtext.xdoc.xdoc.UnorderedList
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
 
 import static extension org.apache.commons.lang.StringEscapeUtils.*
+import java.util.HashMap
 
-class HtmlGenerator implements IGenerator {
+class HtmlGenerator implements IConfigurableGenerator {
 	
 	@Inject extension Utils utils
 	@Inject extension PlainText plaintext
@@ -60,6 +60,8 @@ class HtmlGenerator implements IGenerator {
 	@Inject extension GitExtensions git
 	@Inject extension JavaDocExtension jdoc
 	@Inject extension PHPPhoenixGenerator ppg
+
+	@Inject HashMap<String, Object> config
 	
 	override doGenerate(Resource resource, IFileSystemAccess fsa) {
 		try{
@@ -556,4 +558,8 @@ class HtmlGenerator implements IGenerator {
 //		</script>
 //		'''
 //	}
+
+	override getConfiguration() {
+		config
+	}
 }
