@@ -1,7 +1,7 @@
 lexer grammar Common;
 
 @lexer::header {
-package org.eclipse.xtext.xdoc.generator.util.lexer;
+package org.eclipse.xtext.xdoc.lexer;
 
 import org.eclipse.xtext.parser.antlr.Lexer;
 }

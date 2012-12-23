@@ -3,7 +3,7 @@ package org.eclipse.xtext.xdoc.generator.util
 import java.util.Set
 import org.antlr.runtime.ANTLRStringStream
 import org.antlr.runtime.Token
-import org.eclipse.xtext.xdoc.generator.util.lexer.Common
+import org.eclipse.xtext.xdoc.lexer.Common
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
 import org.eclipse.xtext.xdoc.xdoc.Code
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock
