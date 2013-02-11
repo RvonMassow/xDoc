@@ -101,7 +101,7 @@ class EclipseHelpUriUtil {
 		populateFileMap(section2, fileSection)
 	}
 
-	def dispatch populateFileMap(SectionRef it, AbstractSection fileSection) {
+	def dispatch void populateFileMap(SectionRef it, AbstractSection fileSection) {
 		populateFileMap(section, fileSection)
 	}
 

@@ -1,6 +1,5 @@
 package org.eclipse.xtext.xdoc.generator;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.io.InputStream;
@@ -28,6 +27,7 @@ import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.PHPPhoenixGenerator;
@@ -280,7 +280,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(chap);
       _builder.append(_tag, "");
       _builder.append(">");
-      CharSequence _genPlainText = this.plaintext.genPlainText(chap);
+      Object _genPlainText = this.plaintext.genPlainText(chap);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(chap);
@@ -305,7 +305,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(section);
       _builder.append(_tag, "");
       _builder.append(">");
-      CharSequence _genPlainText = this.plaintext.genPlainText(section);
+      Object _genPlainText = this.plaintext.genPlainText(section);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(section);
@@ -330,7 +330,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(section2);
       _builder.append(_tag, "");
       _builder.append(">");
-      CharSequence _genPlainText = this.plaintext.genPlainText(section2);
+      Object _genPlainText = this.plaintext.genPlainText(section2);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(section2);
@@ -709,7 +709,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<li class=\"partentry\" >");
     _builder.newLine();
     TextOrMarkup _title = part.getTitle();
-    CharSequence _genPlainText = this.plaintext.genPlainText(_title);
+    Object _genPlainText = this.plaintext.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.newLineIfNotEmpty();
     _builder.append("</li>");
@@ -806,7 +806,7 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence genAuthors(final Document doc) {
     CharSequence _xifexpression = null;
     TextOrMarkup _authors = doc.getAuthors();
-    boolean _notEquals = (!Objects.equal(_authors, null));
+    boolean _notEquals = ObjectExtensions.operator_notEquals(_authors, null);
     if (_notEquals) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<div class=\"authors\">");
@@ -919,7 +919,7 @@ public class HtmlGenerator implements IGenerator {
         _and = false;
       } else {
         TextOrMarkup _altText = cRef.getAltText();
-        boolean _equals = Objects.equal(_altText, null);
+        boolean _equals = ObjectExtensions.operator_equals(_altText, null);
         _and = ((_element instanceof JvmAnnotationType) && _equals);
       }
       if (_and) {
@@ -937,7 +937,7 @@ public class HtmlGenerator implements IGenerator {
       final String fqn = StringEscapeUtils.escapeHtml(_unescapeXdocChars);
       CharSequence _xifexpression_1 = null;
       TextOrMarkup _altText_1 = cRef.getAltText();
-      boolean _notEquals = (!Objects.equal(_altText_1, null));
+      boolean _notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
       if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
         CharSequence _genNonParText = this.genNonParText(_altText_2);
@@ -948,8 +948,8 @@ public class HtmlGenerator implements IGenerator {
         _xifexpression_1 = _dottedSimpleName;
       }
       final CharSequence text = _xifexpression_1;
-      CharSequence _xifexpression_2 = null;
-      boolean _notEquals_1 = (!Objects.equal(jDocLink, null));
+      String _xifexpression_2 = null;
+      boolean _notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
       if (_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("<a class=\"jdoc\" href=\"");
@@ -962,7 +962,7 @@ public class HtmlGenerator implements IGenerator {
         _builder.append(prefix, "");
         _builder.append(text, "");
         _builder.append("</abbr></a>");
-        _xifexpression_2 = _builder;
+        _xifexpression_2 = _builder.toString();
       } else {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("<abbr title=\"");
@@ -971,11 +971,11 @@ public class HtmlGenerator implements IGenerator {
         _builder_1.append(prefix, "");
         _builder_1.append(text, "");
         _builder_1.append("</abbr>");
-        _xifexpression_2 = _builder_1;
+        _xifexpression_2 = _builder_1.toString();
       }
-      CharSequence ret = _xifexpression_2;
+      String ret = _xifexpression_2;
       CharSequence _xifexpression_3 = null;
-      boolean _notEquals_2 = (!Objects.equal(gitLink, null));
+      boolean _notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
       if (_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
@@ -994,7 +994,7 @@ public class HtmlGenerator implements IGenerator {
   public String dottedSimpleName(final JvmDeclaredType type) {
     String _xifexpression = null;
     JvmDeclaredType _declaringType = type.getDeclaringType();
-    boolean _notEquals = (!Objects.equal(_declaringType, null));
+    boolean _notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
     if (_notEquals) {
       JvmDeclaredType _declaringType_1 = type.getDeclaringType();
       String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
@@ -1092,19 +1092,19 @@ public class HtmlGenerator implements IGenerator {
   protected CharSequence _genText(final Ref ref) {
     CharSequence _xblockexpression = null;
     {
-      CharSequence _xifexpression = null;
+      String _xifexpression = null;
       Identifiable _ref = ref.getRef();
       if ((_ref instanceof AbstractSection)) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("title=\"Go to &quot;");
         Identifiable _ref_1 = ref.getRef();
         TextOrMarkup _title = ((AbstractSection) _ref_1).getTitle();
-        CharSequence _genPlainText = this.plaintext.genPlainText(_title);
+        Object _genPlainText = this.plaintext.genPlainText(_title);
         _builder.append(_genPlainText, "");
         _builder.append("&quot;\"");
-        _xifexpression = _builder;
+        _xifexpression = _builder.toString();
       }
-      final CharSequence title = _xifexpression;
+      final String title = _xifexpression;
       StringConcatenation _builder_1 = new StringConcatenation();
       {
         EList<TextOrMarkup> _contents = ref.getContents();
@@ -1152,7 +1152,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\" >");
     {
       String _text = link.getText();
-      boolean _notEquals = (!Objects.equal(_text, null));
+      boolean _notEquals = ObjectExtensions.operator_notEquals(_text, null);
       if (_notEquals) {
         String _text_1 = link.getText();
         _builder.append(_text_1, "");
@@ -1270,7 +1270,7 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLine();
       {
         String _name = img.getName();
-        boolean _notEquals = (!Objects.equal(_name, null));
+        boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
         if (_notEquals) {
           _builder.append("<a>");
           String _name_1 = img.getName();

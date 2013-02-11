@@ -1,6 +1,5 @@
 package org.eclipse.xtext.xdoc.generator;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
@@ -14,6 +13,7 @@ import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
@@ -52,7 +52,7 @@ public class EclipseHelpUriUtil {
       final AbstractSection container = EcoreUtil2.<AbstractSection>getContainerOfType(img, AbstractSection.class);
       final AbstractSection fileSection = this.section2fileSection.get(container);
       URI _relativeTargetURI = this.getRelativeTargetURI(img);
-      URI _targetURI = this.targetURI(fileSection);
+      URI _targetURI = this.getTargetURI(fileSection);
       URI _resolve = _relativeTargetURI.resolve(_targetURI);
       _xblockexpression = (_resolve);
     }
@@ -82,7 +82,7 @@ public class EclipseHelpUriUtil {
       final AbstractSection container = EcoreUtil2.<AbstractSection>getContainerOfType(_ref, AbstractSection.class);
       final AbstractSection fileSection = this.section2fileSection.get(container);
       URI _xifexpression = null;
-      boolean _equals = Objects.equal(fileSection, null);
+      boolean _equals = ObjectExtensions.operator_equals(fileSection, null);
       if (_equals) {
         URI _xblockexpression_1 = null;
         {
@@ -99,11 +99,11 @@ public class EclipseHelpUriUtil {
         }
         _xifexpression = _xblockexpression_1;
       } else {
-        URI _targetURI = this.targetURI(fileSection);
+        URI _targetURI = this.getTargetURI(fileSection);
         Identifiable _ref_1 = it.getRef();
         String _localId = this.eclipseNamingExtensions.getLocalId(_ref_1);
         URI _appendFragment = _targetURI.appendFragment(_localId);
-        URI _targetURI_1 = this.targetURI(this.doc);
+        URI _targetURI_1 = this.getTargetURI(this.doc);
         URI _deresolve = _appendFragment.deresolve(_targetURI_1);
         _xifexpression = _deresolve;
       }
@@ -156,10 +156,10 @@ public class EclipseHelpUriUtil {
       {
         final AbstractSection container = EcoreUtil2.<AbstractSection>getContainerOfType(it, AbstractSection.class);
         final AbstractSection fileSection = this.section2fileSection.get(container);
-        URI _targetURI = this.targetURI(fileSection);
+        URI _targetURI = this.getTargetURI(fileSection);
         String _localId = this.eclipseNamingExtensions.getLocalId(it);
         URI _appendFragment = _targetURI.appendFragment(_localId);
-        URI _targetURI_1 = this.targetURI(this.doc);
+        URI _targetURI_1 = this.getTargetURI(this.doc);
         URI _deresolve = _appendFragment.deresolve(_targetURI_1);
         _xblockexpression = (_deresolve);
       }

@@ -41,7 +41,7 @@ public class EclipseHelpGeneratorTest {
   public void testRef() {
     XdocFile _doc = this.getDoc("aRefTest.xdoc");
     Resource _eResource = _doc.eResource();
-    this._eclipseHelpGenerator.doGenerate(_eResource, this.fsa);
+    this._statefulEclipseHelpGenerator.doGenerate(_eResource, this.fsa);
     File _targetFile = this.getTargetFile("aRefTest.html");
     boolean _exists = _targetFile.exists();
     Assert.assertTrue(_exists);
@@ -61,7 +61,7 @@ public class EclipseHelpGeneratorTest {
       String _plus = (ParserTestConstants.TEST_FILE_DIR + fileName);
       XdocFile _docFromFile = this._parseHelperExtensions.getDocFromFile(_plus);
       return _docFromFile;
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }

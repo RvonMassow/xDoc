@@ -1,6 +1,5 @@
 package org.eclipse.xtext.xdoc.generator;
 
-import com.google.common.base.Objects;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -8,6 +7,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
@@ -22,16 +22,16 @@ public class PlainText {
   protected CharSequence _genPlainText(final TextOrMarkup tom) {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<CharSequence,EObject,CharSequence> _function = new Function2<CharSequence,EObject,CharSequence>() {
-        public CharSequence apply(final CharSequence e1, final EObject e2) {
+    final Function2<String,EObject,String> _function = new Function2<String,EObject,String>() {
+        public String apply(final String e1, final EObject e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
-          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
+          Object _genPlainText = PlainText.this.genPlainText(e2);
           _builder.append(_genPlainText, "");
-          return _builder;
+          return _builder.toString();
         }
       };
-    CharSequence _fold = IterableExtensions.<EObject, CharSequence>fold(_contents, _builder, _function);
+    String _fold = IterableExtensions.<EObject, String>fold(_contents, _builder.toString(), _function);
     return _fold;
   }
   
@@ -43,16 +43,16 @@ public class PlainText {
   protected CharSequence _genPlainText(final Emphasize em) {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<CharSequence,TextOrMarkup,CharSequence> _function = new Function2<CharSequence,TextOrMarkup,CharSequence>() {
-        public CharSequence apply(final CharSequence e1, final TextOrMarkup e2) {
+    final Function2<String,TextOrMarkup,String> _function = new Function2<String,TextOrMarkup,String>() {
+        public String apply(final String e1, final TextOrMarkup e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
-          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
+          Object _genPlainText = PlainText.this.genPlainText(e2);
           _builder.append(_genPlainText, "");
-          return _builder;
+          return _builder.toString();
         }
       };
-    CharSequence _fold = IterableExtensions.<TextOrMarkup, CharSequence>fold(_contents, _builder, _function);
+    String _fold = IterableExtensions.<TextOrMarkup, String>fold(_contents, _builder.toString(), _function);
     return _fold;
   }
   
@@ -62,10 +62,10 @@ public class PlainText {
       StringConcatenation _builder = new StringConcatenation();
       String _text = l.getText();
       _builder.append(_text, "");
-      final CharSequence text = _builder;
+      final String text = _builder.toString();
       CharSequence _xifexpression = null;
       String _string = text.toString();
-      boolean _notEquals = (!Objects.equal(_string, text));
+      boolean _notEquals = ObjectExtensions.operator_notEquals(_string, text);
       if (_notEquals) {
         _xifexpression = text;
       } else {
@@ -91,7 +91,7 @@ public class PlainText {
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
           for(final TextOrMarkup e : _contents_1) {
-            CharSequence _genPlainText = this.genPlainText(e);
+            Object _genPlainText = this.genPlainText(e);
             _builder.append(_genPlainText, "");
             _builder.newLineIfNotEmpty();
           }
@@ -119,7 +119,7 @@ public class PlainText {
     {
       EList<EObject> _contents = cb.getContents();
       for(final EObject c : _contents) {
-        CharSequence _genPlainText = this.genPlainText(c);
+        Object _genPlainText = this.genPlainText(c);
         _builder.append(_genPlainText, "");
         _builder.newLineIfNotEmpty();
       }
@@ -137,7 +137,7 @@ public class PlainText {
     return _builder;
   }
   
-  public CharSequence genPlainText(final Object cb) {
+  public Object genPlainText(final Object cb) {
     if (cb instanceof CodeBlock) {
       return _genPlainText((CodeBlock)cb);
     } else if (cb instanceof CodeRef) {

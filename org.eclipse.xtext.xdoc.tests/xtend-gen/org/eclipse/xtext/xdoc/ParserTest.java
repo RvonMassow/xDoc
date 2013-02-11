@@ -74,7 +74,7 @@ public class ParserTest {
       _builder.append(secondPart, "");
       _builder.newLineIfNotEmpty();
       _builder.newLine();
-      final CharSequence text = _builder;
+      final String text = _builder.toString();
       String _string = text.toString();
       final XdocFile model = this._parseHelperExtensions.parse(_string);
       this._validationTestHelper.assertNoErrors(model);
@@ -87,7 +87,7 @@ public class ParserTest {
       Assert.assertEquals(title, _text);
       EList<TextOrMarkup> _contents_1 = chapter.getContents();
       int _size = _contents_1.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       EList<TextOrMarkup> _contents_2 = chapter.getContents();
       final TextOrMarkup p = IterableExtensions.<TextOrMarkup>head(_contents_2);
       EList<EObject> _contents_3 = p.getContents();
@@ -109,7 +109,7 @@ public class ParserTest {
       EObject _head_5 = IterableExtensions.<EObject>head(_tail_2);
       String _text_3 = ((TextPart) _head_5).getText();
       Assert.assertEquals(secondPart, _text_3);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -137,7 +137,7 @@ public class ParserTest {
       _builder_2.newLine();
       XdocFile _parse_2 = this._parseHelperExtensions.parse(_builder_2);
       this._validationTestHelper.assertNoErrors(_parse_2);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -153,7 +153,7 @@ public class ParserTest {
       _builder.append("ref:refName[");
       _builder.append(refText, " ");
       _builder.append("]");
-      final CharSequence ref = _builder;
+      final String ref = _builder.toString();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append(ParserTestConstants.CHAPTER_HEAD, "");
       _builder_1.append(anchor, "");
@@ -165,7 +165,7 @@ public class ParserTest {
       final TextOrMarkup textOrMarkup = IterableExtensions.<TextOrMarkup>head(_contents);
       EList<EObject> _contents_1 = textOrMarkup.getContents();
       int _size = _contents_1.size();
-      Assert.assertEquals(Integer.valueOf(4), Integer.valueOf(_size));
+      Assert.assertEquals(4, _size);
       EList<EObject> _contents_2 = textOrMarkup.getContents();
       Iterable<EObject> _tail = IterableExtensions.<EObject>tail(_contents_2);
       final EObject a = IterableExtensions.<EObject>head(_tail);
@@ -180,7 +180,7 @@ public class ParserTest {
       EObject _head_1 = IterableExtensions.<EObject>head(_contents_5);
       String _text = ((TextPart) _head_1).getText();
       Assert.assertEquals(refText, _text);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -198,7 +198,7 @@ public class ParserTest {
       TextOrMarkup textOrMarkup = IterableExtensions.<TextOrMarkup>head(contents);
       EList<EObject> _contents = textOrMarkup.getContents();
       int _size = _contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       EList<EObject> _contents_1 = textOrMarkup.getContents();
       EObject _head_1 = IterableExtensions.<EObject>head(_contents_1);
       CodeBlock cb = ((CodeBlock) _head_1);
@@ -228,8 +228,8 @@ public class ParserTest {
       cb = ((CodeBlock) _head_4);
       EList<EObject> _contents_5 = cb.getContents();
       int _size_1 = _contents_5.size();
-      Assert.assertEquals(Integer.valueOf(0), Integer.valueOf(_size_1));
-    } catch (Exception _e) {
+      Assert.assertEquals(0, _size_1);
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -279,7 +279,7 @@ public class ParserTest {
       LangDef _language = cb.getLanguage();
       String _name = _language.getName();
       Assert.assertEquals("Java", _name);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -292,8 +292,8 @@ public class ParserTest {
       AbstractSection _mainSection = file.getMainSection();
       EList<TextOrMarkup> _contents = _mainSection.getContents();
       int _size = _contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
-    } catch (Exception _e) {
+      Assert.assertEquals(1, _size);
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -335,7 +335,7 @@ public class ParserTest {
       EObject _head_3 = IterableExtensions.<EObject>head(_contents_3);
       String _text = ((TextPart) _head_3).getText();
       Assert.assertEquals("a Chapter", _text);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -353,15 +353,15 @@ public class ParserTest {
       final UnorderedList outer = ((UnorderedList) _head_1);
       EList<Item> items = outer.getItems();
       int _size = items.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       Item _head_2 = IterableExtensions.<Item>head(items);
       EList<TextOrMarkup> itemContents = _head_2.getContents();
       int _size_1 = itemContents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_1));
+      Assert.assertEquals(1, _size_1);
       TextOrMarkup _head_3 = IterableExtensions.<TextOrMarkup>head(itemContents);
       final EList<EObject> contents = _head_3.getContents();
       int _size_2 = contents.size();
-      Assert.assertEquals(Integer.valueOf(3), Integer.valueOf(_size_2));
+      Assert.assertEquals(3, _size_2);
       EObject _head_4 = IterableExtensions.<EObject>head(contents);
       String _text = ((TextPart) _head_4).getText();
       boolean _matches = _text.matches("\\s+");
@@ -376,22 +376,22 @@ public class ParserTest {
       EList<Item> _items = inner.getItems();
       items = _items;
       int _size_3 = items.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_3));
+      Assert.assertEquals(1, _size_3);
       Item _head_6 = IterableExtensions.<Item>head(items);
       EList<TextOrMarkup> _contents_2 = _head_6.getContents();
       itemContents = _contents_2;
       int _size_4 = itemContents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_4));
+      Assert.assertEquals(1, _size_4);
       TextOrMarkup _head_7 = IterableExtensions.<TextOrMarkup>head(itemContents);
       EList<EObject> _contents_3 = _head_7.getContents();
       int _size_5 = _contents_3.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_5));
+      Assert.assertEquals(1, _size_5);
       TextOrMarkup _head_8 = IterableExtensions.<TextOrMarkup>head(itemContents);
       EList<EObject> _contents_4 = _head_8.getContents();
       EObject _head_9 = IterableExtensions.<EObject>head(_contents_4);
       String _text_2 = ((TextPart) _head_9).getText();
       Assert.assertEquals("some item", _text_2);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -404,11 +404,11 @@ public class ParserTest {
       final AbstractSection section = file.getMainSection();
       final EList<TextOrMarkup> contents = section.getContents();
       int _size = contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       final TextOrMarkup textOrMarkup = IterableExtensions.<TextOrMarkup>head(contents);
       EList<EObject> _contents = textOrMarkup.getContents();
       int _size_1 = _contents.size();
-      Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(_size_1));
+      Assert.assertEquals(2, _size_1);
       EList<EObject> _contents_1 = textOrMarkup.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
       String _text = ((TextPart) _head).getText();
@@ -418,7 +418,7 @@ public class ParserTest {
       EObject _head_1 = IterableExtensions.<EObject>head(_tail);
       Identifiable _ref = ((Ref) _head_1).getRef();
       Assert.assertEquals(section, _ref);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -433,13 +433,13 @@ public class ParserTest {
       final TextOrMarkup textOrMarkup = IterableExtensions.<TextOrMarkup>head(_contents);
       EList<EObject> _contents_1 = textOrMarkup.getContents();
       int _size = _contents_1.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       EList<EObject> _contents_2 = textOrMarkup.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_2);
       final TextPart p = ((TextPart) _head);
       String _text = p.getText();
       Assert.assertEquals("\\\\ \\[ \\]", _text);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -450,7 +450,7 @@ public class ParserTest {
       String _plus = (ParserTestConstants.TEST_FILE_DIR + "imgTest.xdoc");
       XdocFile _docFromFile = this._parseHelperExtensions.getDocFromFile(_plus);
       this._validationTestHelper.assertNoErrors(_docFromFile);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -464,28 +464,28 @@ public class ParserTest {
       final Chapter chapter = ((Chapter) _mainSection);
       EList<TextOrMarkup> contents = chapter.getContents();
       int _size = contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       TextOrMarkup textOrMarkup = IterableExtensions.<TextOrMarkup>head(contents);
       EList<EObject> _contents = textOrMarkup.getContents();
       int _size_1 = _contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_1));
+      Assert.assertEquals(1, _size_1);
       EList<EObject> _contents_1 = textOrMarkup.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
       final UnorderedList list = ((UnorderedList) _head);
       EList<Item> _items = list.getItems();
       int _size_2 = _items.size();
-      Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(_size_2));
+      Assert.assertEquals(2, _size_2);
       EList<Item> _items_1 = list.getItems();
       Item _head_1 = IterableExtensions.<Item>head(_items_1);
       EList<TextOrMarkup> _contents_2 = _head_1.getContents();
       contents = _contents_2;
       int _size_3 = contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_3));
+      Assert.assertEquals(1, _size_3);
       TextOrMarkup _head_2 = IterableExtensions.<TextOrMarkup>head(contents);
       textOrMarkup = _head_2;
       EList<EObject> _contents_3 = textOrMarkup.getContents();
       int _size_4 = _contents_3.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_4));
+      Assert.assertEquals(1, _size_4);
       EList<EObject> _contents_4 = textOrMarkup.getContents();
       EObject _head_3 = IterableExtensions.<EObject>head(_contents_4);
       String _text = ((TextPart) _head_3).getText();
@@ -496,12 +496,12 @@ public class ParserTest {
       EList<TextOrMarkup> _contents_5 = _head_4.getContents();
       contents = _contents_5;
       int _size_5 = contents.size();
-      Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(_size_5));
+      Assert.assertEquals(2, _size_5);
       TextOrMarkup _head_5 = IterableExtensions.<TextOrMarkup>head(contents);
       textOrMarkup = _head_5;
       EList<EObject> _contents_6 = textOrMarkup.getContents();
       int _size_6 = _contents_6.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_6));
+      Assert.assertEquals(1, _size_6);
       EList<EObject> _contents_7 = textOrMarkup.getContents();
       EObject _head_6 = IterableExtensions.<EObject>head(_contents_7);
       String _text_1 = ((TextPart) _head_6).getText();
@@ -511,12 +511,12 @@ public class ParserTest {
       textOrMarkup = _head_7;
       EList<EObject> _contents_8 = textOrMarkup.getContents();
       int _size_7 = _contents_8.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_7));
+      Assert.assertEquals(1, _size_7);
       EList<EObject> _contents_9 = textOrMarkup.getContents();
       EObject _head_8 = IterableExtensions.<EObject>head(_contents_9);
       String _text_2 = ((TextPart) _head_8).getText();
       Assert.assertEquals("\titem", _text_2);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -530,28 +530,28 @@ public class ParserTest {
       final Chapter chapter = ((Chapter) _mainSection);
       EList<TextOrMarkup> contents = chapter.getContents();
       int _size = contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       TextOrMarkup textOrMarkup = IterableExtensions.<TextOrMarkup>head(contents);
       EList<EObject> _contents = textOrMarkup.getContents();
       int _size_1 = _contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_1));
+      Assert.assertEquals(1, _size_1);
       EList<EObject> _contents_1 = textOrMarkup.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
       final OrderedList list = ((OrderedList) _head);
       EList<Item> _items = list.getItems();
       int _size_2 = _items.size();
-      Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(_size_2));
+      Assert.assertEquals(2, _size_2);
       EList<Item> _items_1 = list.getItems();
       Item _head_1 = IterableExtensions.<Item>head(_items_1);
       EList<TextOrMarkup> _contents_2 = _head_1.getContents();
       contents = _contents_2;
       int _size_3 = contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_3));
+      Assert.assertEquals(1, _size_3);
       TextOrMarkup _head_2 = IterableExtensions.<TextOrMarkup>head(contents);
       textOrMarkup = _head_2;
       EList<EObject> _contents_3 = textOrMarkup.getContents();
       int _size_4 = _contents_3.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_4));
+      Assert.assertEquals(1, _size_4);
       EList<EObject> _contents_4 = textOrMarkup.getContents();
       EObject _head_3 = IterableExtensions.<EObject>head(_contents_4);
       String _text = ((TextPart) _head_3).getText();
@@ -562,12 +562,12 @@ public class ParserTest {
       EList<TextOrMarkup> _contents_5 = _head_4.getContents();
       contents = _contents_5;
       int _size_5 = contents.size();
-      Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(_size_5));
+      Assert.assertEquals(2, _size_5);
       TextOrMarkup _head_5 = IterableExtensions.<TextOrMarkup>head(contents);
       textOrMarkup = _head_5;
       EList<EObject> _contents_6 = textOrMarkup.getContents();
       int _size_6 = _contents_6.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_6));
+      Assert.assertEquals(1, _size_6);
       EList<EObject> _contents_7 = textOrMarkup.getContents();
       EObject _head_6 = IterableExtensions.<EObject>head(_contents_7);
       String _text_1 = ((TextPart) _head_6).getText();
@@ -577,12 +577,12 @@ public class ParserTest {
       textOrMarkup = _head_7;
       EList<EObject> _contents_8 = textOrMarkup.getContents();
       int _size_7 = _contents_8.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_7));
+      Assert.assertEquals(1, _size_7);
       EList<EObject> _contents_9 = textOrMarkup.getContents();
       EObject _head_8 = IterableExtensions.<EObject>head(_contents_9);
       String _text_2 = ((TextPart) _head_8).getText();
       Assert.assertEquals("\titem", _text_2);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -614,23 +614,23 @@ public class ParserTest {
       AbstractSection _mainSection = file.getMainSection();
       final EList<TextOrMarkup> textOrMarkup = _mainSection.getContents();
       int _size = textOrMarkup.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(textOrMarkup);
       EList<EObject> _contents = _head.getContents();
       EObject _head_1 = IterableExtensions.<EObject>head(_contents);
       final Table t = ((Table) _head_1);
       EList<TableRow> _rows = t.getRows();
       int _size_1 = _rows.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_1));
+      Assert.assertEquals(1, _size_1);
       EList<TableRow> _rows_1 = t.getRows();
       TableRow _head_2 = IterableExtensions.<TableRow>head(_rows_1);
       final EList<TableData> data = _head_2.getData();
       int _size_2 = data.size();
-      Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(_size_2));
+      Assert.assertEquals(2, _size_2);
       TableData td = data.get(0);
       final EList<TextOrMarkup> contents = td.getContents();
       int _size_3 = contents.size();
-      Assert.assertEquals(Integer.valueOf(2), Integer.valueOf(_size_3));
+      Assert.assertEquals(2, _size_3);
       TextOrMarkup _head_3 = IterableExtensions.<TextOrMarkup>head(contents);
       EList<EObject> _contents_1 = _head_3.getContents();
       EObject _head_4 = IterableExtensions.<EObject>head(_contents_1);
@@ -649,8 +649,8 @@ public class ParserTest {
       td = _head_7;
       EList<TextOrMarkup> _contents_3 = td.getContents();
       int _size_4 = _contents_3.size();
-      Assert.assertEquals(Integer.valueOf(0), Integer.valueOf(_size_4));
-    } catch (Exception _e) {
+      Assert.assertEquals(0, _size_4);
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -678,14 +678,14 @@ public class ParserTest {
       final Document doc = ((Document) _mainSection);
       final EList<LangDef> defs = doc.getLangDefs();
       int _size = defs.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       final LangDef def = IterableExtensions.<LangDef>head(defs);
       String _name = def.getName();
       Assert.assertEquals(name, _name);
       final EList<String> keywords = def.getKeywords();
       int _size_1 = expectedKeywords.size();
       int _size_2 = keywords.size();
-      Assert.assertEquals(Integer.valueOf(_size_1), Integer.valueOf(_size_2));
+      Assert.assertEquals(_size_1, _size_2);
       int _size_3 = keywords.size();
       int _minus = (_size_3 - 1);
       IntegerRange _upTo = new IntegerRange(0, _minus);
@@ -694,7 +694,7 @@ public class ParserTest {
         String _get_1 = keywords.get((i).intValue());
         Assert.assertEquals(_get, _get_1);
       }
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
@@ -709,7 +709,7 @@ public class ParserTest {
       TextOrMarkup _title = doc.getTitle();
       EList<EObject> _contents = _title.getContents();
       int _size = _contents.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size));
+      Assert.assertEquals(1, _size);
       TextOrMarkup _title_1 = doc.getTitle();
       EList<EObject> _contents_1 = _title_1.getContents();
       EObject _head = IterableExtensions.<EObject>head(_contents_1);
@@ -718,13 +718,13 @@ public class ParserTest {
       Assert.assertEquals("foo", _text);
       EList<Chapter> _chapters = doc.getChapters();
       int _size_1 = _chapters.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_1));
+      Assert.assertEquals(1, _size_1);
       EList<Chapter> _chapters_1 = doc.getChapters();
       final Chapter chapter = IterableExtensions.<Chapter>head(_chapters_1);
       TextOrMarkup _title_2 = chapter.getTitle();
       EList<EObject> _contents_2 = _title_2.getContents();
       int _size_2 = _contents_2.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_2));
+      Assert.assertEquals(1, _size_2);
       TextOrMarkup _title_3 = chapter.getTitle();
       EList<EObject> _contents_3 = _title_3.getContents();
       EObject _head_1 = IterableExtensions.<EObject>head(_contents_3);
@@ -733,13 +733,13 @@ public class ParserTest {
       Assert.assertEquals("bar", _text_1);
       EList<Section> _subSections = chapter.getSubSections();
       int _size_3 = _subSections.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_3));
+      Assert.assertEquals(1, _size_3);
       EList<Section> _subSections_1 = chapter.getSubSections();
       final Section section = IterableExtensions.<Section>head(_subSections_1);
       TextOrMarkup _title_4 = section.getTitle();
       EList<EObject> _contents_4 = _title_4.getContents();
       int _size_4 = _contents_4.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_4));
+      Assert.assertEquals(1, _size_4);
       TextOrMarkup _title_5 = section.getTitle();
       EList<EObject> _contents_5 = _title_5.getContents();
       EObject _head_2 = IterableExtensions.<EObject>head(_contents_5);
@@ -748,13 +748,13 @@ public class ParserTest {
       Assert.assertEquals("foo\u00DF", _text_2);
       EList<Section2> _subSections_2 = section.getSubSections();
       int _size_5 = _subSections_2.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_5));
+      Assert.assertEquals(1, _size_5);
       EList<Section2> _subSections_3 = section.getSubSections();
       final Section2 section2 = IterableExtensions.<Section2>head(_subSections_3);
       TextOrMarkup _title_6 = section2.getTitle();
       EList<EObject> _contents_6 = _title_6.getContents();
       int _size_6 = _contents_6.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_6));
+      Assert.assertEquals(1, _size_6);
       TextOrMarkup _title_7 = section2.getTitle();
       EList<EObject> _contents_7 = _title_7.getContents();
       EObject _head_3 = IterableExtensions.<EObject>head(_contents_7);
@@ -763,13 +763,13 @@ public class ParserTest {
       Assert.assertEquals("pilz", _text_3);
       EList<Section3> _subSections_4 = section2.getSubSections();
       int _size_7 = _subSections_4.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_7));
+      Assert.assertEquals(1, _size_7);
       EList<Section3> _subSections_5 = section2.getSubSections();
       final Section3 section3 = IterableExtensions.<Section3>head(_subSections_5);
       TextOrMarkup _title_8 = section3.getTitle();
       EList<EObject> _contents_8 = _title_8.getContents();
       int _size_8 = _contents_8.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_8));
+      Assert.assertEquals(1, _size_8);
       TextOrMarkup _title_9 = section3.getTitle();
       EList<EObject> _contents_9 = _title_9.getContents();
       EObject _head_4 = IterableExtensions.<EObject>head(_contents_9);
@@ -778,7 +778,7 @@ public class ParserTest {
       Assert.assertEquals("sna", _text_4);
       EList<Section4> _subSections_6 = section3.getSubSections();
       int _size_9 = _subSections_6.size();
-      Assert.assertEquals(Integer.valueOf(1), Integer.valueOf(_size_9));
+      Assert.assertEquals(1, _size_9);
       EList<Section4> _subSections_7 = section3.getSubSections();
       final Section4 section4 = IterableExtensions.<Section4>head(_subSections_7);
       TextOrMarkup _title_10 = section4.getTitle();
@@ -791,7 +791,7 @@ public class ParserTest {
       textPart = ((TextPart) _head_5);
       String _text_5 = textPart.getText();
       Assert.assertEquals("fu", _text_5);
-    } catch (Exception _e) {
+    } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }

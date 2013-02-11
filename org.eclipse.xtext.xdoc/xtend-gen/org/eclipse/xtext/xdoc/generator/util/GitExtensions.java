@@ -21,6 +21,7 @@ import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xtype.XtypePackage;
 
 @SuppressWarnings("all")
@@ -99,7 +100,7 @@ public class GitExtensions {
   public String gitLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
     {
-      CharSequence _switchResult = null;
+      String _switchResult = null;
       String _qualifiedName = ie.getQualifiedName();
       final String name = _qualifiedName;
       boolean _matched = false;
@@ -391,14 +392,14 @@ public class GitExtensions {
         boolean _startsWith_32 = name.startsWith("org.xtext.");
         if (_startsWith_32) {
           _matched=true;
-          CharSequence _xblockexpression_1 = null;
+          String _xblockexpression_1 = null;
           {
             String[] _split = name.split("\\.");
             final String languageID = ((List<String>)Conversions.doWrapArray(_split)).get(2);
             String[] _split_1 = name.split("\\.");
             final String pluginSuffix = ((List<String>)Conversions.doWrapArray(_split_1)).get(3);
             String _xifexpression = null;
-            boolean _equals = Objects.equal(pluginSuffix, "examples");
+            boolean _equals = ObjectExtensions.operator_equals(pluginSuffix, "examples");
             if (_equals) {
               _xifexpression = "examples";
             } else {
@@ -418,7 +419,7 @@ public class GitExtensions {
               }
             }
             _builder.append("/src/");
-            _xblockexpression_1 = (_builder);
+            _xblockexpression_1 = (_builder.toString());
           }
           _switchResult = _xblockexpression_1;
         }
@@ -426,7 +427,7 @@ public class GitExtensions {
       if (!_matched) {
         _switchResult = "";
       }
-      final CharSequence prefix = _switchResult;
+      final String prefix = _switchResult;
       String _xifexpression = null;
       int _length = prefix.length();
       boolean _notEquals = (_length != 0);
@@ -438,7 +439,7 @@ public class GitExtensions {
         boolean _matched_1 = false;
         if (!_matched_1) {
           String _scheme = uri.scheme();
-          boolean _equals = Objects.equal(_scheme, "java");
+          boolean _equals = ObjectExtensions.operator_equals(_scheme, "java");
           if (_equals) {
             _matched_1=true;
             String _qualifiedName_1 = ie.getQualifiedName();

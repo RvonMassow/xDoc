@@ -1,7 +1,7 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
-import com.google.common.base.Objects;
 import org.eclipse.xtext.common.types.JvmIdentifiableElement;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 
 @SuppressWarnings("all")
 public class JavaDocExtension {
@@ -9,7 +9,7 @@ public class JavaDocExtension {
     String _xblockexpression = null;
     {
       String _qualifiedName = ie.getQualifiedName();
-      boolean _equals = Objects.equal(_qualifiedName, null);
+      boolean _equals = ObjectExtensions.operator_equals(_qualifiedName, null);
       if (_equals) {
         return null;
       }
@@ -123,7 +123,7 @@ public class JavaDocExtension {
       }
       final String prefix = _switchResult;
       String _xifexpression = null;
-      boolean _notEquals = (!Objects.equal(prefix, ""));
+      boolean _notEquals = ObjectExtensions.operator_notEquals(prefix, "");
       if (_notEquals) {
         String _plus = (prefix + file);
         String _plus_1 = (_plus + ".html");
