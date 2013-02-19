@@ -7,8 +7,6 @@
     <artifactId>org.eclipse.xtext.xdoc.parent</artifactId>
     <version>0.1.0-SNAPSHOT</version>
   </parent>
-  <groupId>org.eclipse.xtext.xdoc</groupId>
   <artifactId>org.eclipse.xtext.xdoc.releng</artifactId>
-  <version>0.1.0-SNAPSHOT</version>
-  <packaging>eclipse-update-site</packaging>
+  <packaging>eclipse-repository</packaging>
 </project>

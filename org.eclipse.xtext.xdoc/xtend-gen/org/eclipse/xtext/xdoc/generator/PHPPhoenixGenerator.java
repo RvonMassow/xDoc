@@ -39,7 +39,7 @@ public class PHPPhoenixGenerator {
     _builder.append("\t");
     _builder.append("$pageTitle \t\t= \"");
     TextOrMarkup _title = as.getTitle();
-    Object _genPlainText = this.pt.genPlainText(_title);
+    CharSequence _genPlainText = this.pt.genPlainText(_title);
     _builder.append(_genPlainText, "	");
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
@@ -84,7 +84,7 @@ public class PHPPhoenixGenerator {
     _builder.append("\t");
     _builder.append("$pageTitle \t\t= \"");
     TextOrMarkup _title = doc.getTitle();
-    Object _genPlainText = this.pt.genPlainText(_title);
+    CharSequence _genPlainText = this.pt.genPlainText(_title);
     _builder.append(_genPlainText, "	");
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
@@ -151,7 +151,7 @@ public class PHPPhoenixGenerator {
         if (_notEquals) {
           _builder_1.append("$pageAuthor\t\t= \"");
           TextOrMarkup _authors_1 = doc.getAuthors();
-          Object _genPlainText_1 = this.pt.genPlainText(_authors_1);
+          CharSequence _genPlainText_1 = this.pt.genPlainText(_authors_1);
           _builder_1.append(_genPlainText_1, "	");
           _builder_1.append("\";");
         }
@@ -164,7 +164,7 @@ public class PHPPhoenixGenerator {
         if (_notEquals_1) {
           _builder_1.append("$pageTitle \t\t= \"");
           TextOrMarkup _title_2 = doc.getTitle();
-          Object _genPlainText_2 = this.pt.genPlainText(_title_2);
+          CharSequence _genPlainText_2 = this.pt.genPlainText(_title_2);
           _builder_1.append(_genPlainText_2, "	");
           _builder_1.append("\";");
         }
