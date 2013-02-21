@@ -22,10 +22,10 @@
 								<taskdef resource="net/sf/antcontrib/antlib.xml" />
 								<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask" />
 								<if>
-									<isset property="ecview.p2.target.folder" />
+									<isset property="xdoc.p2.target.folder" />
 									<then>
 										<echo>------------------------------------------------</echo>
-										<echo>Copying repository to ${ecview.p2.target.folder}</echo>
+										<echo>Copying repository to ${xdoc.p2.target.folder}</echo>
 										<echo>------------------------------------------------</echo>
 										<if>
 											<available file="${xdoc.p2.target.folder}" type="dir" />
@@ -41,7 +41,7 @@
 									</then>
 									<else>
 										<echo>------------------------------------------------</echo>
-										<echo>No copying repository! -Decview.p2.target.folder not present</echo>
+										<echo>No copying repository! -Dxdoc.p2.target.folder not present</echo>
 										<echo>------------------------------------------------</echo>
 									</else>
 								</if>
