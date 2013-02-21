@@ -24,6 +24,11 @@
 			<id>tycho-snapshots</id>
 			<url>https://oss.sonatype.org/content/groups/public/</url>
 		</pluginRepository>
+		<pluginRepository>
+			<!-- used to find XMLTask jar -->
+			<id>atlassian</id>
+			<url>http://repository.atlassian.com/maven2/</url>
+		</pluginRepository>
 	</pluginRepositories>
 	<repositories>
 		<repository>
@@ -41,11 +46,11 @@
 			<layout>p2</layout>
 			<url>https://hudson.eclipse.org/hudson/job/Xtext-nightly-HEAD/lastSuccessfulBuild/artifact/xtext.p2.repository/</url>
 		</repository>
-<!-- 		<repository> -->
-<!-- 			<id>xtend2</id> -->
-<!-- 			<layout>p2</layout> -->
-<!-- 			<url>https://hudson.eclipse.org/hudson/job/xtend-head/lastSuccessfulBuild/artifact/xtend.p2.repository/</url> -->
-<!-- 		</repository> -->
+		<!-- <repository> -->
+		<!-- <id>xtend2</id> -->
+		<!-- <layout>p2</layout> -->
+		<!-- <url>https://hudson.eclipse.org/hudson/job/xtend-head/lastSuccessfulBuild/artifact/xtend.p2.repository/</url> -->
+		<!-- </repository> -->
 		<repository>
 			<id>mwe2lang</id>
 			<layout>p2</layout>
