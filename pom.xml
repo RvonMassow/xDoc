@@ -54,11 +54,11 @@
       <layout>p2</layout>
       <url>https://hudson.eclipse.org/hudson/job/MWE-nightly-Maintenance/lastSuccessfulBuild/artifact/mwe.p2.repository/</url>
     </repository>
-    <repository>
+    <!--<repository>
       <id>antlrruntime</id>
       <layout>p2</layout>
       <url>file:${project.basedir}/../org.antlr.runtime-site</url>
-    </repository>
+    </repository>-->
     <repository>
       <id>antlrgenerator</id>
       <layout>p2</layout>
