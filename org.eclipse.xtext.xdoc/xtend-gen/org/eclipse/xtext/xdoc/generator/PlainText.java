@@ -22,16 +22,16 @@ public class PlainText {
   protected CharSequence _genPlainText(final TextOrMarkup tom) {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<String,EObject,String> _function = new Function2<String,EObject,String>() {
-        public String apply(final String e1, final EObject e2) {
+    final Function2<CharSequence,EObject,CharSequence> _function = new Function2<CharSequence,EObject,CharSequence>() {
+        public CharSequence apply(final CharSequence e1, final EObject e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
-          Object _genPlainText = PlainText.this.genPlainText(e2);
+          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
           _builder.append(_genPlainText, "");
-          return _builder.toString();
+          return _builder;
         }
       };
-    String _fold = IterableExtensions.<EObject, String>fold(_contents, _builder.toString(), _function);
+    CharSequence _fold = IterableExtensions.<EObject, CharSequence>fold(_contents, _builder, _function);
     return _fold;
   }
   
@@ -43,16 +43,16 @@ public class PlainText {
   protected CharSequence _genPlainText(final Emphasize em) {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<String,TextOrMarkup,String> _function = new Function2<String,TextOrMarkup,String>() {
-        public String apply(final String e1, final TextOrMarkup e2) {
+    final Function2<CharSequence,TextOrMarkup,CharSequence> _function = new Function2<CharSequence,TextOrMarkup,CharSequence>() {
+        public CharSequence apply(final CharSequence e1, final TextOrMarkup e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
-          Object _genPlainText = PlainText.this.genPlainText(e2);
+          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
           _builder.append(_genPlainText, "");
-          return _builder.toString();
+          return _builder;
         }
       };
-    String _fold = IterableExtensions.<TextOrMarkup, String>fold(_contents, _builder.toString(), _function);
+    CharSequence _fold = IterableExtensions.<TextOrMarkup, CharSequence>fold(_contents, _builder, _function);
     return _fold;
   }
   
@@ -62,7 +62,7 @@ public class PlainText {
       StringConcatenation _builder = new StringConcatenation();
       String _text = l.getText();
       _builder.append(_text, "");
-      final String text = _builder.toString();
+      final CharSequence text = _builder;
       CharSequence _xifexpression = null;
       String _string = text.toString();
       boolean _notEquals = ObjectExtensions.operator_notEquals(_string, text);
@@ -91,7 +91,7 @@ public class PlainText {
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
           for(final TextOrMarkup e : _contents_1) {
-            Object _genPlainText = this.genPlainText(e);
+            CharSequence _genPlainText = this.genPlainText(e);
             _builder.append(_genPlainText, "");
             _builder.newLineIfNotEmpty();
           }
@@ -119,7 +119,7 @@ public class PlainText {
     {
       EList<EObject> _contents = cb.getContents();
       for(final EObject c : _contents) {
-        Object _genPlainText = this.genPlainText(c);
+        CharSequence _genPlainText = this.genPlainText(c);
         _builder.append(_genPlainText, "");
         _builder.newLineIfNotEmpty();
       }
@@ -137,7 +137,7 @@ public class PlainText {
     return _builder;
   }
   
-  public Object genPlainText(final Object cb) {
+  public CharSequence genPlainText(final Object cb) {
     if (cb instanceof CodeBlock) {
       return _genPlainText((CodeBlock)cb);
     } else if (cb instanceof CodeRef) {

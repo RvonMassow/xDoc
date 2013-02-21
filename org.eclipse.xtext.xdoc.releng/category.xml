@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <feature url="features/org.eclipse.xtext.xdoc.feature_0.1.0.qualifier.jar" id="org.eclipse.xtext.xdoc.feature" version="0.1.0.qualifier">
-      <category name="Xdoc"/>
+      <category name="xdoc-features"/>
    </feature>
-   <category-def name="Xdoc" label="Xdoc"/>
+   <category-def name="xdoc-features" label="Xdoc features"/>
 </site>

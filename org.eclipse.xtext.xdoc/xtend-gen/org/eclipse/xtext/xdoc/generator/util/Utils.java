@@ -170,7 +170,7 @@ public class Utils {
     String _unescapeXdocChars = this.unescapeXdocChars(code);
     ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(_unescapeXdocChars);
     lexer.setCharStream(_aNTLRStringStream);
-    Set<String> _xifexpression = null;
+    Set<? extends Object> _xifexpression = null;
     boolean _notEquals = ObjectExtensions.operator_notEquals(language, null);
     if (_notEquals) {
       EList<String> _keywords = language.getKeywords();
@@ -184,10 +184,10 @@ public class Utils {
       Set<String> _set = IterableExtensions.<String>toSet(_map);
       _xifexpression = _set;
     } else {
-      Set<String> _emptySet = CollectionLiterals.<String>emptySet();
+      Set<?> _emptySet = CollectionLiterals.emptySet();
       _xifexpression = _emptySet;
     }
-    final Set<String> keywords = _xifexpression;
+    final Set<? extends Object> keywords = _xifexpression;
     Token token = lexer.nextToken();
     StringBuilder _stringBuilder = new StringBuilder();
     final StringBuilder result = _stringBuilder;
@@ -317,8 +317,8 @@ public class Utils {
     return _replace_1.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
   }
   
-  public Integer calcIndent(final CodeBlock cb) {
-    Integer _xifexpression = null;
+  public int calcIndent(final CodeBlock cb) {
+    int _xifexpression = (int) 0;
     boolean _and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();

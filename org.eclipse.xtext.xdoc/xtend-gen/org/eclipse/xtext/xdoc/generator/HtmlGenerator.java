@@ -280,7 +280,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(chap);
       _builder.append(_tag, "");
       _builder.append(">");
-      Object _genPlainText = this.plaintext.genPlainText(chap);
+      CharSequence _genPlainText = this.plaintext.genPlainText(chap);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(chap);
@@ -305,7 +305,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(section);
       _builder.append(_tag, "");
       _builder.append(">");
-      Object _genPlainText = this.plaintext.genPlainText(section);
+      CharSequence _genPlainText = this.plaintext.genPlainText(section);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(section);
@@ -330,7 +330,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(section2);
       _builder.append(_tag, "");
       _builder.append(">");
-      Object _genPlainText = this.plaintext.genPlainText(section2);
+      CharSequence _genPlainText = this.plaintext.genPlainText(section2);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(section2);
@@ -709,7 +709,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<li class=\"partentry\" >");
     _builder.newLine();
     TextOrMarkup _title = part.getTitle();
-    Object _genPlainText = this.plaintext.genPlainText(_title);
+    CharSequence _genPlainText = this.plaintext.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.newLineIfNotEmpty();
     _builder.append("</li>");
@@ -948,7 +948,7 @@ public class HtmlGenerator implements IGenerator {
         _xifexpression_1 = _dottedSimpleName;
       }
       final CharSequence text = _xifexpression_1;
-      String _xifexpression_2 = null;
+      CharSequence _xifexpression_2 = null;
       boolean _notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
       if (_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
@@ -962,7 +962,7 @@ public class HtmlGenerator implements IGenerator {
         _builder.append(prefix, "");
         _builder.append(text, "");
         _builder.append("</abbr></a>");
-        _xifexpression_2 = _builder.toString();
+        _xifexpression_2 = _builder;
       } else {
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("<abbr title=\"");
@@ -971,9 +971,9 @@ public class HtmlGenerator implements IGenerator {
         _builder_1.append(prefix, "");
         _builder_1.append(text, "");
         _builder_1.append("</abbr>");
-        _xifexpression_2 = _builder_1.toString();
+        _xifexpression_2 = _builder_1;
       }
-      String ret = _xifexpression_2;
+      CharSequence ret = _xifexpression_2;
       CharSequence _xifexpression_3 = null;
       boolean _notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
       if (_notEquals_2) {
@@ -1092,19 +1092,19 @@ public class HtmlGenerator implements IGenerator {
   protected CharSequence _genText(final Ref ref) {
     CharSequence _xblockexpression = null;
     {
-      String _xifexpression = null;
+      CharSequence _xifexpression = null;
       Identifiable _ref = ref.getRef();
       if ((_ref instanceof AbstractSection)) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("title=\"Go to &quot;");
         Identifiable _ref_1 = ref.getRef();
         TextOrMarkup _title = ((AbstractSection) _ref_1).getTitle();
-        Object _genPlainText = this.plaintext.genPlainText(_title);
+        CharSequence _genPlainText = this.plaintext.genPlainText(_title);
         _builder.append(_genPlainText, "");
         _builder.append("&quot;\"");
-        _xifexpression = _builder.toString();
+        _xifexpression = _builder;
       }
-      final String title = _xifexpression;
+      final CharSequence title = _xifexpression;
       StringConcatenation _builder_1 = new StringConcatenation();
       {
         EList<TextOrMarkup> _contents = ref.getContents();

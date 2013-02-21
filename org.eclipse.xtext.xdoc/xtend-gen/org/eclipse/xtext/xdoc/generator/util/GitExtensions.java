@@ -100,7 +100,7 @@ public class GitExtensions {
   public String gitLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
     {
-      String _switchResult = null;
+      CharSequence _switchResult = null;
       String _qualifiedName = ie.getQualifiedName();
       final String name = _qualifiedName;
       boolean _matched = false;
@@ -392,7 +392,7 @@ public class GitExtensions {
         boolean _startsWith_32 = name.startsWith("org.xtext.");
         if (_startsWith_32) {
           _matched=true;
-          String _xblockexpression_1 = null;
+          CharSequence _xblockexpression_1 = null;
           {
             String[] _split = name.split("\\.");
             final String languageID = ((List<String>)Conversions.doWrapArray(_split)).get(2);
@@ -419,7 +419,7 @@ public class GitExtensions {
               }
             }
             _builder.append("/src/");
-            _xblockexpression_1 = (_builder.toString());
+            _xblockexpression_1 = (_builder);
           }
           _switchResult = _xblockexpression_1;
         }
@@ -427,7 +427,7 @@ public class GitExtensions {
       if (!_matched) {
         _switchResult = "";
       }
-      final String prefix = _switchResult;
+      final CharSequence prefix = _switchResult;
       String _xifexpression = null;
       int _length = prefix.length();
       boolean _notEquals = (_length != 0);
