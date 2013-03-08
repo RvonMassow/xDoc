@@ -6,7 +6,9 @@ import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.xdoc.generator.EclipseHelpGenerator
+import org.eclipse.xtext.xdoc.generator.StatefulEclipseHelpGenerator
 import org.eclipse.xtext.xdoc.util.ParseHelperExtensions
+import org.eclipse.xtext.xdoc.xdoc.Document
 import org.eclipse.xtext.xdoc.xdoc.XdocFile
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -15,10 +17,6 @@ import static org.eclipse.xtext.xdoc.util.GeneratorTestConstants.*
 import static org.eclipse.xtext.xdoc.util.ParserTestConstants.*
 
 import static extension junit.framework.Assert.*
-import org.eclipse.xtext.xdoc.xdoc.Document
-import com.google.common.collect.Maps
-import com.google.inject.Provider
-import org.eclipse.xtext.xdoc.generator.StatefulEclipseHelpGenerator
 
 @RunWith(typeof(XtextRunner))
 @InjectWith(typeof(XdocInjectorProvider))
@@ -39,7 +37,7 @@ class EclipseHelpGeneratorTest {
 		val file = getDoc(TEST_FILE_DIR + "codeTest.xdoc");
 		val doc = file.getMainSection() as Document
 		generate(doc);
-		val v = "foo" -> 3
+		"foo" -> 3
 //		validate(EXPECTATION_DIR + "code.html", RESULT_DIR + "mytestmodel.xdoc-0.html");
 	}
 

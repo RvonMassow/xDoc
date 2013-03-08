@@ -51,13 +51,18 @@ public class EclipseHelpGeneratorTest {
     Assert.assertTrue(_exists);
   }
   
-  public void testGenCode() throws Exception {
-    String _plus = (ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc");
-    final XdocFile file = this.getDoc(_plus);
-    AbstractSection _mainSection = file.getMainSection();
-    final Document doc = ((Document) _mainSection);
-    this._statefulEclipseHelpGenerator.generate(doc);
-    final Pair<String,Integer> v = Pair.<String, Integer>of("foo", Integer.valueOf(3));
+  public Pair<String,Integer> testGenCode() throws Exception {
+    Pair<String,Integer> _xblockexpression = null;
+    {
+      String _plus = (ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc");
+      final XdocFile file = this.getDoc(_plus);
+      AbstractSection _mainSection = file.getMainSection();
+      final Document doc = ((Document) _mainSection);
+      this._statefulEclipseHelpGenerator.generate(doc);
+      Pair<String,Integer> _mappedTo = Pair.<String, Integer>of("foo", Integer.valueOf(3));
+      _xblockexpression = (_mappedTo);
+    }
+    return _xblockexpression;
   }
   
   public XdocFile getDoc(final String fileName) {
