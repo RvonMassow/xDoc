@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -33,6 +34,7 @@ import org.eclipse.xtext.xdoc.xdoc.SectionRef;
 @SuppressWarnings("all")
 public class EclipseHelpUriUtil {
   @Inject
+  @Extension
   private EclipseNamingExtensions eclipseNamingExtensions;
   
   private Map<AbstractSection,AbstractSection> section2fileSection;

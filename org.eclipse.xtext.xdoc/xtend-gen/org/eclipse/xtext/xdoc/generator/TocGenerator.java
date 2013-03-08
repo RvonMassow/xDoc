@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpUriUtil;
 import org.eclipse.xtext.xdoc.generator.PlainText;
@@ -19,12 +20,15 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 @SuppressWarnings("all")
 public class TocGenerator {
   @Inject
+  @Extension
   private AbstractSectionExtension sectionExtension;
   
   @Inject
+  @Extension
   private EclipseNamingExtensions eclipseNamingExtensions;
   
   @Inject
+  @Extension
   private PlainText plainText;
   
   public CharSequence generateToc(final Document doc, final EclipseHelpUriUtil uriUtil) {

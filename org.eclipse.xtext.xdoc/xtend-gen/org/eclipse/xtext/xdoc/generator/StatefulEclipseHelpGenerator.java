@@ -23,6 +23,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IFileSystemAccessExtension2;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
@@ -67,24 +68,31 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 @SuppressWarnings("all")
 public class StatefulEclipseHelpGenerator {
   @Inject
+  @Extension
   private JavaDocExtension jdoc;
   
   @Inject
+  @Extension
   private GitExtensions git;
   
   @Inject
+  @Extension
   private Utils utils;
   
   @Inject
+  @Extension
   private EclipseNamingExtensions eclipseNamingExtensions;
   
   @Inject
+  @Extension
   private TocGenerator tocGenerator;
   
   @Inject
+  @Extension
   private PlainText plainText;
   
   @Inject
+  @Extension
   private AbstractSectionExtension sectionExtension;
   
   @Inject

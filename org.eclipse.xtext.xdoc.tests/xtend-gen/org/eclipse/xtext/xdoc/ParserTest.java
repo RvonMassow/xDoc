@@ -12,6 +12,7 @@ import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.junit4.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xdoc.XdocInjectorProvider;
@@ -44,14 +45,16 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(value = XtextRunner.class)
-@InjectWith(value = XdocInjectorProvider.class)
+@RunWith(XtextRunner.class)
+@InjectWith(XdocInjectorProvider.class)
 @SuppressWarnings("all")
 public class ParserTest {
   @Inject
+  @Extension
   private ParseHelperExtensions<XdocFile> _parseHelperExtensions;
   
   @Inject
+  @Extension
   private ValidationTestHelper _validationTestHelper;
   
   @Test

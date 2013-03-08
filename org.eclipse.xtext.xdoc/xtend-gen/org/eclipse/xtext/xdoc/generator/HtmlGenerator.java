@@ -25,6 +25,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
@@ -73,24 +74,31 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFile;
 @SuppressWarnings("all")
 public class HtmlGenerator implements IGenerator {
   @Inject
+  @Extension
   private Utils utils;
   
   @Inject
+  @Extension
   private PlainText plaintext;
   
   @Inject
+  @Extension
   private HTMLNamingExtensions naming;
   
   @Inject
+  @Extension
   private AbstractSectionExtension ase;
   
   @Inject
+  @Extension
   private GitExtensions git;
   
   @Inject
+  @Extension
   private JavaDocExtension jdoc;
   
   @Inject
+  @Extension
   private PHPPhoenixGenerator ppg;
   
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {

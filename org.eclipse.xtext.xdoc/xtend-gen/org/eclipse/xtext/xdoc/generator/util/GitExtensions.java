@@ -16,7 +16,6 @@ import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.xbase.XbasePackage;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -395,9 +394,9 @@ public class GitExtensions {
           String _xblockexpression_1 = null;
           {
             String[] _split = name.split("\\.");
-            final String languageID = ((List<String>)Conversions.doWrapArray(_split)).get(2);
+            final String languageID = _split[2];
             String[] _split_1 = name.split("\\.");
-            final String pluginSuffix = ((List<String>)Conversions.doWrapArray(_split_1)).get(3);
+            final String pluginSuffix = _split_1[3];
             String _xifexpression = null;
             boolean _equals = ObjectExtensions.operator_equals(pluginSuffix, "examples");
             if (_equals) {

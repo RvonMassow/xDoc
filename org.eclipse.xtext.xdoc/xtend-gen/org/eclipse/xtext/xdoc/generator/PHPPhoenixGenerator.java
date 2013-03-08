@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.PlainText;
@@ -19,9 +20,11 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 @SuppressWarnings("all")
 public class PHPPhoenixGenerator {
   @Inject
+  @Extension
   private EclipseNamingExtensions ene;
   
   @Inject
+  @Extension
   private PlainText pt;
   
   protected void _generatePHP(final AbstractSection as, final IFileSystemAccess fsa) {

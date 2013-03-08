@@ -83,7 +83,7 @@ class Utils {
 		val keywords = if (language !=null) 
 							language.keywords.map[unescapeXdocChars].toSet
 						else
-							emptySet
+							<String>emptySet
 		var token = lexer.nextToken
 		val result = new StringBuilder()
 		while (token.type != Token::EOF) {

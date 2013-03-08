@@ -30,6 +30,7 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -81,6 +82,7 @@ import org.w3c.dom.Node;
 @SuppressWarnings("all")
 public class LatexGenerator implements IConfigurableGenerator {
   @Inject
+  @Extension
   private Utils utils;
   
   @Inject

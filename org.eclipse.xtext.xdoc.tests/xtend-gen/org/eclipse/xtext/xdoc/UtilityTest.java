@@ -24,8 +24,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(value = XtextRunner.class)
-@InjectWith(value = XdocInjectorProvider.class)
+@RunWith(XtextRunner.class)
+@InjectWith(XdocInjectorProvider.class)
 @SuppressWarnings("all")
 public class UtilityTest {
   private String testStringSplitting = new Function0<String>() {
