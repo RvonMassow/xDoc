@@ -101,7 +101,7 @@ public class EclipseHelpUriUtil {
         }
         _xifexpression = _xblockexpression_1;
       } else {
-        URI _targetURI = this.getTargetURI(fileSection);
+        URI _targetURI = this.targetURI(fileSection);
         Identifiable _ref_1 = it.getRef();
         String _localId = this.eclipseNamingExtensions.getLocalId(_ref_1);
         URI _appendFragment = _targetURI.appendFragment(_localId);
@@ -154,22 +154,6 @@ public class EclipseHelpUriUtil {
       }
     }
     if (!_matched) {
-      if (it instanceof Part) {
-        final Part _part = (Part)it;
-        _matched=true;
-        URI _targetURI = this.targetURI(((Identifiable) _part));
-        _switchResult = _targetURI;
-      }
-    }
-    if (!_matched) {
-      if (it instanceof Chapter) {
-        final Chapter _chapter = (Chapter)it;
-        _matched=true;
-        URI _targetURI = this.targetURI(((Identifiable) _chapter));
-        _switchResult = _targetURI;
-      }
-    }
-    if (!_matched) {
       if (it instanceof Document) {
         final Document _document = (Document)it;
         _matched=true;
@@ -182,7 +166,7 @@ public class EclipseHelpUriUtil {
       {
         final AbstractSection container = EcoreUtil2.<AbstractSection>getContainerOfType(it, AbstractSection.class);
         final AbstractSection fileSection = this.section2fileSection.get(container);
-        URI _targetURI = this.getTargetURI(fileSection);
+        URI _targetURI = this.targetURI(fileSection);
         String _localId = this.eclipseNamingExtensions.getLocalId(it);
         URI _appendFragment = _targetURI.appendFragment(_localId);
         URI _targetURI_1 = this.getTargetURI(this.doc);
