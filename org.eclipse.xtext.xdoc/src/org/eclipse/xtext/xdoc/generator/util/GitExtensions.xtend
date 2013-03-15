@@ -58,7 +58,7 @@ class GitExtensions {
 					|| name.startsWith("org.eclipse.xtend2.lib."):				XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.lib/src/"
 				case name.startsWith("org.eclipse.xtext.xbase.ui."):			XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.ui/src/"
 				case name.startsWith("org.eclipse.xtext.xbase."):				XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/"
-				case name.startsWith("org.eclipse.xtend.lib."):					XTEXT_BASE_DIR + "org.eclipse.xtext.lib/src/"
+				case name.startsWith("org.eclipse.xtend.lib."):					XTEXT_BASE_DIR + "org.eclipse.xtend.lib/src/"
 				case name.startsWith("org.eclipse.xtend.ui."):					XTEND_BASE_DIR + "org.eclipse.xtend.ui/src/"
 				case name.startsWith("org.eclipse.xtend.core."):				XTEND_BASE_DIR + "org.eclipse.xtend.core/src/"
 				case name.startsWith("org.xtext."): { 
