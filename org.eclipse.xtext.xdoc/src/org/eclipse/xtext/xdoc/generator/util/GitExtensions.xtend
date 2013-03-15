@@ -1,18 +1,16 @@
 package org.eclipse.xtext.xdoc.generator.util
 
+import org.eclipse.xtext.XtextPackage
 import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmIdentifiableElement
-
-import static org.eclipse.xtext.xdoc.generator.util.GitExtensions.*
-import org.eclipse.xtext.XtextPackage
+import org.eclipse.xtext.common.types.TypesPackage
 import org.eclipse.xtext.xbase.XbasePackage
 import org.eclipse.xtext.xtype.XtypePackage
-import org.eclipse.xtext.common.types.TypesPackage
 
 class GitExtensions {
 	
-	static val XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.3.0/plugins/"
-	static val XTEND_BASE_DIR = "https://github.com/eclipse/xtend/blob/v2.3.0/plugins/"
+	static val XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.4.0/plugins/"
+	static val XTEND_BASE_DIR = XTEXT_BASE_DIR
 	static val MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.3.0/plugins/"
 	static val EMF_BASE_DIR = "https://github.com/eclipse/emf/blob/R2_8_0/plugins/"
 	static val SEVENLANGUAGES_BASEDIR = "https://github.com/xtext-dev/seven-languages-xtext/blob/master/"
