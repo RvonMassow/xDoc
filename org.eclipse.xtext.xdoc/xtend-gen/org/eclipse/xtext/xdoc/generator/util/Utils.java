@@ -18,7 +18,6 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.util.lexer.Common;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Code;
@@ -67,7 +66,7 @@ public class Utils {
   
   public String escapeLatexChars(final String s) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(s, null);
+    boolean _notEquals = (!Objects.equal(s, null));
     if (_notEquals) {
       String _replaceAll = s.replaceAll("\\$", "\\\\\\$");
       String _replaceAll_1 = _replaceAll.replaceAll("\\{", "\\\\{");
@@ -88,7 +87,7 @@ public class Utils {
   
   public String unescapeXdocChars(final String s) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(s, null);
+    boolean _notEquals = (!Objects.equal(s, null));
     if (_notEquals) {
       String _replaceAll = s.replaceAll("\\\\\\[", "[");
       String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
@@ -108,7 +107,7 @@ public class Utils {
   
   public String escapeHTMLChars(final String s) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(s, null);
+    boolean _notEquals = (!Objects.equal(s, null));
     if (_notEquals) {
       String _replace = s.replace("&", "&amp;");
       String _replace_1 = _replace.replace("\'", "&apos;");
@@ -125,7 +124,7 @@ public class Utils {
   
   public String formatCode(final CharSequence text, final LangDef language) {
     String _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(text, null);
+    boolean _notEquals = (!Objects.equal(text, null));
     if (_notEquals) {
       String _string = text.toString();
       String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language);
@@ -145,13 +144,13 @@ public class Utils {
       final Function1<LangDef,Boolean> _function = new Function1<LangDef,Boolean>() {
           public Boolean apply(final LangDef e) {
             String _name = e.getName();
-            boolean _equals = ObjectExtensions.operator_equals(_name, "__XdocDefaultLanguage__");
+            boolean _equals = Objects.equal(_name, "__XdocDefaultLanguage__");
             return Boolean.valueOf(_equals);
           }
         };
       final LangDef lang = IterableExtensions.<LangDef>findFirst(_langDefs, _function);
       Collection<String> _xifexpression = null;
-      boolean _notEquals = ObjectExtensions.operator_notEquals(lang, null);
+      boolean _notEquals = (!Objects.equal(lang, null));
       if (_notEquals) {
         EList<String> _keywords = lang.getKeywords();
         _xifexpression = _keywords;
@@ -171,7 +170,7 @@ public class Utils {
     ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(_unescapeXdocChars);
     lexer.setCharStream(_aNTLRStringStream);
     Set<String> _xifexpression = null;
-    boolean _notEquals = ObjectExtensions.operator_notEquals(language, null);
+    boolean _notEquals = (!Objects.equal(language, null));
     if (_notEquals) {
       EList<String> _keywords = language.getKeywords();
       final Function1<String,String> _function = new Function1<String,String>() {
@@ -343,7 +342,7 @@ public class Utils {
         int _indent = indent = _minus;
         _xblockexpression = (_indent);
       }
-      _xifexpression = _xblockexpression;
+      _xifexpression = Integer.valueOf(_xblockexpression);
     }
     return _xifexpression;
   }
@@ -371,7 +370,7 @@ public class Utils {
   
   public boolean nullOrEmpty(final String s) {
     boolean _or = false;
-    boolean _equals = ObjectExtensions.operator_equals(s, null);
+    boolean _equals = Objects.equal(s, null);
     if (_equals) {
       _or = true;
     } else {

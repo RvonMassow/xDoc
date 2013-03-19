@@ -1,11 +1,11 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
+import com.google.common.base.Objects;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
@@ -54,14 +54,14 @@ public class EclipseNamingExtensions {
     if (!_matched) {
       {
         String _name = identifiable.getName();
-        boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        boolean _notEquals = (!Objects.equal(_name, null));
         if (_notEquals) {
           String _name_1 = identifiable.getName();
           return URI.encodeFragment(_name_1, false);
         }
         EObject _eContainer = identifiable.eContainer();
         final AbstractSection parent = ((AbstractSection) _eContainer);
-        boolean _equals = ObjectExtensions.operator_equals(parent, null);
+        boolean _equals = Objects.equal(parent, null);
         if (_equals) {
           return "0";
         } else {

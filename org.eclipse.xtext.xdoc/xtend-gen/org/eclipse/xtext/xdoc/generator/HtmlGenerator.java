@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.io.InputStream;
@@ -28,7 +29,6 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.PHPPhoenixGenerator;
@@ -814,7 +814,7 @@ public class HtmlGenerator implements IGenerator {
   public CharSequence genAuthors(final Document doc) {
     CharSequence _xifexpression = null;
     TextOrMarkup _authors = doc.getAuthors();
-    boolean _notEquals = ObjectExtensions.operator_notEquals(_authors, null);
+    boolean _notEquals = (!Objects.equal(_authors, null));
     if (_notEquals) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<div class=\"authors\">");
@@ -927,7 +927,7 @@ public class HtmlGenerator implements IGenerator {
         _and = false;
       } else {
         TextOrMarkup _altText = cRef.getAltText();
-        boolean _equals = ObjectExtensions.operator_equals(_altText, null);
+        boolean _equals = Objects.equal(_altText, null);
         _and = ((_element instanceof JvmAnnotationType) && _equals);
       }
       if (_and) {
@@ -945,7 +945,7 @@ public class HtmlGenerator implements IGenerator {
       final String fqn = StringEscapeUtils.escapeHtml(_unescapeXdocChars);
       CharSequence _xifexpression_1 = null;
       TextOrMarkup _altText_1 = cRef.getAltText();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
+      boolean _notEquals = (!Objects.equal(_altText_1, null));
       if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
         CharSequence _genNonParText = this.genNonParText(_altText_2);
@@ -957,7 +957,7 @@ public class HtmlGenerator implements IGenerator {
       }
       final CharSequence text = _xifexpression_1;
       String _xifexpression_2 = null;
-      boolean _notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
+      boolean _notEquals_1 = (!Objects.equal(jDocLink, null));
       if (_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("<a class=\"jdoc\" href=\"");
@@ -983,7 +983,7 @@ public class HtmlGenerator implements IGenerator {
       }
       String ret = _xifexpression_2;
       CharSequence _xifexpression_3 = null;
-      boolean _notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
+      boolean _notEquals_2 = (!Objects.equal(gitLink, null));
       if (_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
@@ -1002,7 +1002,7 @@ public class HtmlGenerator implements IGenerator {
   public String dottedSimpleName(final JvmDeclaredType type) {
     String _xifexpression = null;
     JvmDeclaredType _declaringType = type.getDeclaringType();
-    boolean _notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
+    boolean _notEquals = (!Objects.equal(_declaringType, null));
     if (_notEquals) {
       JvmDeclaredType _declaringType_1 = type.getDeclaringType();
       String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
@@ -1160,7 +1160,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\" >");
     {
       String _text = link.getText();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_text, null);
+      boolean _notEquals = (!Objects.equal(_text, null));
       if (_notEquals) {
         String _text_1 = link.getText();
         _builder.append(_text_1, "");
@@ -1278,7 +1278,7 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLine();
       {
         String _name = img.getName();
-        boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        boolean _notEquals = (!Objects.equal(_name, null));
         if (_notEquals) {
           _builder.append("<a>");
           String _name_1 = img.getName();

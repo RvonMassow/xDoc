@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,7 +26,6 @@ import org.eclipse.xtext.generator.IFileSystemAccessExtension2;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpUriUtil;
 import org.eclipse.xtext.xdoc.generator.Outlets;
@@ -726,7 +726,7 @@ public class StatefulEclipseHelpGenerator {
       _builder.newLine();
       {
         String _name = img.getName();
-        boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+        boolean _notEquals = (!Objects.equal(_name, null));
         if (_notEquals) {
           String _name_1 = img.getName();
           CharSequence _genLabel = this.genLabel(_name_1);
@@ -743,7 +743,7 @@ public class StatefulEclipseHelpGenerator {
       _builder.append("\" ");
       {
         String _clazz = img.getClazz();
-        boolean _notEquals_1 = ObjectExtensions.operator_notEquals(_clazz, null);
+        boolean _notEquals_1 = (!Objects.equal(_clazz, null));
         if (_notEquals_1) {
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
@@ -756,7 +756,7 @@ public class StatefulEclipseHelpGenerator {
       {
         boolean _and = false;
         String _style = img.getStyle();
-        boolean _notEquals_2 = ObjectExtensions.operator_notEquals(_style, null);
+        boolean _notEquals_2 = (!Objects.equal(_style, null));
         if (!_notEquals_2) {
           _and = false;
         } else {
@@ -795,7 +795,7 @@ public class StatefulEclipseHelpGenerator {
   public CharSequence genLabel(final String name) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _notEquals = ObjectExtensions.operator_notEquals(this, null);
+      boolean _notEquals = (!Objects.equal(this, null));
       if (_notEquals) {
         _builder.append("<a name=\"");
         _builder.append(name, "");
@@ -902,7 +902,7 @@ public class StatefulEclipseHelpGenerator {
         _and = false;
       } else {
         TextOrMarkup _altText = cRef.getAltText();
-        boolean _equals = ObjectExtensions.operator_equals(_altText, null);
+        boolean _equals = Objects.equal(_altText, null);
         _and = ((_element instanceof JvmAnnotationType) && _equals);
       }
       if (_and) {
@@ -920,7 +920,7 @@ public class StatefulEclipseHelpGenerator {
       final String fqn = this.utils.escapeHTMLChars(_unescapeXdocChars);
       Object _xifexpression_1 = null;
       TextOrMarkup _altText_1 = cRef.getAltText();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_altText_1, null);
+      boolean _notEquals = (!Objects.equal(_altText_1, null));
       if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
         Object _generate = this.generate(_altText_2);
@@ -932,7 +932,7 @@ public class StatefulEclipseHelpGenerator {
       }
       final Object text = _xifexpression_1;
       String _xifexpression_2 = null;
-      boolean _notEquals_1 = ObjectExtensions.operator_notEquals(jDocLink, null);
+      boolean _notEquals_1 = (!Objects.equal(jDocLink, null));
       if (_notEquals_1) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("<a class=\"jdoc\" href=\"");
@@ -958,7 +958,7 @@ public class StatefulEclipseHelpGenerator {
       }
       String ret = _xifexpression_2;
       CharSequence _xifexpression_3 = null;
-      boolean _notEquals_2 = ObjectExtensions.operator_notEquals(gitLink, null);
+      boolean _notEquals_2 = (!Objects.equal(gitLink, null));
       if (_notEquals_2) {
         StringConcatenation _builder_2 = new StringConcatenation();
         _builder_2.append(ret, "");
@@ -977,7 +977,7 @@ public class StatefulEclipseHelpGenerator {
   public String dottedSimpleName(final JvmDeclaredType type) {
     String _xifexpression = null;
     JvmDeclaredType _declaringType = type.getDeclaringType();
-    boolean _notEquals = ObjectExtensions.operator_notEquals(_declaringType, null);
+    boolean _notEquals = (!Objects.equal(_declaringType, null));
     if (_notEquals) {
       JvmDeclaredType _declaringType_1 = type.getDeclaringType();
       String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
@@ -1036,7 +1036,7 @@ public class StatefulEclipseHelpGenerator {
         EObject _last = IterableExtensions.<EObject>last(_contents_5);
         EList<EObject> _contents_6 = cb.getContents();
         EObject _head_2 = IterableExtensions.<EObject>head(_contents_6);
-        boolean _notEquals = ObjectExtensions.operator_notEquals(_last, _head_2);
+        boolean _notEquals = (!Objects.equal(_last, _head_2));
         if (_notEquals) {
           EList<EObject> _contents_7 = cb.getContents();
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);

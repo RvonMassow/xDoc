@@ -20,14 +20,13 @@ import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xtype.XtypePackage;
 
 @SuppressWarnings("all")
 public class GitExtensions {
-  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.3.0/plugins/";
+  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.4.0/plugins/";
   
-  private final static String XTEND_BASE_DIR = "https://github.com/eclipse/xtend/blob/v2.3.0/plugins/";
+  private final static String XTEND_BASE_DIR = GitExtensions.XTEXT_BASE_DIR;
   
   private final static String MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.3.0/plugins/";
   
@@ -367,7 +366,7 @@ public class GitExtensions {
         boolean _startsWith_29 = name.startsWith("org.eclipse.xtend.lib.");
         if (_startsWith_29) {
           _matched=true;
-          String _plus_27 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.lib/src/");
+          String _plus_27 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtend.lib/src/");
           _switchResult = _plus_27;
         }
       }
@@ -398,7 +397,7 @@ public class GitExtensions {
             String[] _split_1 = name.split("\\.");
             final String pluginSuffix = _split_1[3];
             String _xifexpression = null;
-            boolean _equals = ObjectExtensions.operator_equals(pluginSuffix, "examples");
+            boolean _equals = Objects.equal(pluginSuffix, "examples");
             if (_equals) {
               _xifexpression = "examples";
             } else {
@@ -438,7 +437,7 @@ public class GitExtensions {
         boolean _matched_1 = false;
         if (!_matched_1) {
           String _scheme = uri.scheme();
-          boolean _equals = ObjectExtensions.operator_equals(_scheme, "java");
+          boolean _equals = Objects.equal(_scheme, "java");
           if (_equals) {
             _matched_1=true;
             String _qualifiedName_1 = ie.getQualifiedName();

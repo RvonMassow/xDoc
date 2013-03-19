@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.io.File;
 import java.util.Arrays;
@@ -8,7 +9,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.generator.PlainText;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
@@ -150,7 +150,7 @@ public class PHPPhoenixGenerator {
       _builder_1.append("\t");
       {
         TextOrMarkup _authors = doc.getAuthors();
-        boolean _notEquals = ObjectExtensions.operator_notEquals(_authors, null);
+        boolean _notEquals = (!Objects.equal(_authors, null));
         if (_notEquals) {
           _builder_1.append("$pageAuthor\t\t= \"");
           TextOrMarkup _authors_1 = doc.getAuthors();
@@ -163,7 +163,7 @@ public class PHPPhoenixGenerator {
       _builder_1.append("\t");
       {
         TextOrMarkup _title_1 = doc.getTitle();
-        boolean _notEquals_1 = ObjectExtensions.operator_notEquals(_title_1, null);
+        boolean _notEquals_1 = (!Objects.equal(_title_1, null));
         if (_notEquals_1) {
           _builder_1.append("$pageTitle \t\t= \"");
           TextOrMarkup _title_2 = doc.getTitle();

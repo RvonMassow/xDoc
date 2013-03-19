@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import java.util.Arrays;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -7,7 +8,6 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.xbase.lib.Functions.Function2;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.xdoc.CodeBlock;
 import org.eclipse.xtext.xdoc.xdoc.CodeRef;
 import org.eclipse.xtext.xdoc.xdoc.Emphasize;
@@ -65,7 +65,7 @@ public class PlainText {
       final String text = _builder.toString();
       CharSequence _xifexpression = null;
       String _string = text.toString();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_string, text);
+      boolean _notEquals = (!Objects.equal(_string, text));
       if (_notEquals) {
         _xifexpression = text;
       } else {

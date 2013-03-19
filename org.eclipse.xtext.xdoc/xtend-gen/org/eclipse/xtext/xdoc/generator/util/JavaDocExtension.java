@@ -1,7 +1,7 @@
 package org.eclipse.xtext.xdoc.generator.util;
 
+import com.google.common.base.Objects;
 import org.eclipse.xtext.common.types.JvmIdentifiableElement;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 
 @SuppressWarnings("all")
 public class JavaDocExtension {
@@ -9,7 +9,7 @@ public class JavaDocExtension {
     String _xblockexpression = null;
     {
       String _qualifiedName = ie.getQualifiedName();
-      boolean _equals = ObjectExtensions.operator_equals(_qualifiedName, null);
+      boolean _equals = Objects.equal(_qualifiedName, null);
       if (_equals) {
         return null;
       }
@@ -24,7 +24,7 @@ public class JavaDocExtension {
         boolean _startsWith = name.startsWith("org.eclipse.emf.mwe");
         if (_startsWith) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/emft/mwe/javadoc/2.3/";
+          _switchResult = "http://download.eclipse.org/modeling/emft/mwe/javadoc/2.4/";
         }
       }
       if (!_matched) {
@@ -38,14 +38,14 @@ public class JavaDocExtension {
         }
         if (_or) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.3/";
+          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.4/";
         }
       }
       if (!_matched) {
         boolean _startsWith_3 = name.startsWith("org.eclipse.xtend.");
         if (_startsWith_3) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/xtend/javadoc/2.3/";
+          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.4/";
         }
       }
       if (!_matched) {
@@ -123,7 +123,7 @@ public class JavaDocExtension {
       }
       final String prefix = _switchResult;
       String _xifexpression = null;
-      boolean _notEquals = ObjectExtensions.operator_notEquals(prefix, "");
+      boolean _notEquals = (!Objects.equal(prefix, ""));
       if (_notEquals) {
         String _plus = (prefix + file);
         String _plus_1 = (_plus + ".html");

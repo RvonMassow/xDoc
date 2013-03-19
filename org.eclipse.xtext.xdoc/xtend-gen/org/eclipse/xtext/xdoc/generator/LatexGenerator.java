@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import com.google.inject.Inject;
 import java.io.File;
 import java.io.InputStream;
@@ -35,7 +36,6 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xdoc.generator.IConfigurableGenerator;
 import org.eclipse.xtext.xdoc.generator.config.Config;
 import org.eclipse.xtext.xdoc.generator.util.LatexUtils;
@@ -344,7 +344,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     {
       boolean _and = false;
       TextOrMarkup _authors = doc.getAuthors();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_authors, null);
+      boolean _notEquals = (!Objects.equal(_authors, null));
       if (!_notEquals) {
         _and = false;
       } else {
@@ -371,7 +371,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     {
       TextOrMarkup _title = doc.getTitle();
-      boolean _notEquals_1 = ObjectExtensions.operator_notEquals(_title, null);
+      boolean _notEquals_1 = (!Objects.equal(_title, null));
       if (_notEquals_1) {
         _builder.append("\\title{");
         {
@@ -684,7 +684,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = part.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         String _name_1 = part.getName();
@@ -702,7 +702,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     {
       Part _part = part.getPart();
       String _name = _part.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         Part _part_1 = part.getPart();
@@ -721,7 +721,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     {
       Chapter _chapter = cRef.getChapter();
       String _name = _chapter.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         Chapter _chapter_1 = cRef.getChapter();
@@ -739,7 +739,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = chap.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         String _name_1 = chap.getName();
@@ -756,7 +756,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = sec.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         String _name_1 = sec.getName();
@@ -774,7 +774,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     {
       Section _section = sRef.getSection();
       String _name = _section.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         Section _section_1 = sRef.getSection();
@@ -792,7 +792,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = sec.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         String _name_1 = sec.getName();
@@ -810,7 +810,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     {
       Section2 _section2 = sRef.getSection2();
       String _name = _section2.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         Section2 _section2_1 = sRef.getSection2();
@@ -828,7 +828,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = sec.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         String _name_1 = sec.getName();
@@ -845,7 +845,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     StringConcatenation _builder = new StringConcatenation();
     {
       String _name = sec.getName();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_name, null);
+      boolean _notEquals = (!Objects.equal(_name, null));
       if (_notEquals) {
         _builder.append("\\label{");
         String _name_1 = sec.getName();
@@ -1140,7 +1140,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     {
       boolean _and = false;
       String _caption = imgRef.getCaption();
-      boolean _notEquals = ObjectExtensions.operator_notEquals(_caption, null);
+      boolean _notEquals = (!Objects.equal(_caption, null));
       if (!_notEquals) {
         _and = false;
       } else {
@@ -1343,14 +1343,14 @@ public class LatexGenerator implements IConfigurableGenerator {
   public boolean containerTypeOf(final EObject obj, final EClass c) {
     boolean _xifexpression = false;
     EClass _eClass = obj.eClass();
-    boolean _equals = ObjectExtensions.operator_equals(_eClass, c);
+    boolean _equals = Objects.equal(_eClass, c);
     if (_equals) {
       _xifexpression = true;
     } else {
       boolean _xifexpression_1 = false;
       EObject _eContainer = obj.eContainer();
       EClass _eClass_1 = _eContainer.eClass();
-      boolean _equals_1 = ObjectExtensions.operator_equals(_eClass_1, Literals.XDOC_FILE);
+      boolean _equals_1 = Objects.equal(_eClass_1, Literals.XDOC_FILE);
       if (_equals_1) {
         _xifexpression_1 = false;
       } else {
@@ -1366,7 +1366,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   public CharSequence langSpec(final LangDef lang) {
     StringConcatenation _builder = new StringConcatenation();
     {
-      boolean _notEquals = ObjectExtensions.operator_notEquals(lang, null);
+      boolean _notEquals = (!Objects.equal(lang, null));
       if (_notEquals) {
         _builder.append("[language=");
         String _name = lang.getName();
@@ -1457,15 +1457,15 @@ public class LatexGenerator implements IConfigurableGenerator {
         XFloat _xFloat = new XFloat(Float.valueOf(_parseFloat));
         XFloat ppmm = _xFloat;
         Node cn = n.getFirstChild();
-        boolean _notEquals = ObjectExtensions.operator_notEquals(cn, null);
+        boolean _notEquals = (!Objects.equal(cn, null));
         boolean _while = _notEquals;
         while (_while) {
           {
             String _nodeName = cn.getNodeName();
-            boolean _equals = ObjectExtensions.operator_equals(_nodeName, "Dimension");
+            boolean _equals = Objects.equal(_nodeName, "Dimension");
             if (_equals) {
               Node ccn = cn.getFirstChild();
-              boolean _notEquals_1 = ObjectExtensions.operator_notEquals(ccn, null);
+              boolean _notEquals_1 = (!Objects.equal(ccn, null));
               boolean _while_1 = _notEquals_1;
               while (_while_1) {
                 {
@@ -1483,14 +1483,14 @@ public class LatexGenerator implements IConfigurableGenerator {
                   Node _nextSibling = ccn.getNextSibling();
                   ccn = _nextSibling;
                 }
-                boolean _notEquals_2 = ObjectExtensions.operator_notEquals(ccn, null);
+                boolean _notEquals_2 = (!Objects.equal(ccn, null));
                 _while_1 = _notEquals_2;
               }
             }
             Node _nextSibling = cn.getNextSibling();
             cn = _nextSibling;
           }
-          boolean _notEquals_1 = ObjectExtensions.operator_notEquals(cn, null);
+          boolean _notEquals_1 = (!Objects.equal(cn, null));
           _while = _notEquals_1;
         }
         String _xifexpression = null;

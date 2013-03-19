@@ -1,5 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Inject;
 import java.util.Arrays;
@@ -14,7 +15,6 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
-import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
@@ -84,7 +84,7 @@ public class EclipseHelpUriUtil {
       final AbstractSection container = EcoreUtil2.<AbstractSection>getContainerOfType(_ref, AbstractSection.class);
       final AbstractSection fileSection = this.section2fileSection.get(container);
       URI _xifexpression = null;
-      boolean _equals = ObjectExtensions.operator_equals(fileSection, null);
+      boolean _equals = Objects.equal(fileSection, null);
       if (_equals) {
         URI _xblockexpression_1 = null;
         {
