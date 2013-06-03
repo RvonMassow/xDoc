@@ -14,16 +14,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFactory
 import static extension java.net.URLDecoder.*
 import static extension java.net.URLEncoder.*
 
-
 class Utils {
-
-	def urlDecode (String s){
-		s?.decode("ISO-8859-1")
-	}
-
-	def urlEncode (String s){
-		s?.encode("UTF-8")
-	}
 
 	def boolean isInlineCode (CodeBlock cb) {
 		cb.contents.size == 1 && !cb.contents.head.toString.contains("\n")

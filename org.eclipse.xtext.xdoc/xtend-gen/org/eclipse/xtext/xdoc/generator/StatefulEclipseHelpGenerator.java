@@ -722,11 +722,14 @@ public class StatefulEclipseHelpGenerator {
   protected CharSequence _generate(final ImageRef img) {
     CharSequence _xblockexpression = null;
     {
-      final URI imageChapterRelativeURI = this.uriUtil.getRelativeTargetURI(img);
       String _path = img.getPath();
-      String _unescapeXdocChars = this.utils.unescapeXdocChars(_path);
+      final String escapedPath = this.utils.unescapeXdocChars(_path);
+      final URI absoluteOutputURI = this.accessExtension2.getURI(escapedPath, Outlets.ECLIPSE_HELP);
+      String _targetDocumentName = this.uriUtil.getTargetDocumentName();
+      final URI documentURI = this.accessExtension2.getURI(_targetDocumentName, Outlets.ECLIPSE_HELP);
+      final URI imageChapterRelativeURI = absoluteOutputURI.deresolve(documentURI);
       Resource _eResource = img.eResource();
-      this.copy(_unescapeXdocChars, _eResource);
+      this.copy(escapedPath, _eResource);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("<div class=\"image\" >");
       _builder.newLine();
@@ -740,12 +743,10 @@ public class StatefulEclipseHelpGenerator {
           _builder.newLineIfNotEmpty();
         }
       }
-      _builder.append("", "");
-      _builder.newLineIfNotEmpty();
       _builder.append("<img src=\"");
       String _string = imageChapterRelativeURI.toString();
-      String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_string);
-      _builder.append(_unescapeXdocChars_1, "");
+      String _unescapeXdocChars = this.utils.unescapeXdocChars(_string);
+      _builder.append(_unescapeXdocChars, "");
       _builder.append("\" ");
       {
         String _clazz = img.getClazz();
@@ -753,8 +754,8 @@ public class StatefulEclipseHelpGenerator {
         if (_notEquals_1) {
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
-          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_clazz_1);
-          _builder.append(_unescapeXdocChars_2, "");
+          String _unescapeXdocChars_1 = this.utils.unescapeXdocChars(_clazz_1);
+          _builder.append(_unescapeXdocChars_1, "");
           _builder.append("\" ");
         }
       }
@@ -775,8 +776,8 @@ public class StatefulEclipseHelpGenerator {
         if (_and) {
           _builder.append(" style=\"");
           String _style_2 = img.getStyle();
-          String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_style_2);
-          _builder.append(_unescapeXdocChars_3, "");
+          String _unescapeXdocChars_2 = this.utils.unescapeXdocChars(_style_2);
+          _builder.append(_unescapeXdocChars_2, "");
           _builder.append("\" ");
         }
       }
@@ -785,8 +786,8 @@ public class StatefulEclipseHelpGenerator {
       _builder.append("<div class=\"caption\">");
       _builder.newLine();
       String _caption = img.getCaption();
-      String _unescapeXdocChars_4 = this.utils.unescapeXdocChars(_caption);
-      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_4);
+      String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_caption);
+      String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars_3);
       _builder.append(_escapeHTMLChars, "");
       _builder.newLineIfNotEmpty();
       _builder.append("</div>");

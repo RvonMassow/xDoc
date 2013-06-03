@@ -288,14 +288,16 @@ class StatefulEclipseHelpGenerator {
 		'''<a name="anchor-«a.name»"></a>'''
 
 	def dispatch CharSequence generate(ImageRef img) {
-		val imageChapterRelativeURI = uriUtil.getRelativeTargetURI(img)
-		copy(img.path.unescapeXdocChars, img.eResource) //imageAbsoluteURI, imageTargetURI, img.eResource.resourceSet.URIConverter)
+		val escapedPath = img.path.unescapeXdocChars
+		val absoluteOutputURI = accessExtension2.getURI(escapedPath, Outlets::ECLIPSE_HELP);
+		val documentURI = accessExtension2.getURI(uriUtil.targetDocumentName, Outlets::ECLIPSE_HELP);
+		val imageChapterRelativeURI = absoluteOutputURI.deresolve(documentURI)
+		copy(escapedPath, img.eResource) //imageAbsoluteURI, imageTargetURI, img.eResource.resourceSet.URIConverter)
 		'''
 			<div class="image" >
 			«IF img.name != null»
 				«img.name.genLabel»
 			«ENDIF»
-			«/*copy((String)GLOBALVAR srcDir, this.path, (String) GLOBALVAR dir) */ ""»
 			<img src="«imageChapterRelativeURI.toString.unescapeXdocChars()»" «IF img.clazz != null»class="«img.clazz.unescapeXdocChars»" «ENDIF»
 			«IF img.style != null && !(img.style.length==0)» style="«img.style.unescapeXdocChars»" «ENDIF»/>
 			<div class="caption">

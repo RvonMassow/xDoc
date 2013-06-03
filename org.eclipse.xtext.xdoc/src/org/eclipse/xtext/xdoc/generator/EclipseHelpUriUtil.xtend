@@ -1,23 +1,22 @@
 package org.eclipse.xtext.xdoc.generator
 
+import com.google.inject.Inject
 import java.util.Map
+import org.eclipse.emf.common.util.URI
+import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection
 import org.eclipse.xtext.xdoc.xdoc.Chapter
-import org.eclipse.xtext.xdoc.xdoc.Document
-import org.eclipse.xtext.xdoc.xdoc.Part
-import com.google.inject.Inject
-import org.eclipse.xtext.xdoc.generator.util.EclipseNamingExtensions
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef
+import org.eclipse.xtext.xdoc.xdoc.Document
+import org.eclipse.xtext.xdoc.xdoc.Identifiable
+import org.eclipse.xtext.xdoc.xdoc.Part
 import org.eclipse.xtext.xdoc.xdoc.PartRef
+import org.eclipse.xtext.xdoc.xdoc.Ref
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref
 import org.eclipse.xtext.xdoc.xdoc.SectionRef
-import org.eclipse.xtext.xdoc.xdoc.ImageRef
 
 import static extension org.eclipse.xtext.EcoreUtil2.*
-import org.eclipse.emf.common.util.URI
-import org.eclipse.xtext.xdoc.xdoc.Identifiable
-import org.eclipse.xtext.xdoc.xdoc.Ref
- 
+
 class EclipseHelpUriUtil {
 
 	@Inject extension EclipseNamingExtensions eclipseNamingExtensions
@@ -32,15 +31,8 @@ class EclipseHelpUriUtil {
 		populateFileMap(doc)
 	}
 
-	def getAbsoluteTargetURI(ImageRef img) {
-		val container = img.getContainerOfType(typeof(AbstractSection))
-		val fileSection = section2fileSection.get(container)
-		getRelativeTargetURI(img).resolve(fileSection.targetURI)
-	}
-	
-	def getRelativeTargetURI(ImageRef img) {
-		val imageAbsoluteURI = URI::createURI(img.path).resolve(img.eResource.URI)
-		imageAbsoluteURI.deresolve(doc.eResource.URI);
+	def getTargetDocumentName() {
+		return doc.targetURI.lastSegment
 	}
 	
 	def getTargetURI(Ref it) {

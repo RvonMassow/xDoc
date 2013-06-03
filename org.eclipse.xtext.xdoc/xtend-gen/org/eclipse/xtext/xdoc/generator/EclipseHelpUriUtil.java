@@ -22,7 +22,6 @@ import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.Identifiable;
-import org.eclipse.xtext.xdoc.xdoc.ImageRef;
 import org.eclipse.xtext.xdoc.xdoc.Part;
 import org.eclipse.xtext.xdoc.xdoc.PartRef;
 import org.eclipse.xtext.xdoc.xdoc.Ref;
@@ -48,33 +47,9 @@ public class EclipseHelpUriUtil {
     this.populateFileMap(doc);
   }
   
-  public URI getAbsoluteTargetURI(final ImageRef img) {
-    URI _xblockexpression = null;
-    {
-      final AbstractSection container = EcoreUtil2.<AbstractSection>getContainerOfType(img, AbstractSection.class);
-      final AbstractSection fileSection = this.section2fileSection.get(container);
-      URI _relativeTargetURI = this.getRelativeTargetURI(img);
-      URI _targetURI = this.getTargetURI(fileSection);
-      URI _resolve = _relativeTargetURI.resolve(_targetURI);
-      _xblockexpression = (_resolve);
-    }
-    return _xblockexpression;
-  }
-  
-  public URI getRelativeTargetURI(final ImageRef img) {
-    URI _xblockexpression = null;
-    {
-      String _path = img.getPath();
-      URI _createURI = URI.createURI(_path);
-      Resource _eResource = img.eResource();
-      URI _uRI = _eResource.getURI();
-      final URI imageAbsoluteURI = _createURI.resolve(_uRI);
-      Resource _eResource_1 = this.doc.eResource();
-      URI _uRI_1 = _eResource_1.getURI();
-      URI _deresolve = imageAbsoluteURI.deresolve(_uRI_1);
-      _xblockexpression = (_deresolve);
-    }
-    return _xblockexpression;
+  public String getTargetDocumentName() {
+    URI _targetURI = this.getTargetURI(this.doc);
+    return _targetURI.lastSegment();
   }
   
   public URI getTargetURI(final Ref it) {
