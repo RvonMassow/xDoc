@@ -26,7 +26,7 @@ public class PlainText {
         public String apply(final String e1, final EObject e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
-          Object _genPlainText = PlainText.this.genPlainText(e2);
+          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
           _builder.append(_genPlainText, "");
           return _builder.toString();
         }
@@ -47,7 +47,7 @@ public class PlainText {
         public String apply(final String e1, final TextOrMarkup e2) {
           StringConcatenation _builder = new StringConcatenation();
           _builder.append(e1, "");
-          Object _genPlainText = PlainText.this.genPlainText(e2);
+          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
           _builder.append(_genPlainText, "");
           return _builder.toString();
         }
@@ -91,7 +91,7 @@ public class PlainText {
         {
           EList<TextOrMarkup> _contents_1 = ref.getContents();
           for(final TextOrMarkup e : _contents_1) {
-            Object _genPlainText = this.genPlainText(e);
+            CharSequence _genPlainText = this.genPlainText(e);
             _builder.append(_genPlainText, "");
             _builder.newLineIfNotEmpty();
           }
@@ -119,7 +119,7 @@ public class PlainText {
     {
       EList<EObject> _contents = cb.getContents();
       for(final EObject c : _contents) {
-        Object _genPlainText = this.genPlainText(c);
+        CharSequence _genPlainText = this.genPlainText(c);
         _builder.append(_genPlainText, "");
         _builder.newLineIfNotEmpty();
       }
@@ -137,7 +137,7 @@ public class PlainText {
     return _builder;
   }
   
-  public Object genPlainText(final Object cb) {
+  public CharSequence genPlainText(final Object cb) {
     if (cb instanceof CodeBlock) {
       return _genPlainText((CodeBlock)cb);
     } else if (cb instanceof CodeRef) {

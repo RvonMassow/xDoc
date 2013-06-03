@@ -87,7 +87,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		name +".tex"
 	}
 	
-	def dispatch generate(Document doc) '''
+	def dispatch CharSequence generate(Document doc) '''
 		«preamble»
 		«FOR lang: doc.langDefs»
 			«lang.generate»
@@ -178,7 +178,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch generate(LangDef lang) '''
+	def dispatch CharSequence generate(LangDef lang) '''
 		\lstdefinelanguage{«lang.name»}
 		  {morekeywords={«lang.keywords.join(", ")»},
 		    sensitive=true,
@@ -208,7 +208,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	 * 
 	 * FIXME: name for sectionrefs not correctly read
 	 */
-	def dispatch generate(AbstractSection sec){
+	def dispatch CharSequence generate(AbstractSection sec){
 		'''
 		«switch (sec){
 			Part :
@@ -238,14 +238,14 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch genContent(Chapter chap){
+	def dispatch CharSequence genContent(Chapter chap){
 		'''
 		«FOR c : chap.contents»«c.genContent»«ENDFOR»
 		«FOR sub : chap.subSections»«sub.generate»«ENDFOR»
 		'''
 	}
 
-	def dispatch genContent(Part part){
+	def dispatch CharSequence genContent(Part part){
 		'''
 		
 		«FOR c : part.contents»
@@ -255,7 +255,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch genContent(Section sec){
+	def dispatch CharSequence genContent(Section sec){
 		'''
 		«FOR c : sec.contents»
 			«c.genContent»
@@ -266,7 +266,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch genContent(Section2 sec){
+	def dispatch CharSequence genContent(Section2 sec){
 		'''
 		«sec.genLabel»
 		«FOR c : sec.contents»
@@ -278,7 +278,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch genContent(Section3 sec){
+	def dispatch CharSequence genContent(Section3 sec){
 		'''
 		«sec.genLabel»
 		«FOR c : sec.contents»
@@ -290,7 +290,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch genContent(Section4 sec){
+	def dispatch CharSequence genContent(Section4 sec){
 		'''
 		«sec.genLabel»
 		«FOR c : sec.contents»
@@ -299,7 +299,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch genContent(TextOrMarkup tom){
+	def dispatch CharSequence genContent(TextOrMarkup tom){
 		'''
 			«FOR e : tom.contents»«e.genText»«ENDFOR»
 			
@@ -384,17 +384,11 @@ class LatexGenerator implements IConfigurableGenerator {
 		''''''
 	}
 
-	/**
-	 * genUrl
-	 */
 	 def genURL(String str){
 	 	'''\noindent\url{«str»}'''
 	 }
 
-	/**
-	 * genText
-	 */
-	def dispatch genText(Table tab) '''
+	def dispatch CharSequence genText(Table tab) '''
 		
 		\setlength{\XdocTEffectiveWidth}{\textwidth}
 		\addtolength{\XdocTEffectiveWidth}{-«tab.rows.head.data.size*2».0\tabcolsep}
@@ -403,19 +397,19 @@ class LatexGenerator implements IConfigurableGenerator {
 		\end{tabular}
 	'''
 
-	def dispatch genText(TableRow row){
+	def dispatch CharSequence genText(TableRow row){
 		row.data.map([e|e.genText]).join(" & ")
 	}
 
-	def dispatch genText(TableData tData){
+	def dispatch CharSequence genText(TableData tData){
 		tData.contents.map([e|e.genContent]).join
 	}
 
-	def dispatch genText(TextPart part){
+	def dispatch CharSequence genText(TextPart part){
 		part.text.unescapeXdocChars.escapeLatexChars
 	}
 
-	def dispatch genText(OrderedList ol) '''
+	def dispatch CharSequence genText(OrderedList ol) '''
 		\setlength{\XdocItemIndent}{\textwidth}
 		\begin{enumerate}
 		\addtolength{\XdocItemIndent}{-2.5em}
@@ -424,7 +418,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		\addtolength{\XdocItemIndent}{2.5em}
 	'''
 
-	def dispatch genText(UnorderedList ul){
+	def dispatch CharSequence genText(UnorderedList ul){
 		'''
 		\setlength{\XdocItemIndent}{\textwidth}
 		\begin{itemize}
@@ -435,7 +429,7 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''
 	}
 
-	def dispatch genText(Item item){
+	def dispatch CharSequence genText(Item item){
 		'''
 		\item \begin{minipage}[t]{\XdocItemIndent}«IF item.contents.head.block»\vspace*{-\baselineskip}«ENDIF»
 		«item.contents.map([e|e.genContent]).join»
@@ -443,32 +437,32 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''	
 	}
 
-	def dispatch genText(Emphasize em){
+	def dispatch CharSequence genText(Emphasize em){
 		'''\textit{«em.contents.map([e|e.genNonParContent]).join»}'''
 	}
 
-	def dispatch genText(Ref ref){
+	def dispatch CharSequence genText(Ref ref){
 		'''«IF ref.contents.isEmpty»\autoref{«ref.ref.name»}«ELSE»\hyperref[«ref.ref.name»]{«ref.contents.map([e|e.genNonParContent]).join»~(§\ref*{«ref.ref.name»})}«ENDIF»'''
 	}
 
-	def dispatch genText(Anchor anchor) {
+	def dispatch CharSequence genText(Anchor anchor) {
 		'''\phantomsection\label{«anchor.name»}'''
 	}
 
-	def dispatch genText(Link link){
+	def dispatch CharSequence genText(Link link){
 		links.add(link.url)
 		'''\href{«link.url»}{«link.text»}'''
 	}
 
-	def dispatch genText(CodeBlock block) {
+	def dispatch CharSequence genText(CodeBlock block) {
 		block.specialGenCode
 	}
 
-	def dispatch genText(CodeRef codeRef){
+	def dispatch CharSequence genText(CodeRef codeRef){
 		'''\protect\lstinline°«codeRef.element.qualifiedName.unescapeXdocChars.escapeLatexChars»°'''
 	}
 
-	def dispatch genText(ImageRef imgRef){
+	def dispatch CharSequence genText(ImageRef imgRef){
 		'''
 		\begin{figure}[!ht]
 		\centering
@@ -511,34 +505,32 @@ class LatexGenerator implements IConfigurableGenerator {
 		}
 	}
 
-	def dispatch genText(Todo todo){
+	def dispatch CharSequence genText(Todo todo){
 		if(!config.get(Config::release) as Boolean)
 			'''\todo[inline]{«todo.text.unescapeXdocChars.escapeLatexChars»}'''
 		else
 			''''''
 	}
 
-	def dispatch genText(MarkupInCode mic){
+	def dispatch CharSequence genText(MarkupInCode mic){
 		''''''
 	}
 
-	def dispatch genText(String str){
+	def dispatch CharSequence genText(String str){
 		str
 	}
 
-	def dispatch genText(EObject o){
+	def dispatch CharSequence genText(EObject o){
 		//throw new UnsupportedOperationException("genText")
 		''''''
 	}
 
-	/**
-	 * specialGenCode
-	 * 
+	/*
 	 * TODO: block.language != null  should be  language != null  
 	 */
 	 def specialGenCode(CodeBlock block) {
 		if(block.inline)
-			if(block.containerTypeOf(XdocPackage$Literals::TABLE)) {
+			if(block.containerTypeOf(XdocPackage.Literals::TABLE)) {
 	 			'''\protect\lstinline«block.language?.langSpec»°«block.contents.map[genCode].join»°'''
 	 		} else {
 	 			'''\protect\lstinline«block.language?.langSpec»{«block.contents.map[genCode].join»}'''
@@ -567,9 +559,6 @@ class LatexGenerator implements IConfigurableGenerator {
 		'''«IF lang != null»[language=«lang.name»]«ENDIF»'''
 	}
 
-	/**
-	 * genCode
-	 */
 	def dispatch genCode(Code code){
 		code.contents.unescapeXdocChars.prepareListingsString
 	}
@@ -582,14 +571,9 @@ class LatexGenerator implements IConfigurableGenerator {
 		''''''	  	
 	}
 
-	/**
-	 * genColumns
-	 */
 	def genColumns(List<TableData> tabData){
 		val colFract = new XFloat(1)/new XFloat(tabData.size)
 		'''«IF !tabData.empty»|«FOR td: tabData»p{«colFract»\XdocTEffectiveWidth}|«ENDFOR»«ENDIF»'''
-		//«/*{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}|*/»
-//		tabData.join('''p{«new XFloat(1)/new XFloat(tabData.size)»\textwidth}''', "|")
 	}
 
 	def String calcStyle(ImageRef ref) {

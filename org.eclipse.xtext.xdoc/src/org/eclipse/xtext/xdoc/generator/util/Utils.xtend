@@ -74,7 +74,7 @@ class Utils {
 		if(lang != null)
 			lang.keywords
 		else
-			<String>emptySet
+			emptySet
 	}
 
 	def getHighlightedHtmlCode(String code, LangDef language) {

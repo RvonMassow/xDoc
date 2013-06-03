@@ -10,19 +10,19 @@ import org.eclipse.xtext.xdoc.xdoc.TextPart
 
 class PlainText {
 
-	def dispatch genPlainText(TextOrMarkup tom) {
+	def dispatch CharSequence genPlainText(TextOrMarkup tom) {
 		tom.contents.fold('''''', [e1, e2 | '''«e1»«e2.genPlainText»'''])
 	}
 
-	def dispatch genPlainText(TextPart tp){
+	def dispatch CharSequence genPlainText(TextPart tp){
 		tp.text
 	}
 
-	def dispatch genPlainText(Emphasize em){
+	def dispatch CharSequence genPlainText(Emphasize em){
 		em.contents.fold('''''', [e1, e2 | '''«e1»«e2.genPlainText»'''])
 	}
 
-	def dispatch genPlainText(Link l) {
+	def dispatch CharSequence genPlainText(Link l) {
 		val text = '''«l.text»'''
 		if(text.toString != text)
 			text
@@ -30,7 +30,7 @@ class PlainText {
 			'''"«l.url»"'''
 	}
 
-	def dispatch genPlainText(Ref ref) {
+	def dispatch CharSequence genPlainText(Ref ref) {
 		'''
 			«IF !ref.contents.empty »
 				«FOR e :ref.contents»
@@ -42,11 +42,11 @@ class PlainText {
 		'''
 	}
 
-	def dispatch genPlainText(CodeRef cRef) {
+	def dispatch CharSequence genPlainText(CodeRef cRef) {
 		'''«cRef.element.qualifiedName»'''
 	}
 
-	def dispatch genPlainText(CodeBlock cb) {
+	def dispatch CharSequence genPlainText(CodeBlock cb) {
 		'''
 		«FOR c: cb.contents»
 			«c.genPlainText»
@@ -54,9 +54,9 @@ class PlainText {
 		'''
 	}
 
-	def dispatch genPlainText(Object o) '''
+	def dispatch CharSequence genPlainText(Object o) '''
 	'''
 
-	def dispatch genPlainText(Void v) '''
+	def dispatch CharSequence genPlainText(Void v) '''
 	'''
 }

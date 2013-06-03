@@ -142,7 +142,7 @@ class StatefulEclipseHelpGenerator {
 		</html>
 	'''
 	
-	def generateEntryInRoot(AbstractSection section) '''
+	def CharSequence generateEntryInRoot(AbstractSection section) '''
 		<li><a href="«uriUtil.getTargetURI(section)»">«section.title.genPlainText»</a>
 			«FOR ss: section.sections BEFORE "<ol>" AFTER "</ol>"»
 				«ss.generateEntryInRoot»
@@ -150,18 +150,18 @@ class StatefulEclipseHelpGenerator {
 		</li>
 	'''
 
-	def dispatch generate(Chapter chapter, IFileSystemAccess access, String homeFileName) {
+	def dispatch void generate(Chapter chapter, IFileSystemAccess access, String homeFileName) {
 		access.generateFile(chapter.fullURL.decode, chapter.generate(homeFileName))
 	}
 
-	def dispatch generate(Part part, IFileSystemAccess fsa, String homeFileName) {
+	def dispatch void generate(Part part, IFileSystemAccess fsa, String homeFileName) {
 		fsa.generateFile(part.fullURL.decode, part.generate(homeFileName))
 		for(c:part.chapters) {
 			c.generate(fsa, homeFileName)
 		}
 	}
 
-	def dispatch generate(Part part, String homeFileName) '''
+	def dispatch CharSequence generate(Part part, String homeFileName) '''
 		<html>
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
@@ -181,7 +181,7 @@ class StatefulEclipseHelpGenerator {
 		</html>
 	'''
 
-	def dispatch generate(Chapter chapter, String homeFileName) '''
+	def dispatch CharSequence generate(Chapter chapter, String homeFileName) '''
 		<html>
 		<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" >
@@ -216,7 +216,7 @@ class StatefulEclipseHelpGenerator {
 		}
 	}
 
-	def dispatch generate(AbstractSection section) '''
+	def dispatch CharSequence generate(AbstractSection section) '''
 		<a name="«section.localId»"></a>
 		<«section.headtag»>«section.title.genPlainText»</«section.headtag»>
 		«FOR c : section.contents »
@@ -227,7 +227,7 @@ class StatefulEclipseHelpGenerator {
 		«ENDFOR»
 	'''
 
-	def dispatch generate(Section4 aS) '''
+	def dispatch CharSequence generate(Section4 aS) '''
 		<a name="«aS.localId»"></a>
 		<h5>«aS.title.genNonParContent»</h5>
 		«FOR tom : aS.contents»
@@ -235,19 +235,19 @@ class StatefulEclipseHelpGenerator {
 		«ENDFOR»
 	'''
 
-	def generatePar(TextOrMarkup tom) '''
+	def CharSequence generatePar(TextOrMarkup tom) '''
 		<p>
 		«FOR c : tom.contents»«c.generate»«ENDFOR»
 		</p>
 	'''
 
-	def dispatch generate(Todo todo) '''
+	def dispatch CharSequence generate(Todo todo) '''
 		<div class="todo" >
 		«todo.text»
 		</div>
 	'''
 
-	def dispatch generate(Ref ref) {
+	def dispatch CharSequence generate(Ref ref) {
 		val title = if(ref.ref instanceof AbstractSection) {
 				'''title="Go to &quot;«(ref.ref as AbstractSection).title.genPlainText»&quot;"'''
 			}
@@ -257,11 +257,10 @@ class StatefulEclipseHelpGenerator {
 		ENDIF»'''	
 	}
 	
-	def dispatch generate(TextOrMarkup tom) 
+	def dispatch CharSequence generate(TextOrMarkup tom) 
 		'''«FOR obj:tom.contents»«obj.generate»«ENDFOR»'''
-//		tom.contents.fold('''''', [e1, e2 | '''«e2»«e1.generate»'''])
 
-	def dispatch generate(UnorderedList ul) '''
+	def dispatch CharSequence generate(UnorderedList ul) '''
 		<ul>
 			«FOR i:ul.items»
 			  	«i.generate»
@@ -269,7 +268,7 @@ class StatefulEclipseHelpGenerator {
 		</ul>
 	'''
 
-	def dispatch generate(OrderedList ul) '''
+	def dispatch CharSequence generate(OrderedList ul) '''
 		<ol>
 			«FOR i:ul.items»
 				«i.generate»
@@ -277,7 +276,7 @@ class StatefulEclipseHelpGenerator {
 		</ol>
 	'''
 
-	def dispatch generate(Item i) '''
+	def dispatch CharSequence generate(Item i) '''
 		<li>
 			«FOR tom:i.contents»
 				«tom.generate»
@@ -285,10 +284,10 @@ class StatefulEclipseHelpGenerator {
 		</li>
 	'''
 
-	def dispatch generate(Anchor a) 
+	def dispatch CharSequence generate(Anchor a) 
 		'''<a name="anchor-«a.name»"></a>'''
 
-	def dispatch generate(ImageRef img) {
+	def dispatch CharSequence generate(ImageRef img) {
 		val imageChapterRelativeURI = uriUtil.getRelativeTargetURI(img)
 		copy(img.path.unescapeXdocChars, img.eResource) //imageAbsoluteURI, imageTargetURI, img.eResource.resourceSet.URIConverter)
 		'''
@@ -310,11 +309,11 @@ class StatefulEclipseHelpGenerator {
 		«IF this != null »<a name="«name»"></a>«ENDIF»
 	'''
 
-	def dispatch generate(TextPart tp) {
+	def dispatch CharSequence generate(TextPart tp) {
 		tp.text.unescapeXdocChars.escapeHTMLChars
 	}
 
-	def dispatch generate(Table table) '''
+	def dispatch CharSequence generate(Table table) '''
 		<table>
 		«FOR tr:table.rows»
 			«tr.generate»
@@ -322,7 +321,7 @@ class StatefulEclipseHelpGenerator {
 		</table>
 	'''
 
-	def dispatch generate(TableRow tr) '''
+	def dispatch CharSequence generate(TableRow tr) '''
 		<tr>
 		«FOR td:tr.data»
 			«td.generate»
@@ -330,7 +329,7 @@ class StatefulEclipseHelpGenerator {
 		</tr>
 	'''
 
-	def dispatch generate(TableData td) '''
+	def dispatch CharSequence generate(TableData td) '''
 		<td>
 		«FOR c:td.contents»
 			«c.generate»
@@ -338,13 +337,13 @@ class StatefulEclipseHelpGenerator {
 		</td>
 	'''
 
-	def dispatch generate(Emphasize em) 
+	def dispatch CharSequence generate(Emphasize em) 
 		'''<em>«FOR c:em.contents»«c.generate»«ENDFOR»</em>'''
 
-	def dispatch generate(Link link) 
+	def dispatch CharSequence generate(Link link) 
 		'''<a href="«link.url»">«link.text.unescapeXdocChars.escapeHTMLChars»</a>'''
 	
-	def dispatch generate(CodeRef cRef) {
+	def dispatch CharSequence generate(CodeRef cRef) {
 		val prefix = if(cRef.element instanceof JvmAnnotationType && cRef.altText == null) "@"
 		val jDocLink = cRef.element.genJavaDocLink
 		val gitLink = cRef.element.gitLink
@@ -373,7 +372,7 @@ class StatefulEclipseHelpGenerator {
 			type.simpleName
 	}
 
-	def dispatch generate(CodeBlock cb) {
+	def dispatch CharSequence generate(CodeBlock cb) {
 		if(cb.isInlineCode) {
 			'''<span class="inlinecode">«(cb.contents.head as Code).generateCode.formatCode(cb.language)»</span>'''
 		} else {
@@ -410,11 +409,11 @@ class StatefulEclipseHelpGenerator {
 		cs.toString.replaceAll("\n\\s{" + amount + "}", "\n")
 	}
 
-	def dispatch generateCode (Code code) 
+	def dispatch generateCode(Code code) 
 		'''«code.contents.unescapeXdocChars»'''
 	
 	
-	def dispatch generateCode (MarkupInCode code) 
+	def dispatch generateCode(MarkupInCode code) 
 		'''«code.generate»'''
 
 	def genNonParContent(TextOrMarkup tom) 

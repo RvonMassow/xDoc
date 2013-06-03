@@ -40,7 +40,7 @@ public class TocGenerator {
     _builder.append(_fullURL, "");
     _builder.append("\" label=\"");
     TextOrMarkup _title = doc.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
@@ -74,7 +74,7 @@ public class TocGenerator {
     _builder.append(_targetURI, "");
     _builder.append("\" label=\"");
     TextOrMarkup _title = c.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
@@ -99,7 +99,7 @@ public class TocGenerator {
     _builder.append(_targetURI, "");
     _builder.append("\" label=\"");
     TextOrMarkup _title = section.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("\" >");
     _builder.newLineIfNotEmpty();
@@ -107,7 +107,7 @@ public class TocGenerator {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
       for(final AbstractSection ss : _sections) {
         _builder.append("\t");
-        Object _genTocEntry = this.genTocEntry(ss, uriUtil);
+        CharSequence _genTocEntry = this.genTocEntry(ss, uriUtil);
         _builder.append(_genTocEntry, "	");
         _builder.newLineIfNotEmpty();
       }

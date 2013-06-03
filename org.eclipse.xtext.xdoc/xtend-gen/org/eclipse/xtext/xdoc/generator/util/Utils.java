@@ -2,8 +2,6 @@ package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,7 +12,6 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -28,24 +25,6 @@ import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 
 @SuppressWarnings("all")
 public class Utils {
-  public String urlDecode(final String s) {
-    try {
-      String _decode = s==null?(String)null:URLDecoder.decode(s, "ISO-8859-1");
-      return _decode;
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
-  public String urlEncode(final String s) {
-    try {
-      String _encode = s==null?(String)null:URLEncoder.encode(s, "UTF-8");
-      return _encode;
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-  
   public boolean isInlineCode(final CodeBlock cb) {
     boolean _and = false;
     EList<EObject> _contents = cb.getContents();
@@ -101,7 +80,10 @@ public class Utils {
   }
   
   public String prepareListingsString(final String s) {
-    String _replaceAll = s==null?(String)null:s.replaceAll("^\n", "");
+    String _replaceAll = null;
+    if (s!=null) {
+      _replaceAll=s.replaceAll("^\n", "");
+    }
     return _replaceAll;
   }
   

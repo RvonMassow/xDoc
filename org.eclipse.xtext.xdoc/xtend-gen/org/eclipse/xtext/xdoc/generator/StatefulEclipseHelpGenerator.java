@@ -110,7 +110,13 @@ public class StatefulEclipseHelpGenerator {
     this.access = ((IFileSystemAccess) accessExtension2);
     EList<EObject> _contents = res.getContents();
     EObject _head = IterableExtensions.<EObject>head(_contents);
-    final AbstractSection doc = ((XdocFile) _head)==null?(AbstractSection)null:((XdocFile) _head).getMainSection();
+    AbstractSection _mainSection = null;
+    EList<EObject> _contents_1 = res.getContents();
+    EObject _head_1 = IterableExtensions.<EObject>head(_contents_1);
+    if (((XdocFile) _head_1)!=null) {
+      _mainSection=((XdocFile) _head_1).getMainSection();
+    }
+    final AbstractSection doc = _mainSection;
     if ((doc instanceof Document)) {
       this.uriUtil.initialize(((Document) doc));
       this.generateDoc(((Document) doc), this.access);
@@ -205,7 +211,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.newLine();
     _builder.append("<title>");
     TextOrMarkup _title = document.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</title>");
     _builder.newLineIfNotEmpty();
@@ -225,7 +231,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.newLine();
     _builder.append("<h1>");
     TextOrMarkup _title_1 = document.getTitle();
-    Object _genPlainText_1 = this.plainText.genPlainText(_title_1);
+    CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
     _builder.append(_genPlainText_1, "");
     _builder.append("</h1>");
     _builder.newLineIfNotEmpty();
@@ -267,7 +273,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.append(_targetURI, "");
     _builder.append("\">");
     TextOrMarkup _title = section.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</a>");
     _builder.newLineIfNotEmpty();
@@ -280,7 +286,7 @@ public class StatefulEclipseHelpGenerator {
           _builder.append("<ol>", "	");
         }
         _builder.append("\t");
-        Object _generateEntryInRoot = this.generateEntryInRoot(ss);
+        CharSequence _generateEntryInRoot = this.generateEntryInRoot(ss);
         _builder.append(_generateEntryInRoot, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -321,7 +327,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.newLine();
     _builder.append("<title>");
     TextOrMarkup _title = part.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</title>");
     _builder.newLineIfNotEmpty();
@@ -348,7 +354,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.append(_headtag, "");
     _builder.append(">");
     TextOrMarkup _title_1 = part.getTitle();
-    Object _genPlainText_1 = this.plainText.genPlainText(_title_1);
+    CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
     _builder.append(_genPlainText_1, "");
     _builder.append("</");
     String _headtag_1 = this.headtag(part);
@@ -388,7 +394,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.newLine();
     _builder.append("<title>");
     TextOrMarkup _title = chapter.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</title>");
     _builder.newLineIfNotEmpty();
@@ -413,7 +419,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.append(_headtag, "");
     _builder.append(">");
     TextOrMarkup _title_1 = chapter.getTitle();
-    Object _genPlainText_1 = this.plainText.genPlainText(_title_1);
+    CharSequence _genPlainText_1 = this.plainText.genPlainText(_title_1);
     _builder.append(_genPlainText_1, "");
     _builder.append("</");
     String _headtag_1 = this.headtag(chapter);
@@ -506,7 +512,7 @@ public class StatefulEclipseHelpGenerator {
     _builder.append(_headtag, "");
     _builder.append(">");
     TextOrMarkup _title = section.getTitle();
-    Object _genPlainText = this.plainText.genPlainText(_title);
+    CharSequence _genPlainText = this.plainText.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.append("</");
     String _headtag_1 = this.headtag(section);
@@ -516,7 +522,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<TextOrMarkup> _contents = section.getContents();
       for(final TextOrMarkup c : _contents) {
-        Object _generatePar = this.generatePar(c);
+        CharSequence _generatePar = this.generatePar(c);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -524,7 +530,7 @@ public class StatefulEclipseHelpGenerator {
     {
       List<? extends AbstractSection> _sections = this.sectionExtension.sections(section);
       for(final AbstractSection ss : _sections) {
-        Object _generate = this.generate(ss);
+        CharSequence _generate = this.generate(ss);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -548,7 +554,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<TextOrMarkup> _contents = aS.getContents();
       for(final TextOrMarkup tom : _contents) {
-        Object _generatePar = this.generatePar(tom);
+        CharSequence _generatePar = this.generatePar(tom);
         _builder.append(_generatePar, "");
         _builder.newLineIfNotEmpty();
       }
@@ -595,7 +601,7 @@ public class StatefulEclipseHelpGenerator {
         _builder.append("title=\"Go to &quot;");
         Identifiable _ref_1 = ref.getRef();
         TextOrMarkup _title = ((AbstractSection) _ref_1).getTitle();
-        Object _genPlainText = this.plainText.genPlainText(_title);
+        CharSequence _genPlainText = this.plainText.genPlainText(_title);
         _builder.append(_genPlainText, "");
         _builder.append("&quot;\"");
         _xifexpression = _builder.toString();
@@ -643,7 +649,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<EObject> _contents = tom.getContents();
       for(final EObject obj : _contents) {
-        Object _generate = this.generate(obj);
+        CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
       }
     }
@@ -658,7 +664,7 @@ public class StatefulEclipseHelpGenerator {
       EList<Item> _items = ul.getItems();
       for(final Item i : _items) {
         _builder.append("\t");
-        Object _generate = this.generate(i);
+        CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -676,7 +682,7 @@ public class StatefulEclipseHelpGenerator {
       EList<Item> _items = ul.getItems();
       for(final Item i : _items) {
         _builder.append("\t");
-        Object _generate = this.generate(i);
+        CharSequence _generate = this.generate(i);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -694,7 +700,7 @@ public class StatefulEclipseHelpGenerator {
       EList<TextOrMarkup> _contents = i.getContents();
       for(final TextOrMarkup tom : _contents) {
         _builder.append("\t");
-        Object _generate = this.generate(tom);
+        CharSequence _generate = this.generate(tom);
         _builder.append(_generate, "	");
         _builder.newLineIfNotEmpty();
       }
@@ -820,7 +826,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<TableRow> _rows = table.getRows();
       for(final TableRow tr : _rows) {
-        Object _generate = this.generate(tr);
+        CharSequence _generate = this.generate(tr);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -837,7 +843,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<TableData> _data = tr.getData();
       for(final TableData td : _data) {
-        Object _generate = this.generate(td);
+        CharSequence _generate = this.generate(td);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -854,7 +860,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<TextOrMarkup> _contents = td.getContents();
       for(final TextOrMarkup c : _contents) {
-        Object _generate = this.generate(c);
+        CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
         _builder.newLineIfNotEmpty();
       }
@@ -870,7 +876,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<TextOrMarkup> _contents = em.getContents();
       for(final TextOrMarkup c : _contents) {
-        Object _generate = this.generate(c);
+        CharSequence _generate = this.generate(c);
         _builder.append(_generate, "");
       }
     }
@@ -918,19 +924,19 @@ public class StatefulEclipseHelpGenerator {
       String _qualifiedName = _element_3.getQualifiedName(_charAt);
       String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
       final String fqn = this.utils.escapeHTMLChars(_unescapeXdocChars);
-      Object _xifexpression_1 = null;
+      CharSequence _xifexpression_1 = null;
       TextOrMarkup _altText_1 = cRef.getAltText();
       boolean _notEquals = (!Objects.equal(_altText_1, null));
       if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
-        Object _generate = this.generate(_altText_2);
+        CharSequence _generate = this.generate(_altText_2);
         _xifexpression_1 = _generate;
       } else {
         JvmDeclaredType _element_4 = cRef.getElement();
         String _dottedSimpleName = this.dottedSimpleName(_element_4);
         _xifexpression_1 = _dottedSimpleName;
       }
-      final Object text = _xifexpression_1;
+      final CharSequence text = _xifexpression_1;
       String _xifexpression_2 = null;
       boolean _notEquals_1 = (!Objects.equal(jDocLink, null));
       if (_notEquals_1) {
@@ -1109,7 +1115,7 @@ public class StatefulEclipseHelpGenerator {
   
   protected CharSequence _generateCode(final MarkupInCode code) {
     StringConcatenation _builder = new StringConcatenation();
-    Object _generate = this.generate(code);
+    CharSequence _generate = this.generate(code);
     _builder.append(_generate, "");
     return _builder;
   }
@@ -1119,7 +1125,7 @@ public class StatefulEclipseHelpGenerator {
     {
       EList<EObject> _contents = tom.getContents();
       for(final EObject obj : _contents) {
-        Object _generate = this.generate(obj);
+        CharSequence _generate = this.generate(obj);
         _builder.append(_generate, "");
       }
     }

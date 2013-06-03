@@ -9,7 +9,7 @@ import org.eclipse.xtext.xtype.XtypePackage
 
 class GitExtensions {
 	
-	static val XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.4.0/plugins/"
+	static val XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.4.2/plugins/"
 	static val XTEND_BASE_DIR = XTEXT_BASE_DIR
 	static val MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.3.0/plugins/"
 	static val EMF_BASE_DIR = "https://github.com/eclipse/emf/blob/R2_8_0/plugins/"

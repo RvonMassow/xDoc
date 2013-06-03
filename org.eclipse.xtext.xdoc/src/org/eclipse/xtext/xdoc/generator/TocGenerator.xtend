@@ -24,7 +24,7 @@ class TocGenerator {
 		</toc>
 	'''
 
-	def genTocEntry(Chapter c, EclipseHelpUriUtil uriUtil) '''
+	def CharSequence genTocEntry(Chapter c, EclipseHelpUriUtil uriUtil) '''
 		<topic href="contents/«uriUtil.getTargetURI(c)»" label="«c.title.genPlainText»" >
 			«FOR ss: c.subSections»
 				«ss.genTocEntry(uriUtil)»
@@ -32,7 +32,7 @@ class TocGenerator {
 		</topic>
 	'''
 
-	def genTocEntry(AbstractSection section, EclipseHelpUriUtil uriUtil) '''
+	def CharSequence genTocEntry(AbstractSection section, EclipseHelpUriUtil uriUtil) '''
 		<topic href="contents/«uriUtil.getTargetURI(section)»" label="«section.title.genPlainText»" >
 			«FOR ss:section.sections»
 				«ss.genTocEntry(uriUtil)»

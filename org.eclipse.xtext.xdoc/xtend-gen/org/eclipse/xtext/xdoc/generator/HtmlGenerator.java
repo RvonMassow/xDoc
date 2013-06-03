@@ -288,7 +288,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(chap);
       _builder.append(_tag, "");
       _builder.append(">");
-      Object _genPlainText = this.plaintext.genPlainText(chap);
+      CharSequence _genPlainText = this.plaintext.genPlainText(chap);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(chap);
@@ -313,7 +313,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(section);
       _builder.append(_tag, "");
       _builder.append(">");
-      Object _genPlainText = this.plaintext.genPlainText(section);
+      CharSequence _genPlainText = this.plaintext.genPlainText(section);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(section);
@@ -338,7 +338,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag = this.tag(section2);
       _builder.append(_tag, "");
       _builder.append(">");
-      Object _genPlainText = this.plaintext.genPlainText(section2);
+      CharSequence _genPlainText = this.plaintext.genPlainText(section2);
       _builder.append(_genPlainText, "");
       _builder.append("</");
       String _tag_1 = this.tag(section2);
@@ -717,7 +717,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<li class=\"partentry\" >");
     _builder.newLine();
     TextOrMarkup _title = part.getTitle();
-    Object _genPlainText = this.plaintext.genPlainText(_title);
+    CharSequence _genPlainText = this.plaintext.genPlainText(_title);
     _builder.append(_genPlainText, "");
     _builder.newLineIfNotEmpty();
     _builder.append("</li>");
@@ -1107,7 +1107,7 @@ public class HtmlGenerator implements IGenerator {
         _builder.append("title=\"Go to &quot;");
         Identifiable _ref_1 = ref.getRef();
         TextOrMarkup _title = ((AbstractSection) _ref_1).getTitle();
-        Object _genPlainText = this.plaintext.genPlainText(_title);
+        CharSequence _genPlainText = this.plaintext.genPlainText(_title);
         _builder.append(_genPlainText, "");
         _builder.append("&quot;\"");
         _xifexpression = _builder.toString();

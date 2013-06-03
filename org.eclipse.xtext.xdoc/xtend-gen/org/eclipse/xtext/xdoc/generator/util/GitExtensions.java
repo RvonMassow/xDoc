@@ -24,7 +24,7 @@ import org.eclipse.xtext.xtype.XtypePackage;
 
 @SuppressWarnings("all")
 public class GitExtensions {
-  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.4.0/plugins/";
+  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.4.2/plugins/";
   
   private final static String XTEND_BASE_DIR = GitExtensions.XTEXT_BASE_DIR;
   
@@ -431,8 +431,14 @@ public class GitExtensions {
       boolean _notEquals = (_length != 0);
       if (_notEquals) {
         String _switchResult_1 = null;
-        Resource _eResource = ie==null?(Resource)null:ie.eResource();
-        URI _uRI = _eResource==null?(URI)null:_eResource.getURI();
+        Resource _eResource = null;
+        if (ie!=null) {
+          _eResource=ie.eResource();
+        }
+        URI _uRI = null;
+        if (_eResource!=null) {
+          _uRI=_eResource.getURI();
+        }
         final URI uri = _uRI;
         boolean _matched_1 = false;
         if (!_matched_1) {
