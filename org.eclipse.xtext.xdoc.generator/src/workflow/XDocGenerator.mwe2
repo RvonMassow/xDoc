@@ -33,10 +33,10 @@ Workflow {
 
 	component = org.eclipse.xpand2.Generator {
 		expand = "templates::Template::main FOREACH doc"
+		fileEncoding = fileEncoding
 		outlet = {
 			path = targetDir
 		}
-		fileEncoding = fileEncoding
 		globalVar = {
 			name = "release"
 			value = "${release}"
