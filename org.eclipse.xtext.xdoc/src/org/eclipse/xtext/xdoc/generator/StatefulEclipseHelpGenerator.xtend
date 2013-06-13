@@ -72,10 +72,12 @@ class StatefulEclipseHelpGenerator {
 		this.res = res
 		this.accessExtension2 = accessExtension2
 		this.access = accessExtension2 as IFileSystemAccess
-		val doc = (res.contents.head as XdocFile)?.mainSection
-		if(doc instanceof Document) {
-			uriUtil.initialize(doc as Document)
-			(doc as Document).generateDoc(this.access)
+		if (res.contents.head instanceof XdocFile) {
+			val doc = (res.contents.head as XdocFile)?.mainSection
+			if (doc instanceof Document) {
+				uriUtil.initialize(doc as Document)
+				(doc as Document).generateDoc(this.access)
+			}
 		}
 	}
 
@@ -286,10 +288,24 @@ class StatefulEclipseHelpGenerator {
 
 	def dispatch CharSequence generate(Anchor a) 
 		'''<a name="anchor-«a.name»"></a>'''
+		
+	def noop() {
+	}
+		
+	def collapse(URI uri) {
+		val segments = newArrayList()
+		for (s : uri.segmentsList)
+			switch s {
+				case ".": noop()
+				case "..": segments.remove(segments.size - 1)
+				default: segments.add(s)
+			}
+		URI.createURI(uri.scheme + ":/" + segments.join("/"))
+	}
 
 	def dispatch CharSequence generate(ImageRef img) {
 		val escapedPath = img.path.unescapeXdocChars
-		val absoluteOutputURI = accessExtension2.getURI(escapedPath, Outlets::ECLIPSE_HELP);
+		val absoluteOutputURI = accessExtension2.getURI(escapedPath, Outlets::ECLIPSE_HELP).collapse;
 		val documentURI = accessExtension2.getURI(uriUtil.targetDocumentName, Outlets::ECLIPSE_HELP);
 		val imageChapterRelativeURI = absoluteOutputURI.deresolve(documentURI)
 		copy(escapedPath, img.eResource) //imageAbsoluteURI, imageTargetURI, img.eResource.resourceSet.URIConverter)
