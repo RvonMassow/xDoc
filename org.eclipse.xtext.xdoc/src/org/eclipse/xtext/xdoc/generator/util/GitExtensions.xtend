@@ -39,8 +39,9 @@ class GitExtensions {
 				case name.startsWith("org.eclipse.xtext.xbase.")
 					&& XBASE_EMF_CLASSES.contains(ie.simpleName):               XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/emf-gen/"
 				case name.startsWith("org.eclipse.xtext.xbase."):               XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/"
-				case name.startsWith("org.eclipse.xtext.generator.") ||           
-				     name.startsWith("org.eclipse.xtext.ui.generator."):        XTEXT_BASE_DIR + "org.eclipse.xtext.generator/src/"
+				case (name.startsWith("org.eclipse.xtext.generator.") ||           
+				     name.startsWith("org.eclipse.xtext.ui.generator.")) && 
+				     "IGenerator" != ie.simpleName: 	       					XTEXT_BASE_DIR + "org.eclipse.xtext.generator/src/"
 				case name.startsWith("org.eclipse.xtext.ui."):                  XTEXT_BASE_DIR + "org.eclipse.xtext.ui/src/"			
 				case name.startsWith("org.eclipse.xtext.junit4."):              XTEXT_BASE_DIR + "org.eclipse.xtext.junit4/src/"
 				case name.startsWith("org.eclipse.xtext.junit."):               XTEXT_BASE_DIR + "org.eclipse.xtext.junit/src/"

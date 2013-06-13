@@ -213,6 +213,7 @@ public class GitExtensions {
         }
       }
       if (!_matched) {
+        boolean _and_2 = false;
         boolean _or = false;
         boolean _startsWith_11 = name.startsWith("org.eclipse.xtext.generator.");
         if (_startsWith_11) {
@@ -221,7 +222,14 @@ public class GitExtensions {
           boolean _startsWith_12 = name.startsWith("org.eclipse.xtext.ui.generator.");
           _or = (_startsWith_11 || _startsWith_12);
         }
-        if (_or) {
+        if (!_or) {
+          _and_2 = false;
+        } else {
+          String _simpleName_2 = ie.getSimpleName();
+          boolean _notEquals = (!Objects.equal("IGenerator", _simpleName_2));
+          _and_2 = (_or && _notEquals);
+        }
+        if (_and_2) {
           _matched=true;
           String _plus_11 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.generator/src/");
           _switchResult = _plus_11;
@@ -268,16 +276,16 @@ public class GitExtensions {
         }
       }
       if (!_matched) {
-        boolean _and_2 = false;
+        boolean _and_3 = false;
         boolean _startsWith_18 = name.startsWith("org.eclipse.xtext.");
         if (!_startsWith_18) {
-          _and_2 = false;
+          _and_3 = false;
         } else {
-          String _simpleName_2 = ie.getSimpleName();
-          boolean _contains_2 = GitExtensions.XTEXT_EMF_CLASSES.contains(_simpleName_2);
-          _and_2 = (_startsWith_18 && _contains_2);
+          String _simpleName_3 = ie.getSimpleName();
+          boolean _contains_2 = GitExtensions.XTEXT_EMF_CLASSES.contains(_simpleName_3);
+          _and_3 = (_startsWith_18 && _contains_2);
         }
-        if (_and_2) {
+        if (_and_3) {
           _matched=true;
           String _plus_17 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext/emf-gen/");
           _switchResult = _plus_17;
@@ -428,8 +436,8 @@ public class GitExtensions {
       final String prefix = _switchResult;
       String _xifexpression = null;
       int _length = prefix.length();
-      boolean _notEquals = (_length != 0);
-      if (_notEquals) {
+      boolean _notEquals_1 = (_length != 0);
+      if (_notEquals_1) {
         String _switchResult_1 = null;
         Resource _eResource = null;
         if (ie!=null) {
