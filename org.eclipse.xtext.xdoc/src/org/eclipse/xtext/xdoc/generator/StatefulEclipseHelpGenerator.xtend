@@ -191,7 +191,7 @@ class StatefulEclipseHelpGenerator {
 		
 		<link href="book.css" rel="stylesheet" type="text/css">
 		<link href="code.css" rel="stylesheet" type="text/css">
-		<link rel="home" href="xtext.html" title="">
+		<link rel="home" href="«homeFileName»" title="">
 		</head>
 		<body>
 		<a name="«chapter.localId»"></a>
