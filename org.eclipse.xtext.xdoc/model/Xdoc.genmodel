@@ -95,9 +95,11 @@
     <genClasses ecoreClass="Xdoc.ecore#//CodeBlock">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Xdoc.ecore#//CodeBlock/contents"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EReference Xdoc.ecore#//CodeBlock/language"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//CodeBlock/raw"/>
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//Code">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Xdoc.ecore#//Code/contents"/>
+      
     </genClasses>
     <genClasses ecoreClass="Xdoc.ecore#//MarkupInCode"/>
     <genClasses ecoreClass="Xdoc.ecore#//Todo">

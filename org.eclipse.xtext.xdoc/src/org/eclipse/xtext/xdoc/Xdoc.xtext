@@ -169,11 +169,12 @@ ImageRef:
 
 CodeBlock:
 	{CodeBlock}
-	'code[' (ANY_WS* language=[LangDef] ANY_WS* ']' ANY_WS* '[')? 
+	('code[' | (raw ?= 'code-raw[')) (ANY_WS* language=[LangDef] ANY_WS* ']' ANY_WS* '[')? 
 		(contents+=Code
 		(contents+=MarkupInCode contents+=Code?)* |
 		(contents+=MarkupInCode contents+=Code?)+)?
 	']';
+	
 
 Todo:
 	{Todo}

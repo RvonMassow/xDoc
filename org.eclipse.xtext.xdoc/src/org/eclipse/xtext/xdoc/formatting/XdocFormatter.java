@@ -101,7 +101,8 @@ public class XdocFormatter extends AbstractDeclarativeFormatter {
 			XdocGrammarAccess grammarAccess) {
 		c.setNoLinewrap().between(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_2_5(), grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_4());
 		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_2_5());
-		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getCodeKeyword_1());
+		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getCodeKeyword_1_0());
+		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getRawAssignment_1_1());
 		c.setNoSpace().around(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_2_3());
 		c.setNoSpace().before(grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_4());
 }

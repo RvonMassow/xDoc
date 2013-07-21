@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.xtext.xdoc.xdoc;
 
@@ -19,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.CodeBlock#getContents <em>Contents</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.CodeBlock#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.CodeBlock#isRaw <em>Raw</em>}</li>
  * </ul>
  * </p>
  *
@@ -69,5 +67,32 @@ public interface CodeBlock extends MarkUp
 	 * @generated
 	 */
 	void setLanguage(LangDef value);
+
+	/**
+	 * Returns the value of the '<em><b>Raw</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Raw</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Raw</em>' attribute.
+	 * @see #setRaw(boolean)
+	 * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getCodeBlock_Raw()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isRaw();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.xtext.xdoc.xdoc.CodeBlock#isRaw <em>Raw</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Raw</em>' attribute.
+	 * @see #isRaw()
+	 * @generated
+	 */
+	void setRaw(boolean value);
 
 } // CodeBlock
