@@ -52,7 +52,7 @@ public class JavaDocExtension {
         boolean _startsWith_4 = name.startsWith("org.eclipse.emf.");
         if (_startsWith_4) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/emf/emf/javadoc/2.6.0/";
+          _switchResult = "http://download.eclipse.org/modeling/emf/emf/javadoc/2.9.0/";
         }
       }
       if (!_matched) {

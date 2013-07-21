@@ -6,14 +6,13 @@ package org.eclipse.xtext.xdoc.parseTreeConstruction;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parsetree.reconstr.IEObjectConsumer;
-import org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor;
 
 import org.eclipse.xtext.xdoc.services.XdocGrammarAccess;
 
 import com.google.inject.Inject;
 
 @SuppressWarnings("all")
-public class XdocParsetreeConstructor extends AbstractParseTreeConstructor {
+public class XdocParsetreeConstructor extends org.eclipse.xtext.parsetree.reconstr.impl.AbstractParseTreeConstructor {
 		
 	@Inject
 	private XdocGrammarAccess grammarAccess;
@@ -74,6 +73,7 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule XdocFile ****************
  *
  * XdocFile:
+ * 
  * 	{XdocFile} WS? MULTI_NL? (mainSection=(Document | Part | Chapter | Section | Section2) MULTI_NL?)?;
  *
  **/
@@ -250,14 +250,19 @@ protected class XdocFile_MainSectionAssignment_3_0 extends AssignmentToken  {
 /************ begin Rule Document ****************
  *
  * Document:
+ * 
  * 	"document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
+ * 
  * 	authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL (chapters+=Chapter
+ * 
  * 	(MULTI_NL chapters+=Chapter)* | parts+=Part (MULTI_NL parts+=Part)*)?);
  *
  **/
 
 // "document[" title=TextOrMarkup "]" (MULTI_NL "subtitle[" subtitle=TextOrMarkup "]")? (MULTI_NL "authors["
+// 
 // authors=TextOrMarkup "]")? (MULTI_NL langDefs+=LangDef)* (MULTI_NL glossary=Glossary)? (MULTI_NL (chapters+=Chapter
+// 
 // (MULTI_NL chapters+=Chapter)* | parts+=Part (MULTI_NL parts+=Part)*)?)
 protected class Document_Group extends GroupToken {
 	
@@ -1240,6 +1245,7 @@ protected class Document_PartsAssignment_7_1_1_1_1 extends AssignmentToken  {
 /************ begin Rule Glossary ****************
  *
  * Glossary:
+ * 
  * 	(MULTI_NL glossaryEntry+=GlossaryEntry)+;
  *
  **/
@@ -1341,6 +1347,7 @@ protected class Glossary_GlossaryEntryAssignment_1 extends AssignmentToken  {
 /************ begin Rule Part ****************
  *
  * Part:
+ * 
  * 	PartRef | ("part:" name=ID "[" | "part[") title=TextOrMarkup "]" (MULTI_NL chapters+=Chapter)*;
  *
  **/
@@ -1755,6 +1762,7 @@ protected class Part_ChaptersAssignment_1_3_1 extends AssignmentToken  {
 /************ begin Rule PartRef ****************
  *
  * PartRef:
+ * 
  * 	"part-ref[" part=[Part] "]";
  *
  **/
@@ -1875,12 +1883,15 @@ protected class PartRef_RightSquareBracketKeyword_2 extends KeywordToken  {
 /************ begin Rule GlossaryEntry ****************
  *
  * GlossaryEntry:
+ * 
  * 	"gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+ * 
  * 	(MULTI_NL description+=TextOrMarkup)* "]";
  *
  **/
 
 // "gloss-entry[" name=UnpunctText ("," ANY_WS* alias+=UnpunctText ANY_WS*)* "]" ANY_WS* "[" description+=TextOrMarkup
+// 
 // (MULTI_NL description+=TextOrMarkup)* "]"
 protected class GlossaryEntry_Group extends GroupToken {
 	
@@ -2258,12 +2269,15 @@ protected class GlossaryEntry_RightSquareBracketKeyword_8 extends KeywordToken  
 /************ begin Rule Chapter ****************
  *
  * Chapter:
- * 	ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
- * 	subSections+=Section)*;
+ * 
+ * 	ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+ * 
+ * 	(MULTI_NL subSections+=Section)*;
  *
  **/
 
 // ChapterRef | ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+// 
 // subSections+=Section)*
 protected class Chapter_Alternatives extends AlternativesToken {
 
@@ -2332,6 +2346,7 @@ protected class Chapter_ChapterRefParserRuleCall_0 extends RuleCallToken {
 }
 
 // ("chapter:" name=ID "[" | "chapter[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+// 
 // subSections+=Section)*
 protected class Chapter_Group_1 extends GroupToken {
 	
@@ -2769,6 +2784,7 @@ protected class Chapter_SubSectionsAssignment_1_4_1 extends AssignmentToken  {
 /************ begin Rule ChapterRef ****************
  *
  * ChapterRef:
+ * 
  * 	"chapter-ref[" chapter=[Chapter] "]";
  *
  **/
@@ -2889,12 +2905,15 @@ protected class ChapterRef_RightSquareBracketKeyword_2 extends KeywordToken  {
 /************ begin Rule Section ****************
  *
  * Section:
- * 	SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
- * 	subSections+=Section2)*;
+ * 
+ * 	SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+ * 
+ * 	(MULTI_NL subSections+=Section2)*;
  *
  **/
 
 // SectionRef | ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+// 
 // subSections+=Section2)*
 protected class Section_Alternatives extends AlternativesToken {
 
@@ -2963,6 +2982,7 @@ protected class Section_SectionRefParserRuleCall_0 extends RuleCallToken {
 }
 
 // ("section:" name=ID "[" | "section[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+// 
 // subSections+=Section2)*
 protected class Section_Group_1 extends GroupToken {
 	
@@ -3400,6 +3420,7 @@ protected class Section_SubSectionsAssignment_1_4_1 extends AssignmentToken  {
 /************ begin Rule SectionRef ****************
  *
  * SectionRef:
+ * 
  * 	"section-ref[" section=[Section] "]";
  *
  **/
@@ -3520,12 +3541,15 @@ protected class SectionRef_RightSquareBracketKeyword_2 extends KeywordToken  {
 /************ begin Rule Section2 ****************
  *
  * Section2:
+ * 
  * 	Section2Ref | ("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+ * 
  * 	(MULTI_NL subSections+=Section3)*;
  *
  **/
 
 // Section2Ref | ("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*
+// 
 // (MULTI_NL subSections+=Section3)*
 protected class Section2_Alternatives extends AlternativesToken {
 
@@ -3594,6 +3618,7 @@ protected class Section2_Section2RefParserRuleCall_0 extends RuleCallToken {
 }
 
 // ("section2:" name=ID "[" | "section2[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+// 
 // subSections+=Section3)*
 protected class Section2_Group_1 extends GroupToken {
 	
@@ -4031,6 +4056,7 @@ protected class Section2_SubSectionsAssignment_1_4_1 extends AssignmentToken  {
 /************ begin Rule Section2Ref ****************
  *
  * Section2Ref:
+ * 
  * 	"section2-ref[" section2=[Section2] "]";
  *
  **/
@@ -4151,12 +4177,15 @@ protected class Section2Ref_RightSquareBracketKeyword_2 extends KeywordToken  {
 /************ begin Rule Section3 ****************
  *
  * Section3:
+ * 
  * 	("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+ * 
  * 	subSections+=Section4)*;
  *
  **/
 
 // ("section3:" name=ID "[" | "section3[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)* (MULTI_NL
+// 
 // subSections+=Section4)*
 protected class Section3_Group extends GroupToken {
 	
@@ -4593,6 +4622,7 @@ protected class Section3_SubSectionsAssignment_4_1 extends AssignmentToken  {
 /************ begin Rule Section4 ****************
  *
  * Section4:
+ * 
  * 	("section4:" name=ID "[" | "section4[") title=TextOrMarkup "]" (MULTI_NL contents+=TextOrMarkup)*;
  *
  **/
@@ -4939,6 +4969,7 @@ protected class Section4_ContentsAssignment_3_1 extends AssignmentToken  {
 /************ begin Rule TextOrMarkup ****************
  *
  * TextOrMarkup:
+ * 
  * 	contents+=TextPart (contents+=MarkUp contents+=TextPart?)* | (contents+=MarkUp contents+=TextPart?)+;
  *
  **/
@@ -5282,6 +5313,7 @@ protected class TextOrMarkup_ContentsAssignment_1_1 extends AssignmentToken  {
 /************ begin Rule TextPart ****************
  *
  * TextPart:
+ * 
  * 	text=Text;
  *
  **/
@@ -5329,6 +5361,7 @@ protected class TextPart_TextAssignment extends AssignmentToken  {
 /************ begin Rule MarkUp ****************
  *
  * MarkUp:
+ * 
  * 	Emphasize | Anchor | Ref | OrderedList | UnorderedList | CodeBlock | CodeRef | Link | ImageRef | Table | Todo;
  *
  **/
@@ -5785,6 +5818,7 @@ protected class MarkUp_TodoParserRuleCall_10 extends RuleCallToken {
 /************ begin Rule Table ****************
  *
  * Table:
+ * 
  * 	{Table} "table[" (ANY_WS* rows+=TableRow)* ANY_WS* "]";
  *
  **/
@@ -5966,6 +6000,7 @@ protected class Table_RightSquareBracketKeyword_4 extends KeywordToken  {
 /************ begin Rule TableRow ****************
  *
  * TableRow:
+ * 
  * 	{TableRow} "tr[" (ANY_WS* data+=TableData)* ANY_WS* "]";
  *
  **/
@@ -6147,6 +6182,7 @@ protected class TableRow_RightSquareBracketKeyword_4 extends KeywordToken  {
 /************ begin Rule TableData ****************
  *
  * TableData:
+ * 
  * 	{TableData} "td[" (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? "]";
  *
  **/
@@ -6420,6 +6456,7 @@ protected class TableData_RightSquareBracketKeyword_3 extends KeywordToken  {
 /************ begin Rule Emphasize ****************
  *
  * Emphasize:
+ * 
  * 	{Emphasize} "e[" (MULTI_NL? contents+=TextOrMarkup MULTI_NL?)? "]";
  *
  **/
@@ -6600,6 +6637,7 @@ protected class Emphasize_RightSquareBracketKeyword_3 extends KeywordToken  {
 /************ begin Rule Anchor ****************
  *
  * Anchor:
+ * 
  * 	"a[" name=ID "]";
  *
  **/
@@ -6717,6 +6755,7 @@ protected class Anchor_RightSquareBracketKeyword_2 extends KeywordToken  {
 /************ begin Rule Ref ****************
  *
  * Ref:
+ * 
  * 	"ref:" ref=[Identifiable] ("[" MULTI_NL? (contents+=TextOrMarkup MULTI_NL?)? "]")?;
  *
  **/
@@ -6952,6 +6991,7 @@ protected class Ref_RightSquareBracketKeyword_2_3 extends KeywordToken  {
 /************ begin Rule OrderedList ****************
  *
  * OrderedList:
+ * 
  * 	{OrderedList} "ol[" (ANY_WS* items+=Item)* ANY_WS* "]";
  *
  **/
@@ -7133,6 +7173,7 @@ protected class OrderedList_RightSquareBracketKeyword_4 extends KeywordToken  {
 /************ begin Rule UnorderedList ****************
  *
  * UnorderedList:
+ * 
  * 	{UnorderedList} "ul[" (ANY_WS* items+=Item)* ANY_WS* "]";
  *
  **/
@@ -7314,6 +7355,7 @@ protected class UnorderedList_RightSquareBracketKeyword_4 extends KeywordToken  
 /************ begin Rule Item ****************
  *
  * Item:
+ * 
  * 	{Item} "item[" (MULTI_NL? contents+=TextOrMarkup (MULTI_NL contents+=TextOrMarkup)*)? "]";
  *
  **/
@@ -7587,6 +7629,7 @@ protected class Item_RightSquareBracketKeyword_3 extends KeywordToken  {
 /************ begin Rule CodeRef ****************
  *
  * CodeRef:
+ * 
  * 	{CodeRef} "codeRef[" element=[types::JvmDeclaredType|Text]? "]" ("[" altText=TextOrMarkup "]")?;
  *
  **/
@@ -7849,6 +7892,7 @@ protected class CodeRef_RightSquareBracketKeyword_4_2 extends KeywordToken  {
 /************ begin Rule Link ****************
  *
  * Link:
+ * 
  * 	{Link} "link[" url=Text? "]" ANY_WS* "[" text=Text? "]";
  *
  **/
@@ -8073,13 +8117,16 @@ protected class Link_RightSquareBracketKeyword_7 extends KeywordToken  {
 /************ begin Rule ImageRef ****************
  *
  * // Don't think this was the discussed syntax
- * ImageRef:
+ *  ImageRef:
+ * 
  * 	("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
+ * 
  * 	caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]";
  *
  **/
 
 // ("img:" ANY_WS* name=ID ANY_WS* "[" | "img[") path=Text / *TODO make it a crossreference to images * / "]" ANY_WS* "["
+// 
 // caption=Text? "]" ANY_WS* "[" clazz=Text? "]" ANY_WS* "[" style=Text? "]"
 protected class ImageRef_Group extends GroupToken {
 	
@@ -8554,13 +8601,16 @@ protected class ImageRef_RightSquareBracketKeyword_14 extends KeywordToken  {
 /************ begin Rule CodeBlock ****************
  *
  * CodeBlock:
- * 	{CodeBlock} "code[" (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")? (contents+=Code (contents+=MarkupInCode
- * 	contents+=Code?)* | (contents+=MarkupInCode contents+=Code?)+)? "]";
+ * 
+ * 	{CodeBlock} ("code[" | raw?="code-raw[") (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")? (contents+=Code
+ * 
+ * 	(contents+=MarkupInCode contents+=Code?)* | (contents+=MarkupInCode contents+=Code?)+)? "]";
  *
  **/
 
-// {CodeBlock} "code[" (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")? (contents+=Code (contents+=MarkupInCode
-// contents+=Code?)* | (contents+=MarkupInCode contents+=Code?)+)? "]"
+// {CodeBlock} ("code[" | raw?="code-raw[") (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")? (contents+=Code
+// 
+// (contents+=MarkupInCode contents+=Code?)* | (contents+=MarkupInCode contents+=Code?)+)? "]"
 protected class CodeBlock_Group extends GroupToken {
 	
 	public CodeBlock_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -8615,16 +8665,39 @@ protected class CodeBlock_CodeBlockAction_0 extends ActionToken  {
 	}
 }
 
-// "code["
-protected class CodeBlock_CodeKeyword_1 extends KeywordToken  {
+// "code[" | raw?="code-raw["
+protected class CodeBlock_Alternatives_1 extends AlternativesToken {
+
+	public CodeBlock_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
 	
-	public CodeBlock_CodeKeyword_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	@Override
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getCodeBlockAccess().getAlternatives_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CodeBlock_CodeKeyword_1_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new CodeBlock_RawAssignment_1_1(lastRuleCallOrigin, this, 1, inst);
+			default: return null;
+		}	
+	}
+
+}
+
+// "code["
+protected class CodeBlock_CodeKeyword_1_0 extends KeywordToken  {
+	
+	public CodeBlock_CodeKeyword_1_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getCodeBlockAccess().getCodeKeyword_1();
+		return grammarAccess.getCodeBlockAccess().getCodeKeyword_1_0();
 	}
 
     @Override
@@ -8636,6 +8709,41 @@ protected class CodeBlock_CodeKeyword_1 extends KeywordToken  {
 	}
 
 }
+
+// raw?="code-raw["
+protected class CodeBlock_RawAssignment_1_1 extends AssignmentToken  {
+	
+	public CodeBlock_RawAssignment_1_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getCodeBlockAccess().getRawAssignment_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new CodeBlock_CodeBlockAction_0(lastRuleCallOrigin, this, 0, inst);
+			default: return null;
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if((value = eObjectConsumer.getConsumable("raw",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("raw");
+		if(Boolean.TRUE.equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+			type = AssignmentType.KEYWORD;
+			element = grammarAccess.getCodeBlockAccess().getRawCodeRawKeyword_1_1_0();
+			return obj;
+		}
+		return null;
+	}
+
+}
+
 
 // (ANY_WS* language=[LangDef] ANY_WS* "]" ANY_WS* "[")?
 protected class CodeBlock_Group_2 extends GroupToken {
@@ -8674,7 +8782,7 @@ protected class CodeBlock_LanguageAssignment_2_1 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new CodeBlock_CodeKeyword_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new CodeBlock_Alternatives_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -8828,7 +8936,7 @@ protected class CodeBlock_ContentsAssignment_3_0_0 extends AssignmentToken  {
 		if(value == inst.getEObject() && !inst.isConsumed()) return null;
 		switch(index) {
 			case 0: return new CodeBlock_Group_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 1: return new CodeBlock_CodeKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 1: return new CodeBlock_Alternatives_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -9017,7 +9125,7 @@ protected class CodeBlock_ContentsAssignment_3_1_0 extends AssignmentToken  {
 		switch(index) {
 			case 0: return new CodeBlock_Group_3_1(lastRuleCallOrigin, next, actIndex, consumed);
 			case 1: return new CodeBlock_Group_2(lastRuleCallOrigin, next, actIndex, consumed);
-			case 2: return new CodeBlock_CodeKeyword_1(lastRuleCallOrigin, next, actIndex, consumed);
+			case 2: return new CodeBlock_Alternatives_1(lastRuleCallOrigin, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -9088,7 +9196,7 @@ protected class CodeBlock_RightSquareBracketKeyword_4 extends KeywordToken  {
 		switch(index) {
 			case 0: return new CodeBlock_Alternatives_3(lastRuleCallOrigin, this, 0, inst);
 			case 1: return new CodeBlock_Group_2(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new CodeBlock_CodeKeyword_1(lastRuleCallOrigin, this, 2, inst);
+			case 2: return new CodeBlock_Alternatives_1(lastRuleCallOrigin, this, 2, inst);
 			default: return null;
 		}	
 	}
@@ -9102,6 +9210,7 @@ protected class CodeBlock_RightSquareBracketKeyword_4 extends KeywordToken  {
 /************ begin Rule Todo ****************
  *
  * Todo:
+ * 
  * 	{Todo} "todo[" text=Text? "]";
  *
  **/
@@ -9247,6 +9356,7 @@ protected class Todo_RightSquareBracketKeyword_3 extends KeywordToken  {
 /************ begin Rule Code ****************
  *
  * Code:
+ * 
  * 	contents=CodeText;
  *
  **/
@@ -9292,6 +9402,7 @@ protected class Code_ContentsAssignment extends AssignmentToken  {
 /************ begin Rule MarkupInCode ****************
  *
  * MarkupInCode:
+ * 
  * 	Emphasize | Anchor | Ref | Todo;
  *
  **/
@@ -9482,14 +9593,19 @@ protected class MarkupInCode_TodoParserRuleCall_3 extends RuleCallToken {
 /************ begin Rule LangDef ****************
  *
  * LangDef:
+ * 
  * 	"codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+ * 
  * 	ANY_WS*)*)? "]" | {LangDef} "codelanguage-def[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+ * 
  * 	ANY_WS*)*)? "]";
  *
  **/
 
 // "codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+// 
 // ANY_WS*)*)? "]" | {LangDef} "codelanguage-def[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+// 
 // ANY_WS*)*)? "]"
 protected class LangDef_Alternatives extends AlternativesToken {
 
@@ -9521,6 +9637,7 @@ protected class LangDef_Alternatives extends AlternativesToken {
 }
 
 // "codelanguage-def[" name=ID "]" ANY_WS* "[" (ANY_WS* keywords+=KeyWord ANY_WS* ("," ANY_WS* keywords+=KeyWord
+// 
 // ANY_WS*)*)? "]"
 protected class LangDef_Group_0 extends GroupToken {
 	

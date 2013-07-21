@@ -396,15 +396,31 @@ class StatefulEclipseHelpGenerator {
 		} else {
 			val indentToRemove = cb.calcIndent
 			val list = 
-				if(cb.contents.size > 2)
+				if(cb.contents.size > 2) {
 					cb.contents.tail.take(cb.contents.size - 2)
-				else
+				} else {
 					Collections::EMPTY_LIST
-			val first = cb.contents.head.generateCode.trimLines(indentToRemove).replaceAll("\\A(\\s*\n)*", "")
-			val last = if(cb.contents.last != cb.contents.head) {
-					cb.contents.last.generateCode.trimLines(indentToRemove).replaceAll("(\\s*\n)*\\Z", "")
+				}
+				
+			// 2012/07/21 -- cba -- If the code block is not raw, then perform whitespace manipulation (not raw by default in model)
+			val isPerformWhitespaceManipulation = ! cb.raw
+			val firstGenerateCode = cb.contents.head.generateCode
+			val first = if (isPerformWhitespaceManipulation) {firstGenerateCode.trimLines(indentToRemove).replaceAll("\\A(\\s*\n)*", "")} else {firstGenerateCode.toString}
+			val last =
+				if(cb.contents.last != cb.contents.head) {
+					var lastGenerateCode = cb.contents.last.generateCode
+				
+					//TODO :: This doesn't seem to do anything as replaceAll does not modify the immutable String and result is not saved anywhere
+					if (isPerformWhitespaceManipulation) {
+						lastGenerateCode.trimLines(indentToRemove).replaceAll("(\\s*\n)*\\Z", "")
+					}
 				} else{
-					first.replaceAll("(\\s*\n)*\\Z", "")
+
+					if (isPerformWhitespaceManipulation) {
+						// TODO :: This doesn't seem to do anything as replaceAll does not modify the immutable String and result is not saved anywhere
+						//         not sure if this should just be removed entirely or if I should assign the result to first (which may be a breaking change) 
+						first.replaceAll("(\\s*\n)*\\Z", "")
+					}
 					""
 				}
 			'''	

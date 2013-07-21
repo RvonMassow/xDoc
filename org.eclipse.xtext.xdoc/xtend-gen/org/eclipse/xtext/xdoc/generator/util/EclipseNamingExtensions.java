@@ -5,7 +5,6 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.ChapterRef;
@@ -140,25 +139,7 @@ public class EclipseNamingExtensions {
           } else {
             _xifexpression_1 = "";
           }
-          String _plus_1 = (new Function0<Object>() {
-            public Object apply() {
-              String _xifexpression = null;
-              EObject _eContainer = _chapter.eContainer();
-              EObject _eContainer_1 = _eContainer.eContainer();
-              if ((_eContainer_1 instanceof Document)) {
-                EObject _eContainer_2 = _chapter.eContainer();
-                EObject _eContainer_3 = _eContainer_2.eContainer();
-                EList<EObject> _eContents = _eContainer_3.eContents();
-                EObject _eContainer_4 = _chapter.eContainer();
-                int _indexOf = _eContents.indexOf(_eContainer_4);
-                String _plus = ("_" + Integer.valueOf(_indexOf));
-                _xifexpression = _plus;
-              } else {
-                _xifexpression = "";
-              }
-              return _xifexpression;
-            }
-          }.apply() + "_");
+          String _plus_1 = (_xifexpression_1 + "_");
           EObject _eContainer_6 = _chapter.eContainer();
           EList<EObject> _eContents_1 = _eContainer_6.eContents();
           int _indexOf_1 = _eContents_1.indexOf(_chapter);
@@ -178,67 +159,7 @@ public class EclipseNamingExtensions {
           }
           _xifexpression = _xifexpression_2;
         }
-        String _plus_4 = (_lastSegment + 
-          new Function0<String>() {
-            public String apply() {
-              String _xifexpression = null;
-              EObject _eContainer = _chapter.eContainer();
-              if ((_eContainer instanceof Part)) {
-                String _xifexpression_1 = null;
-                EObject _eContainer_1 = _chapter.eContainer();
-                EObject _eContainer_2 = _eContainer_1.eContainer();
-                if ((_eContainer_2 instanceof Document)) {
-                  EObject _eContainer_3 = _chapter.eContainer();
-                  EObject _eContainer_4 = _eContainer_3.eContainer();
-                  EList<EObject> _eContents = _eContainer_4.eContents();
-                  EObject _eContainer_5 = _chapter.eContainer();
-                  int _indexOf = _eContents.indexOf(_eContainer_5);
-                  String _plus = ("_" + Integer.valueOf(_indexOf));
-                  _xifexpression_1 = _plus;
-                } else {
-                  _xifexpression_1 = "";
-                }
-                String _plus_1 = (new Function0<Object>() {
-                  public Object apply() {
-                    String _xifexpression = null;
-                    EObject _eContainer = _chapter.eContainer();
-                    EObject _eContainer_1 = _eContainer.eContainer();
-                    if ((_eContainer_1 instanceof Document)) {
-                      EObject _eContainer_2 = _chapter.eContainer();
-                      EObject _eContainer_3 = _eContainer_2.eContainer();
-                      EList<EObject> _eContents = _eContainer_3.eContents();
-                      EObject _eContainer_4 = _chapter.eContainer();
-                      int _indexOf = _eContents.indexOf(_eContainer_4);
-                      String _plus = ("_" + Integer.valueOf(_indexOf));
-                      _xifexpression = _plus;
-                    } else {
-                      _xifexpression = "";
-                    }
-                    return _xifexpression;
-                  }
-                }.apply() + "_");
-                EObject _eContainer_6 = _chapter.eContainer();
-                EList<EObject> _eContents_1 = _eContainer_6.eContents();
-                int _indexOf_1 = _eContents_1.indexOf(_chapter);
-                String _plus_2 = (_plus_1 + Integer.valueOf(_indexOf_1));
-                _xifexpression = _plus_2;
-              } else {
-                String _xifexpression_2 = null;
-                EObject _eContainer_7 = _chapter.eContainer();
-                if ((_eContainer_7 instanceof Document)) {
-                  EObject _eContainer_8 = _chapter.eContainer();
-                  EList<EObject> _eContents_2 = _eContainer_8.eContents();
-                  int _indexOf_2 = _eContents_2.indexOf(_chapter);
-                  String _plus_3 = ("_" + Integer.valueOf(_indexOf_2));
-                  _xifexpression_2 = _plus_3;
-                } else {
-                  _xifexpression_2 = "";
-                }
-                _xifexpression = _xifexpression_2;
-              }
-              return _xifexpression;
-            }
-          }.apply());
+        String _plus_4 = (_lastSegment + _xifexpression);
         String _plus_5 = (_plus_4 + ".html");
         _switchResult = _plus_5;
       }

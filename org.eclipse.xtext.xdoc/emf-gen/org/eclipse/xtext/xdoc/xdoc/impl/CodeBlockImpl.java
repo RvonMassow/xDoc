@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
@@ -34,6 +31,7 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#getContents <em>Contents</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#isRaw <em>Raw</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,6 +58,26 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	 * @ordered
 	 */
 	protected LangDef language;
+
+	/**
+	 * The default value of the '{@link #isRaw() <em>Raw</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRaw()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean RAW_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isRaw() <em>Raw</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isRaw()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean raw = RAW_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,6 +162,29 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isRaw()
+	{
+		return raw;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRaw(boolean newRaw)
+	{
+		boolean oldRaw = raw;
+		raw = newRaw;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, XdocPackage.CODE_BLOCK__RAW, oldRaw, raw));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
@@ -170,6 +211,8 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 			case XdocPackage.CODE_BLOCK__LANGUAGE:
 				if (resolve) return getLanguage();
 				return basicGetLanguage();
+			case XdocPackage.CODE_BLOCK__RAW:
+				return isRaw();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,6 +235,9 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 			case XdocPackage.CODE_BLOCK__LANGUAGE:
 				setLanguage((LangDef)newValue);
 				return;
+			case XdocPackage.CODE_BLOCK__RAW:
+				setRaw((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -212,6 +258,9 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 			case XdocPackage.CODE_BLOCK__LANGUAGE:
 				setLanguage((LangDef)null);
 				return;
+			case XdocPackage.CODE_BLOCK__RAW:
+				setRaw(RAW_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -230,8 +279,27 @@ public class CodeBlockImpl extends MarkUpImpl implements CodeBlock
 				return contents != null && !contents.isEmpty();
 			case XdocPackage.CODE_BLOCK__LANGUAGE:
 				return language != null;
+			case XdocPackage.CODE_BLOCK__RAW:
+				return raw != RAW_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString()
+	{
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (raw: ");
+		result.append(raw);
+		result.append(')');
+		return result.toString();
 	}
 
 } //CodeBlockImpl

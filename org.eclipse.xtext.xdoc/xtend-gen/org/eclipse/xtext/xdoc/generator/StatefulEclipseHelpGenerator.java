@@ -1081,33 +1081,53 @@ public class StatefulEclipseHelpGenerator {
           _xifexpression_1 = Collections.EMPTY_LIST;
         }
         final Iterable<EObject> list = _xifexpression_1;
+        boolean _isRaw = cb.isRaw();
+        final boolean isPerformWhitespaceManipulation = (!_isRaw);
         EList<EObject> _contents_4 = cb.getContents();
         EObject _head_1 = IterableExtensions.<EObject>head(_contents_4);
-        CharSequence _generateCode_1 = this.generateCode(_head_1);
-        String _trimLines = this.trimLines(_generateCode_1, (indentToRemove).intValue());
-        final String first = _trimLines.replaceAll("\\A(\\s*\n)*", "");
+        final CharSequence firstGenerateCode = this.generateCode(_head_1);
         String _xifexpression_2 = null;
+        if (isPerformWhitespaceManipulation) {
+          String _trimLines = this.trimLines(firstGenerateCode, (indentToRemove).intValue());
+          String _replaceAll = _trimLines.replaceAll("\\A(\\s*\n)*", "");
+          _xifexpression_2 = _replaceAll;
+        } else {
+          String _string = firstGenerateCode.toString();
+          _xifexpression_2 = _string;
+        }
+        final String first = _xifexpression_2;
+        String _xifexpression_3 = null;
         EList<EObject> _contents_5 = cb.getContents();
         EObject _last = IterableExtensions.<EObject>last(_contents_5);
         EList<EObject> _contents_6 = cb.getContents();
         EObject _head_2 = IterableExtensions.<EObject>head(_contents_6);
         boolean _notEquals = (!Objects.equal(_last, _head_2));
         if (_notEquals) {
-          EList<EObject> _contents_7 = cb.getContents();
-          EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
-          CharSequence _generateCode_2 = this.generateCode(_last_1);
-          String _trimLines_1 = this.trimLines(_generateCode_2, (indentToRemove).intValue());
-          String _replaceAll = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
-          _xifexpression_2 = _replaceAll;
-        } else {
           String _xblockexpression_1 = null;
           {
-            first.replaceAll("(\\s*\n)*\\Z", "");
-            _xblockexpression_1 = ("");
+            EList<EObject> _contents_7 = cb.getContents();
+            EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
+            CharSequence lastGenerateCode = this.generateCode(_last_1);
+            String _xifexpression_4 = null;
+            if (isPerformWhitespaceManipulation) {
+              String _trimLines_1 = this.trimLines(lastGenerateCode, (indentToRemove).intValue());
+              String _replaceAll_1 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
+              _xifexpression_4 = _replaceAll_1;
+            }
+            _xblockexpression_1 = (_xifexpression_4);
           }
-          _xifexpression_2 = _xblockexpression_1;
+          _xifexpression_3 = _xblockexpression_1;
+        } else {
+          String _xblockexpression_2 = null;
+          {
+            if (isPerformWhitespaceManipulation) {
+              first.replaceAll("(\\s*\n)*\\Z", "");
+            }
+            _xblockexpression_2 = ("");
+          }
+          _xifexpression_3 = _xblockexpression_2;
         }
-        final String last = _xifexpression_2;
+        final String last = _xifexpression_3;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("<div class=\"literallayout\">");
         _builder_1.newLine();
@@ -1121,10 +1141,10 @@ public class StatefulEclipseHelpGenerator {
         _builder_1.newLineIfNotEmpty();
         {
           for(final EObject code : list) {
-            CharSequence _generateCode_3 = this.generateCode(code);
-            String _trimLines_2 = this.trimLines(_generateCode_3, (indentToRemove).intValue());
+            CharSequence _generateCode_1 = this.generateCode(code);
+            String _trimLines_1 = this.trimLines(_generateCode_1, (indentToRemove).intValue());
             LangDef _language_2 = cb.getLanguage();
-            String _formatCode_2 = this.utils.formatCode(_trimLines_2, _language_2);
+            String _formatCode_2 = this.utils.formatCode(_trimLines_1, _language_2);
             _builder_1.append(_formatCode_2, "");
             _builder_1.newLineIfNotEmpty();
           }

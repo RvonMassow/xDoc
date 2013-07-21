@@ -2967,11 +2967,27 @@ ruleCodeBlock returns [EObject current=null]
             grammarAccess.getCodeBlockAccess().getCodeBlockAction_0(),
             $current);
     }
-)	otherlv_1='code[' 
+)(	otherlv_1='code[' 
     {
-    	newLeafNode(otherlv_1, grammarAccess.getCodeBlockAccess().getCodeKeyword_1());
+    	newLeafNode(otherlv_1, grammarAccess.getCodeBlockAccess().getCodeKeyword_1_0());
     }
-((
+
+    |(
+(
+		lv_raw_2_0=	'code-raw[' 
+    {
+        newLeafNode(lv_raw_2_0, grammarAccess.getCodeBlockAccess().getRawCodeRawKeyword_1_1_0());
+    }
+ 
+	    {
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getCodeBlockRule());
+	        }
+       		setWithLastConsumed($current, "raw", true, "code-raw[");
+	    }
+
+)
+))((
     { 
         newCompositeNode(grammarAccess.getCodeBlockAccess().getANY_WSParserRuleCall_2_0()); 
     }
@@ -2986,9 +3002,9 @@ ruleANY_WS
 	            $current = createModelElement(grammarAccess.getCodeBlockRule());
 	        }
         }
-	otherlv_3=RULE_ID
+	otherlv_4=RULE_ID
 	{
-		newLeafNode(otherlv_3, grammarAccess.getCodeBlockAccess().getLanguageLangDefCrossReference_2_1_0()); 
+		newLeafNode(otherlv_4, grammarAccess.getCodeBlockAccess().getLanguageLangDefCrossReference_2_1_0()); 
 	}
 
 )
@@ -3000,9 +3016,9 @@ ruleANY_WS
     { 
         afterParserOrEnumRuleCall();
     }
-)*	otherlv_5=']' 
+)*	otherlv_6=']' 
     {
-    	newLeafNode(otherlv_5, grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_2_3());
+    	newLeafNode(otherlv_6, grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_2_3());
     }
 (
     { 
@@ -3012,23 +3028,23 @@ ruleANY_WS
     { 
         afterParserOrEnumRuleCall();
     }
-)*	otherlv_7='[' 
+)*	otherlv_8='[' 
     {
-    	newLeafNode(otherlv_7, grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_2_5());
+    	newLeafNode(otherlv_8, grammarAccess.getCodeBlockAccess().getLeftSquareBracketKeyword_2_5());
     }
 )?(((
 (
 		{ 
 	        newCompositeNode(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_3_0_0_0()); 
 	    }
-		lv_contents_8_0=ruleCode		{
+		lv_contents_9_0=ruleCode		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodeBlockRule());
 	        }
        		add(
        			$current, 
        			"contents",
-        		lv_contents_8_0, 
+        		lv_contents_9_0, 
         		"Code");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -3039,14 +3055,14 @@ ruleANY_WS
 		{ 
 	        newCompositeNode(grammarAccess.getCodeBlockAccess().getContentsMarkupInCodeParserRuleCall_3_0_1_0_0()); 
 	    }
-		lv_contents_9_0=ruleMarkupInCode		{
+		lv_contents_10_0=ruleMarkupInCode		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodeBlockRule());
 	        }
        		add(
        			$current, 
        			"contents",
-        		lv_contents_9_0, 
+        		lv_contents_10_0, 
         		"MarkupInCode");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -3057,14 +3073,14 @@ ruleANY_WS
 		{ 
 	        newCompositeNode(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_3_0_1_1_0()); 
 	    }
-		lv_contents_10_0=ruleCode		{
+		lv_contents_11_0=ruleCode		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodeBlockRule());
 	        }
        		add(
        			$current, 
        			"contents",
-        		lv_contents_10_0, 
+        		lv_contents_11_0, 
         		"Code");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -3076,14 +3092,14 @@ ruleANY_WS
 		{ 
 	        newCompositeNode(grammarAccess.getCodeBlockAccess().getContentsMarkupInCodeParserRuleCall_3_1_0_0()); 
 	    }
-		lv_contents_11_0=ruleMarkupInCode		{
+		lv_contents_12_0=ruleMarkupInCode		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodeBlockRule());
 	        }
        		add(
        			$current, 
        			"contents",
-        		lv_contents_11_0, 
+        		lv_contents_12_0, 
         		"MarkupInCode");
 	        afterParserOrEnumRuleCall();
 	    }
@@ -3094,22 +3110,22 @@ ruleANY_WS
 		{ 
 	        newCompositeNode(grammarAccess.getCodeBlockAccess().getContentsCodeParserRuleCall_3_1_1_0()); 
 	    }
-		lv_contents_12_0=ruleCode		{
+		lv_contents_13_0=ruleCode		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getCodeBlockRule());
 	        }
        		add(
        			$current, 
        			"contents",
-        		lv_contents_12_0, 
+        		lv_contents_13_0, 
         		"Code");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)?)+)?	otherlv_13=']' 
+)?)+)?	otherlv_14=']' 
     {
-    	newLeafNode(otherlv_13, grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_4());
+    	newLeafNode(otherlv_14, grammarAccess.getCodeBlockAccess().getRightSquareBracketKeyword_4());
     }
 )
 ;
