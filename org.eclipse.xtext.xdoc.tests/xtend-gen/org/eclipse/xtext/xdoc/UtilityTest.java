@@ -184,7 +184,7 @@ public class UtilityTest {
   }
   
   public LangDef langDef() {
-    final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList();
+    final ArrayList<?> _cacheKey = CollectionLiterals.newArrayList();
     final LangDef _result;
     synchronized (_createCache_langDef) {
       if (_createCache_langDef.containsKey(_cacheKey)) {

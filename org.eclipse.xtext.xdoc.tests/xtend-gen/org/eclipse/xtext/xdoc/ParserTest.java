@@ -748,7 +748,7 @@ public class ParserTest {
       EObject _head_2 = IterableExtensions.<EObject>head(_contents_5);
       textPart = ((TextPart) _head_2);
       String _text_2 = textPart.getText();
-      Assert.assertEquals("foo\u00DF", _text_2);
+      Assert.assertEquals("fooﬂ", _text_2);
       EList<Section2> _subSections_2 = section.getSubSections();
       int _size_5 = _subSections_2.size();
       Assert.assertEquals(1, _size_5);

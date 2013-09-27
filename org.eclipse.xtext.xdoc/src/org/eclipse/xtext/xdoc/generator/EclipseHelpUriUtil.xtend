@@ -14,7 +14,7 @@ import org.eclipse.xtext.xdoc.xdoc.PartRef
 import org.eclipse.xtext.xdoc.xdoc.Ref
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref
 import org.eclipse.xtext.xdoc.xdoc.SectionRef
-
+import static org.eclipse.emf.common.util.URI.*
 import static extension org.eclipse.xtext.EcoreUtil2.*
 
 class EclipseHelpUriUtil {
@@ -100,7 +100,7 @@ class EclipseHelpUriUtil {
 
 	def private targetURI(Identifiable it) {
 		val resourceURI = eResource.URI
-		val fullURL = URI::createURI(it.fullURL)
+		val fullURL = createURI(it.fullURL)
 		resourceURI.trimSegments(resourceURI.segmentCount - 2)
 			.appendSegment("contents")
 		  	.appendSegments(fullURL.segments)

@@ -12,23 +12,23 @@ public class GlossaryExtensions {
     GlossaryEntry _xblockexpression = null;
     {
       final Function1<GlossaryEntry,Boolean> _function = new Function1<GlossaryEntry,Boolean>() {
-          public Boolean apply(final GlossaryEntry s) {
-            String _name = s.getName();
-            boolean _equals = Objects.equal(_name, aliasOrName);
-            return Boolean.valueOf(_equals);
-          }
-        };
+        public Boolean apply(final GlossaryEntry s) {
+          String _name = s.getName();
+          boolean _equals = Objects.equal(_name, aliasOrName);
+          return Boolean.valueOf(_equals);
+        }
+      };
       GlossaryEntry matchedEntry = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function);
       GlossaryEntry _xifexpression = null;
       boolean _equals = Objects.equal(matchedEntry, null);
       if (_equals) {
         final Function1<GlossaryEntry,Boolean> _function_1 = new Function1<GlossaryEntry,Boolean>() {
-            public Boolean apply(final GlossaryEntry s) {
-              EList<String> _alias = s.getAlias();
-              boolean _contains = _alias.contains(aliasOrName);
-              return Boolean.valueOf(_contains);
-            }
-          };
+          public Boolean apply(final GlossaryEntry s) {
+            EList<String> _alias = s.getAlias();
+            boolean _contains = _alias.contains(aliasOrName);
+            return Boolean.valueOf(_contains);
+          }
+        };
         GlossaryEntry _findFirst = IterableExtensions.<GlossaryEntry>findFirst(glossary, _function_1);
         _xifexpression = _findFirst;
       }

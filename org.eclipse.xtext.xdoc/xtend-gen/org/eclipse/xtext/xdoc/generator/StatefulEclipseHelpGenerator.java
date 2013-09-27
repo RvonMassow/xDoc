@@ -123,8 +123,8 @@ public class StatefulEclipseHelpGenerator {
       }
       final AbstractSection doc = _mainSection;
       if ((doc instanceof Document)) {
-        this.uriUtil.initialize(((Document) doc));
-        this.generateDoc(((Document) doc), this.access);
+        this.uriUtil.initialize(((Document) ((Document)doc)));
+        this.generateDoc(((Document) ((Document)doc)), this.access);
       }
     }
   }
@@ -462,42 +462,36 @@ public class StatefulEclipseHelpGenerator {
     boolean _matched = false;
     if (!_matched) {
       if (section instanceof Part) {
-        final Part _part = (Part)section;
         _matched=true;
         _switchResult = "h1";
       }
     }
     if (!_matched) {
       if (section instanceof Chapter) {
-        final Chapter _chapter = (Chapter)section;
         _matched=true;
         _switchResult = "h1";
       }
     }
     if (!_matched) {
       if (section instanceof Section) {
-        final Section _section = (Section)section;
         _matched=true;
         _switchResult = "h2";
       }
     }
     if (!_matched) {
       if (section instanceof Section2) {
-        final Section2 _section2 = (Section2)section;
         _matched=true;
         _switchResult = "h3";
       }
     }
     if (!_matched) {
       if (section instanceof Section3) {
-        final Section3 _section3 = (Section3)section;
         _matched=true;
         _switchResult = "h4";
       }
     }
     if (!_matched) {
       if (section instanceof Section4) {
-        final Section4 _section4 = (Section4)section;
         _matched=true;
         _switchResult = "h5";
       }

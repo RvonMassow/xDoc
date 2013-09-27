@@ -95,8 +95,8 @@ public class Utils {
       String _replace_1 = _replace.replace("\'", "&apos;");
       String _replace_2 = _replace_1.replace("<", "&lt;");
       String _replace_3 = _replace_2.replace(">", "&gt;");
-      String _replace_4 = _replace_3.replace("\u00AB", "&laquo;");
-      String _replace_5 = _replace_4.replace("\u00BB", "&raquo;");
+      String _replace_4 = _replace_3.replace("«", "&laquo;");
+      String _replace_5 = _replace_4.replace("»", "&raquo;");
       _xifexpression = _replace_5;
     } else {
       _xifexpression = "";
@@ -124,12 +124,12 @@ public class Utils {
       final Document doc = IterableExtensions.<Document>head(_filter);
       EList<LangDef> _langDefs = doc.getLangDefs();
       final Function1<LangDef,Boolean> _function = new Function1<LangDef,Boolean>() {
-          public Boolean apply(final LangDef e) {
-            String _name = e.getName();
-            boolean _equals = Objects.equal(_name, "__XdocDefaultLanguage__");
-            return Boolean.valueOf(_equals);
-          }
-        };
+        public Boolean apply(final LangDef e) {
+          String _name = e.getName();
+          boolean _equals = Objects.equal(_name, "__XdocDefaultLanguage__");
+          return Boolean.valueOf(_equals);
+        }
+      };
       final LangDef lang = IterableExtensions.<LangDef>findFirst(_langDefs, _function);
       Collection<String> _xifexpression = null;
       boolean _notEquals = (!Objects.equal(lang, null));
@@ -156,11 +156,11 @@ public class Utils {
     if (_notEquals) {
       EList<String> _keywords = language.getKeywords();
       final Function1<String,String> _function = new Function1<String,String>() {
-          public String apply(final String it) {
-            String _unescapeXdocChars = Utils.this.unescapeXdocChars(it);
-            return _unescapeXdocChars;
-          }
-        };
+        public String apply(final String it) {
+          String _unescapeXdocChars = Utils.this.unescapeXdocChars(it);
+          return _unescapeXdocChars;
+        }
+      };
       List<String> _map = ListExtensions.<String, String>map(_keywords, _function);
       Set<String> _set = IterableExtensions.<String>toSet(_map);
       _xifexpression = _set;
@@ -330,7 +330,7 @@ public class Utils {
   }
   
   public Code correctedCode(final String s) {
-    final ArrayList<?>_cacheKey = CollectionLiterals.newArrayList(s);
+    final ArrayList<?> _cacheKey = CollectionLiterals.newArrayList(s);
     final Code _result;
     synchronized (_createCache_correctedCode) {
       if (_createCache_correctedCode.containsKey(_cacheKey)) {

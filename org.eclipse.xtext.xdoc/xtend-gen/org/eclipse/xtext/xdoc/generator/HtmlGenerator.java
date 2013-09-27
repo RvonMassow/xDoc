@@ -555,42 +555,36 @@ public class HtmlGenerator implements IGenerator {
     boolean _matched = false;
     if (!_matched) {
       if (section instanceof Document) {
-        final Document _document = (Document)section;
         _matched=true;
         _switchResult = "h1";
       }
     }
     if (!_matched) {
       if (section instanceof Chapter) {
-        final Chapter _chapter = (Chapter)section;
         _matched=true;
         _switchResult = "h1";
       }
     }
     if (!_matched) {
       if (section instanceof Section) {
-        final Section _section = (Section)section;
         _matched=true;
         _switchResult = "h1";
       }
     }
     if (!_matched) {
       if (section instanceof Section2) {
-        final Section2 _section2 = (Section2)section;
         _matched=true;
         _switchResult = "h2";
       }
     }
     if (!_matched) {
       if (section instanceof Section3) {
-        final Section3 _section3 = (Section3)section;
         _matched=true;
         _switchResult = "h3";
       }
     }
     if (!_matched) {
       if (section instanceof Section4) {
-        final Section4 _section4 = (Section4)section;
         _matched=true;
         _switchResult = "h4";
       }

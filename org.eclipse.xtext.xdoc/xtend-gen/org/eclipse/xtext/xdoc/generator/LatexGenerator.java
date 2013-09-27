@@ -100,7 +100,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     for (final EObject element : _iterable) {
       if ((element instanceof Document)) {
-        final Document doc = ((Document) element);
+        final Document doc = ((Document) ((Document)element));
         String _name = doc.getName();
         String _fileName = this.fileName(_name);
         CharSequence _generate = this.generate(doc);
@@ -279,7 +279,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     _builder.append("\\lstset{tabsize=4, basicstyle=\\sffamily\\small, keywordstyle=\\bfseries\\color{kwcolor}, commentstyle=\\color{cocolor},");
     _builder.newLine();
-    _builder.append("stringstyle=\\color{strcolor}, columns=[r]fullflexible, escapechar={\u00DF}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, ");
+    _builder.append("stringstyle=\\color{strcolor}, columns=[r]fullflexible, escapechar={ß}, frame=single, %framexleftmargin=-5pt, framexrightmargin=-5pt, ");
     _builder.newLine();
     _builder.append("xleftmargin=5pt, xrightmargin=5pt, rulecolor=\\color{lightgray}, showstringspaces=false, backgroundcolor=\\color{listingsbg!70}}");
     _builder.newLine();
@@ -405,11 +405,10 @@ public class LatexGenerator implements IConfigurableGenerator {
     boolean _matched = false;
     if (!_matched) {
       if (sec instanceof Part) {
-        final Part _part = (Part)sec;
         _matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\part{");
-        TextOrMarkup _title = _part.getTitle();
+        TextOrMarkup _title = ((Part)sec).getTitle();
         CharSequence _genNonParContent = this.genNonParContent(_title);
         _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
@@ -418,11 +417,10 @@ public class LatexGenerator implements IConfigurableGenerator {
     }
     if (!_matched) {
       if (sec instanceof Chapter) {
-        final Chapter _chapter = (Chapter)sec;
         _matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\chapter{");
-        TextOrMarkup _title = _chapter.getTitle();
+        TextOrMarkup _title = ((Chapter)sec).getTitle();
         CharSequence _genNonParContent = this.genNonParContent(_title);
         _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
@@ -431,11 +429,10 @@ public class LatexGenerator implements IConfigurableGenerator {
     }
     if (!_matched) {
       if (sec instanceof Section) {
-        final Section _section = (Section)sec;
         _matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\section{");
-        TextOrMarkup _title = _section.getTitle();
+        TextOrMarkup _title = ((Section)sec).getTitle();
         CharSequence _genNonParContent = this.genNonParContent(_title);
         _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
@@ -444,11 +441,10 @@ public class LatexGenerator implements IConfigurableGenerator {
     }
     if (!_matched) {
       if (sec instanceof Section2) {
-        final Section2 _section2 = (Section2)sec;
         _matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\subsection{");
-        TextOrMarkup _title = _section2.getTitle();
+        TextOrMarkup _title = ((Section2)sec).getTitle();
         CharSequence _genNonParContent = this.genNonParContent(_title);
         _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
@@ -457,11 +453,10 @@ public class LatexGenerator implements IConfigurableGenerator {
     }
     if (!_matched) {
       if (sec instanceof Section3) {
-        final Section3 _section3 = (Section3)sec;
         _matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\subsubsection{");
-        TextOrMarkup _title = _section3.getTitle();
+        TextOrMarkup _title = ((Section3)sec).getTitle();
         CharSequence _genNonParContent = this.genNonParContent(_title);
         _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
@@ -470,11 +465,10 @@ public class LatexGenerator implements IConfigurableGenerator {
     }
     if (!_matched) {
       if (sec instanceof Section4) {
-        final Section4 _section4 = (Section4)sec;
         _matched=true;
         StringConcatenation _builder_1 = new StringConcatenation();
         _builder_1.append("\\paragraph{");
-        TextOrMarkup _title = _section4.getTitle();
+        TextOrMarkup _title = ((Section4)sec).getTitle();
         CharSequence _genNonParContent = this.genNonParContent(_title);
         _builder_1.append(_genNonParContent, "");
         _builder_1.append("}");
@@ -487,25 +481,22 @@ public class LatexGenerator implements IConfigurableGenerator {
     boolean _matched_1 = false;
     if (!_matched_1) {
       if (sec instanceof Part) {
-        final Part _part = (Part)sec;
         _matched_1=true;
-        CharSequence _genLabel = this.genLabel(_part);
+        CharSequence _genLabel = this.genLabel(sec);
         _switchResult_1 = _genLabel;
       }
     }
     if (!_matched_1) {
       if (sec instanceof Chapter) {
-        final Chapter _chapter = (Chapter)sec;
         _matched_1=true;
-        CharSequence _genLabel = this.genLabel(_chapter);
+        CharSequence _genLabel = this.genLabel(sec);
         _switchResult_1 = _genLabel;
       }
     }
     if (!_matched_1) {
       if (sec instanceof Section) {
-        final Section _section = (Section)sec;
         _matched_1=true;
-        CharSequence _genLabel = this.genLabel(_section);
+        CharSequence _genLabel = this.genLabel(sec);
         _switchResult_1 = _genLabel;
       }
     }
@@ -928,11 +919,11 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLineIfNotEmpty();
     EList<TableRow> _rows_2 = tab.getRows();
     final Function1<TableRow,CharSequence> _function = new Function1<TableRow,CharSequence>() {
-        public CharSequence apply(final TableRow e) {
-          CharSequence _genText = LatexGenerator.this.genText(e);
-          return _genText;
-        }
-      };
+      public CharSequence apply(final TableRow e) {
+        CharSequence _genText = LatexGenerator.this.genText(e);
+        return _genText;
+      }
+    };
     List<CharSequence> _map = ListExtensions.<TableRow, CharSequence>map(_rows_2, _function);
     String _join = IterableExtensions.join(_map, "\\\\\n");
     _builder.append(_join, "");
@@ -945,11 +936,11 @@ public class LatexGenerator implements IConfigurableGenerator {
   protected CharSequence _genText(final TableRow row) {
     EList<TableData> _data = row.getData();
     final Function1<TableData,CharSequence> _function = new Function1<TableData,CharSequence>() {
-        public CharSequence apply(final TableData e) {
-          CharSequence _genText = LatexGenerator.this.genText(e);
-          return _genText;
-        }
-      };
+      public CharSequence apply(final TableData e) {
+        CharSequence _genText = LatexGenerator.this.genText(e);
+        return _genText;
+      }
+    };
     List<CharSequence> _map = ListExtensions.<TableData, CharSequence>map(_data, _function);
     String _join = IterableExtensions.join(_map, " & ");
     return _join;
@@ -958,11 +949,11 @@ public class LatexGenerator implements IConfigurableGenerator {
   protected CharSequence _genText(final TableData tData) {
     EList<TextOrMarkup> _contents = tData.getContents();
     final Function1<TextOrMarkup,CharSequence> _function = new Function1<TextOrMarkup,CharSequence>() {
-        public CharSequence apply(final TextOrMarkup e) {
-          CharSequence _genContent = LatexGenerator.this.genContent(e);
-          return _genContent;
-        }
-      };
+      public CharSequence apply(final TextOrMarkup e) {
+        CharSequence _genContent = LatexGenerator.this.genContent(e);
+        return _genContent;
+      }
+    };
     List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
     String _join = IterableExtensions.join(_map);
     return _join;
@@ -985,11 +976,11 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     EList<Item> _items = ol.getItems();
     final Function1<Item,CharSequence> _function = new Function1<Item,CharSequence>() {
-        public CharSequence apply(final Item e) {
-          CharSequence _genText = LatexGenerator.this.genText(e);
-          return _genText;
-        }
-      };
+      public CharSequence apply(final Item e) {
+        CharSequence _genText = LatexGenerator.this.genText(e);
+        return _genText;
+      }
+    };
     List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
@@ -1011,11 +1002,11 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     EList<Item> _items = ul.getItems();
     final Function1<Item,CharSequence> _function = new Function1<Item,CharSequence>() {
-        public CharSequence apply(final Item e) {
-          CharSequence _genText = LatexGenerator.this.genText(e);
-          return _genText;
-        }
-      };
+      public CharSequence apply(final Item e) {
+        CharSequence _genText = LatexGenerator.this.genText(e);
+        return _genText;
+      }
+    };
     List<CharSequence> _map = ListExtensions.<Item, CharSequence>map(_items, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
@@ -1041,11 +1032,11 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLineIfNotEmpty();
     EList<TextOrMarkup> _contents_1 = item.getContents();
     final Function1<TextOrMarkup,CharSequence> _function = new Function1<TextOrMarkup,CharSequence>() {
-        public CharSequence apply(final TextOrMarkup e) {
-          CharSequence _genContent = LatexGenerator.this.genContent(e);
-          return _genContent;
-        }
-      };
+      public CharSequence apply(final TextOrMarkup e) {
+        CharSequence _genContent = LatexGenerator.this.genContent(e);
+        return _genContent;
+      }
+    };
     List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
@@ -1060,11 +1051,11 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.append("\\textit{");
     EList<TextOrMarkup> _contents = em.getContents();
     final Function1<TextOrMarkup,CharSequence> _function = new Function1<TextOrMarkup,CharSequence>() {
-        public CharSequence apply(final TextOrMarkup e) {
-          CharSequence _genNonParContent = LatexGenerator.this.genNonParContent(e);
-          return _genNonParContent;
-        }
-      };
+      public CharSequence apply(final TextOrMarkup e) {
+        CharSequence _genNonParContent = LatexGenerator.this.genNonParContent(e);
+        return _genNonParContent;
+      }
+    };
     List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents, _function);
     String _join = IterableExtensions.join(_map);
     _builder.append(_join, "");
@@ -1091,15 +1082,15 @@ public class LatexGenerator implements IConfigurableGenerator {
         _builder.append("]{");
         EList<TextOrMarkup> _contents_1 = ref.getContents();
         final Function1<TextOrMarkup,CharSequence> _function = new Function1<TextOrMarkup,CharSequence>() {
-            public CharSequence apply(final TextOrMarkup e) {
-              CharSequence _genNonParContent = LatexGenerator.this.genNonParContent(e);
-              return _genNonParContent;
-            }
-          };
+          public CharSequence apply(final TextOrMarkup e) {
+            CharSequence _genNonParContent = LatexGenerator.this.genNonParContent(e);
+            return _genNonParContent;
+          }
+        };
         List<CharSequence> _map = ListExtensions.<TextOrMarkup, CharSequence>map(_contents_1, _function);
         String _join = IterableExtensions.join(_map);
         _builder.append(_join, "");
-        _builder.append("~(\u00A7\\ref*{");
+        _builder.append("~(§\\ref*{");
         Identifiable _ref_2 = ref.getRef();
         String _name_2 = _ref_2.getName();
         _builder.append(_name_2, "");
@@ -1143,13 +1134,13 @@ public class LatexGenerator implements IConfigurableGenerator {
   
   protected CharSequence _genText(final CodeRef codeRef) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("\\protect\\lstinline\u00B0");
+    _builder.append("\\protect\\lstinline°");
     JvmDeclaredType _element = codeRef.getElement();
     String _qualifiedName = _element.getQualifiedName();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_qualifiedName);
     String _escapeLatexChars = this.utils.escapeLatexChars(_unescapeXdocChars);
     _builder.append(_escapeLatexChars, "");
-    _builder.append("\u00B0");
+    _builder.append("°");
     return _builder;
   }
   
@@ -1307,18 +1298,18 @@ public class LatexGenerator implements IConfigurableGenerator {
           _langSpec=this.langSpec(_language);
         }
         _builder.append(_langSpec, "");
-        _builder.append("\u00B0");
+        _builder.append("°");
         EList<EObject> _contents = block.getContents();
         final Function1<EObject,CharSequence> _function = new Function1<EObject,CharSequence>() {
-            public CharSequence apply(final EObject it) {
-              CharSequence _genCode = LatexGenerator.this.genCode(it);
-              return _genCode;
-            }
-          };
+          public CharSequence apply(final EObject it) {
+            CharSequence _genCode = LatexGenerator.this.genCode(it);
+            return _genCode;
+          }
+        };
         List<CharSequence> _map = ListExtensions.<EObject, CharSequence>map(_contents, _function);
         String _join = IterableExtensions.join(_map);
         _builder.append(_join, "");
-        _builder.append("\u00B0");
+        _builder.append("°");
         _xifexpression_1 = _builder;
       } else {
         StringConcatenation _builder_1 = new StringConcatenation();
@@ -1332,11 +1323,11 @@ public class LatexGenerator implements IConfigurableGenerator {
         _builder_1.append("{");
         EList<EObject> _contents_1 = block.getContents();
         final Function1<EObject,CharSequence> _function_1 = new Function1<EObject,CharSequence>() {
-            public CharSequence apply(final EObject it) {
-              CharSequence _genCode = LatexGenerator.this.genCode(it);
-              return _genCode;
-            }
-          };
+          public CharSequence apply(final EObject it) {
+            CharSequence _genCode = LatexGenerator.this.genCode(it);
+            return _genCode;
+          }
+        };
         List<CharSequence> _map_1 = ListExtensions.<EObject, CharSequence>map(_contents_1, _function_1);
         String _join_1 = IterableExtensions.join(_map_1);
         _builder_1.append(_join_1, "");
@@ -1358,11 +1349,11 @@ public class LatexGenerator implements IConfigurableGenerator {
       CodeBlock _removeIndent = StringUtils.removeIndent(block);
       EList<EObject> _contents_2 = _removeIndent.getContents();
       final Function1<EObject,CharSequence> _function_2 = new Function1<EObject,CharSequence>() {
-          public CharSequence apply(final EObject e) {
-            CharSequence _genCode = LatexGenerator.this.genCode(e);
-            return _genCode;
-          }
-        };
+        public CharSequence apply(final EObject e) {
+          CharSequence _genCode = LatexGenerator.this.genCode(e);
+          return _genCode;
+        }
+      };
       List<CharSequence> _map_2 = ListExtensions.<EObject, CharSequence>map(_contents_2, _function_2);
       String _join_2 = IterableExtensions.join(_map_2);
       _builder_2.append(_join_2, "");

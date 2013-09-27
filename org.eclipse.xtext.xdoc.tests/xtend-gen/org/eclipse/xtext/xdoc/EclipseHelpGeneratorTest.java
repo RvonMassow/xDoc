@@ -35,8 +35,7 @@ public class EclipseHelpGeneratorTest {
   private EclipseHelpGenerator _eclipseHelpGenerator;
   
   @Inject
-  @Extension
-  private StatefulEclipseHelpGenerator _statefulEclipseHelpGenerator;
+  private StatefulEclipseHelpGenerator stateFullGen;
   
   @Inject
   private EclipseResourceFileSystemAccess2 fsa;
@@ -58,7 +57,7 @@ public class EclipseHelpGeneratorTest {
       final XdocFile file = this.getDoc(_plus);
       AbstractSection _mainSection = file.getMainSection();
       final Document doc = ((Document) _mainSection);
-      this._statefulEclipseHelpGenerator.generate(doc);
+      this.stateFullGen.generate(doc);
       Pair<String,Integer> _mappedTo = Pair.<String, Integer>of("foo", Integer.valueOf(3));
       _xblockexpression = (_mappedTo);
     }

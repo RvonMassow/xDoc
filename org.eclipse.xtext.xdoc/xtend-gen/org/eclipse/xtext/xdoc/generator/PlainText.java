@@ -23,14 +23,14 @@ public class PlainText {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
     final Function2<String,EObject,String> _function = new Function2<String,EObject,String>() {
-        public String apply(final String e1, final EObject e2) {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append(e1, "");
-          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
-          _builder.append(_genPlainText, "");
-          return _builder.toString();
-        }
-      };
+      public String apply(final String e1, final EObject e2) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(e1, "");
+        CharSequence _genPlainText = PlainText.this.genPlainText(e2);
+        _builder.append(_genPlainText, "");
+        return _builder.toString();
+      }
+    };
     String _fold = IterableExtensions.<EObject, String>fold(_contents, _builder.toString(), _function);
     return _fold;
   }
@@ -44,14 +44,14 @@ public class PlainText {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
     final Function2<String,TextOrMarkup,String> _function = new Function2<String,TextOrMarkup,String>() {
-        public String apply(final String e1, final TextOrMarkup e2) {
-          StringConcatenation _builder = new StringConcatenation();
-          _builder.append(e1, "");
-          CharSequence _genPlainText = PlainText.this.genPlainText(e2);
-          _builder.append(_genPlainText, "");
-          return _builder.toString();
-        }
-      };
+      public String apply(final String e1, final TextOrMarkup e2) {
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append(e1, "");
+        CharSequence _genPlainText = PlainText.this.genPlainText(e2);
+        _builder.append(_genPlainText, "");
+        return _builder.toString();
+      }
+    };
     String _fold = IterableExtensions.<TextOrMarkup, String>fold(_contents, _builder.toString(), _function);
     return _fold;
   }

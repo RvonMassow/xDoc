@@ -94,45 +94,40 @@ public class EclipseHelpUriUtil {
     boolean _matched = false;
     if (!_matched) {
       if (it instanceof PartRef) {
-        final PartRef _partRef = (PartRef)it;
         _matched=true;
-        Part _part = _partRef.getPart();
+        Part _part = ((PartRef)it).getPart();
         URI _targetURI = this.getTargetURI(_part);
         _switchResult = _targetURI;
       }
     }
     if (!_matched) {
       if (it instanceof ChapterRef) {
-        final ChapterRef _chapterRef = (ChapterRef)it;
         _matched=true;
-        Chapter _chapter = _chapterRef.getChapter();
+        Chapter _chapter = ((ChapterRef)it).getChapter();
         URI _targetURI = this.getTargetURI(_chapter);
         _switchResult = _targetURI;
       }
     }
     if (!_matched) {
       if (it instanceof SectionRef) {
-        final SectionRef _sectionRef = (SectionRef)it;
         _matched=true;
-        Section _section = _sectionRef.getSection();
+        Section _section = ((SectionRef)it).getSection();
         URI _targetURI = this.getTargetURI(_section);
         _switchResult = _targetURI;
       }
     }
     if (!_matched) {
       if (it instanceof Section2Ref) {
-        final Section2Ref _section2Ref = (Section2Ref)it;
         _matched=true;
-        Section2 _section2 = _section2Ref.getSection2();
+        Section2 _section2 = ((Section2Ref)it).getSection2();
         URI _targetURI = this.getTargetURI(_section2);
         _switchResult = _targetURI;
       }
     }
     if (!_matched) {
       if (it instanceof Document) {
-        final Document _document = (Document)it;
         _matched=true;
-        URI _targetURI = this.targetURI(((Identifiable) _document));
+        URI _targetURI = this.targetURI(((Identifiable) it));
         _switchResult = _targetURI;
       }
     }
@@ -157,17 +152,17 @@ public class EclipseHelpUriUtil {
     this.section2fileSection.put(it, it);
     EList<Chapter> _chapters = it.getChapters();
     final Procedure1<Chapter> _function = new Procedure1<Chapter>() {
-        public void apply(final Chapter it) {
-          EclipseHelpUriUtil.this.populateFileMap(it);
-        }
-      };
+      public void apply(final Chapter it) {
+        EclipseHelpUriUtil.this.populateFileMap(it);
+      }
+    };
     IterableExtensions.<Chapter>forEach(_chapters, _function);
     EList<Part> _parts = it.getParts();
     final Procedure1<Part> _function_1 = new Procedure1<Part>() {
-        public void apply(final Part it) {
-          EclipseHelpUriUtil.this.populateFileMap(it);
-        }
-      };
+      public void apply(final Part it) {
+        EclipseHelpUriUtil.this.populateFileMap(it);
+      }
+    };
     IterableExtensions.<Part>forEach(_parts, _function_1);
   }
   
@@ -175,10 +170,10 @@ public class EclipseHelpUriUtil {
     this.section2fileSection.put(it, it);
     EList<Section> _subSections = it.getSubSections();
     final Procedure1<Section> _function = new Procedure1<Section>() {
-        public void apply(final Section section) {
-          EclipseHelpUriUtil.this.populateFileMap(section, it);
-        }
-      };
+      public void apply(final Section section) {
+        EclipseHelpUriUtil.this.populateFileMap(section, it);
+      }
+    };
     IterableExtensions.<Section>forEach(_subSections, _function);
   }
   
@@ -191,10 +186,10 @@ public class EclipseHelpUriUtil {
     this.section2fileSection.put(it, it);
     EList<Chapter> _chapters = it.getChapters();
     final Procedure1<Chapter> _function = new Procedure1<Chapter>() {
-        public void apply(final Chapter chapter) {
-          EclipseHelpUriUtil.this.populateFileMap(chapter);
-        }
-      };
+      public void apply(final Chapter chapter) {
+        EclipseHelpUriUtil.this.populateFileMap(chapter);
+      }
+    };
     IterableExtensions.<Chapter>forEach(_chapters, _function);
   }
   
@@ -208,10 +203,10 @@ public class EclipseHelpUriUtil {
     EList<EObject> _eContents = it.eContents();
     Iterable<AbstractSection> _filter = Iterables.<AbstractSection>filter(_eContents, AbstractSection.class);
     final Procedure1<AbstractSection> _function = new Procedure1<AbstractSection>() {
-        public void apply(final AbstractSection section) {
-          EclipseHelpUriUtil.this.populateFileMap(section, fileSection);
-        }
-      };
+      public void apply(final AbstractSection section) {
+        EclipseHelpUriUtil.this.populateFileMap(section, fileSection);
+      }
+    };
     IterableExtensions.<AbstractSection>forEach(_filter, _function);
   }
   

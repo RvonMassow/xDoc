@@ -24,7 +24,7 @@ class EclipseHelpGeneratorTest {
 
 	@Inject extension ParseHelperExtensions<XdocFile>
 	@Inject extension EclipseHelpGenerator
-	@Inject extension StatefulEclipseHelpGenerator
+	@Inject StatefulEclipseHelpGenerator stateFullGen
 	@Inject EclipseResourceFileSystemAccess2 fsa
 
 	@Test
@@ -36,7 +36,7 @@ class EclipseHelpGeneratorTest {
 	def testGenCode() throws Exception {
 		val file = getDoc(TEST_FILE_DIR + "codeTest.xdoc");
 		val doc = file.getMainSection() as Document
-		generate(doc);
+		stateFullGen.generate(doc);
 		"foo" -> 3
 //		validate(EXPECTATION_DIR + "code.html", RESULT_DIR + "mytestmodel.xdoc-0.html");
 	}

@@ -38,11 +38,11 @@ public class GitExtensions {
     public Set<String> apply() {
       EList<EClassifier> _eClassifiers = XtextPackage.eINSTANCE.getEClassifiers();
       final Function1<EClassifier,String> _function = new Function1<EClassifier,String>() {
-          public String apply(final EClassifier it) {
-            String _name = it.getName();
-            return _name;
-          }
-        };
+        public String apply(final EClassifier it) {
+          String _name = it.getName();
+          return _name;
+        }
+      };
       List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
       Set<String> _set = IterableExtensions.<String>toSet(_map);
       return _set;
@@ -53,19 +53,19 @@ public class GitExtensions {
     public Set<String> apply() {
       EList<EClassifier> _eClassifiers = XbasePackage.eINSTANCE.getEClassifiers();
       final Function1<EClassifier,String> _function = new Function1<EClassifier,String>() {
-          public String apply(final EClassifier it) {
-            String _name = it.getName();
-            return _name;
-          }
-        };
+        public String apply(final EClassifier it) {
+          String _name = it.getName();
+          return _name;
+        }
+      };
       List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
       EList<EClassifier> _eClassifiers_1 = XtypePackage.eINSTANCE.getEClassifiers();
       final Function1<EClassifier,String> _function_1 = new Function1<EClassifier,String>() {
-          public String apply(final EClassifier it) {
-            String _name = it.getName();
-            return _name;
-          }
-        };
+        public String apply(final EClassifier it) {
+          String _name = it.getName();
+          return _name;
+        }
+      };
       List<String> _map_1 = ListExtensions.<EClassifier, String>map(_eClassifiers_1, _function_1);
       Iterable<String> _plus = Iterables.<String>concat(_map, _map_1);
       Set<String> _set = IterableExtensions.<String>toSet(_plus);
@@ -77,11 +77,11 @@ public class GitExtensions {
     public Set<String> apply() {
       EList<EClassifier> _eClassifiers = TypesPackage.eINSTANCE.getEClassifiers();
       final Function1<EClassifier,String> _function = new Function1<EClassifier,String>() {
-          public String apply(final EClassifier it) {
-            String _name = it.getName();
-            return _name;
-          }
-        };
+        public String apply(final EClassifier it) {
+          String _name = it.getName();
+          return _name;
+        }
+      };
       List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
       Set<String> _set = IterableExtensions.<String>toSet(_map);
       return _set;
