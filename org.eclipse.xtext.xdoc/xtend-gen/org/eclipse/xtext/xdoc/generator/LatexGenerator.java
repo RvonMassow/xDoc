@@ -75,7 +75,7 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.Todo;
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList;
-import org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals;
+import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
@@ -100,7 +100,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     for (final EObject element : _iterable) {
       if ((element instanceof Document)) {
-        final Document doc = ((Document) ((Document)element));
+        final Document doc = ((Document) element);
         String _name = doc.getName();
         String _fileName = this.fileName(_name);
         CharSequence _generate = this.generate(doc);
@@ -118,8 +118,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   }
   
   public String fileName(final String name) {
-    String _plus = (name + ".tex");
-    return _plus;
+    return (name + ".tex");
   }
   
   protected CharSequence _generate(final Document doc) {
@@ -176,8 +175,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     _builder.newLine();
     {
       Object _get = this.config.get(Config.release);
-      boolean _not = (!(((Boolean) _get)).booleanValue());
-      if (_not) {
+      if ((!(((Boolean) _get)).booleanValue())) {
         _builder.append("\\listoftodos");
         _builder.newLine();
       }
@@ -1182,8 +1180,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   public String copy(final ImageRef imgRef) {
     try {
       final Resource res = imgRef.eResource();
-      int _multiply = (16 * 1024);
-      final ByteBuffer buffer = ByteBuffer.allocateDirect(_multiply);
+      final ByteBuffer buffer = ByteBuffer.allocateDirect((16 * 1024));
       final URI uri = res.getURI();
       ResourceSet _resourceSet = res.getResourceSet();
       final URIConverter uriConverter = _resourceSet.getURIConverter();
@@ -1211,8 +1208,7 @@ public class LatexGenerator implements IConfigurableGenerator {
       OutputStream _createOutputStream = _uRIConverter.createOutputStream(outPath);
       final WritableByteChannel outChannel = Channels.newChannel(_createOutputStream);
       int _read = inChannel.read(buffer);
-      int _minus = (-1);
-      boolean _notEquals = (_read != _minus);
+      boolean _notEquals = (_read != (-1));
       boolean _while = _notEquals;
       while (_while) {
         {
@@ -1221,8 +1217,7 @@ public class LatexGenerator implements IConfigurableGenerator {
           buffer.compact();
         }
         int _read_1 = inChannel.read(buffer);
-        int _minus_1 = (-1);
-        boolean _notEquals_1 = (_read_1 != _minus_1);
+        boolean _notEquals_1 = (_read_1 != (-1));
         _while = _notEquals_1;
       }
       buffer.flip();
@@ -1249,8 +1244,7 @@ public class LatexGenerator implements IConfigurableGenerator {
   protected CharSequence _genText(final Todo todo) {
     CharSequence _xifexpression = null;
     Object _get = this.config.get(Config.release);
-    boolean _not = (!(((Boolean) _get)).booleanValue());
-    if (_not) {
+    if ((!(((Boolean) _get)).booleanValue())) {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("\\todo[inline]{");
       String _text = todo.getText();
@@ -1288,7 +1282,7 @@ public class LatexGenerator implements IConfigurableGenerator {
     boolean _inline = LatexUtils.inline(block);
     if (_inline) {
       CharSequence _xifexpression_1 = null;
-      boolean _containerTypeOf = this.containerTypeOf(block, Literals.TABLE);
+      boolean _containerTypeOf = this.containerTypeOf(block, XdocPackage.Literals.TABLE);
       if (_containerTypeOf) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append("\\protect\\lstinline");
@@ -1375,7 +1369,7 @@ public class LatexGenerator implements IConfigurableGenerator {
       boolean _xifexpression_1 = false;
       EObject _eContainer = obj.eContainer();
       EClass _eClass_1 = _eContainer.eClass();
-      boolean _equals_1 = Objects.equal(_eClass_1, Literals.XDOC_FILE);
+      boolean _equals_1 = Objects.equal(_eClass_1, XdocPackage.Literals.XDOC_FILE);
       if (_equals_1) {
         _xifexpression_1 = false;
       } else {

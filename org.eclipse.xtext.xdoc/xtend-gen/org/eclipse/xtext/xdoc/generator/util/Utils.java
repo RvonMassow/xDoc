@@ -207,33 +207,10 @@ public class Utils {
         }
         if (!_matched) {
           boolean _or = false;
-          boolean _or_1 = false;
-          boolean _or_2 = false;
-          boolean _or_3 = false;
-          boolean _equals = (t == Common.STRING);
-          if (_equals) {
-            _or_3 = true;
-          } else {
-            boolean _equals_1 = (t == Common.RICH_TEXT);
-            _or_3 = (_equals || _equals_1);
-          }
-          if (_or_3) {
-            _or_2 = true;
-          } else {
-            boolean _equals_2 = (t == Common.RICH_TEXT_END);
-            _or_2 = (_or_3 || _equals_2);
-          }
-          if (_or_2) {
-            _or_1 = true;
-          } else {
-            boolean _equals_3 = (t == Common.RICH_TEXT_START);
-            _or_1 = (_or_2 || _equals_3);
-          }
-          if (_or_1) {
+          if (((((t == Common.STRING) || (t == Common.RICH_TEXT)) || (t == Common.RICH_TEXT_END)) || (t == Common.RICH_TEXT_START))) {
             _or = true;
           } else {
-            boolean _equals_4 = (t == Common.RICH_TEXT_INBETWEEN);
-            _or = (_or_1 || _equals_4);
+            _or = (((((t == Common.STRING) || (t == Common.RICH_TEXT)) || (t == Common.RICH_TEXT_END)) || (t == Common.RICH_TEXT_START)) || (t == Common.RICH_TEXT_INBETWEEN));
           }
           if (_or) {
             _matched=true;
@@ -245,29 +222,13 @@ public class Utils {
           }
         }
         if (!_matched) {
-          boolean _or_4 = false;
-          boolean _or_5 = false;
-          boolean _or_6 = false;
-          boolean _equals_5 = (t == Common.COMMENT_RICH_TEXT_END);
-          if (_equals_5) {
-            _or_6 = true;
+          boolean _or_1 = false;
+          if ((((t == Common.COMMENT_RICH_TEXT_END) || (t == Common.COMMENT_RICH_TEXT_INBETWEEN)) || (t == Common.ML_COMMENT))) {
+            _or_1 = true;
           } else {
-            boolean _equals_6 = (t == Common.COMMENT_RICH_TEXT_INBETWEEN);
-            _or_6 = (_equals_5 || _equals_6);
+            _or_1 = ((((t == Common.COMMENT_RICH_TEXT_END) || (t == Common.COMMENT_RICH_TEXT_INBETWEEN)) || (t == Common.ML_COMMENT)) || (t == Common.SL_COMMENT));
           }
-          if (_or_6) {
-            _or_5 = true;
-          } else {
-            boolean _equals_7 = (t == Common.ML_COMMENT);
-            _or_5 = (_or_6 || _equals_7);
-          }
-          if (_or_5) {
-            _or_4 = true;
-          } else {
-            boolean _equals_8 = (t == Common.SL_COMMENT);
-            _or_4 = (_or_5 || _equals_8);
-          }
-          if (_or_4) {
+          if (_or_1) {
             _matched=true;
             StringBuilder _append_4 = result.append("<span class=\"comment\">");
             String _text_5 = token.getText();
@@ -298,8 +259,8 @@ public class Utils {
     return _replace_1.replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
   }
   
-  public Integer calcIndent(final CodeBlock cb) {
-    Integer _xifexpression = null;
+  public int calcIndent(final CodeBlock cb) {
+    int _xifexpression = (int) 0;
     boolean _and = false;
     EList<EObject> _contents = cb.getContents();
     int _size = _contents.size();
@@ -324,7 +285,7 @@ public class Utils {
         int _indent = indent = _minus;
         _xblockexpression = (_indent);
       }
-      _xifexpression = Integer.valueOf(_xblockexpression);
+      _xifexpression = _xblockexpression;
     }
     return _xifexpression;
   }

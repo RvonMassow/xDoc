@@ -43,7 +43,7 @@ public class PHPPhoenixGenerator {
     _builder.append("$pageTitle \t\t= \"");
     TextOrMarkup _title = as.getTitle();
     CharSequence _genPlainText = this.pt.genPlainText(_title);
-    _builder.append(_genPlainText, "	");
+    _builder.append(_genPlainText, "\t");
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -51,7 +51,7 @@ public class PHPPhoenixGenerator {
     _builder.append("\t");
     _builder.append("$html = file_get_contents(\'");
     String _resourceURL = this.ene.getResourceURL(as);
-    _builder.append(_resourceURL, "	");
+    _builder.append(_resourceURL, "\t");
     _builder.append("\');");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -60,7 +60,7 @@ public class PHPPhoenixGenerator {
     _builder.newLine();
     _builder.append("\t");
     CharSequence _genScriptsAndStyles = this.genScriptsAndStyles(as);
-    _builder.append(_genScriptsAndStyles, "	");
+    _builder.append(_genScriptsAndStyles, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("# Generate the web page");
@@ -82,13 +82,13 @@ public class PHPPhoenixGenerator {
     _builder.newLine();
     _builder.append("\t");
     CharSequence _genScriptsAndStyles = this.genScriptsAndStyles(doc);
-    _builder.append(_genScriptsAndStyles, "	");
+    _builder.append(_genScriptsAndStyles, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("$pageTitle \t\t= \"");
     TextOrMarkup _title = doc.getTitle();
     CharSequence _genPlainText = this.pt.genPlainText(_title);
-    _builder.append(_genPlainText, "	");
+    _builder.append(_genPlainText, "\t");
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -106,9 +106,7 @@ public class PHPPhoenixGenerator {
     _builder.append("?>");
     _builder.newLine();
     fsa.generateFile("index.php", Outlets.WEB_SITE, _builder);
-    String _plus = (Outlets.WEB_SITE_PATH_NAME + "/");
-    String _plus_1 = (_plus + "include.php");
-    File _file = new File(_plus_1);
+    File _file = new File(((Outlets.WEB_SITE_PATH_NAME + "/") + "include.php"));
     boolean _exists = _file.exists();
     boolean _not = (!_exists);
     if (_not) {
@@ -155,7 +153,7 @@ public class PHPPhoenixGenerator {
           _builder_1.append("$pageAuthor\t\t= \"");
           TextOrMarkup _authors_1 = doc.getAuthors();
           CharSequence _genPlainText_1 = this.pt.genPlainText(_authors_1);
-          _builder_1.append(_genPlainText_1, "	");
+          _builder_1.append(_genPlainText_1, "\t");
           _builder_1.append("\";");
         }
       }
@@ -168,7 +166,7 @@ public class PHPPhoenixGenerator {
           _builder_1.append("$pageTitle \t\t= \"");
           TextOrMarkup _title_2 = doc.getTitle();
           CharSequence _genPlainText_2 = this.pt.genPlainText(_title_2);
-          _builder_1.append(_genPlainText_2, "	");
+          _builder_1.append(_genPlainText_2, "\t");
           _builder_1.append("\";");
         }
       }
@@ -206,7 +204,7 @@ public class PHPPhoenixGenerator {
     _builder.append("\t");
     _builder.append("var docName = \"");
     String _fullURL = this.ene.getFullURL(as);
-    _builder.append(_fullURL, "	");
+    _builder.append(_fullURL, "\t");
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");

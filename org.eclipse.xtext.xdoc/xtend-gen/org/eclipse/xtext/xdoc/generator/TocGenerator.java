@@ -49,7 +49,7 @@ public class TocGenerator {
       for(final Chapter c : _chapters) {
         _builder.append("\t");
         CharSequence _genTocEntry = this.genTocEntry(c, uriUtil);
-        _builder.append(_genTocEntry, "	");
+        _builder.append(_genTocEntry, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -58,7 +58,7 @@ public class TocGenerator {
       for(final Part p : _parts) {
         _builder.append("\t");
         CharSequence _genTocEntry_1 = this.genTocEntry(p, uriUtil);
-        _builder.append(_genTocEntry_1, "	");
+        _builder.append(_genTocEntry_1, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -83,7 +83,7 @@ public class TocGenerator {
       for(final Section ss : _subSections) {
         _builder.append("\t");
         CharSequence _genTocEntry = this.genTocEntry(ss, uriUtil);
-        _builder.append(_genTocEntry, "	");
+        _builder.append(_genTocEntry, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -108,7 +108,7 @@ public class TocGenerator {
       for(final AbstractSection ss : _sections) {
         _builder.append("\t");
         CharSequence _genTocEntry = this.genTocEntry(ss, uriUtil);
-        _builder.append(_genTocEntry, "	");
+        _builder.append(_genTocEntry, "\t");
         _builder.newLineIfNotEmpty();
       }
     }

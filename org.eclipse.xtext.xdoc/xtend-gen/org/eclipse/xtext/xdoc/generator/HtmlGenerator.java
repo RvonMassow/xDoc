@@ -160,7 +160,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\t");
     _builder.append("<a href=\"");
     String _fullURL = this.naming.getFullURL(section);
-    _builder.append(_fullURL, "	");
+    _builder.append(_fullURL, "\t");
     _builder.append("\" >Previous</a>");
     _builder.newLineIfNotEmpty();
     _builder.append("</span>");
@@ -175,7 +175,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\t");
     _builder.append("<a href=\"");
     String _fullURL = this.naming.getFullURL(section);
-    _builder.append(_fullURL, "	");
+    _builder.append(_fullURL, "\t");
     _builder.append("\" >Next</a>");
     _builder.newLineIfNotEmpty();
     _builder.append("</span>");
@@ -194,7 +194,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("<div id=\"leftcol\">");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append(leftNav, "		");
+    _builder.append(leftNav, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("</div>");
@@ -204,7 +204,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLine();
     _builder.append("\t\t");
     CharSequence _generate = this.generate(section, fsa, leftNav, leftNavUnfoldSubTocId);
-    _builder.append(_generate, "		");
+    _builder.append(_generate, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("<div id=\"disqus_thread\"></div>");
@@ -229,14 +229,14 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\t\t    ");
     _builder.append("var disqus_identifier = \'");
     String _localId = this.naming.getLocalId(section);
-    _builder.append(_localId, "		    ");
+    _builder.append(_localId, "\t\t    ");
     _builder.append("\';");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t    ");
     _builder.append("var disqus_url = documentationRoot+\'");
     String _resourceURL_1 = this.naming.getResourceURL(section);
     String _replace = _resourceURL_1.replace(".html", ".php");
-    _builder.append(_replace, "		    ");
+    _builder.append(_replace, "\t\t    ");
     _builder.append("\';");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -369,7 +369,7 @@ public class HtmlGenerator implements IGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     CharSequence _c = this.toc(chap);
-    _builder.append(_c, "		");
+    _builder.append(_c, "\t\t");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.newLine();
@@ -412,26 +412,26 @@ public class HtmlGenerator implements IGenerator {
     _builder.append("\t");
     _builder.append("<");
     String _tag = this.tag(sec);
-    _builder.append(_tag, "	");
+    _builder.append(_tag, "\t");
     _builder.append(">");
     TextOrMarkup _title = sec.getTitle();
     CharSequence _genNonParText = this.genNonParText(_title);
-    _builder.append(_genNonParText, "	");
+    _builder.append(_genNonParText, "\t");
     _builder.append("</");
     String _tag_1 = this.tag(sec);
-    _builder.append(_tag_1, "	");
+    _builder.append(_tag_1, "\t");
     _builder.append(">");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     CharSequence _c = this.toc(sec);
-    _builder.append(_c, "	");
+    _builder.append(_c, "\t");
     _builder.newLineIfNotEmpty();
     {
       EList<TextOrMarkup> _contents = sec.getContents();
       for(final TextOrMarkup c : _contents) {
         _builder.append("\t");
         CharSequence _genText = this.genText(c);
-        _builder.append(_genText, "	");
+        _builder.append(_genText, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -440,7 +440,7 @@ public class HtmlGenerator implements IGenerator {
       for(final AbstractSection sec2 : _sections) {
         _builder.append("\t");
         CharSequence _generate = this.generate(sec2, fsa, leftNav, leftNavUnfoldSubTocId);
-        _builder.append(_generate, "	");
+        _builder.append(_generate, "\t");
         _builder.newLineIfNotEmpty();
       }
     }
@@ -890,7 +890,7 @@ public class HtmlGenerator implements IGenerator {
               _builder_1.append("\t\t\t");
               LangDef _language_1 = cb.getLanguage();
               CharSequence _generateCode_1 = this.generateCode(code, _language_1);
-              _builder_1.append(_generateCode_1, "			");
+              _builder_1.append(_generateCode_1, "\t\t\t");
               _builder_1.newLineIfNotEmpty();
             }
           }
@@ -1298,7 +1298,7 @@ public class HtmlGenerator implements IGenerator {
       String _path_2 = img.getPath();
       String _unescapeXdocChars_3 = this.utils.unescapeXdocChars(_path_2);
       String _replaceAll_1 = _unescapeXdocChars_3.replaceAll("\\.\\./", "");
-      _builder.append(_replaceAll_1, "	");
+      _builder.append(_replaceAll_1, "\t");
       _builder.append("\" ");
       _builder.newLineIfNotEmpty();
       {
@@ -1310,7 +1310,7 @@ public class HtmlGenerator implements IGenerator {
           _builder.append("class=\"");
           String _clazz_1 = img.getClazz();
           String _unescapeXdocChars_4 = this.utils.unescapeXdocChars(_clazz_1);
-          _builder.append(_unescapeXdocChars_4, "		");
+          _builder.append(_unescapeXdocChars_4, "\t\t");
           _builder.append("\" ");
           _builder.newLineIfNotEmpty();
         } else {
@@ -1328,7 +1328,7 @@ public class HtmlGenerator implements IGenerator {
           _builder.append("style=\"");
           String _style_1 = img.getStyle();
           String _unescapeXdocChars_5 = this.utils.unescapeXdocChars(_style_1);
-          _builder.append(_unescapeXdocChars_5, "		");
+          _builder.append(_unescapeXdocChars_5, "\t\t");
           _builder.append("\" ");
           _builder.newLineIfNotEmpty();
         }
@@ -1344,7 +1344,7 @@ public class HtmlGenerator implements IGenerator {
       String _caption_1 = img.getCaption();
       String _unescapeXdocChars_6 = this.utils.unescapeXdocChars(_caption_1);
       String _escapeHtml_1 = StringEscapeUtils.escapeHtml(_unescapeXdocChars_6);
-      _builder.append(_escapeHtml_1, "	");
+      _builder.append(_escapeHtml_1, "\t");
       _builder.newLineIfNotEmpty();
       _builder.append("</div>");
       _builder.newLine();
@@ -1357,8 +1357,7 @@ public class HtmlGenerator implements IGenerator {
   
   public void copy(final String fromRelativeFileName, final Resource res) {
     try {
-      int _multiply = (16 * 1024);
-      final ByteBuffer buffer = ByteBuffer.allocateDirect(_multiply);
+      final ByteBuffer buffer = ByteBuffer.allocateDirect((16 * 1024));
       final URI uri = res.getURI();
       boolean _isPlatformResource = uri.isPlatformResource();
       if (_isPlatformResource) {
@@ -1385,8 +1384,7 @@ public class HtmlGenerator implements IGenerator {
         OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
         final WritableByteChannel outChannel = Channels.newChannel(_createOutputStream);
         int _read = inChannel.read(buffer);
-        int _minus_1 = (-1);
-        boolean _notEquals = (_read != _minus_1);
+        boolean _notEquals = (_read != (-1));
         boolean _while = _notEquals;
         while (_while) {
           {
@@ -1395,8 +1393,7 @@ public class HtmlGenerator implements IGenerator {
             buffer.compact();
           }
           int _read_1 = inChannel.read(buffer);
-          int _minus_2 = (-1);
-          boolean _notEquals_1 = (_read_1 != _minus_2);
+          boolean _notEquals_1 = (_read_1 != (-1));
           _while = _notEquals_1;
         }
         buffer.flip();

@@ -125,9 +125,7 @@ public class JavaDocExtension {
       String _xifexpression = null;
       boolean _notEquals = (!Objects.equal(prefix, ""));
       if (_notEquals) {
-        String _plus = (prefix + file);
-        String _plus_1 = (_plus + ".html");
-        _xifexpression = _plus_1;
+        _xifexpression = ((prefix + file) + ".html");
       } else {
         _xifexpression = null;
       }

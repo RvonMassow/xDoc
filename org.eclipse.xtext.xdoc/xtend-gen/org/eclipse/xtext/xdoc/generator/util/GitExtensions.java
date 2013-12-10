@@ -88,12 +88,7 @@ public class GitExtensions {
     }
   }.apply();
   
-  private final static HashSet<String> SEVEN_LANGUAGE_PLUGIN_SUFFIXES = new Function0<HashSet<String>>() {
-    public HashSet<String> apply() {
-      HashSet<String> _newHashSet = CollectionLiterals.<String>newHashSet("ui", "tests", "lib", "examples");
-      return _newHashSet;
-    }
-  }.apply();
+  private final static HashSet<String> SEVEN_LANGUAGE_PLUGIN_SUFFIXES = CollectionLiterals.<String>newHashSet("ui", "tests", "lib", "examples");
   
   public String gitLink(final JvmIdentifiableElement ie) {
     String _xblockexpression = null;
@@ -112,8 +107,7 @@ public class GitExtensions {
         boolean _startsWith = name.startsWith("org.eclipse.xtext.common.types.xtext.ui");
         if (_startsWith) {
           _matched=true;
-          String _plus = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.common.types.ui/src/");
-          _switchResult = _plus;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.common.types.ui/src/");
         }
       }
       if (!_matched) {
@@ -128,64 +122,56 @@ public class GitExtensions {
         }
         if (_and) {
           _matched=true;
-          String _plus_1 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.common.types/emf-gen/");
-          _switchResult = _plus_1;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.common.types/emf-gen/");
         }
       }
       if (!_matched) {
         boolean _startsWith_2 = name.startsWith("org.eclipse.xtext.common.types.");
         if (_startsWith_2) {
           _matched=true;
-          String _plus_2 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.common.types/src/");
-          _switchResult = _plus_2;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.common.types/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_3 = name.startsWith("org.eclipse.xtext.ui.shared.");
         if (_startsWith_3) {
           _matched=true;
-          String _plus_3 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.ui.shared/src/");
-          _switchResult = _plus_3;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.ui.shared/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_4 = name.startsWith("org.eclipse.xtext.xtend2.lib.");
         if (_startsWith_4) {
           _matched=true;
-          String _plus_4 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xtend2.lib/src/");
-          _switchResult = _plus_4;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xtend2.lib/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_5 = name.startsWith("org.eclipse.xtext.xtend2.ui.");
         if (_startsWith_5) {
           _matched=true;
-          String _plus_5 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xtend2.ui/src/");
-          _switchResult = _plus_5;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xtend2.ui/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_6 = name.startsWith("org.eclipse.xtext.xtend2.");
         if (_startsWith_6) {
           _matched=true;
-          String _plus_6 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xtend2/src/");
-          _switchResult = _plus_6;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xtend2/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_7 = name.startsWith("org.eclipse.xtext.xbase.ui.");
         if (_startsWith_7) {
           _matched=true;
-          String _plus_7 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.ui/src/");
-          _switchResult = _plus_7;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.ui/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_8 = name.startsWith("org.eclipse.xtext.xbase.lib.");
         if (_startsWith_8) {
           _matched=true;
-          String _plus_8 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.lib/src/");
-          _switchResult = _plus_8;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.lib/src/");
         }
       }
       if (!_matched) {
@@ -200,16 +186,14 @@ public class GitExtensions {
         }
         if (_and_1) {
           _matched=true;
-          String _plus_9 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/emf-gen/");
-          _switchResult = _plus_9;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/emf-gen/");
         }
       }
       if (!_matched) {
         boolean _startsWith_10 = name.startsWith("org.eclipse.xtext.xbase.");
         if (_startsWith_10) {
           _matched=true;
-          String _plus_10 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/");
-          _switchResult = _plus_10;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/");
         }
       }
       if (!_matched) {
@@ -231,48 +215,42 @@ public class GitExtensions {
         }
         if (_and_2) {
           _matched=true;
-          String _plus_11 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.generator/src/");
-          _switchResult = _plus_11;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.generator/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_13 = name.startsWith("org.eclipse.xtext.ui.");
         if (_startsWith_13) {
           _matched=true;
-          String _plus_12 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.ui/src/");
-          _switchResult = _plus_12;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.ui/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_14 = name.startsWith("org.eclipse.xtext.junit4.");
         if (_startsWith_14) {
           _matched=true;
-          String _plus_13 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.junit4/src/");
-          _switchResult = _plus_13;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.junit4/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_15 = name.startsWith("org.eclipse.xtext.junit.");
         if (_startsWith_15) {
           _matched=true;
-          String _plus_14 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.junit/src/");
-          _switchResult = _plus_14;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.junit/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_16 = name.startsWith("org.eclipse.xtext.ui.");
         if (_startsWith_16) {
           _matched=true;
-          String _plus_15 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.ui/src/");
-          _switchResult = _plus_15;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.ui/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_17 = name.startsWith("org.eclipse.xtext.util.");
         if (_startsWith_17) {
           _matched=true;
-          String _plus_16 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.util/src/");
-          _switchResult = _plus_16;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.util/src/");
         }
       }
       if (!_matched) {
@@ -287,56 +265,49 @@ public class GitExtensions {
         }
         if (_and_3) {
           _matched=true;
-          String _plus_17 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext/emf-gen/");
-          _switchResult = _plus_17;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext/emf-gen/");
         }
       }
       if (!_matched) {
         boolean _startsWith_19 = name.startsWith("org.eclipse.xtext.");
         if (_startsWith_19) {
           _matched=true;
-          String _plus_18 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext/src/");
-          _switchResult = _plus_18;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_20 = name.startsWith("org.eclipse.emf.mwe.utils.");
         if (_startsWith_20) {
           _matched=true;
-          String _plus_19 = (GitExtensions.MWE_BASE_DIR + "org.eclipse.emf.mwe.utils/src/");
-          _switchResult = _plus_19;
+          _switchResult = (GitExtensions.MWE_BASE_DIR + "org.eclipse.emf.mwe.utils/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_21 = name.startsWith("org.eclipse.emf.mwe2.runtime.");
         if (_startsWith_21) {
           _matched=true;
-          String _plus_20 = (GitExtensions.MWE_BASE_DIR + "org.eclipse.emf.mwe2.runtime/src/");
-          _switchResult = _plus_20;
+          _switchResult = (GitExtensions.MWE_BASE_DIR + "org.eclipse.emf.mwe2.runtime/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_22 = name.startsWith("org.eclipse.emf.mwe2.launch.");
         if (_startsWith_22) {
           _matched=true;
-          String _plus_21 = (GitExtensions.MWE_BASE_DIR + "org.eclipse.emf.mwe2.launch/src/");
-          _switchResult = _plus_21;
+          _switchResult = (GitExtensions.MWE_BASE_DIR + "org.eclipse.emf.mwe2.launch/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_23 = name.startsWith("org.eclipse.emf.common.");
         if (_startsWith_23) {
           _matched=true;
-          String _plus_22 = (GitExtensions.EMF_BASE_DIR + "org.eclipse.emf.common/src/");
-          _switchResult = _plus_22;
+          _switchResult = (GitExtensions.EMF_BASE_DIR + "org.eclipse.emf.common/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_24 = name.startsWith("org.eclipse.emf.");
         if (_startsWith_24) {
           _matched=true;
-          String _plus_23 = (GitExtensions.EMF_BASE_DIR + "org.eclipse.emf.ecore/src/");
-          _switchResult = _plus_23;
+          _switchResult = (GitExtensions.EMF_BASE_DIR + "org.eclipse.emf.ecore/src/");
         }
       }
       if (!_matched) {
@@ -350,48 +321,42 @@ public class GitExtensions {
         }
         if (_or_1) {
           _matched=true;
-          String _plus_24 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.lib/src/");
-          _switchResult = _plus_24;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.lib/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_27 = name.startsWith("org.eclipse.xtext.xbase.ui.");
         if (_startsWith_27) {
           _matched=true;
-          String _plus_25 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.ui/src/");
-          _switchResult = _plus_25;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.ui/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_28 = name.startsWith("org.eclipse.xtext.xbase.");
         if (_startsWith_28) {
           _matched=true;
-          String _plus_26 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/");
-          _switchResult = _plus_26;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_29 = name.startsWith("org.eclipse.xtend.lib.");
         if (_startsWith_29) {
           _matched=true;
-          String _plus_27 = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtend.lib/src/");
-          _switchResult = _plus_27;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtend.lib/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_30 = name.startsWith("org.eclipse.xtend.ui.");
         if (_startsWith_30) {
           _matched=true;
-          String _plus_28 = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.ui/src/");
-          _switchResult = _plus_28;
+          _switchResult = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.ui/src/");
         }
       }
       if (!_matched) {
         boolean _startsWith_31 = name.startsWith("org.eclipse.xtend.core.");
         if (_startsWith_31) {
           _matched=true;
-          String _plus_29 = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.core/src/");
-          _switchResult = _plus_29;
+          _switchResult = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.core/src/");
         }
       }
       if (!_matched) {
@@ -457,20 +422,20 @@ public class GitExtensions {
             String _qualifiedName_1 = ie.getQualifiedName();
             String _replaceAll = _qualifiedName_1.replaceAll("\\.", "/");
             String _replaceAll_1 = _replaceAll.replaceAll("\\$.*$", "");
-            String _plus_30 = (prefix + _replaceAll_1);
-            String _plus_31 = (_plus_30 + ".");
-            String _plus_32 = (_plus_31 + "java");
-            _switchResult_1 = _plus_32;
+            String _plus = (prefix + _replaceAll_1);
+            String _plus_1 = (_plus + ".");
+            String _plus_2 = (_plus_1 + "java");
+            _switchResult_1 = _plus_2;
           }
         }
         if (!_matched_1) {
           String _packageName = ((JvmDeclaredType) ie).getPackageName();
           String _replaceAll_2 = _packageName.replaceAll("\\.", "/");
-          String _plus_33 = (prefix + _replaceAll_2);
-          String _plus_34 = (_plus_33 + "/");
+          String _plus_3 = (prefix + _replaceAll_2);
+          String _plus_4 = (_plus_3 + "/");
           String _lastSegment = uri.lastSegment();
-          String _plus_35 = (_plus_34 + _lastSegment);
-          _switchResult_1 = _plus_35;
+          String _plus_5 = (_plus_4 + _lastSegment);
+          _switchResult_1 = _plus_5;
         }
         _xifexpression = _switchResult_1;
       } else {
