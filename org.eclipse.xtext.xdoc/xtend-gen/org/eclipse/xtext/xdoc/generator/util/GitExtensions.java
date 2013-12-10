@@ -24,13 +24,13 @@ import org.eclipse.xtext.xtype.XtypePackage;
 
 @SuppressWarnings("all")
 public class GitExtensions {
-  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.4.2/plugins/";
+  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.5.0/plugins/";
   
   private final static String XTEND_BASE_DIR = GitExtensions.XTEXT_BASE_DIR;
   
-  private final static String MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.3.0/plugins/";
+  private final static String MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.4.0/plugins/";
   
-  private final static String EMF_BASE_DIR = "https://github.com/eclipse/emf/blob/R2_8_0/plugins/";
+  private final static String EMF_BASE_DIR = "https://github.com/eclipse/emf/blob/R2_9_0/plugins/";
   
   private final static String SEVENLANGUAGES_BASEDIR = "https://github.com/xtext-dev/seven-languages-xtext/blob/master/";
   

@@ -38,14 +38,14 @@ public class JavaDocExtension {
         }
         if (_or) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.4/";
+          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.5/";
         }
       }
       if (!_matched) {
         boolean _startsWith_3 = name.startsWith("org.eclipse.xtend.");
         if (_startsWith_3) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.4/";
+          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.5/";
         }
       }
       if (!_matched) {
