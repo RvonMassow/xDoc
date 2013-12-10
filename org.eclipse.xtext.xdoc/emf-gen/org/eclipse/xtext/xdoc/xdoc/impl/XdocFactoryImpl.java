@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.xtext.xdoc.xdoc.impl;
 
@@ -33,7 +30,7 @@ public class XdocFactoryImpl extends EFactoryImpl implements XdocFactory
 	{
 		try
 		{
-			XdocFactory theXdocFactory = (XdocFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/xtext/xdoc/Xdoc"); 
+			XdocFactory theXdocFactory = (XdocFactory)EPackage.Registry.INSTANCE.getEFactory(XdocPackage.eNS_URI);
 			if (theXdocFactory != null)
 			{
 				return theXdocFactory;

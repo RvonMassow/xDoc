@@ -11,9 +11,6 @@ import org.eclipse.xtext.xdoc.xdoc.Document
 import org.eclipse.xtext.xdoc.xdoc.LangDef
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory
 
-import static extension java.net.URLDecoder.*
-import static extension java.net.URLEncoder.*
-
 class Utils {
 
 	def boolean isInlineCode (CodeBlock cb) {

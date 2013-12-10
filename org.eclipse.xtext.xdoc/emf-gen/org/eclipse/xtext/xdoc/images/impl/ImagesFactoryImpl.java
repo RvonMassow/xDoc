@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.xtext.xdoc.images.impl;
 
@@ -33,7 +30,7 @@ public class ImagesFactoryImpl extends EFactoryImpl implements ImagesFactory
 	{
 		try
 		{
-			ImagesFactory theImagesFactory = (ImagesFactory)EPackage.Registry.INSTANCE.getEFactory("http://eclipse.org/Xtext/xdoc/imageProxy"); 
+			ImagesFactory theImagesFactory = (ImagesFactory)EPackage.Registry.INSTANCE.getEFactory(ImagesPackage.eNS_URI);
 			if (theImagesFactory != null)
 			{
 				return theImagesFactory;

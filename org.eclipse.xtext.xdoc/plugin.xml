@@ -7,9 +7,17 @@
     <package 
        uri = "http://www.eclipse.org/xtext/xdoc/Xdoc" 
        class = "org.eclipse.xtext.xdoc.xdoc.XdocPackage"
-       genModel = "org/eclipse/xtext/xdoc/Xdoc.genmodel" /> 
+       genModel = "model/Xdoc.genmodel" /> 
 	
   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Xdoc -->
+      <package
+            uri="http://eclipse.org/Xtext/xdoc/imageProxy"
+            class="org.eclipse.xtext.xdoc.images.ImagesPackage"
+            genModel="model/Xdoc.genmodel"/>
+   </extension>
 
 
 
