@@ -101,7 +101,6 @@ class StatefulEclipseHelpGenerator {
 			if(uri.platformResource) {
 				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName)
 				val outPath = accessExtension2.getURI(fromRelativeFileName, Outlets::ECLIPSE_HELP);
-//				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::ECLIPSE_HELP_PATH_NAME).toString + "/" + fromRelativeFileName.replaceAll("\\.\\.",""))
 				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
 				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
 				while (inChannel.read(buffer) != -1) {
