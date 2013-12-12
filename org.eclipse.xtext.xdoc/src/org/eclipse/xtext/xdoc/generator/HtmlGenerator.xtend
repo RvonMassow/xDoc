@@ -494,18 +494,27 @@ class HtmlGenerator implements IConfigurableGenerator {
 			if(uri.platformResource) {
 				val inPath = URI::createURI(uri.trimSegments(1).toString + "/" + fromRelativeFileName)
 				val outPath = URI::createURI(uri.trimSegments(uri.segmentCount-2).appendSegment(Outlets::WEB_SITE_PATH_NAME).toString + "/" + fromRelativeFileName.replaceAll("\\.\\.",""))
-				val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
-				val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
-				while (inChannel.read(buffer) != -1) {
+				
+				//prepare path strings for java URI
+				val inNormalPath = res.resourceSet.URIConverter.normalize(inPath).toString;
+				val outNormalPath = res.resourceSet.URIConverter.normalize(outPath).toString;
+				//normalize both paths
+				val in = new java.net.URI(inNormalPath).normalize();
+				val out = new java.net.URI(outNormalPath).normalize();
+				if(!in.equals(out)){
+					val inChannel = Channels::newChannel(res.resourceSet.URIConverter.createInputStream(inPath))
+					val outChannel = Channels::newChannel(res.resourceSet.URIConverter.createOutputStream(outPath))
+					while (inChannel.read(buffer) != -1) {
+						buffer.flip();
+						outChannel.write(buffer);
+						buffer.compact();
+					}
 					buffer.flip();
-					outChannel.write(buffer);
-					buffer.compact();
+					while (buffer.hasRemaining()) {
+						outChannel.write(buffer);
+					}
+					outChannel.close()
 				}
-				buffer.flip();
-				while (buffer.hasRemaining()) {
-					outChannel.write(buffer);
-				}
-				outChannel.close()
 			}
 		} catch (Exception e) {
 			throw new RuntimeException(e)
