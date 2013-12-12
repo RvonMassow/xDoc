@@ -21,5 +21,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.xtext.xdoc.ui.contentassist.antlr,
  resources,
  org.eclipse.xtext.xdoc.ui.contentassist,
- org.eclipse.xtext.xdoc.ui.internal;x-friends:=org.eclipse.xtext.xdoc.tests
+ org.eclipse.xtext.xdoc.ui.internal;x-friends:=org.eclipse.xtext.xdoc.tests,
+ org.eclipse.xtext.xdoc.ui.quickfix
 Bundle-Activator: org.eclipse.xtext.xdoc.ui.internal.XdocActivator

@@ -11,6 +11,14 @@
 	
   </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated Xdoc -->
+      <package
+            uri="http://eclipse.org/Xtext/xdoc/imageProxy"
+            class="org.eclipse.xtext.xdoc.images.ImagesPackage"
+            genModel="model/Xdoc.genmodel"/>
+   </extension>
+
 
 
 
