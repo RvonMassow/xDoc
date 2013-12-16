@@ -191,8 +191,7 @@ public class ParserTest {
   @Test
   public void testCode() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       final Document doc = ((Document) _mainSection);
       EList<Chapter> _chapters = doc.getChapters();
@@ -240,8 +239,8 @@ public class ParserTest {
   @Test
   public void testCodeWithLanguage() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "codeWithLanguageTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile(
+        (ParserTestConstants.TEST_FILE_DIR + "codeWithLanguageTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       final Document abstractSection = ((Document) _mainSection);
       EList<Chapter> _chapters = abstractSection.getChapters();
@@ -290,8 +289,7 @@ public class ParserTest {
   @Test
   public void testComment() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "commentTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "commentTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       EList<TextOrMarkup> _contents = _mainSection.getContents();
       int _size = _contents.size();
@@ -303,8 +301,7 @@ public class ParserTest {
   
   @Test
   public void testLink() throws Exception {
-    String _plus = (ParserTestConstants.TEST_FILE_DIR + "linkTest.xdoc");
-    final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+    final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "linkTest.xdoc"));
     AbstractSection _mainSection = file.getMainSection();
     EList<TextOrMarkup> _contents = _mainSection.getContents();
     TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(_contents);
@@ -321,8 +318,8 @@ public class ParserTest {
   @Test
   public void testNamedReference() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "namedRefAndTextTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile(
+        (ParserTestConstants.TEST_FILE_DIR + "namedRefAndTextTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       EList<TextOrMarkup> _contents = _mainSection.getContents();
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(_contents);
@@ -346,8 +343,7 @@ public class ParserTest {
   @Test
   public void testNestedList() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "nestedListTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "nestedListTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       EList<TextOrMarkup> _contents = _mainSection.getContents();
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(_contents);
@@ -402,8 +398,7 @@ public class ParserTest {
   @Test
   public void testSimpleRef() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "simpleRefTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "simpleRefTest.xdoc"));
       final AbstractSection section = file.getMainSection();
       final EList<TextOrMarkup> contents = section.getContents();
       int _size = contents.size();
@@ -429,8 +424,7 @@ public class ParserTest {
   @Test
   public void testEscape() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "testEscape.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "testEscape.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       EList<TextOrMarkup> _contents = _mainSection.getContents();
       final TextOrMarkup textOrMarkup = IterableExtensions.<TextOrMarkup>head(_contents);
@@ -450,8 +444,7 @@ public class ParserTest {
   @Test
   public void testImg() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "imgTest.xdoc");
-      XdocFile _docFromFile = this._parseHelperExtensions.getDocFromFile(_plus);
+      XdocFile _docFromFile = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "imgTest.xdoc"));
       this._validationTestHelper.assertNoErrors(_docFromFile);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -461,8 +454,7 @@ public class ParserTest {
   @Test
   public void testUL() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "ulTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "ulTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       final Chapter chapter = ((Chapter) _mainSection);
       EList<TextOrMarkup> contents = chapter.getContents();
@@ -527,8 +519,7 @@ public class ParserTest {
   @Test
   public void testOL() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "olTest.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "olTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       final Chapter chapter = ((Chapter) _mainSection);
       EList<TextOrMarkup> contents = chapter.getContents();
@@ -705,8 +696,7 @@ public class ParserTest {
   @Test
   public void testFullSectionHirarchy() {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "downToSection4Test.xdoc");
-      final XdocFile file = this._parseHelperExtensions.getDocFromFile(_plus);
+      final XdocFile file = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + "downToSection4Test.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       final Document doc = ((Document) _mainSection);
       TextOrMarkup _title = doc.getTitle();

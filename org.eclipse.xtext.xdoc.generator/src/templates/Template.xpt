@@ -12,6 +12,7 @@
 \usepackage{listings}
 \usepackage[american]{babel}
 \usepackage{graphicx}
+\usepackage[space]{grffile}
 \usepackage{color}
 \usepackage{pdfcprot}
 \usepackage{fancyvrb}

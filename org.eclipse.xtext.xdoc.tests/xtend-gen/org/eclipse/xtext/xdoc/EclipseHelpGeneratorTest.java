@@ -53,8 +53,7 @@ public class EclipseHelpGeneratorTest {
   public Pair<String,Integer> testGenCode() throws Exception {
     Pair<String,Integer> _xblockexpression = null;
     {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc");
-      final XdocFile file = this.getDoc(_plus);
+      final XdocFile file = this.getDoc((ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       final Document doc = ((Document) _mainSection);
       this.stateFullGen.generate(doc);
@@ -66,8 +65,7 @@ public class EclipseHelpGeneratorTest {
   
   public XdocFile getDoc(final String fileName) {
     try {
-      String _plus = (ParserTestConstants.TEST_FILE_DIR + fileName);
-      XdocFile _docFromFile = this._parseHelperExtensions.getDocFromFile(_plus);
+      XdocFile _docFromFile = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + fileName));
       return _docFromFile;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -75,8 +73,7 @@ public class EclipseHelpGeneratorTest {
   }
   
   public File getTargetFile(final String fileName) {
-    String _plus = (GeneratorTestConstants.TARGET_DIR + fileName);
-    File _file = new File(_plus);
+    File _file = new File((GeneratorTestConstants.TARGET_DIR + fileName));
     return _file;
   }
 }
