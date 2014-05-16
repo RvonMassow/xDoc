@@ -34,7 +34,7 @@ public class JavaDocExtension {
           _or = true;
         } else {
           boolean _startsWith_2 = name.startsWith("org.eclipse.xtend2");
-          _or = (_startsWith_1 || _startsWith_2);
+          _or = _startsWith_2;
         }
         if (_or) {
           _matched=true;
@@ -129,7 +129,7 @@ public class JavaDocExtension {
       } else {
         _xifexpression = null;
       }
-      _xblockexpression = (_xifexpression);
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }

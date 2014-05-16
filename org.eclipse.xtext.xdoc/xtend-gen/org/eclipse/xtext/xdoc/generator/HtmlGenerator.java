@@ -116,8 +116,7 @@ public class HtmlGenerator implements IGenerator {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        RuntimeException _runtimeException = new RuntimeException(e);
-        throw _runtimeException;
+        throw new RuntimeException(e);
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
@@ -294,7 +293,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag_1 = this.tag(chap);
       _builder.append(_tag_1, "");
       _builder.append("></a>");
-      _xblockexpression = (_builder);
+      _xblockexpression = _builder;
     }
     return _xblockexpression;
   }
@@ -319,7 +318,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag_1 = this.tag(section);
       _builder.append(_tag_1, "");
       _builder.append("></a>");
-      _xblockexpression = (_builder);
+      _xblockexpression = _builder;
     }
     return _xblockexpression;
   }
@@ -344,7 +343,7 @@ public class HtmlGenerator implements IGenerator {
       String _tag_1 = this.tag(section2);
       _builder.append(_tag_1, "");
       _builder.append("></a>");
-      _xblockexpression = (_builder);
+      _xblockexpression = _builder;
     }
     return _xblockexpression;
   }
@@ -902,7 +901,7 @@ public class HtmlGenerator implements IGenerator {
           _builder_1.newLine();
           _builder_1.append("</div>");
           _builder_1.newLine();
-          _xblockexpression = (_builder_1);
+          _xblockexpression = _builder_1;
         }
         _xifexpression_1 = _xblockexpression;
       }
@@ -922,7 +921,7 @@ public class HtmlGenerator implements IGenerator {
       } else {
         TextOrMarkup _altText = cRef.getAltText();
         boolean _equals = Objects.equal(_altText, null);
-        _and = ((_element instanceof JvmAnnotationType) && _equals);
+        _and = _equals;
       }
       if (_and) {
         _xifexpression = "@";
@@ -942,12 +941,10 @@ public class HtmlGenerator implements IGenerator {
       boolean _notEquals = (!Objects.equal(_altText_1, null));
       if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
-        CharSequence _genNonParText = this.genNonParText(_altText_2);
-        _xifexpression_1 = _genNonParText;
+        _xifexpression_1 = this.genNonParText(_altText_2);
       } else {
         JvmDeclaredType _element_4 = cRef.getElement();
-        String _dottedSimpleName = this.dottedSimpleName(_element_4);
-        _xifexpression_1 = _dottedSimpleName;
+        _xifexpression_1 = this.dottedSimpleName(_element_4);
       }
       final CharSequence text = _xifexpression_1;
       String _xifexpression_2 = null;
@@ -988,7 +985,7 @@ public class HtmlGenerator implements IGenerator {
       } else {
         _xifexpression_3 = ret;
       }
-      _xblockexpression = (_xifexpression_3);
+      _xblockexpression = _xifexpression_3;
     }
     return _xblockexpression;
   }
@@ -1002,11 +999,9 @@ public class HtmlGenerator implements IGenerator {
       String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
       String _plus = (_dottedSimpleName + ".");
       String _simpleName = type.getSimpleName();
-      String _plus_1 = (_plus + _simpleName);
-      _xifexpression = _plus_1;
+      _xifexpression = (_plus + _simpleName);
     } else {
-      String _simpleName_1 = type.getSimpleName();
-      _xifexpression = _simpleName_1;
+      _xifexpression = type.getSimpleName();
     }
     return _xifexpression;
   }
@@ -1039,8 +1034,7 @@ public class HtmlGenerator implements IGenerator {
     boolean _equals = (_size == 1);
     if (_equals) {
       TextOrMarkup _head = IterableExtensions.<TextOrMarkup>head(tomList);
-      CharSequence _genNonParText = this.genNonParText(_head);
-      _xifexpression = _genNonParText;
+      _xifexpression = this.genNonParText(_head);
     } else {
       StringConcatenation _builder = new StringConcatenation();
       {
@@ -1083,8 +1077,7 @@ public class HtmlGenerator implements IGenerator {
   protected CharSequence _genText(final TextPart tp) {
     String _text = tp.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
-    String _escapeHtml = StringEscapeUtils.escapeHtml(_unescapeXdocChars);
-    return _escapeHtml;
+    return StringEscapeUtils.escapeHtml(_unescapeXdocChars);
   }
   
   protected CharSequence _genText(final Anchor a) {
@@ -1141,7 +1134,7 @@ public class HtmlGenerator implements IGenerator {
           _builder_1.append("</a>");
         }
       }
-      _xblockexpression = (_builder_1);
+      _xblockexpression = _builder_1;
     }
     return _xblockexpression;
   }
@@ -1350,7 +1343,7 @@ public class HtmlGenerator implements IGenerator {
       _builder.newLine();
       _builder.append("</div>");
       _builder.newLine();
-      _xblockexpression = (_builder);
+      _xblockexpression = _builder;
     }
     return _xblockexpression;
   }
@@ -1409,8 +1402,7 @@ public class HtmlGenerator implements IGenerator {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        RuntimeException _runtimeException = new RuntimeException(e);
-        throw _runtimeException;
+        throw new RuntimeException(e);
       } else {
         throw Exceptions.sneakyThrow(_t);
       }

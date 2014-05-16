@@ -50,30 +50,27 @@ public class EclipseHelpGeneratorTest {
     Assert.assertTrue(_exists);
   }
   
-  public Pair<String,Integer> testGenCode() throws Exception {
-    Pair<String,Integer> _xblockexpression = null;
+  public Pair<String, Integer> testGenCode() throws Exception {
+    Pair<String, Integer> _xblockexpression = null;
     {
       final XdocFile file = this.getDoc((ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc"));
       AbstractSection _mainSection = file.getMainSection();
       final Document doc = ((Document) _mainSection);
       this.stateFullGen.generate(doc);
-      Pair<String,Integer> _mappedTo = Pair.<String, Integer>of("foo", Integer.valueOf(3));
-      _xblockexpression = (_mappedTo);
+      _xblockexpression = Pair.<String, Integer>of("foo", Integer.valueOf(3));
     }
     return _xblockexpression;
   }
   
   public XdocFile getDoc(final String fileName) {
     try {
-      XdocFile _docFromFile = this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + fileName));
-      return _docFromFile;
+      return this._parseHelperExtensions.getDocFromFile((ParserTestConstants.TEST_FILE_DIR + fileName));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
   public File getTargetFile(final String fileName) {
-    File _file = new File((GeneratorTestConstants.TARGET_DIR + fileName));
-    return _file;
+    return new File((GeneratorTestConstants.TARGET_DIR + fileName));
   }
 }

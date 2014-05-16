@@ -116,8 +116,6 @@ public class StatefulEclipseHelpGenerator {
       EList<EObject> _contents_1 = res.getContents();
       EObject _head_1 = IterableExtensions.<EObject>head(_contents_1);
       AbstractSection _mainSection = null;
-      EList<EObject> _contents_2 = res.getContents();
-      EObject _head_2 = IterableExtensions.<EObject>head(_contents_1);
       if (((XdocFile) _head_1)!=null) {
         _mainSection=((XdocFile) _head_1).getMainSection();
       }
@@ -196,8 +194,7 @@ public class StatefulEclipseHelpGenerator {
     } catch (final Throwable _t) {
       if (_t instanceof Exception) {
         final Exception e = (Exception)_t;
-        RuntimeException _runtimeException = new RuntimeException(e);
-        throw _runtimeException;
+        throw new RuntimeException(e);
       } else {
         throw Exceptions.sneakyThrow(_t);
       }
@@ -638,7 +635,7 @@ public class StatefulEclipseHelpGenerator {
           _builder_1.append("</a>");
         }
       }
-      _xblockexpression = (_builder_1);
+      _xblockexpression = _builder_1;
     }
     return _xblockexpression;
   }
@@ -730,13 +727,13 @@ public class StatefulEclipseHelpGenerator {
       for (final String s : _segmentsList) {
         boolean _matched = false;
         if (!_matched) {
-          if (Objects.equal(s,".")) {
+          if (Objects.equal(s, ".")) {
             _matched=true;
             this.noop();
           }
         }
         if (!_matched) {
-          if (Objects.equal(s,"..")) {
+          if (Objects.equal(s, "..")) {
             _matched=true;
             int _size = segments.size();
             int _minus = (_size - 1);
@@ -751,8 +748,7 @@ public class StatefulEclipseHelpGenerator {
       String _plus = (_scheme + ":/");
       String _join = IterableExtensions.join(segments, "/");
       String _plus_1 = (_plus + _join);
-      URI _createURI = URI.createURI(_plus_1);
-      _xblockexpression = (_createURI);
+      _xblockexpression = URI.createURI(_plus_1);
     }
     return _xblockexpression;
   }
@@ -810,7 +806,7 @@ public class StatefulEclipseHelpGenerator {
           int _length = _style_1.length();
           boolean _equals = (_length == 0);
           boolean _not = (!_equals);
-          _and = (_notEquals_2 && _not);
+          _and = _not;
         }
         if (_and) {
           _builder.append(" style=\"");
@@ -833,7 +829,7 @@ public class StatefulEclipseHelpGenerator {
       _builder.newLine();
       _builder.append("</div>");
       _builder.newLine();
-      _xblockexpression = (_builder);
+      _xblockexpression = _builder;
     }
     return _xblockexpression;
   }
@@ -855,8 +851,7 @@ public class StatefulEclipseHelpGenerator {
   protected CharSequence _generate(final TextPart tp) {
     String _text = tp.getText();
     String _unescapeXdocChars = this.utils.unescapeXdocChars(_text);
-    String _escapeHTMLChars = this.utils.escapeHTMLChars(_unescapeXdocChars);
-    return _escapeHTMLChars;
+    return this.utils.escapeHTMLChars(_unescapeXdocChars);
   }
   
   protected CharSequence _generate(final Table table) {
@@ -949,7 +944,7 @@ public class StatefulEclipseHelpGenerator {
       } else {
         TextOrMarkup _altText = cRef.getAltText();
         boolean _equals = Objects.equal(_altText, null);
-        _and = ((_element instanceof JvmAnnotationType) && _equals);
+        _and = _equals;
       }
       if (_and) {
         _xifexpression = "@";
@@ -969,12 +964,10 @@ public class StatefulEclipseHelpGenerator {
       boolean _notEquals = (!Objects.equal(_altText_1, null));
       if (_notEquals) {
         TextOrMarkup _altText_2 = cRef.getAltText();
-        CharSequence _generate = this.generate(_altText_2);
-        _xifexpression_1 = _generate;
+        _xifexpression_1 = this.generate(_altText_2);
       } else {
         JvmDeclaredType _element_4 = cRef.getElement();
-        String _dottedSimpleName = this.dottedSimpleName(_element_4);
-        _xifexpression_1 = _dottedSimpleName;
+        _xifexpression_1 = this.dottedSimpleName(_element_4);
       }
       final CharSequence text = _xifexpression_1;
       String _xifexpression_2 = null;
@@ -1015,7 +1008,7 @@ public class StatefulEclipseHelpGenerator {
       } else {
         _xifexpression_3 = ret;
       }
-      _xblockexpression = (_xifexpression_3);
+      _xblockexpression = _xifexpression_3;
     }
     return _xblockexpression;
   }
@@ -1029,11 +1022,9 @@ public class StatefulEclipseHelpGenerator {
       String _dottedSimpleName = this.dottedSimpleName(_declaringType_1);
       String _plus = (_dottedSimpleName + ".");
       String _simpleName = type.getSimpleName();
-      String _plus_1 = (_plus + _simpleName);
-      _xifexpression = _plus_1;
+      _xifexpression = (_plus + _simpleName);
     } else {
-      String _simpleName_1 = type.getSimpleName();
-      _xifexpression = _simpleName_1;
+      _xifexpression = type.getSimpleName();
     }
     return _xifexpression;
   }
@@ -1066,8 +1057,7 @@ public class StatefulEclipseHelpGenerator {
           EList<EObject> _contents_3 = cb.getContents();
           int _size_1 = _contents_3.size();
           int _minus = (_size_1 - 2);
-          Iterable<EObject> _take = IterableExtensions.<EObject>take(_tail, _minus);
-          _xifexpression_1 = _take;
+          _xifexpression_1 = IterableExtensions.<EObject>take(_tail, _minus);
         } else {
           _xifexpression_1 = Collections.EMPTY_LIST;
         }
@@ -1088,13 +1078,12 @@ public class StatefulEclipseHelpGenerator {
           EObject _last_1 = IterableExtensions.<EObject>last(_contents_7);
           CharSequence _generateCode_2 = this.generateCode(_last_1);
           String _trimLines_1 = this.trimLines(_generateCode_2, indentToRemove);
-          String _replaceAll = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
-          _xifexpression_2 = _replaceAll;
+          _xifexpression_2 = _trimLines_1.replaceAll("(\\s*\n)*\\Z", "");
         } else {
           String _xblockexpression_1 = null;
           {
             first.replaceAll("(\\s*\n)*\\Z", "");
-            _xblockexpression_1 = ("");
+            _xblockexpression_1 = "";
           }
           _xifexpression_2 = _xblockexpression_1;
         }
@@ -1130,7 +1119,7 @@ public class StatefulEclipseHelpGenerator {
         _builder_1.newLine();
         _builder_1.append("</div>");
         _builder_1.newLine();
-        _xblockexpression = (_builder_1);
+        _xblockexpression = _builder_1;
       }
       _xifexpression = _xblockexpression;
     }
@@ -1139,8 +1128,7 @@ public class StatefulEclipseHelpGenerator {
   
   public String trimLines(final CharSequence cs, final int amount) {
     String _string = cs.toString();
-    String _replaceAll = _string.replaceAll((("\n\\s{" + Integer.valueOf(amount)) + "}"), "\n");
-    return _replaceAll;
+    return _string.replaceAll((("\n\\s{" + Integer.valueOf(amount)) + "}"), "\n");
   }
   
   protected CharSequence _generateCode(final Code code) {

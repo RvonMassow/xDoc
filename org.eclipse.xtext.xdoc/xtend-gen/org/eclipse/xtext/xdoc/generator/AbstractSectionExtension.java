@@ -14,14 +14,12 @@ import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section2Ref;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
-import org.eclipse.xtext.xdoc.xdoc.Section4;
 import org.eclipse.xtext.xdoc.xdoc.SectionRef;
 
 @SuppressWarnings("all")
 public class AbstractSectionExtension {
   protected List<? extends AbstractSection> _sections(final AbstractSection section) {
-    List<AbstractSection> _emptyList = CollectionLiterals.<AbstractSection>emptyList();
-    return _emptyList;
+    return CollectionLiterals.<AbstractSection>emptyList();
   }
   
   protected List<? extends AbstractSection> _sections(final Document doc) {
@@ -30,61 +28,50 @@ public class AbstractSectionExtension {
     boolean _isEmpty = _chapters.isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
-      EList<Chapter> _chapters_1 = doc.getChapters();
-      _xifexpression = _chapters_1;
+      _xifexpression = doc.getChapters();
     } else {
-      EList<Part> _parts = doc.getParts();
-      _xifexpression = _parts;
+      _xifexpression = doc.getParts();
     }
     return _xifexpression;
   }
   
   protected List<? extends AbstractSection> _sections(final Part part) {
-    EList<Chapter> _chapters = part.getChapters();
-    return _chapters;
+    return part.getChapters();
   }
   
   protected List<? extends AbstractSection> _sections(final Chapter chapter) {
-    EList<Section> _subSections = chapter.getSubSections();
-    return _subSections;
+    return chapter.getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final Section section) {
-    EList<Section2> _subSections = section.getSubSections();
-    return _subSections;
+    return section.getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final Section2 section) {
-    EList<Section3> _subSections = section.getSubSections();
-    return _subSections;
+    return section.getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final PartRef part) {
-    EList<Chapter> _chapters = part.getChapters();
-    return _chapters;
+    return part.getChapters();
   }
   
   protected List<? extends AbstractSection> _sections(final ChapterRef chapter) {
     Chapter _chapter = chapter.getChapter();
-    EList<Section> _subSections = _chapter.getSubSections();
-    return _subSections;
+    return _chapter.getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final SectionRef section) {
     Section _section = section.getSection();
-    EList<Section2> _subSections = _section.getSubSections();
-    return _subSections;
+    return _section.getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final Section2Ref section) {
     Section2 _section2 = section.getSection2();
-    EList<Section3> _subSections = _section2.getSubSections();
-    return _subSections;
+    return _section2.getSubSections();
   }
   
   protected List<? extends AbstractSection> _sections(final Section3 section) {
-    EList<Section4> _subSections = section.getSubSections();
-    return _subSections;
+    return section.getSubSections();
   }
   
   public List<? extends AbstractSection> sections(final AbstractSection chapter) {

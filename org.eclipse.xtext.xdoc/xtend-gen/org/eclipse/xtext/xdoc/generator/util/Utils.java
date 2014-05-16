@@ -38,7 +38,7 @@ public class Utils {
       String _string = _head.toString();
       boolean _contains = _string.contains("\n");
       boolean _not = (!_contains);
-      _and = (_equals && _not);
+      _and = _not;
     }
     return _and;
   }
@@ -56,8 +56,7 @@ public class Utils {
       String _replaceAll_6 = _replaceAll_5.replaceAll("_", "\\\\_");
       String _replaceAll_7 = _replaceAll_6.replaceAll("\\^", "\\\\textasciicircum{}");
       String _replaceAll_8 = _replaceAll_7.replaceAll("&", "\\\\&");
-      String _replaceAll_9 = _replaceAll_8.replaceAll("~", "\\\\textasciitilde{}");
-      _xifexpression = _replaceAll_9;
+      _xifexpression = _replaceAll_8.replaceAll("~", "\\\\textasciitilde{}");
     } else {
       _xifexpression = "";
     }
@@ -71,8 +70,7 @@ public class Utils {
       String _replaceAll = s.replaceAll("\\\\\\[", "[");
       String _replaceAll_1 = _replaceAll.replaceAll("\\\\\\]", "]");
       String _replaceAll_2 = _replaceAll_1.replaceAll("\\\\\\%", "%");
-      String _replaceAll_3 = _replaceAll_2.replaceAll("\\\\\\:", ":");
-      _xifexpression = _replaceAll_3;
+      _xifexpression = _replaceAll_2.replaceAll("\\\\\\:", ":");
     } else {
       _xifexpression = "";
     }
@@ -96,8 +94,7 @@ public class Utils {
       String _replace_2 = _replace_1.replace("<", "&lt;");
       String _replace_3 = _replace_2.replace(">", "&gt;");
       String _replace_4 = _replace_3.replace("«", "&laquo;");
-      String _replace_5 = _replace_4.replace("»", "&raquo;");
-      _xifexpression = _replace_5;
+      _xifexpression = _replace_4.replace("»", "&raquo;");
     } else {
       _xifexpression = "";
     }
@@ -109,8 +106,7 @@ public class Utils {
     boolean _notEquals = (!Objects.equal(text, null));
     if (_notEquals) {
       String _string = text.toString();
-      String _highlightedHtmlCode = this.getHighlightedHtmlCode(_string, language);
-      _xifexpression = _highlightedHtmlCode;
+      _xifexpression = this.getHighlightedHtmlCode(_string, language);
     } else {
       _xifexpression = "";
     }
@@ -123,31 +119,27 @@ public class Utils {
       Iterable<Document> _filter = Iterables.<Document>filter(sections, Document.class);
       final Document doc = IterableExtensions.<Document>head(_filter);
       EList<LangDef> _langDefs = doc.getLangDefs();
-      final Function1<LangDef,Boolean> _function = new Function1<LangDef,Boolean>() {
+      final Function1<LangDef, Boolean> _function = new Function1<LangDef, Boolean>() {
         public Boolean apply(final LangDef e) {
           String _name = e.getName();
-          boolean _equals = Objects.equal(_name, "__XdocDefaultLanguage__");
-          return Boolean.valueOf(_equals);
+          return Boolean.valueOf(Objects.equal(_name, "__XdocDefaultLanguage__"));
         }
       };
       final LangDef lang = IterableExtensions.<LangDef>findFirst(_langDefs, _function);
       Collection<String> _xifexpression = null;
       boolean _notEquals = (!Objects.equal(lang, null));
       if (_notEquals) {
-        EList<String> _keywords = lang.getKeywords();
-        _xifexpression = _keywords;
+        _xifexpression = lang.getKeywords();
       } else {
-        Set<String> _emptySet = CollectionLiterals.<String>emptySet();
-        _xifexpression = _emptySet;
+        _xifexpression = CollectionLiterals.<String>emptySet();
       }
-      _xblockexpression = (_xifexpression);
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }
   
   public String getHighlightedHtmlCode(final String code, final LangDef language) {
-    Common _common = new Common();
-    final Common lexer = _common;
+    final Common lexer = new Common();
     String _unescapeXdocChars = this.unescapeXdocChars(code);
     ANTLRStringStream _aNTLRStringStream = new ANTLRStringStream(_unescapeXdocChars);
     lexer.setCharStream(_aNTLRStringStream);
@@ -155,23 +147,19 @@ public class Utils {
     boolean _notEquals = (!Objects.equal(language, null));
     if (_notEquals) {
       EList<String> _keywords = language.getKeywords();
-      final Function1<String,String> _function = new Function1<String,String>() {
+      final Function1<String, String> _function = new Function1<String, String>() {
         public String apply(final String it) {
-          String _unescapeXdocChars = Utils.this.unescapeXdocChars(it);
-          return _unescapeXdocChars;
+          return Utils.this.unescapeXdocChars(it);
         }
       };
       List<String> _map = ListExtensions.<String, String>map(_keywords, _function);
-      Set<String> _set = IterableExtensions.<String>toSet(_map);
-      _xifexpression = _set;
+      _xifexpression = IterableExtensions.<String>toSet(_map);
     } else {
-      Set<String> _emptySet = CollectionLiterals.<String>emptySet();
-      _xifexpression = _emptySet;
+      _xifexpression = CollectionLiterals.<String>emptySet();
     }
     final Set<String> keywords = _xifexpression;
     Token token = lexer.nextToken();
-    StringBuilder _stringBuilder = new StringBuilder();
-    final StringBuilder result = _stringBuilder;
+    final StringBuilder result = new StringBuilder();
     int _type = token.getType();
     boolean _notEquals_1 = (_type != Token.EOF);
     boolean _while = _notEquals_1;
@@ -181,7 +169,7 @@ public class Utils {
         final int t = _type_1;
         boolean _matched = false;
         if (!_matched) {
-          if (Objects.equal(t,Common.ID)) {
+          if (Objects.equal(t, Common.ID)) {
             _matched=true;
             String _text = token.getText();
             boolean _contains = keywords.contains(_text);
@@ -198,7 +186,7 @@ public class Utils {
           }
         }
         if (!_matched) {
-          if (Objects.equal(t,Common.WS)) {
+          if (Objects.equal(t, Common.WS)) {
             _matched=true;
             String _text_3 = token.getText();
             String _whitespace2Entities_1 = this.whitespace2Entities(_text_3);
@@ -206,13 +194,7 @@ public class Utils {
           }
         }
         if (!_matched) {
-          boolean _or = false;
-          if (((((t == Common.STRING) || (t == Common.RICH_TEXT)) || (t == Common.RICH_TEXT_END)) || (t == Common.RICH_TEXT_START))) {
-            _or = true;
-          } else {
-            _or = (((((t == Common.STRING) || (t == Common.RICH_TEXT)) || (t == Common.RICH_TEXT_END)) || (t == Common.RICH_TEXT_START)) || (t == Common.RICH_TEXT_INBETWEEN));
-          }
-          if (_or) {
+          if ((((((t == Common.STRING) || (t == Common.RICH_TEXT)) || (t == Common.RICH_TEXT_END)) || (t == Common.RICH_TEXT_START)) || (t == Common.RICH_TEXT_INBETWEEN))) {
             _matched=true;
             StringBuilder _append_2 = result.append("<span class=\"string\">");
             String _text_4 = token.getText();
@@ -222,13 +204,7 @@ public class Utils {
           }
         }
         if (!_matched) {
-          boolean _or_1 = false;
-          if ((((t == Common.COMMENT_RICH_TEXT_END) || (t == Common.COMMENT_RICH_TEXT_INBETWEEN)) || (t == Common.ML_COMMENT))) {
-            _or_1 = true;
-          } else {
-            _or_1 = ((((t == Common.COMMENT_RICH_TEXT_END) || (t == Common.COMMENT_RICH_TEXT_INBETWEEN)) || (t == Common.ML_COMMENT)) || (t == Common.SL_COMMENT));
-          }
-          if (_or_1) {
+          if (((((t == Common.COMMENT_RICH_TEXT_END) || (t == Common.COMMENT_RICH_TEXT_INBETWEEN)) || (t == Common.ML_COMMENT)) || (t == Common.SL_COMMENT))) {
             _matched=true;
             StringBuilder _append_4 = result.append("<span class=\"comment\">");
             String _text_5 = token.getText();
@@ -270,7 +246,7 @@ public class Utils {
     } else {
       EList<EObject> _contents_1 = cb.getContents();
       EObject _get = _contents_1.get(0);
-      _and = (_greaterThan && (_get instanceof Code));
+      _and = (_get instanceof Code);
     }
     if (_and) {
       int _xblockexpression = (int) 0;
@@ -282,8 +258,7 @@ public class Utils {
         String _replaceAll = code0.replaceAll("^(\n*)\\s*", "$1");
         int _length = _replaceAll.length();
         int _minus = (indent - _length);
-        int _indent = indent = _minus;
-        _xblockexpression = (_indent);
+        _xblockexpression = indent = _minus;
       }
       _xifexpression = _xblockexpression;
     }
@@ -305,7 +280,7 @@ public class Utils {
     return _result;
   }
   
-  private final HashMap<ArrayList<? extends Object>,Code> _createCache_correctedCode = CollectionLiterals.newHashMap();
+  private final HashMap<ArrayList<?>, Code> _createCache_correctedCode = CollectionLiterals.newHashMap();
   
   private void _init_correctedCode(final Code code, final String s) {
     code.setContents(s);
@@ -320,7 +295,7 @@ public class Utils {
       String _trim = s.trim();
       int _length = _trim.length();
       boolean _equals_1 = (_length == 0);
-      _or = (_equals || _equals_1);
+      _or = _equals_1;
     }
     return _or;
   }

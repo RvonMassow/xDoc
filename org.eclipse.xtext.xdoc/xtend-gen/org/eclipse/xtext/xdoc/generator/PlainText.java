@@ -22,7 +22,7 @@ public class PlainText {
   protected CharSequence _genPlainText(final TextOrMarkup tom) {
     EList<EObject> _contents = tom.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<String,EObject,String> _function = new Function2<String,EObject,String>() {
+    final Function2<String, EObject, String> _function = new Function2<String, EObject, String>() {
       public String apply(final String e1, final EObject e2) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(e1, "");
@@ -31,19 +31,17 @@ public class PlainText {
         return _builder.toString();
       }
     };
-    String _fold = IterableExtensions.<EObject, String>fold(_contents, _builder.toString(), _function);
-    return _fold;
+    return IterableExtensions.<EObject, String>fold(_contents, _builder.toString(), _function);
   }
   
   protected CharSequence _genPlainText(final TextPart tp) {
-    String _text = tp.getText();
-    return _text;
+    return tp.getText();
   }
   
   protected CharSequence _genPlainText(final Emphasize em) {
     EList<TextOrMarkup> _contents = em.getContents();
     StringConcatenation _builder = new StringConcatenation();
-    final Function2<String,TextOrMarkup,String> _function = new Function2<String,TextOrMarkup,String>() {
+    final Function2<String, TextOrMarkup, String> _function = new Function2<String, TextOrMarkup, String>() {
       public String apply(final String e1, final TextOrMarkup e2) {
         StringConcatenation _builder = new StringConcatenation();
         _builder.append(e1, "");
@@ -52,8 +50,7 @@ public class PlainText {
         return _builder.toString();
       }
     };
-    String _fold = IterableExtensions.<TextOrMarkup, String>fold(_contents, _builder.toString(), _function);
-    return _fold;
+    return IterableExtensions.<TextOrMarkup, String>fold(_contents, _builder.toString(), _function);
   }
   
   protected CharSequence _genPlainText(final Link l) {
@@ -76,7 +73,7 @@ public class PlainText {
         _builder_1.append("\"");
         _xifexpression = _builder_1;
       }
-      _xblockexpression = (_xifexpression);
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }

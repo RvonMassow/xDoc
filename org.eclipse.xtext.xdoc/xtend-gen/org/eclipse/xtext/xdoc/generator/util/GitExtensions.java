@@ -3,9 +3,7 @@ package org.eclipse.xtext.xdoc.generator.util;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -16,7 +14,6 @@ import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.xbase.XbasePackage;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -34,59 +31,27 @@ public class GitExtensions {
   
   private final static String SEVENLANGUAGES_BASEDIR = "https://github.com/xtext-dev/seven-languages-xtext/blob/master/";
   
-  private final static Set<String> XTEXT_EMF_CLASSES = new Function0<Set<String>>() {
-    public Set<String> apply() {
-      EList<EClassifier> _eClassifiers = XtextPackage.eINSTANCE.getEClassifiers();
-      final Function1<EClassifier,String> _function = new Function1<EClassifier,String>() {
-        public String apply(final EClassifier it) {
-          String _name = it.getName();
-          return _name;
-        }
-      };
-      List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
-      Set<String> _set = IterableExtensions.<String>toSet(_map);
-      return _set;
+  private final static Set<String> XTEXT_EMF_CLASSES = IterableExtensions.<String>toSet(ListExtensions.<EClassifier, String>map(XtextPackage.eINSTANCE.getEClassifiers(), new Function1<EClassifier, String>() {
+    public String apply(final EClassifier it) {
+      return it.getName();
     }
-  }.apply();
+  }));
   
-  private final static Set<String> XBASE_EMF_CLASSES = new Function0<Set<String>>() {
-    public Set<String> apply() {
-      EList<EClassifier> _eClassifiers = XbasePackage.eINSTANCE.getEClassifiers();
-      final Function1<EClassifier,String> _function = new Function1<EClassifier,String>() {
-        public String apply(final EClassifier it) {
-          String _name = it.getName();
-          return _name;
-        }
-      };
-      List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
-      EList<EClassifier> _eClassifiers_1 = XtypePackage.eINSTANCE.getEClassifiers();
-      final Function1<EClassifier,String> _function_1 = new Function1<EClassifier,String>() {
-        public String apply(final EClassifier it) {
-          String _name = it.getName();
-          return _name;
-        }
-      };
-      List<String> _map_1 = ListExtensions.<EClassifier, String>map(_eClassifiers_1, _function_1);
-      Iterable<String> _plus = Iterables.<String>concat(_map, _map_1);
-      Set<String> _set = IterableExtensions.<String>toSet(_plus);
-      return _set;
+  private final static Set<String> XBASE_EMF_CLASSES = IterableExtensions.<String>toSet(Iterables.<String>concat(ListExtensions.<EClassifier, String>map(XbasePackage.eINSTANCE.getEClassifiers(), new Function1<EClassifier, String>() {
+    public String apply(final EClassifier it) {
+      return it.getName();
     }
-  }.apply();
+  }), ListExtensions.<EClassifier, String>map(XtypePackage.eINSTANCE.getEClassifiers(), new Function1<EClassifier, String>() {
+    public String apply(final EClassifier it) {
+      return it.getName();
+    }
+  })));
   
-  private final static Set<String> JVM_EMF_CLASSES = new Function0<Set<String>>() {
-    public Set<String> apply() {
-      EList<EClassifier> _eClassifiers = TypesPackage.eINSTANCE.getEClassifiers();
-      final Function1<EClassifier,String> _function = new Function1<EClassifier,String>() {
-        public String apply(final EClassifier it) {
-          String _name = it.getName();
-          return _name;
-        }
-      };
-      List<String> _map = ListExtensions.<EClassifier, String>map(_eClassifiers, _function);
-      Set<String> _set = IterableExtensions.<String>toSet(_map);
-      return _set;
+  private final static Set<String> JVM_EMF_CLASSES = IterableExtensions.<String>toSet(ListExtensions.<EClassifier, String>map(TypesPackage.eINSTANCE.getEClassifiers(), new Function1<EClassifier, String>() {
+    public String apply(final EClassifier it) {
+      return it.getName();
     }
-  }.apply();
+  }));
   
   private final static HashSet<String> SEVEN_LANGUAGE_PLUGIN_SUFFIXES = CollectionLiterals.<String>newHashSet("ui", "tests", "lib", "examples");
   
@@ -98,7 +63,7 @@ public class GitExtensions {
       final String name = _qualifiedName;
       boolean _matched = false;
       if (!_matched) {
-        if (Objects.equal(name,null)) {
+        if (Objects.equal(name, null)) {
           _matched=true;
           return ("broken-link in " + ie);
         }
@@ -118,7 +83,7 @@ public class GitExtensions {
         } else {
           String _simpleName = ie.getSimpleName();
           boolean _contains = GitExtensions.JVM_EMF_CLASSES.contains(_simpleName);
-          _and = (_startsWith_1 && _contains);
+          _and = _contains;
         }
         if (_and) {
           _matched=true;
@@ -182,7 +147,7 @@ public class GitExtensions {
         } else {
           String _simpleName_1 = ie.getSimpleName();
           boolean _contains_1 = GitExtensions.XBASE_EMF_CLASSES.contains(_simpleName_1);
-          _and_1 = (_startsWith_9 && _contains_1);
+          _and_1 = _contains_1;
         }
         if (_and_1) {
           _matched=true;
@@ -204,14 +169,14 @@ public class GitExtensions {
           _or = true;
         } else {
           boolean _startsWith_12 = name.startsWith("org.eclipse.xtext.ui.generator.");
-          _or = (_startsWith_11 || _startsWith_12);
+          _or = _startsWith_12;
         }
         if (!_or) {
           _and_2 = false;
         } else {
           String _simpleName_2 = ie.getSimpleName();
           boolean _notEquals = (!Objects.equal("IGenerator", _simpleName_2));
-          _and_2 = (_or && _notEquals);
+          _and_2 = _notEquals;
         }
         if (_and_2) {
           _matched=true;
@@ -261,7 +226,7 @@ public class GitExtensions {
         } else {
           String _simpleName_3 = ie.getSimpleName();
           boolean _contains_2 = GitExtensions.XTEXT_EMF_CLASSES.contains(_simpleName_3);
-          _and_3 = (_startsWith_18 && _contains_2);
+          _and_3 = _contains_2;
         }
         if (_and_3) {
           _matched=true;
@@ -317,7 +282,7 @@ public class GitExtensions {
           _or_1 = true;
         } else {
           boolean _startsWith_26 = name.startsWith("org.eclipse.xtend2.lib.");
-          _or_1 = (_startsWith_25 || _startsWith_26);
+          _or_1 = _startsWith_26;
         }
         if (_or_1) {
           _matched=true;
@@ -390,7 +355,7 @@ public class GitExtensions {
               }
             }
             _builder.append("/src/");
-            _xblockexpression_1 = (_builder.toString());
+            _xblockexpression_1 = _builder.toString();
           }
           _switchResult = _xblockexpression_1;
         }
@@ -424,24 +389,22 @@ public class GitExtensions {
             String _replaceAll_1 = _replaceAll.replaceAll("\\$.*$", "");
             String _plus = (prefix + _replaceAll_1);
             String _plus_1 = (_plus + ".");
-            String _plus_2 = (_plus_1 + "java");
-            _switchResult_1 = _plus_2;
+            _switchResult_1 = (_plus_1 + "java");
           }
         }
         if (!_matched_1) {
           String _packageName = ((JvmDeclaredType) ie).getPackageName();
           String _replaceAll_2 = _packageName.replaceAll("\\.", "/");
-          String _plus_3 = (prefix + _replaceAll_2);
-          String _plus_4 = (_plus_3 + "/");
+          String _plus_2 = (prefix + _replaceAll_2);
+          String _plus_3 = (_plus_2 + "/");
           String _lastSegment = uri.lastSegment();
-          String _plus_5 = (_plus_4 + _lastSegment);
-          _switchResult_1 = _plus_5;
+          _switchResult_1 = (_plus_3 + _lastSegment);
         }
         _xifexpression = _switchResult_1;
       } else {
         _xifexpression = null;
       }
-      _xblockexpression = (_xifexpression);
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }

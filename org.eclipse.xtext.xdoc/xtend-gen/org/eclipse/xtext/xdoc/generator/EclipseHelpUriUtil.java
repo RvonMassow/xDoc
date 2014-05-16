@@ -36,12 +36,12 @@ public class EclipseHelpUriUtil {
   @Extension
   private EclipseNamingExtensions eclipseNamingExtensions;
   
-  private Map<AbstractSection,AbstractSection> section2fileSection;
+  private Map<AbstractSection, AbstractSection> section2fileSection;
   
   private Document doc;
   
   public void initialize(final Document doc) {
-    HashMap<AbstractSection,AbstractSection> _newHashMap = CollectionLiterals.<AbstractSection, AbstractSection>newHashMap();
+    HashMap<AbstractSection, AbstractSection> _newHashMap = CollectionLiterals.<AbstractSection, AbstractSection>newHashMap();
     this.section2fileSection = _newHashMap;
     this.doc = doc;
     this.populateFileMap(doc);
@@ -72,7 +72,7 @@ public class EclipseHelpUriUtil {
           URI _uRI = _eResource.getURI();
           String _plus_2 = (_plus_1 + _uRI);
           InputOutput.<String>println(_plus_2);
-          _xblockexpression_1 = (((URI) null));
+          _xblockexpression_1 = ((URI) null);
         }
         _xifexpression = _xblockexpression_1;
       } else {
@@ -81,10 +81,9 @@ public class EclipseHelpUriUtil {
         String _localId = this.eclipseNamingExtensions.getLocalId(_ref_1);
         URI _appendFragment = _targetURI.appendFragment(_localId);
         URI _targetURI_1 = this.getTargetURI(this.doc);
-        URI _deresolve = _appendFragment.deresolve(_targetURI_1);
-        _xifexpression = _deresolve;
+        _xifexpression = _appendFragment.deresolve(_targetURI_1);
       }
-      _xblockexpression = (_xifexpression);
+      _xblockexpression = _xifexpression;
     }
     return _xblockexpression;
   }
@@ -96,39 +95,34 @@ public class EclipseHelpUriUtil {
       if (it instanceof PartRef) {
         _matched=true;
         Part _part = ((PartRef)it).getPart();
-        URI _targetURI = this.getTargetURI(_part);
-        _switchResult = _targetURI;
+        _switchResult = this.getTargetURI(_part);
       }
     }
     if (!_matched) {
       if (it instanceof ChapterRef) {
         _matched=true;
         Chapter _chapter = ((ChapterRef)it).getChapter();
-        URI _targetURI = this.getTargetURI(_chapter);
-        _switchResult = _targetURI;
+        _switchResult = this.getTargetURI(_chapter);
       }
     }
     if (!_matched) {
       if (it instanceof SectionRef) {
         _matched=true;
         Section _section = ((SectionRef)it).getSection();
-        URI _targetURI = this.getTargetURI(_section);
-        _switchResult = _targetURI;
+        _switchResult = this.getTargetURI(_section);
       }
     }
     if (!_matched) {
       if (it instanceof Section2Ref) {
         _matched=true;
         Section2 _section2 = ((Section2Ref)it).getSection2();
-        URI _targetURI = this.getTargetURI(_section2);
-        _switchResult = _targetURI;
+        _switchResult = this.getTargetURI(_section2);
       }
     }
     if (!_matched) {
       if (it instanceof Document) {
         _matched=true;
-        URI _targetURI = this.targetURI(((Identifiable) it));
-        _switchResult = _targetURI;
+        _switchResult = this.targetURI(((Identifiable) it));
       }
     }
     if (!_matched) {
@@ -140,8 +134,7 @@ public class EclipseHelpUriUtil {
         String _localId = this.eclipseNamingExtensions.getLocalId(it);
         URI _appendFragment = _targetURI.appendFragment(_localId);
         URI _targetURI_1 = this.getTargetURI(this.doc);
-        URI _deresolve = _appendFragment.deresolve(_targetURI_1);
-        _xblockexpression = (_deresolve);
+        _xblockexpression = _appendFragment.deresolve(_targetURI_1);
       }
       _switchResult = _xblockexpression;
     }
@@ -232,8 +225,7 @@ public class EclipseHelpUriUtil {
       URI _trimSegments = resourceURI.trimSegments(_minus);
       URI _appendSegment = _trimSegments.appendSegment("contents");
       String[] _segments = fullURL.segments();
-      URI _appendSegments = _appendSegment.appendSegments(_segments);
-      _xblockexpression = (_appendSegments);
+      _xblockexpression = _appendSegment.appendSegments(_segments);
     }
     return _xblockexpression;
   }

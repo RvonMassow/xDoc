@@ -105,11 +105,9 @@ public class UtilityTest {
    */
   @Test
   public void testFormatCode() {
-    Utils _utils = new Utils();
-    final Utils utils = _utils;
+    final Utils utils = new Utils();
     String code = "";
-    StopWatch _stopWatch = new StopWatch();
-    final StopWatch watch = _stopWatch;
+    final StopWatch watch = new StopWatch();
     IntegerRange _upTo = new IntegerRange(0, 1);
     for (final Integer i : _upTo) {
       LangDef _langDef = this.langDef();
@@ -122,8 +120,7 @@ public class UtilityTest {
   
   @Test
   public void testFormatCode_01() {
-    Utils _utils = new Utils();
-    final Utils utils = _utils;
+    final Utils utils = new Utils();
     LangDef _langDef = this.langDef();
     final String code = utils.formatCode("/* mein foo ist bar nicht baz.*/", _langDef);
     Assert.assertEquals("<span class=\"comment\">/*&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.*/</span>", code);
@@ -131,8 +128,7 @@ public class UtilityTest {
   
   @Test
   public void testFormatCode_02() {
-    Utils _utils = new Utils();
-    final Utils utils = _utils;
+    final Utils utils = new Utils();
     LangDef _langDef = this.langDef();
     final String code = utils.formatCode("\' mein foo ist bar nicht baz.\'", _langDef);
     Assert.assertEquals("<span class=\"string\">&apos;&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.&apos;</span>", code);
@@ -140,24 +136,21 @@ public class UtilityTest {
   
   @Test
   public void testFormatCode_03() {
-    Utils _utils = new Utils();
-    final Utils utils = _utils;
+    final Utils utils = new Utils();
     final String code = utils.formatCode("\' mein foo ist bar nicht baz.", null);
     Assert.assertEquals("<span class=\"string\">&apos;&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.</span>", code);
   }
   
   @Test
   public void testFormatCode_04() {
-    Utils _utils = new Utils();
-    final Utils utils = _utils;
+    final Utils utils = new Utils();
     final String code = utils.formatCode("/* mein foo ist bar nicht baz.", null);
     Assert.assertEquals("/*&nbsp;mein&nbsp;foo&nbsp;ist&nbsp;bar&nbsp;nicht&nbsp;baz.", code);
   }
   
   @Test
   public void testFormatCode_05() {
-    Utils _utils = new Utils();
-    final Utils utils = _utils;
+    final Utils utils = new Utils();
     final String code = utils.formatCode("\'\\[mein\\]\'", null);
     Assert.assertEquals("<span class=\"string\">&apos;\\[mein\\]&apos;</span>", code);
   }
@@ -177,7 +170,7 @@ public class UtilityTest {
     return _result;
   }
   
-  private final HashMap<ArrayList<? extends Object>,LangDef> _createCache_langDef = CollectionLiterals.newHashMap();
+  private final HashMap<ArrayList<?>, LangDef> _createCache_langDef = CollectionLiterals.newHashMap();
   
   private void _init_langDef(final LangDef it) {
     LangDef _langDef = this.langDef();

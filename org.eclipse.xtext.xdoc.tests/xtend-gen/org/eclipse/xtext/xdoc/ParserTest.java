@@ -309,8 +309,7 @@ public class ParserTest {
     EObject _head_1 = IterableExtensions.<EObject>head(_contents_1);
     final Link link = ((Link) _head_1);
     String _url = link.getUrl();
-    URL _uRL = new URL(_url);
-    final URL url = _uRL;
+    final URL url = new URL(_url);
     final URLConnection connection = url.openConnection();
     Assert.assertNotNull(connection);
   }
