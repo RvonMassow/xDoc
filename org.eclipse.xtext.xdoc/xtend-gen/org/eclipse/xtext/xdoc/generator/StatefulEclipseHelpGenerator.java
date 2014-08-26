@@ -27,6 +27,7 @@ import org.eclipse.xtext.generator.IFileSystemAccessExtension2;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpUriUtil;
@@ -168,26 +169,25 @@ public class StatefulEclipseHelpGenerator {
         URIConverter _uRIConverter_1 = _resourceSet_1.getURIConverter();
         OutputStream _createOutputStream = _uRIConverter_1.createOutputStream(outPath);
         final WritableByteChannel outChannel = Channels.newChannel(_createOutputStream);
-        int _read = inChannel.read(buffer);
-        boolean _notEquals = (_read != (-1));
-        boolean _while = _notEquals;
-        while (_while) {
+        while ((new Function0<Integer>() {
+          public Integer apply() {
+            try {
+              int _read = inChannel.read(buffer);
+              return _read;
+            } catch (Throwable _e) {
+              throw Exceptions.sneakyThrow(_e);
+            }
+          }
+        }.apply().intValue() != (-1))) {
           {
             buffer.flip();
             outChannel.write(buffer);
             buffer.compact();
           }
-          int _read_1 = inChannel.read(buffer);
-          boolean _notEquals_1 = (_read_1 != (-1));
-          _while = _notEquals_1;
         }
         buffer.flip();
-        boolean _hasRemaining = buffer.hasRemaining();
-        boolean _while_1 = _hasRemaining;
-        while (_while_1) {
+        while (buffer.hasRemaining()) {
           outChannel.write(buffer);
-          boolean _hasRemaining_1 = buffer.hasRemaining();
-          _while_1 = _hasRemaining_1;
         }
         outChannel.close();
       }

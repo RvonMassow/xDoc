@@ -160,13 +160,10 @@ public class Utils {
     final Set<String> keywords = _xifexpression;
     Token token = lexer.nextToken();
     final StringBuilder result = new StringBuilder();
-    int _type = token.getType();
-    boolean _notEquals_1 = (_type != Token.EOF);
-    boolean _while = _notEquals_1;
-    while (_while) {
+    while ((token.getType() != Token.EOF)) {
       {
-        int _type_1 = token.getType();
-        final int t = _type_1;
+        int _type = token.getType();
+        final int t = _type;
         boolean _matched = false;
         if (!_matched) {
           if (Objects.equal(t, Common.ID)) {
@@ -221,9 +218,6 @@ public class Utils {
         Token _nextToken = lexer.nextToken();
         token = _nextToken;
       }
-      int _type_1 = token.getType();
-      boolean _notEquals_2 = (_type_1 != Token.EOF);
-      _while = _notEquals_2;
     }
     return result.toString();
   }

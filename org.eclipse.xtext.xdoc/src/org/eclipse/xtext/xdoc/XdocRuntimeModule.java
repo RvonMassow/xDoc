@@ -3,11 +3,11 @@
  */
 package org.eclipse.xtext.xdoc;
 
+import org.eclipse.xtext.common.types.xtext.TypesAwareDefaultGlobalScopeProvider;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
-import org.eclipse.xtext.xbase.jvmmodel.JvmGlobalScopeProvider;
 import org.eclipse.xtext.xdoc.generator.XdocOutputConfigurationProvider;
 import org.eclipse.xtext.xdoc.naming.XdocDocumentNameProvider;
 import org.eclipse.xtext.xdoc.resource.XdocResourceDescriptionManager;
@@ -42,6 +42,6 @@ public class XdocRuntimeModule extends org.eclipse.xtext.xdoc.AbstractXdocRuntim
 	}
 	
 	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return JvmGlobalScopeProvider.class;
+		return TypesAwareDefaultGlobalScopeProvider.class;
 	}
 }

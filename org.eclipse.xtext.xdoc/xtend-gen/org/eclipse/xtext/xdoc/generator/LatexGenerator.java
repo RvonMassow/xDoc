@@ -32,6 +32,7 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -1191,26 +1192,25 @@ public class LatexGenerator implements IConfigurableGenerator {
       URIConverter _uRIConverter = _resourceSet_1.getURIConverter();
       OutputStream _createOutputStream = _uRIConverter.createOutputStream(outPath);
       final WritableByteChannel outChannel = Channels.newChannel(_createOutputStream);
-      int _read = inChannel.read(buffer);
-      boolean _notEquals = (_read != (-1));
-      boolean _while = _notEquals;
-      while (_while) {
+      while ((new Function0<Integer>() {
+        public Integer apply() {
+          try {
+            int _read = inChannel.read(buffer);
+            return _read;
+          } catch (Throwable _e) {
+            throw Exceptions.sneakyThrow(_e);
+          }
+        }
+      }.apply().intValue() != (-1))) {
         {
           buffer.flip();
           outChannel.write(buffer);
           buffer.compact();
         }
-        int _read_1 = inChannel.read(buffer);
-        boolean _notEquals_1 = (_read_1 != (-1));
-        _while = _notEquals_1;
       }
       buffer.flip();
-      boolean _hasRemaining = buffer.hasRemaining();
-      boolean _while_1 = _hasRemaining;
-      while (_while_1) {
+      while (buffer.hasRemaining()) {
         outChannel.write(buffer);
-        boolean _hasRemaining_1 = buffer.hasRemaining();
-        _while_1 = _hasRemaining_1;
       }
       outChannel.close();
       return pathInDocument;
@@ -1447,17 +1447,13 @@ public class LatexGenerator implements IConfigurableGenerator {
         float _parseFloat = Float.parseFloat("2.835");
         XFloat ppmm = new XFloat(Float.valueOf(_parseFloat));
         Node cn = n.getFirstChild();
-        boolean _notEquals = (!Objects.equal(cn, null));
-        boolean _while = _notEquals;
-        while (_while) {
+        while ((!Objects.equal(cn, null))) {
           {
             String _nodeName = cn.getNodeName();
             boolean _equals = Objects.equal(_nodeName, "Dimension");
             if (_equals) {
               Node ccn = cn.getFirstChild();
-              boolean _notEquals_1 = (!Objects.equal(ccn, null));
-              boolean _while_1 = _notEquals_1;
-              while (_while_1) {
+              while ((!Objects.equal(ccn, null))) {
                 {
                   String _nodeName_1 = ccn.getNodeName();
                   boolean _equals_1 = _nodeName_1.equals("HorizontalPixelSize");
@@ -1473,15 +1469,11 @@ public class LatexGenerator implements IConfigurableGenerator {
                   Node _nextSibling = ccn.getNextSibling();
                   ccn = _nextSibling;
                 }
-                boolean _notEquals_2 = (!Objects.equal(ccn, null));
-                _while_1 = _notEquals_2;
               }
             }
             Node _nextSibling = cn.getNextSibling();
             cn = _nextSibling;
           }
-          boolean _notEquals_1 = (!Objects.equal(cn, null));
-          _while = _notEquals_1;
         }
         String _xifexpression = null;
         int _width = ir.getWidth(0);
