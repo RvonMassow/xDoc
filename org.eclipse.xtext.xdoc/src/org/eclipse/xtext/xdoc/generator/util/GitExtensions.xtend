@@ -1,17 +1,20 @@
 package org.eclipse.xtext.xdoc.generator.util
 
+import java.io.FileInputStream
+import java.io.IOException
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.XtextPackage
-import org.eclipse.xtext.common.types.JvmDeclaredType
 import org.eclipse.xtext.common.types.JvmIdentifiableElement
 import org.eclipse.xtext.common.types.TypesPackage
+import org.eclipse.xtext.generator.trace.TraceRegionSerializer
 import org.eclipse.xtext.xbase.XbasePackage
 import org.eclipse.xtext.xtype.XtypePackage
 
 class GitExtensions {
 	
-	static val XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.5.0/plugins/"
+	static val XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.7.0/plugins/"
 	static val XTEND_BASE_DIR = XTEXT_BASE_DIR
-	static val MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.4.0/plugins/"
+	static val MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.7.0/plugins/"
 	static val EMF_BASE_DIR = "https://github.com/eclipse/emf/blob/R2_9_0/plugins/"
 	static val SEVENLANGUAGES_BASEDIR = "https://github.com/xtext-dev/seven-languages-xtext/blob/master/"
 	
@@ -59,6 +62,7 @@ class GitExtensions {
 					|| name.startsWith("org.eclipse.xtend2.lib."):				XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.lib/src/"
 				case name.startsWith("org.eclipse.xtext.xbase.ui."):			XTEXT_BASE_DIR + "org.eclipse.xtext.xbase.ui/src/"
 				case name.startsWith("org.eclipse.xtext.xbase."):				XTEXT_BASE_DIR + "org.eclipse.xtext.xbase/src/"
+				case name.startsWith("org.eclipse.xtend.lib.macro"):			XTEXT_BASE_DIR + "org.eclipse.xtend.lib.macro/src/"
 				case name.startsWith("org.eclipse.xtend.lib."):					XTEXT_BASE_DIR + "org.eclipse.xtend.lib/src/"
 				case name.startsWith("org.eclipse.xtend.ui."):					XTEND_BASE_DIR + "org.eclipse.xtend.ui/src/"
 				case name.startsWith("org.eclipse.xtend.core."):				XTEND_BASE_DIR + "org.eclipse.xtend.core/src/"
@@ -72,15 +76,25 @@ class GitExtensions {
 					""
 			}
 		if(prefix.length != 0) {
-			switch uri: ie?.eResource?.URI {
-				case uri.scheme=='java':
-					prefix + ie.qualifiedName.replaceAll("\\.", "/").replaceAll("\\$.*$", "") + '.' + 'java'
-				default: {
-					prefix + (ie as JvmDeclaredType).packageName.replaceAll('\\.', '/') + '/' + uri.lastSegment
-				}
-			}
+			return prefix + findOriginalSource((EcoreUtil.getRootContainer(ie) as JvmIdentifiableElement).qualifiedName)
 		} else
 			null
+	}
+	
+	def String findOriginalSource(String qualifiedName) {
+		try {
+			val simpleName = qualifiedName.substring(qualifiedName.lastIndexOf('.')+1)
+			val packageName = qualifiedName.substring(0, qualifiedName.lastIndexOf('.'))
+			val javaFileName = qualifiedName.replace('.','/')+".class"
+			val url = getClass.getClassLoader.getResource(javaFileName)
+			if (url.toString.contains('bin/'+javaFileName)) {
+				val traceFile = url.file.replace('bin/'+javaFileName, 'xtend-gen/'+packageName.replace('.','/')+"/."+simpleName+".java._trace")
+				val traceRegion = new TraceRegionSerializer().readTraceRegionFrom(new FileInputStream(traceFile));
+				return traceRegion.associatedPath.toString
+			}
+		} catch (IOException e) {
+		}
+		return qualifiedName.replace('.', '/')+'.java'
 	}
 	
 }

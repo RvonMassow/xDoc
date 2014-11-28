@@ -32,7 +32,6 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -1192,16 +1191,7 @@ public class LatexGenerator implements IConfigurableGenerator {
       URIConverter _uRIConverter = _resourceSet_1.getURIConverter();
       OutputStream _createOutputStream = _uRIConverter.createOutputStream(outPath);
       final WritableByteChannel outChannel = Channels.newChannel(_createOutputStream);
-      while ((new Function0<Integer>() {
-        public Integer apply() {
-          try {
-            int _read = inChannel.read(buffer);
-            return _read;
-          } catch (Throwable _e) {
-            throw Exceptions.sneakyThrow(_e);
-          }
-        }
-      }.apply().intValue() != (-1))) {
+      while ((inChannel.read(buffer) != (-1))) {
         {
           buffer.flip();
           outChannel.write(buffer);

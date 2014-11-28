@@ -2,18 +2,24 @@ package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.XtextPackage;
-import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.TypesPackage;
+import org.eclipse.xtext.generator.trace.AbstractTraceRegion;
+import org.eclipse.xtext.generator.trace.TraceRegionSerializer;
 import org.eclipse.xtext.xbase.XbasePackage;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.ListExtensions;
@@ -21,11 +27,11 @@ import org.eclipse.xtext.xtype.XtypePackage;
 
 @SuppressWarnings("all")
 public class GitExtensions {
-  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.5.0/plugins/";
+  private final static String XTEXT_BASE_DIR = "https://github.com/eclipse/xtext/blob/v2.7.0/plugins/";
   
   private final static String XTEND_BASE_DIR = GitExtensions.XTEXT_BASE_DIR;
   
-  private final static String MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.4.0/plugins/";
+  private final static String MWE_BASE_DIR = "https://github.com/eclipse/mwe/blob/v2.7.0/plugins/";
   
   private final static String EMF_BASE_DIR = "https://github.com/eclipse/emf/blob/R2_9_0/plugins/";
   
@@ -56,7 +62,7 @@ public class GitExtensions {
   private final static HashSet<String> SEVEN_LANGUAGE_PLUGIN_SUFFIXES = CollectionLiterals.<String>newHashSet("ui", "tests", "lib", "examples");
   
   public String gitLink(final JvmIdentifiableElement ie) {
-    String _xblockexpression = null;
+    Object _xblockexpression = null;
     {
       String _switchResult = null;
       String _qualifiedName = ie.getQualifiedName();
@@ -304,29 +310,36 @@ public class GitExtensions {
         }
       }
       if (!_matched) {
-        boolean _startsWith_29 = name.startsWith("org.eclipse.xtend.lib.");
+        boolean _startsWith_29 = name.startsWith("org.eclipse.xtend.lib.macro");
         if (_startsWith_29) {
+          _matched=true;
+          _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtend.lib.macro/src/");
+        }
+      }
+      if (!_matched) {
+        boolean _startsWith_30 = name.startsWith("org.eclipse.xtend.lib.");
+        if (_startsWith_30) {
           _matched=true;
           _switchResult = (GitExtensions.XTEXT_BASE_DIR + "org.eclipse.xtend.lib/src/");
         }
       }
       if (!_matched) {
-        boolean _startsWith_30 = name.startsWith("org.eclipse.xtend.ui.");
-        if (_startsWith_30) {
+        boolean _startsWith_31 = name.startsWith("org.eclipse.xtend.ui.");
+        if (_startsWith_31) {
           _matched=true;
           _switchResult = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.ui/src/");
         }
       }
       if (!_matched) {
-        boolean _startsWith_31 = name.startsWith("org.eclipse.xtend.core.");
-        if (_startsWith_31) {
+        boolean _startsWith_32 = name.startsWith("org.eclipse.xtend.core.");
+        if (_startsWith_32) {
           _matched=true;
           _switchResult = (GitExtensions.XTEND_BASE_DIR + "org.eclipse.xtend.core/src/");
         }
       }
       if (!_matched) {
-        boolean _startsWith_32 = name.startsWith("org.xtext.");
-        if (_startsWith_32) {
+        boolean _startsWith_33 = name.startsWith("org.xtext.");
+        if (_startsWith_33) {
           _matched=true;
           String _xblockexpression_1 = null;
           {
@@ -364,48 +377,58 @@ public class GitExtensions {
         _switchResult = "";
       }
       final String prefix = _switchResult;
-      String _xifexpression = null;
+      Object _xifexpression = null;
       int _length = prefix.length();
       boolean _notEquals_1 = (_length != 0);
       if (_notEquals_1) {
-        String _switchResult_1 = null;
-        Resource _eResource = null;
-        if (ie!=null) {
-          _eResource=ie.eResource();
-        }
-        URI _uRI = null;
-        if (_eResource!=null) {
-          _uRI=_eResource.getURI();
-        }
-        final URI uri = _uRI;
-        boolean _matched_1 = false;
-        if (!_matched_1) {
-          String _scheme = uri.scheme();
-          boolean _equals = Objects.equal(_scheme, "java");
-          if (_equals) {
-            _matched_1=true;
-            String _qualifiedName_1 = ie.getQualifiedName();
-            String _replaceAll = _qualifiedName_1.replaceAll("\\.", "/");
-            String _replaceAll_1 = _replaceAll.replaceAll("\\$.*$", "");
-            String _plus = (prefix + _replaceAll_1);
-            String _plus_1 = (_plus + ".");
-            _switchResult_1 = (_plus_1 + "java");
-          }
-        }
-        if (!_matched_1) {
-          String _packageName = ((JvmDeclaredType) ie).getPackageName();
-          String _replaceAll_2 = _packageName.replaceAll("\\.", "/");
-          String _plus_2 = (prefix + _replaceAll_2);
-          String _plus_3 = (_plus_2 + "/");
-          String _lastSegment = uri.lastSegment();
-          _switchResult_1 = (_plus_3 + _lastSegment);
-        }
-        _xifexpression = _switchResult_1;
+        EObject _rootContainer = EcoreUtil.getRootContainer(ie);
+        String _qualifiedName_1 = ((JvmIdentifiableElement) _rootContainer).getQualifiedName();
+        String _findOriginalSource = this.findOriginalSource(_qualifiedName_1);
+        return (prefix + _findOriginalSource);
       } else {
         _xifexpression = null;
       }
       _xblockexpression = _xifexpression;
     }
-    return _xblockexpression;
+    return ((String)_xblockexpression);
+  }
+  
+  public String findOriginalSource(final String qualifiedName) {
+    try {
+      int _lastIndexOf = qualifiedName.lastIndexOf(".");
+      int _plus = (_lastIndexOf + 1);
+      final String simpleName = qualifiedName.substring(_plus);
+      int _lastIndexOf_1 = qualifiedName.lastIndexOf(".");
+      final String packageName = qualifiedName.substring(0, _lastIndexOf_1);
+      String _replace = qualifiedName.replace(".", "/");
+      final String javaFileName = (_replace + ".class");
+      Class<? extends GitExtensions> _class = this.getClass();
+      ClassLoader _classLoader = _class.getClassLoader();
+      final URL url = _classLoader.getResource(javaFileName);
+      String _string = url.toString();
+      boolean _contains = _string.contains(("bin/" + javaFileName));
+      if (_contains) {
+        String _file = url.getFile();
+        String _replace_1 = packageName.replace(".", "/");
+        String _plus_1 = ("xtend-gen/" + _replace_1);
+        String _plus_2 = (_plus_1 + "/.");
+        String _plus_3 = (_plus_2 + simpleName);
+        String _plus_4 = (_plus_3 + ".java._trace");
+        final String traceFile = _file.replace(("bin/" + javaFileName), _plus_4);
+        TraceRegionSerializer _traceRegionSerializer = new TraceRegionSerializer();
+        FileInputStream _fileInputStream = new FileInputStream(traceFile);
+        final AbstractTraceRegion traceRegion = _traceRegionSerializer.readTraceRegionFrom(_fileInputStream);
+        URI _associatedPath = traceRegion.getAssociatedPath();
+        return _associatedPath.toString();
+      }
+    } catch (final Throwable _t) {
+      if (_t instanceof IOException) {
+        final IOException e = (IOException)_t;
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+    String _replace_2 = qualifiedName.replace(".", "/");
+    return (_replace_2 + ".java");
   }
 }

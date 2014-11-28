@@ -24,7 +24,7 @@ public class JavaDocExtension {
         boolean _startsWith = name.startsWith("org.eclipse.emf.mwe");
         if (_startsWith) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/emft/mwe/javadoc/2.4/";
+          _switchResult = "http://download.eclipse.org/modeling/emft/mwe/javadoc/2.7/";
         }
       }
       if (!_matched) {
@@ -38,35 +38,35 @@ public class JavaDocExtension {
         }
         if (_or) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.5/";
+          _switchResult = "http://download.eclipse.org/modeling/tmf/xtext/javadoc/2.7/";
         }
       }
       if (!_matched) {
         boolean _startsWith_3 = name.startsWith("org.eclipse.xtend.");
         if (_startsWith_3) {
           _matched=true;
-          _switchResult = "http://www.eclipse.org/xtend/api/2.5.0/";
+          _switchResult = "http://www.eclipse.org/xtend/api/2.7.0/";
         }
       }
       if (!_matched) {
         boolean _startsWith_4 = name.startsWith("org.eclipse.emf.");
         if (_startsWith_4) {
           _matched=true;
-          _switchResult = "http://download.eclipse.org/modeling/emf/emf/javadoc/2.9.0/";
+          _switchResult = "http://download.eclipse.org/modeling/emf/emf/javadoc/2.10.0/";
         }
       }
       if (!_matched) {
         boolean _startsWith_5 = name.startsWith("com.google.inject.");
         if (_startsWith_5) {
           _matched=true;
-          _switchResult = "http://google-guice.googlecode.com/svn/trunk/javadoc/";
+          _switchResult = "https://google.github.io/guice/api-docs/latest/javadoc/";
         }
       }
       if (!_matched) {
         boolean _startsWith_6 = name.startsWith("com.google.common.");
         if (_startsWith_6) {
           _matched=true;
-          _switchResult = "http://guava-libraries.googlecode.com/svn/tags/release09/javadoc/";
+          _switchResult = "http://docs.guava-libraries.googlecode.com/git-history/v17.0/javadoc/";
         }
       }
       if (!_matched) {
@@ -80,7 +80,7 @@ public class JavaDocExtension {
         boolean _startsWith_8 = name.startsWith("java.");
         if (_startsWith_8) {
           _matched=true;
-          _switchResult = "http://download.oracle.com/javase/1.5.0/docs/api/";
+          _switchResult = "http://docs.oracle.com/javase/8/docs/api/";
         }
       }
       if (!_matched) {
@@ -98,22 +98,15 @@ public class JavaDocExtension {
         }
       }
       if (!_matched) {
-        boolean _startsWith_11 = name.startsWith("com.google.inject.");
+        boolean _startsWith_11 = name.startsWith("org.junit.");
         if (_startsWith_11) {
-          _matched=true;
-          _switchResult = "http://google-guice.googlecode.com/git/javadoc/";
-        }
-      }
-      if (!_matched) {
-        boolean _startsWith_12 = name.startsWith("org.junit.");
-        if (_startsWith_12) {
           _matched=true;
           _switchResult = "http://junit.sourceforge.net/javadoc/";
         }
       }
       if (!_matched) {
-        boolean _startsWith_13 = name.startsWith("org.eclipse.");
-        if (_startsWith_13) {
+        boolean _startsWith_12 = name.startsWith("org.eclipse.");
+        if (_startsWith_12) {
           _matched=true;
           _switchResult = "http://help.eclipse.org/helios/topic/org.eclipse.platform.doc.isv/reference/api/";
         }
