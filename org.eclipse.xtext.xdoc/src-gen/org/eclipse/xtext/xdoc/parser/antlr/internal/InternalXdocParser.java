@@ -10697,38 +10697,23 @@ public class InternalXdocParser extends AbstractInternalAntlrParser {
     static final String DFA91_specialS =
         "\21\uffff}>";
     static final String[] DFA91_transitionS = {
-            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3"+
-            "\uffff\3\5\10\uffff\1\5",
-            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3"+
-            "\uffff\3\5\10\uffff\1\5",
-            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3"+
-            "\uffff\3\5\10\uffff\1\5",
-            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3"+
-            "\uffff\3\5\10\uffff\1\5",
-            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5"+
-            "\3\uffff\3\5\10\uffff\1\5",
+            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
+            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
+            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
+            "\1\3\1\1\1\4\1\2\1\5\2\uffff\1\5\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
             "",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1"+
-            "\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
-            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5"+
-            "\3\uffff\3\5\10\uffff\1\5",
-            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5"+
-            "\3\uffff\3\5\10\uffff\1\5",
-            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5"+
-            "\3\uffff\3\5\10\uffff\1\5",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1"+
-            "\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
-            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1"+
-            "\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
-            "\1\16\1\15\1\5\1\17\1\5\2\uffff\1\5\2\uffff\1\5\1\15\2\5\1"+
-            "\uffff\24\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
+            "\1\10\1\7\1\5\1\11\1\5\2\uffff\1\6\7\uffff\1\5\15\uffff\5\5\3\uffff\3\5\10\uffff\1\5",
+            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\12\1\14\1\5\1\13\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\16\1\15\1\5\1\17\1\5\2\uffff\1\5\2\uffff\1\5\1\15\2\5\1\uffff\24\5\2\uffff\5\5\1\uffff\6\5",
             "",
-            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1"+
-            "\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
-            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1"+
-            "\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
-            "\1\16\1\15\1\5\1\17\1\5\5\uffff\1\5\1\15\2\5\1\uffff\24\5\2"+
-            "\uffff\5\5\1\uffff\6\5"
+            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\16\1\20\1\5\1\17\1\5\2\uffff\1\5\3\uffff\1\15\3\uffff\1\5\15\uffff\6\5\2\uffff\5\5\1\uffff\6\5",
+            "\1\16\1\15\1\5\1\17\1\5\5\uffff\1\5\1\15\2\5\1\uffff\24\5\2\uffff\5\5\1\uffff\6\5"
     };
 
     static final short[] DFA91_eot = DFA.unpackEncodedString(DFA91_eotS);

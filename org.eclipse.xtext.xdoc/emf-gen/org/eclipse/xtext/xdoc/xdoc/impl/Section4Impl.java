@@ -12,7 +12,6 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * An implementation of the model object '<em><b>Section4</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

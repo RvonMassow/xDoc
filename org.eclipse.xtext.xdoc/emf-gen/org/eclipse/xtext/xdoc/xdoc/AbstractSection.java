@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection#getTitle <em>Title</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.AbstractSection#getContents <em>Contents</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getAbstractSection()
  * @model

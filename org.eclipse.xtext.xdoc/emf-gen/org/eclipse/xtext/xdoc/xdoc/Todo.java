@@ -10,10 +10,10 @@ package org.eclipse.xtext.xdoc.xdoc;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Todo#getText <em>Text</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getTodo()
  * @model

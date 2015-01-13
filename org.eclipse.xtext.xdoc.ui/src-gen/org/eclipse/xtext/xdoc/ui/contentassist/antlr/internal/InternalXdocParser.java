@@ -8,8 +8,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
-import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
-import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
+import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
+import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.DFA;
 import org.eclipse.xtext.xdoc.services.XdocGrammarAccess;
 
 
@@ -34245,54 +34245,31 @@ public class InternalXdocParser extends AbstractInternalContentAssistParser {
     static final String DFA98_specialS =
         "\31\uffff}>";
     static final String[] DFA98_transitionS = {
-            "\1\4\1\3\1\2\1\5\1\1\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7"+
-            "\uffff\1\5",
-            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5"+
-            "\7\uffff\1\5",
-            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5"+
-            "\7\uffff\1\5",
-            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5"+
-            "\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3"+
-            "\5\7\uffff\1\5",
+            "\1\4\1\3\1\2\1\5\1\1\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7\uffff\1\5",
+            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7\uffff\1\5",
+            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7\uffff\1\5",
+            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7\uffff\1\5",
+            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3\5\7\uffff\1\5",
             "",
-            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3"+
-            "\5\7\uffff\1\5",
-            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5"+
-            "\7\uffff\1\5",
-            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5"+
-            "\7\uffff\1\5",
-            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5"+
-            "\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3"+
-            "\5\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3"+
-            "\5\7\uffff\1\5",
-            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3"+
-            "\5\7\uffff\1\5",
-            "\1\5\1\20\1\17\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\22\1\23\1\5\1\21\1\uffff\15\5\1\uffff\1\5\2\uffff\1"+
-            "\5\1\21\1\5\1\uffff\11\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3\5\7\uffff\1\5",
+            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7\uffff\1\5",
+            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7\uffff\1\5",
+            "\1\6\1\10\1\11\1\5\1\7\7\uffff\6\5\2\uffff\1\5\21\uffff\3\5\7\uffff\1\5",
+            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3\5\7\uffff\1\5",
+            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3\5\7\uffff\1\5",
+            "\1\5\1\13\1\14\1\5\1\12\7\uffff\6\5\2\uffff\1\15\21\uffff\3\5\7\uffff\1\5",
+            "\1\5\1\20\1\17\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\22\1\23\1\5\1\21\1\uffff\15\5\1\uffff\1\5\2\uffff\1\5\1\21\1\5\1\uffff\11\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
             "",
-            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21"+
-            "\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
-            "\1\5\1\22\1\23\1\5\1\21\1\uffff\15\5\4\uffff\1\5\1\21\1\5\1"+
-            "\uffff\11\5\2\uffff\5\5\1\uffff\5\5"
+            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\25\1\24\1\5\1\16\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\26\1\27\1\5\1\30\7\uffff\7\5\1\uffff\1\5\3\uffff\1\21\12\uffff\1\5\2\uffff\5\5\1\uffff\5\5",
+            "\1\5\1\22\1\23\1\5\1\21\1\uffff\15\5\4\uffff\1\5\1\21\1\5\1\uffff\11\5\2\uffff\5\5\1\uffff\5\5"
     };
 
     static final short[] DFA98_eot = DFA.unpackEncodedString(DFA98_eotS);

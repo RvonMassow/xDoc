@@ -12,7 +12,6 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * An implementation of the model object '<em><b>Anchor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * </p>
  *
  * @generated
  */

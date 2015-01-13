@@ -8,8 +8,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractFileSystemAccess;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
+import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.xdoc.XdocInjectorProvider;
 import org.eclipse.xtext.xdoc.generator.AbstractSectionExtension;
 import org.eclipse.xtext.xdoc.generator.HtmlGenerator;
 import org.eclipse.xtext.xdoc.generator.Outlets;
@@ -24,9 +26,11 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup;
 import org.eclipse.xtext.xdoc.xdoc.TextPart;
 import org.eclipse.xtext.xdoc.xdoc.XdocFactory;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
+import org.junit.Test;
 
 import com.google.inject.Inject;
 
+@InjectWith(XdocInjectorProvider.class)
 public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 
 	public static String HTML_SRC = "html" + File.separator;
@@ -37,14 +41,17 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 	private HTMLNamingExtensions naming;
 	@Inject
 	private AbstractSectionExtension utils;
+	@Inject
+	JavaIoFileSystemAccess fsa;
 
 	protected void generate(Document obj) throws Exception {
-		AbstractFileSystemAccess fsa = new JavaIoFileSystemAccess();
 		fsa.setOutputPath(Outlets.WEB_SITE, Outlets.WEB_SITE_PATH_NAME);
-		fsa.setOutputPath(System.getProperty("user.dir") + File.separatorChar+"test-gen"+ File.separatorChar+ "html" + File.separatorChar);
+		fsa.setOutputPath(System.getProperty("user.dir") + File.separatorChar + "test-gen" + File.separatorChar
+				+ "html" + File.separatorChar);
 		generator.generate(obj, fsa);
 	}
 
+	@Test
 	public void testGenerationAllFilesFullHirarchy() throws Exception {
 		String resName = "downToSection4Test";
 		Document doc = createDocumentFrom(HTML_SRC + resName + ".xdoc");
@@ -53,49 +60,46 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		for (AbstractSection as : doc.getChapters()) {
 			generate(as);
 			assertGenerated(as);
-			for(AbstractSection next: utils.sections(as)){
+			for (AbstractSection next : utils.sections(as)) {
 				generate(next);
 				assertGenerated(next);
 			}
 		}
 	}
 
-//	public void testHeader() throws Exception {
-//		Document doc = initDoc("foo");
-//		String expected = "<head>\n" +
-//    			"  <META http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n" +
-//				"  <title>foo</title>\n" +
-//				"  <link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
-//				"  <link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
-//				"</head>\n";
-//		String actual = generator.header(doc.getTitle()).toString();
-//		assertEquals(expected, actual);
-//	}
+	// public void testHeader() throws Exception {
+	// Document doc = initDoc("foo");
+	// String expected = "<head>\n" +
+	// "  <META http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n"
+	// +
+	// "  <title>foo</title>\n" +
+	// "  <link href=\"book.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+	// "  <link href=\"code.css\" rel=\"stylesheet\" type=\"text/css\">\n" +
+	// "</head>\n";
+	// String actual = generator.header(doc.getTitle()).toString();
+	// assertEquals(expected, actual);
+	// }
 
-//	public void testEmptyBody() throws Exception {
-//		Document doc = initDoc("foo");
-//		String expected = "<body>\n" +
-//				"</body>\n";
-//		String actual = generator.body(doc).toString();
-//		assertEquals(expected, actual);
-//	}
-
+	// public void testEmptyBody() throws Exception {
+	// Document doc = initDoc("foo");
+	// String expected = "<body>\n" +
+	// "</body>\n";
+	// String actual = generator.body(doc).toString();
+	// assertEquals(expected, actual);
+	// }
+	@Test
 	public void testToc() throws Exception {
-		Document doc = createDocumentFrom(HTML_SRC+ "downToSection4Test.xdoc");
-		String expected = "<div class=\"toc\" >\n" +
-				"  <ol>\n" +
-				"    <li><a href=\"downToSection4Test-0.html\" >bar</a>\n" +
-				"    <ol>\n" +
-				"      <li><a href=\"downToSection4Test-0-0.html\" >foo</a></li>\n" +
-				"      <li><a href=\"downToSection4Test-0-1.html\" >atom</a></li>\n" +
-				"    </ol>\n" +
-				"    </li>\n" +
-				"  </ol>\n" +
-				"</div>\n";
+		Document doc = createDocumentFrom(HTML_SRC + "downToSection4Test.xdoc");
+		String expected = "<div class=\"toc\" >\n" + "  <ol>\n"
+				+ "    <li><a href=\"downToSection4Test-0.html\" >bar</a>\n" + "    <ol>\n"
+				+ "      <li><a href=\"downToSection4Test-0-0.html\" >foo</a></li>\n"
+				+ "      <li><a href=\"downToSection4Test-0-1.html\" >atom</a></li>\n" + "    </ol>\n" + "    </li>\n"
+				+ "  </ol>\n" + "</div>\n";
 		String actual = generator.toc(doc).toString();
 		assertEquals(expected, actual);
 	}
 
+	@Test
 	public void testEm() throws Exception {
 		XdocFactory fac = XdocFactory.eINSTANCE;
 		Emphasize emphasize = fac.createEmphasize();
@@ -113,14 +117,7 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 		textPart2.setText("more test");
 		textOrMarkup2.getContents().add(textPart2);
 		emphasize.getContents().add(textOrMarkup2);
-		expected = "<em>\n" +
-				"<p>\n" +
-				"Testtext_\n" +
-				"</p>\n" +
-				"<p>\n" +
-				"more test\n" +
-				"</p>\n" +
-				"</em>";
+		expected = "<em>\n" + "<p>\n" + "Testtext_\n" + "</p>\n" + "<p>\n" + "more test\n" + "</p>\n" + "</em>";
 		actual = generator.genText(emphasize).toString();
 		assertEquals(expected, actual);
 	}
@@ -218,12 +215,13 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 	public void testTwoChapters() throws Exception {
 		XtextResourceSet set = get(XtextResourceSet.class);
 		Resource res = set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "01-twoChapters.xdoc"), true);
-		Chapter chapter0 = (Chapter) ((XdocFile) getModel((XtextResource)res)).getMainSection();
+		Chapter chapter0 = (Chapter) ((XdocFile) getModel((XtextResource) res)).getMainSection();
 		res = set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "02-twoChapters.xdoc"), true);
-		Chapter chapter1 = (Chapter) ((XdocFile) getModel((XtextResource)res)).getMainSection();
-		XdocFile file = (XdocFile) getModel((XtextResource)set.getResource(URI.createURI(ParserTest.TEST_FILE_DIR + "twoChaptersDoc.xdoc"), true));
+		Chapter chapter1 = (Chapter) ((XdocFile) getModel((XtextResource) res)).getMainSection();
+		XdocFile file = (XdocFile) getModel((XtextResource) set.getResource(
+				URI.createURI(ParserTest.TEST_FILE_DIR + "twoChaptersDoc.xdoc"), true));
 		Document doc = (Document) file.getMainSection();
-		for(int i = 0; i < doc.getChapters().size(); i++) {
+		for (int i = 0; i < doc.getChapters().size(); i++) {
 			Chapter chapter = doc.getChapters().get(i);
 			generate(chapter);
 		}
@@ -247,11 +245,10 @@ public class HTMLGeneratorTest extends AbstractXdocGeneratorTest {
 	}
 
 	@Override
-	protected Document initDocFromFile(String string, String filename)
-			throws Exception {
+	protected Document initDocFromFile(String string, String filename) throws Exception {
 		Document doc = super.initDocFromFile(string, HTML_SRC + filename);
 		URI uri = doc.eResource().getURI();
-		URI appendSegment = uri.trimSegments(1).appendSegment(string+".xdoc");
+		URI appendSegment = uri.trimSegments(1).appendSegment(string + ".xdoc");
 		doc.eResource().setURI(appendSegment);
 		return doc;
 	}

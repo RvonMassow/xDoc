@@ -13,10 +13,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.TableRow#getData <em>Data</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getTableRow()
  * @model

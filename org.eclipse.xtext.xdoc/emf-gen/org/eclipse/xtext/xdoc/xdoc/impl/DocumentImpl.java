@@ -30,7 +30,9 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * An implementation of the model object '<em><b>Document</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getSubtitle <em>Subtitle</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getAuthors <em>Authors</em>}</li>
@@ -39,7 +41,6 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getGlossary <em>Glossary</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.DocumentImpl#getParts <em>Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

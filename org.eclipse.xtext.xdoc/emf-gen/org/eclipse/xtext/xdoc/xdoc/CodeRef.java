@@ -11,11 +11,11 @@ import org.eclipse.xtext.common.types.JvmDeclaredType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.CodeRef#getElement <em>Element</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.CodeRef#getAltText <em>Alt Text</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getCodeRef()
  * @model

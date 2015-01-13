@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Ref#getRef <em>Ref</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Ref#getContents <em>Contents</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getRef()
  * @model

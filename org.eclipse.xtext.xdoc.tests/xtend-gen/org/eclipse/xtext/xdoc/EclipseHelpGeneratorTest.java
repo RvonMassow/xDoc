@@ -4,13 +4,12 @@ import java.io.File;
 import javax.inject.Inject;
 import junit.framework.Assert;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtext.builder.EclipseResourceFileSystemAccess2;
+import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Pair;
-import org.eclipse.xtext.xdoc.XdocInjectorProvider;
+import org.eclipse.xtext.xdoc.XdocUiInjectorProvider;
 import org.eclipse.xtext.xdoc.generator.EclipseHelpGenerator;
 import org.eclipse.xtext.xdoc.generator.StatefulEclipseHelpGenerator;
 import org.eclipse.xtext.xdoc.util.GeneratorTestConstants;
@@ -19,11 +18,12 @@ import org.eclipse.xtext.xdoc.util.ParserTestConstants;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(XtextRunner.class)
-@InjectWith(XdocInjectorProvider.class)
+@InjectWith(XdocUiInjectorProvider.class)
 @SuppressWarnings("all")
 public class EclipseHelpGeneratorTest {
   @Inject
@@ -38,10 +38,11 @@ public class EclipseHelpGeneratorTest {
   private StatefulEclipseHelpGenerator stateFullGen;
   
   @Inject
-  private EclipseResourceFileSystemAccess2 fsa;
+  private JavaIoFileSystemAccess fsa;
   
   @Test
   public void testRef() {
+    this.fsa.setOutputPath(GeneratorTestConstants.TARGET_DIR);
     XdocFile _doc = this.getDoc("aRefTest.xdoc");
     Resource _eResource = _doc.eResource();
     this._eclipseHelpGenerator.doGenerate(_eResource, this.fsa);
@@ -50,16 +51,12 @@ public class EclipseHelpGeneratorTest {
     Assert.assertTrue(_exists);
   }
   
-  public Pair<String, Integer> testGenCode() throws Exception {
-    Pair<String, Integer> _xblockexpression = null;
-    {
-      final XdocFile file = this.getDoc((ParserTestConstants.TEST_FILE_DIR + "codeTest.xdoc"));
-      AbstractSection _mainSection = file.getMainSection();
-      final Document doc = ((Document) _mainSection);
-      this.stateFullGen.generate(doc);
-      _xblockexpression = Pair.<String, Integer>of("foo", Integer.valueOf(3));
-    }
-    return _xblockexpression;
+  @Ignore
+  public void testGenCode() throws Exception {
+    final XdocFile file = this.getDoc("codeTest.xdoc");
+    AbstractSection _mainSection = file.getMainSection();
+    final Document doc = ((Document) _mainSection);
+    this.stateFullGen.generate(doc);
   }
   
   public XdocFile getDoc(final String fileName) {

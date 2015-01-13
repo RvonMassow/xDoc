@@ -25,11 +25,12 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * An implementation of the model object '<em><b>Table Data</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.TableDataImpl#getContents <em>Contents</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -13,12 +13,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.GlossaryEntry#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getGlossaryEntry()
  * @model

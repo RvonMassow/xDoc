@@ -27,12 +27,13 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * An implementation of the model object '<em><b>Code Block</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#getContents <em>Contents</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.CodeBlockImpl#getLanguage <em>Language</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

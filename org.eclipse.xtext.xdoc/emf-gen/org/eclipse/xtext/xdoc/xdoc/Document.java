@@ -11,6 +11,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getSubtitle <em>Subtitle</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getAuthors <em>Authors</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getGlossary <em>Glossary</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.Document#getParts <em>Parts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getDocument()
  * @model

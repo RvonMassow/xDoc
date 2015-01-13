@@ -13,6 +13,7 @@
 	<modules>
 		<module>org.eclipse.xtext.xdoc</module>
 		<module>org.eclipse.xtext.xdoc.generator</module>
+		<module>org.eclipse.xtext.xdoc.tests</module>
 		<module>org.eclipse.xtext.xdoc.ui</module>
 		<module>org.eclipse.xtext.xdoc.feature</module>
 		<module>org.eclipse.xtext.xdoc.releng</module>

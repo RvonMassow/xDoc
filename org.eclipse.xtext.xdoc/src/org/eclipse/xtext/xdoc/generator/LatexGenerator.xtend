@@ -7,7 +7,9 @@ import java.nio.channels.Channels
 import java.util.HashMap
 import java.util.HashSet
 import java.util.List
+import javax.imageio.ImageIO
 import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.EClass
 import org.eclipse.emf.ecore.EObject
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess
@@ -45,14 +47,11 @@ import org.eclipse.xtext.xdoc.xdoc.TextOrMarkup
 import org.eclipse.xtext.xdoc.xdoc.TextPart
 import org.eclipse.xtext.xdoc.xdoc.Todo
 import org.eclipse.xtext.xdoc.xdoc.UnorderedList
+import org.eclipse.xtext.xdoc.xdoc.XdocPackage
 
 import static extension org.eclipse.xtext.xdoc.generator.util.LatexUtils.*
 import static extension org.eclipse.xtext.xdoc.generator.util.StringUtils.*
-import static extension org.eclipse.xtext.xbase.lib.IterableExtensions.*
 import static extension org.eclipse.xtext.xdoc.generator.util.numeric.XFloatExtensions.*
-import javax.imageio.ImageIO
-import org.eclipse.emf.ecore.EClass
-import org.eclipse.xtext.xdoc.xdoc.XdocPackage
 
 class LatexGenerator implements IConfigurableGenerator {
 
@@ -547,7 +546,7 @@ class LatexGenerator implements IConfigurableGenerator {
 	def boolean containerTypeOf(EObject obj, EClass c) {
 		if(obj.eClass == c) {
 			true
-		} else if(obj.eContainer.eClass == XdocPackage$Literals::XDOC_FILE) {
+		} else if(obj.eContainer.eClass == XdocPackage.Literals::XDOC_FILE) {
 			false
 		} else {
 			obj.eContainer.containerTypeOf(c)

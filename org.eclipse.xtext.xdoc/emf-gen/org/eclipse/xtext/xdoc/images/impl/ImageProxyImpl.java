@@ -17,11 +17,12 @@ import org.eclipse.xtext.xdoc.images.ImagesPackage;
  * An implementation of the model object '<em><b>Image Proxy</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.images.impl.ImageProxyImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

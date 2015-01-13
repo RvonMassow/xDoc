@@ -11,6 +11,7 @@ import org.eclipse.xtext.xdoc.images.ImageProxy;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.ImageRef#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.ImageRef#getPath <em>Path</em>}</li>
@@ -19,7 +20,6 @@ import org.eclipse.xtext.xdoc.images.ImageProxy;
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.ImageRef#getCaption <em>Caption</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.ImageRef#getImage <em>Image</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.xtext.xdoc.xdoc.XdocPackage#getImageRef()
  * @model

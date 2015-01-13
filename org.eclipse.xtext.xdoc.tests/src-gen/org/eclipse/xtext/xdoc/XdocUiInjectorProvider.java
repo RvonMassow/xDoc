@@ -9,6 +9,7 @@ import com.google.inject.Injector;
 
 public class XdocUiInjectorProvider implements IInjectorProvider {
 	
+	@Override
 	public Injector getInjector() {
 		return org.eclipse.xtext.xdoc.ui.internal.XdocActivator.getInstance().getInjector("org.eclipse.xtext.xdoc.Xdoc");
 	}

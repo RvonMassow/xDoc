@@ -2,13 +2,14 @@ package org.eclipse.xtext.xdoc.tests;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonToken;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.Lexer;
 import org.eclipse.xtext.parser.antlr.LexerBindings;
 import org.eclipse.xtext.util.Pair;
 import org.eclipse.xtext.util.Tuples;
 import org.eclipse.xtext.xdoc.XdocStandaloneSetup;
+import org.junit.Test;
 
 import com.google.inject.Key;
 import com.google.inject.name.Names;
@@ -16,16 +17,18 @@ import com.google.inject.name.Names;
 public class LexerTest extends AbstractXtextTests {
 
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(new XdocStandaloneSetup());
 	}
 
 	@SuppressWarnings("unchecked")
+	@Test
 	public void testMULTI_NL() throws Exception {
 		checkTokens(Tuples.create("RULE_MULTI_NL","\n\n"));
 	}
 	@SuppressWarnings("unchecked")
+	@Test
 	public void testMULTI_NL_1() throws Exception {
 		checkTokens(Tuples.create("RULE_MULTI_NL","\n\n"),
 				Tuples.create("RULE_WS"," "));

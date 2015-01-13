@@ -401,12 +401,15 @@ public class GitExtensions {
       Class<? extends GitExtensions> _class = this.getClass();
       ClassLoader _classLoader = _class.getClassLoader();
       final URL url = _classLoader.getResource(javaFileName);
-      String traceFile = this.calculateTraceFileName(url, javaFileName, qualifiedName);
-      TraceRegionSerializer _traceRegionSerializer = new TraceRegionSerializer();
-      FileInputStream _fileInputStream = new FileInputStream(traceFile);
-      final AbstractTraceRegion traceRegion = _traceRegionSerializer.readTraceRegionFrom(_fileInputStream);
-      URI _associatedPath = traceRegion.getAssociatedPath();
-      return _associatedPath.toString();
+      boolean _notEquals = (!Objects.equal(url, null));
+      if (_notEquals) {
+        String traceFile = this.calculateTraceFileName(url, javaFileName, qualifiedName);
+        TraceRegionSerializer _traceRegionSerializer = new TraceRegionSerializer();
+        FileInputStream _fileInputStream = new FileInputStream(traceFile);
+        final AbstractTraceRegion traceRegion = _traceRegionSerializer.readTraceRegionFrom(_fileInputStream);
+        URI _associatedPath = traceRegion.getAssociatedPath();
+        return _associatedPath.toString();
+      }
     } catch (final Throwable _t) {
       if (_t instanceof IOException) {
         final IOException e = (IOException)_t;

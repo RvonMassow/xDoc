@@ -26,12 +26,13 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * An implementation of the model object '<em><b>Abstract Section</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl#getTitle <em>Title</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.AbstractSectionImpl#getContents <em>Contents</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

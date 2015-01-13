@@ -28,13 +28,14 @@ import org.eclipse.xtext.xdoc.xdoc.XdocPackage;
  * An implementation of the model object '<em><b>Glossary Entry</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.GlossaryEntryImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.GlossaryEntryImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.xtext.xdoc.xdoc.impl.GlossaryEntryImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
