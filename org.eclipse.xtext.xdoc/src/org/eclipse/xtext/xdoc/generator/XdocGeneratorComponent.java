@@ -1,6 +1,6 @@
 package org.eclipse.xtext.xdoc.generator;
 
-import static com.google.common.collect.Lists.*;
+import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 
 import java.util.List;
@@ -15,6 +15,7 @@ import org.eclipse.xtext.generator.GeneratorComponent;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.xdoc.generator.config.Config;
+
 import com.google.inject.Injector;
 
 public class XdocGeneratorComponent extends GeneratorComponent{

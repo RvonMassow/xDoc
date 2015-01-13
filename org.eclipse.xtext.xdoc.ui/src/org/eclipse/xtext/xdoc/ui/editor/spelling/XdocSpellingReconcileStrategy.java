@@ -1,10 +1,10 @@
 package org.eclipse.xtext.xdoc.ui.editor.spelling;
 
+import static org.eclipse.xtext.xdoc.ui.editor.model.XdocTerminalsTokenTypeToPartitionMapper.TEXT_PARTITION;
+
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.xtext.ui.editor.reconciler.XtextSpellingReconcileStrategy;
-
-import static org.eclipse.xtext.xdoc.ui.editor.model.XdocTerminalsTokenTypeToPartitionMapper.TEXT_PARTITION;
 
 public class XdocSpellingReconcileStrategy extends
 		XtextSpellingReconcileStrategy {

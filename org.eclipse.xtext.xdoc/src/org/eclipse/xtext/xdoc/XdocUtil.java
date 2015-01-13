@@ -2,6 +2,7 @@ package org.eclipse.xtext.xdoc;
 
 import java.util.Collection;
 import java.util.Hashtable;
+
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;

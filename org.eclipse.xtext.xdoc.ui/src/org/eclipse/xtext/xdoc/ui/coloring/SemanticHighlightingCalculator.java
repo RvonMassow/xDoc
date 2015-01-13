@@ -8,6 +8,18 @@
  *******************************************************************************/
 package org.eclipse.xtext.xdoc.ui.coloring;
 
+import static com.google.common.collect.Sets.newHashSet;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.ABSTRACT_SECTION__TITLE;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.CHAPTER;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.CODE_BLOCK;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.CODE_BLOCK__CONTENTS;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.EMPHASIZE;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.EMPHASIZE__CONTENTS;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION2;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION3;
+import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.SECTION4;
+
 import java.util.List;
 import java.util.Set;
 
@@ -34,9 +46,6 @@ import org.eclipse.xtext.xdoc.xdoc.Section;
 import org.eclipse.xtext.xdoc.xdoc.Section2;
 import org.eclipse.xtext.xdoc.xdoc.Section3;
 import org.eclipse.xtext.xdoc.xdoc.Section4;
-
-import static com.google.common.collect.Sets.*;
-import static org.eclipse.xtext.xdoc.xdoc.XdocPackage.Literals.*;
 
 public class SemanticHighlightingCalculator implements ISemanticHighlightingCalculator {
 

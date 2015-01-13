@@ -3,7 +3,6 @@ package org.eclipse.xtext.xdoc.tests;
 import java.io.File;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.generator.AbstractFileSystemAccess;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.xdoc.XdocInjectorProvider;

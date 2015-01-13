@@ -1,10 +1,10 @@
 package org.eclipse.xtext.xdoc.tests.generator.util
 
+import java.net.URL
 import org.eclipse.xtext.xdoc.generator.util.GitExtensions
 import org.junit.Test
 
 import static org.junit.Assert.*
-import java.net.URL
 
 class GitExtensionsTest {
 

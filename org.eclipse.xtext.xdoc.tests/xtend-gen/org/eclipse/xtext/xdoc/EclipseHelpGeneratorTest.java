@@ -2,7 +2,6 @@ package org.eclipse.xtext.xdoc;
 
 import java.io.File;
 import javax.inject.Inject;
-import junit.framework.Assert;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.JavaIoFileSystemAccess;
 import org.eclipse.xtext.junit4.InjectWith;
@@ -18,6 +17,7 @@ import org.eclipse.xtext.xdoc.util.ParserTestConstants;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Document;
 import org.eclipse.xtext.xdoc.xdoc.XdocFile;
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

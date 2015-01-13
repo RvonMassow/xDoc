@@ -17,7 +17,7 @@ import org.junit.runner.RunWith
 import static org.eclipse.xtext.xdoc.util.GeneratorTestConstants.*
 import static org.eclipse.xtext.xdoc.util.ParserTestConstants.*
 
-import static extension junit.framework.Assert.*
+import static extension org.junit.Assert.*
 
 @RunWith(typeof(XtextRunner))
 @InjectWith(typeof(XdocUiInjectorProvider))

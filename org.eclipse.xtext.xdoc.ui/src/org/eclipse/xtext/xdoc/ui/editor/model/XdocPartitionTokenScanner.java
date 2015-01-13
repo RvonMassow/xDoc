@@ -1,7 +1,8 @@
 package org.eclipse.xtext.xdoc.ui.editor.model;
 
-import org.eclipse.xtext.ui.editor.model.PartitionTokenScanner;
 import static org.eclipse.xtext.xdoc.ui.editor.model.XdocTerminalsTokenTypeToPartitionMapper.TEXT_PARTITION;
+
+import org.eclipse.xtext.ui.editor.model.PartitionTokenScanner;
 
 public class XdocPartitionTokenScanner extends PartitionTokenScanner {
 	@Override

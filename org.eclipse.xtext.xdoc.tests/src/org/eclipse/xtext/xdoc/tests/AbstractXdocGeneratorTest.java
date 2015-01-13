@@ -23,7 +23,6 @@ import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xdoc.XdocInjectorProvider;
-import org.eclipse.xtext.xdoc.generator.Outlets;
 import org.eclipse.xtext.xdoc.xdoc.AbstractSection;
 import org.eclipse.xtext.xdoc.xdoc.Chapter;
 import org.eclipse.xtext.xdoc.xdoc.Document;
@@ -80,23 +79,30 @@ public abstract class AbstractXdocGeneratorTest extends org.eclipse.xtext.junit4
 	abstract protected void generate(EObject eObject);
 
 	protected void validate(String expected, String result) throws Exception {
-		FileChannel expF = new FileInputStream(expected).getChannel();
-		FileChannel resultF = new FileInputStream(result).getChannel();
-		ByteBuffer bExp = ByteBuffer.allocateDirect((int) expF.size());
-		ByteBuffer bResult = ByteBuffer.allocateDirect((int) resultF.size());
-		assertEquals(bExp.capacity(), bResult.capacity());
-		expF.read(bExp);
-		bExp.rewind();
-		resultF.read(bResult);
-		bResult.rewind();
-		if (bExp.compareTo(bResult) != 0) {
-			for (int i = 0; bExp.hasRemaining() || bResult.hasRemaining(); i++) {
-				char a = (char) bExp.get();
-				char b = (char) bResult.get();
-				if (a != b) {
-					fail("Expected " + a + " but was " + b + " at position " + bExp.position());
+		FileInputStream fileInputStream = new FileInputStream(expected);
+		FileInputStream fileInputStream2 = new FileInputStream(result);
+		try {
+			FileChannel expF = fileInputStream.getChannel();
+			FileChannel resultF = fileInputStream2.getChannel();
+			ByteBuffer bExp = ByteBuffer.allocateDirect((int) expF.size());
+			ByteBuffer bResult = ByteBuffer.allocateDirect((int) resultF.size());
+			assertEquals(bExp.capacity(), bResult.capacity());
+			expF.read(bExp);
+			bExp.rewind();
+			resultF.read(bResult);
+			bResult.rewind();
+			if (bExp.compareTo(bResult) != 0) {
+				while (bExp.hasRemaining() || bResult.hasRemaining()) {
+					char a = (char) bExp.get();
+					char b = (char) bResult.get();
+					if (a != b) {
+						fail("Expected " + a + " but was " + b + " at position " + bExp.position());
+					}
 				}
 			}
+		} finally {
+			fileInputStream.close();
+			fileInputStream2.close();
 		}
 	}
 

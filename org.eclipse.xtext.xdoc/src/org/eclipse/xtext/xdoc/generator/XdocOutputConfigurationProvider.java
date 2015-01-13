@@ -1,11 +1,11 @@
 package org.eclipse.xtext.xdoc.generator;
 
+import static com.google.common.collect.Sets.newHashSet;
+
 import java.util.Set;
 
 import org.eclipse.xtext.generator.OutputConfiguration;
 import org.eclipse.xtext.generator.OutputConfigurationProvider;
-
-import static com.google.common.collect.Sets.*;
 
 public class XdocOutputConfigurationProvider extends
 		OutputConfigurationProvider {
