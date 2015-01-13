@@ -23,3 +23,6 @@ target
 
 # ignore trace files
 *.java._trace
+
+# ignore temporary xtend bin files
+*.xtendbin

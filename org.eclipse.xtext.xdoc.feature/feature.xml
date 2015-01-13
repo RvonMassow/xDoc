@@ -17,10 +17,11 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.xtext.sdk" version="2.0.0.qualifier" match="greaterOrEqual"/>
       <import plugin="org.apache.commons.lang"/>
       <import plugin="org.apache.commons.logging"/>
       <import plugin="org.apache.log4j"/>
+      <import feature="org.eclipse.xtext.runtime" version="2.8.0.v201501110339"/>
+      <import feature="org.eclipse.xtext.ui" version="2.8.0.v201501110339"/>
    </requires>
 
    <plugin

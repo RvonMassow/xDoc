@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature  id="org.eclipse.xtext.xdoc.feature" version="0.1.0.qualifier">
+      <category name="xDoc"/>
+   </feature>
+   <feature  id="org.eclipse.xtext.xdoc.feature.source" version="0.1.0.qualifier">
+      <category name="xDoc"/>
+   </feature>
+   <category-def name="xDoc" label="Xdoc"/>
+</site>

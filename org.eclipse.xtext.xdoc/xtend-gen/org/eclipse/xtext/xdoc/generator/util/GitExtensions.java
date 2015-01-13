@@ -405,6 +405,7 @@ public class GitExtensions {
       Class<? extends GitExtensions> _class = this.getClass();
       ClassLoader _classLoader = _class.getClassLoader();
       final URL url = _classLoader.getResource(javaFileName);
+      String traceFile = null;
       String _string = url.toString();
       boolean _contains = _string.contains(("bin/" + javaFileName));
       if (_contains) {
@@ -414,13 +415,18 @@ public class GitExtensions {
         String _plus_2 = (_plus_1 + "/.");
         String _plus_3 = (_plus_2 + simpleName);
         String _plus_4 = (_plus_3 + ".java._trace");
-        final String traceFile = _file.replace(("bin/" + javaFileName), _plus_4);
-        TraceRegionSerializer _traceRegionSerializer = new TraceRegionSerializer();
-        FileInputStream _fileInputStream = new FileInputStream(traceFile);
-        final AbstractTraceRegion traceRegion = _traceRegionSerializer.readTraceRegionFrom(_fileInputStream);
-        URI _associatedPath = traceRegion.getAssociatedPath();
-        return _associatedPath.toString();
+        String _replace_2 = _file.replace(("bin/" + javaFileName), _plus_4);
+        traceFile = _replace_2;
+      } else {
+        String _file_1 = url.getFile();
+        String _replace_3 = _file_1.replace(".class", ".java._trace");
+        traceFile = _replace_3;
       }
+      TraceRegionSerializer _traceRegionSerializer = new TraceRegionSerializer();
+      FileInputStream _fileInputStream = new FileInputStream(traceFile);
+      final AbstractTraceRegion traceRegion = _traceRegionSerializer.readTraceRegionFrom(_fileInputStream);
+      URI _associatedPath = traceRegion.getAssociatedPath();
+      return _associatedPath.toString();
     } catch (final Throwable _t) {
       if (_t instanceof IOException) {
         final IOException e = (IOException)_t;
@@ -428,7 +434,7 @@ public class GitExtensions {
         throw Exceptions.sneakyThrow(_t);
       }
     }
-    String _replace_2 = qualifiedName.replace(".", "/");
-    return (_replace_2 + ".java");
+    String _replace_4 = qualifiedName.replace(".", "/");
+    return (_replace_4 + ".java");
   }
 }

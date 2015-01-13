@@ -87,11 +87,14 @@ class GitExtensions {
 			val packageName = qualifiedName.substring(0, qualifiedName.lastIndexOf('.'))
 			val javaFileName = qualifiedName.replace('.','/')+".class"
 			val url = getClass.getClassLoader.getResource(javaFileName)
+			var String traceFile = null;
 			if (url.toString.contains('bin/'+javaFileName)) {
-				val traceFile = url.file.replace('bin/'+javaFileName, 'xtend-gen/'+packageName.replace('.','/')+"/."+simpleName+".java._trace")
-				val traceRegion = new TraceRegionSerializer().readTraceRegionFrom(new FileInputStream(traceFile));
-				return traceRegion.associatedPath.toString
+				 traceFile = url.file.replace('bin/'+javaFileName, 'xtend-gen/'+packageName.replace('.','/')+"/."+simpleName+".java._trace")
+			} else {
+				 traceFile = url.file.replace('.class', ".java._trace")
 			}
+			val traceRegion = new TraceRegionSerializer().readTraceRegionFrom(new FileInputStream(traceFile));
+			return traceRegion.associatedPath.toString
 		} catch (IOException e) {
 		}
 		return qualifiedName.replace('.', '/')+'.java'
