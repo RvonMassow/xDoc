@@ -1,6 +1,5 @@
 package org.eclipse.xtext.xdoc.generator.util
 
-import java.io.FileInputStream
 import java.io.IOException
 import java.net.URL
 import org.eclipse.emf.ecore.util.EcoreUtil
@@ -114,9 +113,8 @@ class GitExtensions {
 					val javaFileName = qualifiedName.replace('.', '/') + ".class"
 					val url = getClass.getClassLoader.getResource(javaFileName)
 					if (url != null) {
-						var String traceFile = calculateTraceFileName(url, javaFileName, qualifiedName)
-						val traceRegion = new TraceRegionSerializer().readTraceRegionFrom(
-							new FileInputStream(traceFile));
+						var URL traceFile = calculateTraceFileName(url, javaFileName, qualifiedName)
+						val traceRegion = new TraceRegionSerializer().readTraceRegionFrom(traceFile.openStream);
 						return traceRegion.associatedPath.toString
 					}
 				} catch (IOException e) {
@@ -124,15 +122,15 @@ class GitExtensions {
 				return qualifiedName.replace('.', '/') + '.java'
 			}
 
-			def String calculateTraceFileName(URL classFileURL, String classFileName, String qualifiedName) {
+			def URL calculateTraceFileName(URL classFileURL, String classFileName, String qualifiedName) {
 				val simpleName = qualifiedName.substring(qualifiedName.lastIndexOf('.') + 1)
 				val packageName = qualifiedName.substring(0, qualifiedName.lastIndexOf('.'))
-				var String traceFile = null;
+				var URL traceFile = null;
 				if (classFileURL.toString.contains('bin/' + classFileName)) {
-					traceFile = classFileURL.file.replace('bin/' + classFileName,
-						'xtend-gen/' + packageName.replace('.', '/') + "/." + simpleName + ".java._trace")
+					traceFile = new URL(classFileURL.toString.replace('bin/' + classFileName,
+						'xtend-gen/' + packageName.replace('.', '/') + "/." + simpleName + ".java._trace"))
 				} else {
-					traceFile = classFileURL.toString.replace(simpleName + '.class', "." + simpleName + ".java._trace")
+					traceFile = new URL(classFileURL.toString.replace(simpleName + '.class', "." + simpleName + ".java._trace"))
 				}
 				return traceFile
 			}

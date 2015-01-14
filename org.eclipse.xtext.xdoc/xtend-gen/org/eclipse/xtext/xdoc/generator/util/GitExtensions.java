@@ -2,8 +2,8 @@ package org.eclipse.xtext.xdoc.generator.util;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
@@ -403,10 +403,10 @@ public class GitExtensions {
       final URL url = _classLoader.getResource(javaFileName);
       boolean _notEquals = (!Objects.equal(url, null));
       if (_notEquals) {
-        String traceFile = this.calculateTraceFileName(url, javaFileName, qualifiedName);
+        URL traceFile = this.calculateTraceFileName(url, javaFileName, qualifiedName);
         TraceRegionSerializer _traceRegionSerializer = new TraceRegionSerializer();
-        FileInputStream _fileInputStream = new FileInputStream(traceFile);
-        final AbstractTraceRegion traceRegion = _traceRegionSerializer.readTraceRegionFrom(_fileInputStream);
+        InputStream _openStream = traceFile.openStream();
+        final AbstractTraceRegion traceRegion = _traceRegionSerializer.readTraceRegionFrom(_openStream);
         URI _associatedPath = traceRegion.getAssociatedPath();
         return _associatedPath.toString();
       }
@@ -421,29 +421,35 @@ public class GitExtensions {
     return (_replace_1 + ".java");
   }
   
-  public String calculateTraceFileName(final URL classFileURL, final String classFileName, final String qualifiedName) {
-    int _lastIndexOf = qualifiedName.lastIndexOf(".");
-    int _plus = (_lastIndexOf + 1);
-    final String simpleName = qualifiedName.substring(_plus);
-    int _lastIndexOf_1 = qualifiedName.lastIndexOf(".");
-    final String packageName = qualifiedName.substring(0, _lastIndexOf_1);
-    String traceFile = null;
-    String _string = classFileURL.toString();
-    boolean _contains = _string.contains(("bin/" + classFileName));
-    if (_contains) {
-      String _file = classFileURL.getFile();
-      String _replace = packageName.replace(".", "/");
-      String _plus_1 = ("xtend-gen/" + _replace);
-      String _plus_2 = (_plus_1 + "/.");
-      String _plus_3 = (_plus_2 + simpleName);
-      String _plus_4 = (_plus_3 + ".java._trace");
-      String _replace_1 = _file.replace(("bin/" + classFileName), _plus_4);
-      traceFile = _replace_1;
-    } else {
-      String _string_1 = classFileURL.toString();
-      String _replace_2 = _string_1.replace((simpleName + ".class"), (("." + simpleName) + ".java._trace"));
-      traceFile = _replace_2;
+  public URL calculateTraceFileName(final URL classFileURL, final String classFileName, final String qualifiedName) {
+    try {
+      int _lastIndexOf = qualifiedName.lastIndexOf(".");
+      int _plus = (_lastIndexOf + 1);
+      final String simpleName = qualifiedName.substring(_plus);
+      int _lastIndexOf_1 = qualifiedName.lastIndexOf(".");
+      final String packageName = qualifiedName.substring(0, _lastIndexOf_1);
+      URL traceFile = null;
+      String _string = classFileURL.toString();
+      boolean _contains = _string.contains(("bin/" + classFileName));
+      if (_contains) {
+        String _string_1 = classFileURL.toString();
+        String _replace = packageName.replace(".", "/");
+        String _plus_1 = ("xtend-gen/" + _replace);
+        String _plus_2 = (_plus_1 + "/.");
+        String _plus_3 = (_plus_2 + simpleName);
+        String _plus_4 = (_plus_3 + ".java._trace");
+        String _replace_1 = _string_1.replace(("bin/" + classFileName), _plus_4);
+        URL _uRL = new URL(_replace_1);
+        traceFile = _uRL;
+      } else {
+        String _string_2 = classFileURL.toString();
+        String _replace_2 = _string_2.replace((simpleName + ".class"), (("." + simpleName) + ".java._trace"));
+        URL _uRL_1 = new URL(_replace_2);
+        traceFile = _uRL_1;
+      }
+      return traceFile;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
     }
-    return traceFile;
   }
 }

@@ -5,5 +5,6 @@
 	<classpathentry kind="src" path="xtend-gen"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src-gen"/>
+	<classpathentry kind="lib" path="testfiles/org.xtext.mongobeans.lib_1.0.0.201501130438.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
