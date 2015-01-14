@@ -16,7 +16,7 @@ public class GitExtensionsTest {
       GitExtensions _gitExtensions = new GitExtensions();
       final String gitURL = _gitExtensions.calculateTraceFileName(url, clazzName, "org.xtext.builddsl.lib.DependsOn");
       Assert.assertNotNull(gitURL);
-      Assert.assertEquals("file:/plugins/org.xtext.builddsl.lib.jar!/org/xtext/builddsl/lib/.DependsOn.java._trace", gitURL);
+      Assert.assertEquals("jar:file:/plugins/org.xtext.builddsl.lib.jar!/org/xtext/builddsl/lib/.DependsOn.java._trace", gitURL);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

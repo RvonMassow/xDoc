@@ -440,8 +440,8 @@ public class GitExtensions {
       String _replace_1 = _file.replace(("bin/" + classFileName), _plus_4);
       traceFile = _replace_1;
     } else {
-      String _file_1 = classFileURL.getFile();
-      String _replace_2 = _file_1.replace((simpleName + ".class"), (("." + simpleName) + ".java._trace"));
+      String _string_1 = classFileURL.toString();
+      String _replace_2 = _string_1.replace((simpleName + ".class"), (("." + simpleName) + ".java._trace"));
       traceFile = _replace_2;
     }
     return traceFile;

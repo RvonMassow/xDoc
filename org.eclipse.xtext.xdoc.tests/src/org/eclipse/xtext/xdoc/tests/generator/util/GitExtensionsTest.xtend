@@ -14,7 +14,7 @@ class GitExtensionsTest {
 		val url = new URL("jar:file:/plugins/org.xtext.builddsl.lib.jar!/org/xtext/builddsl/lib/DependsOn.class");
 		val gitURL = new GitExtensions().calculateTraceFileName(url, clazzName, "org.xtext.builddsl.lib.DependsOn")
 		assertNotNull(gitURL)
-		assertEquals("file:/plugins/org.xtext.builddsl.lib.jar!/org/xtext/builddsl/lib/.DependsOn.java._trace", gitURL)
+		assertEquals("jar:file:/plugins/org.xtext.builddsl.lib.jar!/org/xtext/builddsl/lib/.DependsOn.java._trace", gitURL)
 	}
 
 	@Test

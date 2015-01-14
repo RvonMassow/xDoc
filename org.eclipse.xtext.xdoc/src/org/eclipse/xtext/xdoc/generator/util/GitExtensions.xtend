@@ -132,7 +132,7 @@ class GitExtensions {
 					traceFile = classFileURL.file.replace('bin/' + classFileName,
 						'xtend-gen/' + packageName.replace('.', '/') + "/." + simpleName + ".java._trace")
 				} else {
-					traceFile = classFileURL.file.replace(simpleName + '.class', "." + simpleName + ".java._trace")
+					traceFile = classFileURL.toString.replace(simpleName + '.class', "." + simpleName + ".java._trace")
 				}
 				return traceFile
 			}
