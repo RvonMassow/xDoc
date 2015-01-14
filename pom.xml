@@ -17,7 +17,6 @@
 		<module>org.eclipse.xtext.xdoc.ui</module>
 		<module>org.eclipse.xtext.xdoc.feature</module>
 		<module>org.eclipse.xtext.xdoc.releng</module>
-		<!-- <module>org.eclipse.xtext.xdoc.tests</module> -->
 	</modules>
 	<repositories>
 		<repository>
@@ -78,6 +77,7 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
+					<pomDependencies>consider</pomDependencies>
 					<resolver>p2</resolver>
 				</configuration>
 			</plugin>

@@ -25,6 +25,16 @@
 					<useUIHarness>false</useUIHarness>
 					<testFailureIgnore>true</testFailureIgnore>
 					<argLine>${os-jvm-flags}</argLine>
+					<dependencies>
+						<dependency>
+							<groupId>org.xtext.mongobeans</groupId>
+							<artifactId>org.xtext.mongobeans.lib</artifactId>
+							<version>1.0</version>
+							<scope>system</scope>
+							<systemPath>${basedir}/testfiles/org.xtext.mongobeans.lib_1.0.0.201501130438.jar</systemPath>
+							<optional>true</optional>
+						</dependency>
+					</dependencies>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -39,6 +49,23 @@
 					<archive>
 						<addMavenDescriptor>false</addMavenDescriptor>
 					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<extraClasspathElements>
+						<dependency>
+							<groupId>org.xtext.mongobeans</groupId>
+							<artifactId>org.xtext.mongobeans.lib</artifactId>
+							<version>1.0</version>
+							<scope>system</scope>
+							<systemPath>${basedir}/testfiles/org.xtext.mongobeans.lib_1.0.0.201501130438.jar</systemPath>
+							<optional>true</optional>
+						</dependency>
+					</extraClasspathElements>
 				</configuration>
 			</plugin>
 		</plugins>
